@@ -1,4 +1,15 @@
 {
   "note": "Evening reports from the Helal board. Amr reads these and marks work Done.",
-  "reports": []
+  "reports": [
+    {
+      "id": "r-mt7nniwi",
+      "who": "Amr",
+      "date": "2026-08-24",
+      "finished": "fd",
+      "unfinished": "fd",
+      "drive": "",
+      "need_review": false,
+      "created_at": "2026-08-24T19:54:49.842Z"
+    }
+  ]
 }
