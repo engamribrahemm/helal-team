@@ -1,0 +1,68 @@
+{
+  "status": "live",
+  "plan": "Free Forever",
+  "workspace": "Helal Team Management",
+  "owner_email": "eng.amr.ibrahemm@gmail.com",
+  "owner_name": "Amr Ibrahem",
+  "team_id": "90152686331",
+  "url": "https://app.clickup.com/90152686331",
+  "note": "Do not upload design or video files into ClickUp. Paste Drive links on tasks. This is Amr's owned workspace. Work only here.",
+  "left_workspaces": [
+    {
+      "name": "Gehad Ashraf Elsayed's Workspace",
+      "status": "left",
+      "date": "2026-08-22"
+    },
+    {
+      "name": "Helal's Workspace",
+      "team_id": "90121475428",
+      "url": "https://app.clickup.com/90121475428",
+      "status": "pending_leave",
+      "note": "Owned by Helal email. Leave after Amr logs back in. Do not use."
+    }
+  ],
+  "invites": [
+    {
+      "email": "mariamsoltan808@gmail.com",
+      "person": "Mariam",
+      "space": "Social",
+      "role": "Member",
+      "status": "invited"
+    }
+  ],
+  "spaces": [
+    {
+      "name": "Social",
+      "who": "Mariam, Judi",
+      "lists": ["List"],
+      "statuses": ["TO DO", "IN PROGRESS", "REVIEW", "REVISIONS", "DONE"]
+    },
+    {
+      "name": "Graphic",
+      "who": "Seif, Alaa, Sara",
+      "lists": ["List"]
+    },
+    {
+      "name": "Video editors",
+      "who": "Ganna",
+      "lists": ["List"]
+    },
+    {
+      "name": "Calendar",
+      "who": "Content calendar",
+      "lists": ["Helal Calendar"]
+    },
+    {
+      "name": "Daily Reports",
+      "who": "Whole team",
+      "lists": ["List (form submissions)"],
+      "statuses": ["TO DO", "IN PROGRESS", "COMPLETE"],
+      "form": {
+        "title": "Helal Daily Report",
+        "url": "",
+        "list_url": "",
+        "note": "Free plan: one form only. Team must be invited and open this Form view in ClickUp."
+      }
+    }
+  ]
+}

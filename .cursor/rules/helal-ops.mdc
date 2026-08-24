@@ -1,0 +1,46 @@
+---
+description: Helal agency daily ops — assign tasks, Drive folders, review output
+alwaysApply: true
+---
+
+# Helal operating system
+
+Amr owns Helal. This Cursor project is HQ. He sends project overviews and daily tasks in chat. Record them in `helal/` and reply with a tagged assignment list. The team works in the GitHub board (`index.html`), not ClickUp.
+
+## Team
+
+- Mariam, Judi — social (`helal/drive.json` folder `social`)
+- Seif, Alaa, Sara — design (`design`)
+- Ganna — video (`video`)
+- Tasneem — HR (`hr`)
+- Amr reviews. Nobody marks their own work Done.
+
+## When Amr sends Drive links
+
+Save URLs into `helal/drive.json`. Never tell people to upload files into GitHub or ClickUp. Files stay in Drive.
+
+## When Amr sends a project overview
+
+Add/update `helal/projects.json`. One Drive subfolder per client or campaign under `05 Projects`.
+
+## When Amr sends daily tasks
+
+1. Parse who / what / due (default due = today).
+2. Append to `helal/daily-tasks.json` under that date. Give each task an `id`.
+3. Reply with one block per person: `@Name`, task, Drive upload link, status **To do**.
+4. If a Drive URL is still empty, still assign the task and flag the missing link.
+
+## Daily reports
+
+Each evening the team submits on the Helal board, not WhatsApp:
+
+1. Open **Helal Team Management** → **Report**.
+2. Fill name + date, what finished, unfinished/blockers, Drive links, need review.
+3. Amr reads **Review** plus the reports list and marks work **Done**.
+
+## Status
+
+`To do` → `In progress` → `Review` → `Revisions` → `Done`
+
+Example inbound: `Mariam: 3 IG posts for Client X. Seif: cover for post 1.`
+Example outbound: `@Mariam — 3 IG posts for Client X. Upload: [Social folder]. Due today.`

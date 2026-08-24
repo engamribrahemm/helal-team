@@ -1,0 +1,76 @@
+{
+  "agency": "Helal",
+  "owner": {
+    "id": "amr",
+    "name": "Amr",
+    "role": "Owner / reviewer",
+    "mention": "@Amr"
+  },
+  "people": [
+    {
+      "id": "mariam",
+      "name": "Mariam",
+      "role": "Social media specialist",
+      "home": "social",
+      "mention": "@Mariam",
+      "email": "mariamsoltan808@gmail.com"
+    },
+    {
+      "id": "judi",
+      "name": "Judi",
+      "role": "Social media specialist",
+      "home": "social",
+      "mention": "@Judi",
+      "email": ""
+    },
+    {
+      "id": "seif",
+      "name": "Seif",
+      "role": "Graphic designer",
+      "home": "design",
+      "mention": "@Seif",
+      "email": "saifahmed0801@gmail.com"
+    },
+    {
+      "id": "alaa",
+      "name": "Alaa",
+      "role": "Graphic designer",
+      "home": "design",
+      "mention": "@Alaa",
+      "email": ""
+    },
+    {
+      "id": "sara",
+      "name": "Sara",
+      "role": "Graphic designer",
+      "home": "design",
+      "mention": "@Sara",
+      "email": ""
+    },
+    {
+      "id": "graphic_unconfirmed",
+      "name": "Graphic (name unconfirmed)",
+      "role": "Graphic designer",
+      "home": "design",
+      "mention": "@Graphic",
+      "email": "af5656971@gmail.com",
+      "note": "Amr sent this as graphic. Confirm if this is Alaa or Sara."
+    },
+    {
+      "id": "ganna",
+      "name": "Ganna",
+      "role": "Video editor",
+      "home": "video",
+      "mention": "@Ganna",
+      "email": "gannayaser1020@gmail.com"
+    },
+    {
+      "id": "tasneem",
+      "name": "Tasneem",
+      "role": "HR",
+      "home": "hr",
+      "mention": "@Tasneem",
+      "email": "tasneemyasserelmohamdy@gmail.com"
+    }
+  ]
+}

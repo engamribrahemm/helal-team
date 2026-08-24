@@ -1,0 +1,42 @@
+{
+  "status": "waiting_for_links",
+  "note": "Amr creates these folders in Google Drive, shares them with the team as editors, then pastes the links here via chat.",
+  "folders": [
+    {
+      "id": "root",
+      "name": "Helal",
+      "who": "Everyone",
+      "url": ""
+    },
+    {
+      "id": "social",
+      "name": "Helal / 01 Social",
+      "who": "Mariam, Judi",
+      "url": ""
+    },
+    {
+      "id": "design",
+      "name": "Helal / 02 Design",
+      "who": "Seif, Alaa, Sara",
+      "url": ""
+    },
+    {
+      "id": "video",
+      "name": "Helal / 03 Video",
+      "who": "Ganna",
+      "url": ""
+    },
+    {
+      "id": "hr",
+      "name": "Helal / 04 HR",
+      "who": "Tasneem",
+      "url": ""
+    },
+    {
+      "id": "projects",
+      "name": "Helal / 05 Projects",
+      "who": "Everyone — one subfolder per client or campaign",
+      "url": ""
+    }
+  ]
+}

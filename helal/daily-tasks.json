@@ -1,0 +1,64 @@
+{
+  "status": "ready",
+  "note": "Amr sends the day's tasks in chat or assigns on the board. Record them here, tag each person, and attach the matching Drive upload folder.",
+  "statuses": ["To do", "In progress", "Review", "Revisions", "Done"],
+  "days": [
+    {
+      "date": "2026-08-22",
+      "source": "test workflow — one assigned task per person so the team can try the board",
+      "tasks": [
+        {
+          "id": "t-20260822-mariam",
+          "who": "Mariam",
+          "space": "Social",
+          "title": "[TEST] Helal Test Client — 1 Instagram caption + post brief",
+          "due": "2026-08-22",
+          "status": "To do",
+          "drive": "",
+          "drive_missing": true
+        },
+        {
+          "id": "t-20260822-seif",
+          "who": "Seif",
+          "space": "Graphic",
+          "title": "[TEST] Helal Test Client — 1 Instagram post design",
+          "due": "2026-08-22",
+          "status": "To do",
+          "drive": "",
+          "drive_missing": true
+        },
+        {
+          "id": "t-20260822-graphic",
+          "who": "Graphic (name unconfirmed)",
+          "email": "af5656971@gmail.com",
+          "space": "Graphic",
+          "title": "[TEST] Helal Test Client — 1 story design",
+          "due": "2026-08-22",
+          "status": "To do",
+          "drive": "",
+          "drive_missing": true
+        },
+        {
+          "id": "t-20260822-ganna",
+          "who": "Ganna",
+          "space": "Video editors",
+          "title": "[TEST] Helal Test Client — 15s Reel cut",
+          "due": "2026-08-22",
+          "status": "To do",
+          "drive": "",
+          "drive_missing": true
+        },
+        {
+          "id": "t-20260822-tasneem",
+          "who": "Tasneem",
+          "space": "Daily Reports",
+          "title": "[TEST] Collect missing teammate emails + confirm join",
+          "due": "2026-08-22",
+          "status": "To do",
+          "drive": "",
+          "drive_missing": true
+        }
+      ]
+    }
+  ]
+}
