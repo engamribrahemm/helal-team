@@ -10,6 +10,9 @@ const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Ca
 const LS_SESSION = "helal.session";
 const LS_TOKEN = "helal.ghToken";
 const LS_REPO = "helal.ghRepo";
+const LS_TASKS = "helal.tasksCache";
+const LS_REPORTS = "helal.reportsCache";
+const TOKEN_URL = "https://github.com/settings/tokens/new?scopes=repo&description=Helal%20team%20board";
 
 const state = {
   view: "board",
@@ -30,6 +33,9 @@ const state = {
   shas: {},
   session: readSession(),
   openTaskId: null,
+  reportDay: "",
+  calMonth: "",
+  githubDown: false,
 };
 
 let cardDidDrag = false;
@@ -139,6 +145,38 @@ function canSetStatus(next) {
   return next !== "Done";
 }
 
+function cacheBoard() {
+  try {
+    if (state.tasksFile) localStorage.setItem(LS_TASKS, JSON.stringify(state.tasksFile));
+    if (state.reportsFile) localStorage.setItem(LS_REPORTS, JSON.stringify(state.reportsFile));
+  } catch (_) {}
+}
+
+function hydrateFromCache() {
+  try {
+    const tasks = JSON.parse(localStorage.getItem(LS_TASKS) || "null");
+    const reports = JSON.parse(localStorage.getItem(LS_REPORTS) || "null");
+    if (tasks?.days) state.tasksFile = tasks;
+    if (reports?.reports) state.reportsFile = reports;
+  } catch (_) {}
+}
+
+function explainGithubError(status, body) {
+  const text = `${status} ${body || ""}`;
+  if (status === 401 || /bad credentials/i.test(text)) {
+    state.githubDown = true;
+    return "GitHub rejected this token. It is not your GitHub password. Open Setup, create a new token with repo access, and paste it there.";
+  }
+  if (status === 403) {
+    state.githubDown = true;
+    return "This token cannot write to the Helal repo. Create a token with the repo checkbox turned on.";
+  }
+  if (status === 404) {
+    return "Repository not found. In Setup use engamribrahemm/helal-team.";
+  }
+  return `GitHub ${status}: ${(body || "").slice(0, 160)}`;
+}
+
 async function fetchLocal(path) {
   const res = await fetch(path, { cache: "no-store" });
   if (!res.ok) throw new Error(`Could not read ${path}`);
@@ -158,8 +196,7 @@ async function ghGet(path) {
     }
   );
   if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`GitHub ${res.status}: ${body.slice(0, 180)}`);
+    throw new Error(explainGithubError(res.status, await res.text()));
   }
   const json = await res.json();
   state.shas[path] = json.sha;
@@ -172,15 +209,26 @@ function toBase64(str) {
 }
 
 async function ghPut(path, data, message) {
+  cacheBoard();
   const repo = repoParts();
-  if (!state.token || !repo) {
-    state.saveState = "local-only";
+  if (!state.token || !repo || state.githubDown) {
+    state.saveState = state.githubDown ? "error" : "local-only";
+    if (state.githubDown && !state.saveError) {
+      state.saveError = "GitHub rejected this token. Open Setup and paste a new repo token.";
+    }
     render();
     return false;
   }
   state.saveState = "saving";
   render();
   const content = toBase64(JSON.stringify(data, null, 2) + "\n");
+  if (!state.shas[path]) {
+    try {
+      await ghGet(path);
+    } catch (err) {
+      throw err;
+    }
+  }
   const putOnce = async (sha) =>
     fetch(`https://api.github.com/repos/${repo.owner}/${repo.repo}/contents/${path}`, {
       method: "PUT",
@@ -202,13 +250,13 @@ async function ghPut(path, data, message) {
     res = await putOnce(state.shas[path]);
   }
   if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`Save failed ${res.status}: ${body.slice(0, 180)}`);
+    throw new Error(explainGithubError(res.status, await res.text()));
   }
   const json = await res.json();
   state.shas[path] = json.content?.sha || state.shas[path];
   state.saveState = "saved";
   state.saveError = "";
+  cacheBoard();
   render();
   return true;
 }
@@ -228,7 +276,7 @@ async function loadAll() {
   };
 
   await local();
-  if (state.githubCfg?.owner && state.githubCfg?.repo && !state.repo) {
+  if (state.githubCfg?.owner && state.githubCfg?.repo) {
     state.repo = `${state.githubCfg.owner}/${state.githubCfg.repo}`;
     localStorage.setItem(LS_REPO, state.repo);
   } else if (!state.repo && inferRepo()) {
@@ -248,14 +296,20 @@ async function loadAll() {
       ]);
       Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg });
       state.saveState = "saved";
+      cacheBoard();
     } catch (err) {
       state.saveState = "error";
       state.saveError = err.message;
+      hydrateFromCache();
     }
+  } else {
+    hydrateFromCache();
   }
 
   const days = state.tasksFile?.days || [];
   state.date = days[days.length - 1]?.date || today();
+  state.reportDay = state.reportDay || today();
+  state.calMonth = state.calMonth || (state.reportDay || today()).slice(0, 7);
   if (state.session && !people().some((p) => p.name === state.session.who)) {
     logout();
   } else if (state.session) {
@@ -372,6 +426,8 @@ function assignTask({ who, space, title, due, drive, project, status }) {
 }
 
 function submitReport(fields) {
+  if (!state.reportsFile) state.reportsFile = { reports: [] };
+  if (!state.reportsFile.reports) state.reportsFile.reports = [];
   state.reportsFile.reports.unshift({
     id: `r-${Date.now().toString(36)}`,
     who: state.who,
@@ -383,21 +439,35 @@ function submitReport(fields) {
     created_at: new Date().toISOString(),
   });
   saveReports(`report: ${state.who} ${fields.date || today()}`);
+  state.reportDay = fields.date || today();
+  state.calMonth = state.reportDay.slice(0, 7);
   render();
 }
 
 function banner() {
   if (state.saveState === "saving") return $("div", { class: "banner" }, "Saving…");
   if (state.saveState === "saved" && state.token) {
-    return $("div", { class: "banner ok" }, "Connected. Changes save for the whole team.");
+    return $("div", { class: "banner ok" }, "Connected. Tasks and reports save for the whole team.");
   }
   if (state.saveState === "error") {
-    return $("div", { class: "banner err" }, `Save failed. ${state.saveError}`);
+    return $("div", { class: "banner err" }, [
+      state.saveError,
+      $("button", {
+        class: "btn primary",
+        onclick: () => {
+          state.view = "setup";
+          render();
+        },
+      }, "Open Setup"),
+    ]);
+  }
+  if (state.saveState === "local-only") {
+    return $("div", { class: "banner warn" }, "Saved on this computer. Connect a GitHub token in Setup so the team sees it too.");
   }
   if (!state.token) {
     return $("div", { class: "banner warn" }, isAdmin()
-      ? "Connect GitHub in Setup so the team sees the same board."
-      : "Work here. An admin connects GitHub so everyone stays in sync.");
+      ? "Open Setup and paste a GitHub token so tasks and reports save."
+      : "Ask Amr for the save token, then paste it in Setup so your work is kept.");
   }
   return null;
 }
@@ -623,29 +693,90 @@ function viewTaskDrawer() {
   ];
 }
 
+function shiftMonth(delta) {
+  const [y, m] = (state.calMonth || today().slice(0, 7)).split("-").map(Number);
+  const d = new Date(y, m - 1 + delta, 1);
+  state.calMonth = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+  render();
+}
+
+function reportsOn(date) {
+  return (state.reportsFile?.reports || []).filter((r) => r.date === date);
+}
+
+function reportCard(r) {
+  return $("article", { class: "card review" }, [
+    $("p", { class: "title" }, `${r.who} · ${r.date}`),
+    $("p", {}, r.finished),
+    r.unfinished ? $("p", { class: "muted" }, `Blockers: ${r.unfinished}`) : null,
+    r.drive ? $("p", {}, $("a", { href: r.drive, target: "_blank", rel: "noreferrer" }, "Open Drive")) : null,
+    $("span", { class: "pill" }, r.need_review ? "Needs review" : "Logged"),
+  ]);
+}
+
+function viewCalendar() {
+  const ym = state.calMonth || today().slice(0, 7);
+  const [y, m] = ym.split("-").map(Number);
+  const first = new Date(y, m - 1, 1);
+  const startPad = (first.getDay() + 6) % 7;
+  const last = new Date(y, m, 0).getDate();
+  const counts = {};
+  for (const r of state.reportsFile?.reports || []) {
+    counts[r.date] = (counts[r.date] || 0) + 1;
+  }
+  const cells = [];
+  for (let i = 0; i < startPad; i += 1) cells.push($("div", { class: "cal-day pad" }));
+  for (let day = 1; day <= last; day += 1) {
+    const date = `${y}-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const n = counts[date] || 0;
+    cells.push($("button", {
+      type: "button",
+      class: `cal-day${n ? " has" : ""}${date === state.reportDay ? " on" : ""}`,
+      onclick: () => {
+        state.reportDay = date;
+        state.date = date;
+        render();
+      },
+    }, [
+      $("strong", {}, String(day)),
+      n ? $("span", {}, String(n)) : null,
+    ]));
+  }
+  const label = first.toLocaleString("en-US", { month: "long", year: "numeric" });
+  return $("section", { class: "card cal-wrap" }, [
+    $("div", { class: "cal-nav" }, [
+      $("button", { class: "btn ghost", type: "button", onclick: () => shiftMonth(-1) }, "Prev"),
+      $("h2", {}, label),
+      $("button", { class: "btn ghost", type: "button", onclick: () => shiftMonth(1) }, "Next"),
+    ]),
+    $("div", { class: "cal-week" }, ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => $("span", {}, d))),
+    $("div", { class: "cal-grid" }, cells),
+  ]);
+}
+
 function viewReview() {
   const waiting = allTasks().filter((t) => t.status === "Review" || t.status === "Revisions");
-  const reports = state.reportsFile?.reports || [];
-  return $("div", { class: "two" }, [
+  const day = state.reportDay || today();
+  const dayReports = reportsOn(day);
+  const dayTasks = allTasks().filter((t) => t.date === day || t.due === day);
+  return $("div", { class: "dash" }, [
+    viewCalendar(),
+    $("section", {}, [
+      $("h2", {}, `Reports · ${day}`),
+      $("p", { class: "muted" }, "Click a day on the calendar to see who submitted."),
+      dayReports.length
+        ? $("div", { class: "cards", style: "margin-top:12px" }, dayReports.map(reportCard))
+        : $("p", { class: "empty" }, "No report submissions on this day."),
+      $("h2", { style: "margin-top:28px" }, "Tasks that day"),
+      dayTasks.length
+        ? $("div", { class: "cards", style: "margin-top:12px" }, dayTasks.map(taskCard))
+        : $("p", { class: "empty" }, "No tasks dated this day."),
+    ]),
     $("section", {}, [
       $("h2", {}, "Waiting on review"),
       waiting.length
         ? $("div", { class: "cards", style: "margin-top:12px" }, waiting.map(taskCard))
         : $("p", { class: "empty" }, "Nothing in Review or Revisions."),
-    ]),
-    $("section", {}, [
-      $("h2", {}, "Report submissions"),
-      reports.length
-        ? $("div", { class: "cards", style: "margin-top:12px" }, reports.slice(0, 20).map((r) =>
-            $("article", { class: "card review" }, [
-              $("p", { class: "title" }, `${r.who} · ${r.date}`),
-              $("p", {}, r.finished),
-              r.unfinished ? $("p", { class: "muted" }, `Blockers: ${r.unfinished}`) : null,
-              r.drive ? $("p", {}, $("a", { href: r.drive, target: "_blank", rel: "noreferrer" }, "Drive")) : null,
-              $("span", { class: "pill" }, r.need_review ? "Needs review" : "No review flag"),
-            ])
-          ))
-        : $("p", { class: "empty" }, "No evening reports yet."),
     ]),
   ]);
 }
@@ -791,35 +922,51 @@ function sopBlocks() {
     ]),
     $("article", { class: "card sop" }, [
       $("h3", {}, "5. Evening report"),
-      $("p", {}, "Every evening open Report. Write what finished, what is blocked, and Drive links. Do not send this on WhatsApp."),
+      $("p", {}, "Every evening open Report. Write what finished, what is blocked, and Drive links. Admins see each day's reports on the Review calendar."),
     ]),
     $("article", { class: "card sop" }, [
       $("h3", {}, "6. Admins"),
-      $("p", {}, "Amr and Tasneem see every task, every report, and can create work for anyone. They use Review to clear the queue."),
+      $("p", {}, "Amr and Tasneem see every task and the reports calendar. They connect a GitHub token in Setup so tasks and reports actually save."),
     ]),
   ]);
 }
 
 function viewSetup() {
-  const repoInput = $("input", { value: state.repo, placeholder: "engamribrahemm/helal-team" });
-  const tokenInput = $("input", { type: "password", value: state.token, placeholder: "GitHub token", autocomplete: "off" });
+  const repoInput = $("input", { value: state.repo || "engamribrahemm/helal-team", placeholder: "engamribrahemm/helal-team" });
+  const tokenInput = $("input", {
+    type: "password",
+    value: state.token,
+    placeholder: "ghp_… paste the token, not your GitHub password",
+    autocomplete: "off",
+  });
   return $("section", { class: "card", style: "max-width:720px" }, [
-    $("h2", {}, "GitHub sync"),
-    $("p", { class: "muted" }, "A token with Contents read/write keeps the whole team on the same board."),
+    $("h2", {}, "Save connection"),
+    $("p", { class: "muted" }, "The 401 error means GitHub did not accept the token. Use a personal access token with repo access. Do not paste your GitHub account password."),
+    $("ol", { class: "setup-steps" }, [
+      $("li", {}, [
+        "Open ",
+        $("a", { href: TOKEN_URL, target: "_blank", rel: "noreferrer" }, "this GitHub token page"),
+        " while logged in as engamribrahemm.",
+      ]),
+      $("li", {}, "Leave the repo checkbox on. Click Generate token. Copy the value that starts with ghp_."),
+      $("li", {}, "Paste it below and click Connect. Tasneem uses the same token on her computer."),
+    ]),
     $("form", {
       class: "form",
       style: "margin-top:16px",
       onsubmit: (e) => {
         e.preventDefault();
-        state.repo = repoInput.value.trim();
+        state.repo = repoInput.value.trim() || "engamribrahemm/helal-team";
         state.token = tokenInput.value.trim();
         localStorage.setItem(LS_REPO, state.repo);
         localStorage.setItem(LS_TOKEN, state.token);
+        state.saveError = "";
+        state.githubDown = false;
         loadAll().then(render);
       },
     }, [
       $("label", {}, ["Repository", repoInput]),
-      $("label", {}, ["Access token", tokenInput]),
+      $("label", {}, ["GitHub token", tokenInput]),
       $("div", { style: "display:flex;gap:8px" }, [
         $("button", { class: "btn primary", type: "submit" }, "Connect"),
         $("button", {
@@ -829,6 +976,7 @@ function viewSetup() {
             state.token = "";
             localStorage.removeItem(LS_TOKEN);
             state.saveState = "idle";
+            state.saveError = "";
             render();
           },
         }, "Disconnect"),
@@ -884,10 +1032,11 @@ function navItems() {
     ["report", "Report"],
     ["drive", "Drive"],
     ["guide", "SOP"],
+    ["setup", "Setup"],
   ];
   if (isAdmin()) {
-    items.splice(3, 0, ["review", "Review"]);
-    items.push(["people", "People"], ["setup", "Setup"]);
+    items.splice(3, 0, ["review", "Dashboard"]);
+    items.push(["people", "People"]);
   }
   return items;
 }
@@ -954,7 +1103,7 @@ function render() {
   else if (state.view === "drive") main.append(viewDrive());
   else if (state.view === "people" && isAdmin()) main.append(viewPeople());
   else if (state.view === "guide") main.append(viewGuide());
-  else if (state.view === "setup" && isAdmin()) main.append(viewSetup());
+  else if (state.view === "setup") main.append(viewSetup());
   else main.append(viewMy()[1]);
   root.append(main);
   const drawer = viewTaskDrawer();

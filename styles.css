@@ -108,6 +108,10 @@ nav button.active, .btn.primary {
   padding: 12px 16px;
   margin-bottom: 16px;
   color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
 }
 .banner.warn { border-color: var(--accent); color: var(--text); }
 .banner.ok { border-color: var(--accent); color: var(--text); }
@@ -348,6 +352,64 @@ a { color: var(--accent); }
 
 .drawer h2 { margin-bottom: 6px; }
 .drawer .form { margin-top: 16px; }
+
+.dash {
+  display: grid;
+  gap: 22px;
+}
+
+.cal-wrap { max-width: 640px; }
+.cal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.cal-week, .cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.cal-week span {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.cal-day {
+  min-height: 54px;
+  background: #000;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px;
+  cursor: pointer;
+}
+.cal-day.pad { visibility: hidden; cursor: default; }
+.cal-day.has { border-color: var(--accent); }
+.cal-day.on { background: var(--accent); color: #000; }
+.cal-day span {
+  font-size: 11px;
+  background: var(--accent);
+  color: #000;
+  border-radius: 999px;
+  padding: 1px 6px;
+}
+.cal-day.on span { background: #000; color: var(--accent); }
+
+.setup-steps {
+  color: var(--muted);
+  line-height: 1.5;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
 
 @media (max-width: 900px) {
   .two, .stat-row, .sop-grid { grid-template-columns: 1fr; }
