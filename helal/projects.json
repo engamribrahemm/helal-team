@@ -1,5 +1,52 @@
 {
-  "status": "waiting_for_overview",
-  "note": "Amr sends a short overview of active clients and campaigns. Each project gets a Drive subfolder under 05 Projects.",
-  "projects": []
+  "status": "ready",
+  "note": "Clients already in the Helal Drive. Upload work into the matching folder.",
+  "projects": [
+    {
+      "id": "logos",
+      "name": "Logos",
+      "url": "https://drive.google.com/drive/folders/1AKEI5DMQP7AqHvmte8M_9etY0gFjjdR6"
+    },
+    {
+      "id": "mas",
+      "name": "MAS",
+      "url": "https://drive.google.com/drive/folders/1UckK2XLzVyyLJxsc-hbXMK7pPM3emORG"
+    },
+    {
+      "id": "medc",
+      "name": "MEDC",
+      "url": "https://drive.google.com/drive/folders/1RliAIFhycJBbEpfq1lQ0fNqDvm45oWYC"
+    },
+    {
+      "id": "omega",
+      "name": "OMEGA",
+      "url": "https://drive.google.com/drive/folders/1W7iGADCNAv5uVaQM5zH7OILcJjq5eq43"
+    },
+    {
+      "id": "osama-helal",
+      "name": "Osama Helal",
+      "url": "https://drive.google.com/drive/folders/1qmXWl5fFvtTY_CAFVVEQDsdQX997Fq8f"
+    },
+    {
+      "id": "stac",
+      "name": "STAC",
+      "url": "https://drive.google.com/drive/folders/1axP56y_-y0-ihM6IsZFG3snvbnkh5VV_"
+    },
+    {
+      "id": "thermotec",
+      "name": "ThermoTEC",
+      "url": "https://drive.google.com/drive/folders/1DhvReBZpNASFctyoH5kLqyA0MUpBEPDm"
+    },
+    {
+      "id": "trust-engineering",
+      "name": "Trust engineering",
+      "url": "https://drive.google.com/drive/folders/1RioLV4hTfKMAwqxv1Ia06JFqs0n8OjxI"
+    },
+    {
+      "id": "content-calendars",
+      "name": "Content Calendars",
+      "url": "https://docs.google.com/spreadsheets/d/15YjvqzhpCaPqruCsQKOagTU7c-EpF6YKZyVpQOZm-_s",
+      "type": "sheet"
+    }
+  ]
 }

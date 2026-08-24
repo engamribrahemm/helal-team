@@ -12,7 +12,7 @@ const LS_TOKEN = "helal.ghToken";
 const LS_REPO = "helal.ghRepo";
 
 const state = {
-  view: "my",
+  view: "board",
   who: "",
   date: "",
   team: null,
@@ -29,7 +29,10 @@ const state = {
   loginError: "",
   shas: {},
   session: readSession(),
+  openTaskId: null,
 };
+
+let cardDidDrag = false;
 
 function readSession() {
   try {
@@ -109,6 +112,26 @@ function tasksForView() {
 function folderFor(name) {
   const person = people().find((p) => p.name === name);
   return (state.drive?.folders || []).find((f) => f.id === person?.home);
+}
+
+function rootDrive() {
+  return state.drive?.root_url || state.drive?.folders?.find((f) => f.id === "root")?.url || "";
+}
+
+function projectList() {
+  return state.projects?.projects || [];
+}
+
+function driveForProject(name) {
+  return projectList().find((p) => p.name === name)?.url || rootDrive();
+}
+
+function findTask(taskId) {
+  for (const day of state.tasksFile?.days || []) {
+    const task = (day.tasks || []).find((t) => t.id === taskId);
+    if (task) return task;
+  }
+  return null;
 }
 
 function canSetStatus(next) {
@@ -273,7 +296,7 @@ function login(who, pin) {
   state.session = { who, role };
   state.who = who;
   state.loginError = "";
-  state.view = "my";
+  state.view = "board";
   localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
   render();
 }
@@ -287,14 +310,18 @@ function logout() {
 
 function setStatus(taskId, next) {
   if (!canSetStatus(next)) return;
+  let found = null;
   for (const day of state.tasksFile.days) {
     const task = day.tasks.find((t) => t.id === taskId);
     if (task) {
+      if (task.status === next) return;
       task.status = next;
       task.updated_at = new Date().toISOString();
       task.updated_by = state.who;
+      found = task;
     }
   }
+  if (!found) return;
   saveTasks(`board: ${state.who} set ${taskId} to ${next}`);
   render();
 }
@@ -321,19 +348,22 @@ function ensureDay(date) {
   return day;
 }
 
-function assignTask({ who, space, title, due, drive }) {
+function assignTask({ who, space, title, due, drive, project, status }) {
   const date = due || today();
   const day = ensureDay(date);
   const id = `t-${date.replaceAll("-", "")}-${who.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now().toString(36)}`;
+  const nextStatus = canSetStatus(status) ? (status || "To do") : "To do";
+  const driveUrl = (drive || driveForProject(project) || rootDrive() || "").trim();
   day.tasks.push({
     id,
     who,
     space,
+    project: project || "",
     title,
     due: date,
-    status: "To do",
-    drive: drive || "",
-    drive_missing: !drive,
+    status: nextStatus,
+    drive: driveUrl,
+    drive_missing: !driveUrl,
     created_by: state.who,
   });
   state.date = date;
@@ -377,16 +407,17 @@ function taskCard(task) {
   const driveInput = $("input", {
     type: "url",
     value: task.drive || "",
-    placeholder: folder?.url || "Paste Drive upload link",
+    placeholder: folder?.url || rootDrive() || "Paste Drive upload link",
   });
   return $("article", { class: `card ${STATUS_CLASS[task.status] || "todo"}` }, [
     $("p", { class: "title" }, task.title),
     $("div", { class: "meta" }, [
       $("span", { class: "pill" }, task.who),
+      task.project ? $("span", { class: "pill" }, task.project) : null,
       $("span", { class: "pill" }, task.space),
       $("span", { class: "pill" }, `Due ${task.due}`),
       task.created_by ? $("span", { class: "pill" }, `From ${task.created_by}`) : null,
-      task.drive_missing ? $("span", { class: "pill" }, "Drive missing") : null,
+      task.drive_missing ? $("span", { class: "pill warn" }, "Drive missing") : null,
     ]),
     $("div", { class: "statuses" },
       STATUSES.map((s) =>
@@ -402,6 +433,66 @@ function taskCard(task) {
       driveInput,
       $("button", { class: "btn", onclick: () => setDriveLink(task.id, driveInput.value) }, "Save link"),
     ]),
+  ]);
+}
+
+function kanbanCard(task) {
+  return $("article", {
+    class: "kcard",
+    draggable: "true",
+    ondragstart: (e) => {
+      cardDidDrag = true;
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", task.id);
+      e.currentTarget.classList.add("dragging");
+    },
+    ondragend: (e) => {
+      e.currentTarget.classList.remove("dragging");
+      document.querySelectorAll(".kanban-col.drop").forEach((el) => el.classList.remove("drop"));
+    },
+    onclick: () => {
+      if (cardDidDrag) {
+        cardDidDrag = false;
+        return;
+      }
+      state.openTaskId = task.id;
+      render();
+    },
+  }, [
+    $("p", { class: "title" }, task.title),
+    $("div", { class: "meta" }, [
+      $("span", { class: "pill" }, task.who),
+      task.project ? $("span", { class: "pill" }, task.project) : null,
+      $("span", { class: "pill" }, `Due ${task.due}`),
+      task.drive_missing ? $("span", { class: "pill warn" }, "Drive") : null,
+    ]),
+  ]);
+}
+
+function columnQuickAdd(status) {
+  if (!canSetStatus(status)) {
+    return $("p", { class: "muted" }, "Only admins can drop work here.");
+  }
+  const title = $("input", { placeholder: "Add a task", "aria-label": `Add task to ${status}` });
+  return $("form", {
+    class: "col-add",
+    onsubmit: (e) => {
+      e.preventDefault();
+      const text = title.value.trim();
+      if (!text) return;
+      assignTask({
+        who: state.who,
+        space: "Social",
+        title: text,
+        due: state.date || today(),
+        drive: rootDrive(),
+        status,
+      });
+      title.value = "";
+    },
+  }, [
+    title,
+    $("button", { type: "submit" }, "+"),
   ]);
 }
 
@@ -428,15 +519,108 @@ function viewMy() {
 
 function viewBoard() {
   const tasks = tasksForView();
-  return $("div", { class: "grid-5" },
+  return $("div", { class: "kanban" },
     STATUSES.map((status) => {
       const col = tasks.filter((t) => t.status === status);
-      return $("section", { class: "col" }, [
-        $("h3", {}, [status, $("span", {}, String(col.length))]),
-        ...col.map(taskCard),
+      return $("section", {
+        class: "kanban-col",
+        ondragover: (e) => {
+          e.preventDefault();
+          if (!canSetStatus(status)) {
+            e.dataTransfer.dropEffect = "none";
+            return;
+          }
+          e.dataTransfer.dropEffect = "move";
+          e.currentTarget.classList.add("drop");
+        },
+        ondragleave: (e) => {
+          if (e.currentTarget.contains(e.relatedTarget)) return;
+          e.currentTarget.classList.remove("drop");
+        },
+        ondrop: (e) => {
+          e.preventDefault();
+          e.currentTarget.classList.remove("drop");
+          const id = e.dataTransfer.getData("text/plain");
+          cardDidDrag = false;
+          if (id && canSetStatus(status)) setStatus(id, status);
+        },
+      }, [
+        $("div", { class: "kanban-head" }, [
+          $("h3", {}, status),
+          $("span", {}, String(col.length)),
+        ]),
+        $("div", { class: "kanban-cards" },
+          col.length ? col.map(kanbanCard) : $("p", { class: "empty" }, "Drop a card here")
+        ),
+        columnQuickAdd(status),
       ]);
     })
   );
+}
+
+function viewTaskDrawer() {
+  const task = findTask(state.openTaskId);
+  if (!task) return null;
+  const who = $("select", {}, people().map((p) => $("option", { value: p.name, selected: p.name === task.who }, p.name)));
+  const space = $("select", {}, SPACES.map((s) => $("option", { value: s, selected: s === task.space }, s)));
+  const project = $("select", {}, [
+    $("option", { value: "" }, "No client"),
+    ...projectList().map((p) => $("option", { value: p.name, selected: p.name === task.project }, p.name)),
+  ]);
+  const title = $("input", { value: task.title, required: true });
+  const due = $("input", { type: "date", value: task.due });
+  const drive = $("input", { type: "url", value: task.drive || "", placeholder: rootDrive() });
+  const close = () => {
+    state.openTaskId = null;
+    render();
+  };
+  return [
+    $("div", { class: "drawer-bg", onclick: close }),
+    $("aside", { class: "drawer" }, [
+      $("p", { class: "muted" }, "Task"),
+      $("h2", {}, task.title),
+      $("form", {
+        class: "form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          task.who = who.value;
+          task.space = space.value;
+          task.project = project.value;
+          task.title = title.value.trim();
+          task.due = due.value;
+          task.drive = drive.value.trim() || driveForProject(project.value);
+          task.drive_missing = !task.drive;
+          task.updated_at = new Date().toISOString();
+          task.updated_by = state.who;
+          state.openTaskId = null;
+          saveTasks(`board: ${state.who} edited ${task.id}`);
+          render();
+        },
+      }, [
+        $("label", {}, ["Title", title]),
+        $("label", {}, ["Assign to", who]),
+        $("label", {}, ["Client / folder", project]),
+        $("label", {}, ["Space", space]),
+        $("label", {}, ["Due", due]),
+        $("label", {}, ["Drive link", drive]),
+        task.drive ? $("a", { href: task.drive, target: "_blank", rel: "noreferrer" }, "Open Drive folder") : null,
+        $("div", { class: "statuses" },
+          STATUSES.map((s) =>
+            $("button", {
+              type: "button",
+              class: s === task.status ? "on" : "",
+              disabled: !canSetStatus(s),
+              onclick: () => setStatus(task.id, s),
+            }, s)
+          )
+        ),
+        $("div", { style: "display:flex;gap:8px;margin-top:8px" }, [
+          $("button", { class: "btn primary", type: "submit" }, "Save"),
+          $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
+        ]),
+      ]),
+    ]),
+  ];
 }
 
 function viewReview() {
@@ -507,17 +691,23 @@ function viewReport() {
 }
 
 function viewDrive() {
-  return $("div", { class: "people" },
-    (state.drive?.folders || []).map((f) =>
-      $("article", { class: "card" }, [
-        $("p", { class: "title" }, f.name),
-        $("p", { class: "muted" }, f.who),
-        f.url
-          ? $("a", { href: f.url, target: "_blank", rel: "noreferrer" }, "Open folder")
-          : $("p", {}, "Drive link missing. Amr pastes it in Cursor chat."),
-      ])
-    )
-  );
+  const clients = (state.drive?.folders || []).filter((f) => f.who === "Client" || f.id === "content-calendars");
+  const team = (state.drive?.folders || []).filter((f) => f.who !== "Client" && f.id !== "content-calendars");
+  const card = (f) =>
+    $("article", { class: "card" }, [
+      $("p", { class: "title" }, f.name),
+      $("p", { class: "muted" }, f.who),
+      f.url
+        ? $("a", { href: f.url, target: "_blank", rel: "noreferrer" }, "Open folder")
+        : $("p", {}, "Drive link missing."),
+    ]);
+  return $("div", {}, [
+    $("p", { class: "muted" }, "Upload files into the matching client folder. Nothing goes into GitHub."),
+    $("h2", { style: "margin:16px 0 10px" }, "Clients"),
+    $("div", { class: "people" }, clients.map(card)),
+    $("h2", { style: "margin:22px 0 10px" }, "Team"),
+    $("div", { class: "people" }, team.map(card)),
+  ]);
 }
 
 function viewPeople() {
@@ -536,12 +726,19 @@ function viewPeople() {
 function viewAssign() {
   const who = $("select", {}, people().map((p) => $("option", { value: p.name }, p.name)));
   const space = $("select", {}, SPACES.map((s) => $("option", { value: s }, s)));
+  const project = $("select", {}, [
+    $("option", { value: "" }, "No client"),
+    ...projectList().map((p) => $("option", { value: p.name }, p.name)),
+  ]);
   const title = $("input", { required: true, placeholder: "Task title" });
   const due = $("input", { type: "date", value: today() });
-  const drive = $("input", { type: "url", placeholder: "Drive upload folder (optional)" });
+  const drive = $("input", { type: "url", placeholder: "Drive folder (auto-fills from client)" });
+  project.addEventListener("change", () => {
+    if (!drive.value) drive.value = driveForProject(project.value);
+  });
   return $("section", { class: "card" }, [
     $("h2", {}, "Create task"),
-    $("p", { class: "muted" }, "Assign to anyone on the team."),
+    $("p", { class: "muted" }, "Assign to anyone. Files go in the client Drive folder."),
     $("form", {
       class: "form",
       style: "margin-top:12px",
@@ -550,20 +747,22 @@ function viewAssign() {
         assignTask({
           who: who.value,
           space: space.value,
+          project: project.value,
           title: title.value.trim(),
           due: due.value,
-          drive: drive.value.trim(),
+          drive: drive.value.trim() || driveForProject(project.value),
         });
         title.value = "";
         drive.value = "";
       },
     }, [
       $("label", {}, ["Assign to", who]),
+      $("label", {}, ["Client / folder", project]),
       $("label", {}, ["Space", space]),
       $("label", {}, ["Task", title]),
       $("label", {}, ["Due", due]),
       $("label", {}, ["Drive link", drive]),
-      $("button", { class: "btn primary", type: "submit" }, "Add as To do"),
+      $("button", { class: "btn primary", type: "submit" }, "Add to board"),
     ]),
   ]);
 }
@@ -580,11 +779,11 @@ function sopBlocks() {
     ]),
     $("article", { class: "card sop" }, [
       $("h3", {}, "2. Do the work"),
-      $("p", {}, "Open My work. Move the task: To do → In progress. Paste the Drive link on the card. Files stay in Drive, never in this board."),
+      $("p", {}, "Open the Board. Drag a card left or right across columns, same as ClickUp. Or type a new task at the bottom of a column. Files stay in the Helal Drive, never in this board."),
     ]),
     $("article", { class: "card sop" }, [
       $("h3", {}, "3. Ask for review"),
-      $("p", {}, "When it is ready, set status to Review. Only Amr or Tasneem can mark Done. If it needs changes, they send it to Revisions."),
+      $("p", {}, "When it is ready, drag the card to Review. Only Amr or Tasneem can drag to Done. If it needs changes, they drag it to Revisions."),
     ]),
     $("article", { class: "card sop" }, [
       $("h3", {}, "4. Create a task"),
@@ -679,8 +878,8 @@ function viewWelcome() {
 
 function navItems() {
   const items = [
-    ["my", "My work"],
     ["board", "Board"],
+    ["my", "My work"],
     ["assign", "Create task"],
     ["report", "Report"],
     ["drive", "Drive"],
@@ -696,6 +895,7 @@ function navItems() {
 function render() {
   const root = document.getElementById("app");
   root.replaceChildren();
+  root.className = state.session && state.view === "board" ? "board-mode" : "";
   if (!state.team) {
     root.append($("p", { class: "boot" }, "Could not load Helal data. Serve this folder over http, not as a file."));
     return;
@@ -757,6 +957,8 @@ function render() {
   else if (state.view === "setup" && isAdmin()) main.append(viewSetup());
   else main.append(viewMy()[1]);
   root.append(main);
+  const drawer = viewTaskDrawer();
+  if (drawer) root.append(...drawer);
 }
 
 loadAll()

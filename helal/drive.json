@@ -1,42 +1,97 @@
 {
-  "status": "waiting_for_links",
-  "note": "Amr creates these folders in Google Drive, shares them with the team as editors, then pastes the links here via chat.",
+  "status": "linked",
+  "note": "Helal files live in this Drive. Team uploads into the matching client folder. Do not upload files into GitHub.",
+  "root_url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing",
   "folders": [
     {
       "id": "root",
-      "name": "Helal",
+      "name": "Helal Drive",
       "who": "Everyone",
-      "url": ""
+      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
     },
     {
       "id": "social",
-      "name": "Helal / 01 Social",
+      "name": "Social uploads",
       "who": "Mariam, Judi",
-      "url": ""
+      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
     },
     {
       "id": "design",
-      "name": "Helal / 02 Design",
+      "name": "Design uploads",
       "who": "Seif, Alaa, Sara",
-      "url": ""
+      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
     },
     {
       "id": "video",
-      "name": "Helal / 03 Video",
+      "name": "Video uploads",
       "who": "Ganna",
-      "url": ""
+      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
     },
     {
       "id": "hr",
-      "name": "Helal / 04 HR",
+      "name": "HR uploads",
       "who": "Tasneem",
-      "url": ""
+      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
     },
     {
       "id": "projects",
-      "name": "Helal / 05 Projects",
-      "who": "Everyone — one subfolder per client or campaign",
-      "url": ""
+      "name": "Client folders",
+      "who": "Everyone — one folder per client",
+      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
+    },
+    {
+      "id": "logos",
+      "name": "Logos",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1AKEI5DMQP7AqHvmte8M_9etY0gFjjdR6"
+    },
+    {
+      "id": "mas",
+      "name": "MAS",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1UckK2XLzVyyLJxsc-hbXMK7pPM3emORG"
+    },
+    {
+      "id": "medc",
+      "name": "MEDC",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1RliAIFhycJBbEpfq1lQ0fNqDvm45oWYC"
+    },
+    {
+      "id": "omega",
+      "name": "OMEGA",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1W7iGADCNAv5uVaQM5zH7OILcJjq5eq43"
+    },
+    {
+      "id": "osama-helal",
+      "name": "Osama Helal",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1qmXWl5fFvtTY_CAFVVEQDsdQX997Fq8f"
+    },
+    {
+      "id": "stac",
+      "name": "STAC",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1axP56y_-y0-ihM6IsZFG3snvbnkh5VV_"
+    },
+    {
+      "id": "thermotec",
+      "name": "ThermoTEC",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1DhvReBZpNASFctyoH5kLqyA0MUpBEPDm"
+    },
+    {
+      "id": "trust-engineering",
+      "name": "Trust engineering",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1RioLV4hTfKMAwqxv1Ia06JFqs0n8OjxI"
+    },
+    {
+      "id": "content-calendars",
+      "name": "Content Calendars",
+      "who": "Everyone",
+      "url": "https://docs.google.com/spreadsheets/d/15YjvqzhpCaPqruCsQKOagTU7c-EpF6YKZyVpQOZm-_s"
     }
   ]
 }
