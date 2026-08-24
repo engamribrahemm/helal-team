@@ -3,5 +3,5 @@
   "repo": "helal-team",
   "branch": "main",
   "pages_url": "https://engamribrahemm.github.io/helal-team/",
-  "note": "Helal Team Management board. Team opens the Pages URL, picks a name, and connects a GitHub token in Setup so status and reports save."
+  "note": "Team opens the Pages URL, reads the SOP, then logs in. Amr and Tasneem use the admin password. Everyone else uses the member password. An admin connects a GitHub token in Setup so the board stays in sync."
 }

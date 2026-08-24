@@ -4,7 +4,8 @@
     "id": "amr",
     "name": "Amr",
     "role": "Owner / reviewer",
-    "mention": "@Amr"
+    "mention": "@Amr",
+    "access": "admin"
   },
   "people": [
     {
@@ -13,7 +14,8 @@
       "role": "Social media specialist",
       "home": "social",
       "mention": "@Mariam",
-      "email": "mariamsoltan808@gmail.com"
+      "email": "mariamsoltan808@gmail.com",
+      "access": "member"
     },
     {
       "id": "judi",
@@ -21,7 +23,8 @@
       "role": "Social media specialist",
       "home": "social",
       "mention": "@Judi",
-      "email": ""
+      "email": "",
+      "access": "member"
     },
     {
       "id": "seif",
@@ -29,7 +32,8 @@
       "role": "Graphic designer",
       "home": "design",
       "mention": "@Seif",
-      "email": "saifahmed0801@gmail.com"
+      "email": "saifahmed0801@gmail.com",
+      "access": "member"
     },
     {
       "id": "alaa",
@@ -37,7 +41,8 @@
       "role": "Graphic designer",
       "home": "design",
       "mention": "@Alaa",
-      "email": ""
+      "email": "",
+      "access": "member"
     },
     {
       "id": "sara",
@@ -45,7 +50,8 @@
       "role": "Graphic designer",
       "home": "design",
       "mention": "@Sara",
-      "email": ""
+      "email": "",
+      "access": "member"
     },
     {
       "id": "graphic_unconfirmed",
@@ -54,6 +60,7 @@
       "home": "design",
       "mention": "@Graphic",
       "email": "af5656971@gmail.com",
+      "access": "member",
       "note": "Amr sent this as graphic. Confirm if this is Alaa or Sara."
     },
     {
@@ -62,7 +69,8 @@
       "role": "Video editor",
       "home": "video",
       "mention": "@Ganna",
-      "email": "gannayaser1020@gmail.com"
+      "email": "gannayaser1020@gmail.com",
+      "access": "member"
     },
     {
       "id": "tasneem",
@@ -70,7 +78,8 @@
       "role": "HR",
       "home": "hr",
       "mention": "@Tasneem",
-      "email": "tasneemyasserelmohamdy@gmail.com"
+      "email": "tasneemyasserelmohamdy@gmail.com",
+      "access": "admin"
     }
   ]
 }
