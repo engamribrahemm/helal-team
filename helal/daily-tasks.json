@@ -53,7 +53,7 @@
           "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing",
           "drive_missing": false,
-          "updated_at": "2026-08-24T19:55:22.782Z",
+          "updated_at": "2026-08-24T19:55:20.072Z",
           "updated_by": "Amr"
         },
         {
@@ -65,6 +65,24 @@
           "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing",
           "drive_missing": false
+        }
+      ]
+    },
+    {
+      "date": "2026-08-24",
+      "source": "assigned on the Helal board",
+      "tasks": [
+        {
+          "id": "t-20260824-sara-mt7npskp",
+          "who": "Sara",
+          "space": "Graphic",
+          "project": "MEDC",
+          "title": "ffffffffffff",
+          "due": "2026-08-24",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1RliAIFhycJBbEpfq1lQ0fNqDvm45oWYC",
+          "drive_missing": false,
+          "created_by": "Amr"
         }
       ]
     }
