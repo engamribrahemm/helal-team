@@ -22,6 +22,7 @@ const state = {
   saveError: "",
   loginError: "",
   shas: {},
+  headSha: "",
   session: readSession(),
   openTaskId: null,
   creating: false,
@@ -335,6 +336,34 @@ function tasksSignature(file) {
     .join("|");
 }
 
+function flatTasks(file) {
+  return (file?.days || []).flatMap((d) => (d.tasks || []).map((t) => ({ ...t, _day: d.date })));
+}
+
+function mineNewerFile(remote, local) {
+  const who = state.who || state.session?.who;
+  if (!who || !local?.days) return null;
+  const remoteById = new Map(flatTasks(remote).map((t) => [t.id, t]));
+  const keep = [];
+  for (const task of flatTasks(local)) {
+    if (task.updated_by !== who) continue;
+    const other = remoteById.get(task.id);
+    if (!other || taskStamp(task) > taskStamp(other)) keep.push(task);
+  }
+  if (!keep.length) return null;
+  const days = new Map();
+  for (const task of keep) {
+    const date = task._day || task.due || today();
+    if (!days.has(date)) days.set(date, []);
+    const copy = { ...task };
+    delete copy._day;
+    days.get(date).push(copy);
+  }
+  return {
+    days: [...days.entries()].map(([date, tasks]) => ({ date, source: "Helal board", tasks })),
+  };
+}
+
 function readCacheFiles() {
   try {
     return {
@@ -375,17 +404,34 @@ async function fetchLocal(path) {
   return res.json();
 }
 
-async function dbGet(path) {
-  const { owner, repo, branch } = repoInfo();
-  const token = writeToken();
+function githubHeaders() {
   const headers = {
     Accept: "application/vnd.github+json",
     "Cache-Control": "no-cache",
+    Pragma: "no-cache",
   };
+  const token = writeToken();
   if (token) headers.Authorization = `Bearer ${token}`;
+  return headers;
+}
+
+async function fetchHeadSha() {
+  const { owner, repo, branch } = repoInfo();
   const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(branch)}&t=${Date.now()}`,
-    { cache: "no-store", headers }
+    `https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(branch)}`,
+    { cache: "no-store", headers: githubHeaders() }
+  );
+  if (!res.ok) return "";
+  const json = await res.json();
+  return json.object?.sha || "";
+}
+
+async function dbGet(path, ref) {
+  const { owner, repo, branch } = repoInfo();
+  const at = ref || (await fetchHeadSha()) || branch;
+  const res = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(at)}`,
+    { cache: "no-store", headers: githubHeaders() }
   );
   if (!res.ok) throw new Error(`GitHub ${res.status}`);
   const json = await res.json();
@@ -405,7 +451,8 @@ async function dbPut(path, data, message) {
   let lastError = "";
   for (let attempt = 0; attempt < 6; attempt += 1) {
     try {
-      const remote = await dbGet(path);
+      const head = await fetchHeadSha();
+      const remote = await dbGet(path, head);
       if (path.endsWith("daily-tasks.json")) {
         payload = mergeTaskFiles(remote, payload);
         state.tasksFile = payload;
@@ -444,6 +491,7 @@ async function dbPut(path, data, message) {
     if (res.ok) {
       const json = await res.json();
       state.shas[path] = json.content?.sha || sha;
+      state.headSha = json.commit?.sha || state.headSha;
       state.saveState = "saved";
       state.saveError = "";
       cacheBoard();
@@ -463,6 +511,7 @@ async function dbPut(path, data, message) {
 }
 
 async function loadAll() {
+  if (state.session) state.who = state.session.who;
   const local = async () => {
     const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg] = await Promise.all([
       fetchLocal("./helal/team.json"),
@@ -483,23 +532,25 @@ async function loadAll() {
   }
   const cache = readCacheFiles();
   try {
-    const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg] = await Promise.all([
-      dbGet("helal/team.json"),
-      dbGet("helal/auth.json"),
-      dbGet("helal/drive.json"),
-      dbGet("helal/projects.json"),
-      dbGet("helal/daily-tasks.json"),
-      dbGet("helal/reports.json"),
-      dbGet("helal/github.json"),
+    const githubCfg = await dbGet("helal/github.json");
+    state.githubCfg = githubCfg;
+    const head = await fetchHeadSha();
+    state.headSha = head;
+    const [team, auth, drive, projects, tasksFile, reportsFile] = await Promise.all([
+      dbGet("helal/team.json", head),
+      dbGet("helal/auth.json", head),
+      dbGet("helal/drive.json", head),
+      dbGet("helal/projects.json", head),
+      dbGet("helal/daily-tasks.json", head),
+      dbGet("helal/reports.json", head),
     ]);
     Object.assign(state, { team, auth, drive, projects, githubCfg });
-    state.tasksFile = mergeTaskFiles(tasksFile, cache.tasks);
-    state.reportsFile = mergeReports(reportsFile, cache.reports);
+    const replay = mineNewerFile(tasksFile, cache.tasks);
+    state.tasksFile = replay ? mergeTaskFiles(tasksFile, replay) : tasksFile;
+    state.reportsFile = reportsFile;
     state.saveState = writeToken() ? "saved" : "idle";
     cacheBoard();
-    if (writeToken() && tasksSignature(state.tasksFile) !== tasksSignature(tasksFile)) {
-      saveTasks("board: keep local updates in GitHub");
-    }
+    if (replay && writeToken()) saveTasks(`board: ${state.who} replay unsaved moves`);
   } catch (_) {
     if (cache.tasks?.days) state.tasksFile = mergeTaskFiles(state.tasksFile, cache.tasks);
     if (cache.reports?.reports) state.reportsFile = mergeReports(state.reportsFile, cache.reports);
@@ -556,14 +607,20 @@ async function saveReports(message) {
 }
 
 async function pullRemoteBoard() {
-  if (state.saveState === "saving" || !state.session) return;
+  if (!state.session || state.saveState === "saving") return;
   try {
-    const remoteTasks = await dbGet("helal/daily-tasks.json");
-    const remoteReports = await dbGet("helal/reports.json");
-    state.tasksFile = mergeTaskFiles(remoteTasks, state.tasksFile);
-    state.reportsFile = mergeReports(remoteReports, state.reportsFile);
+    const head = await fetchHeadSha();
+    if (head && head === state.headSha) return;
+    const remoteTasks = await dbGet("helal/daily-tasks.json", head);
+    const remoteReports = await dbGet("helal/reports.json", head);
+    if (state.saveState === "saving") return;
+    const before = tasksSignature(state.tasksFile);
+    const replay = state.saveState === "error" ? mineNewerFile(remoteTasks, state.tasksFile) : null;
+    state.tasksFile = replay ? mergeTaskFiles(remoteTasks, replay) : remoteTasks;
+    state.reportsFile = remoteReports;
+    state.headSha = head || state.headSha;
     cacheBoard();
-    render();
+    if (tasksSignature(state.tasksFile) !== before) render();
   } catch (_) {}
 }
 
@@ -580,7 +637,9 @@ function login(who, pin) {
   state.loginError = "";
   state.view = "board";
   localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
+  state.headSha = "";
   render();
+  pullRemoteBoard();
 }
 
 function logout() {
@@ -1419,6 +1478,7 @@ function render() {
         $("button", {
           class: "btn ghost",
           onclick: () => {
+            state.headSha = "";
             loadAll().then(render);
           },
         }, "Refresh"),
@@ -1458,12 +1518,12 @@ function watchCairoDay() {
     const now = today();
     if (now !== lastCairoDay) lastCairoDay = now;
     if (state.saveState === "saving") return;
-    if (state.session && (state.view === "review" || state.view === "board")) {
+    if (state.session) {
       pullRemoteBoard();
       return;
     }
     if (state.view === "load" && allTasks().some((t) => t.status === "In progress")) render();
-  }, 15000);
+  }, 8000);
 }
 
 loadAll()
