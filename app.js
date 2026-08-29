@@ -234,6 +234,46 @@ function canSetStatus(next) {
   return isAdmin() || next !== "Done";
 }
 
+function doneMonthOf(task) {
+  return task.done_month || (task.done_on || "").slice(0, 7) || "";
+}
+
+function loadTone(row) {
+  if (row.overdue >= 2) return "tone-red";
+  if (row.overdue === 1 || row.review > 0) return "tone-orange";
+  if (row.done > 0 && row.open === 0) return "tone-green";
+  if (row.progress > 0) return "tone-orange";
+  if (row.open === 0) return "tone-green";
+  return "tone-ok";
+}
+
+function taskTone(task) {
+  if (task.status === "Done") return "tone-green";
+  if (task.due && task.due < today() && task.status !== "Done") return "tone-red";
+  if (task.status === "Review" || task.status === "Revisions") return "tone-orange";
+  if (task.status === "In progress") return "tone-orange";
+  return "";
+}
+
+function doneCard(task, { checked } = {}) {
+  return $("article", { class: `card done-card ${taskTone(task)}` }, [
+    $("p", { class: "title" }, task.title),
+    $("div", { class: "meta" }, [
+      $("span", { class: "pill tone-green" }, "Done"),
+      $("span", { class: "pill" }, task.who),
+      $("span", { class: "pill" }, task.done_on || task.due),
+      task.progress_hours ? $("span", { class: "pill" }, formatHours(task.progress_hours)) : null,
+      task.done_by ? $("span", { class: "pill" }, `Checked by ${task.done_by}`) : null,
+    ]),
+    checked
+      ? $("label", { class: "done-check" }, [
+        $("input", { type: "checkbox", checked: true, disabled: true }),
+        "Done — saved in the Helal database",
+      ])
+      : null,
+  ]);
+}
+
 function cacheBoard() {
   try {
     if (state.tasksFile) localStorage.setItem(LS_TASKS, JSON.stringify(state.tasksFile));
@@ -287,11 +327,9 @@ async function dbPut(path, data, message) {
     state.saveState = "local-only";
     return false;
   }
-  if (!state.shas[path]) {
-    try {
-      await dbGet(path);
-    } catch (_) {}
-  }
+  try {
+    await dbGet(path);
+  } catch (_) {}
   const body = {
     message,
     content: toBase64(JSON.stringify(data, null, 2) + "\n"),
@@ -376,8 +414,12 @@ async function loadAll() {
 }
 
 async function saveTasks(message) {
+  state.saveState = "saving";
+  state.saveError = "";
+  render();
   try {
     await dbPut("helal/daily-tasks.json", state.tasksFile, message);
+    render();
   } catch (err) {
     state.saveState = "error";
     state.saveError = err.message;
@@ -386,8 +428,12 @@ async function saveTasks(message) {
 }
 
 async function saveReports(message) {
+  state.saveState = "saving";
+  state.saveError = "";
+  render();
   try {
     await dbPut("helal/reports.json", state.reportsFile, message);
+    render();
   } catch (err) {
     state.saveState = "error";
     state.saveError = err.message;
@@ -508,7 +554,7 @@ function banner() {
 
 function kanbanCard(task) {
   return $("article", {
-    class: "kcard",
+    class: `kcard ${taskTone(task)}`,
     draggable: "true",
     ondragstart: (e) => {
       cardDidDrag = true;
@@ -530,11 +576,11 @@ function kanbanCard(task) {
     },
   }, [
     $("p", { class: "title" }, task.title),
-    $("div", { class: "meta" }, [
+    $("div", { class: `meta ${taskTone(task)}` }, [
       $("span", { class: "pill" }, task.who),
       task.project ? $("span", { class: "pill" }, task.project) : null,
-      $("span", { class: "pill" }, `Due ${task.due}`),
-      loggedHours(task) > 0 ? $("span", { class: "pill" }, formatHours(loggedHours(task))) : null,
+      $("span", { class: `pill ${taskTone(task)}` }, `Due ${task.due}`),
+      loggedHours(task) > 0 ? $("span", { class: `pill ${taskTone(task)}` }, formatHours(loggedHours(task))) : null,
       task.created_by && task.created_by !== task.who ? $("span", { class: "pill" }, `From ${task.created_by}`) : null,
     ]),
   ]);
@@ -590,47 +636,39 @@ function viewBoard() {
 function viewMy() {
   const open = tasksForView().filter((t) => t.status !== "Done");
   const month = thisMonth();
-  const finished = allTasks().filter((t) => t.who === state.who && t.status === "Done" && (t.done_month || (t.done_on || "").slice(0, 7)) === month);
+  const finished = allTasks().filter((t) => t.who === state.who && t.status === "Done" && doneMonthOf(t) === month);
   return [
     $("div", { class: "stat-row" }, [
       statBox(open.length, "Open now"),
-      statBox(open.filter((t) => t.status === "Review").length, "In review"),
-      statBox(open.filter((t) => t.status === "Revisions").length, "Edits required"),
-      statBox(finished.length, "Done this month"),
+      statBox(open.filter((t) => t.status === "Review").length, "In review", "tone-orange"),
+      statBox(open.filter((t) => t.status === "Revisions").length, "Edits required", "tone-red"),
+      statBox(finished.length, "Done this month", "tone-green"),
     ]),
+    $("h2", {}, "Open"),
     open.length
-      ? $("div", { class: "cards" }, open.map((task) =>
-        $("article", { class: "card", onclick: () => { state.openTaskId = task.id; render(); } }, [
+      ? $("div", { class: "cards", style: "margin-top:14px" }, open.map((task) =>
+        $("article", { class: `card ${taskTone(task)}`, onclick: () => { state.openTaskId = task.id; render(); } }, [
           $("p", { class: "title" }, task.title),
           $("div", { class: "meta" }, [
-            $("span", { class: "pill" }, task.status),
+            $("span", { class: `pill ${taskTone(task)}` }, task.status),
             $("span", { class: "pill" }, `Due ${task.due}`),
-            loggedHours(task) > 0 ? $("span", { class: "pill" }, formatHours(loggedHours(task))) : null,
+            loggedHours(task) > 0 ? $("span", { class: `pill ${taskTone(task)}` }, formatHours(loggedHours(task))) : null,
           ]),
         ])
       ))
       : $("p", { class: "empty" }, "Nothing open right now."),
-    finished.length
-      ? $("section", { style: "margin-top:28px" }, [
-        $("h2", {}, "Finished this month"),
-        $("p", { class: "muted" }, "These left the board after Amr or Tasneem marked them done. They stay in the GitHub database."),
-        $("div", { class: "cards", style: "margin-top:14px" }, finished.map((task) =>
-          $("article", { class: "card" }, [
-            $("p", { class: "title" }, task.title),
-            $("div", { class: "meta" }, [
-              $("span", { class: "pill" }, "Done"),
-              $("span", { class: "pill" }, task.done_on || task.due),
-              task.progress_hours ? $("span", { class: "pill" }, formatHours(task.progress_hours)) : null,
-            ]),
-          ])
-        )),
-      ])
-      : null,
+    $("section", { class: "done-section" }, [
+      $("h2", {}, "Done"),
+      $("p", { class: "muted" }, "When Amr or Tasneem check a task done, it stays here for the month and in the GitHub database."),
+      finished.length
+        ? $("div", { class: "cards", style: "margin-top:14px" }, finished.map((task) => doneCard(task, { checked: true })))
+        : $("p", { class: "empty" }, "No done tasks this month yet."),
+    ]),
   ];
 }
 
-function statBox(value, label) {
-  return $("div", { class: "stat" }, [$("strong", {}, String(value)), $("span", { class: "muted" }, label)]);
+function statBox(value, label, tone) {
+  return $("div", { class: `stat ${tone || ""}` }, [$("strong", {}, String(value)), $("span", { class: "muted" }, label)]);
 }
 
 function monthLabel(ym) {
@@ -888,6 +926,9 @@ function viewCalendar() {
   const ym = state.calMonth || today().slice(0, 7);
   const counts = {};
   for (const r of state.reportsFile?.reports || []) counts[r.date] = (counts[r.date] || 0) + 1;
+  for (const t of allTasks()) {
+    if (t.status === "Done" && t.done_on) counts[t.done_on] = (counts[t.done_on] || 0) + 1;
+  }
   return $("section", { class: "card cal-wrap" }, [
     $("div", { class: "cal-nav" }, [
       $("button", { class: "btn ghost", type: "button", onclick: () => { state.calMonth = shiftYm(ym, -1); render(); } }, "Prev"),
@@ -908,6 +949,9 @@ function viewCalendar() {
 function viewReview() {
   const waiting = allTasks().filter((t) => t.status === "Review" || t.status === "Revisions");
   const day = state.reportDay || today();
+  const month = day.slice(0, 7);
+  const doneDay = allTasks().filter((t) => t.status === "Done" && t.done_on === day);
+  const doneMonth = allTasks().filter((t) => t.status === "Done" && doneMonthOf(t) === month);
   const dayReports = (state.reportsFile?.reports || []).filter((r) => r.date === day);
   return $("div", { class: "dash" }, [
     viewCalendar(),
@@ -920,16 +964,16 @@ function viewReview() {
     ]),
     $("section", {}, [
       $("h2", {}, "Waiting on review"),
-      $("p", { class: "muted" }, "When a member moves a task to Review, it lands here. Check it done to clear it from the board. It stays in the GitHub database for that month."),
+      $("p", { class: "muted" }, "When a member moves a task to Review, it lands here. Check it done. It is saved to GitHub and stays in Done below."),
       waiting.length
         ? $("div", { class: "cards", style: "margin-top:14px" }, waiting.map((t) =>
-          $("article", { class: "card review-card" }, [
+          $("article", { class: `card review-card ${taskTone(t)}` }, [
             $("p", { class: "title" }, t.title),
             $("div", { class: "meta" }, [
               $("span", { class: "pill" }, t.who),
-              $("span", { class: "pill" }, t.status),
+              $("span", { class: `pill ${taskTone(t)}` }, t.status),
               $("span", { class: "pill" }, `Due ${t.due}`),
-              loggedHours(t) > 0 ? $("span", { class: "pill" }, formatHours(loggedHours(t))) : null,
+              loggedHours(t) > 0 ? $("span", { class: `pill ${taskTone(t)}` }, formatHours(loggedHours(t))) : null,
             ]),
             t.drive ? $("a", { href: t.drive, target: "_blank", rel: "noreferrer" }, "Open Drive") : null,
             $("label", { class: "done-check" }, [
@@ -942,6 +986,19 @@ function viewReview() {
           ])
         ))
         : $("p", { class: "empty" }, "Nothing in Review or Revisions."),
+    ]),
+    $("section", { class: "done-section" }, [
+      $("h2", {}, `Done · ${day}`),
+      $("p", { class: "muted" }, "Checked work stays here and on the member’s Done list. It is stored in helal/daily-tasks.json on GitHub."),
+      doneDay.length
+        ? $("div", { class: "cards", style: "margin-top:14px" }, doneDay.map((t) => doneCard(t, { checked: true })))
+        : $("p", { class: "empty" }, "No tasks marked done on this day."),
+    ]),
+    $("section", { class: "done-section" }, [
+      $("h2", {}, `Done this month · ${monthLabel(month)}`),
+      doneMonth.length
+        ? $("div", { class: "cards", style: "margin-top:14px" }, doneMonth.map((t) => doneCard(t, { checked: true })))
+        : $("p", { class: "empty" }, "No done tasks stored this month yet."),
     ]),
   ]);
 }
@@ -1018,7 +1075,7 @@ function viewPeople() {
 function loadForPerson(name, month) {
   const tasks = allTasks().filter((t) => t.who === name);
   const open = tasks.filter((t) => t.status !== "Done");
-  const doneMonth = tasks.filter((t) => t.status === "Done" && (t.done_month || (t.done_on || "").slice(0, 7)) === month);
+  const doneMonth = tasks.filter((t) => t.status === "Done" && doneMonthOf(t) === month);
   const overdue = open.filter((t) => t.due && t.due < today());
   const timed = [...doneMonth.map((t) => t.progress_hours || 0), ...open.filter((t) => t.status === "In progress").map(loggedHours)].filter((h) => h > 0);
   const avg = timed.length ? timed.reduce((a, b) => a + b, 0) / timed.length : 0;
@@ -1045,9 +1102,9 @@ function viewWorkload() {
   return $("div", { class: "dash" }, [
     $("div", { class: "stat-row" }, [
       statBox(rows.reduce((n, r) => n + r.open, 0), isAdmin() ? "Open across the team" : "Your open tasks"),
-      statBox(rows.reduce((n, r) => n + r.review, 0), "Waiting on review"),
-      statBox(rows.reduce((n, r) => n + r.overdue, 0), "Overdue"),
-      statBox(rows.reduce((n, r) => n + r.done, 0), "Done this month"),
+      statBox(rows.reduce((n, r) => n + r.review, 0), "Waiting on review", "tone-orange"),
+      statBox(rows.reduce((n, r) => n + r.overdue, 0), "Overdue", "tone-red"),
+      statBox(rows.reduce((n, r) => n + r.done, 0), "Done this month", "tone-green"),
     ]),
     $("section", { class: "card" }, [
       $("div", { class: "cal-nav" }, [
@@ -1055,12 +1112,12 @@ function viewWorkload() {
         $("h2", {}, monthLabel(ym)),
         $("button", { class: "btn ghost", type: "button", onclick: () => { state.workMonth = shiftYm(ym, 1); render(); } }, "Next"),
       ]),
-      $("p", { class: "muted" }, "Open load is what is on the board now. Done this month leaves the board and stays here in the database."),
+      $("p", { class: "muted" }, "Green is clear, orange needs attention, red is overdue. Done stays in the database and on Dashboard / My work."),
       $("div", { class: "load-table-wrap" }, [
         $("table", { class: "load-table" }, [
           $("thead", {}, $("tr", {}, ["Name", "Open", "To do", "In progress", "Review", "Overdue", "Done", "Time"].map((h) => $("th", {}, h)))),
           $("tbody", {}, rows.map((r) =>
-            $("tr", {}, [
+            $("tr", { class: loadTone(r) }, [
               $("td", {}, [
                 $("strong", {}, r.name),
                 $("span", { class: "muted" }, ` ${r.role || ""}`),
@@ -1070,29 +1127,19 @@ function viewWorkload() {
               $("td", {}, String(r.todo)),
               $("td", {}, String(r.progress)),
               $("td", {}, String(r.review)),
-              $("td", { class: r.overdue ? "warn-cell" : "" }, String(r.overdue)),
-              $("td", {}, String(r.done)),
+              $("td", { class: r.overdue ? "tone-red" : "" }, String(r.overdue)),
+              $("td", { class: r.done ? "tone-green" : "" }, String(r.done)),
               $("td", {}, r.live > 0 ? formatHours(r.live) : formatHours(r.hours)),
             ])
           )),
         ]),
       ]),
     ]),
-    $("section", {}, [
-      $("h2", {}, `Finished · ${monthLabel(ym)}`),
+    $("section", { class: "done-section" }, [
+      $("h2", {}, `Done · ${monthLabel(ym)}`),
       finished.length
-        ? $("div", { class: "cards", style: "margin-top:14px" }, finished.map((t) =>
-          $("article", { class: "card" }, [
-            $("p", { class: "title" }, t.title),
-            $("div", { class: "meta" }, [
-              $("span", { class: "pill" }, t.who),
-              $("span", { class: "pill" }, t.done_on || "Done"),
-              t.progress_hours ? $("span", { class: "pill" }, formatHours(t.progress_hours)) : null,
-              t.done_by ? $("span", { class: "pill" }, `Checked by ${t.done_by}`) : null,
-            ]),
-          ])
-        ))
-        : $("p", { class: "empty" }, "No finished tasks stored for this month yet."),
+        ? $("div", { class: "cards", style: "margin-top:14px" }, finished.map((t) => doneCard(t, { checked: true })))
+        : $("p", { class: "empty" }, "No done tasks stored for this month yet."),
     ]),
   ]);
 }
@@ -1100,11 +1147,11 @@ function viewWorkload() {
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and password. Amr and Tasneem use the admin password."],
-    ["Your board", "Members see only tasks assigned to them. Admins see the whole team. Done tasks leave the board and stay in Workload."],
+    ["Your board", "Members see only tasks assigned to them. Admins see the whole team. Done leaves the board but stays on Dashboard and My work."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Use New task. Fill the brief and pick the due date on the calendar. Only the creator can later edit the brief."],
-    ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It then leaves the board."],
-    ["Workload", "See how many open tasks each person has, overdue work, hours in progress, and finished work by month."],
+    ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
+    ["Workload", "Green is clear, orange needs attention, red is overdue. Time in progress is tracked until Review."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
