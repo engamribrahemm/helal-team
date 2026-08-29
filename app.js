@@ -1,5 +1,5 @@
 const STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
-const BOARD_STATUSES = ["To do", "In progress", "Review", "Revisions"];
+const BOARD_STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session";
@@ -131,7 +131,6 @@ function tasksForView() {
   let tasks = allTasks();
   const ownOnly = !isAdmin() || state.view === "my";
   if (ownOnly) tasks = tasks.filter((t) => t.who === state.who);
-  if (state.view === "board") tasks = tasks.filter((t) => t.status !== "Done");
   if (state.dateFilter && state.dateFilter !== "all") {
     tasks = tasks.filter((t) => t.due === state.dateFilter || t.date === state.dateFilter);
   }
@@ -239,17 +238,15 @@ function doneMonthOf(task) {
 }
 
 function loadTone(row) {
-  if (row.overdue >= 2) return "tone-red";
-  if (row.overdue === 1 || row.review > 0) return "tone-orange";
+  if (row.open >= 3) return "tone-red";
+  if (row.review > 0 || row.progress > 0) return "tone-orange";
   if (row.done > 0 && row.open === 0) return "tone-green";
-  if (row.progress > 0) return "tone-orange";
   if (row.open === 0) return "tone-green";
   return "tone-ok";
 }
 
 function taskTone(task) {
   if (task.status === "Done") return "tone-green";
-  if (task.due && task.due < today() && task.status !== "Done") return "tone-red";
   if (task.status === "Review" || task.status === "Revisions") return "tone-orange";
   if (task.status === "In progress") return "tone-orange";
   return "";
@@ -274,6 +271,80 @@ function doneCard(task, { checked } = {}) {
   ]);
 }
 
+function taskStamp(task) {
+  return Date.parse(task.updated_at || task.done_at || task.created_at || 0) || 0;
+}
+
+function pickTask(a, b) {
+  const sa = taskStamp(a);
+  const sb = taskStamp(b);
+  if (sb !== sa) return sb > sa ? b : a;
+  const rank = { "To do": 1, "In progress": 2, Review: 3, Revisions: 4, Done: 5 };
+  return (rank[b.status] || 0) >= (rank[a.status] || 0) ? b : a;
+}
+
+function mergeTaskFiles(remote, local) {
+  const byId = new Map();
+  for (const file of [remote, local]) {
+    for (const day of file?.days || []) {
+      for (const task of day.tasks || []) {
+        const next = { ...task, _day: day.date };
+        const prev = byId.get(task.id);
+        byId.set(task.id, prev ? pickTask(prev, next) : next);
+      }
+    }
+  }
+  const daysMap = new Map();
+  for (const task of byId.values()) {
+    const date = task._day || task.due || today();
+    if (!daysMap.has(date)) daysMap.set(date, []);
+    const copy = { ...task };
+    delete copy._day;
+    daysMap.get(date).push(copy);
+  }
+  return {
+    status: local?.status || remote?.status || "ready",
+    note: remote?.note || local?.note || "",
+    statuses: STATUSES,
+    days: [...daysMap.entries()]
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([date, tasks]) => ({ date, source: "Helal board", tasks })),
+  };
+}
+
+function mergeReports(remote, local) {
+  const byId = new Map();
+  for (const report of [...(remote?.reports || []), ...(local?.reports || [])]) {
+    const prev = byId.get(report.id);
+    if (!prev || Date.parse(report.created_at || 0) >= Date.parse(prev.created_at || 0)) {
+      byId.set(report.id, report);
+    }
+  }
+  return {
+    note: remote?.note || local?.note || "",
+    reports: [...byId.values()].sort(
+      (a, b) => Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0)
+    ),
+  };
+}
+
+function tasksSignature(file) {
+  return (file?.days || [])
+    .flatMap((d) => (d.tasks || []).map((t) => `${t.id}:${t.status}:${t.updated_at || ""}`))
+    .sort()
+    .join("|");
+}
+
+function readCacheFiles() {
+  try {
+    return {
+      tasks: JSON.parse(localStorage.getItem(LS_TASKS) || "null"),
+      reports: JSON.parse(localStorage.getItem(LS_REPORTS) || "null"),
+    };
+  } catch (_) {
+    return { tasks: null, reports: null };
+  }
+}
 function cacheBoard() {
   try {
     if (state.tasksFile) localStorage.setItem(LS_TASKS, JSON.stringify(state.tasksFile));
@@ -327,12 +398,20 @@ async function dbPut(path, data, message) {
     state.saveState = "local-only";
     return false;
   }
+  let payload = data;
   try {
-    await dbGet(path);
+    const remote = await dbGet(path);
+    if (path.endsWith("daily-tasks.json")) {
+      payload = mergeTaskFiles(remote, data);
+      state.tasksFile = payload;
+    } else if (path.endsWith("reports.json")) {
+      payload = mergeReports(remote, data);
+      state.reportsFile = payload;
+    }
   } catch (_) {}
   const body = {
     message,
-    content: toBase64(JSON.stringify(data, null, 2) + "\n"),
+    content: toBase64(JSON.stringify(payload, null, 2) + "\n"),
     branch,
   };
   if (state.shas[path]) body.sha = state.shas[path];
@@ -348,8 +427,20 @@ async function dbPut(path, data, message) {
     });
   let res = await put();
   if (res.status === 409 || res.status === 422) {
-    await dbGet(path);
-    body.sha = state.shas[path];
+    try {
+      const remote = await dbGet(path);
+      if (path.endsWith("daily-tasks.json")) {
+        payload = mergeTaskFiles(remote, payload);
+        state.tasksFile = payload;
+      } else if (path.endsWith("reports.json")) {
+        payload = mergeReports(remote, payload);
+        state.reportsFile = payload;
+      }
+      body.content = toBase64(JSON.stringify(payload, null, 2) + "\n");
+      body.sha = state.shas[path];
+    } catch (_) {
+      body.sha = state.shas[path];
+    }
     res = await put();
   }
   if (!res.ok) {
@@ -385,22 +476,28 @@ async function loadAll() {
   } catch (_) {
     hydrateFromCache();
   }
-  const localHost = location.hostname === "127.0.0.1" || location.hostname === "localhost";
-  if (!localHost) {
-    try {
-      const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg] = await Promise.all([
-        dbGet("helal/team.json"),
-        dbGet("helal/auth.json"),
-        dbGet("helal/drive.json"),
-        dbGet("helal/projects.json"),
-        dbGet("helal/daily-tasks.json"),
-        dbGet("helal/reports.json"),
-        dbGet("helal/github.json"),
-      ]);
-      Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg });
-      state.saveState = writeToken() ? "saved" : "idle";
-      cacheBoard();
-    } catch (_) {}
+  const cache = readCacheFiles();
+  try {
+    const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg] = await Promise.all([
+      dbGet("helal/team.json"),
+      dbGet("helal/auth.json"),
+      dbGet("helal/drive.json"),
+      dbGet("helal/projects.json"),
+      dbGet("helal/daily-tasks.json"),
+      dbGet("helal/reports.json"),
+      dbGet("helal/github.json"),
+    ]);
+    Object.assign(state, { team, auth, drive, projects, githubCfg });
+    state.tasksFile = mergeTaskFiles(tasksFile, cache.tasks);
+    state.reportsFile = mergeReports(reportsFile, cache.reports);
+    state.saveState = writeToken() ? "saved" : "idle";
+    cacheBoard();
+    if (writeToken() && tasksSignature(state.tasksFile) !== tasksSignature(tasksFile)) {
+      saveTasks("board: keep local updates in GitHub");
+    }
+  } catch (_) {
+    if (cache.tasks?.days) state.tasksFile = mergeTaskFiles(state.tasksFile, cache.tasks);
+    if (cache.reports?.reports) state.reportsFile = mergeReports(state.reportsFile, cache.reports);
   }
 
   state.reportDay = state.reportDay || today();
@@ -579,7 +676,7 @@ function kanbanCard(task) {
     $("div", { class: `meta ${taskTone(task)}` }, [
       $("span", { class: "pill" }, task.who),
       task.project ? $("span", { class: "pill" }, task.project) : null,
-      $("span", { class: `pill ${taskTone(task)}` }, `Due ${task.due}`),
+      $("span", { class: "pill" }, `Due ${task.due}`),
       loggedHours(task) > 0 ? $("span", { class: `pill ${taskTone(task)}` }, formatHours(loggedHours(task))) : null,
       task.created_by && task.created_by !== task.who ? $("span", { class: "pill" }, `From ${task.created_by}`) : null,
     ]),
@@ -595,6 +692,10 @@ function viewBoard() {
         class: "kanban-col",
         ondragover: (e) => {
           e.preventDefault();
+          if (!canSetStatus(status)) {
+            e.dataTransfer.dropEffect = "none";
+            return;
+          }
           e.dataTransfer.dropEffect = "move";
           e.currentTarget.classList.add("drop");
         },
@@ -607,7 +708,7 @@ function viewBoard() {
           e.currentTarget.classList.remove("drop");
           const id = e.dataTransfer.getData("text/plain");
           cardDidDrag = false;
-          if (id) setStatus(id, status);
+          if (id && canSetStatus(status)) setStatus(id, status);
         },
       }, [
         $("div", { class: "kanban-head" }, [
@@ -617,17 +718,21 @@ function viewBoard() {
         $("div", { class: "kanban-cards" },
           col.length ? col.map(kanbanCard) : $("p", { class: "empty" }, "No tasks")
         ),
-        $("button", {
-          class: "btn",
-          style: "margin-top:12px",
-          onclick: () => {
-            state.creating = true;
-            state.createStatus = status;
-            state.dueDraft = today();
-            state.dueMonth = today().slice(0, 7);
-            render();
-          },
-        }, "New task"),
+        status === "Done"
+          ? (isAdmin()
+            ? $("p", { class: "muted" }, "Drop here to mark done. Saved to GitHub.")
+            : $("p", { class: "muted" }, "Only admins can mark Done."))
+          : $("button", {
+            class: "btn",
+            style: "margin-top:12px",
+            onclick: () => {
+              state.creating = true;
+              state.createStatus = status;
+              state.dueDraft = today();
+              state.dueMonth = today().slice(0, 7);
+              render();
+            },
+          }, "New task"),
       ]);
     })
   );
@@ -641,7 +746,7 @@ function viewMy() {
     $("div", { class: "stat-row" }, [
       statBox(open.length, "Open now"),
       statBox(open.filter((t) => t.status === "Review").length, "In review", "tone-orange"),
-      statBox(open.filter((t) => t.status === "Revisions").length, "Edits required", "tone-red"),
+      statBox(open.filter((t) => t.status === "Revisions").length, "Edits required", "tone-orange"),
       statBox(finished.length, "Done this month", "tone-green"),
     ]),
     $("h2", {}, "Open"),
@@ -876,7 +981,8 @@ function viewTaskDrawer() {
             $("button", {
               type: "button",
               class: s === task.status ? "on" : "",
-              onclick: () => setStatus(task.id, s),
+              disabled: !canSetStatus(s),
+              onclick: () => { if (canSetStatus(s)) setStatus(task.id, s); },
             }, s)
           )
         ),
@@ -889,7 +995,7 @@ function viewTaskDrawer() {
                 state.openTaskId = null;
               },
             }),
-            "Mark done — leave the board, keep in the database",
+            "Mark done — stays on the board Done column and in the database",
           ])
           : null,
         $("div", { style: "display:flex;gap:8px" }, [
@@ -907,6 +1013,29 @@ function qaBlock(question, answer) {
     $("p", { class: "qa-q" }, question),
     $("p", { class: "qa-k" }, "Answer"),
     $("div", { class: "qa-a" }, answer || "—"),
+  ]);
+}
+
+function reportDaySummary(day) {
+  const dayReports = (state.reportsFile?.reports || []).filter((r) => r.date === day);
+  const submittedNames = [...new Set(dayReports.map((r) => r.who))];
+  const missing = people().filter((p) => !submittedNames.includes(p.name));
+  const chip = (name, tone) => $("span", { class: `name-chip ${tone}` }, name);
+  return $("div", { class: "report-summary" }, [
+    $("article", { class: "card" }, [
+      $("h3", {}, "Submitted"),
+      $("p", { class: "muted" }, `${submittedNames.length} of ${people().length}`),
+      submittedNames.length
+        ? $("div", { class: "chip-row" }, submittedNames.map((name) => chip(name, "tone-green")))
+        : $("p", { class: "empty" }, "Nobody has submitted yet."),
+    ]),
+    $("article", { class: "card" }, [
+      $("h3", {}, "Not yet"),
+      $("p", { class: "muted" }, `${missing.length} missing`),
+      missing.length
+        ? $("div", { class: "chip-row" }, missing.map((p) => chip(p.name, "tone-orange")))
+        : $("p", { class: "empty" }, "Everyone submitted."),
+    ]),
   ]);
 }
 
@@ -957,14 +1086,15 @@ function viewReview() {
     viewCalendar(),
     $("section", {}, [
       $("h2", {}, `Reports · ${day}`),
-      $("p", { class: "muted" }, "Each submission is shown as the question, then the member’s answer."),
+      $("p", { class: "muted" }, "Who sent a report today, who has not, then each report as question and answer."),
+      reportDaySummary(day),
       dayReports.length
-        ? $("div", { class: "cards", style: "margin-top:14px" }, dayReports.map(reportCard))
-        : $("p", { class: "empty" }, "No report submissions on this day."),
+        ? $("div", { class: "cards", style: "margin-top:18px" }, dayReports.map(reportCard))
+        : $("p", { class: "empty" }, "No report submissions on this day yet."),
     ]),
     $("section", {}, [
       $("h2", {}, "Waiting on review"),
-      $("p", { class: "muted" }, "When a member moves a task to Review, it lands here. Check it done. It is saved to GitHub and stays in Done below."),
+      $("p", { class: "muted" }, "When a member moves a task to Review, it lands here. Check it done. It stays in Done on the board, here, and on My work."),
       waiting.length
         ? $("div", { class: "cards", style: "margin-top:14px" }, waiting.map((t) =>
           $("article", { class: `card review-card ${taskTone(t)}` }, [
@@ -1112,7 +1242,7 @@ function viewWorkload() {
         $("h2", {}, monthLabel(ym)),
         $("button", { class: "btn ghost", type: "button", onclick: () => { state.workMonth = shiftYm(ym, 1); render(); } }, "Next"),
       ]),
-      $("p", { class: "muted" }, "Green is clear, orange needs attention, red is overdue. Done stays in the database and on Dashboard / My work."),
+      $("p", { class: "muted" }, "Green is clear, orange needs attention, red is overload (3 or more open tasks)."),
       $("div", { class: "load-table-wrap" }, [
         $("table", { class: "load-table" }, [
           $("thead", {}, $("tr", {}, ["Name", "Open", "To do", "In progress", "Review", "Overdue", "Done", "Time"].map((h) => $("th", {}, h)))),
@@ -1127,7 +1257,7 @@ function viewWorkload() {
               $("td", {}, String(r.todo)),
               $("td", {}, String(r.progress)),
               $("td", {}, String(r.review)),
-              $("td", { class: r.overdue ? "tone-red" : "" }, String(r.overdue)),
+              $("td", {}, String(r.overdue)),
               $("td", { class: r.done ? "tone-green" : "" }, String(r.done)),
               $("td", {}, r.live > 0 ? formatHours(r.live) : formatHours(r.hours)),
             ])
@@ -1147,11 +1277,11 @@ function viewWorkload() {
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and password. Amr and Tasneem use the admin password."],
-    ["Your board", "Members see only tasks assigned to them. Admins see the whole team. Done leaves the board but stays on Dashboard and My work."],
+    ["Your board", "Members see only their tasks. Admins see the team. Columns are To do, In progress, Review, Revisions, and Done."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Use New task. Fill the brief and pick the due date on the calendar. Only the creator can later edit the brief."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
-    ["Workload", "Green is clear, orange needs attention, red is overdue. Time in progress is tracked until Review."],
+    ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
@@ -1257,6 +1387,12 @@ function render() {
             render();
           },
         }, "New task"),
+        $("button", {
+          class: "btn ghost",
+          onclick: () => {
+            loadAll().then(render);
+          },
+        }, "Refresh"),
         $("button", { class: "btn ghost", onclick: logout }, "Log out"),
       ]),
     ]),
