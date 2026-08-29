@@ -97,7 +97,13 @@ function repoInfo() {
 }
 
 function writeToken() {
-  return (state.githubCfg && state.githubCfg.write_token) || "";
+  const fromCfg = (state.githubCfg && state.githubCfg.write_token) || "";
+  if (fromCfg) return fromCfg;
+  try {
+    const stored = localStorage.getItem("helal.ghToken") || "";
+    if (/^(ghp_|github_pat_)/.test(stored)) return stored;
+  } catch (_) {}
+  return "";
 }
 
 function people() {
