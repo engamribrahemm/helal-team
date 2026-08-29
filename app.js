@@ -1,4 +1,5 @@
 const STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
+const BOARD_STATUSES = ["To do", "In progress", "Review", "Revisions"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session";
@@ -30,6 +31,7 @@ const state = {
   draft: null,
   reportDay: "",
   calMonth: "",
+  workMonth: "",
 };
 
 let cardDidDrag = false;
@@ -129,10 +131,78 @@ function tasksForView() {
   let tasks = allTasks();
   const ownOnly = !isAdmin() || state.view === "my";
   if (ownOnly) tasks = tasks.filter((t) => t.who === state.who);
+  if (state.view === "board") tasks = tasks.filter((t) => t.status !== "Done");
   if (state.dateFilter && state.dateFilter !== "all") {
     tasks = tasks.filter((t) => t.due === state.dateFilter || t.date === state.dateFilter);
   }
   return tasks;
+}
+
+function canEditDetails(task) {
+  if (!task) return false;
+  if (!task.created_by) return isAdmin();
+  return task.created_by === state.who;
+}
+
+function thisMonth() {
+  return today().slice(0, 7);
+}
+
+function hoursBetween(start, end) {
+  const a = new Date(start).getTime();
+  const b = new Date(end).getTime();
+  if (!Number.isFinite(a) || !Number.isFinite(b) || b <= a) return 0;
+  return (b - a) / 36e5;
+}
+
+function formatHours(h) {
+  if (h == null || Number.isNaN(h) || h <= 0) return "—";
+  if (h < 1) return `${Math.max(1, Math.round(h * 60))}m`;
+  const hours = Math.floor(h);
+  const mins = Math.round((h - hours) * 60);
+  return mins ? `${hours}h ${mins}m` : `${hours}h`;
+}
+
+function progressStart(task) {
+  if (task.progress_started_at) return task.progress_started_at;
+  if (task.status === "In progress") return task.updated_at || task.created_at || "";
+  return "";
+}
+
+function loggedHours(task) {
+  let hours = task.progress_hours || 0;
+  const start = progressStart(task);
+  if (task.status === "In progress" && start) hours += hoursBetween(start, new Date().toISOString());
+  return hours;
+}
+
+function stampTime(task, prev, next) {
+  const now = new Date().toISOString();
+  if (!task.time_log) task.time_log = [];
+  if (next === "In progress" && prev !== "In progress") task.progress_started_at = now;
+  if (prev === "In progress" && next !== "In progress") {
+    const start = progressStart(task);
+    if (start) {
+      const hours = hoursBetween(start, now);
+      task.time_log.push({
+        from: "In progress",
+        to: next,
+        started_at: start,
+        ended_at: now,
+        hours,
+        by: state.who,
+      });
+      task.progress_hours = (task.progress_hours || 0) + hours;
+    }
+    task.progress_started_at = "";
+  }
+  if (next === "Review") task.review_at = now;
+  if (next === "Done") {
+    task.done_at = now;
+    task.done_on = today();
+    task.done_month = thisMonth();
+    task.done_by = state.who;
+  }
 }
 
 function projectList() {
@@ -299,6 +369,7 @@ async function loadAll() {
   state.calMonth = state.calMonth || today().slice(0, 7);
   state.dueDraft = state.dueDraft || today();
   state.dueMonth = state.dueMonth || today().slice(0, 7);
+  state.workMonth = state.workMonth || thisMonth();
   lastCairoDay = today();
   if (state.session && !people().some((p) => p.name === state.session.who)) logout();
   else if (state.session) state.who = state.session.who;
@@ -364,8 +435,10 @@ function setStatus(taskId, next) {
     const task = day.tasks.find((t) => t.id === taskId);
     if (task) {
       if (task.status === next) return;
+      const prev = task.status;
       task.status = next;
       if (next === "Revisions") task.revisions = (task.revisions || 0) + 1;
+      stampTime(task, prev, next);
       task.updated_at = new Date().toISOString();
       task.updated_by = state.who;
       found = task;
@@ -461,6 +534,7 @@ function kanbanCard(task) {
       $("span", { class: "pill" }, task.who),
       task.project ? $("span", { class: "pill" }, task.project) : null,
       $("span", { class: "pill" }, `Due ${task.due}`),
+      loggedHours(task) > 0 ? $("span", { class: "pill" }, formatHours(loggedHours(task))) : null,
       task.created_by && task.created_by !== task.who ? $("span", { class: "pill" }, `From ${task.created_by}`) : null,
     ]),
   ]);
@@ -469,16 +543,12 @@ function kanbanCard(task) {
 function viewBoard() {
   const tasks = tasksForView();
   return $("div", { class: "kanban" },
-    STATUSES.map((status) => {
+    BOARD_STATUSES.map((status) => {
       const col = tasks.filter((t) => t.status === status);
       return $("section", {
         class: "kanban-col",
         ondragover: (e) => {
           e.preventDefault();
-          if (!canSetStatus(status)) {
-            e.dataTransfer.dropEffect = "none";
-            return;
-          }
           e.dataTransfer.dropEffect = "move";
           e.currentTarget.classList.add("drop");
         },
@@ -491,7 +561,7 @@ function viewBoard() {
           e.currentTarget.classList.remove("drop");
           const id = e.dataTransfer.getData("text/plain");
           cardDidDrag = false;
-          if (id && canSetStatus(status)) setStatus(id, status);
+          if (id) setStatus(id, status);
         },
       }, [
         $("div", { class: "kanban-head" }, [
@@ -501,47 +571,61 @@ function viewBoard() {
         $("div", { class: "kanban-cards" },
           col.length ? col.map(kanbanCard) : $("p", { class: "empty" }, "No tasks")
         ),
-        canSetStatus(status)
-          ? $("button", {
-            class: "btn",
-            style: "margin-top:12px",
-            onclick: () => {
-              state.creating = true;
-              state.createStatus = status;
-              state.dueDraft = today();
-              state.dueMonth = today().slice(0, 7);
-              render();
-            },
-          }, "New task")
-          : $("p", { class: "muted" }, "Only admins can mark Done."),
+        $("button", {
+          class: "btn",
+          style: "margin-top:12px",
+          onclick: () => {
+            state.creating = true;
+            state.createStatus = status;
+            state.dueDraft = today();
+            state.dueMonth = today().slice(0, 7);
+            render();
+          },
+        }, "New task"),
       ]);
     })
   );
 }
 
 function viewMy() {
-  const list = tasksForView();
+  const open = tasksForView().filter((t) => t.status !== "Done");
+  const month = thisMonth();
+  const finished = allTasks().filter((t) => t.who === state.who && t.status === "Done" && (t.done_month || (t.done_on || "").slice(0, 7)) === month);
   return [
     $("div", { class: "stat-row" }, [
-      statBox(list.length, isAdmin() ? "All tasks" : "Assigned to you"),
-      statBox(list.filter((t) => t.status === "Review").length, "In review"),
-      statBox(list.filter((t) => t.status === "Revisions").length, "Edits required"),
-      statBox(list.filter((t) => t.status === "Done").length, "Done"),
+      statBox(open.length, "Open now"),
+      statBox(open.filter((t) => t.status === "Review").length, "In review"),
+      statBox(open.filter((t) => t.status === "Revisions").length, "Edits required"),
+      statBox(finished.length, "Done this month"),
     ]),
-    list.length
-      ? $("div", { class: "cards" }, list.map((task) =>
+    open.length
+      ? $("div", { class: "cards" }, open.map((task) =>
         $("article", { class: "card", onclick: () => { state.openTaskId = task.id; render(); } }, [
           $("p", { class: "title" }, task.title),
           $("div", { class: "meta" }, [
-            $("span", { class: "pill" }, task.who),
             $("span", { class: "pill" }, task.status),
             $("span", { class: "pill" }, `Due ${task.due}`),
+            loggedHours(task) > 0 ? $("span", { class: "pill" }, formatHours(loggedHours(task))) : null,
           ]),
         ])
       ))
-      : $("p", { class: "empty" }, isAdmin()
-        ? "No tasks yet."
-        : `Nothing assigned to ${state.who} yet.`),
+      : $("p", { class: "empty" }, "Nothing open right now."),
+    finished.length
+      ? $("section", { style: "margin-top:28px" }, [
+        $("h2", {}, "Finished this month"),
+        $("p", { class: "muted" }, "These left the board after Amr or Tasneem marked them done. They stay in the GitHub database."),
+        $("div", { class: "cards", style: "margin-top:14px" }, finished.map((task) =>
+          $("article", { class: "card" }, [
+            $("p", { class: "title" }, task.title),
+            $("div", { class: "meta" }, [
+              $("span", { class: "pill" }, "Done"),
+              $("span", { class: "pill" }, task.done_on || task.due),
+              task.progress_hours ? $("span", { class: "pill" }, formatHours(task.progress_hours)) : null,
+            ]),
+          ])
+        )),
+      ])
+      : null,
   ];
 }
 
@@ -699,25 +783,35 @@ function viewCreateModal() {
 function viewTaskDrawer() {
   const task = findTask(state.openTaskId);
   if (!task) return null;
-  const who = $("select", { disabled: !isAdmin() }, people().map((p) => $("option", { value: p.name, selected: p.name === task.who }, p.name)));
-  const space = $("select", {}, SPACES.map((s) => $("option", { value: s, selected: s === task.space }, s)));
-  const project = $("select", {}, [
+  const editable = canEditDetails(task);
+  const who = $("select", { disabled: !editable }, people().map((p) => $("option", { value: p.name, selected: p.name === task.who }, p.name)));
+  const space = $("select", { disabled: !editable }, SPACES.map((s) => $("option", { value: s, selected: s === task.space }, s)));
+  const project = $("select", { disabled: !editable }, [
     $("option", { value: "" }, "No client"),
     ...projectList().map((p) => $("option", { value: p.name, selected: p.name === task.project }, p.name)),
   ]);
-  const title = $("input", { value: task.title, required: true });
-  const notes = $("textarea", {}, task.notes || "");
-  const drive = $("input", { type: "url", value: task.drive || "" });
+  const title = $("input", { value: task.title, required: true, disabled: !editable });
+  const notes = $("textarea", { disabled: !editable }, task.notes || "");
+  const drive = $("input", { type: "url", value: task.drive || "", disabled: !editable });
   const close = () => { state.openTaskId = null; render(); };
+  const hours = loggedHours(task);
   return [
     $("div", { class: "modal-bg", onclick: close }),
     $("aside", { class: "drawer" }, [
       $("p", { class: "muted" }, "Task"),
       $("h2", {}, task.title),
+      $("p", { class: "muted" }, editable
+        ? `Created by ${task.created_by || "Helal"}. You can edit the brief.`
+        : `Only ${task.created_by || "the creator"} can edit the brief. You can still move status.`),
+      hours > 0 ? $("p", { class: "time-line" }, `Time in progress: ${formatHours(hours)}`) : null,
       $("form", {
         class: "form",
         onsubmit: (e) => {
           e.preventDefault();
+          if (!editable) {
+            close();
+            return;
+          }
           task.who = who.value;
           task.space = space.value;
           task.project = project.value;
@@ -740,17 +834,28 @@ function viewTaskDrawer() {
         $("label", {}, ["Drive link", drive]),
         task.drive ? $("a", { href: task.drive, target: "_blank", rel: "noreferrer" }, "Open Drive folder") : null,
         $("div", { class: "statuses" },
-          STATUSES.map((s) =>
+          BOARD_STATUSES.map((s) =>
             $("button", {
               type: "button",
               class: s === task.status ? "on" : "",
-              disabled: !canSetStatus(s),
               onclick: () => setStatus(task.id, s),
             }, s)
           )
         ),
+        isAdmin() && (task.status === "Review" || task.status === "Revisions")
+          ? $("label", { class: "done-check" }, [
+            $("input", {
+              type: "checkbox",
+              onchange: () => {
+                setStatus(task.id, "Done");
+                state.openTaskId = null;
+              },
+            }),
+            "Mark done — leave the board, keep in the database",
+          ])
+          : null,
         $("div", { style: "display:flex;gap:8px" }, [
-          $("button", { class: "btn primary", type: "submit" }, "Save"),
+          editable ? $("button", { class: "btn primary", type: "submit" }, "Save") : null,
           $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
         ]),
       ]),
@@ -815,14 +920,24 @@ function viewReview() {
     ]),
     $("section", {}, [
       $("h2", {}, "Waiting on review"),
+      $("p", { class: "muted" }, "When a member moves a task to Review, it lands here. Check it done to clear it from the board. It stays in the GitHub database for that month."),
       waiting.length
         ? $("div", { class: "cards", style: "margin-top:14px" }, waiting.map((t) =>
-          $("article", { class: "card" }, [
+          $("article", { class: "card review-card" }, [
             $("p", { class: "title" }, t.title),
             $("div", { class: "meta" }, [
               $("span", { class: "pill" }, t.who),
               $("span", { class: "pill" }, t.status),
               $("span", { class: "pill" }, `Due ${t.due}`),
+              loggedHours(t) > 0 ? $("span", { class: "pill" }, formatHours(loggedHours(t))) : null,
+            ]),
+            t.drive ? $("a", { href: t.drive, target: "_blank", rel: "noreferrer" }, "Open Drive") : null,
+            $("label", { class: "done-check" }, [
+              $("input", {
+                type: "checkbox",
+                onchange: () => setStatus(t.id, "Done"),
+              }),
+              "Mark done",
             ]),
           ])
         ))
@@ -900,13 +1015,96 @@ function viewPeople() {
   );
 }
 
+function loadForPerson(name, month) {
+  const tasks = allTasks().filter((t) => t.who === name);
+  const open = tasks.filter((t) => t.status !== "Done");
+  const doneMonth = tasks.filter((t) => t.status === "Done" && (t.done_month || (t.done_on || "").slice(0, 7)) === month);
+  const overdue = open.filter((t) => t.due && t.due < today());
+  const timed = [...doneMonth.map((t) => t.progress_hours || 0), ...open.filter((t) => t.status === "In progress").map(loggedHours)].filter((h) => h > 0);
+  const avg = timed.length ? timed.reduce((a, b) => a + b, 0) / timed.length : 0;
+  return {
+    name,
+    open: open.length,
+    todo: open.filter((t) => t.status === "To do").length,
+    progress: open.filter((t) => t.status === "In progress").length,
+    review: open.filter((t) => t.status === "Review" || t.status === "Revisions").length,
+    overdue: overdue.length,
+    done: doneMonth.length,
+    hours: avg,
+    live: open.filter((t) => t.status === "In progress").reduce((n, t) => n + loggedHours(t), 0),
+    finished: doneMonth,
+  };
+}
+
+function viewWorkload() {
+  const ym = state.workMonth || thisMonth();
+  const roster = isAdmin() ? people() : people().filter((p) => p.name === state.who);
+  const rows = roster.map((p) => ({ ...p, ...loadForPerson(p.name, ym) }));
+  const maxOpen = Math.max(1, ...rows.map((r) => r.open));
+  const finished = rows.flatMap((r) => r.finished);
+  return $("div", { class: "dash" }, [
+    $("div", { class: "stat-row" }, [
+      statBox(rows.reduce((n, r) => n + r.open, 0), isAdmin() ? "Open across the team" : "Your open tasks"),
+      statBox(rows.reduce((n, r) => n + r.review, 0), "Waiting on review"),
+      statBox(rows.reduce((n, r) => n + r.overdue, 0), "Overdue"),
+      statBox(rows.reduce((n, r) => n + r.done, 0), "Done this month"),
+    ]),
+    $("section", { class: "card" }, [
+      $("div", { class: "cal-nav" }, [
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.workMonth = shiftYm(ym, -1); render(); } }, "Prev"),
+        $("h2", {}, monthLabel(ym)),
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.workMonth = shiftYm(ym, 1); render(); } }, "Next"),
+      ]),
+      $("p", { class: "muted" }, "Open load is what is on the board now. Done this month leaves the board and stays here in the database."),
+      $("div", { class: "load-table-wrap" }, [
+        $("table", { class: "load-table" }, [
+          $("thead", {}, $("tr", {}, ["Name", "Open", "To do", "In progress", "Review", "Overdue", "Done", "Time"].map((h) => $("th", {}, h)))),
+          $("tbody", {}, rows.map((r) =>
+            $("tr", {}, [
+              $("td", {}, [
+                $("strong", {}, r.name),
+                $("span", { class: "muted" }, ` ${r.role || ""}`),
+                $("div", { class: "load-bar" }, $("span", { style: `width:${Math.round((r.open / maxOpen) * 100)}%` })),
+              ]),
+              $("td", {}, String(r.open)),
+              $("td", {}, String(r.todo)),
+              $("td", {}, String(r.progress)),
+              $("td", {}, String(r.review)),
+              $("td", { class: r.overdue ? "warn-cell" : "" }, String(r.overdue)),
+              $("td", {}, String(r.done)),
+              $("td", {}, r.live > 0 ? formatHours(r.live) : formatHours(r.hours)),
+            ])
+          )),
+        ]),
+      ]),
+    ]),
+    $("section", {}, [
+      $("h2", {}, `Finished · ${monthLabel(ym)}`),
+      finished.length
+        ? $("div", { class: "cards", style: "margin-top:14px" }, finished.map((t) =>
+          $("article", { class: "card" }, [
+            $("p", { class: "title" }, t.title),
+            $("div", { class: "meta" }, [
+              $("span", { class: "pill" }, t.who),
+              $("span", { class: "pill" }, t.done_on || "Done"),
+              t.progress_hours ? $("span", { class: "pill" }, formatHours(t.progress_hours)) : null,
+              t.done_by ? $("span", { class: "pill" }, `Checked by ${t.done_by}`) : null,
+            ]),
+          ])
+        ))
+        : $("p", { class: "empty" }, "No finished tasks stored for this month yet."),
+    ]),
+  ]);
+}
+
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and password. Amr and Tasneem use the admin password."],
-    ["Your board", "Members see only tasks assigned to them. Admins see the whole team."],
-    ["Do the work", "Drag a card across columns. Upload files to Drive, not GitHub."],
-    ["Create a task", "Use New task. Fill the brief and pick the due date on the calendar."],
-    ["Review", "Drag to Review when ready. Only Amr or Tasneem can mark Done."],
+    ["Your board", "Members see only tasks assigned to them. Admins see the whole team. Done tasks leave the board and stay in Workload."],
+    ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
+    ["Create a task", "Use New task. Fill the brief and pick the due date on the calendar. Only the creator can later edit the brief."],
+    ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It then leaves the board."],
+    ["Workload", "See how many open tasks each person has, overdue work, hours in progress, and finished work by month."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
@@ -956,6 +1154,7 @@ function navItems() {
   const items = [
     ["board", "Board"],
     ["my", "My work"],
+    ["load", "Workload"],
     ["report", "Report"],
     ["drive", "Drive"],
     ["guide", "SOP"],
@@ -1025,8 +1224,9 @@ function render() {
   if (note) root.append(note);
 
   const main = $("main");
-  if (state.view === "my") viewMy().forEach((el) => main.append(el));
+  if (state.view === "my") viewMy().filter(Boolean).forEach((el) => main.append(el));
   else if (state.view === "board") main.append(viewBoard());
+  else if (state.view === "load") main.append(viewWorkload());
   else if (state.view === "review" && isAdmin()) main.append(viewReview());
   else if (state.view === "report") main.append(viewReport());
   else if (state.view === "drive") main.append(viewDrive());
@@ -1046,6 +1246,10 @@ function watchCairoDay() {
     const now = today();
     if (now !== lastCairoDay) {
       lastCairoDay = now;
+      render();
+      return;
+    }
+    if ((state.view === "load" || state.view === "board") && allTasks().some((t) => t.status === "In progress")) {
       render();
     }
   }, 30000);

@@ -524,8 +524,60 @@ a { color: var(--gold); }
 }
 .statuses button.on { color: var(--ink); background: var(--gold); border-color: var(--gold); }
 
-.drive-row { display: flex; gap: 8px; margin-top: 10px; }
-.drive-row input { flex: 1; }
+.time-line {
+  margin: 8px 0 0;
+  color: var(--gold);
+  font-size: 13px;
+}
+
+.done-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  letter-spacing: 0;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+.done-check input { width: auto; }
+
+.review-card { display: grid; gap: 10px; }
+
+.load-table-wrap { overflow-x: auto; margin-top: 16px; }
+.load-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.load-table th {
+  text-align: left;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.load-table td {
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.load-table strong { display: block; }
+.load-bar {
+  margin-top: 8px;
+  height: 4px;
+  background: var(--bg);
+  max-width: 180px;
+}
+.load-bar span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+}
+.warn-cell { color: var(--gold); }
 
 @media (max-width: 900px) {
   .stat-row { grid-template-columns: 1fr 1fr; }
