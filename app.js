@@ -56,6 +56,15 @@ const ATTITUDE_CRITERIA = [
   ["problems", "Problem solving"],
 ];
 const WARNING_STATUSES = ["Note", "1st Warning", "2nd Warning", "Deduction pending"];
+const WARNING_ISSUES = [
+  "Absent without notice",
+  "Missed work hours",
+  "Late without notice",
+  "Drive / file process",
+  "Did not update task status",
+  "Other",
+];
+const RESPONSE_LEVELS = ["Reliable", "Needs follow-up"];
 const WORK_TYPES = ["Full-time", "Part-time"];
 const WORK_MODES = ["Remote", "Office", "Hybrid"];
 
@@ -464,6 +473,18 @@ function isLateTask(task) {
 
 function delayExcused(task) {
   return !!(task.delay_reason && task.delay_reason !== "Personal reason" && task.delay_reason !== "Other");
+}
+
+function delayDays(task) {
+  const due = task.due;
+  const delivered = deliveryDate(task) || ((task.status === "Review" || task.status === "Done" || task.status === "Revisions") ? today() : "");
+  if (!due || !delivered || delivered <= due) return 0;
+  return Math.max(1, Math.round((Date.parse(delivered) - Date.parse(due)) / 86400000));
+}
+
+function lastRevision(task) {
+  const log = task.revision_log || [];
+  return log[log.length - 1] || null;
 }
 
 function avg(nums) {
@@ -885,7 +906,8 @@ function applyStatus(taskId, next, extra = {}) {
       }
       if (extra.delay_reason) {
         task.delay_reason = extra.delay_reason;
-        task.delay_notified = extra.delay_notified !== false;
+        task.delay_notified = !!extra.delay_notified;
+        task.delay_days = delayDays({ ...task, delivered_on: today(), due: task.due, status: next });
       }
       stampTime(task, prev, next);
       task.updated_at = new Date().toISOString();
@@ -1075,7 +1097,14 @@ function ensureHr() {
 }
 
 function workFor(name) {
-  return ensureHr().work[name] || { type: "Full-time", days: "Sun–Thu", hours: "10:00–18:00", mode: "Remote" };
+  return ensureHr().work[name] || {
+    type: "Full-time",
+    days: "Sun–Thu",
+    hours: "10:00–18:00",
+    mode: "Remote",
+    office_days: "",
+    response: "Reliable",
+  };
 }
 
 function reviewsFor(name, quarter) {
@@ -1083,7 +1112,11 @@ function reviewsFor(name, quarter) {
 }
 
 function computedDelivery(name, quarter) {
-  const tasks = allTasks().filter((t) => t.who === name && t.status === "Done" && inQuarter(t.done_on || t.due, quarter));
+  const tasks = allTasks().filter((t) => {
+    if (t.who !== name) return false;
+    if (!["Review", "Revisions", "Done"].includes(t.status)) return false;
+    return inQuarter(deliveryDate(t) || t.done_on || t.due, quarter);
+  });
   if (!tasks.length) return 0;
   const onTime = tasks.filter((t) => !isLateTask(t) || delayExcused(t)).length;
   const rate = onTime / tasks.length;
@@ -1096,11 +1129,12 @@ function computedDelivery(name, quarter) {
 
 function computedDiscipline(name, quarter) {
   const warns = ensureHr().warnings.filter((w) => w.who === name && inQuarter(w.date, quarter) && w.status !== "Note").length;
-  const late = allTasks().filter((t) => t.who === name && isLateTask(t) && !delayExcused(t) && inQuarter(deliveryDate(t) || t.due, quarter)).length;
+  const late = allTasks().filter((t) => t.who === name && isLateTask(t) && !delayExcused(t) && !t.delay_notified && inQuarter(deliveryDate(t) || t.due, quarter)).length;
+  const files = allTasks().filter((t) => t.who === name && t.drive_missing && t.status !== "To do").length;
   let score = 5;
   if (warns >= 3 || late >= 5) score = 1;
-  else if (warns === 2 || late >= 3) score = 2;
-  else if (warns === 1 || late >= 1) score = 3;
+  else if (warns === 2 || late >= 3 || files >= 3) score = 2;
+  else if (warns === 1 || late >= 1 || files >= 1) score = 3;
   else if (late === 0 && warns === 0) score = 5;
   return score;
 }
@@ -1140,20 +1174,25 @@ function viewPromptModals() {
   const extra = [];
   if (state.pendingDelay) {
     const reason = $("select", {}, DELAY_REASONS.map((r) => $("option", { value: r }, r)));
+    const notified = $("input", { type: "checkbox" });
     extra.push(
       $("div", { class: "modal-bg", onclick: () => { state.pendingDelay = null; render(); } }),
       $("section", { class: "modal" }, [
         $("p", { class: "muted" }, "Delay reason"),
         $("h2", {}, "This task is past the deadline"),
-        $("p", { class: "muted" }, "A clear blocker is not a violation. Personal or repeated delays without notice can be escalated."),
+        $("p", { class: "muted" }, "A clear blocker is not a violation. Repeated delay without notice is escalated: feedback, then warning, then deduction later."),
         $("form", {
           class: "form",
           onsubmit: (e) => {
             e.preventDefault();
-            applyStatus(state.pendingDelay.taskId, state.pendingDelay.next, { delay_reason: reason.value, delay_notified: true });
+            applyStatus(state.pendingDelay.taskId, state.pendingDelay.next, {
+              delay_reason: reason.value,
+              delay_notified: notified.checked,
+            });
           },
         }, [
           $("label", {}, ["Why is it late?", reason]),
+          $("label", { class: "done-check" }, [notified, "I notified the team in advance"]),
           $("div", { style: "display:flex;gap:8px" }, [
             $("button", { class: "btn primary", type: "submit" }, "Move to Review"),
             $("button", { class: "btn ghost", type: "button", onclick: () => { state.pendingDelay = null; render(); } }, "Cancel"),
@@ -1210,14 +1249,14 @@ function viewEvalModal() {
     $("section", { class: "modal wide" }, [
       $("p", { class: "muted" }, "Quality evaluation"),
       $("h2", {}, task.title),
-      $("p", { class: "muted" }, `${task.who} · ${person?.role || ""} · ${RATE_LABEL[5]} is publish-ready. ${RATE_LABEL[1]} needs a redo.`),
+      $("p", { class: "muted" }, `${task.who} · ${person?.role || track} · 5 publish-ready · 4 small edits · 3 meets the brief · 2 needs heavy work · 1 redo.`),
       $("form", {
         class: "form",
         onsubmit: (e) => {
           e.preventDefault();
           const quality = {};
           qualityInputs.forEach(([key, , input]) => { quality[key] = Number(input.value) || 0; });
-          const quality_avg = avg(Object.values(quality));
+          const quality_avg = avg(Object.values(quality).filter(Boolean));
           const row = {
             id: existing?.id || `ev-${task.id}`,
             task_id: task.id,
@@ -1244,10 +1283,13 @@ function viewEvalModal() {
         },
       }, [
         $("label", {}, ["Task delivery (on time and managed)", delivery]),
+        $("p", { class: "muted" }, "5 on time and self-managed · 4 small rare delay · 3 needs some follow-up · 2 often late · 1 never finishes without chasing."),
         $("p", { class: "muted" }, "Quality by role"),
         ...qualityInputs.map(([, label, input]) => $("label", {}, [label, input])),
         $("label", {}, ["Revision handling", revision]),
+        $("p", { class: "muted" }, "5 few natural edits · 4 small tweaks · 3 a normal amount · 2 many edits from a missed brief · 1 full redo."),
         $("label", {}, ["Creativity & initiative", creativity]),
+        $("p", { class: "muted" }, "5 proposes new ideas · 4 sometimes improves · 3 does the brief only · 2 waits for instructions · 1 no initiative."),
         $("label", {}, ["Notes", notes]),
         $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
           $("button", { class: "btn primary", type: "submit" }, "Save evaluation"),
@@ -1273,6 +1315,7 @@ function viewHr() {
   const tabs = [
     ["scores", "Performance"],
     ["tasks", "Task tracking"],
+    ["revisions", "Revisions"],
     ["hours", "Hours"],
     ["attitude", "Attitude"],
     ["warnings", "Warnings"],
@@ -1291,6 +1334,7 @@ function viewHr() {
       $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
     ]),
     state.hrTab === "tasks" ? viewHrTasks()
+      : state.hrTab === "revisions" ? viewHrRevisions()
       : state.hrTab === "hours" ? viewHrHours()
       : state.hrTab === "attitude" ? viewHrAttitude(q)
       : state.hrTab === "warnings" ? viewHrWarnings()
@@ -1311,11 +1355,14 @@ function viewHrScores(q) {
   const w = ensureHr().weights;
   const rows = people().filter((p) => p.name !== "Amr").map((p) => ({ ...p, ...personScore(p.name, q) }));
   const best = [...rows].sort((a, b) => b.total - a.total)[0];
+  const late = allTasks().filter((t) => isLateTask(t) && !delayExcused(t));
+  const missingDrive = allTasks().filter((t) => t.drive_missing && t.status !== "To do");
   return $("div", { class: "dash" }, [
     $("p", { class: "muted" }, `Delivery ${w.delivery}% · Quality ${w.quality}% · Revisions ${w.revisions}% · Creativity ${w.creativity}% · Discipline ${w.discipline}%. Attitude is scored separately.`),
     $("div", { class: "stat-row" }, [
       statBox(rows.filter((r) => r.total >= 4).length, "On track (4+)"),
-      statBox(rows.filter((r) => r.reviews > 0).length, "Evaluated this quarter"),
+      statBox(late.length, "Late without a clear blocker", late.length ? "tone-orange" : ""),
+      statBox(missingDrive.length, "Missing Drive files", missingDrive.length ? "tone-orange" : ""),
       statBox(best?.total ? `${best.name} ${formatScore(best.total)}` : "—", "Highest score", "tone-green"),
     ]),
     $("section", { class: "card" }, [
@@ -1343,13 +1390,13 @@ function viewHrScores(q) {
 function viewHrTasks() {
   const tasks = [...allTasks()].sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""));
   return $("section", { class: "card" }, [
-    $("p", { class: "muted" }, "Assigned, start, deadline, delivery, delay, and revisions. Evaluate quality from here or from Dashboard."),
+    $("p", { class: "muted" }, "Assigned, start, deadline, delivery, delay days, notice, and Drive. Evaluate quality from here or Dashboard."),
     $("div", { class: "load-table-wrap" }, [
       $("table", { class: "load-table" }, [
-        $("thead", {}, $("tr", {}, ["Task", "Employee", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Revisions", ""].map((h) => $("th", {}, h)))),
+        $("thead", {}, $("tr", {}, ["Task", "Employee", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Days", "Notice", "Drive", ""].map((h) => $("th", {}, h)))),
         $("tbody", {}, tasks.length ? tasks.map((t) =>
           $("tr", { class: isLateTask(t) && !delayExcused(t) ? "tone-orange" : "" }, [
-            $("td", {}, $("strong", {}, t.title)),
+            $("td", {}, [$("strong", {}, t.title), t.project ? $("span", { class: "muted" }, ` ${t.project}`) : null]),
             $("td", {}, t.who),
             $("td", {}, assignedDate(t) || "—"),
             $("td", {}, startDate(t) || "—"),
@@ -1357,14 +1404,52 @@ function viewHrTasks() {
             $("td", {}, deliveryDate(t) || "—"),
             $("td", {}, t.status),
             $("td", {}, t.delay_reason || (isLateTask(t) ? "Late" : "—")),
-            $("td", {}, String(t.revisions || 0)),
+            $("td", {}, delayDays(t) ? String(delayDays(t)) : "—"),
+            $("td", {}, t.delay_notified ? "Yes" : (isLateTask(t) ? "No" : "—")),
+            $("td", { class: t.drive_missing ? "tone-orange" : "" }, t.drive_missing ? "Missing" : (t.drive ? "Yes" : "—")),
             $("td", {}, $("button", {
               class: "btn ghost",
               type: "button",
               onclick: () => { state.evalTaskId = t.id; render(); },
             }, "Evaluate")),
           ])
-        ) : $("tr", {}, $("td", { colspan: "10" }, "No tasks yet."))),
+        ) : $("tr", {}, $("td", { colspan: "12" }, "No tasks yet."))),
+      ]),
+    ]),
+  ]);
+}
+
+function viewHrRevisions() {
+  const rows = allTasks().flatMap((t) => {
+    const log = t.revision_log || [];
+    if (!log.length && (t.revisions || 0) > 0) {
+      return [{ task: t, count: t.revisions, level: "—", reason: "—", at: t.updated_at, by: t.updated_by || "—" }];
+    }
+    return log.map((entry) => ({
+      task: t,
+      count: t.revisions || log.length,
+      level: entry.level || "—",
+      reason: entry.reason || "—",
+      at: entry.at,
+      by: entry.by || "—",
+    }));
+  });
+  return $("section", { class: "card" }, [
+    $("p", { class: "muted" }, "Minor is a small tweak. Medium is a large part. Major is a full rethink. Few natural edits score 5; a full redo scores 1."),
+    $("div", { class: "load-table-wrap" }, [
+      $("table", { class: "load-table" }, [
+        $("thead", {}, $("tr", {}, ["Task", "Employee", "Revisions", "Level", "Reason", "By", "When"].map((h) => $("th", {}, h)))),
+        $("tbody", {}, rows.length ? rows.map((r) =>
+          $("tr", {}, [
+            $("td", {}, $("strong", {}, r.task.title)),
+            $("td", {}, r.task.who),
+            $("td", {}, String(r.count)),
+            $("td", {}, r.level),
+            $("td", {}, r.reason),
+            $("td", {}, r.by),
+            $("td", {}, cairoDate(r.at) || "—"),
+          ])
+        ) : $("tr", {}, $("td", { colspan: "7" }, "No revisions logged yet."))),
       ]),
     ]),
   ]);
@@ -1373,31 +1458,39 @@ function viewHrTasks() {
 function viewHrHours() {
   const roster = people().filter((p) => p.name !== "Amr");
   return $("section", { class: "card" }, [
-    $("p", { class: "muted" }, "Work type, days, hours, and office / remote. Tasneem can edit and save."),
+    $("p", { class: "muted" }, "Type, work days, hours, office days, and reply reliability during those hours. Tasneem can edit and save."),
     $("div", { class: "load-table-wrap" }, [
       $("table", { class: "load-table" }, [
-        $("thead", {}, $("tr", {}, ["Employee", "Type", "Work days", "Hours", "Office / remote"].map((h) => $("th", {}, h)))),
+        $("thead", {}, $("tr", {}, ["Employee", "Type", "Work days", "Hours", "Office days", "Office / remote", "Replies"].map((h) => $("th", {}, h)))),
         $("tbody", {}, roster.map((p) => {
           const w = workFor(p.name);
           const type = $("select", {}, WORK_TYPES.map((t) => $("option", { value: t, selected: w.type === t }, t)));
           const days = $("input", { value: w.days || "Sun–Thu" });
           const hours = $("input", { value: w.hours || "10:00–18:00" });
+          const office = $("input", { value: w.office_days || "", placeholder: "Tue, Thu" });
           const mode = $("select", {}, WORK_MODES.map((t) => $("option", { value: t, selected: w.mode === t }, t)));
+          const response = $("select", {}, RESPONSE_LEVELS.map((t) => $("option", { value: t, selected: (w.response || "Reliable") === t }, t)));
           const save = () => {
-            ensureHr().work[p.name] = { type: type.value, days: days.value.trim(), hours: hours.value.trim(), mode: mode.value };
+            ensureHr().work[p.name] = {
+              type: type.value,
+              days: days.value.trim(),
+              hours: hours.value.trim(),
+              office_days: office.value.trim(),
+              mode: mode.value,
+              response: response.value,
+            };
             render();
             saveHr(`hr: ${state.who} updated hours for ${p.name}`);
           };
-          type.addEventListener("change", save);
-          mode.addEventListener("change", save);
-          days.addEventListener("change", save);
-          hours.addEventListener("change", save);
+          [type, mode, response, days, hours, office].forEach((el) => el.addEventListener("change", save));
           return $("tr", {}, [
             $("td", {}, [$("strong", {}, p.name), $("span", { class: "muted" }, ` ${p.role || ""}`)]),
             $("td", {}, type),
             $("td", {}, days),
             $("td", {}, hours),
+            $("td", {}, office),
             $("td", {}, mode),
+            $("td", {}, response),
           ]);
         })),
       ]),
@@ -1466,7 +1559,8 @@ function viewHrAttitude(q) {
 function viewHrWarnings() {
   const who = $("select", {}, people().filter((p) => p.name !== "Amr").map((p) => $("option", { value: p.name }, p.name)));
   const date = $("input", { type: "date", value: today() });
-  const issue = $("input", { placeholder: "Absent without notice, late files, missed hours…" });
+  const issue = $("select", {}, WARNING_ISSUES.map((s) => $("option", { value: s }, s)));
+  const detail = $("input", { placeholder: "Optional detail" });
   const status = $("select", {}, WARNING_STATUSES.map((s) => $("option", { value: s }, s)));
   const rows = [...(ensureHr().warnings || [])].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   return $("div", { class: "dash" }, [
@@ -1477,18 +1571,17 @@ function viewHrWarnings() {
         class: "form",
         onsubmit: (e) => {
           e.preventDefault();
-          if (!issue.value.trim()) return;
           ensureHr().warnings.unshift({
             id: `w-${Date.now().toString(36)}`,
             who: who.value,
             date: date.value,
-            issue: issue.value.trim(),
+            issue: detail.value.trim() ? `${issue.value} — ${detail.value.trim()}` : issue.value,
             status: status.value,
             by: state.who,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
           });
-          issue.value = "";
+          detail.value = "";
           render();
           saveHr(`hr: ${state.who} logged warning for ${who.value}`);
         },
@@ -1496,6 +1589,7 @@ function viewHrWarnings() {
         $("label", {}, ["Employee", who]),
         $("label", {}, ["Date", date]),
         $("label", {}, ["Issue", issue]),
+        $("label", {}, ["Detail", detail]),
         $("label", {}, ["Status", status]),
         $("button", { class: "btn primary", type: "submit" }, "Add record"),
       ]),
@@ -2027,7 +2121,7 @@ function viewPeople() {
         $("p", { class: "title" }, p.name),
         $("p", { class: "muted" }, p.role),
         isAdmin() && p.email ? $("p", {}, p.email) : null,
-        $("p", { class: "muted" }, `${workFor(p.name).type} · ${workFor(p.name).days} · ${workFor(p.name).hours} · ${workFor(p.name).mode}`),
+        $("p", { class: "muted" }, `${workFor(p.name).type} · ${workFor(p.name).days} · ${workFor(p.name).hours} · ${workFor(p.name).mode}${workFor(p.name).office_days ? ` · Office ${workFor(p.name).office_days}` : ""}`),
         $("span", { class: "pill" }, p.access || "member"),
       ])
     )
@@ -2115,7 +2209,7 @@ function viewGuide() {
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
-    ["HR", "Amr and Tasneem open HR to track delivery dates, score quality by role, classify revisions, log hours, attitude, and warnings. Rewards come later."],
+    ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, quality by role, revision level, hours, attitude, and warnings. Rewards come later."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
     $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
