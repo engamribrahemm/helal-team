@@ -12,11 +12,11 @@
   --orange: #f39c12;
   --red: #e74c3c;
   --radius: 8px;
-  --serif: "Fraunces", serif;
+  --serif: "Figtree", sans-serif;
   --sans: "Figtree", sans-serif;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; font-family: var(--sans); }
 
 html, body {
   margin: 0;

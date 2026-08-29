@@ -90,6 +90,7 @@ const state = {
   loginError: "",
   shas: {},
   headSha: "",
+  taskCommitSha: "",
   session: readSession(),
   openTaskId: null,
   creating: false,
@@ -195,12 +196,20 @@ function allTasks() {
   );
 }
 
+function samePerson(a, b) {
+  return String(a || "").trim().toLowerCase() === String(b || "").trim().toLowerCase();
+}
+
 function tasksForView() {
   let tasks = allTasks();
   const ownOnly = !isAdmin() || state.view === "my";
-  if (ownOnly) tasks = tasks.filter((t) => t.who === state.who);
+  if (ownOnly) tasks = tasks.filter((t) => samePerson(t.who, state.who));
   if (state.dateFilter && state.dateFilter !== "all") {
-    tasks = tasks.filter((t) => t.due === state.dateFilter || t.date === state.dateFilter);
+    tasks = tasks.filter((t) =>
+      t.due === state.dateFilter
+      || t.date === state.dateFilter
+      || t.assigned_at === state.dateFilter
+    );
   }
   return tasks;
 }
@@ -538,7 +547,7 @@ function mineNewerFile(remote, local) {
   const remoteById = new Map(flatTasks(remote).map((t) => [t.id, t]));
   const keep = [];
   for (const task of flatTasks(local)) {
-    if (task.updated_by !== who) continue;
+    if (task.updated_by !== who && task.created_by !== who) continue;
     const other = remoteById.get(task.id);
     if (!other || taskStamp(task) > taskStamp(other)) keep.push(task);
   }
@@ -622,6 +631,27 @@ async function fetchHeadSha() {
   return json.object?.sha || "";
 }
 
+async function fetchPathCommit(path) {
+  const { owner, repo, branch } = repoInfo();
+  const res = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/commits?path=${encodeURIComponent(path)}&sha=${encodeURIComponent(branch)}&per_page=1`,
+    { cache: "no-store", headers: githubHeaders() }
+  );
+  if (!res.ok) return "";
+  const json = await res.json();
+  return json[0]?.sha || "";
+}
+
+async function dbGetRaw(path) {
+  const { owner, repo, branch } = repoInfo();
+  const res = await fetch(
+    `https://raw.githubusercontent.com/${owner}/${repo}/${encodeURIComponent(branch)}/${path}?t=${Date.now()}`,
+    { cache: "no-store" }
+  );
+  if (!res.ok) throw new Error(`GitHub ${res.status}`);
+  return res.json();
+}
+
 async function dbGet(path, ref) {
   const { owner, repo, branch } = repoInfo();
   const at = ref || (await fetchHeadSha()) || branch;
@@ -691,6 +721,7 @@ async function dbPut(path, data, message) {
       const json = await res.json();
       state.shas[path] = json.content?.sha || sha;
       state.headSha = json.commit?.sha || state.headSha;
+      if (path.endsWith("daily-tasks.json")) state.taskCommitSha = json.commit?.sha || "";
       state.saveState = "saved";
       state.saveError = "";
       cacheBoard();
@@ -831,18 +862,19 @@ async function saveHr(message) {
 async function pullRemoteBoard() {
   if (!state.session || state.saveState === "saving") return;
   try {
-    const head = await fetchHeadSha();
-    if (head && head === state.headSha) return;
-    const remoteTasks = await dbGet("helal/daily-tasks.json", head);
-    const remoteReports = await dbGet("helal/reports.json", head);
-    const remoteHr = await dbGet("helal/hr.json", head).catch(() => state.hrFile || emptyHr());
+    const taskCommit = await fetchPathCommit("helal/daily-tasks.json");
+    if (taskCommit && taskCommit === state.taskCommitSha && state.saveState !== "error") return;
+    const remoteTasks = await dbGet("helal/daily-tasks.json", taskCommit).catch(() => dbGetRaw("helal/daily-tasks.json"));
+    const remoteReports = await dbGet("helal/reports.json", taskCommit).catch(() => state.reportsFile);
+    const remoteHr = await dbGet("helal/hr.json", taskCommit).catch(() => state.hrFile || emptyHr());
     if (state.saveState === "saving") return;
     const before = tasksSignature(state.tasksFile);
-    const replay = state.saveState === "error" ? mineNewerFile(remoteTasks, state.tasksFile) : null;
+    const replay = mineNewerFile(remoteTasks, state.tasksFile);
     state.tasksFile = replay ? mergeTaskFiles(remoteTasks, replay) : remoteTasks;
-    state.reportsFile = remoteReports;
+    if (remoteReports) state.reportsFile = remoteReports;
     state.hrFile = remoteHr || emptyHr();
-    state.headSha = head || state.headSha;
+    state.taskCommitSha = taskCommit || state.taskCommitSha;
+    state.headSha = taskCommit || state.headSha;
     cacheBoard();
     if (tasksSignature(state.tasksFile) !== before) render();
   } catch (_) {}
@@ -862,6 +894,7 @@ function login(who, pin) {
   state.view = "board";
   localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
   state.headSha = "";
+  state.taskCommitSha = "";
   render();
   pullRemoteBoard();
 }
@@ -940,6 +973,7 @@ function setStatus(taskId, next) {
 }
 
 function assignTask({ who, space, title, due, drive, project, status, notes }) {
+  if (!who || !title) return;
   const date = due || today();
   const day = ensureDay(date);
   const id = `t-${date.replaceAll("-", "")}-${who.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now().toString(36)}`;
@@ -958,12 +992,18 @@ function assignTask({ who, space, title, due, drive, project, status, notes }) {
     assigned_at: today(),
     created_by: state.who,
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    updated_by: state.who,
     revisions: 0,
   });
   state.creating = false;
   state.draft = null;
+  state.taskCommitSha = "";
   render();
-  saveTasks(`board: ${state.who} assigned ${who} — ${title}`);
+  saveTasks(`board: ${state.who} assigned ${who} — ${title}`).then(() => {
+    state.taskCommitSha = "";
+    pullRemoteBoard();
+  });
 }
 
 function submitReport(fields) {
@@ -1076,6 +1116,7 @@ function viewBoard() {
             onclick: () => {
               state.creating = true;
               state.createStatus = status;
+              state.draft = null;
               state.dueDraft = today();
               state.dueMonth = today().slice(0, 7);
               render();
@@ -1737,12 +1778,15 @@ function dueCalendar() {
 
 function createForm(onDone) {
   if (!state.draft) {
-    state.draft = { who: state.who, space: "Social", project: "", title: "", notes: "", drive: "" };
+    state.draft = { who: isAdmin() ? "" : state.who, space: "Social", project: "", title: "", notes: "", drive: "" };
   }
   const d = state.draft;
   if (!isAdmin()) d.who = state.who;
-  const assignees = isAdmin() ? people() : people().filter((p) => p.name === state.who);
-  const who = $("select", { disabled: !isAdmin() }, assignees.map((p) => $("option", { value: p.name, selected: p.name === d.who }, p.name)));
+  const assignees = isAdmin() ? people().filter((p) => p.access !== "admin" || p.name === "Tasneem") : people().filter((p) => p.name === state.who);
+  const who = $("select", { disabled: !isAdmin(), required: true }, [
+    isAdmin() ? $("option", { value: "", selected: !d.who }, "Choose teammate") : null,
+    ...assignees.map((p) => $("option", { value: p.name, selected: p.name === d.who }, p.name)),
+  ]);
   const space = $("select", {}, SPACES.map((s) => $("option", { value: s, selected: s === d.space }, s)));
   const project = $("select", {}, [
     $("option", { value: "", selected: !d.project }, "No client"),
@@ -2310,6 +2354,7 @@ function render() {
           onclick: () => {
             state.creating = true;
             state.createStatus = "To do";
+            state.draft = null;
             state.dueDraft = today();
             state.dueMonth = today().slice(0, 7);
             render();
