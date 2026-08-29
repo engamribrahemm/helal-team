@@ -1,0 +1,64 @@
+{
+  "note": "HR evaluation system. Task delivery, quality, revisions, creativity, hours, and attitude. Rewards and deductions come later.",
+  "weights": {
+    "delivery": 25,
+    "quality": 35,
+    "revisions": 15,
+    "creativity": 15,
+    "discipline": 10
+  },
+  "work": {
+    "Amr": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Hybrid"
+    },
+    "Tasneem": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Hybrid"
+    },
+    "Mariam": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Remote"
+    },
+    "Judi": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Remote"
+    },
+    "Seif": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Remote"
+    },
+    "Alaa": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Remote"
+    },
+    "Sara": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Remote"
+    },
+    "Ganna": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Remote"
+    }
+  },
+  "reviews": [],
+  "attitude": [],
+  "warnings": [],
+  "rewards": []
+}

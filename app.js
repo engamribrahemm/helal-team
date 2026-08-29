@@ -5,7 +5,59 @@ const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session";
 const LS_TASKS = "helal.tasksCache";
 const LS_REPORTS = "helal.reportsCache";
+const LS_HR = "helal.hrCache";
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const DELAY_REASONS = [
+  "Unclear brief",
+  "Waiting on information",
+  "Workload pressure",
+  "Personal reason",
+  "Other",
+];
+const REVISION_LEVELS = ["Minor", "Medium", "Major"];
+const RATE_LABEL = { 5: "Excellent", 4: "Very good", 3: "Meets expectations", 2: "Needs improvement", 1: "Poor" };
+const QUALITY_CRITERIA = {
+  design: [
+    ["color", "Color selection"],
+    ["type", "Typography & fonts"],
+    ["brand", "Brand alignment"],
+    ["layout", "Layout & visual balance"],
+    ["detail", "Attention to details"],
+    ["ready", "Final output readiness"],
+  ],
+  video: [
+    ["video", "Video quality"],
+    ["edit", "Editing & transitions"],
+    ["sound", "Sound quality"],
+    ["pace", "Timing & pacing"],
+    ["story", "Visual storytelling"],
+    ["fit", "Content suitability"],
+  ],
+  social: [
+    ["understand", "Content understanding"],
+    ["caption", "Caption quality"],
+    ["audience", "Audience understanding"],
+    ["trend", "Trend awareness"],
+    ["plan", "Content planning"],
+    ["ready", "Final output readiness"],
+  ],
+  other: [
+    ["overall", "Overall quality"],
+    ["brief", "Brief understanding"],
+    ["ready", "Final output readiness"],
+  ],
+};
+const ATTITUDE_CRITERIA = [
+  ["communication", "Communication"],
+  ["teamwork", "Teamwork"],
+  ["responsibility", "Responsibility"],
+  ["respect", "Respect"],
+  ["feedback", "Receiving feedback"],
+  ["problems", "Problem solving"],
+];
+const WARNING_STATUSES = ["Note", "1st Warning", "2nd Warning", "Deduction pending"];
+const WORK_TYPES = ["Full-time", "Part-time"];
+const WORK_MODES = ["Remote", "Office", "Hybrid"];
 
 const state = {
   view: "board",
@@ -17,7 +69,13 @@ const state = {
   projects: null,
   tasksFile: null,
   reportsFile: null,
+  hrFile: null,
   githubCfg: null,
+  hrTab: "scores",
+  hrQuarter: "",
+  evalTaskId: null,
+  pendingDelay: null,
+  pendingRevision: null,
   saveState: "idle",
   saveError: "",
   loginError: "",
@@ -196,12 +254,17 @@ function stampTime(task, prev, next) {
     }
     task.progress_started_at = "";
   }
-  if (next === "Review") task.review_at = now;
+  if (next === "Review") {
+    task.review_at = now;
+    task.delivered_on = today();
+  }
+  if (next === "In progress" && !task.start_on) task.start_on = today();
   if (next === "Done") {
     task.done_at = now;
     task.done_on = today();
     task.done_month = thisMonth();
     task.done_by = state.who;
+    if (!task.delivered_on) task.delivered_on = today();
   }
 }
 
@@ -313,6 +376,114 @@ function mergeTaskFiles(remote, local) {
   };
 }
 
+function cairoDate(iso) {
+  if (!iso) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  return new Intl.DateTimeFormat("en-CA", { timeZone: CAIRO, year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
+}
+
+function currentQuarter(date) {
+  const day = date || today();
+  const month = Number(day.slice(5, 7));
+  return `${day.slice(0, 4)}-Q${Math.ceil(month / 3)}`;
+}
+
+function inQuarter(date, quarter) {
+  if (!date || !quarter) return false;
+  return currentQuarter(date) === quarter;
+}
+
+function emptyHr() {
+  return {
+    note: "HR evaluation system. Rewards and deductions come later.",
+    weights: { delivery: 25, quality: 35, revisions: 15, creativity: 15, discipline: 10 },
+    work: {},
+    reviews: [],
+    attitude: [],
+    warnings: [],
+    rewards: [],
+  };
+}
+
+function mergeById(remote = [], local = []) {
+  const byId = new Map();
+  for (const row of [...remote, ...local]) {
+    if (!row?.id) continue;
+    const prev = byId.get(row.id);
+    if (!prev || Date.parse(row.updated_at || row.created_at || 0) >= Date.parse(prev.updated_at || prev.created_at || 0)) {
+      byId.set(row.id, row);
+    }
+  }
+  return [...byId.values()];
+}
+
+function mergeHr(remote, local) {
+  const a = remote || emptyHr();
+  const b = local || emptyHr();
+  return {
+    note: b.note || a.note,
+    weights: { ...a.weights, ...b.weights },
+    work: { ...a.work, ...b.work },
+    reviews: mergeById(a.reviews, b.reviews),
+    attitude: mergeById(a.attitude, b.attitude),
+    warnings: mergeById(a.warnings, b.warnings),
+    rewards: mergeById(a.rewards, b.rewards),
+  };
+}
+
+function qualityTrack(person) {
+  const home = person?.home || "";
+  if (home === "design") return "design";
+  if (home === "video") return "video";
+  if (home === "social") return "social";
+  const role = (person?.role || "").toLowerCase();
+  if (role.includes("graphic") || role.includes("design")) return "design";
+  if (role.includes("video")) return "video";
+  if (role.includes("social")) return "social";
+  return "other";
+}
+
+function assignedDate(task) {
+  return task.assigned_at || cairoDate(task.created_at) || task.date || "";
+}
+
+function startDate(task) {
+  return task.start_on || cairoDate(task.progress_started_at) || "";
+}
+
+function deliveryDate(task) {
+  return task.delivered_on || cairoDate(task.review_at) || task.done_on || "";
+}
+
+function isLateTask(task) {
+  const delivered = deliveryDate(task) || (task.status === "Review" || task.status === "Done" ? today() : "");
+  return !!(task.due && delivered && delivered > task.due);
+}
+
+function delayExcused(task) {
+  return !!(task.delay_reason && task.delay_reason !== "Personal reason" && task.delay_reason !== "Other");
+}
+
+function avg(nums) {
+  const list = nums.filter((n) => Number.isFinite(n) && n > 0);
+  if (!list.length) return 0;
+  return list.reduce((a, b) => a + b, 0) / list.length;
+}
+
+function scoreTone(n) {
+  if (!n) return "";
+  if (n >= 4) return "tone-green";
+  if (n >= 3) return "tone-orange";
+  return "tone-orange";
+}
+
+function formatScore(n) {
+  if (!n) return "—";
+  return n.toFixed(1);
+}
+
 function mergeReports(remote, local) {
   const byId = new Map();
   for (const report of [...(remote?.reports || []), ...(local?.reports || [])]) {
@@ -369,15 +540,17 @@ function readCacheFiles() {
     return {
       tasks: JSON.parse(localStorage.getItem(LS_TASKS) || "null"),
       reports: JSON.parse(localStorage.getItem(LS_REPORTS) || "null"),
+      hr: JSON.parse(localStorage.getItem(LS_HR) || "null"),
     };
   } catch (_) {
-    return { tasks: null, reports: null };
+    return { tasks: null, reports: null, hr: null };
   }
 }
 function cacheBoard() {
   try {
     if (state.tasksFile) localStorage.setItem(LS_TASKS, JSON.stringify(state.tasksFile));
     if (state.reportsFile) localStorage.setItem(LS_REPORTS, JSON.stringify(state.reportsFile));
+    if (state.hrFile) localStorage.setItem(LS_HR, JSON.stringify(state.hrFile));
   } catch (_) {}
 }
 
@@ -385,7 +558,9 @@ function hydrateFromCache() {
   try {
     const tasks = JSON.parse(localStorage.getItem(LS_TASKS) || "null");
     const reports = JSON.parse(localStorage.getItem(LS_REPORTS) || "null");
+    const hr = JSON.parse(localStorage.getItem(LS_HR) || "null");
     if (tasks?.days) state.tasksFile = tasks;
+    if (hr?.reviews || hr?.work) state.hrFile = hr;
     if (reports?.reports) state.reportsFile = reports;
   } catch (_) {}
 }
@@ -459,12 +634,15 @@ async function dbPut(path, data, message) {
       } else if (path.endsWith("reports.json")) {
         payload = mergeReports(remote, payload);
         state.reportsFile = payload;
+      } else if (path.endsWith("hr.json")) {
+        payload = mergeHr(remote, payload);
+        state.hrFile = payload;
       }
     } catch (err) {
       lastError = err.message;
     }
     const sha = state.shas[path];
-    if (!sha) {
+    if (!sha && attempt > 1) {
       lastError = "Could not read the GitHub file before saving.";
       await new Promise((r) => setTimeout(r, 250 * (attempt + 1)));
       continue;
@@ -484,7 +662,7 @@ async function dbPut(path, data, message) {
           message,
           content: toBase64(JSON.stringify(payload, null, 2) + "\n"),
           branch,
-          sha,
+          ...(sha ? { sha } : {}),
         }),
       }
     );
@@ -513,7 +691,7 @@ async function dbPut(path, data, message) {
 async function loadAll() {
   if (state.session) state.who = state.session.who;
   const local = async () => {
-    const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg] = await Promise.all([
+    const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg, hrFile] = await Promise.all([
       fetchLocal("./helal/team.json"),
       fetchLocal("./helal/auth.json"),
       fetchLocal("./helal/drive.json"),
@@ -521,8 +699,9 @@ async function loadAll() {
       fetchLocal("./helal/daily-tasks.json"),
       fetchLocal("./helal/reports.json"),
       fetchLocal("./helal/github.json"),
+      fetchLocal("./helal/hr.json").catch(() => emptyHr()),
     ]);
-    Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg });
+    Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg, hrFile });
   };
 
   try {
@@ -536,25 +715,31 @@ async function loadAll() {
     state.githubCfg = githubCfg;
     const head = await fetchHeadSha();
     state.headSha = head;
-    const [team, auth, drive, projects, tasksFile, reportsFile] = await Promise.all([
+    const [team, auth, drive, projects, tasksFile, reportsFile, hrFile] = await Promise.all([
       dbGet("helal/team.json", head),
       dbGet("helal/auth.json", head),
       dbGet("helal/drive.json", head),
       dbGet("helal/projects.json", head),
       dbGet("helal/daily-tasks.json", head),
       dbGet("helal/reports.json", head),
+      dbGet("helal/hr.json", head).catch(() => cache.hr || state.hrFile || emptyHr()),
     ]);
     Object.assign(state, { team, auth, drive, projects, githubCfg });
     const replay = mineNewerFile(tasksFile, cache.tasks);
     state.tasksFile = replay ? mergeTaskFiles(tasksFile, replay) : tasksFile;
     state.reportsFile = reportsFile;
+    state.hrFile = hrFile?.work || hrFile?.reviews ? hrFile : emptyHr();
+    state.hrQuarter = state.hrQuarter || currentQuarter();
     state.saveState = writeToken() ? "saved" : "idle";
     cacheBoard();
     if (replay && writeToken()) saveTasks(`board: ${state.who} replay unsaved moves`);
   } catch (_) {
     if (cache.tasks?.days) state.tasksFile = mergeTaskFiles(state.tasksFile, cache.tasks);
     if (cache.reports?.reports) state.reportsFile = mergeReports(state.reportsFile, cache.reports);
+    if (cache.hr) state.hrFile = mergeHr(state.hrFile || emptyHr(), cache.hr);
   }
+  if (!state.hrFile) state.hrFile = emptyHr();
+  state.hrQuarter = state.hrQuarter || currentQuarter();
 
   state.reportDay = state.reportDay || today();
   state.calMonth = state.calMonth || today().slice(0, 7);
@@ -606,6 +791,22 @@ async function saveReports(message) {
   });
 }
 
+async function saveHr(message) {
+  return enqueueSave(async () => {
+    state.saveState = "saving";
+    state.saveError = "";
+    render();
+    try {
+      await dbPut("helal/hr.json", state.hrFile, message);
+      render();
+    } catch (err) {
+      state.saveState = "error";
+      state.saveError = err.message;
+      render();
+    }
+  });
+}
+
 async function pullRemoteBoard() {
   if (!state.session || state.saveState === "saving") return;
   try {
@@ -613,11 +814,13 @@ async function pullRemoteBoard() {
     if (head && head === state.headSha) return;
     const remoteTasks = await dbGet("helal/daily-tasks.json", head);
     const remoteReports = await dbGet("helal/reports.json", head);
+    const remoteHr = await dbGet("helal/hr.json", head).catch(() => state.hrFile || emptyHr());
     if (state.saveState === "saving") return;
     const before = tasksSignature(state.tasksFile);
     const replay = state.saveState === "error" ? mineNewerFile(remoteTasks, state.tasksFile) : null;
     state.tasksFile = replay ? mergeTaskFiles(remoteTasks, replay) : remoteTasks;
     state.reportsFile = remoteReports;
+    state.hrFile = remoteHr || emptyHr();
     state.headSha = head || state.headSha;
     cacheBoard();
     if (tasksSignature(state.tasksFile) !== before) render();
@@ -659,16 +862,31 @@ function ensureDay(date) {
   return day;
 }
 
-function setStatus(taskId, next) {
+function applyStatus(taskId, next, extra = {}) {
   if (!canSetStatus(next)) return;
   let found = null;
   for (const day of state.tasksFile.days) {
     const task = day.tasks.find((t) => t.id === taskId);
     if (task) {
-      if (task.status === next) return;
+      if (task.status === next && !extra.force) return;
       const prev = task.status;
       task.status = next;
-      if (next === "Revisions") task.revisions = (task.revisions || 0) + 1;
+      if (next === "Revisions") {
+        task.revisions = (task.revisions || 0) + 1;
+        if (!task.revision_log) task.revision_log = [];
+        if (extra.revision_level) {
+          task.revision_log.push({
+            level: extra.revision_level,
+            reason: extra.revision_reason || "",
+            at: new Date().toISOString(),
+            by: state.who,
+          });
+        }
+      }
+      if (extra.delay_reason) {
+        task.delay_reason = extra.delay_reason;
+        task.delay_notified = extra.delay_notified !== false;
+      }
       stampTime(task, prev, next);
       task.updated_at = new Date().toISOString();
       task.updated_by = state.who;
@@ -676,8 +894,27 @@ function setStatus(taskId, next) {
     }
   }
   if (!found) return;
+  state.pendingDelay = null;
+  state.pendingRevision = null;
   render();
   saveTasks(`board: ${state.who} set ${taskId} to ${next}`);
+}
+
+function setStatus(taskId, next) {
+  if (!canSetStatus(next)) return;
+  const task = findTask(taskId);
+  if (!task || task.status === next) return;
+  if (next === "Review" && task.due && task.due < today() && !task.delay_reason) {
+    state.pendingDelay = { taskId, next };
+    render();
+    return;
+  }
+  if (next === "Revisions") {
+    state.pendingRevision = { taskId };
+    render();
+    return;
+  }
+  applyStatus(taskId, next);
 }
 
 function assignTask({ who, space, title, due, drive, project, status, notes }) {
@@ -696,6 +933,7 @@ function assignTask({ who, space, title, due, drive, project, status, notes }) {
     status: canSetStatus(status) ? (status || "To do") : "To do",
     drive: driveUrl,
     drive_missing: !driveUrl,
+    assigned_at: today(),
     created_by: state.who,
     created_at: new Date().toISOString(),
     revisions: 0,
@@ -826,11 +1064,494 @@ function viewBoard() {
   );
 }
 
+function ensureHr() {
+  if (!state.hrFile) state.hrFile = emptyHr();
+  if (!state.hrFile.reviews) state.hrFile.reviews = [];
+  if (!state.hrFile.attitude) state.hrFile.attitude = [];
+  if (!state.hrFile.warnings) state.hrFile.warnings = [];
+  if (!state.hrFile.work) state.hrFile.work = {};
+  if (!state.hrFile.weights) state.hrFile.weights = emptyHr().weights;
+  return state.hrFile;
+}
+
+function workFor(name) {
+  return ensureHr().work[name] || { type: "Full-time", days: "Sun–Thu", hours: "10:00–18:00", mode: "Remote" };
+}
+
+function reviewsFor(name, quarter) {
+  return ensureHr().reviews.filter((r) => r.who === name && (!quarter || r.quarter === quarter));
+}
+
+function computedDelivery(name, quarter) {
+  const tasks = allTasks().filter((t) => t.who === name && t.status === "Done" && inQuarter(t.done_on || t.due, quarter));
+  if (!tasks.length) return 0;
+  const onTime = tasks.filter((t) => !isLateTask(t) || delayExcused(t)).length;
+  const rate = onTime / tasks.length;
+  if (rate >= 0.95) return 5;
+  if (rate >= 0.8) return 4;
+  if (rate >= 0.6) return 3;
+  if (rate >= 0.4) return 2;
+  return 1;
+}
+
+function computedDiscipline(name, quarter) {
+  const warns = ensureHr().warnings.filter((w) => w.who === name && inQuarter(w.date, quarter) && w.status !== "Note").length;
+  const late = allTasks().filter((t) => t.who === name && isLateTask(t) && !delayExcused(t) && inQuarter(deliveryDate(t) || t.due, quarter)).length;
+  let score = 5;
+  if (warns >= 3 || late >= 5) score = 1;
+  else if (warns === 2 || late >= 3) score = 2;
+  else if (warns === 1 || late >= 1) score = 3;
+  else if (late === 0 && warns === 0) score = 5;
+  return score;
+}
+
+function personScore(name, quarter) {
+  const q = quarter || currentQuarter();
+  const rows = reviewsFor(name, q);
+  const w = ensureHr().weights;
+  const delivery = avg(rows.map((r) => r.delivery).filter(Boolean)) || computedDelivery(name, q);
+  const quality = avg(rows.map((r) => r.quality_avg).filter(Boolean));
+  const revisions = avg(rows.map((r) => r.revision_rating).filter(Boolean));
+  const creativity = avg(rows.map((r) => r.creativity).filter(Boolean));
+  const discipline = computedDiscipline(name, q);
+  const parts = [
+    [delivery, w.delivery],
+    [quality, w.quality],
+    [revisions, w.revisions],
+    [creativity, w.creativity],
+    [discipline, w.discipline],
+  ].filter(([n]) => n > 0);
+  const weightSum = parts.reduce((s, [, wt]) => s + wt, 0) || 1;
+  const total = parts.reduce((s, [n, wt]) => s + n * wt, 0) / weightSum;
+  const attitudeRows = ensureHr().attitude.filter((a) => a.who === name && currentQuarter(`${a.month}-01`) === q);
+  const attitude = avg(attitudeRows.map((a) => avg(ATTITUDE_CRITERIA.map(([k]) => Number(a[k]) || 0))));
+  return { name, quarter: q, delivery, quality, revisions, creativity, discipline, total, attitude, reviews: rows.length };
+}
+
+function scoreSelect(value) {
+  const sel = $("select", {}, [
+    $("option", { value: "" }, "—"),
+    ...[5, 4, 3, 2, 1].map((n) => $("option", { value: String(n), selected: Number(value) === n }, `${n} · ${RATE_LABEL[n]}`)),
+  ]);
+  return sel;
+}
+
+function viewPromptModals() {
+  const extra = [];
+  if (state.pendingDelay) {
+    const reason = $("select", {}, DELAY_REASONS.map((r) => $("option", { value: r }, r)));
+    extra.push(
+      $("div", { class: "modal-bg", onclick: () => { state.pendingDelay = null; render(); } }),
+      $("section", { class: "modal" }, [
+        $("p", { class: "muted" }, "Delay reason"),
+        $("h2", {}, "This task is past the deadline"),
+        $("p", { class: "muted" }, "A clear blocker is not a violation. Personal or repeated delays without notice can be escalated."),
+        $("form", {
+          class: "form",
+          onsubmit: (e) => {
+            e.preventDefault();
+            applyStatus(state.pendingDelay.taskId, state.pendingDelay.next, { delay_reason: reason.value, delay_notified: true });
+          },
+        }, [
+          $("label", {}, ["Why is it late?", reason]),
+          $("div", { style: "display:flex;gap:8px" }, [
+            $("button", { class: "btn primary", type: "submit" }, "Move to Review"),
+            $("button", { class: "btn ghost", type: "button", onclick: () => { state.pendingDelay = null; render(); } }, "Cancel"),
+          ]),
+        ]),
+      ])
+    );
+  }
+  if (state.pendingRevision) {
+    const level = $("select", {}, REVISION_LEVELS.map((r) => $("option", { value: r }, r)));
+    const reason = $("input", { placeholder: "Color change, reorder, full rethink…" });
+    extra.push(
+      $("div", { class: "modal-bg", onclick: () => { state.pendingRevision = null; render(); } }),
+      $("section", { class: "modal" }, [
+        $("p", { class: "muted" }, "Revision"),
+        $("h2", {}, "Classify this revision"),
+        $("p", { class: "muted" }, "Minor is a small tweak. Medium is a large part. Major is a full rethink."),
+        $("form", {
+          class: "form",
+          onsubmit: (e) => {
+            e.preventDefault();
+            applyStatus(state.pendingRevision.taskId, "Revisions", { revision_level: level.value, revision_reason: reason.value.trim() });
+          },
+        }, [
+          $("label", {}, ["Level", level]),
+          $("label", {}, ["Reason", reason]),
+          $("div", { style: "display:flex;gap:8px" }, [
+            $("button", { class: "btn primary", type: "submit" }, "Send to Revisions"),
+            $("button", { class: "btn ghost", type: "button", onclick: () => { state.pendingRevision = null; render(); } }, "Cancel"),
+          ]),
+        ]),
+      ])
+    );
+  }
+  if (state.evalTaskId && isAdmin()) extra.push(...viewEvalModal());
+  return extra;
+}
+
+function viewEvalModal() {
+  const task = findTask(state.evalTaskId);
+  if (!task) return [];
+  const person = people().find((p) => p.name === task.who);
+  const track = qualityTrack(person);
+  const criteria = QUALITY_CRITERIA[track] || QUALITY_CRITERIA.other;
+  const existing = ensureHr().reviews.find((r) => r.task_id === task.id);
+  const delivery = scoreSelect(existing?.delivery);
+  const revision = scoreSelect(existing?.revision_rating);
+  const creativity = scoreSelect(existing?.creativity);
+  const qualityInputs = criteria.map(([key, label]) => [key, label, scoreSelect(existing?.quality?.[key])]);
+  const notes = $("textarea", {}, existing?.notes || "");
+  const close = () => { state.evalTaskId = null; render(); };
+  return [
+    $("div", { class: "modal-bg", onclick: close }),
+    $("section", { class: "modal wide" }, [
+      $("p", { class: "muted" }, "Quality evaluation"),
+      $("h2", {}, task.title),
+      $("p", { class: "muted" }, `${task.who} · ${person?.role || ""} · ${RATE_LABEL[5]} is publish-ready. ${RATE_LABEL[1]} needs a redo.`),
+      $("form", {
+        class: "form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          const quality = {};
+          qualityInputs.forEach(([key, , input]) => { quality[key] = Number(input.value) || 0; });
+          const quality_avg = avg(Object.values(quality));
+          const row = {
+            id: existing?.id || `ev-${task.id}`,
+            task_id: task.id,
+            who: task.who,
+            role: track,
+            quarter: currentQuarter(deliveryDate(task) || today()),
+            delivery: Number(delivery.value) || 0,
+            quality,
+            quality_avg,
+            revision_rating: Number(revision.value) || 0,
+            revision_count: task.revisions || 0,
+            creativity: Number(creativity.value) || 0,
+            notes: notes.value.trim(),
+            by: state.who,
+            created_at: existing?.created_at || new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          };
+          const hr = ensureHr();
+          hr.reviews = hr.reviews.filter((r) => r.id !== row.id);
+          hr.reviews.unshift(row);
+          state.evalTaskId = null;
+          render();
+          saveHr(`hr: ${state.who} evaluated ${task.id}`);
+        },
+      }, [
+        $("label", {}, ["Task delivery (on time and managed)", delivery]),
+        $("p", { class: "muted" }, "Quality by role"),
+        ...qualityInputs.map(([, label, input]) => $("label", {}, [label, input])),
+        $("label", {}, ["Revision handling", revision]),
+        $("label", {}, ["Creativity & initiative", creativity]),
+        $("label", {}, ["Notes", notes]),
+        $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
+          $("button", { class: "btn primary", type: "submit" }, "Save evaluation"),
+          task.status !== "Done"
+            ? $("button", {
+              class: "btn ghost",
+              type: "button",
+              onclick: () => {
+                close();
+                applyStatus(task.id, "Done");
+              },
+            }, "Mark done")
+            : null,
+          $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
+        ]),
+      ]),
+    ]),
+  ];
+}
+
+function viewHr() {
+  const q = state.hrQuarter || currentQuarter();
+  const tabs = [
+    ["scores", "Performance"],
+    ["tasks", "Task tracking"],
+    ["hours", "Hours"],
+    ["attitude", "Attitude"],
+    ["warnings", "Warnings"],
+    ["rewards", "Rewards"],
+  ];
+  return $("div", { class: "dash" }, [
+    $("div", { class: "hr-tabs" }, tabs.map(([id, label]) =>
+      $("button", {
+        class: state.hrTab === id ? "on" : "",
+        onclick: () => { state.hrTab = id; render(); },
+      }, label)
+    )),
+    $("div", { class: "cal-nav" }, [
+      $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, -1); render(); } }, "Prev"),
+      $("h2", {}, q),
+      $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
+    ]),
+    state.hrTab === "tasks" ? viewHrTasks()
+      : state.hrTab === "hours" ? viewHrHours()
+      : state.hrTab === "attitude" ? viewHrAttitude(q)
+      : state.hrTab === "warnings" ? viewHrWarnings()
+      : state.hrTab === "rewards" ? viewHrRewards()
+      : viewHrScores(q),
+  ]);
+}
+
+function shiftQuarter(q, delta) {
+  const year = Number(q.slice(0, 4));
+  const n = Number(q.slice(-1)) + delta;
+  if (n < 1) return `${year - 1}-Q4`;
+  if (n > 4) return `${year + 1}-Q1`;
+  return `${year}-Q${n}`;
+}
+
+function viewHrScores(q) {
+  const w = ensureHr().weights;
+  const rows = people().filter((p) => p.name !== "Amr").map((p) => ({ ...p, ...personScore(p.name, q) }));
+  const best = [...rows].sort((a, b) => b.total - a.total)[0];
+  return $("div", { class: "dash" }, [
+    $("p", { class: "muted" }, `Delivery ${w.delivery}% · Quality ${w.quality}% · Revisions ${w.revisions}% · Creativity ${w.creativity}% · Discipline ${w.discipline}%. Attitude is scored separately.`),
+    $("div", { class: "stat-row" }, [
+      statBox(rows.filter((r) => r.total >= 4).length, "On track (4+)"),
+      statBox(rows.filter((r) => r.reviews > 0).length, "Evaluated this quarter"),
+      statBox(best?.total ? `${best.name} ${formatScore(best.total)}` : "—", "Highest score", "tone-green"),
+    ]),
+    $("section", { class: "card" }, [
+      $("div", { class: "load-table-wrap" }, [
+        $("table", { class: "load-table" }, [
+          $("thead", {}, $("tr", {}, ["Name", "Delivery 25%", "Quality 35%", "Revisions 15%", "Creativity 15%", "Discipline 10%", "Score", "Attitude"].map((h) => $("th", {}, h)))),
+          $("tbody", {}, rows.map((r) =>
+            $("tr", {}, [
+              $("td", {}, [$("strong", {}, r.name), $("span", { class: "muted" }, ` ${r.role || ""}`)]),
+              $("td", { class: scoreTone(r.delivery) }, formatScore(r.delivery)),
+              $("td", { class: scoreTone(r.quality) }, formatScore(r.quality)),
+              $("td", { class: scoreTone(r.revisions) }, formatScore(r.revisions)),
+              $("td", { class: scoreTone(r.creativity) }, formatScore(r.creativity)),
+              $("td", { class: scoreTone(r.discipline) }, formatScore(r.discipline)),
+              $("td", { class: scoreTone(r.total) }, $("strong", {}, formatScore(r.total))),
+              $("td", { class: scoreTone(r.attitude) }, formatScore(r.attitude)),
+            ])
+          )),
+        ]),
+      ]),
+    ]),
+  ]);
+}
+
+function viewHrTasks() {
+  const tasks = [...allTasks()].sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""));
+  return $("section", { class: "card" }, [
+    $("p", { class: "muted" }, "Assigned, start, deadline, delivery, delay, and revisions. Evaluate quality from here or from Dashboard."),
+    $("div", { class: "load-table-wrap" }, [
+      $("table", { class: "load-table" }, [
+        $("thead", {}, $("tr", {}, ["Task", "Employee", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Revisions", ""].map((h) => $("th", {}, h)))),
+        $("tbody", {}, tasks.length ? tasks.map((t) =>
+          $("tr", { class: isLateTask(t) && !delayExcused(t) ? "tone-orange" : "" }, [
+            $("td", {}, $("strong", {}, t.title)),
+            $("td", {}, t.who),
+            $("td", {}, assignedDate(t) || "—"),
+            $("td", {}, startDate(t) || "—"),
+            $("td", {}, t.due || "—"),
+            $("td", {}, deliveryDate(t) || "—"),
+            $("td", {}, t.status),
+            $("td", {}, t.delay_reason || (isLateTask(t) ? "Late" : "—")),
+            $("td", {}, String(t.revisions || 0)),
+            $("td", {}, $("button", {
+              class: "btn ghost",
+              type: "button",
+              onclick: () => { state.evalTaskId = t.id; render(); },
+            }, "Evaluate")),
+          ])
+        ) : $("tr", {}, $("td", { colspan: "10" }, "No tasks yet."))),
+      ]),
+    ]),
+  ]);
+}
+
+function viewHrHours() {
+  const roster = people().filter((p) => p.name !== "Amr");
+  return $("section", { class: "card" }, [
+    $("p", { class: "muted" }, "Work type, days, hours, and office / remote. Tasneem can edit and save."),
+    $("div", { class: "load-table-wrap" }, [
+      $("table", { class: "load-table" }, [
+        $("thead", {}, $("tr", {}, ["Employee", "Type", "Work days", "Hours", "Office / remote"].map((h) => $("th", {}, h)))),
+        $("tbody", {}, roster.map((p) => {
+          const w = workFor(p.name);
+          const type = $("select", {}, WORK_TYPES.map((t) => $("option", { value: t, selected: w.type === t }, t)));
+          const days = $("input", { value: w.days || "Sun–Thu" });
+          const hours = $("input", { value: w.hours || "10:00–18:00" });
+          const mode = $("select", {}, WORK_MODES.map((t) => $("option", { value: t, selected: w.mode === t }, t)));
+          const save = () => {
+            ensureHr().work[p.name] = { type: type.value, days: days.value.trim(), hours: hours.value.trim(), mode: mode.value };
+            render();
+            saveHr(`hr: ${state.who} updated hours for ${p.name}`);
+          };
+          type.addEventListener("change", save);
+          mode.addEventListener("change", save);
+          days.addEventListener("change", save);
+          hours.addEventListener("change", save);
+          return $("tr", {}, [
+            $("td", {}, [$("strong", {}, p.name), $("span", { class: "muted" }, ` ${p.role || ""}`)]),
+            $("td", {}, type),
+            $("td", {}, days),
+            $("td", {}, hours),
+            $("td", {}, mode),
+          ]);
+        })),
+      ]),
+    ]),
+  ]);
+}
+
+function viewHrAttitude(q) {
+  const month = today().slice(0, 7);
+  const who = $("select", {}, people().filter((p) => p.name !== "Amr").map((p) => $("option", { value: p.name }, p.name)));
+  const inputs = ATTITUDE_CRITERIA.map(([key, label]) => [key, label, scoreSelect()]);
+  const notes = $("textarea", { placeholder: "Optional note" });
+  const rows = ensureHr().attitude.filter((a) => currentQuarter(`${a.month}-01`) === q);
+  return $("div", { class: "dash" }, [
+    $("section", { class: "card", style: "max-width:640px" }, [
+      $("h2", {}, "Attitude & collaboration"),
+      $("p", { class: "muted" }, "Separate from task scores. Communication, teamwork, responsibility, respect, feedback, problem solving."),
+      $("form", {
+        class: "form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          const row = {
+            id: `at-${who.value}-${month}`,
+            who: who.value,
+            month,
+            notes: notes.value.trim(),
+            by: state.who,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          };
+          inputs.forEach(([key, , input]) => { row[key] = Number(input.value) || 0; });
+          const hr = ensureHr();
+          hr.attitude = hr.attitude.filter((a) => a.id !== row.id);
+          hr.attitude.unshift(row);
+          render();
+          saveHr(`hr: ${state.who} scored attitude for ${who.value}`);
+        },
+      }, [
+        $("label", {}, ["Employee", who]),
+        ...inputs.map(([, label, input]) => $("label", {}, [label, input])),
+        $("label", {}, ["Notes", notes]),
+        $("button", { class: "btn primary", type: "submit" }, `Save · ${month}`),
+      ]),
+    ]),
+    $("section", { class: "card" }, [
+      $("h2", {}, "This quarter"),
+      rows.length
+        ? $("div", { class: "load-table-wrap" }, [
+          $("table", { class: "load-table" }, [
+            $("thead", {}, $("tr", {}, ["Name", "Month", ...ATTITUDE_CRITERIA.map(([, l]) => l), "By"].map((h) => $("th", {}, h)))),
+            $("tbody", {}, rows.map((a) =>
+              $("tr", {}, [
+                $("td", {}, a.who),
+                $("td", {}, a.month),
+                ...ATTITUDE_CRITERIA.map(([k]) => $("td", { class: scoreTone(a[k]) }, String(a[k] || "—"))),
+                $("td", {}, a.by || "—"),
+              ])
+            )),
+          ]),
+        ])
+        : $("p", { class: "empty" }, "No attitude scores this quarter yet."),
+    ]),
+  ]);
+}
+
+function viewHrWarnings() {
+  const who = $("select", {}, people().filter((p) => p.name !== "Amr").map((p) => $("option", { value: p.name }, p.name)));
+  const date = $("input", { type: "date", value: today() });
+  const issue = $("input", { placeholder: "Absent without notice, late files, missed hours…" });
+  const status = $("select", {}, WARNING_STATUSES.map((s) => $("option", { value: s }, s)));
+  const rows = [...(ensureHr().warnings || [])].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  return $("div", { class: "dash" }, [
+    $("section", { class: "card", style: "max-width:640px" }, [
+      $("h2", {}, "Attendance & process"),
+      $("p", { class: "muted" }, "First time: feedback. Repeat: formal warning. After that: deduction policy (added later)."),
+      $("form", {
+        class: "form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          if (!issue.value.trim()) return;
+          ensureHr().warnings.unshift({
+            id: `w-${Date.now().toString(36)}`,
+            who: who.value,
+            date: date.value,
+            issue: issue.value.trim(),
+            status: status.value,
+            by: state.who,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          });
+          issue.value = "";
+          render();
+          saveHr(`hr: ${state.who} logged warning for ${who.value}`);
+        },
+      }, [
+        $("label", {}, ["Employee", who]),
+        $("label", {}, ["Date", date]),
+        $("label", {}, ["Issue", issue]),
+        $("label", {}, ["Status", status]),
+        $("button", { class: "btn primary", type: "submit" }, "Add record"),
+      ]),
+    ]),
+    $("section", { class: "card" }, [
+      $("div", { class: "load-table-wrap" }, [
+        $("table", { class: "load-table" }, [
+          $("thead", {}, $("tr", {}, ["Employee", "Date", "Issue", "Status", "By"].map((h) => $("th", {}, h)))),
+          $("tbody", {}, rows.length ? rows.map((w) =>
+            $("tr", {}, [
+              $("td", {}, w.who),
+              $("td", {}, w.date),
+              $("td", {}, w.issue),
+              $("td", { class: w.status === "Note" ? "" : "tone-orange" }, w.status),
+              $("td", {}, w.by || "—"),
+            ])
+          ) : $("tr", {}, $("td", { colspan: "5" }, "No warnings yet."))),
+        ]),
+      ]),
+    ]),
+  ]);
+}
+
+function viewHrRewards() {
+  const q = state.hrQuarter || currentQuarter();
+  const rows = people().filter((p) => p.name !== "Amr").map((p) => personScore(p.name, q)).sort((a, b) => b.total - a.total);
+  const lead = rows.find((r) => r.total > 0);
+  return $("section", { class: "card" }, [
+    $("h2", {}, "Rewards — later"),
+    $("p", { class: "muted" }, "Quarterly bonus and Best Employee will use these scores. Deductions stay off until Tasneem confirms the policy."),
+    lead
+      ? $("p", {}, `Current lead for ${q}: ${lead.name} · ${formatScore(lead.total)}`)
+      : $("p", { class: "empty" }, "No scores yet this quarter."),
+  ]);
+}
+
+function myHrCard() {
+  const score = personScore(state.who, currentQuarter());
+  return $("section", { class: "card" }, [
+    $("h2", {}, "Your performance"),
+    $("p", { class: "muted" }, `${score.quarter} · Attitude is separate from this score.`),
+    $("div", { class: "stat-row" }, [
+      statBox(formatScore(score.total), "Score", scoreTone(score.total)),
+      statBox(formatScore(score.quality), "Quality", scoreTone(score.quality)),
+      statBox(formatScore(score.delivery), "Delivery", scoreTone(score.delivery)),
+      statBox(formatScore(score.attitude), "Attitude", scoreTone(score.attitude)),
+    ]),
+  ]);
+}
+
 function viewMy() {
   const open = tasksForView().filter((t) => t.status !== "Done");
   const month = thisMonth();
   const finished = allTasks().filter((t) => t.who === state.who && t.status === "Done" && doneMonthOf(t) === month);
   return [
+    isAdmin() ? null : myHrCard(),
     $("div", { class: "stat-row" }, [
       statBox(open.length, "Open now"),
       statBox(open.filter((t) => t.status === "Review").length, "In review", "tone-orange"),
@@ -1035,6 +1756,14 @@ function viewTaskDrawer() {
         ? `Created by ${task.created_by || "Helal"}. You can edit the brief.`
         : `Only ${task.created_by || "the creator"} can edit the brief. You can still move status.`),
       hours > 0 ? $("p", { class: "time-line" }, `Time in progress: ${formatHours(hours)}`) : null,
+      $("div", { class: "track-grid" }, [
+        $("span", {}, `Assigned ${assignedDate(task) || "—"}`),
+        $("span", {}, `Start ${startDate(task) || "—"}`),
+        $("span", {}, `Deadline ${task.due || "—"}`),
+        $("span", {}, `Delivery ${deliveryDate(task) || "—"}`),
+        task.delay_reason ? $("span", {}, `Delay · ${task.delay_reason}`) : null,
+        (task.revisions || 0) > 0 ? $("span", {}, `Revisions ${task.revisions}${task.revision_log?.length ? ` · ${task.revision_log[task.revision_log.length - 1].level}` : ""}`) : null,
+      ]),
       $("form", {
         class: "form",
         onsubmit: (e) => {
@@ -1075,15 +1804,22 @@ function viewTaskDrawer() {
           )
         ),
         isAdmin() && (task.status === "Review" || task.status === "Revisions")
-          ? $("label", { class: "done-check" }, [
-            $("input", {
-              type: "checkbox",
-              onchange: () => {
-                setStatus(task.id, "Done");
-                state.openTaskId = null;
-              },
-            }),
-            "Mark done — stays on the board Done column and in the database",
+          ? $("div", { style: "display:grid;gap:8px;margin-top:8px" }, [
+            $("label", { class: "done-check" }, [
+              $("input", {
+                type: "checkbox",
+                onchange: () => {
+                  setStatus(task.id, "Done");
+                  state.openTaskId = null;
+                },
+              }),
+              "Mark done — stays on the board Done column and in the database",
+            ]),
+            $("button", {
+              class: "btn ghost",
+              type: "button",
+              onclick: () => { state.evalTaskId = task.id; render(); },
+            }, "Evaluate quality"),
           ])
           : null,
         $("div", { style: "display:flex;gap:8px" }, [
@@ -1194,12 +1930,19 @@ function viewReview() {
               loggedHours(t) > 0 ? $("span", { class: `pill ${taskTone(t)}` }, formatHours(loggedHours(t))) : null,
             ]),
             t.drive ? $("a", { href: t.drive, target: "_blank", rel: "noreferrer" }, "Open Drive") : null,
-            $("label", { class: "done-check" }, [
-              $("input", {
-                type: "checkbox",
-                onchange: () => setStatus(t.id, "Done"),
-              }),
-              "Mark done",
+            $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;align-items:center" }, [
+              $("label", { class: "done-check" }, [
+                $("input", {
+                  type: "checkbox",
+                  onchange: () => setStatus(t.id, "Done"),
+                }),
+                "Mark done",
+              ]),
+              $("button", {
+                class: "btn ghost",
+                type: "button",
+                onclick: () => { state.evalTaskId = t.id; render(); },
+              }, "Evaluate"),
             ]),
           ])
         ))
@@ -1284,6 +2027,7 @@ function viewPeople() {
         $("p", { class: "title" }, p.name),
         $("p", { class: "muted" }, p.role),
         isAdmin() && p.email ? $("p", {}, p.email) : null,
+        $("p", { class: "muted" }, `${workFor(p.name).type} · ${workFor(p.name).days} · ${workFor(p.name).hours} · ${workFor(p.name).mode}`),
         $("span", { class: "pill" }, p.access || "member"),
       ])
     )
@@ -1371,6 +2115,7 @@ function viewGuide() {
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
+    ["HR", "Amr and Tasneem open HR to track delivery dates, score quality by role, classify revisions, log hours, attitude, and warnings. Rewards come later."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
     $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
@@ -1426,6 +2171,7 @@ function navItems() {
   ];
   if (isAdmin()) {
     items.splice(2, 0, ["review", "Dashboard"]);
+    items.push(["hr", "HR"]);
     items.push(["people", "People"]);
   }
   return items;
@@ -1503,6 +2249,7 @@ function render() {
   else if (state.view === "report") main.append(viewReport());
   else if (state.view === "drive") main.append(viewDrive());
   else if (state.view === "people" && isAdmin()) main.append(viewPeople());
+  else if (state.view === "hr" && isAdmin()) main.append(viewHr());
   else if (state.view === "guide") main.append(viewGuide());
   else main.append(viewBoard());
   root.append(main);
@@ -1511,6 +2258,8 @@ function render() {
   if (modal) root.append(...modal);
   const drawer = viewTaskDrawer();
   if (drawer) root.append(...drawer);
+  const prompts = viewPromptModals();
+  if (prompts.length) root.append(...prompts);
 }
 
 function watchCairoDay() {
