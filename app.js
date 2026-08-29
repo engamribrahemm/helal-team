@@ -88,6 +88,7 @@ const state = {
   saveState: "idle",
   saveError: "",
   loginError: "",
+  connectError: "",
   shas: {},
   headSha: "",
   taskCommitSha: "",
@@ -169,12 +170,52 @@ function repoInfo() {
 
 function writeToken() {
   const fromCfg = (state.githubCfg && state.githubCfg.write_token) || "";
-  if (fromCfg) return fromCfg;
+  if (/^(ghp_|github_pat_)/.test(fromCfg)) return fromCfg;
   try {
     const stored = localStorage.getItem("helal.ghToken") || "";
     if (/^(ghp_|github_pat_)/.test(stored)) return stored;
   } catch (_) {}
   return "";
+}
+
+function isBoardKey(token) {
+  const value = String(token || "").trim();
+  if (!/^(ghp_|github_pat_)/.test(value) || value.length < 20) return false;
+  if (value === state.auth?.admin_pin || value === state.auth?.member_pin) return false;
+  return true;
+}
+
+async function connectDatabase(token) {
+  const clean = String(token || "").trim();
+  if (!isBoardKey(clean)) {
+    state.connectError = "Paste the GitHub key that starts with ghp_. Not the Helal password.";
+    render();
+    return;
+  }
+  try {
+    localStorage.setItem("helal.ghToken", clean);
+  } catch (_) {}
+  if (!state.githubCfg) state.githubCfg = {};
+  state.githubCfg.write_token = clean;
+  state.connectError = "";
+  state.saveState = "saving";
+  render();
+  try {
+    const probe = await fetch("https://api.github.com/user", {
+      headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${clean}` },
+    });
+    if (!probe.ok) throw new Error("GitHub rejected that key. Generate a new one and paste it.");
+    await dbPut("helal/github.json", { ...state.githubCfg, write_token: clean }, "board: connect Helal database");
+    state.saveState = "saved";
+    state.connectError = "";
+    render();
+    pullRemoteBoard();
+  } catch (err) {
+    state.saveState = "error";
+    state.saveError = err.message;
+    state.connectError = err.message;
+    render();
+  }
 }
 
 function people() {
@@ -1026,15 +1067,47 @@ function submitReport(fields) {
 }
 
 function banner() {
+  if (!writeToken() && state.session) return viewConnectBanner();
   if (state.saveState === "saving") return $("div", { class: "banner" }, "Saving to GitHub…");
   if (state.saveState === "saved") {
     return $("div", { class: "banner ok" }, "Saved to the Helal GitHub database.");
   }
   if (state.saveState === "error") return $("div", { class: "banner err" }, state.saveError);
-  if (state.saveState === "local-only") {
-    return $("div", { class: "banner warn" }, "Saved on this computer. GitHub write access is not active yet.");
-  }
+  if (state.saveState === "local-only") return viewConnectBanner();
   return null;
+}
+
+function viewConnectBanner() {
+  if (!isAdmin()) {
+    return $("div", { class: "banner warn" }, "The Helal database is not connected yet. Ask Amr or Tasneem.");
+  }
+  const key = $("input", {
+    type: "password",
+    placeholder: "ghp_…",
+    autocomplete: "off",
+  });
+  return $("div", { class: "banner warn connect-box" }, [
+    $("p", {}, "The board can read GitHub, but it cannot write yet. Connect once so Seif and the team see new tasks."),
+    $("p", { class: "muted" }, [
+      $("a", {
+        href: "https://github.com/settings/tokens/new?scopes=public_repo&description=Helal%20board",
+        target: "_blank",
+        rel: "noreferrer",
+      }, "Create the Helal board key"),
+      " while logged in as engamribrahemm. Leave public_repo checked. Copy the value that starts with ghp_. Do not paste the Helal password.",
+    ]),
+    $("form", {
+      class: "connect-form",
+      onsubmit: (e) => {
+        e.preventDefault();
+        connectDatabase(key.value);
+      },
+    }, [
+      key,
+      $("button", { class: "btn primary", type: "submit" }, "Connect database"),
+    ]),
+    state.connectError ? $("p", { class: "banner err" }, state.connectError) : null,
+  ]);
 }
 
 function kanbanCard(task) {

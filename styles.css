@@ -259,6 +259,16 @@ label {
 .banner.warn { border-color: var(--gold); color: var(--text); }
 .banner.ok { border-color: var(--gold); }
 .banner.err { border-color: #d7d7d7; color: var(--text); }
+.connect-box { display: grid; gap: 10px; }
+.connect-box p { margin: 0; }
+.connect-form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.connect-form input {
+  flex: 1;
+  min-width: 220px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+}
 
 .kanban {
   display: flex;
