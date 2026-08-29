@@ -378,11 +378,14 @@ async function fetchLocal(path) {
 async function dbGet(path) {
   const { owner, repo, branch } = repoInfo();
   const token = writeToken();
-  const headers = { Accept: "application/vnd.github+json" };
+  const headers = {
+    Accept: "application/vnd.github+json",
+    "Cache-Control": "no-cache",
+  };
   if (token) headers.Authorization = `Bearer ${token}`;
   const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`,
-    { headers }
+    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(branch)}&t=${Date.now()}`,
+    { cache: "no-store", headers }
   );
   if (!res.ok) throw new Error(`GitHub ${res.status}`);
   const json = await res.json();
@@ -399,34 +402,8 @@ async function dbPut(path, data, message) {
     return false;
   }
   let payload = data;
-  try {
-    const remote = await dbGet(path);
-    if (path.endsWith("daily-tasks.json")) {
-      payload = mergeTaskFiles(remote, data);
-      state.tasksFile = payload;
-    } else if (path.endsWith("reports.json")) {
-      payload = mergeReports(remote, data);
-      state.reportsFile = payload;
-    }
-  } catch (_) {}
-  const body = {
-    message,
-    content: toBase64(JSON.stringify(payload, null, 2) + "\n"),
-    branch,
-  };
-  if (state.shas[path]) body.sha = state.shas[path];
-  const put = () =>
-    fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
-      method: "PUT",
-      headers: {
-        Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${token}`,
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-      body: JSON.stringify(body),
-    });
-  let res = await put();
-  if (res.status === 409 || res.status === 422) {
+  let lastError = "";
+  for (let attempt = 0; attempt < 6; attempt += 1) {
     try {
       const remote = await dbGet(path);
       if (path.endsWith("daily-tasks.json")) {
@@ -436,25 +413,53 @@ async function dbPut(path, data, message) {
         payload = mergeReports(remote, payload);
         state.reportsFile = payload;
       }
-      body.content = toBase64(JSON.stringify(payload, null, 2) + "\n");
-      body.sha = state.shas[path];
-    } catch (_) {
-      body.sha = state.shas[path];
+    } catch (err) {
+      lastError = err.message;
     }
-    res = await put();
-  }
-  if (!res.ok) {
+    const sha = state.shas[path];
+    if (!sha) {
+      lastError = "Could not read the GitHub file before saving.";
+      await new Promise((r) => setTimeout(r, 250 * (attempt + 1)));
+      continue;
+    }
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+      {
+        method: "PUT",
+        cache: "no-store",
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${token}`,
+          "X-GitHub-Api-Version": "2022-11-28",
+          "Cache-Control": "no-cache",
+        },
+        body: JSON.stringify({
+          message,
+          content: toBase64(JSON.stringify(payload, null, 2) + "\n"),
+          branch,
+          sha,
+        }),
+      }
+    );
+    if (res.ok) {
+      const json = await res.json();
+      state.shas[path] = json.content?.sha || sha;
+      state.saveState = "saved";
+      state.saveError = "";
+      cacheBoard();
+      return true;
+    }
     const text = await res.text();
+    if (res.status === 409 || res.status === 422) {
+      lastError = "GitHub was updated by someone else. Retrying…";
+      await new Promise((r) => setTimeout(r, 300 * (attempt + 1)));
+      continue;
+    }
     throw new Error(res.status === 401
       ? "GitHub could not save. The board database token needs a refresh."
       : `GitHub ${res.status}: ${text.slice(0, 140)}`);
   }
-  const json = await res.json();
-  state.shas[path] = json.content?.sha || state.shas[path];
-  state.saveState = "saved";
-  state.saveError = "";
-  cacheBoard();
-  return true;
+  throw new Error(lastError || "Could not save to GitHub. Click Refresh, then move the task again.");
 }
 
 async function loadAll() {
@@ -510,32 +515,56 @@ async function loadAll() {
   else if (state.session) state.who = state.session.who;
 }
 
+let saveChain = Promise.resolve();
+
+function enqueueSave(job) {
+  const run = saveChain.then(job, job);
+  saveChain = run.then(() => {}, () => {});
+  return run;
+}
+
 async function saveTasks(message) {
-  state.saveState = "saving";
-  state.saveError = "";
-  render();
-  try {
-    await dbPut("helal/daily-tasks.json", state.tasksFile, message);
+  return enqueueSave(async () => {
+    state.saveState = "saving";
+    state.saveError = "";
     render();
-  } catch (err) {
-    state.saveState = "error";
-    state.saveError = err.message;
-    render();
-  }
+    try {
+      await dbPut("helal/daily-tasks.json", state.tasksFile, message);
+      render();
+    } catch (err) {
+      state.saveState = "error";
+      state.saveError = err.message;
+      render();
+    }
+  });
 }
 
 async function saveReports(message) {
-  state.saveState = "saving";
-  state.saveError = "";
-  render();
+  return enqueueSave(async () => {
+    state.saveState = "saving";
+    state.saveError = "";
+    render();
+    try {
+      await dbPut("helal/reports.json", state.reportsFile, message);
+      render();
+    } catch (err) {
+      state.saveState = "error";
+      state.saveError = err.message;
+      render();
+    }
+  });
+}
+
+async function pullRemoteBoard() {
+  if (state.saveState === "saving" || !state.session) return;
   try {
-    await dbPut("helal/reports.json", state.reportsFile, message);
+    const remoteTasks = await dbGet("helal/daily-tasks.json");
+    const remoteReports = await dbGet("helal/reports.json");
+    state.tasksFile = mergeTaskFiles(remoteTasks, state.tasksFile);
+    state.reportsFile = mergeReports(remoteReports, state.reportsFile);
+    cacheBoard();
     render();
-  } catch (err) {
-    state.saveState = "error";
-    state.saveError = err.message;
-    render();
-  }
+  } catch (_) {}
 }
 
 function login(who, pin) {
@@ -1427,15 +1456,14 @@ function render() {
 function watchCairoDay() {
   setInterval(() => {
     const now = today();
-    if (now !== lastCairoDay) {
-      lastCairoDay = now;
-      render();
+    if (now !== lastCairoDay) lastCairoDay = now;
+    if (state.saveState === "saving") return;
+    if (state.session && (state.view === "review" || state.view === "board")) {
+      pullRemoteBoard();
       return;
     }
-    if ((state.view === "load" || state.view === "board") && allTasks().some((t) => t.status === "In progress")) {
-      render();
-    }
-  }, 30000);
+    if (state.view === "load" && allTasks().some((t) => t.status === "In progress")) render();
+  }, 15000);
 }
 
 loadAll()
