@@ -1,23 +1,15 @@
 const STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
-const STATUS_CLASS = {
-  "To do": "todo",
-  "In progress": "progress",
-  Review: "review",
-  Revisions: "revisions",
-  Done: "done",
-};
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
+const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session";
-const LS_TOKEN = "helal.ghToken";
-const LS_REPO = "helal.ghRepo";
 const LS_TASKS = "helal.tasksCache";
 const LS_REPORTS = "helal.reportsCache";
-const TOKEN_URL = "https://github.com/settings/tokens/new?scopes=repo&description=Helal%20team%20board";
+const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 const state = {
   view: "board",
   who: "",
-  date: "",
+  dateFilter: "all",
   team: null,
   auth: null,
   drive: null,
@@ -25,20 +17,23 @@ const state = {
   tasksFile: null,
   reportsFile: null,
   githubCfg: null,
-  token: localStorage.getItem(LS_TOKEN) || "",
-  repo: localStorage.getItem(LS_REPO) || "",
   saveState: "idle",
   saveError: "",
   loginError: "",
   shas: {},
   session: readSession(),
   openTaskId: null,
+  creating: false,
+  createStatus: "To do",
+  dueDraft: "",
+  dueMonth: "",
+  draft: null,
   reportDay: "",
   calMonth: "",
-  githubDown: false,
 };
 
 let cardDidDrag = false;
+let lastCairoDay = "";
 
 function readSession() {
   try {
@@ -64,24 +59,45 @@ const $ = (tag, attrs = {}, kids = []) => {
   return el;
 };
 
-function inferRepo() {
-  const host = location.hostname;
-  if (host.endsWith(".github.io")) {
-    const owner = host.replace(".github.io", "");
-    const repo = location.pathname.split("/").filter(Boolean)[0] || `${owner}.github.io`;
-    return `${owner}/${repo}`;
-  }
-  return "";
-}
-
-function repoParts() {
-  const raw = (state.repo || inferRepo() || "").trim();
-  const [owner, repo] = raw.split("/");
-  return owner && repo ? { owner, repo } : null;
-}
-
 function today() {
-  return new Date().toISOString().slice(0, 10);
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: CAIRO,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+function cairoClock() {
+  return new Intl.DateTimeFormat("en-GB", {
+    timeZone: CAIRO,
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date());
+}
+
+function cairoTime() {
+  return new Intl.DateTimeFormat("en-GB", {
+    timeZone: CAIRO,
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(new Date());
+}
+
+function repoInfo() {
+  const cfg = state.githubCfg || {};
+  return {
+    owner: cfg.owner || "engamribrahemm",
+    repo: cfg.repo || "helal-team",
+    branch: cfg.branch || "main",
+  };
+}
+
+function writeToken() {
+  return (state.githubCfg && state.githubCfg.write_token) || "";
 }
 
 function people() {
@@ -90,17 +106,11 @@ function people() {
 }
 
 function accessFor(name) {
-  const person = people().find((p) => p.name === name);
-  return person?.access === "admin" ? "admin" : "member";
+  return people().find((p) => p.name === name)?.access === "admin" ? "admin" : "member";
 }
 
 function isAdmin() {
   return state.session?.role === "admin";
-}
-
-function currentDay() {
-  const days = state.tasksFile?.days || [];
-  return days.find((d) => d.date === state.date) || days[days.length - 1] || { date: today(), tasks: [] };
 }
 
 function allTasks() {
@@ -110,26 +120,30 @@ function allTasks() {
 }
 
 function tasksForView() {
-  const tasks = (currentDay().tasks || []).map((t) => ({ ...t, date: currentDay().date }));
-  if (isAdmin()) return tasks;
-  return tasks.filter((t) => t.who === state.who || t.created_by === state.who);
-}
-
-function folderFor(name) {
-  const person = people().find((p) => p.name === name);
-  return (state.drive?.folders || []).find((f) => f.id === person?.home);
-}
-
-function rootDrive() {
-  return state.drive?.root_url || state.drive?.folders?.find((f) => f.id === "root")?.url || "";
+  let tasks = allTasks();
+  const ownOnly = !isAdmin() || state.view === "my";
+  if (ownOnly) tasks = tasks.filter((t) => t.who === state.who);
+  if (state.dateFilter && state.dateFilter !== "all") {
+    tasks = tasks.filter((t) => t.due === state.dateFilter || t.date === state.dateFilter);
+  }
+  return tasks;
 }
 
 function projectList() {
   return state.projects?.projects || [];
 }
 
+function rootDrive() {
+  return state.drive?.root_url || state.drive?.folders?.find((f) => f.id === "root")?.url || "";
+}
+
 function driveForProject(name) {
   return projectList().find((p) => p.name === name)?.url || rootDrive();
+}
+
+function folderFor(name) {
+  const person = people().find((p) => p.name === name);
+  return (state.drive?.folders || []).find((f) => f.id === person?.home);
 }
 
 function findTask(taskId) {
@@ -141,8 +155,7 @@ function findTask(taskId) {
 }
 
 function canSetStatus(next) {
-  if (isAdmin()) return true;
-  return next !== "Done";
+  return isAdmin() || next !== "Done";
 }
 
 function cacheBoard() {
@@ -161,20 +174,12 @@ function hydrateFromCache() {
   } catch (_) {}
 }
 
-function explainGithubError(status, body) {
-  const text = `${status} ${body || ""}`;
-  if (status === 401 || /bad credentials/i.test(text)) {
-    state.githubDown = true;
-    return "GitHub rejected this token. It is not your GitHub password. Open Setup, create a new token with repo access, and paste it there.";
-  }
-  if (status === 403) {
-    state.githubDown = true;
-    return "This token cannot write to the Helal repo. Create a token with the repo checkbox turned on.";
-  }
-  if (status === 404) {
-    return "Repository not found. In Setup use engamribrahemm/helal-team.";
-  }
-  return `GitHub ${status}: ${(body || "").slice(0, 160)}`;
+function decodeGithubFile(json) {
+  return JSON.parse(decodeURIComponent(escape(atob(json.content.replace(/\n/g, "")))));
+}
+
+function toBase64(str) {
+  return btoa(unescape(encodeURIComponent(str)));
 }
 
 async function fetchLocal(path) {
@@ -183,81 +188,67 @@ async function fetchLocal(path) {
   return res.json();
 }
 
-async function ghGet(path) {
-  const repo = repoParts();
+async function dbGet(path) {
+  const { owner, repo, branch } = repoInfo();
+  const token = writeToken();
+  const headers = { Accept: "application/vnd.github+json" };
+  if (token) headers.Authorization = `Bearer ${token}`;
   const res = await fetch(
-    `https://api.github.com/repos/${repo.owner}/${repo.repo}/contents/${path}?ref=${state.githubCfg?.branch || "main"}`,
-    {
-      headers: {
-        Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${state.token}`,
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-    }
+    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`,
+    { headers }
   );
-  if (!res.ok) {
-    throw new Error(explainGithubError(res.status, await res.text()));
-  }
+  if (!res.ok) throw new Error(`GitHub ${res.status}`);
   const json = await res.json();
   state.shas[path] = json.sha;
-  const decoded = decodeURIComponent(escape(atob(json.content.replace(/\n/g, ""))));
-  return JSON.parse(decoded);
+  return decodeGithubFile(json);
 }
 
-function toBase64(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
-
-async function ghPut(path, data, message) {
+async function dbPut(path, data, message) {
   cacheBoard();
-  const repo = repoParts();
-  if (!state.token || !repo || state.githubDown) {
-    state.saveState = state.githubDown ? "error" : "local-only";
-    if (state.githubDown && !state.saveError) {
-      state.saveError = "GitHub rejected this token. Open Setup and paste a new repo token.";
-    }
-    render();
+  const { owner, repo, branch } = repoInfo();
+  const token = writeToken();
+  if (!token) {
+    state.saveState = "local-only";
     return false;
   }
-  state.saveState = "saving";
-  render();
-  const content = toBase64(JSON.stringify(data, null, 2) + "\n");
   if (!state.shas[path]) {
     try {
-      await ghGet(path);
-    } catch (err) {
-      throw err;
-    }
+      await dbGet(path);
+    } catch (_) {}
   }
-  const putOnce = async (sha) =>
-    fetch(`https://api.github.com/repos/${repo.owner}/${repo.repo}/contents/${path}`, {
+  const body = {
+    message,
+    content: toBase64(JSON.stringify(data, null, 2) + "\n"),
+    branch,
+  };
+  if (state.shas[path]) body.sha = state.shas[path];
+  const put = () =>
+    fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
       method: "PUT",
       headers: {
         Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${state.token}`,
+        Authorization: `Bearer ${token}`,
         "X-GitHub-Api-Version": "2022-11-28",
       },
-      body: JSON.stringify({
-        message,
-        content,
-        sha,
-        branch: state.githubCfg?.branch || "main",
-      }),
+      body: JSON.stringify(body),
     });
-  let res = await putOnce(state.shas[path]);
+  let res = await put();
   if (res.status === 409 || res.status === 422) {
-    await ghGet(path);
-    res = await putOnce(state.shas[path]);
+    await dbGet(path);
+    body.sha = state.shas[path];
+    res = await put();
   }
   if (!res.ok) {
-    throw new Error(explainGithubError(res.status, await res.text()));
+    const text = await res.text();
+    throw new Error(res.status === 401
+      ? "GitHub could not save. The board database token needs a refresh."
+      : `GitHub ${res.status}: ${text.slice(0, 140)}`);
   }
   const json = await res.json();
   state.shas[path] = json.content?.sha || state.shas[path];
   state.saveState = "saved";
   state.saveError = "";
   cacheBoard();
-  render();
   return true;
 }
 
@@ -275,51 +266,41 @@ async function loadAll() {
     Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg });
   };
 
-  await local();
-  if (state.githubCfg?.owner && state.githubCfg?.repo) {
-    state.repo = `${state.githubCfg.owner}/${state.githubCfg.repo}`;
-    localStorage.setItem(LS_REPO, state.repo);
-  } else if (!state.repo && inferRepo()) {
-    state.repo = inferRepo();
-  }
-
-  if (state.token && repoParts()) {
-    try {
-      const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg] = await Promise.all([
-        ghGet("helal/team.json"),
-        ghGet("helal/auth.json"),
-        ghGet("helal/drive.json"),
-        ghGet("helal/projects.json"),
-        ghGet("helal/daily-tasks.json"),
-        ghGet("helal/reports.json"),
-        ghGet("helal/github.json"),
-      ]);
-      Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg });
-      state.saveState = "saved";
-      cacheBoard();
-    } catch (err) {
-      state.saveState = "error";
-      state.saveError = err.message;
-      hydrateFromCache();
-    }
-  } else {
+  try {
+    await local();
+  } catch (_) {
     hydrateFromCache();
   }
-
-  const days = state.tasksFile?.days || [];
-  state.date = days[days.length - 1]?.date || today();
-  state.reportDay = state.reportDay || today();
-  state.calMonth = state.calMonth || (state.reportDay || today()).slice(0, 7);
-  if (state.session && !people().some((p) => p.name === state.session.who)) {
-    logout();
-  } else if (state.session) {
-    state.who = state.session.who;
+  const localHost = location.hostname === "127.0.0.1" || location.hostname === "localhost";
+  if (!localHost) {
+    try {
+      const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg] = await Promise.all([
+        dbGet("helal/team.json"),
+        dbGet("helal/auth.json"),
+        dbGet("helal/drive.json"),
+        dbGet("helal/projects.json"),
+        dbGet("helal/daily-tasks.json"),
+        dbGet("helal/reports.json"),
+        dbGet("helal/github.json"),
+      ]);
+      Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg });
+      state.saveState = writeToken() ? "saved" : "idle";
+      cacheBoard();
+    } catch (_) {}
   }
+
+  state.reportDay = state.reportDay || today();
+  state.calMonth = state.calMonth || today().slice(0, 7);
+  state.dueDraft = state.dueDraft || today();
+  state.dueMonth = state.dueMonth || today().slice(0, 7);
+  lastCairoDay = today();
+  if (state.session && !people().some((p) => p.name === state.session.who)) logout();
+  else if (state.session) state.who = state.session.who;
 }
 
 async function saveTasks(message) {
   try {
-    await ghPut("helal/daily-tasks.json", state.tasksFile, message);
+    await dbPut("helal/daily-tasks.json", state.tasksFile, message);
   } catch (err) {
     state.saveState = "error";
     state.saveError = err.message;
@@ -329,7 +310,7 @@ async function saveTasks(message) {
 
 async function saveReports(message) {
   try {
-    await ghPut("helal/reports.json", state.reportsFile, message);
+    await dbPut("helal/reports.json", state.reportsFile, message);
   } catch (err) {
     state.saveState = "error";
     state.saveError = err.message;
@@ -341,9 +322,7 @@ function login(who, pin) {
   const role = accessFor(who);
   const expected = role === "admin" ? state.auth?.admin_pin : state.auth?.member_pin;
   if (!pin || pin !== expected) {
-    state.loginError = role === "admin"
-      ? "Use the admin password."
-      : "Use the member password.";
+    state.loginError = role === "admin" ? "Use the admin password." : "Use the member password.";
     render();
     return;
   }
@@ -362,6 +341,16 @@ function logout() {
   render();
 }
 
+function ensureDay(date) {
+  if (!state.tasksFile.days) state.tasksFile.days = [];
+  let day = state.tasksFile.days.find((d) => d.date === date);
+  if (!day) {
+    day = { date, source: "Helal board", tasks: [] };
+    state.tasksFile.days.push(day);
+  }
+  return day;
+}
+
 function setStatus(taskId, next) {
   if (!canSetStatus(next)) return;
   let found = null;
@@ -370,43 +359,21 @@ function setStatus(taskId, next) {
     if (task) {
       if (task.status === next) return;
       task.status = next;
+      if (next === "Revisions") task.revisions = (task.revisions || 0) + 1;
       task.updated_at = new Date().toISOString();
       task.updated_by = state.who;
       found = task;
     }
   }
   if (!found) return;
+  render();
   saveTasks(`board: ${state.who} set ${taskId} to ${next}`);
-  render();
 }
 
-function setDriveLink(taskId, url) {
-  for (const day of state.tasksFile.days) {
-    const task = day.tasks.find((t) => t.id === taskId);
-    if (task) {
-      task.drive = url.trim();
-      task.drive_missing = !task.drive;
-      task.updated_at = new Date().toISOString();
-    }
-  }
-  saveTasks(`board: ${state.who} added Drive link on ${taskId}`);
-  render();
-}
-
-function ensureDay(date) {
-  let day = state.tasksFile.days.find((d) => d.date === date);
-  if (!day) {
-    day = { date, source: "assigned on the Helal board", tasks: [] };
-    state.tasksFile.days.push(day);
-  }
-  return day;
-}
-
-function assignTask({ who, space, title, due, drive, project, status }) {
+function assignTask({ who, space, title, due, drive, project, status, notes }) {
   const date = due || today();
   const day = ensureDay(date);
   const id = `t-${date.replaceAll("-", "")}-${who.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now().toString(36)}`;
-  const nextStatus = canSetStatus(status) ? (status || "To do") : "To do";
   const driveUrl = (drive || driveForProject(project) || rootDrive() || "").trim();
   day.tasks.push({
     id,
@@ -414,15 +381,19 @@ function assignTask({ who, space, title, due, drive, project, status }) {
     space,
     project: project || "",
     title,
+    notes: notes || "",
     due: date,
-    status: nextStatus,
+    status: canSetStatus(status) ? (status || "To do") : "To do",
     drive: driveUrl,
     drive_missing: !driveUrl,
     created_by: state.who,
+    created_at: new Date().toISOString(),
+    revisions: 0,
   });
-  state.date = date;
-  saveTasks(`board: ${state.who} assigned ${who} — ${title}`);
+  state.creating = false;
+  state.draft = null;
   render();
+  saveTasks(`board: ${state.who} assigned ${who} — ${title}`);
 }
 
 function submitReport(fields) {
@@ -438,72 +409,22 @@ function submitReport(fields) {
     need_review: fields.need_review,
     created_at: new Date().toISOString(),
   });
-  saveReports(`report: ${state.who} ${fields.date || today()}`);
   state.reportDay = fields.date || today();
   state.calMonth = state.reportDay.slice(0, 7);
   render();
+  saveReports(`report: ${state.who} ${state.reportDay}`);
 }
 
 function banner() {
-  if (state.saveState === "saving") return $("div", { class: "banner" }, "Saving…");
-  if (state.saveState === "saved" && state.token) {
-    return $("div", { class: "banner ok" }, "Connected. Tasks and reports save for the whole team.");
+  if (state.saveState === "saving") return $("div", { class: "banner" }, "Saving to GitHub…");
+  if (state.saveState === "saved") {
+    return $("div", { class: "banner ok" }, "Saved to the Helal GitHub database.");
   }
-  if (state.saveState === "error") {
-    return $("div", { class: "banner err" }, [
-      state.saveError,
-      $("button", {
-        class: "btn primary",
-        onclick: () => {
-          state.view = "setup";
-          render();
-        },
-      }, "Open Setup"),
-    ]);
-  }
+  if (state.saveState === "error") return $("div", { class: "banner err" }, state.saveError);
   if (state.saveState === "local-only") {
-    return $("div", { class: "banner warn" }, "Saved on this computer. Connect a GitHub token in Setup so the team sees it too.");
-  }
-  if (!state.token) {
-    return $("div", { class: "banner warn" }, isAdmin()
-      ? "Open Setup and paste a GitHub token so tasks and reports save."
-      : "Ask Amr for the save token, then paste it in Setup so your work is kept.");
+    return $("div", { class: "banner warn" }, "Saved on this computer. GitHub write access is not active yet.");
   }
   return null;
-}
-
-function taskCard(task) {
-  const folder = folderFor(task.who);
-  const driveInput = $("input", {
-    type: "url",
-    value: task.drive || "",
-    placeholder: folder?.url || rootDrive() || "Paste Drive upload link",
-  });
-  return $("article", { class: `card ${STATUS_CLASS[task.status] || "todo"}` }, [
-    $("p", { class: "title" }, task.title),
-    $("div", { class: "meta" }, [
-      $("span", { class: "pill" }, task.who),
-      task.project ? $("span", { class: "pill" }, task.project) : null,
-      $("span", { class: "pill" }, task.space),
-      $("span", { class: "pill" }, `Due ${task.due}`),
-      task.created_by ? $("span", { class: "pill" }, `From ${task.created_by}`) : null,
-      task.drive_missing ? $("span", { class: "pill warn" }, "Drive missing") : null,
-    ]),
-    $("div", { class: "statuses" },
-      STATUSES.map((s) =>
-        $("button", {
-          class: s === task.status ? "on" : "",
-          disabled: !canSetStatus(s),
-          title: s === "Done" && !isAdmin() ? "Only Amr or HR can mark Done" : "",
-          onclick: () => setStatus(task.id, s),
-        }, s)
-      )
-    ),
-    $("div", { class: "drive-row" }, [
-      driveInput,
-      $("button", { class: "btn", onclick: () => setDriveLink(task.id, driveInput.value) }, "Save link"),
-    ]),
-  ]);
 }
 
 function kanbanCard(task) {
@@ -534,57 +455,9 @@ function kanbanCard(task) {
       $("span", { class: "pill" }, task.who),
       task.project ? $("span", { class: "pill" }, task.project) : null,
       $("span", { class: "pill" }, `Due ${task.due}`),
-      task.drive_missing ? $("span", { class: "pill warn" }, "Drive") : null,
+      task.created_by && task.created_by !== task.who ? $("span", { class: "pill" }, `From ${task.created_by}`) : null,
     ]),
   ]);
-}
-
-function columnQuickAdd(status) {
-  if (!canSetStatus(status)) {
-    return $("p", { class: "muted" }, "Only admins can drop work here.");
-  }
-  const title = $("input", { placeholder: "Add a task", "aria-label": `Add task to ${status}` });
-  return $("form", {
-    class: "col-add",
-    onsubmit: (e) => {
-      e.preventDefault();
-      const text = title.value.trim();
-      if (!text) return;
-      assignTask({
-        who: state.who,
-        space: "Social",
-        title: text,
-        due: state.date || today(),
-        drive: rootDrive(),
-        status,
-      });
-      title.value = "";
-    },
-  }, [
-    title,
-    $("button", { type: "submit" }, "+"),
-  ]);
-}
-
-function statBox(value, label) {
-  return $("div", { class: "stat" }, [$("strong", {}, String(value)), $("span", { class: "muted" }, label)]);
-}
-
-function viewMy() {
-  const list = tasksForView();
-  return [
-    $("div", { class: "stat-row" }, [
-      statBox(list.length, isAdmin() ? "Tasks today" : "Your tasks"),
-      statBox(list.filter((t) => t.status === "Review").length, "In review"),
-      statBox(list.filter((t) => t.status === "Done").length, "Done"),
-      statBox(list.filter((t) => t.drive_missing).length, "Missing Drive"),
-    ]),
-    list.length
-      ? $("div", { class: "cards" }, list.map(taskCard))
-      : $("p", { class: "empty" }, isAdmin()
-        ? "No tasks on this date. Create one on the right."
-        : `No tasks for ${state.who} on ${state.date}.`),
-  ];
 }
 
 function viewBoard() {
@@ -620,32 +493,218 @@ function viewBoard() {
           $("span", {}, String(col.length)),
         ]),
         $("div", { class: "kanban-cards" },
-          col.length ? col.map(kanbanCard) : $("p", { class: "empty" }, "Drop a card here")
+          col.length ? col.map(kanbanCard) : $("p", { class: "empty" }, "No tasks")
         ),
-        columnQuickAdd(status),
+        canSetStatus(status)
+          ? $("button", {
+            class: "btn",
+            style: "margin-top:12px",
+            onclick: () => {
+              state.creating = true;
+              state.createStatus = status;
+              state.dueDraft = today();
+              state.dueMonth = today().slice(0, 7);
+              render();
+            },
+          }, "New task")
+          : $("p", { class: "muted" }, "Only admins can mark Done."),
       ]);
     })
   );
 }
 
+function viewMy() {
+  const list = tasksForView();
+  return [
+    $("div", { class: "stat-row" }, [
+      statBox(list.length, isAdmin() ? "All tasks" : "Assigned to you"),
+      statBox(list.filter((t) => t.status === "Review").length, "In review"),
+      statBox(list.filter((t) => t.status === "Revisions").length, "Edits required"),
+      statBox(list.filter((t) => t.status === "Done").length, "Done"),
+    ]),
+    list.length
+      ? $("div", { class: "cards" }, list.map((task) =>
+        $("article", { class: "card", onclick: () => { state.openTaskId = task.id; render(); } }, [
+          $("p", { class: "title" }, task.title),
+          $("div", { class: "meta" }, [
+            $("span", { class: "pill" }, task.who),
+            $("span", { class: "pill" }, task.status),
+            $("span", { class: "pill" }, `Due ${task.due}`),
+          ]),
+        ])
+      ))
+      : $("p", { class: "empty" }, isAdmin()
+        ? "No tasks yet."
+        : `Nothing assigned to ${state.who} yet.`),
+  ];
+}
+
+function statBox(value, label) {
+  return $("div", { class: "stat" }, [$("strong", {}, String(value)), $("span", { class: "muted" }, label)]);
+}
+
+function monthLabel(ym) {
+  const [y, m] = ym.split("-").map(Number);
+  return new Date(y, m - 1, 1).toLocaleString("en-GB", { month: "long", year: "numeric", timeZone: CAIRO });
+}
+
+function shiftYm(ym, delta) {
+  const [y, m] = ym.split("-").map(Number);
+  const d = new Date(y, m - 1 + delta, 1);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function calendarDays(ym, selected, onPick, counts) {
+  const [y, m] = ym.split("-").map(Number);
+  const first = new Date(y, m - 1, 1);
+  const pad = (first.getDay() + 6) % 7;
+  const last = new Date(y, m, 0).getDate();
+  const cells = [];
+  for (let i = 0; i < pad; i += 1) cells.push($("div", { class: "due-day pad" }));
+  for (let day = 1; day <= last; day += 1) {
+    const date = `${y}-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const n = counts?.[date] || 0;
+    cells.push($("button", {
+      type: "button",
+      class: `due-day${date === selected ? " on" : ""}${n ? " has" : ""}`,
+      onclick: () => onPick(date),
+    }, String(day)));
+  }
+  return cells;
+}
+
+function dueCalendar() {
+  const ym = state.dueMonth || today().slice(0, 7);
+  const picker = $("input", { type: "date", value: state.dueDraft || today(), class: "date-input" });
+  picker.addEventListener("change", () => {
+    if (!picker.value) return;
+    state.dueDraft = picker.value;
+    state.dueMonth = picker.value.slice(0, 7);
+    render();
+  });
+  return $("div", { class: "due-box" }, [
+    picker,
+    $("div", { class: "due-nav" }, [
+      $("button", { class: "btn ghost", type: "button", onclick: () => { state.dueMonth = shiftYm(ym, -1); render(); } }, "Prev"),
+      $("strong", {}, monthLabel(ym)),
+      $("button", { class: "btn ghost", type: "button", onclick: () => { state.dueMonth = shiftYm(ym, 1); render(); } }, "Next"),
+    ]),
+    $("div", { class: "due-week cal-week" }, WEEKDAYS.map((d) => $("span", {}, d))),
+    $("div", { class: "due-grid" }, calendarDays(ym, state.dueDraft, (date) => {
+      state.dueDraft = date;
+      state.dueMonth = date.slice(0, 7);
+      render();
+    })),
+    $("p", { class: "muted", style: "margin:10px 0 0" }, `Selected due date: ${state.dueDraft}`),
+  ]);
+}
+
+function createForm(onDone) {
+  if (!state.draft) {
+    state.draft = { who: state.who, space: "Social", project: "", title: "", notes: "", drive: "" };
+  }
+  const d = state.draft;
+  if (!isAdmin()) d.who = state.who;
+  const assignees = isAdmin() ? people() : people().filter((p) => p.name === state.who);
+  const who = $("select", { disabled: !isAdmin() }, assignees.map((p) => $("option", { value: p.name, selected: p.name === d.who }, p.name)));
+  const space = $("select", {}, SPACES.map((s) => $("option", { value: s, selected: s === d.space }, s)));
+  const project = $("select", {}, [
+    $("option", { value: "", selected: !d.project }, "No client"),
+    ...projectList().map((p) => $("option", { value: p.name, selected: p.name === d.project }, p.name)),
+  ]);
+  const title = $("input", { required: true, placeholder: "Task title", value: d.title || "" });
+  const notes = $("textarea", { placeholder: "Brief, references, what done looks like" }, d.notes || "");
+  const drive = $("input", { type: "url", placeholder: "Drive folder (fills from client)", value: d.drive || "" });
+  const keep = () => {
+    state.draft = {
+      who: who.value,
+      space: space.value,
+      project: project.value,
+      title: title.value,
+      notes: notes.value,
+      drive: drive.value,
+    };
+  };
+  who.addEventListener("change", keep);
+  space.addEventListener("change", keep);
+  project.addEventListener("change", () => {
+    keep();
+    if (!drive.value) drive.value = driveForProject(project.value);
+  });
+  title.addEventListener("input", keep);
+  notes.addEventListener("input", keep);
+  drive.addEventListener("input", keep);
+  return $("form", {
+    class: "form",
+    onsubmit: (e) => {
+      e.preventDefault();
+      assignTask({
+        who: who.value,
+        space: space.value,
+        project: project.value,
+        title: title.value.trim(),
+        notes: notes.value.trim(),
+        due: state.dueDraft || today(),
+        drive: drive.value.trim() || driveForProject(project.value),
+        status: state.createStatus || "To do",
+      });
+      if (onDone) onDone();
+    },
+  }, [
+    $("label", {}, ["Assign to", who]),
+    $("label", {}, ["Client / folder", project]),
+    $("label", {}, ["Space", space]),
+    $("label", {}, ["Task", title]),
+    $("label", {}, ["Notes", notes]),
+    $("div", {}, [
+      $("p", { class: "muted", style: "margin:0 0 6px;font-size:12px;letter-spacing:0.04em;font-weight:500" }, "Due date"),
+      dueCalendar(),
+    ]),
+    $("label", {}, ["Drive link", drive]),
+    $("div", { style: "display:flex;gap:8px" }, [
+      $("button", { class: "btn primary", type: "submit" }, "Create task"),
+      $("button", {
+        class: "btn ghost",
+        type: "button",
+        onclick: () => {
+          state.creating = false;
+          state.draft = null;
+          render();
+        },
+      }, "Cancel"),
+    ]),
+  ]);
+}
+
+function viewCreateModal() {
+  if (!state.creating) return null;
+  const close = () => { state.creating = false; state.draft = null; render(); };
+  return [
+    $("div", { class: "modal-bg", onclick: close }),
+    $("section", { class: "modal" }, [
+      $("p", { class: "muted" }, "New task"),
+      $("h2", {}, "Create and assign"),
+      $("p", { class: "muted" }, "Fill the full brief, pick a due date from the calendar, then create."),
+      createForm(close),
+    ]),
+  ];
+}
+
 function viewTaskDrawer() {
   const task = findTask(state.openTaskId);
   if (!task) return null;
-  const who = $("select", {}, people().map((p) => $("option", { value: p.name, selected: p.name === task.who }, p.name)));
+  const who = $("select", { disabled: !isAdmin() }, people().map((p) => $("option", { value: p.name, selected: p.name === task.who }, p.name)));
   const space = $("select", {}, SPACES.map((s) => $("option", { value: s, selected: s === task.space }, s)));
   const project = $("select", {}, [
     $("option", { value: "" }, "No client"),
     ...projectList().map((p) => $("option", { value: p.name, selected: p.name === task.project }, p.name)),
   ]);
   const title = $("input", { value: task.title, required: true });
-  const due = $("input", { type: "date", value: task.due });
-  const drive = $("input", { type: "url", value: task.drive || "", placeholder: rootDrive() });
-  const close = () => {
-    state.openTaskId = null;
-    render();
-  };
+  const notes = $("textarea", {}, task.notes || "");
+  const drive = $("input", { type: "url", value: task.drive || "" });
+  const close = () => { state.openTaskId = null; render(); };
   return [
-    $("div", { class: "drawer-bg", onclick: close }),
+    $("div", { class: "modal-bg", onclick: close }),
     $("aside", { class: "drawer" }, [
       $("p", { class: "muted" }, "Task"),
       $("h2", {}, task.title),
@@ -657,21 +716,21 @@ function viewTaskDrawer() {
           task.space = space.value;
           task.project = project.value;
           task.title = title.value.trim();
-          task.due = due.value;
+          task.notes = notes.value.trim();
           task.drive = drive.value.trim() || driveForProject(project.value);
           task.drive_missing = !task.drive;
           task.updated_at = new Date().toISOString();
           task.updated_by = state.who;
           state.openTaskId = null;
-          saveTasks(`board: ${state.who} edited ${task.id}`);
           render();
+          saveTasks(`board: ${state.who} edited ${task.id}`);
         },
       }, [
         $("label", {}, ["Title", title]),
         $("label", {}, ["Assign to", who]),
         $("label", {}, ["Client / folder", project]),
         $("label", {}, ["Space", space]),
-        $("label", {}, ["Due", due]),
+        $("label", {}, ["Notes", notes]),
         $("label", {}, ["Drive link", drive]),
         task.drive ? $("a", { href: task.drive, target: "_blank", rel: "noreferrer" }, "Open Drive folder") : null,
         $("div", { class: "statuses" },
@@ -684,7 +743,7 @@ function viewTaskDrawer() {
             }, s)
           )
         ),
-        $("div", { style: "display:flex;gap:8px;margin-top:8px" }, [
+        $("div", { style: "display:flex;gap:8px" }, [
           $("button", { class: "btn primary", type: "submit" }, "Save"),
           $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
         ]),
@@ -693,110 +752,94 @@ function viewTaskDrawer() {
   ];
 }
 
-function shiftMonth(delta) {
-  const [y, m] = (state.calMonth || today().slice(0, 7)).split("-").map(Number);
-  const d = new Date(y, m - 1 + delta, 1);
-  state.calMonth = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-  render();
-}
-
-function reportsOn(date) {
-  return (state.reportsFile?.reports || []).filter((r) => r.date === date);
+function qaBlock(question, answer) {
+  return $("div", { class: "qa-pair" }, [
+    $("p", { class: "qa-k" }, "Question"),
+    $("p", { class: "qa-q" }, question),
+    $("p", { class: "qa-k" }, "Answer"),
+    $("div", { class: "qa-a" }, answer || "—"),
+  ]);
 }
 
 function reportCard(r) {
-  return $("article", { class: "card review" }, [
+  return $("article", { class: "card report-card" }, [
     $("p", { class: "title" }, `${r.who} · ${r.date}`),
-    $("p", {}, r.finished),
-    r.unfinished ? $("p", { class: "muted" }, `Blockers: ${r.unfinished}`) : null,
-    r.drive ? $("p", {}, $("a", { href: r.drive, target: "_blank", rel: "noreferrer" }, "Open Drive")) : null,
-    $("span", { class: "pill" }, r.need_review ? "Needs review" : "Logged"),
+    qaBlock("What did you finish today?", r.finished),
+    qaBlock("What is unfinished or blocking you?", r.unfinished),
+    qaBlock("Drive links", r.drive
+      ? $("a", { href: r.drive, target: "_blank", rel: "noreferrer" }, r.drive)
+      : "—"),
+    qaBlock("Do you need review?", r.need_review ? "Yes" : "No"),
   ]);
 }
 
 function viewCalendar() {
   const ym = state.calMonth || today().slice(0, 7);
-  const [y, m] = ym.split("-").map(Number);
-  const first = new Date(y, m - 1, 1);
-  const startPad = (first.getDay() + 6) % 7;
-  const last = new Date(y, m, 0).getDate();
   const counts = {};
-  for (const r of state.reportsFile?.reports || []) {
-    counts[r.date] = (counts[r.date] || 0) + 1;
-  }
-  const cells = [];
-  for (let i = 0; i < startPad; i += 1) cells.push($("div", { class: "cal-day pad" }));
-  for (let day = 1; day <= last; day += 1) {
-    const date = `${y}-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    const n = counts[date] || 0;
-    cells.push($("button", {
-      type: "button",
-      class: `cal-day${n ? " has" : ""}${date === state.reportDay ? " on" : ""}`,
-      onclick: () => {
-        state.reportDay = date;
-        state.date = date;
-        render();
-      },
-    }, [
-      $("strong", {}, String(day)),
-      n ? $("span", {}, String(n)) : null,
-    ]));
-  }
-  const label = first.toLocaleString("en-US", { month: "long", year: "numeric" });
+  for (const r of state.reportsFile?.reports || []) counts[r.date] = (counts[r.date] || 0) + 1;
   return $("section", { class: "card cal-wrap" }, [
     $("div", { class: "cal-nav" }, [
-      $("button", { class: "btn ghost", type: "button", onclick: () => shiftMonth(-1) }, "Prev"),
-      $("h2", {}, label),
-      $("button", { class: "btn ghost", type: "button", onclick: () => shiftMonth(1) }, "Next"),
+      $("button", { class: "btn ghost", type: "button", onclick: () => { state.calMonth = shiftYm(ym, -1); render(); } }, "Prev"),
+      $("h2", {}, monthLabel(ym)),
+      $("button", { class: "btn ghost", type: "button", onclick: () => { state.calMonth = shiftYm(ym, 1); render(); } }, "Next"),
     ]),
-    $("div", { class: "cal-week" }, ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => $("span", {}, d))),
-    $("div", { class: "cal-grid" }, cells),
+    $("div", { class: "cal-week" }, WEEKDAYS.map((d) => $("span", {}, d))),
+    $("div", { class: "cal-grid" }, calendarDays(ym, state.reportDay, (date) => {
+      state.reportDay = date;
+      render();
+    }, counts).map((el) => {
+      el.className = el.className.replace("due-day", "cal-day");
+      return el;
+    })),
   ]);
 }
 
 function viewReview() {
   const waiting = allTasks().filter((t) => t.status === "Review" || t.status === "Revisions");
   const day = state.reportDay || today();
-  const dayReports = reportsOn(day);
-  const dayTasks = allTasks().filter((t) => t.date === day || t.due === day);
+  const dayReports = (state.reportsFile?.reports || []).filter((r) => r.date === day);
   return $("div", { class: "dash" }, [
     viewCalendar(),
     $("section", {}, [
       $("h2", {}, `Reports · ${day}`),
-      $("p", { class: "muted" }, "Click a day on the calendar to see who submitted."),
+      $("p", { class: "muted" }, "Each submission is shown as the question, then the member’s answer."),
       dayReports.length
-        ? $("div", { class: "cards", style: "margin-top:12px" }, dayReports.map(reportCard))
+        ? $("div", { class: "cards", style: "margin-top:14px" }, dayReports.map(reportCard))
         : $("p", { class: "empty" }, "No report submissions on this day."),
-      $("h2", { style: "margin-top:28px" }, "Tasks that day"),
-      dayTasks.length
-        ? $("div", { class: "cards", style: "margin-top:12px" }, dayTasks.map(taskCard))
-        : $("p", { class: "empty" }, "No tasks dated this day."),
     ]),
     $("section", {}, [
       $("h2", {}, "Waiting on review"),
       waiting.length
-        ? $("div", { class: "cards", style: "margin-top:12px" }, waiting.map(taskCard))
+        ? $("div", { class: "cards", style: "margin-top:14px" }, waiting.map((t) =>
+          $("article", { class: "card" }, [
+            $("p", { class: "title" }, t.title),
+            $("div", { class: "meta" }, [
+              $("span", { class: "pill" }, t.who),
+              $("span", { class: "pill" }, t.status),
+              $("span", { class: "pill" }, `Due ${t.due}`),
+            ]),
+          ])
+        ))
         : $("p", { class: "empty" }, "Nothing in Review or Revisions."),
     ]),
   ]);
 }
 
 function viewReport() {
-  const finished = $("textarea", { required: true, placeholder: "What you finished today" });
-  const unfinished = $("textarea", { placeholder: "Unfinished work or blockers" });
-  const drive = $("input", { type: "url", placeholder: "Drive links" });
-  const date = $("input", { type: "date", value: today() });
+  const finished = $("textarea", { required: true, placeholder: "Your answer" });
+  const unfinished = $("textarea", { placeholder: "Your answer" });
+  const drive = $("input", { type: "url", placeholder: "https://" });
   const need = $("input", { type: "checkbox" });
   return $("section", { class: "card", style: "max-width:640px" }, [
     $("h2", {}, "Daily report"),
-    $("p", { class: "muted" }, `Submitting as ${state.who}. Do this each evening instead of WhatsApp.`),
+    $("p", { class: "muted" }, `Cairo date ${today()}. Admins read this as question and answer on the dashboard.`),
     $("form", {
       class: "form",
-      style: "margin-top:12px",
+      style: "margin-top:16px",
       onsubmit: (e) => {
         e.preventDefault();
         submitReport({
-          date: date.value,
+          date: today(),
           finished: finished.value.trim(),
           unfinished: unfinished.value.trim(),
           drive: drive.value.trim(),
@@ -808,13 +851,12 @@ function viewReport() {
         need.checked = false;
       },
     }, [
-      $("label", {}, ["Date", date]),
-      $("label", {}, ["What finished", finished]),
-      $("label", {}, ["Unfinished / blockers", unfinished]),
+      $("label", {}, ["What did you finish today?", finished]),
+      $("label", {}, ["What is unfinished or blocking you?", unfinished]),
       $("label", {}, ["Drive links", drive]),
-      $("label", { style: "grid-template-columns: auto 1fr; align-items: center" }, [
+      $("label", { style: "grid-template-columns: auto 1fr; align-items: center; letter-spacing: 0" }, [
         need,
-        "Need review",
+        "I need review",
       ]),
       $("button", { class: "btn primary", type: "submit" }, "Submit report"),
     ]),
@@ -828,12 +870,10 @@ function viewDrive() {
     $("article", { class: "card" }, [
       $("p", { class: "title" }, f.name),
       $("p", { class: "muted" }, f.who),
-      f.url
-        ? $("a", { href: f.url, target: "_blank", rel: "noreferrer" }, "Open folder")
-        : $("p", {}, "Drive link missing."),
+      f.url ? $("a", { href: f.url, target: "_blank", rel: "noreferrer" }, "Open folder") : $("p", {}, "Link missing."),
     ]);
   return $("div", {}, [
-    $("p", { class: "muted" }, "Upload files into the matching client folder. Nothing goes into GitHub."),
+    $("p", { class: "muted" }, "Upload into the matching client folder. Files stay in Drive."),
     $("h2", { style: "margin:16px 0 10px" }, "Clients"),
     $("div", { class: "people" }, clients.map(card)),
     $("h2", { style: "margin:22px 0 10px" }, "Team"),
@@ -854,171 +894,53 @@ function viewPeople() {
   );
 }
 
-function viewAssign() {
-  const who = $("select", {}, people().map((p) => $("option", { value: p.name }, p.name)));
-  const space = $("select", {}, SPACES.map((s) => $("option", { value: s }, s)));
-  const project = $("select", {}, [
-    $("option", { value: "" }, "No client"),
-    ...projectList().map((p) => $("option", { value: p.name }, p.name)),
-  ]);
-  const title = $("input", { required: true, placeholder: "Task title" });
-  const due = $("input", { type: "date", value: today() });
-  const drive = $("input", { type: "url", placeholder: "Drive folder (auto-fills from client)" });
-  project.addEventListener("change", () => {
-    if (!drive.value) drive.value = driveForProject(project.value);
-  });
-  return $("section", { class: "card" }, [
-    $("h2", {}, "Create task"),
-    $("p", { class: "muted" }, "Assign to anyone. Files go in the client Drive folder."),
-    $("form", {
-      class: "form",
-      style: "margin-top:12px",
-      onsubmit: (e) => {
-        e.preventDefault();
-        assignTask({
-          who: who.value,
-          space: space.value,
-          project: project.value,
-          title: title.value.trim(),
-          due: due.value,
-          drive: drive.value.trim() || driveForProject(project.value),
-        });
-        title.value = "";
-        drive.value = "";
-      },
-    }, [
-      $("label", {}, ["Assign to", who]),
-      $("label", {}, ["Client / folder", project]),
-      $("label", {}, ["Space", space]),
-      $("label", {}, ["Task", title]),
-      $("label", {}, ["Due", due]),
-      $("label", {}, ["Drive link", drive]),
-      $("button", { class: "btn primary", type: "submit" }, "Add to board"),
-    ]),
-  ]);
-}
-
 function viewGuide() {
-  return sopBlocks();
-}
-
-function sopBlocks() {
-  return $("div", { class: "sop-grid" }, [
-    $("article", { class: "card sop" }, [
-      $("h3", {}, "1. Log in"),
-      $("p", {}, "Open this board. Choose your name. Amr and Tasneem use the admin password. Everyone else uses the member password."),
-    ]),
-    $("article", { class: "card sop" }, [
-      $("h3", {}, "2. Do the work"),
-      $("p", {}, "Open the Board. Drag a card left or right across columns, same as ClickUp. Or type a new task at the bottom of a column. Files stay in the Helal Drive, never in this board."),
-    ]),
-    $("article", { class: "card sop" }, [
-      $("h3", {}, "3. Ask for review"),
-      $("p", {}, "When it is ready, drag the card to Review. Only Amr or Tasneem can drag to Done. If it needs changes, they drag it to Revisions."),
-    ]),
-    $("article", { class: "card sop" }, [
-      $("h3", {}, "4. Create a task"),
-      $("p", {}, "Anyone can create a task and assign it to someone else. Write a clear title, pick the person, and add the Drive folder if you have it."),
-    ]),
-    $("article", { class: "card sop" }, [
-      $("h3", {}, "5. Evening report"),
-      $("p", {}, "Every evening open Report. Write what finished, what is blocked, and Drive links. Admins see each day's reports on the Review calendar."),
-    ]),
-    $("article", { class: "card sop" }, [
-      $("h3", {}, "6. Admins"),
-      $("p", {}, "Amr and Tasneem see every task and the reports calendar. They connect a GitHub token in Setup so tasks and reports actually save."),
-    ]),
-  ]);
-}
-
-function viewSetup() {
-  const repoInput = $("input", { value: state.repo || "engamribrahemm/helal-team", placeholder: "engamribrahemm/helal-team" });
-  const tokenInput = $("input", {
-    type: "password",
-    value: state.token,
-    placeholder: "ghp_… paste the token, not your GitHub password",
-    autocomplete: "off",
-  });
-  return $("section", { class: "card", style: "max-width:720px" }, [
-    $("h2", {}, "Save connection"),
-    $("p", { class: "muted" }, "The 401 error means GitHub did not accept the token. Use a personal access token with repo access. Do not paste your GitHub account password."),
-    $("ol", { class: "setup-steps" }, [
-      $("li", {}, [
-        "Open ",
-        $("a", { href: TOKEN_URL, target: "_blank", rel: "noreferrer" }, "this GitHub token page"),
-        " while logged in as engamribrahemm.",
-      ]),
-      $("li", {}, "Leave the repo checkbox on. Click Generate token. Copy the value that starts with ghp_."),
-      $("li", {}, "Paste it below and click Connect. Tasneem uses the same token on her computer."),
-    ]),
-    $("form", {
-      class: "form",
-      style: "margin-top:16px",
-      onsubmit: (e) => {
-        e.preventDefault();
-        state.repo = repoInput.value.trim() || "engamribrahemm/helal-team";
-        state.token = tokenInput.value.trim();
-        localStorage.setItem(LS_REPO, state.repo);
-        localStorage.setItem(LS_TOKEN, state.token);
-        state.saveError = "";
-        state.githubDown = false;
-        loadAll().then(render);
-      },
-    }, [
-      $("label", {}, ["Repository", repoInput]),
-      $("label", {}, ["GitHub token", tokenInput]),
-      $("div", { style: "display:flex;gap:8px" }, [
-        $("button", { class: "btn primary", type: "submit" }, "Connect"),
-        $("button", {
-          class: "btn ghost",
-          type: "button",
-          onclick: () => {
-            state.token = "";
-            localStorage.removeItem(LS_TOKEN);
-            state.saveState = "idle";
-            state.saveError = "";
-            render();
-          },
-        }, "Disconnect"),
-      ]),
-    ]),
-  ]);
+  const steps = [
+    ["Log in", "Choose your name and password. Amr and Tasneem use the admin password."],
+    ["Your board", "Members see only tasks assigned to them. Admins see the whole team."],
+    ["Do the work", "Drag a card across columns. Upload files to Drive, not GitHub."],
+    ["Create a task", "Use New task. Fill the brief and pick the due date on the calendar."],
+    ["Review", "Drag to Review when ready. Only Amr or Tasneem can mark Done."],
+    ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
+  ];
+  return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
+    $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
+  ));
 }
 
 function viewWelcome() {
-  const who = $("select", {}, people().map((p) => $("option", { value: p.name }, `${p.name} · ${p.access === "admin" ? "Admin" : "Member"}`)));
-  const pin = $("input", { type: "password", required: true, placeholder: "Password", autocomplete: "current-password" });
-  const pinLabel = $("span", {}, accessFor(who.value) === "admin" ? "Admin password" : "Member password");
-  who.addEventListener("change", () => {
-    pinLabel.textContent = accessFor(who.value) === "admin" ? "Admin password" : "Member password";
-    if (state.loginError) {
-      state.loginError = "";
-      const err = document.querySelector(".login-card .banner.err");
-      if (err) err.remove();
-    }
+  const who = $("select", {}, people().map((p) =>
+    $("option", { value: p.name, selected: p.name === "Amr" }, p.name)
+  ));
+  const pin = $("input", {
+    type: "password",
+    required: true,
+    placeholder: "Password",
+    autocomplete: "current-password",
   });
-  return $("div", { class: "welcome" }, [
-    $("div", { class: "hero" }, [
-      $("p", {}, "Helal"),
-      $("h1", {}, "Team Management"),
-      $("p", { class: "muted" }, "Read the SOP, then log in. Admins see everything. Members see their work and can assign tasks to others."),
-    ]),
-    sopBlocks(),
-    $("section", { class: "card login-card" }, [
-      $("h2", {}, "Log in"),
-      $("p", { class: "muted" }, "Amr and Tasneem use the admin password. Everyone else uses the member password."),
-      $("form", {
-        class: "form",
-        style: "margin-top:12px",
-        onsubmit: (e) => {
-          e.preventDefault();
-          login(who.value, pin.value);
-        },
-      }, [
-        $("label", {}, ["You are", who]),
-        $("label", {}, [pinLabel, pin]),
-        state.loginError ? $("p", { class: "banner err" }, state.loginError) : null,
-        $("button", { class: "btn primary", type: "submit" }, "Enter board"),
+  return $("div", { class: "login-page" }, [
+    $("div", { class: "login-shell" }, [
+      $("aside", { class: "login-brand" }, [
+        $("p", { class: "mark" }, "Helal"),
+        $("h1", {}, "Team Management"),
+        $("p", { class: "lede" }, "Sign in to continue."),
+      ]),
+      $("section", { class: "login-card" }, [
+        $("h2", {}, "Sign in"),
+        $("p", { class: "lede" }, "Choose your name and enter your password."),
+        $("form", {
+          class: "form",
+          onsubmit: (e) => {
+            e.preventDefault();
+            login(who.value, pin.value);
+          },
+        }, [
+          $("label", {}, ["Name", who]),
+          $("label", {}, ["Password", pin]),
+          state.loginError ? $("p", { class: "banner err" }, state.loginError) : null,
+          $("button", { class: "btn primary", type: "submit" }, "Sign in"),
+        ]),
+        $("p", { class: "cairo" }, `${cairoClock()} · ${cairoTime()} Cairo`),
       ]),
     ]),
   ]);
@@ -1028,14 +950,12 @@ function navItems() {
   const items = [
     ["board", "Board"],
     ["my", "My work"],
-    ["assign", "Create task"],
     ["report", "Report"],
     ["drive", "Drive"],
     ["guide", "SOP"],
-    ["setup", "Setup"],
   ];
   if (isAdmin()) {
-    items.splice(3, 0, ["review", "Dashboard"]);
+    items.splice(2, 0, ["review", "Dashboard"]);
     items.push(["people", "People"]);
   }
   return items;
@@ -1044,20 +964,18 @@ function navItems() {
 function render() {
   const root = document.getElementById("app");
   root.replaceChildren();
-  root.className = state.session && state.view === "board" ? "board-mode" : "";
   if (!state.team) {
-    root.append($("p", { class: "boot" }, "Could not load Helal data. Serve this folder over http, not as a file."));
+    root.className = "";
+    root.append($("p", { class: "boot" }, "Could not load Helal."));
     return;
   }
-
   if (!state.session) {
+    root.className = "login-mode";
     root.append(viewWelcome());
     return;
   }
 
-  const dates = (state.tasksFile?.days || []).map((d) => d.date);
-  if (!dates.includes(state.date) && dates.length) dates.push(state.date);
-
+  root.className = state.view === "board" ? "board-mode" : "";
   root.append(
     $("header", { class: "top" }, [
       $("div", { class: "brand" }, [
@@ -1065,53 +983,73 @@ function render() {
         $("h1", {}, "Team Management"),
       ]),
       $("div", { class: "top-actions" }, [
-        $("span", { class: "pill" }, state.who),
-        $("span", { class: "pill" }, isAdmin() ? "Admin" : "Member"),
+        $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : "Member"}`),
+        $("span", { class: "cairo-chip" }, `${cairoClock()} · Cairo`),
         $("select", {
           class: "date-select",
           onchange: (e) => {
-            state.date = e.target.value;
+            state.dateFilter = e.target.value;
             render();
           },
-        }, dates.map((d) => $("option", { value: d, selected: d === state.date }, d))),
+        }, [
+          $("option", { value: "all", selected: state.dateFilter === "all" }, "All dates"),
+          $("option", { value: today(), selected: state.dateFilter === today() }, `Today · ${today()}`),
+        ]),
+        $("button", {
+          class: "btn primary",
+          onclick: () => {
+            state.creating = true;
+            state.createStatus = "To do";
+            state.dueDraft = today();
+            state.dueMonth = today().slice(0, 7);
+            render();
+          },
+        }, "New task"),
         $("button", { class: "btn ghost", onclick: logout }, "Log out"),
       ]),
     ]),
     $("nav", {}, navItems().map(([id, label]) =>
       $("button", {
         class: state.view === id ? "active" : "",
-        onclick: () => {
-          state.view = id;
-          render();
-        },
+        onclick: () => { state.view = id; render(); },
       }, label)
-    )),
-    banner()
+    ))
   );
+  const note = banner();
+  if (note) root.append(note);
 
   const main = $("main");
-  if (state.view === "my") {
-    const parts = viewMy();
-    main.append(parts[0]);
-    const wrap = $("div", { class: "two" });
-    wrap.append(parts[1], viewAssign());
-    main.append(wrap);
-  } else if (state.view === "board") main.append(viewBoard());
-  else if (state.view === "assign") main.append(viewAssign());
+  if (state.view === "my") viewMy().forEach((el) => main.append(el));
+  else if (state.view === "board") main.append(viewBoard());
   else if (state.view === "review" && isAdmin()) main.append(viewReview());
   else if (state.view === "report") main.append(viewReport());
   else if (state.view === "drive") main.append(viewDrive());
   else if (state.view === "people" && isAdmin()) main.append(viewPeople());
   else if (state.view === "guide") main.append(viewGuide());
-  else if (state.view === "setup") main.append(viewSetup());
-  else main.append(viewMy()[1]);
+  else main.append(viewBoard());
   root.append(main);
+
+  const modal = viewCreateModal();
+  if (modal) root.append(...modal);
   const drawer = viewTaskDrawer();
   if (drawer) root.append(...drawer);
 }
 
+function watchCairoDay() {
+  setInterval(() => {
+    const now = today();
+    if (now !== lastCairoDay) {
+      lastCairoDay = now;
+      render();
+    }
+  }, 30000);
+}
+
 loadAll()
-  .then(render)
+  .then(() => {
+    render();
+    watchCairoDay();
+  })
   .catch((err) => {
     document.getElementById("app").replaceChildren(
       $("p", { class: "boot" }, `Could not load the board. ${err.message}`)
