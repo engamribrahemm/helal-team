@@ -11,7 +11,7 @@
   "days": [
     {
       "date": "2026-08-22",
-      "source": "test workflow — one assigned task per person so the team can try the board",
+      "source": "Helal board",
       "tasks": [
         {
           "id": "t-20260822-mariam",
@@ -34,9 +34,30 @@
           "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing",
           "drive_missing": false,
-          "updated_at": "2026-08-29T12:07:48.212Z",
+          "updated_at": "2026-08-29T13:52:02.299Z",
           "updated_by": "Seif",
-          "revisions": 1
+          "revisions": 1,
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-08-29T13:51:42.178Z",
+              "ended_at": "2026-08-29T13:51:47.669Z",
+              "hours": 0.0015252777777777777,
+              "by": "Seif"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-08-29T13:51:55.274Z",
+              "ended_at": "2026-08-29T13:52:02.299Z",
+              "hours": 0.0019513888888888888,
+              "by": "Seif"
+            }
+          ],
+          "progress_started_at": "",
+          "progress_hours": 0.0034766666666666665,
+          "review_at": "2026-08-29T13:52:02.299Z"
         },
         {
           "id": "t-20260822-graphic",
@@ -75,7 +96,7 @@
     },
     {
       "date": "2026-08-24",
-      "source": "assigned on the Helal board",
+      "source": "Helal board",
       "tasks": [
         {
           "id": "t-20260824-sara-mt7npskp",
