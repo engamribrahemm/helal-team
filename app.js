@@ -689,15 +689,23 @@ async function fetchLocal(path) {
   return res.json();
 }
 
-function githubHeaders() {
+function githubHeaders(extra) {
   const headers = {
     Accept: "application/vnd.github+json",
-    "Cache-Control": "no-cache",
-    Pragma: "no-cache",
+    "X-GitHub-Api-Version": "2022-11-28",
+    ...(extra || {}),
   };
   const token = writeToken();
   if (token) headers.Authorization = `Bearer ${token}`;
   return headers;
+}
+
+function fetchErrorMessage(err) {
+  const msg = String(err?.message || err || "");
+  if (/failed to fetch|networkerror|load failed/i.test(msg)) {
+    return "Could not reach GitHub from this browser. Refresh, then create the task again.";
+  }
+  return msg;
 }
 
 async function fetchHeadSha() {
@@ -781,25 +789,27 @@ async function dbPut(path, data, message) {
       await new Promise((r) => setTimeout(r, 250 * (attempt + 1)));
       continue;
     }
-    const res = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
-      {
-        method: "PUT",
-        cache: "no-store",
-        headers: {
-          Accept: "application/vnd.github+json",
-          Authorization: `Bearer ${token}`,
-          "X-GitHub-Api-Version": "2022-11-28",
-          "Cache-Control": "no-cache",
-        },
-        body: JSON.stringify({
-          message,
-          content: toBase64(JSON.stringify(payload, null, 2) + "\n"),
-          branch,
-          ...(sha ? { sha } : {}),
-        }),
-      }
-    );
+    let res;
+    try {
+      res = await fetch(
+        `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+        {
+          method: "PUT",
+          cache: "no-store",
+          headers: githubHeaders({ "Content-Type": "application/json" }),
+          body: JSON.stringify({
+            message,
+            content: toBase64(JSON.stringify(payload, null, 2) + "\n"),
+            branch,
+            ...(sha ? { sha } : {}),
+          }),
+        }
+      );
+    } catch (err) {
+      lastError = fetchErrorMessage(err);
+      await new Promise((r) => setTimeout(r, 300 * (attempt + 1)));
+      continue;
+    }
     if (res.ok) {
       const json = await res.json();
       state.shas[path] = json.content?.sha || sha;
@@ -909,7 +919,7 @@ async function saveTasks(message) {
       render();
     } catch (err) {
       state.saveState = "error";
-      state.saveError = err.message;
+      state.saveError = fetchErrorMessage(err);
       render();
     }
   });
