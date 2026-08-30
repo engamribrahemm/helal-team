@@ -1,5 +1,5 @@
 {
-  "note": "Each person marks Home or Office for the week that starts Friday, then saves. After save, day changes need admin approval.",
+  "note": "Each person marks Home or Office for the week that starts Friday. The whole team can see who will be where.",
   "weeks": {
     "2026-08-28": {
       "start": "2026-08-28",
@@ -23,7 +23,7 @@
           "days": {
             "2026-08-29": "Office",
             "2026-08-30": "Office",
-            "2026-09-01": "Office",
+            "2026-09-01": "Home",
             "2026-08-31": "Home",
             "2026-09-02": "Office",
             "2026-09-03": "Office",
@@ -31,11 +31,40 @@
           },
           "saved": true,
           "saved_at": "2026-08-30T18:20:47.958Z",
-          "updated_at": "2026-08-30T18:20:47.958Z",
-          "updated_by": "Seif"
+          "updated_at": "2026-08-30T18:31:15.372Z",
+          "updated_by": "Amr"
+        },
+        "Sara": {
+          "days": {
+            "2026-08-28": "Home",
+            "2026-08-29": "Home",
+            "2026-08-30": "Home",
+            "2026-08-31": "Home",
+            "2026-09-01": "Home",
+            "2026-09-02": "Office",
+            "2026-09-03": "Office"
+          },
+          "saved": true,
+          "saved_at": "2026-08-30T18:32:47.643Z",
+          "updated_at": "2026-08-30T18:32:47.643Z",
+          "updated_by": "Sara"
         }
       }
     }
   },
-  "requests": []
+  "requests": [
+    {
+      "id": "ar-mtg5arrt",
+      "who": "Seif",
+      "friday": "2026-08-28",
+      "date": "2026-09-01",
+      "from": "Office",
+      "to": "Home",
+      "reason": "عندي دور برد",
+      "status": "Pending",
+      "created_at": "2026-08-30T18:30:57.305Z",
+      "decided_at": "",
+      "decided_by": ""
+    }
+  ]
 }
