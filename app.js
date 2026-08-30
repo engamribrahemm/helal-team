@@ -85,6 +85,7 @@ const state = {
   attendFile: null,
   githubCfg: null,
   attendWeek: "",
+  attendChange: null,
   hrTab: "scores",
   hrQuarter: "",
   evalTaskId: null,
@@ -525,8 +526,9 @@ function emptyHr() {
 
 function emptyAttendance() {
   return {
-    note: "Each person marks Home or Office for the week that starts Friday. The whole team can see who will be where.",
+    note: "Each person marks Home or Office for the week that starts Friday, then saves. After save, day changes need admin approval.",
     weeks: {},
+    requests: [],
   };
 }
 
@@ -560,6 +562,16 @@ function canEditAttendWeek(friday) {
   return friday >= fridayStart(today());
 }
 
+function pickAttendPerson(pa, pb) {
+  if (!pa) return pb;
+  if (!pb) return pa;
+  if (pa.saved && !pb.saved) return pa;
+  if (pb.saved && !pa.saved) return pb;
+  const ta = Date.parse(pa.updated_at || 0);
+  const tb = Date.parse(pb.updated_at || 0);
+  return tb >= ta ? pb : pa;
+}
+
 function mergeAttendance(remote, local) {
   const weeks = {};
   const keys = new Set([...Object.keys(remote?.weeks || {}), ...Object.keys(local?.weeks || {})]);
@@ -568,27 +580,18 @@ function mergeAttendance(remote, local) {
     const b = local?.weeks?.[key]?.people || {};
     const names = new Set([...Object.keys(a), ...Object.keys(b)]);
     const peopleMap = {};
-    for (const name of names) {
-      const pa = a[name];
-      const pb = b[name];
-      if (!pa) peopleMap[name] = pb;
-      else if (!pb) peopleMap[name] = pa;
-      else {
-        const ta = Date.parse(pa.updated_at || 0);
-        const tb = Date.parse(pb.updated_at || 0);
-        peopleMap[name] = tb >= ta ? pb : pa;
-      }
-    }
+    for (const name of names) peopleMap[name] = pickAttendPerson(a[name], b[name]);
     weeks[key] = { start: key, people: peopleMap };
   }
   return {
     note: local?.note || remote?.note || emptyAttendance().note,
     weeks,
+    requests: mergeById(remote?.requests || [], local?.requests || []),
   };
 }
 
 function attendSignature(file) {
-  return JSON.stringify(file?.weeks || {});
+  return JSON.stringify({ weeks: file?.weeks || {}, requests: file?.requests || [] });
 }
 
 function ensureAttendance() {
@@ -600,6 +603,32 @@ function attendDaysFor(name, friday) {
   return ensureAttendance().weeks[friday]?.people?.[name]?.days || {};
 }
 
+function attendPerson(name, friday) {
+  return ensureAttendance().weeks[friday]?.people?.[name] || null;
+}
+
+function attendSaved(name, friday) {
+  return !!attendPerson(name, friday)?.saved;
+}
+
+function attendRequests() {
+  const file = ensureAttendance();
+  if (!file.requests) file.requests = [];
+  return file.requests;
+}
+
+function pendingAttendRequests(friday) {
+  return attendRequests().filter((r) => r.status === "Pending" && (!friday || r.friday === friday));
+}
+
+function pendingChangeFor(name, friday, date) {
+  return attendRequests().find((r) => r.status === "Pending" && r.who === name && r.friday === friday && r.date === date);
+}
+
+function canDraftAttend(name, friday) {
+  return name === state.who && friday >= fridayStart(today()) && !attendSaved(name, friday);
+}
+
 function setAttendDay(name, friday, date, mode) {
   const file = ensureAttendance();
   if (!file.weeks[friday]) file.weeks[friday] = { start: friday, people: {} };
@@ -609,10 +638,73 @@ function setAttendDay(name, friday, date, mode) {
   else days[date] = mode;
   file.weeks[friday].people[name] = {
     days,
+    saved: !!prev.saved,
+    saved_at: prev.saved_at || "",
     updated_at: new Date().toISOString(),
     updated_by: state.who,
   };
   state.attendFile = file;
+}
+
+function lockMyAttendance(friday) {
+  const dates = weekDates(friday);
+  const days = attendDaysFor(state.who, friday);
+  if (dates.some((date) => !ATTEND_MODES.includes(days[date]))) {
+    state.saveError = "Set Home or Office for every day, then Save.";
+    state.saveState = "error";
+    render();
+    return;
+  }
+  const file = ensureAttendance();
+  if (!file.weeks[friday]) file.weeks[friday] = { start: friday, people: {} };
+  const prev = file.weeks[friday].people[state.who] || { days };
+  file.weeks[friday].people[state.who] = {
+    ...prev,
+    days: { ...days },
+    saved: true,
+    saved_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    updated_by: state.who,
+  };
+  state.attendFile = file;
+  state.saveError = "";
+  saveAttendance(`attend: ${state.who} locked ${friday}`);
+}
+
+function submitAttendRequest({ friday, date, to, reason }) {
+  const from = attendDaysFor(state.who, friday)[date] || "";
+  if (!attendSaved(state.who, friday) || !to || to === from) return;
+  if (pendingChangeFor(state.who, friday, date)) return;
+  attendRequests().unshift({
+    id: `ar-${Date.now().toString(36)}`,
+    who: state.who,
+    friday,
+    date,
+    from,
+    to,
+    reason: reason || "",
+    status: "Pending",
+    created_at: new Date().toISOString(),
+    decided_at: "",
+    decided_by: "",
+  });
+  state.attendChange = null;
+  saveAttendance(`attend: ${state.who} requested ${date} ${from}→${to}`);
+}
+
+function decideAttendRequest(id, status) {
+  if (!isAdmin()) return;
+  const req = attendRequests().find((r) => r.id === id);
+  if (!req || req.status !== "Pending") return;
+  req.status = status;
+  req.decided_at = new Date().toISOString();
+  req.decided_by = state.who;
+  if (status === "Approved") {
+    setAttendDay(req.who, req.friday, req.date, req.to);
+    const person = attendPerson(req.who, req.friday);
+    if (person) person.saved = true;
+  }
+  saveAttendance(`attend: ${state.who} ${status.toLowerCase()} ${req.who} ${req.date}`);
 }
 
 function mergeById(remote = [], local = []) {
@@ -2331,6 +2423,26 @@ function viewReview() {
         : $("p", { class: "empty" }, "No report submissions on this day yet."),
     ]),
     $("section", {}, [
+      $("h2", {}, "Attendance requests"),
+      $("p", { class: "muted" }, "Day-change requests from the team. Approve or decline on Attendance, or here."),
+      pendingAttendRequests().length
+        ? $("div", { class: "cards", style: "margin-top:14px" }, pendingAttendRequests().map((req) =>
+          $("article", { class: "card review-card" }, [
+            $("p", { class: "title" }, `${req.who} · ${req.date}`),
+            $("div", { class: "meta" }, [
+              $("span", { class: "pill" }, `${req.from || "—"} → ${req.to}`),
+              $("span", { class: "pill" }, `Week ${req.friday}`),
+            ]),
+            req.reason ? $("p", {}, req.reason) : null,
+            $("div", { style: "display:flex;gap:8px" }, [
+              $("button", { class: "btn primary", type: "button", onclick: () => decideAttendRequest(req.id, "Approved") }, "Approve"),
+              $("button", { class: "btn ghost", type: "button", onclick: () => decideAttendRequest(req.id, "Declined") }, "Decline"),
+            ]),
+          ])
+        ))
+        : $("p", { class: "empty" }, "No pending attendance requests."),
+    ]),
+    $("section", {}, [
       $("h2", {}, "Waiting on review"),
       $("p", { class: "muted" }, "When a member moves a task to Review, it lands here. Check it done. It stays in Done on the board, here, and on My work."),
       waiting.length
@@ -2526,23 +2638,93 @@ function nextAttendMode(current) {
   return "Office";
 }
 
+function viewAttendDashboard() {
+  const friday = state.attendWeek || fridayStart(today());
+  const pending = pendingAttendRequests();
+  const weekPending = pendingAttendRequests(friday);
+  const missing = people().filter((p) => !attendSaved(p.name, friday));
+  return $("section", { class: "card" }, [
+    $("h2", {}, "Attendance dashboard"),
+    $("p", { class: "muted" }, "Approve or decline day-change requests. Locked weeks stay fixed until you approve."),
+    $("div", { class: "stat-row" }, [
+      statBox(pending.length, "Pending requests", pending.length ? "tone-orange" : ""),
+      statBox(weekPending.length, "This week"),
+      statBox(missing.length, "Not saved this week"),
+    ]),
+    missing.length
+      ? $("p", { class: "muted" }, `Waiting on save: ${missing.map((p) => p.name).join(", ")}.`)
+      : $("p", { class: "muted" }, "Everyone has saved this week."),
+    pending.length
+      ? $("div", { class: "cards", style: "margin-top:14px" }, pending.map((req) =>
+        $("article", { class: "card review-card" }, [
+          $("p", { class: "title" }, `${req.who} · ${cairoWeekday(req.date)} ${req.date}`),
+          $("div", { class: "meta" }, [
+            $("span", { class: "pill" }, req.from || "—"),
+            $("span", { class: "pill" }, `→ ${req.to}`),
+            $("span", { class: "pill" }, `Week ${req.friday}`),
+          ]),
+          req.reason ? $("p", {}, req.reason) : $("p", { class: "muted" }, "No reason given."),
+          $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
+            $("button", { class: "btn primary", type: "button", onclick: () => decideAttendRequest(req.id, "Approved") }, "Approve"),
+            $("button", { class: "btn ghost", type: "button", onclick: () => decideAttendRequest(req.id, "Declined") }, "Decline"),
+          ]),
+        ])
+      ))
+      : $("p", { class: "empty" }, "No pending attendance requests."),
+  ]);
+}
+
+function viewAttendChange(friday, date) {
+  const from = attendDaysFor(state.who, friday)[date] || "";
+  const other = from === "Office" ? "Home" : "Office";
+  const draft = state.attendChange || { friday, date, to: other, reason: "" };
+  const to = $("select", {}, ATTEND_MODES.map((m) => $("option", { value: m, selected: m === (draft.to || other) }, m)));
+  const reason = $("textarea", { placeholder: "Why this change?" }, draft.reason || "");
+  return $("section", { class: "card attend-change" }, [
+    $("h2", {}, "Request a change"),
+    $("p", { class: "muted" }, `${cairoWeekday(date)} ${date} is locked as ${from || "—"}. Amr or Tasneem will approve or decline.`),
+    $("form", {
+      class: "form",
+      onsubmit: (e) => {
+        e.preventDefault();
+        submitAttendRequest({ friday, date, to: to.value, reason: reason.value.trim() });
+      },
+    }, [
+      $("label", {}, ["Change to", to]),
+      $("label", {}, ["Reason", reason]),
+      $("div", { style: "display:flex;gap:8px" }, [
+        $("button", { class: "btn primary", type: "submit" }, "Send request"),
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendChange = null; render(); } }, "Cancel"),
+      ]),
+    ]),
+  ]);
+}
+
 function viewAttendance() {
   const friday = state.attendWeek || fridayStart(today());
   const dates = weekDates(friday);
   const thursday = dates[6];
-  const editable = canEditAttendWeek(friday);
   const todayDate = today();
   const thisFriday = fridayStart(todayDate);
   const roster = people();
+  const mineSaved = attendSaved(state.who, friday);
+  const canDraft = canDraftAttend(state.who, friday);
   const officeToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Office").length;
   const homeToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Home").length;
   const unsetToday = roster.length - officeToday - homeToday;
+  const change = state.attendChange;
 
   const pick = (name, date) => {
-    if (!editable || name !== state.who) return;
-    setAttendDay(name, friday, date, nextAttendMode(attendDaysFor(name, friday)[date] || ""));
-    render();
-    saveAttendance(`attend: ${state.who} ${friday}`);
+    if (name !== state.who) return;
+    if (canDraft) {
+      setAttendDay(name, friday, date, nextAttendMode(attendDaysFor(name, friday)[date] || ""));
+      render();
+      return;
+    }
+    if (mineSaved && !pendingChangeFor(name, friday, date)) {
+      state.attendChange = { friday, date, to: attendDaysFor(name, friday)[date] === "Office" ? "Home" : "Office", reason: "" };
+      render();
+    }
   };
 
   return $("div", { class: "dash" }, [
@@ -2557,34 +2739,53 @@ function viewAttendance() {
         $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = shiftFriday(friday, 1); render(); } }, "Next week"),
       ]),
     ]),
-    $("p", { class: "muted" }, editable
-      ? "Tap your row to set Office or Home for each day. The whole team can see who will be where."
-      : "This week has already passed. Use This week or Next week to set your days."),
+    isAdmin() ? viewAttendDashboard() : null,
     $("div", { class: "stat-row" }, [
       statBox(officeToday, "In office today"),
       statBox(homeToday, "Home today"),
       statBox(unsetToday, "Not set today"),
     ]),
+    $("p", { class: "muted" }, canDraft
+      ? "Set every day on your row, then Save. After Save you cannot edit; you can only request a change."
+      : mineSaved
+        ? "Your week is locked. Tap one of your days to request Office ↔ Home."
+        : "This week is closed. Open This week or Next week to set days, or request a change on a locked week."),
+    canDraft
+      ? $("div", {}, $("button", { class: "btn primary", type: "button", onclick: () => lockMyAttendance(friday) }, "Save my week"))
+      : null,
+    mineSaved && !canDraft
+      ? $("p", { class: "muted" }, `Saved${attendPerson(state.who, friday)?.saved_at ? ` · locked` : ""}.`)
+      : null,
+    change && change.friday === friday ? viewAttendChange(friday, change.date) : null,
     $("div", { class: "load-table-wrap" },
       $("table", { class: "load-table attend-table" }, [
         $("thead", {}, $("tr", {}, [
           $("th", {}, "Name"),
           ...dates.map((date) => $("th", { class: date === todayDate ? "attend-today" : "" }, `${cairoWeekday(date)} ${date.slice(8)}`)),
+          $("th", {}, "Status"),
         ])),
         $("tbody", {}, roster.map((p) => {
           const mine = p.name === state.who;
           const days = attendDaysFor(p.name, friday);
+          const saved = attendSaved(p.name, friday);
           return $("tr", { class: mine ? "attend-mine" : "" }, [
             $("td", {}, [$("strong", {}, p.name), $("span", { class: "muted" }, ` ${p.role || ""}`)]),
             ...dates.map((date) => {
               const mode = days[date] || "";
-              return $("td", {}, $("button", {
-                class: `attend-chip ${mode === "Office" ? "office" : mode === "Home" ? "home" : "unset"}${date === todayDate ? " today" : ""}`,
-                type: "button",
-                disabled: !(editable && mine),
-                onclick: () => pick(p.name, date),
-              }, mode || "—"));
+              const pending = pendingChangeFor(p.name, friday, date);
+              const draftable = mine && canDraft;
+              const requestable = mine && saved && !pending;
+              return $("td", {}, [
+                $("button", {
+                  class: `attend-chip ${mode === "Office" ? "office" : mode === "Home" ? "home" : "unset"}${date === todayDate ? " today" : ""}`,
+                  type: "button",
+                  disabled: !(draftable || requestable),
+                  onclick: () => pick(p.name, date),
+                }, mode || "—"),
+                pending ? $("span", { class: "pill" }, "Requested") : null,
+              ]);
             }),
+            $("td", {}, saved ? $("span", { class: "pill tone-green" }, "Saved") : $("span", { class: "pill" }, "Draft")),
           ]);
         })),
       ])
@@ -2600,7 +2801,7 @@ function viewGuide() {
     ["Create a task", "Only Amr, Tasneem, Mariam, and Judi can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it, and social still sees it on their board."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
-    ["Attendance", "From each Friday, mark Home or Office for that week. Everyone can see the team grid so they know who is in."],
+    ["Attendance", "From Friday, set Home or Office for the week and press Save. After Save the week is locked. To change a day, request it. Amr or Tasneem approve or decline on the Attendance dashboard."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
     ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, quality by role, revision level, hours, attitude, and warnings. Rewards come later."],
   ];

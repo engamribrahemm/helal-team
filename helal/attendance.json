@@ -1,4 +1,5 @@
 {
-  "note": "Each person marks Home or Office for the week that starts Friday. The whole team can see who will be where.",
-  "weeks": {}
+  "note": "Each person marks Home or Office for the week that starts Friday, then saves. After save, day changes need admin approval.",
+  "weeks": {},
+  "requests": []
 }
