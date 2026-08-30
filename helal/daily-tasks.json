@@ -31,10 +31,10 @@
           "space": "Graphic",
           "title": "[TEST] Helal Test Client — 1 Instagram post design",
           "due": "2026-08-22",
-          "status": "Done",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing",
           "drive_missing": false,
-          "updated_at": "2026-08-30T16:51:15.731Z",
+          "updated_at": "2026-08-30T16:51:27.511Z",
           "updated_by": "Tasneem",
           "revisions": 1,
           "time_log": [
@@ -81,12 +81,15 @@
           ],
           "progress_started_at": "",
           "progress_hours": 0.02227638888888889,
-          "review_at": "2026-08-29T14:35:34.753Z",
+          "review_at": "2026-08-30T16:51:27.511Z",
           "done_at": "2026-08-30T16:51:15.730Z",
           "done_on": "2026-08-30",
           "done_month": "2026-08",
           "done_by": "Tasneem",
-          "delivered_on": "2026-08-30"
+          "delivered_on": "2026-08-30",
+          "delay_reason": "Unclear brief",
+          "delay_notified": false,
+          "delay_days": 8
         },
         {
           "id": "t-20260822-graphic",
