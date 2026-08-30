@@ -12,5 +12,7 @@
     "helal/reports.json",
     "helal/hr.json"
   ],
-  "note": "GitHub JSON in this repo is the Helal database. The board reads and writes these files. There is no Setup screen."
+  "note": "GitHub JSON in this repo is the Helal database. The board reads and writes these files. There is no Setup screen.",
+  "write_prefix": "ghp_",
+  "write_key": "donFTRm7H5qVg7PX0P0aEoDA0zXmSX1exWhh"
 }
