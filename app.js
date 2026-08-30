@@ -270,6 +270,19 @@ function canAssignTasks() {
   return isAdmin() || isSocial();
 }
 
+function canSeeTask(task) {
+  if (!task) return false;
+  if (isAdmin()) return true;
+  if (samePerson(task.who, state.who)) return true;
+  return isSocial() && samePerson(task.created_by, state.who);
+}
+
+function canMoveTask(task) {
+  if (!task) return false;
+  if (isAdmin()) return true;
+  return samePerson(task.who, state.who);
+}
+
 function allTasks() {
   return (state.tasksFile?.days || []).flatMap((d) =>
     (d.tasks || []).map((t) => ({ ...t, date: d.date }))
@@ -282,8 +295,8 @@ function samePerson(a, b) {
 
 function tasksForView() {
   let tasks = allTasks();
-  const ownOnly = !isAdmin() || state.view === "my";
-  if (ownOnly) tasks = tasks.filter((t) => samePerson(t.who, state.who));
+  if (state.view === "my") tasks = tasks.filter((t) => samePerson(t.who, state.who));
+  else if (!isAdmin()) tasks = tasks.filter(canSeeTask);
   if (state.dateFilter && state.dateFilter !== "all") {
     tasks = tasks.filter((t) =>
       t.due === state.dateFilter
@@ -935,7 +948,7 @@ async function saveReports(message) {
       render();
     } catch (err) {
       state.saveState = "error";
-      state.saveError = err.message;
+      state.saveError = fetchErrorMessage(err);
       render();
     }
   });
@@ -951,7 +964,7 @@ async function saveHr(message) {
       render();
     } catch (err) {
       state.saveState = "error";
-      state.saveError = err.message;
+      state.saveError = fetchErrorMessage(err);
       render();
     }
   });
@@ -1012,6 +1025,8 @@ function ensureDay(date) {
 
 function applyStatus(taskId, next, extra = {}) {
   if (!canSetStatus(next)) return;
+  const current = findTask(taskId);
+  if (!canMoveTask(current)) return;
   let found = null;
   for (const day of state.tasksFile.days) {
     const task = day.tasks.find((t) => t.id === taskId);
@@ -1164,8 +1179,12 @@ function viewConnectBanner() {
 function kanbanCard(task) {
   return $("article", {
     class: `kcard ${taskTone(task)}`,
-    draggable: "true",
+    draggable: canMoveTask(task) ? "true" : "false",
     ondragstart: (e) => {
+      if (!canMoveTask(task)) {
+        e.preventDefault();
+        return;
+      }
       cardDidDrag = true;
       e.dataTransfer.effectAllowed = "move";
       e.dataTransfer.setData("text/plain", task.id);
@@ -1220,7 +1239,7 @@ function viewBoard() {
           e.currentTarget.classList.remove("drop");
           const id = e.dataTransfer.getData("text/plain");
           cardDidDrag = false;
-          if (id && canSetStatus(status)) setStatus(id, status);
+          if (id && canSetStatus(status) && canMoveTask(findTask(id))) setStatus(id, status);
         },
       }, [
         $("div", { class: "kanban-head" }, [
@@ -2375,9 +2394,9 @@ function viewWorkload() {
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and password. Amr and Tasneem use the admin password."],
-    ["Your board", "Members see only their tasks. Admins see the team. Columns are To do, In progress, Review, Revisions, and Done."],
+    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, so they can follow progress. Admins see the team. Columns are To do, In progress, Review, Revisions, and Done."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
-    ["Create a task", "Only Amr, Tasneem, Mariam, and Judi can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it on their board."],
+    ["Create a task", "Only Amr, Tasneem, Mariam, and Judi can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it, and social still sees it on their board."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
