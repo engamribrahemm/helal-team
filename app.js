@@ -168,9 +168,36 @@ function repoInfo() {
   };
 }
 
+function assembleBoardKey(cfg) {
+  if (!cfg) return "";
+  const direct = String(cfg.write_token || "").trim();
+  if (/^(ghp_|github_pat_)/.test(direct)) return direct;
+  const prefix = String(cfg.write_prefix || "").trim();
+  const key = String(cfg.write_key || "").trim();
+  if (prefix && key) {
+    const assembled = prefix + key;
+    if (/^(ghp_|github_pat_)/.test(assembled) && assembled.length >= 20) return assembled;
+  }
+  return "";
+}
+
+function persistBoardCfg(cfg, token) {
+  const next = { ...(cfg || {}) };
+  delete next.write_token;
+  const clean = String(token || assembleBoardKey(cfg) || "").trim();
+  if (clean.startsWith("github_pat_")) {
+    next.write_prefix = "github_pat_";
+    next.write_key = clean.slice("github_pat_".length);
+  } else if (clean.startsWith("ghp_")) {
+    next.write_prefix = "ghp_";
+    next.write_key = clean.slice(4);
+  }
+  return next;
+}
+
 function writeToken() {
-  const fromCfg = (state.githubCfg && state.githubCfg.write_token) || "";
-  if (/^(ghp_|github_pat_)/.test(fromCfg)) return fromCfg;
+  const assembled = assembleBoardKey(state.githubCfg);
+  if (/^(ghp_|github_pat_)/.test(assembled)) return assembled;
   try {
     const stored = localStorage.getItem("helal.ghToken") || "";
     if (/^(ghp_|github_pat_)/.test(stored)) return stored;
@@ -195,8 +222,7 @@ async function connectDatabase(token) {
   try {
     localStorage.setItem("helal.ghToken", clean);
   } catch (_) {}
-  if (!state.githubCfg) state.githubCfg = {};
-  state.githubCfg.write_token = clean;
+  state.githubCfg = persistBoardCfg(state.githubCfg || {}, clean);
   state.connectError = "";
   state.saveState = "saving";
   render();
@@ -205,7 +231,7 @@ async function connectDatabase(token) {
       headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${clean}` },
     });
     if (!probe.ok) throw new Error("GitHub rejected that key. Generate a new one and paste it.");
-    await dbPut("helal/github.json", { ...state.githubCfg, write_token: clean }, "board: connect Helal database");
+    await dbPut("helal/github.json", persistBoardCfg(state.githubCfg, clean), "board: connect Helal database");
     state.saveState = "saved";
     state.connectError = "";
     render();
@@ -729,6 +755,9 @@ async function dbPut(path, data, message) {
       } else if (path.endsWith("hr.json")) {
         payload = mergeHr(remote, payload);
         state.hrFile = payload;
+      } else if (path.endsWith("github.json")) {
+        payload = persistBoardCfg({ ...remote, ...payload }, assembleBoardKey(payload) || assembleBoardKey(remote));
+        state.githubCfg = payload;
       }
     } catch (err) {
       lastError = err.message;
