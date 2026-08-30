@@ -7,6 +7,9 @@ const LS_TASKS = "helal.tasksCache";
 const LS_REPORTS = "helal.reportsCache";
 const LS_HR = "helal.hrCache";
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const ATTEND_WEEK = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+const ATTEND_MODES = ["Office", "Home"];
+const LS_ATTEND = "helal.attendCache";
 const DELAY_REASONS = [
   "Unclear brief",
   "Waiting on information",
@@ -79,7 +82,9 @@ const state = {
   tasksFile: null,
   reportsFile: null,
   hrFile: null,
+  attendFile: null,
   githubCfg: null,
+  attendWeek: "",
   hrTab: "scores",
   hrQuarter: "",
   evalTaskId: null,
@@ -518,6 +523,98 @@ function emptyHr() {
   };
 }
 
+function emptyAttendance() {
+  return {
+    note: "Each person marks Home or Office for the week that starts Friday. The whole team can see who will be where.",
+    weeks: {},
+  };
+}
+
+function addCairoDays(date, n) {
+  const dt = new Date(`${date}T12:00:00+03:00`);
+  dt.setTime(dt.getTime() + n * 86400000);
+  return cairoDate(dt.toISOString());
+}
+
+function cairoWeekday(date) {
+  return new Intl.DateTimeFormat("en-US", { timeZone: CAIRO, weekday: "short" }).format(new Date(`${date}T12:00:00+03:00`));
+}
+
+function fridayStart(date) {
+  const day = date || today();
+  const names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const idx = names.indexOf(cairoWeekday(day));
+  const back = (idx - 5 + 7) % 7;
+  return addCairoDays(day, -back);
+}
+
+function weekDates(friday) {
+  return ATTEND_WEEK.map((_, i) => addCairoDays(friday, i));
+}
+
+function shiftFriday(friday, weeks) {
+  return addCairoDays(friday, weeks * 7);
+}
+
+function canEditAttendWeek(friday) {
+  return friday >= fridayStart(today());
+}
+
+function mergeAttendance(remote, local) {
+  const weeks = {};
+  const keys = new Set([...Object.keys(remote?.weeks || {}), ...Object.keys(local?.weeks || {})]);
+  for (const key of keys) {
+    const a = remote?.weeks?.[key]?.people || {};
+    const b = local?.weeks?.[key]?.people || {};
+    const names = new Set([...Object.keys(a), ...Object.keys(b)]);
+    const peopleMap = {};
+    for (const name of names) {
+      const pa = a[name];
+      const pb = b[name];
+      if (!pa) peopleMap[name] = pb;
+      else if (!pb) peopleMap[name] = pa;
+      else {
+        const ta = Date.parse(pa.updated_at || 0);
+        const tb = Date.parse(pb.updated_at || 0);
+        peopleMap[name] = tb >= ta ? pb : pa;
+      }
+    }
+    weeks[key] = { start: key, people: peopleMap };
+  }
+  return {
+    note: local?.note || remote?.note || emptyAttendance().note,
+    weeks,
+  };
+}
+
+function attendSignature(file) {
+  return JSON.stringify(file?.weeks || {});
+}
+
+function ensureAttendance() {
+  if (!state.attendFile || !state.attendFile.weeks) state.attendFile = emptyAttendance();
+  return state.attendFile;
+}
+
+function attendDaysFor(name, friday) {
+  return ensureAttendance().weeks[friday]?.people?.[name]?.days || {};
+}
+
+function setAttendDay(name, friday, date, mode) {
+  const file = ensureAttendance();
+  if (!file.weeks[friday]) file.weeks[friday] = { start: friday, people: {} };
+  const prev = file.weeks[friday].people[name] || { days: {} };
+  const days = { ...prev.days };
+  if (!mode) delete days[date];
+  else days[date] = mode;
+  file.weeks[friday].people[name] = {
+    days,
+    updated_at: new Date().toISOString(),
+    updated_by: state.who,
+  };
+  state.attendFile = file;
+}
+
 function mergeById(remote = [], local = []) {
   const byId = new Map();
   for (const row of [...remote, ...local]) {
@@ -664,9 +761,10 @@ function readCacheFiles() {
       tasks: JSON.parse(localStorage.getItem(LS_TASKS) || "null"),
       reports: JSON.parse(localStorage.getItem(LS_REPORTS) || "null"),
       hr: JSON.parse(localStorage.getItem(LS_HR) || "null"),
+      attend: JSON.parse(localStorage.getItem(LS_ATTEND) || "null"),
     };
   } catch (_) {
-    return { tasks: null, reports: null, hr: null };
+    return { tasks: null, reports: null, hr: null, attend: null };
   }
 }
 function cacheBoard() {
@@ -674,6 +772,7 @@ function cacheBoard() {
     if (state.tasksFile) localStorage.setItem(LS_TASKS, JSON.stringify(state.tasksFile));
     if (state.reportsFile) localStorage.setItem(LS_REPORTS, JSON.stringify(state.reportsFile));
     if (state.hrFile) localStorage.setItem(LS_HR, JSON.stringify(state.hrFile));
+    if (state.attendFile) localStorage.setItem(LS_ATTEND, JSON.stringify(state.attendFile));
   } catch (_) {}
 }
 
@@ -682,9 +781,11 @@ function hydrateFromCache() {
     const tasks = JSON.parse(localStorage.getItem(LS_TASKS) || "null");
     const reports = JSON.parse(localStorage.getItem(LS_REPORTS) || "null");
     const hr = JSON.parse(localStorage.getItem(LS_HR) || "null");
+    const attend = JSON.parse(localStorage.getItem(LS_ATTEND) || "null");
     if (tasks?.days) state.tasksFile = tasks;
     if (hr?.reviews || hr?.work) state.hrFile = hr;
     if (reports?.reports) state.reportsFile = reports;
+    if (attend?.weeks) state.attendFile = attend;
   } catch (_) {}
 }
 
@@ -789,6 +890,9 @@ async function dbPut(path, data, message) {
       } else if (path.endsWith("hr.json")) {
         payload = mergeHr(remote, payload);
         state.hrFile = payload;
+      } else if (path.endsWith("attendance.json")) {
+        payload = mergeAttendance(remote, payload);
+        state.attendFile = payload;
       } else if (path.endsWith("github.json")) {
         payload = persistBoardCfg({ ...remote, ...payload }, assembleBoardKey(payload) || assembleBoardKey(remote));
         state.githubCfg = payload;
@@ -849,7 +953,7 @@ async function dbPut(path, data, message) {
 async function loadAll() {
   if (state.session) state.who = state.session.who;
   const local = async () => {
-    const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg, hrFile] = await Promise.all([
+    const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg, hrFile, attendFile] = await Promise.all([
       fetchLocal("./helal/team.json"),
       fetchLocal("./helal/auth.json"),
       fetchLocal("./helal/drive.json"),
@@ -858,8 +962,9 @@ async function loadAll() {
       fetchLocal("./helal/reports.json"),
       fetchLocal("./helal/github.json"),
       fetchLocal("./helal/hr.json").catch(() => emptyHr()),
+      fetchLocal("./helal/attendance.json").catch(() => emptyAttendance()),
     ]);
-    Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg, hrFile });
+    Object.assign(state, { team, auth, drive, projects, tasksFile, reportsFile, githubCfg, hrFile, attendFile });
   };
 
   try {
@@ -878,7 +983,7 @@ async function loadAll() {
     state.githubCfg = githubCfg;
     const head = await fetchHeadSha();
     state.headSha = head;
-    const [team, auth, drive, projects, tasksFile, reportsFile, hrFile] = await Promise.all([
+    const [team, auth, drive, projects, tasksFile, reportsFile, hrFile, attendFile] = await Promise.all([
       dbGet("helal/team.json"),
       dbGet("helal/auth.json"),
       dbGet("helal/drive.json"),
@@ -886,12 +991,14 @@ async function loadAll() {
       dbGet("helal/daily-tasks.json"),
       dbGet("helal/reports.json"),
       dbGet("helal/hr.json").catch(() => cache.hr || state.hrFile || emptyHr()),
+      dbGet("helal/attendance.json").catch(() => cache.attend || state.attendFile || emptyAttendance()),
     ]);
     Object.assign(state, { team, auth, drive, projects, githubCfg });
     const replay = mineNewerFile(tasksFile, cache.tasks);
     state.tasksFile = replay ? mergeTaskFiles(tasksFile, replay) : tasksFile;
     state.reportsFile = reportsFile;
     state.hrFile = hrFile?.work || hrFile?.reviews ? hrFile : emptyHr();
+    state.attendFile = mergeAttendance(attendFile || emptyAttendance(), cache.attend || state.attendFile || emptyAttendance());
     state.hrQuarter = state.hrQuarter || currentQuarter();
     state.saveState = writeToken() ? "saved" : "idle";
     cacheBoard();
@@ -900,9 +1007,12 @@ async function loadAll() {
     if (cache.tasks?.days) state.tasksFile = mergeTaskFiles(state.tasksFile, cache.tasks);
     if (cache.reports?.reports) state.reportsFile = mergeReports(state.reportsFile, cache.reports);
     if (cache.hr) state.hrFile = mergeHr(state.hrFile || emptyHr(), cache.hr);
+    if (cache.attend) state.attendFile = mergeAttendance(state.attendFile || emptyAttendance(), cache.attend);
   }
   if (!state.hrFile) state.hrFile = emptyHr();
+  if (!state.attendFile) state.attendFile = emptyAttendance();
   state.hrQuarter = state.hrQuarter || currentQuarter();
+  state.attendWeek = state.attendWeek || fridayStart(today());
 
   state.reportDay = state.reportDay || today();
   state.calMonth = state.calMonth || today().slice(0, 7);
@@ -970,20 +1080,39 @@ async function saveHr(message) {
   });
 }
 
+async function saveAttendance(message) {
+  return enqueueSave(async () => {
+    state.saveState = "saving";
+    state.saveError = "";
+    render();
+    try {
+      await dbPut("helal/attendance.json", state.attendFile, message);
+      render();
+    } catch (err) {
+      state.saveState = "error";
+      state.saveError = fetchErrorMessage(err);
+      render();
+    }
+  });
+}
+
 async function pullRemoteBoard() {
   if (!state.session || state.saveState === "saving") return;
   try {
     const remoteTasks = await dbGet("helal/daily-tasks.json").catch(() => dbGetRaw("helal/daily-tasks.json"));
     const remoteReports = await dbGet("helal/reports.json").catch(() => state.reportsFile);
     const remoteHr = await dbGet("helal/hr.json").catch(() => state.hrFile || emptyHr());
+    const remoteAttend = await dbGet("helal/attendance.json").catch(() => state.attendFile || emptyAttendance());
     if (state.saveState === "saving") return;
     const before = tasksSignature(state.tasksFile);
+    const attendBefore = attendSignature(state.attendFile);
     const replay = mineNewerFile(remoteTasks, state.tasksFile);
     state.tasksFile = replay ? mergeTaskFiles(remoteTasks, replay) : remoteTasks;
     if (remoteReports) state.reportsFile = remoteReports;
     state.hrFile = remoteHr || emptyHr();
+    state.attendFile = mergeAttendance(remoteAttend || emptyAttendance(), state.attendFile || emptyAttendance());
     cacheBoard();
-    if (tasksSignature(state.tasksFile) !== before) render();
+    if (tasksSignature(state.tasksFile) !== before || attendSignature(state.attendFile) !== attendBefore) render();
   } catch (_) {}
 }
 
@@ -2391,6 +2520,78 @@ function viewWorkload() {
   ]);
 }
 
+function nextAttendMode(current) {
+  if (current === "Office") return "Home";
+  if (current === "Home") return "";
+  return "Office";
+}
+
+function viewAttendance() {
+  const friday = state.attendWeek || fridayStart(today());
+  const dates = weekDates(friday);
+  const thursday = dates[6];
+  const editable = canEditAttendWeek(friday);
+  const todayDate = today();
+  const thisFriday = fridayStart(todayDate);
+  const roster = people();
+  const officeToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Office").length;
+  const homeToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Home").length;
+  const unsetToday = roster.length - officeToday - homeToday;
+
+  const pick = (name, date) => {
+    if (!editable || name !== state.who) return;
+    setAttendDay(name, friday, date, nextAttendMode(attendDaysFor(name, friday)[date] || ""));
+    render();
+    saveAttendance(`attend: ${state.who} ${friday}`);
+  };
+
+  return $("div", { class: "dash" }, [
+    $("div", { class: "cal-nav attend-nav" }, [
+      $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = shiftFriday(friday, -1); render(); } }, "Prev week"),
+      $("div", {}, [
+        $("h2", {}, "Attendance"),
+        $("p", { class: "muted" }, `Friday ${friday} → Thursday ${thursday}`),
+      ]),
+      $("div", { class: "attend-week-actions" }, [
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = fridayStart(today()); render(); } }, "This week"),
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = shiftFriday(friday, 1); render(); } }, "Next week"),
+      ]),
+    ]),
+    $("p", { class: "muted" }, editable
+      ? "Tap your row to set Office or Home for each day. The whole team can see who will be where."
+      : "This week has already passed. Use This week or Next week to set your days."),
+    $("div", { class: "stat-row" }, [
+      statBox(officeToday, "In office today"),
+      statBox(homeToday, "Home today"),
+      statBox(unsetToday, "Not set today"),
+    ]),
+    $("div", { class: "load-table-wrap" },
+      $("table", { class: "load-table attend-table" }, [
+        $("thead", {}, $("tr", {}, [
+          $("th", {}, "Name"),
+          ...dates.map((date) => $("th", { class: date === todayDate ? "attend-today" : "" }, `${cairoWeekday(date)} ${date.slice(8)}`)),
+        ])),
+        $("tbody", {}, roster.map((p) => {
+          const mine = p.name === state.who;
+          const days = attendDaysFor(p.name, friday);
+          return $("tr", { class: mine ? "attend-mine" : "" }, [
+            $("td", {}, [$("strong", {}, p.name), $("span", { class: "muted" }, ` ${p.role || ""}`)]),
+            ...dates.map((date) => {
+              const mode = days[date] || "";
+              return $("td", {}, $("button", {
+                class: `attend-chip ${mode === "Office" ? "office" : mode === "Home" ? "home" : "unset"}${date === todayDate ? " today" : ""}`,
+                type: "button",
+                disabled: !(editable && mine),
+                onclick: () => pick(p.name, date),
+              }, mode || "—"));
+            }),
+          ]);
+        })),
+      ])
+    ),
+  ]);
+}
+
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and password. Amr and Tasneem use the admin password."],
@@ -2399,6 +2600,7 @@ function viewGuide() {
     ["Create a task", "Only Amr, Tasneem, Mariam, and Judi can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it, and social still sees it on their board."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
+    ["Attendance", "From each Friday, mark Home or Office for that week. Everyone can see the team grid so they know who is in."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
     ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, quality by role, revision level, hours, attitude, and warnings. Rewards come later."],
   ];
@@ -2450,6 +2652,7 @@ function navItems() {
     ["board", "Board"],
     ["my", "My work"],
     ["load", "Workload"],
+    ["attend", "Attendance"],
     ["report", "Report"],
     ["drive", "Drive"],
     ["guide", "SOP"],
@@ -2533,6 +2736,7 @@ function render() {
   if (state.view === "my") viewMy().filter(Boolean).forEach((el) => main.append(el));
   else if (state.view === "board") main.append(viewBoard());
   else if (state.view === "load") main.append(viewWorkload());
+  else if (state.view === "attend") main.append(viewAttendance());
   else if (state.view === "review" && isAdmin()) main.append(viewReview());
   else if (state.view === "report") main.append(viewReport());
   else if (state.view === "drive") main.append(viewDrive());

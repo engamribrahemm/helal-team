@@ -10,7 +10,8 @@
     "helal/projects.json",
     "helal/daily-tasks.json",
     "helal/reports.json",
-    "helal/hr.json"
+    "helal/hr.json",
+    "helal/attendance.json"
   ],
   "note": "GitHub JSON in this repo is the Helal database. The board reads and writes these files. There is no Setup screen.",
   "write_prefix": "ghp_",
