@@ -257,6 +257,19 @@ function isAdmin() {
   return state.session?.role === "admin";
 }
 
+function personOf(name) {
+  return people().find((p) => samePerson(p.name, name || state.who));
+}
+
+function isSocial() {
+  const person = personOf(state.who);
+  return person?.home === "social" || qualityTrack(person) === "social";
+}
+
+function canAssignTasks() {
+  return isAdmin() || isSocial();
+}
+
 function allTasks() {
   return (state.tasksFile?.days || []).flatMap((d) =>
     (d.tasks || []).map((t) => ({ ...t, date: d.date }))
@@ -721,9 +734,9 @@ async function dbGetRaw(path) {
 
 async function dbGet(path, ref) {
   const { owner, repo, branch } = repoInfo();
-  const at = ref || (await fetchHeadSha()) || branch;
+  const at = ref || branch;
   const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(at)}`,
+    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(at)}&t=${Date.now()}`,
     { cache: "no-store", headers: githubHeaders() }
   );
   if (!res.ok) throw new Error(`GitHub ${res.status}`);
@@ -833,18 +846,23 @@ async function loadAll() {
   }
   const cache = readCacheFiles();
   try {
-    const githubCfg = await dbGet("helal/github.json");
+    const localCfg = state.githubCfg;
+    const remoteCfg = await dbGet("helal/github.json");
+    const githubCfg = persistBoardCfg(
+      { ...localCfg, ...remoteCfg },
+      assembleBoardKey(remoteCfg) || assembleBoardKey(localCfg)
+    );
     state.githubCfg = githubCfg;
     const head = await fetchHeadSha();
     state.headSha = head;
     const [team, auth, drive, projects, tasksFile, reportsFile, hrFile] = await Promise.all([
-      dbGet("helal/team.json", head),
-      dbGet("helal/auth.json", head),
-      dbGet("helal/drive.json", head),
-      dbGet("helal/projects.json", head),
-      dbGet("helal/daily-tasks.json", head),
-      dbGet("helal/reports.json", head),
-      dbGet("helal/hr.json", head).catch(() => cache.hr || state.hrFile || emptyHr()),
+      dbGet("helal/team.json"),
+      dbGet("helal/auth.json"),
+      dbGet("helal/drive.json"),
+      dbGet("helal/projects.json"),
+      dbGet("helal/daily-tasks.json"),
+      dbGet("helal/reports.json"),
+      dbGet("helal/hr.json").catch(() => cache.hr || state.hrFile || emptyHr()),
     ]);
     Object.assign(state, { team, auth, drive, projects, githubCfg });
     const replay = mineNewerFile(tasksFile, cache.tasks);
@@ -932,19 +950,15 @@ async function saveHr(message) {
 async function pullRemoteBoard() {
   if (!state.session || state.saveState === "saving") return;
   try {
-    const taskCommit = await fetchPathCommit("helal/daily-tasks.json");
-    if (taskCommit && taskCommit === state.taskCommitSha && state.saveState !== "error") return;
-    const remoteTasks = await dbGet("helal/daily-tasks.json", taskCommit).catch(() => dbGetRaw("helal/daily-tasks.json"));
-    const remoteReports = await dbGet("helal/reports.json", taskCommit).catch(() => state.reportsFile);
-    const remoteHr = await dbGet("helal/hr.json", taskCommit).catch(() => state.hrFile || emptyHr());
+    const remoteTasks = await dbGet("helal/daily-tasks.json").catch(() => dbGetRaw("helal/daily-tasks.json"));
+    const remoteReports = await dbGet("helal/reports.json").catch(() => state.reportsFile);
+    const remoteHr = await dbGet("helal/hr.json").catch(() => state.hrFile || emptyHr());
     if (state.saveState === "saving") return;
     const before = tasksSignature(state.tasksFile);
     const replay = mineNewerFile(remoteTasks, state.tasksFile);
     state.tasksFile = replay ? mergeTaskFiles(remoteTasks, replay) : remoteTasks;
     if (remoteReports) state.reportsFile = remoteReports;
     state.hrFile = remoteHr || emptyHr();
-    state.taskCommitSha = taskCommit || state.taskCommitSha;
-    state.headSha = taskCommit || state.headSha;
     cacheBoard();
     if (tasksSignature(state.tasksFile) !== before) render();
   } catch (_) {}
@@ -1043,7 +1057,7 @@ function setStatus(taskId, next) {
 }
 
 function assignTask({ who, space, title, due, drive, project, status, notes }) {
-  if (!who || !title) return;
+  if (!canAssignTasks() || !who || !title) return;
   const date = due || today();
   const day = ensureDay(date);
   const id = `t-${date.replaceAll("-", "")}-${who.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now().toString(36)}`;
@@ -1068,10 +1082,8 @@ function assignTask({ who, space, title, due, drive, project, status, notes }) {
   });
   state.creating = false;
   state.draft = null;
-  state.taskCommitSha = "";
   render();
   saveTasks(`board: ${state.who} assigned ${who} — ${title}`).then(() => {
-    state.taskCommitSha = "";
     pullRemoteBoard();
   });
 }
@@ -1212,18 +1224,20 @@ function viewBoard() {
           ? (isAdmin()
             ? $("p", { class: "muted" }, "Drop here to mark done. Saved to GitHub.")
             : $("p", { class: "muted" }, "Only admins can mark Done."))
-          : $("button", {
-            class: "btn",
-            style: "margin-top:12px",
-            onclick: () => {
-              state.creating = true;
-              state.createStatus = status;
-              state.draft = null;
-              state.dueDraft = today();
-              state.dueMonth = today().slice(0, 7);
-              render();
-            },
-          }, "New task"),
+          : (canAssignTasks()
+            ? $("button", {
+              class: "btn",
+              style: "margin-top:12px",
+              onclick: () => {
+                state.creating = true;
+                state.createStatus = status;
+                state.draft = null;
+                state.dueDraft = today();
+                state.dueMonth = today().slice(0, 7);
+                render();
+              },
+            }, "New task")
+            : null),
       ]);
     })
   );
@@ -1880,13 +1894,15 @@ function dueCalendar() {
 
 function createForm(onDone) {
   if (!state.draft) {
-    state.draft = { who: isAdmin() ? "" : state.who, space: "Social", project: "", title: "", notes: "", drive: "" };
+    state.draft = { who: canAssignTasks() ? "" : state.who, space: "Social", project: "", title: "", notes: "", drive: "" };
   }
   const d = state.draft;
-  if (!isAdmin()) d.who = state.who;
-  const assignees = isAdmin() ? people().filter((p) => p.access !== "admin" || p.name === "Tasneem") : people().filter((p) => p.name === state.who);
-  const who = $("select", { disabled: !isAdmin(), required: true }, [
-    isAdmin() ? $("option", { value: "", selected: !d.who }, "Choose teammate") : null,
+  if (!canAssignTasks()) d.who = state.who;
+  const assignees = canAssignTasks()
+    ? people().filter((p) => p.access !== "admin" || p.name === "Tasneem")
+    : people().filter((p) => p.name === state.who);
+  const who = $("select", { disabled: !canAssignTasks(), required: true }, [
+    canAssignTasks() ? $("option", { value: "", selected: !d.who }, "Choose teammate") : null,
     ...assignees.map((p) => $("option", { value: p.name, selected: p.name === d.who }, p.name)),
   ]);
   const space = $("select", {}, SPACES.map((s) => $("option", { value: s, selected: s === d.space }, s)));
@@ -1959,7 +1975,7 @@ function createForm(onDone) {
 }
 
 function viewCreateModal() {
-  if (!state.creating) return null;
+  if (!state.creating || !canAssignTasks()) return null;
   const close = () => { state.creating = false; state.draft = null; render(); };
   return [
     $("div", { class: "modal-bg", onclick: close }),
@@ -2351,7 +2367,7 @@ function viewGuide() {
     ["Log in", "Choose your name and password. Amr and Tasneem use the admin password."],
     ["Your board", "Members see only their tasks. Admins see the team. Columns are To do, In progress, Review, Revisions, and Done."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
-    ["Create a task", "Use New task. Fill the brief and pick the due date on the calendar. Only the creator can later edit the brief."],
+    ["Create a task", "Only Amr, Tasneem, Mariam, and Judi can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it on their board."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
@@ -2451,17 +2467,19 @@ function render() {
           $("option", { value: "all", selected: state.dateFilter === "all" }, "All dates"),
           $("option", { value: today(), selected: state.dateFilter === today() }, `Today · ${today()}`),
         ]),
-        $("button", {
-          class: "btn primary",
-          onclick: () => {
-            state.creating = true;
-            state.createStatus = "To do";
-            state.draft = null;
-            state.dueDraft = today();
-            state.dueMonth = today().slice(0, 7);
-            render();
-          },
-        }, "New task"),
+        canAssignTasks()
+          ? $("button", {
+            class: "btn primary",
+            onclick: () => {
+              state.creating = true;
+              state.createStatus = "To do";
+              state.draft = null;
+              state.dueDraft = today();
+              state.dueMonth = today().slice(0, 7);
+              render();
+            },
+          }, "New task")
+          : null,
         $("button", {
           class: "btn ghost",
           onclick: () => {
@@ -2513,7 +2531,7 @@ function watchCairoDay() {
       return;
     }
     if (state.view === "load" && allTasks().some((t) => t.status === "In progress")) render();
-  }, 8000);
+  }, 4000);
 }
 
 loadAll()
