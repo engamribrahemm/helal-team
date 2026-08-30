@@ -1345,6 +1345,7 @@ function submitReport(fields) {
     unfinished: fields.unfinished,
     drive: fields.drive,
     need_review: fields.need_review,
+    place: fields.place || "",
     created_at: new Date().toISOString(),
   });
   state.reportDay = fields.date || today();
@@ -2351,6 +2352,8 @@ function reportDaySummary(day) {
   const submittedNames = [...new Set(dayReports.map((r) => r.who))];
   const missing = people().filter((p) => !submittedNames.includes(p.name));
   const chip = (name, tone) => $("span", { class: `name-chip ${tone}` }, name);
+  const office = dayReports.filter((r) => r.place === "Office").map((r) => r.who);
+  const remote = dayReports.filter((r) => r.place === "Remote").map((r) => r.who);
   return $("div", { class: "report-summary" }, [
     $("article", { class: "card" }, [
       $("h3", {}, "Submitted"),
@@ -2358,6 +2361,12 @@ function reportDaySummary(day) {
       submittedNames.length
         ? $("div", { class: "chip-row" }, submittedNames.map((name) => chip(name, "tone-green")))
         : $("p", { class: "empty" }, "Nobody has submitted yet."),
+      office.length || remote.length
+        ? $("p", { class: "muted", style: "margin-top:10px" }, [
+          office.length ? `Office: ${office.join(", ")}. ` : "",
+          remote.length ? `Remote: ${remote.join(", ")}.` : "",
+        ].join(""))
+        : null,
     ]),
     $("article", { class: "card" }, [
       $("h3", {}, "Not yet"),
@@ -2377,6 +2386,7 @@ function reportCard(r) {
     qaBlock("Drive links", r.drive
       ? $("a", { href: r.drive, target: "_blank", rel: "noreferrer" }, r.drive)
       : "—"),
+    qaBlock("Were you remote or in the office today?", r.place || "—"),
     qaBlock("Do you need review?", r.need_review ? "Yes" : "No"),
   ]);
 }
@@ -2495,6 +2505,8 @@ function viewReport() {
   const unfinished = $("textarea", { placeholder: "Your answer" });
   const drive = $("input", { type: "url", placeholder: "https://" });
   const need = $("input", { type: "checkbox" });
+  const remote = $("input", { type: "radio", name: "report-place", value: "Remote", required: true });
+  const office = $("input", { type: "radio", name: "report-place", value: "Office", required: true });
   return $("section", { class: "card", style: "max-width:640px" }, [
     $("h2", {}, "Daily report"),
     $("p", { class: "muted" }, `Cairo date ${today()}. Admins read this as question and answer on the dashboard.`),
@@ -2503,19 +2515,30 @@ function viewReport() {
       style: "margin-top:16px",
       onsubmit: (e) => {
         e.preventDefault();
+        const place = remote.checked ? "Remote" : office.checked ? "Office" : "";
         submitReport({
           date: today(),
           finished: finished.value.trim(),
           unfinished: unfinished.value.trim(),
           drive: drive.value.trim(),
           need_review: need.checked,
+          place,
         });
         finished.value = "";
         unfinished.value = "";
         drive.value = "";
         need.checked = false;
+        remote.checked = false;
+        office.checked = false;
       },
     }, [
+      $("label", {}, [
+        "Were you remote or in the office today?",
+        $("div", { class: "place-picks" }, [
+          $("label", { class: "place-pick" }, [remote, "Remote"]),
+          $("label", { class: "place-pick" }, [office, "Office"]),
+        ]),
+      ]),
       $("label", {}, ["What did you finish today?", finished]),
       $("label", {}, ["What is unfinished or blocking you?", unfinished]),
       $("label", {}, ["Drive links", drive]),
@@ -2802,7 +2825,7 @@ function viewGuide() {
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "From Friday, set Home or Office for the week and press Save. After Save the week is locked. To change a day, request it. Amr or Tasneem approve or decline on the Attendance dashboard."],
-    ["Evening report", "Open Report and answer each question. Admins read it on the dashboard."],
+    ["Evening report", "Open Report, choose Remote or Office, and answer each question. Admins read it on the dashboard."],
     ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, quality by role, revision level, hours, attitude, and warnings. Rewards come later."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>

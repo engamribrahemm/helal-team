@@ -248,6 +248,32 @@ label {
   letter-spacing: 0.04em;
 }
 
+.place-picks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.place-pick {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.place-pick input {
+  width: auto;
+  margin: 0;
+}
+
 .banner {
   border: 1px solid var(--line);
   background: var(--bg-2);
