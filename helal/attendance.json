@@ -16,6 +16,14 @@
           },
           "updated_at": "2026-08-30T18:19:50.996Z",
           "updated_by": "Amr"
+        },
+        "Seif": {
+          "days": {
+            "2026-08-28": "Home",
+            "2026-08-29": "Office"
+          },
+          "updated_at": "2026-08-30T18:20:38.058Z",
+          "updated_by": "Seif"
         }
       }
     }
