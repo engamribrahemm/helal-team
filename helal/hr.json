@@ -63,7 +63,32 @@
       "mode": "Remote"
     }
   },
-  "reviews": [],
+  "reviews": [
+    {
+      "id": "ev-t-20260822-seif",
+      "task_id": "t-20260822-seif",
+      "who": "Seif",
+      "role": "design",
+      "quarter": "2026-Q3",
+      "delivery": 5,
+      "quality": {
+        "color": 5,
+        "type": 4,
+        "brand": 4,
+        "layout": 4,
+        "detail": 3,
+        "ready": 4
+      },
+      "quality_avg": 4,
+      "revision_rating": 4,
+      "revision_count": 1,
+      "creativity": 2,
+      "notes": "",
+      "by": "Tasneem",
+      "created_at": "2026-08-30T17:08:15.386Z",
+      "updated_at": "2026-08-30T17:08:15.387Z"
+    }
+  ],
   "attitude": [],
   "warnings": [],
   "rewards": []
