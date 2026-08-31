@@ -1635,7 +1635,7 @@ function viewPromptModals() {
 
 function viewEvalModal() {
   const task = findTask(state.evalTaskId);
-  if (!task) return [];
+  if (!task || !["Review", "Revisions", "Done"].includes(task.status)) return [];
   const person = people().find((p) => p.name === task.who);
   const track = qualityTrack(person);
   const criteria = QUALITY_CRITERIA[track] || QUALITY_CRITERIA.other;
@@ -1814,9 +1814,11 @@ function viewHrScores(q) {
 }
 
 function viewHrTasks() {
-  const tasks = [...allTasks()].sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""));
+  const tasks = [...allTasks()]
+    .filter((t) => t.status === "Review" || t.status === "Done")
+    .sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""));
   return $("section", { class: "card" }, [
-    $("p", { class: "muted" }, "Assigned, start, deadline, delivery, delay days, notice, and Drive. Evaluate quality from here or Dashboard."),
+    $("p", { class: "muted" }, "Only Review and Done. Score delivery and quality here, then mark done if it is still in Review."),
     $("div", { class: "load-table-wrap" }, [
       $("table", { class: "load-table" }, [
         $("thead", {}, $("tr", {}, ["Task", "Employee", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Days", "Notice", "Drive", ""].map((h) => $("th", {}, h)))),
@@ -1839,7 +1841,7 @@ function viewHrTasks() {
               onclick: () => { state.evalTaskId = t.id; render(); },
             }, "Evaluate")),
           ])
-        ) : $("tr", {}, $("td", { colspan: "12" }, "No tasks yet."))),
+        ) : $("tr", {}, $("td", { colspan: "12" }, "No tasks in Review or Done yet."))),
       ]),
     ]),
   ]);
