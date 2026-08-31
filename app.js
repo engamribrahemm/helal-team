@@ -1661,15 +1661,32 @@ function workFor(name) {
   };
 }
 
-function reviewsFor(name, quarter) {
-  return ensureHr().reviews.filter((r) => r.who === name && (!quarter || r.quarter === quarter));
+function inMonth(date, month) {
+  if (!date || !month) return false;
+  return String(date).slice(0, 7) === month;
 }
 
-function computedDelivery(name, quarter) {
+function taskMonth(task) {
+  return (deliveryDate(task) || task.done_on || task.due || assignedDate(task) || "").slice(0, 7);
+}
+
+function reviewMonth(row) {
+  if (row?.month) return row.month;
+  if (row?.created_at) return cairoDate(row.created_at).slice(0, 7) || row.created_at.slice(0, 7);
+  const task = row?.task_id ? findTask(row.task_id) : null;
+  if (task) return taskMonth(task);
+  return "";
+}
+
+function reviewsFor(name, month) {
+  return ensureHr().reviews.filter((r) => r.who === name && (!month || reviewMonth(r) === month));
+}
+
+function computedDelivery(name, month) {
   const tasks = allTasks().filter((t) => {
     if (t.who !== name) return false;
     if (!["Review", "Revisions", "Done"].includes(t.status)) return false;
-    return inQuarter(deliveryDate(t) || t.done_on || t.due, quarter);
+    return inMonth(deliveryDate(t) || t.done_on || t.due, month);
   });
   if (!tasks.length) return 0;
   const onTime = tasks.filter((t) => !isLateTask(t) || delayExcused(t)).length;
@@ -1681,12 +1698,11 @@ function computedDelivery(name, quarter) {
   return 1;
 }
 
-function personScore(name, quarter, month) {
-  const q = quarter || currentQuarter();
+function personScore(name, month) {
   const m = month || today().slice(0, 7);
-  const rows = reviewsFor(name, q);
+  const rows = reviewsFor(name, m);
   const w = ensureHr().weights;
-  const delivery = avg(rows.map((r) => r.delivery).filter(Boolean)) || computedDelivery(name, q);
+  const delivery = avg(rows.map((r) => r.delivery).filter(Boolean)) || computedDelivery(name, m);
   const quality = avg(rows.map((r) => r.quality_avg).filter(Boolean));
   const revisions = avg(rows.map((r) => r.revision_rating).filter(Boolean));
   const creativity = avg(rows.map((r) => r.creativity).filter(Boolean));
@@ -1700,7 +1716,7 @@ function personScore(name, quarter, month) {
   const total = parts.reduce((s, [n, wt]) => s + n * wt, 0) / weightSum;
   const attitudeRows = ensureHr().attitude.filter((a) => a.who === name && a.month === m);
   const attitude = avg(attitudeRows.map((a) => avg(ATTITUDE_CRITERIA.map(([k]) => Number(a[k]) || 0))));
-  return { name, quarter: q, month: m, delivery, quality, revisions, creativity, total, attitude, reviews: rows.length };
+  return { name, month: m, delivery, quality, revisions, creativity, total, attitude, reviews: rows.length };
 }
 
 function scoreSelect(value) {
@@ -1803,6 +1819,7 @@ function viewEvalModal() {
             task_id: task.id,
             who: task.who,
             role: track,
+            month: (deliveryDate(task) || today()).slice(0, 7),
             quarter: currentQuarter(deliveryDate(task) || today()),
             delivery: Number(delivery.value) || 0,
             quality,
@@ -1866,9 +1883,7 @@ function profileBar(label, value) {
 }
 
 function viewHr() {
-  const q = state.hrQuarter || currentQuarter();
   const month = state.hrMonth || today().slice(0, 7);
-  const monthly = state.hrTab === "attitude" || state.hrTab === "warnings";
   const profile = state.hrTab === "profile";
   const roster = hrMembers();
   if (!state.hrPerson || !roster.some((p) => p.name === state.hrPerson)) {
@@ -1898,58 +1913,35 @@ function viewHr() {
         $("h2", {}, "Member"),
         whoSel,
       ]
-      : monthly
-        ? [
-          $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, -1); render(); } }, "Prev"),
-          $("h2", {}, monthLabel(month)),
-          $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, 1); render(); } }, "Next"),
-        ]
-        : [
-          $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, -1); render(); } }, "Prev"),
-          $("h2", {}, q),
-          $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
-        ]),
+      : [
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, -1); render(); } }, "Prev"),
+        $("h2", {}, monthLabel(month)),
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, 1); render(); } }, "Next"),
+      ]),
     state.hrTab === "profile" ? viewHrProfile()
-      : state.hrTab === "tasks" ? viewHrTasks()
+      : state.hrTab === "tasks" ? viewHrTasks(month)
       : state.hrTab === "attitude" ? viewHrAttitude(month)
       : state.hrTab === "warnings" ? viewHrWarnings(month)
-      : state.hrTab === "rewards" ? viewHrRewards()
-      : viewHrScores(q),
+      : state.hrTab === "rewards" ? viewHrRewards(month)
+      : viewHrScores(month),
   ]);
-}
-
-function shiftQuarter(q, delta) {
-  const year = Number(q.slice(0, 4));
-  const n = Number(q.slice(-1)) + delta;
-  if (n < 1) return `${year - 1}-Q4`;
-  if (n > 4) return `${year + 1}-Q1`;
-  return `${year}-Q${n}`;
-}
-
-function monthInQuarter(quarter) {
-  const q = quarter || currentQuarter();
-  if (currentQuarter() === q) return today().slice(0, 7);
-  const year = q.slice(0, 4);
-  const n = Number(q.slice(-1));
-  return `${year}-${String(n * 3).padStart(2, "0")}`;
 }
 
 function viewHrProfile() {
   const name = state.hrPerson || hrMembers()[0]?.name;
   const person = people().find((p) => p.name === name);
   if (!person) return $("p", { class: "empty" }, "Choose a teammate.");
-  const q = currentQuarter();
   const month = today().slice(0, 7);
   const lastMonth = shiftYm(month, -1);
   const work = workFor(name);
   const load = loadForPerson(name, month);
-  const score = personScore(name, q, month);
+  const score = personScore(name, month);
   const weights = ensureHr().weights;
   const tasks = allTasks().filter((t) => t.who === name);
   const open = tasks.filter((t) => t.status !== "Done").sort((a, b) => (a.due || "").localeCompare(b.due || ""));
   const doneMonth = tasks.filter((t) => t.status === "Done" && doneMonthOf(t) === month);
   const doneLast = tasks.filter((t) => t.status === "Done" && doneMonthOf(t) === lastMonth);
-  const delivered = tasks.filter((t) => ["Review", "Revisions", "Done"].includes(t.status) && inQuarter(deliveryDate(t) || t.done_on || t.due, q));
+  const delivered = tasks.filter((t) => ["Review", "Revisions", "Done"].includes(t.status) && inMonth(deliveryDate(t) || t.done_on || t.due, month));
   const onTime = delivered.filter((t) => !isLateTask(t) || delayExcused(t)).length;
   const onTimePct = delivered.length ? `${Math.round((onTime / delivered.length) * 100)}%` : "—";
   const missingDrive = open.filter((t) => t.drive_missing);
@@ -1967,7 +1959,7 @@ function viewHrProfile() {
   const warningsAll = ensureHr().warnings.filter((wrow) => wrow.who === name);
   const warningsMonth = warningsAll.filter((wrow) => (wrow.date || "").startsWith(month));
   const attitudeRow = ensureHr().attitude.find((a) => a.who === name && a.month === month);
-  const reviews = reviewsFor(name, q);
+  const reviews = reviewsFor(name, month);
   const taskRow = (t) => $("tr", { class: (t.due && t.due < today() && t.status !== "Done") || (isLateTask(t) && !delayExcused(t)) ? "tone-orange" : "" }, [
     $("td", {}, [$("strong", {}, t.title), t.project ? $("span", { class: "muted" }, ` ${t.project}`) : null]),
     $("td", {}, t.status),
@@ -2002,23 +1994,23 @@ function viewHrProfile() {
       ]),
     ]),
     $("div", { class: "stat-row dense" }, [
-      statBox(formatScore(score.total), `${q} score`, scoreTone(score.total)),
+      statBox(formatScore(score.total), `${monthLabel(month)} score`, scoreTone(score.total)),
       statBox(load.open, "Open now", load.open >= 3 ? "tone-red" : ""),
       statBox(load.overdue, "Overdue", load.overdue ? "tone-red" : ""),
       statBox(load.done, `Done ${monthLabel(month)}`, load.done ? "tone-green" : ""),
-      statBox(onTimePct, "On time this quarter", delivered.length && onTime / delivered.length < 0.8 ? "tone-orange" : ""),
+      statBox(onTimePct, "On time this month", delivered.length && onTime / delivered.length < 0.8 ? "tone-orange" : ""),
       statBox(warningsMonth.length, "Warnings this month", warningsMonth.length ? "tone-orange" : ""),
     ]),
     $("div", { class: "profile-grid" }, [
       $("section", { class: "card" }, [
         $("h3", {}, "Performance"),
-        $("p", { class: "muted" }, `${q} · Delivery ${weights.delivery}% · Quality ${weights.quality}% · Revisions ${weights.revisions}% · Creativity ${weights.creativity}%. Attitude is ${monthLabel(month)}.`),
+        $("p", { class: "muted" }, `${monthLabel(month)} · Delivery ${weights.delivery}% · Quality ${weights.quality}% · Revisions ${weights.revisions}% · Creativity ${weights.creativity}%. Attitude is this month.`),
         profileBar("Delivery", score.delivery),
         profileBar("Quality", score.quality),
         profileBar("Revisions", score.revisions),
         profileBar("Creativity", score.creativity),
         profileBar("Attitude", score.attitude),
-        $("p", { class: "muted", style: "margin-top:12px" }, `${reviews.length} task evaluation${reviews.length === 1 ? "" : "s"} this quarter.`),
+        $("p", { class: "muted", style: "margin-top:12px" }, `${reviews.length} task evaluation${reviews.length === 1 ? "" : "s"} this month.`),
       ]),
       $("section", { class: "card" }, [
         $("h3", {}, "Analytics"),
@@ -2099,7 +2091,7 @@ function viewHrProfile() {
       ]),
     ]),
     $("section", { class: "card" }, [
-      $("h3", {}, `Evaluations · ${q}`),
+      $("h3", {}, `Evaluations · ${monthLabel(month)}`),
       reviews.length
         ? $("div", { class: "load-table-wrap" }, [
           $("table", { class: "load-table" }, [
@@ -2117,20 +2109,19 @@ function viewHrProfile() {
             })),
           ]),
         ])
-        : $("p", { class: "empty" }, "No task evaluations this quarter yet."),
+        : $("p", { class: "empty" }, "No task evaluations this month yet."),
     ]),
   ]);
 }
 
-function viewHrScores(q) {
+function viewHrScores(month) {
   const w = ensureHr().weights;
-  const month = monthInQuarter(q);
-  const rows = people().filter((p) => p.name !== "Amr").map((p) => ({ ...p, ...personScore(p.name, q, month) }));
+  const rows = people().filter((p) => p.name !== "Amr").map((p) => ({ ...p, ...personScore(p.name, month) }));
   const best = [...rows].sort((a, b) => b.total - a.total)[0];
-  const late = allTasks().filter((t) => isLateTask(t) && !delayExcused(t));
-  const missingDrive = allTasks().filter((t) => t.drive_missing && t.status !== "To do");
+  const late = allTasks().filter((t) => isLateTask(t) && !delayExcused(t) && inMonth(deliveryDate(t) || t.due, month));
+  const missingDrive = allTasks().filter((t) => t.drive_missing && t.status !== "To do" && inMonth(t.due || assignedDate(t), month));
   return $("div", { class: "dash" }, [
-    $("p", { class: "muted" }, `Delivery ${w.delivery}% · Quality ${w.quality}% · Revisions ${w.revisions}% · Creativity ${w.creativity}%. Attitude and warnings are scored by month, separate from this score.`),
+    $("p", { class: "muted" }, `${monthLabel(month)} · Delivery ${w.delivery}% · Quality ${w.quality}% · Revisions ${w.revisions}% · Creativity ${w.creativity}%. Attitude is scored separately this month.`),
     $("div", { class: "stat-row" }, [
       statBox(rows.filter((r) => r.total >= 4).length, "On track (4+)"),
       statBox(late.length, "Late without a clear blocker", late.length ? "tone-orange" : ""),
@@ -2147,7 +2138,7 @@ function viewHrScores(q) {
             `Revisions ${w.revisions}%`,
             `Creativity ${w.creativity}%`,
             "Score",
-            `Attitude · ${monthLabel(month)}`,
+            "Attitude",
           ].map((h) => $("th", {}, h)))),
           $("tbody", {}, rows.map((r) =>
             $("tr", {}, [
@@ -2166,12 +2157,13 @@ function viewHrScores(q) {
   ]);
 }
 
-function viewHrTasks() {
+function viewHrTasks(month) {
   const tasks = [...allTasks()]
     .filter((t) => t.status === "Review" || t.status === "Done")
+    .filter((t) => taskMonth(t) === month)
     .sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""));
   return $("section", { class: "card" }, [
-    $("p", { class: "muted" }, "Only Review and Done. Score delivery and quality here, then mark done if it is still in Review."),
+    $("p", { class: "muted" }, `${monthLabel(month)} · only Review and Done this month. Score delivery and quality here.`),
     $("div", { class: "load-table-wrap" }, [
       $("table", { class: "load-table" }, [
         $("thead", {}, $("tr", {}, ["Task", "Employee", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Days", "Notice", "Drive", ""].map((h) => $("th", {}, h)))),
@@ -2194,7 +2186,7 @@ function viewHrTasks() {
               onclick: () => { state.evalTaskId = t.id; render(); },
             }, "Evaluate")),
           ])
-        ) : $("tr", {}, $("td", { colspan: "12" }, "No tasks in Review or Done yet."))),
+        ) : $("tr", {}, $("td", { colspan: "12" }, "No Review or Done tasks this month."))),
       ]),
     ]),
   ]);
@@ -2317,24 +2309,24 @@ function viewHrWarnings(month) {
   ]);
 }
 
-function viewHrRewards() {
-  const q = state.hrQuarter || currentQuarter();
-  const rows = people().filter((p) => p.name !== "Amr").map((p) => personScore(p.name, q)).sort((a, b) => b.total - a.total);
+function viewHrRewards(month) {
+  const m = month || today().slice(0, 7);
+  const rows = people().filter((p) => p.name !== "Amr").map((p) => personScore(p.name, m)).sort((a, b) => b.total - a.total);
   const lead = rows.find((r) => r.total > 0);
   return $("section", { class: "card" }, [
     $("h2", {}, "Rewards — later"),
-    $("p", { class: "muted" }, "Quarterly bonus and Best Employee will use these scores. Deductions stay off until Tasneem confirms the policy."),
+    $("p", { class: "muted" }, "Monthly scores will feed bonus and Best Employee later. Deductions stay off until Tasneem confirms the policy."),
     lead
-      ? $("p", {}, `Current lead for ${q}: ${lead.name} · ${formatScore(lead.total)}`)
-      : $("p", { class: "empty" }, "No scores yet this quarter."),
+      ? $("p", {}, `Current lead for ${monthLabel(m)}: ${lead.name} · ${formatScore(lead.total)}`)
+      : $("p", { class: "empty" }, "No scores yet this month."),
   ]);
 }
 
 function myHrCard() {
-  const score = personScore(state.who, currentQuarter());
+  const score = personScore(state.who, today().slice(0, 7));
   return $("section", { class: "card" }, [
     $("h2", {}, "Your performance"),
-    $("p", { class: "muted" }, `${score.quarter} · Attitude is this month, separate from this score.`),
+    $("p", { class: "muted" }, `${monthLabel(score.month)} · Attitude is separate from this score.`),
     $("div", { class: "stat-row" }, [
       statBox(formatScore(score.total), "Score", scoreTone(score.total)),
       statBox(formatScore(score.quality), "Quality", scoreTone(score.quality)),
@@ -3255,7 +3247,7 @@ function viewGuide() {
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "From Friday, set Office, Home, or Off for the week and press Save. After Save the week is locked. To change a day, request it. Admins approve or decline on the Attendance dashboard."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Admins read it on the dashboard."],
-    ["HR", "Amr and Tasneem open HR. Profile shows one person: current tasks, scores, attendance, reports, warnings, and evaluations. Attitude and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
+    ["HR", "Amr and Tasneem open HR. Profile shows one person. Performance, task tracking, attitude, and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
     $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
