@@ -1,5 +1,6 @@
 {
   "note": "HR evaluation system. Task delivery, quality, revisions, creativity, hours, and attitude. Rewards and deductions come later.",
+  "reset_at": "2026-08-31T16:05:00.000Z",
   "weights": {
     "delivery": 35,
     "quality": 35,
@@ -14,6 +15,12 @@
       "mode": "Hybrid"
     },
     "Tasneem": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Hybrid"
+    },
+    "Moamen": {
       "type": "Full-time",
       "days": "Sun–Thu",
       "hours": "10:00–18:00",
@@ -54,105 +61,10 @@
       "days": "Sun–Thu",
       "hours": "10:00–18:00",
       "mode": "Remote"
-    },
-    "Graphic (name unconfirmed)": {
-      "type": "Full-time",
-      "days": "Sun–Thu",
-      "hours": "10:00–18:00",
-      "mode": "Remote"
     }
   },
-  "reviews": [
-    {
-      "id": "ev-t-20260822-seif",
-      "task_id": "t-20260822-seif",
-      "who": "Seif",
-      "role": "design",
-      "quarter": "2026-Q3",
-      "delivery": 5,
-      "quality": {
-        "color": 5,
-        "type": 4,
-        "brand": 4,
-        "layout": 4,
-        "detail": 3,
-        "ready": 4
-      },
-      "quality_avg": 4,
-      "revision_rating": 4,
-      "revision_count": 1,
-      "creativity": 2,
-      "notes": "",
-      "by": "Tasneem",
-      "created_at": "2026-08-30T17:08:15.386Z",
-      "updated_at": "2026-08-30T17:08:15.387Z"
-    },
-    {
-      "id": "ev-t-20260830-seif-mtep9weo",
-      "task_id": "t-20260830-seif-mtep9weo",
-      "who": "Seif",
-      "role": "design",
-      "quarter": "2026-Q3",
-      "delivery": 4,
-      "quality": {
-        "color": 1,
-        "type": 1,
-        "brand": 1,
-        "layout": 1,
-        "detail": 1,
-        "ready": 1
-      },
-      "quality_avg": 1,
-      "revision_rating": 2,
-      "revision_count": 0,
-      "creativity": 2,
-      "notes": "",
-      "by": "Amr",
-      "created_at": "2026-08-30T17:11:57.856Z",
-      "updated_at": "2026-08-31T15:28:40.036Z"
-    },
-    {
-      "id": "ev-t-20260830-alaa-mtg1ukxh",
-      "task_id": "t-20260830-alaa-mtg1ukxh",
-      "who": "Alaa",
-      "role": "design",
-      "quarter": "2026-Q3",
-      "delivery": 4,
-      "quality": {
-        "color": 5,
-        "type": 3,
-        "brand": 4,
-        "layout": 5,
-        "detail": 4,
-        "ready": 4
-      },
-      "quality_avg": 4.166666666666667,
-      "revision_rating": 5,
-      "revision_count": 0,
-      "creativity": 4,
-      "notes": "",
-      "by": "Amr",
-      "created_at": "2026-08-31T15:30:36.249Z",
-      "updated_at": "2026-08-31T15:30:36.249Z"
-    }
-  ],
-  "attitude": [
-    {
-      "id": "at-Mariam-2026-08",
-      "who": "Mariam",
-      "month": "2026-08",
-      "notes": "",
-      "by": "Amr",
-      "created_at": "2026-08-31T15:46:29.649Z",
-      "updated_at": "2026-08-31T15:46:29.649Z",
-      "communication": 1,
-      "teamwork": 2,
-      "responsibility": 2,
-      "respect": 4,
-      "feedback": 4,
-      "problems": 2
-    }
-  ],
+  "reviews": [],
+  "attitude": [],
   "warnings": [],
   "rewards": []
 }

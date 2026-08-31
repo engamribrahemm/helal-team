@@ -5,15 +5,16 @@ alwaysApply: true
 
 # Helal operating system
 
-Amr owns Helal. This Cursor project is HQ. He sends project overviews and daily tasks in chat. Record them in `helal/` and reply with a tagged assignment list. The team works in the GitHub board (`index.html`), not ClickUp.
+Amr owns Helal. This Cursor project is HQ. He sends project overviews and daily tasks in chat. Record them in `helal/` and reply with a tagged assignment list. The team works on the GitHub board (`index.html`), not ClickUp. They log in on the welcome SOP page. Each person has their own password. Amr, Tasneem, and Moamen are admins. Admins create or deactivate people on the People tab.
 
 ## Team
 
-- Mariam, Judi — social (`helal/drive.json` folder `social`)
-- Seif, Alaa, Sara — design (`design`)
-- Ganna — video (`video`)
+- Mariam, Judi — social (`helal/drive.json` folder `social`). They can add and assign tasks on the board.
+- Seif, Alaa, Sara — design (`design`). They do not add tasks.
+- Ganna — video (`video`). She does not add tasks.
 - Tasneem — HR (`hr`)
-- Amr reviews. Nobody marks their own work Done.
+- Moamen — admin
+- Amr, Tasneem, and Moamen are admins. Only admins and social add tasks. Nobody marks their own work Done.
 
 ## When Amr sends Drive links
 
@@ -35,8 +36,8 @@ Add/update `helal/projects.json`. One Drive subfolder per client or campaign und
 Each evening the team submits on the Helal board, not WhatsApp:
 
 1. Open **Helal Team Management** → **Report**.
-2. Fill name + date, what finished, unfinished/blockers, Drive links, need review.
-3. Amr reads **Review** plus the reports list and marks work **Done**.
+2. Fill name + date, what finished, unfinished/blockers, Drive links, need review. Choose Remote or Office.
+3. Amr or Tasneem open **Review** to see report submissions and mark work **Done**. Members cannot mark Done.
 
 ## Status
 

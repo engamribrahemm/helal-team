@@ -1,11 +1,13 @@
 {
   "agency": "Helal",
+  "updated_at": "2026-08-31T16:05:00.000Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
     "role": "Owner / reviewer",
     "mention": "@Amr",
-    "access": "admin"
+    "access": "admin",
+    "active": true
   },
   "people": [
     {
@@ -15,7 +17,8 @@
       "home": "social",
       "mention": "@Mariam",
       "email": "mariamsoltan808@gmail.com",
-      "access": "member"
+      "access": "member",
+      "active": true
     },
     {
       "id": "judi",
@@ -24,7 +27,8 @@
       "home": "social",
       "mention": "@Judi",
       "email": "",
-      "access": "member"
+      "access": "member",
+      "active": true
     },
     {
       "id": "seif",
@@ -33,7 +37,8 @@
       "home": "design",
       "mention": "@Seif",
       "email": "saifahmed0801@gmail.com",
-      "access": "member"
+      "access": "member",
+      "active": true
     },
     {
       "id": "alaa",
@@ -42,7 +47,8 @@
       "home": "design",
       "mention": "@Alaa",
       "email": "",
-      "access": "member"
+      "access": "member",
+      "active": true
     },
     {
       "id": "sara",
@@ -51,17 +57,8 @@
       "home": "design",
       "mention": "@Sara",
       "email": "",
-      "access": "member"
-    },
-    {
-      "id": "graphic_unconfirmed",
-      "name": "Graphic (name unconfirmed)",
-      "role": "Graphic designer",
-      "home": "design",
-      "mention": "@Graphic",
-      "email": "af5656971@gmail.com",
       "access": "member",
-      "note": "Amr sent this as graphic. Confirm if this is Alaa or Sara."
+      "active": true
     },
     {
       "id": "ganna",
@@ -70,7 +67,8 @@
       "home": "video",
       "mention": "@Ganna",
       "email": "gannayaser1020@gmail.com",
-      "access": "member"
+      "access": "member",
+      "active": true
     },
     {
       "id": "tasneem",
@@ -79,7 +77,18 @@
       "home": "hr",
       "mention": "@Tasneem",
       "email": "tasneemyasserelmohamdy@gmail.com",
-      "access": "admin"
+      "access": "admin",
+      "active": true
+    },
+    {
+      "id": "moamen",
+      "name": "Moamen",
+      "role": "Admin",
+      "home": "hr",
+      "mention": "@Moamen",
+      "email": "",
+      "access": "admin",
+      "active": true
     }
   ]
 }

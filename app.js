@@ -70,6 +70,7 @@ const WARNING_ISSUES = [
 const RESPONSE_LEVELS = ["Reliable", "Needs follow-up"];
 const WORK_TYPES = ["Full-time", "Part-time"];
 const WORK_MODES = ["Remote", "Office", "Hybrid"];
+const TEAM_HOMES = ["social", "design", "video", "hr"];
 
 const state = {
   view: "board",
@@ -217,6 +218,8 @@ function isBoardKey(token) {
   const value = String(token || "").trim();
   if (!/^(ghp_|github_pat_)/.test(value) || value.length < 20) return false;
   if (value === state.auth?.admin_pin || value === state.auth?.member_pin) return false;
+  const pins = Object.values(state.auth?.users || {}).map((u) => u?.pin).filter(Boolean);
+  if (pins.includes(value)) return false;
   return true;
 }
 
@@ -252,9 +255,19 @@ async function connectDatabase(token) {
   }
 }
 
-function people() {
+function allPeople() {
   if (!state.team) return [];
-  return [state.team.owner, ...state.team.people];
+  return [state.team.owner, ...(state.team.people || [])].filter(Boolean);
+}
+
+function people() {
+  return allPeople().filter((p) => p.active !== false);
+}
+
+function pinFor(name) {
+  const row = state.auth?.users?.[name];
+  if (row?.pin) return row.pin;
+  return accessFor(name) === "admin" ? state.auth?.admin_pin : state.auth?.member_pin;
 }
 
 function accessFor(name) {
@@ -466,9 +479,22 @@ function pickTask(a, b) {
   return (rank[b.status] || 0) >= (rank[a.status] || 0) ? b : a;
 }
 
+function fileReset(file) {
+  return Date.parse(file?.reset_at || 0) || 0;
+}
+
 function mergeTaskFiles(remote, local) {
+  const resetAt = Math.max(fileReset(remote), fileReset(local));
+  const resetIso = resetAt ? new Date(resetAt).toISOString() : (remote?.reset_at || local?.reset_at || "");
+  const usable = (file) => {
+    if (!file) return file;
+    if (!resetAt || fileReset(file) >= resetAt) return file;
+    return { ...file, days: [], reset_at: resetIso };
+  };
+  const a = usable(remote);
+  const b = usable(local);
   const byId = new Map();
-  for (const file of [remote, local]) {
+  for (const file of [a, b]) {
     for (const day of file?.days || []) {
       for (const task of day.tasks || []) {
         const next = { ...task, _day: day.date };
@@ -486,11 +512,12 @@ function mergeTaskFiles(remote, local) {
     daysMap.get(date).push(copy);
   }
   return {
-    status: local?.status || remote?.status || "ready",
-    note: remote?.note || local?.note || "",
+    status: b?.status || a?.status || "ready",
+    note: a?.note || b?.note || "",
+    reset_at: resetIso,
     statuses: STATUSES,
     days: [...daysMap.entries()]
-      .sort((a, b) => a[0].localeCompare(b[0]))
+      .sort((x, y) => x[0].localeCompare(y[0]))
       .map(([date, tasks]) => ({ date, source: "Helal board", tasks })),
   };
 }
@@ -728,14 +755,23 @@ function mergeById(remote = [], local = []) {
 function mergeHr(remote, local) {
   const a = remote || emptyHr();
   const b = local || emptyHr();
+  const resetAt = Math.max(fileReset(a), fileReset(b));
+  const resetIso = resetAt ? new Date(resetAt).toISOString() : (a.reset_at || b.reset_at || "");
+  const lists = (file, key) => {
+    if (!resetAt || fileReset(file) >= resetAt) return file?.[key] || [];
+    return [];
+  };
+  const work = { ...a.work, ...b.work };
+  delete work["Graphic (name unconfirmed)"];
   return {
     note: b.note || a.note,
+    reset_at: resetIso,
     weights: canonicalHrWeights(),
-    work: { ...a.work, ...b.work },
-    reviews: mergeById(a.reviews, b.reviews),
-    attitude: mergeById(a.attitude, b.attitude),
-    warnings: mergeById(a.warnings, b.warnings),
-    rewards: mergeById(a.rewards, b.rewards),
+    work,
+    reviews: mergeById(lists(a, "reviews"), lists(b, "reviews")),
+    attitude: mergeById(lists(a, "attitude"), lists(b, "attitude")),
+    warnings: mergeById(lists(a, "warnings"), lists(b, "warnings")),
+    rewards: mergeById(lists(a, "rewards"), lists(b, "rewards")),
   };
 }
 
@@ -803,8 +839,14 @@ function formatScore(n) {
 }
 
 function mergeReports(remote, local) {
+  const resetAt = Math.max(fileReset(remote), fileReset(local));
+  const resetIso = resetAt ? new Date(resetAt).toISOString() : (remote?.reset_at || local?.reset_at || "");
+  const usable = (file) => {
+    if (!resetAt || fileReset(file) >= resetAt) return file?.reports || [];
+    return [];
+  };
   const byId = new Map();
-  for (const report of [...(remote?.reports || []), ...(local?.reports || [])]) {
+  for (const report of [...usable(remote), ...usable(local)]) {
     const prev = byId.get(report.id);
     if (!prev || Date.parse(report.created_at || 0) >= Date.parse(prev.created_at || 0)) {
       byId.set(report.id, report);
@@ -812,6 +854,7 @@ function mergeReports(remote, local) {
   }
   return {
     note: remote?.note || local?.note || "",
+    reset_at: resetIso,
     reports: [...byId.values()].sort(
       (a, b) => Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0)
     ),
@@ -830,6 +873,7 @@ function flatTasks(file) {
 }
 
 function mineNewerFile(remote, local) {
+  if (fileReset(remote) > fileReset(local)) return null;
   const who = state.who || state.session?.who;
   if (!who || !local?.days) return null;
   const remoteById = new Map(flatTasks(remote).map((t) => [t.id, t]));
@@ -994,6 +1038,12 @@ async function dbPut(path, data, message) {
       } else if (path.endsWith("github.json")) {
         payload = persistBoardCfg({ ...remote, ...payload }, assembleBoardKey(payload) || assembleBoardKey(remote));
         state.githubCfg = payload;
+      } else if (path.endsWith("team.json")) {
+        payload = pickNewerFile(remote, payload);
+        state.team = payload;
+      } else if (path.endsWith("auth.json")) {
+        payload = mergeAuth(remote, payload);
+        state.auth = payload;
       }
     } catch (err) {
       lastError = err.message;
@@ -1181,6 +1231,69 @@ async function saveHr(message) {
   });
 }
 
+function pickNewerFile(remote, local) {
+  const rt = Date.parse(remote?.updated_at || 0) || 0;
+  const lt = Date.parse(local?.updated_at || 0) || 0;
+  return lt >= rt ? local : (remote || local);
+}
+
+function mergeAuth(remote, local) {
+  const newer = pickNewerFile(remote, local) || {};
+  const older = newer === local ? remote : local;
+  return {
+    note: newer.note || older?.note || "",
+    updated_at: newer.updated_at || older?.updated_at || "",
+    users: { ...(older?.users || {}), ...(newer.users || {}) },
+  };
+}
+
+function slugPersonId(name) {
+  return String(name || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "") || `p-${Date.now().toString(36)}`;
+}
+
+function makePersonPin(name) {
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let tail = "";
+  for (let i = 0; i < 4; i += 1) tail += alphabet[Math.floor(Math.random() * alphabet.length)];
+  const tag = String(name || "User").replace(/[^A-Za-z]/g, "") || "User";
+  return `Helal-${tag}-${tail}`;
+}
+
+async function saveTeam(message) {
+  return enqueueSave(async () => {
+    state.saveState = "saving";
+    state.saveError = "";
+    render();
+    try {
+      if (!state.team.updated_at) state.team.updated_at = new Date().toISOString();
+      await dbPut("helal/team.json", state.team, message);
+      render();
+    } catch (err) {
+      state.saveState = "error";
+      state.saveError = fetchErrorMessage(err);
+      render();
+    }
+  });
+}
+
+async function saveAuth(message) {
+  return enqueueSave(async () => {
+    state.saveState = "saving";
+    state.saveError = "";
+    render();
+    try {
+      if (!state.auth) state.auth = { users: {} };
+      state.auth.updated_at = new Date().toISOString();
+      await dbPut("helal/auth.json", state.auth, message);
+      render();
+    } catch (err) {
+      state.saveState = "error";
+      state.saveError = fetchErrorMessage(err);
+      render();
+    }
+  });
+}
+
 async function saveAttendance(message) {
   return enqueueSave(async () => {
     state.saveState = "saving";
@@ -1204,6 +1317,8 @@ async function pullRemoteBoard() {
     const remoteReports = await dbGet("helal/reports.json").catch(() => state.reportsFile);
     const remoteHr = await dbGet("helal/hr.json").catch(() => state.hrFile || emptyHr());
     const remoteAttend = await dbGet("helal/attendance.json").catch(() => state.attendFile || emptyAttendance());
+    const remoteTeam = await dbGet("helal/team.json").catch(() => state.team);
+    const remoteAuth = await dbGet("helal/auth.json").catch(() => state.auth);
     if (state.saveState === "saving") return;
     const before = tasksSignature(state.tasksFile);
     const attendBefore = attendSignature(state.attendFile);
@@ -1212,19 +1327,31 @@ async function pullRemoteBoard() {
     if (remoteReports) state.reportsFile = remoteReports;
     state.hrFile = remoteHr || emptyHr();
     state.attendFile = mergeAttendance(remoteAttend || emptyAttendance(), state.attendFile || emptyAttendance());
+    if (remoteTeam) state.team = pickNewerFile(remoteTeam, state.team);
+    if (remoteAuth) state.auth = mergeAuth(remoteAuth, state.auth);
+    if (state.session && !people().some((p) => p.name === state.session.who)) {
+      logout();
+      return;
+    }
     cacheBoard();
     if (tasksSignature(state.tasksFile) !== before || attendSignature(state.attendFile) !== attendBefore) render();
   } catch (_) {}
 }
 
 function login(who, pin) {
-  const role = accessFor(who);
-  const expected = role === "admin" ? state.auth?.admin_pin : state.auth?.member_pin;
-  if (!pin || pin !== expected) {
-    state.loginError = role === "admin" ? "Use the admin password." : "Use the member password.";
+  const person = people().find((p) => p.name === who);
+  if (!person) {
+    state.loginError = "This name is not active. Ask an admin.";
     render();
     return;
   }
+  const expected = pinFor(who);
+  if (!pin || !expected || pin !== expected) {
+    state.loginError = "Wrong password for this name.";
+    render();
+    return;
+  }
+  const role = accessFor(who);
   state.session = { who, role };
   state.who = who;
   state.loginError = "";
@@ -2308,7 +2435,7 @@ function createForm(onDone) {
   const d = state.draft;
   if (!canAssignTasks()) d.who = state.who;
   const assignees = canAssignTasks()
-    ? people().filter((p) => p.access !== "admin" || p.name === "Tasneem")
+    ? people().filter((p) => p.name !== "Amr")
     : people().filter((p) => p.name === state.who);
   const who = $("select", { disabled: !canAssignTasks(), required: true }, [
     canAssignTasks() ? $("option", { value: "", selected: !d.who }, "Choose teammate") : null,
@@ -2728,17 +2855,141 @@ function viewDrive() {
 }
 
 function viewPeople() {
-  return $("div", { class: "people" },
-    people().map((p) =>
-      $("article", { class: "card" }, [
+  const name = $("input", { required: true, placeholder: "Full name" });
+  const role = $("input", { required: true, placeholder: "Role, e.g. Graphic designer" });
+  const home = $("select", {}, TEAM_HOMES.map((h) => $("option", { value: h }, h)));
+  const access = $("select", {}, [
+    $("option", { value: "member", selected: true }, "Member"),
+    $("option", { value: "admin" }, "Admin"),
+  ]);
+  const pin = $("input", { placeholder: "Leave blank to generate" });
+  const roster = allPeople();
+  return $("div", { class: "dash" }, [
+    $("section", { class: "card", style: "max-width:640px" }, [
+      $("h2", {}, "Add a person"),
+      $("p", { class: "muted" }, "Creates a login with its own password. Share that password with them. Deactivate if they leave."),
+      $("form", {
+        class: "form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          addPerson({
+            name: name.value.trim(),
+            role: role.value.trim(),
+            home: home.value,
+            access: access.value,
+            pin: pin.value.trim(),
+          });
+          name.value = "";
+          role.value = "";
+          pin.value = "";
+        },
+      }, [
+        $("label", {}, ["Name", name]),
+        $("label", {}, ["Role", role]),
+        $("label", {}, ["Team", home]),
+        $("label", {}, ["Access", access]),
+        $("label", {}, ["Password", pin]),
+        $("button", { class: "btn primary", type: "submit" }, "Create login"),
+      ]),
+    ]),
+    $("div", { class: "people" }, roster.map((p) => {
+      const isOwner = p.name === "Amr";
+      const pinValue = pinFor(p.name) || "";
+      const pinBox = $("input", { value: pinValue, readOnly: true });
+      return $("article", { class: "card" }, [
         $("p", { class: "title" }, p.name),
         $("p", { class: "muted" }, p.role),
-        isAdmin() && p.email ? $("p", {}, p.email) : null,
-        $("p", { class: "muted" }, `${workFor(p.name).type} · ${workFor(p.name).days} · ${workFor(p.name).hours} · ${workFor(p.name).mode}${workFor(p.name).office_days ? ` · Office ${workFor(p.name).office_days}` : ""}`),
-        $("span", { class: "pill" }, p.access || "member"),
-      ])
-    )
-  );
+        p.email ? $("p", {}, p.email) : null,
+        $("p", { class: "muted" }, `${workFor(p.name).type} · ${workFor(p.name).days} · ${workFor(p.name).hours} · ${workFor(p.name).mode}`),
+        $("div", { class: "meta" }, [
+          $("span", { class: "pill" }, p.access || "member"),
+          p.active === false ? $("span", { class: "pill tone-orange" }, "Deactivated") : $("span", { class: "pill tone-green" }, "Active"),
+        ]),
+        $("label", {}, ["Password", pinBox]),
+        $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;margin-top:10px" }, [
+          $("button", {
+            class: "btn ghost",
+            type: "button",
+            onclick: () => resetPersonPin(p.name),
+          }, "New password"),
+          isOwner
+            ? null
+            : $("button", {
+              class: "btn ghost",
+              type: "button",
+              onclick: () => setPersonActive(p.name, p.active === false),
+            }, p.active === false ? "Reactivate" : "Deactivate"),
+        ]),
+      ]);
+    })),
+  ]);
+}
+
+function addPerson(fields) {
+  const name = fields.name;
+  if (!name) return;
+  if (allPeople().some((p) => samePerson(p.name, name))) {
+    state.saveError = `${name} is already on the team.`;
+    state.saveState = "error";
+    render();
+    return;
+  }
+  const person = {
+    id: slugPersonId(name),
+    name,
+    role: fields.role || "Team member",
+    home: fields.home || "social",
+    mention: `@${name.replace(/\s+/g, "")}`,
+    email: "",
+    access: fields.access === "admin" ? "admin" : "member",
+    active: true,
+    updated_at: new Date().toISOString(),
+  };
+  if (!state.team.people) state.team.people = [];
+  state.team.people.push(person);
+  state.team.updated_at = new Date().toISOString();
+  if (!state.auth) state.auth = { users: {} };
+  if (!state.auth.users) state.auth.users = {};
+  const password = fields.pin || makePersonPin(name);
+  state.auth.users[name] = { pin: password };
+  state.auth.updated_at = new Date().toISOString();
+  ensureHr().work[name] = {
+    type: "Full-time",
+    days: "Sun–Thu",
+    hours: "10:00–18:00",
+    mode: "Remote",
+  };
+  render();
+  saveTeam(`team: add ${name}`);
+  saveAuth(`auth: password for ${name}`);
+  saveHr(`hr: hours for ${name}`);
+}
+
+function setPersonActive(name, active) {
+  if (name === "Amr") return;
+  const stamp = new Date().toISOString();
+  if (state.team.owner?.name === name) {
+    state.team.owner.active = active;
+    state.team.owner.updated_at = stamp;
+  }
+  const row = (state.team.people || []).find((p) => p.name === name);
+  if (row) {
+    row.active = active;
+    row.updated_at = stamp;
+  }
+  state.team.updated_at = stamp;
+  render();
+  saveTeam(`team: ${active ? "reactivate" : "deactivate"} ${name}`);
+}
+
+function resetPersonPin(name) {
+  if (!state.auth) state.auth = { users: {} };
+  if (!state.auth.users) state.auth.users = {};
+  const password = makePersonPin(name);
+  state.auth.users[name] = { pin: password };
+  state.auth.updated_at = new Date().toISOString();
+  render();
+  saveAuth(`auth: new password for ${name}`);
 }
 
 function loadForPerson(name, month) {
@@ -2976,10 +3227,10 @@ function viewAttendance() {
 
 function viewGuide() {
   const steps = [
-    ["Log in", "Choose your name and password. Amr and Tasneem use the admin password."],
+    ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, so they can follow progress. Admins see the team. Columns are To do, In progress, Review, Revisions, and Done."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
-    ["Create a task", "Only Amr, Tasneem, Mariam, and Judi can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it, and social still sees it on their board."],
+    ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it, and social still sees it on their board."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "From Friday, set Home or Office for the week and press Save. After Save the week is locked. To change a day, request it. Amr or Tasneem approve or decline on the Attendance dashboard."],
@@ -3010,7 +3261,7 @@ function viewWelcome() {
       ]),
       $("section", { class: "login-card" }, [
         $("h2", {}, "Sign in"),
-        $("p", { class: "lede" }, "Choose your name and enter your password."),
+        $("p", { class: "lede" }, "Choose your name and enter your own password."),
         $("form", {
           class: "form",
           onsubmit: (e) => {
