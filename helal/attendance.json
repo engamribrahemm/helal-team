@@ -1,6 +1,27 @@
 {
   "note": "Each person marks Office, Home, or Off for the week that starts Friday, then saves. After save, day changes need admin approval.",
   "reset_at": "2026-08-31T16:15:00.000Z",
-  "weeks": {},
+  "weeks": {
+    "2026-08-28": {
+      "start": "2026-08-28",
+      "people": {
+        "Amr": {
+          "days": {
+            "2026-08-28": "Off",
+            "2026-08-29": "Office",
+            "2026-08-30": "Office",
+            "2026-08-31": "Office",
+            "2026-09-01": "Home",
+            "2026-09-02": "Home",
+            "2026-09-03": "Home"
+          },
+          "saved": true,
+          "saved_at": "2026-08-31T16:14:44.957Z",
+          "updated_at": "2026-08-31T16:14:44.957Z",
+          "updated_by": "Amr"
+        }
+      }
+    }
+  },
   "requests": []
 }
