@@ -8,7 +8,7 @@ const LS_REPORTS = "helal.reportsCache";
 const LS_HR = "helal.hrCache";
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const ATTEND_WEEK = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
-const ATTEND_MODES = ["Office", "Home"];
+const ATTEND_MODES = ["Office", "Home", "Off"];
 const LS_ATTEND = "helal.attendCache";
 const DELAY_REASONS = [
   "Unclear brief",
@@ -559,7 +559,7 @@ function emptyHr() {
 
 function emptyAttendance() {
   return {
-    note: "Each person marks Home or Office for the week that starts Friday, then saves. After save, day changes need admin approval.",
+    note: "Each person marks Office, Home, or Off for the week that starts Friday, then saves. After save, day changes need admin approval.",
     weeks: {},
     requests: [],
   };
@@ -683,7 +683,7 @@ function lockMyAttendance(friday) {
   const dates = weekDates(friday);
   const days = attendDaysFor(state.who, friday);
   if (dates.some((date) => !ATTEND_MODES.includes(days[date]))) {
-    state.saveError = "Set Home or Office for every day, then Save.";
+    state.saveError = "Set Office, Home, or Off for every day, then Save.";
     state.saveState = "error";
     render();
     return;
@@ -1950,6 +1950,7 @@ function viewHrProfile() {
   const days = weekDates(friday);
   const officeDays = days.filter((d) => attend[d] === "Office").length;
   const homeDays = days.filter((d) => attend[d] === "Home").length;
+  const offDays = days.filter((d) => attend[d] === "Off").length;
   const reports = (state.reportsFile?.reports || []).filter((r) => r.who === name);
   const reportsMonth = reports.filter((r) => (r.date || "").startsWith(month)).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   const lastReport = [...reports].sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
@@ -2020,7 +2021,7 @@ function viewHrProfile() {
           statBox(liveHours > 0 ? formatHours(liveHours) : "—", "In progress now"),
           statBox(String(revisions), "Revisions logged"),
           statBox(missingDrive.length, "Missing Drive", missingDrive.length ? "tone-orange" : ""),
-          statBox(`${officeDays} / ${homeDays}`, "Office / home this week"),
+          statBox(`${officeDays} / ${homeDays} / ${offDays}`, "Office / home / off this week"),
           statBox(reportsMonth.length, `Reports · ${monthLabel(month).split(" ")[0]}`),
           statBox(warningsAll.length, "Warnings all time", warningsAll.length ? "tone-orange" : ""),
         ]),
@@ -2041,7 +2042,7 @@ function viewHrProfile() {
         $("p", { class: "muted" }, `${friday} → ${days[6]} · ${attendSaved(name, friday) ? "Saved" : "Not saved yet"}.`),
         $("div", { class: "chip-row" }, days.map((date) => {
           const mode = attend[date] || "";
-          return $("span", { class: `attend-chip ${mode === "Office" ? "office" : mode === "Home" ? "home" : "unset"}` }, `${cairoWeekday(date)} ${date.slice(8)} · ${mode || "—"}`);
+          return $("span", { class: `attend-chip ${attendChipClass(mode)}` }, `${cairoWeekday(date)} ${date.slice(8)} · ${mode || "—"}`);
         })),
       ]),
       $("section", { class: "card" }, [
@@ -3064,10 +3065,17 @@ function viewWorkload() {
   ]);
 }
 
+function attendChipClass(mode) {
+  if (mode === "Office") return "office";
+  if (mode === "Home") return "home";
+  if (mode === "Off") return "off";
+  return "unset";
+}
+
 function nextAttendMode(current) {
-  if (current === "Office") return "Home";
-  if (current === "Home") return "";
-  return "Office";
+  const i = ATTEND_MODES.indexOf(current);
+  if (i < 0) return ATTEND_MODES[0];
+  return ATTEND_MODES[(i + 1) % ATTEND_MODES.length];
 }
 
 function viewAttendDashboard() {
@@ -3108,7 +3116,7 @@ function viewAttendDashboard() {
 
 function viewAttendChange(friday, date) {
   const from = attendDaysFor(state.who, friday)[date] || "";
-  const other = from === "Office" ? "Home" : "Office";
+  const other = nextAttendMode(from);
   const draft = state.attendChange || { friday, date, to: other, reason: "" };
   const to = $("select", {}, ATTEND_MODES.map((m) => $("option", { value: m, selected: m === (draft.to || other) }, m)));
   const reason = $("textarea", { placeholder: "Why this change?" }, draft.reason || "");
@@ -3143,7 +3151,8 @@ function viewAttendance() {
   const canDraft = canDraftAttend(state.who, friday);
   const officeToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Office").length;
   const homeToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Home").length;
-  const unsetToday = roster.length - officeToday - homeToday;
+  const offToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Off").length;
+  const unsetToday = roster.length - officeToday - homeToday - offToday;
   const change = state.attendChange;
 
   const pick = (name, date) => {
@@ -3154,7 +3163,7 @@ function viewAttendance() {
       return;
     }
     if (mineSaved && !pendingChangeFor(name, friday, date)) {
-      state.attendChange = { friday, date, to: attendDaysFor(name, friday)[date] === "Office" ? "Home" : "Office", reason: "" };
+      state.attendChange = { friday, date, to: nextAttendMode(attendDaysFor(name, friday)[date] || ""), reason: "" };
       render();
     }
   };
@@ -3175,12 +3184,13 @@ function viewAttendance() {
     $("div", { class: "stat-row" }, [
       statBox(officeToday, "In office today"),
       statBox(homeToday, "Home today"),
+      statBox(offToday, "Off today"),
       statBox(unsetToday, "Not set today"),
     ]),
     $("p", { class: "muted" }, canDraft
-      ? "Set every day on your row, then Save. After Save you cannot edit; you can only request a change."
+      ? "Set Office, Home, or Off for every day on your row, then Save. After Save you cannot edit; you can only request a change."
       : mineSaved
-        ? "Your week is locked. Tap one of your days to request Office ↔ Home."
+        ? "Your week is locked. Tap one of your days to request Office, Home, or Off."
         : "This week is closed. Open This week or Next week to set days, or request a change on a locked week."),
     canDraft
       ? $("div", {}, $("button", { class: "btn primary", type: "button", onclick: () => lockMyAttendance(friday) }, "Save my week"))
@@ -3209,7 +3219,7 @@ function viewAttendance() {
               const requestable = mine && saved && !pending;
               return $("td", {}, [
                 $("button", {
-                  class: `attend-chip ${mode === "Office" ? "office" : mode === "Home" ? "home" : "unset"}${date === todayDate ? " today" : ""}`,
+                  class: `attend-chip ${attendChipClass(mode)}${date === todayDate ? " today" : ""}`,
                   type: "button",
                   disabled: !(draftable || requestable),
                   onclick: () => pick(p.name, date),
@@ -3233,7 +3243,7 @@ function viewGuide() {
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it, and social still sees it on their board."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
-    ["Attendance", "From Friday, set Home or Office for the week and press Save. After Save the week is locked. To change a day, request it. Amr or Tasneem approve or decline on the Attendance dashboard."],
+    ["Attendance", "From Friday, set Office, Home, or Off for the week and press Save. After Save the week is locked. To change a day, request it. Admins approve or decline on the Attendance dashboard."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Admins read it on the dashboard."],
     ["HR", "Amr and Tasneem open HR. Profile shows one person: current tasks, scores, attendance, reports, warnings, and evaluations. Attitude and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
