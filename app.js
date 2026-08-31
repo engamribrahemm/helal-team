@@ -1719,7 +1719,6 @@ function viewHr() {
   const tabs = [
     ["scores", "Performance"],
     ["tasks", "Task tracking"],
-    ["revisions", "Revisions"],
     ["hours", "Hours"],
     ["attitude", "Attitude"],
     ["warnings", "Warnings"],
@@ -1744,7 +1743,6 @@ function viewHr() {
         $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
       ]),
     state.hrTab === "tasks" ? viewHrTasks()
-      : state.hrTab === "revisions" ? viewHrRevisions()
       : state.hrTab === "hours" ? viewHrHours()
       : state.hrTab === "attitude" ? viewHrAttitude(month)
       : state.hrTab === "warnings" ? viewHrWarnings(month)
@@ -1842,42 +1840,6 @@ function viewHrTasks() {
             }, "Evaluate")),
           ])
         ) : $("tr", {}, $("td", { colspan: "12" }, "No tasks in Review or Done yet."))),
-      ]),
-    ]),
-  ]);
-}
-
-function viewHrRevisions() {
-  const rows = allTasks().flatMap((t) => {
-    const log = t.revision_log || [];
-    if (!log.length && (t.revisions || 0) > 0) {
-      return [{ task: t, count: t.revisions, level: "—", reason: "—", at: t.updated_at, by: t.updated_by || "—" }];
-    }
-    return log.map((entry) => ({
-      task: t,
-      count: t.revisions || log.length,
-      level: entry.level || "—",
-      reason: entry.reason || "—",
-      at: entry.at,
-      by: entry.by || "—",
-    }));
-  });
-  return $("section", { class: "card" }, [
-    $("p", { class: "muted" }, "Minor is a small tweak. Medium is a large part. Major is a full rethink. Few natural edits score 5; a full redo scores 1."),
-    $("div", { class: "load-table-wrap" }, [
-      $("table", { class: "load-table" }, [
-        $("thead", {}, $("tr", {}, ["Task", "Employee", "Revisions", "Level", "Reason", "By", "When"].map((h) => $("th", {}, h)))),
-        $("tbody", {}, rows.length ? rows.map((r) =>
-          $("tr", {}, [
-            $("td", {}, $("strong", {}, r.task.title)),
-            $("td", {}, r.task.who),
-            $("td", {}, String(r.count)),
-            $("td", {}, r.level),
-            $("td", {}, r.reason),
-            $("td", {}, r.by),
-            $("td", {}, cairoDate(r.at) || "—"),
-          ])
-        ) : $("tr", {}, $("td", { colspan: "7" }, "No revisions logged yet."))),
       ]),
     ]),
   ]);
