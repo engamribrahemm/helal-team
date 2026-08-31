@@ -89,6 +89,7 @@ const state = {
   hrTab: "scores",
   hrQuarter: "",
   hrMonth: "",
+  hrPerson: "",
   evalTaskId: null,
   pendingDelay: null,
   pendingRevision: null,
@@ -1111,6 +1112,7 @@ async function loadAll() {
   if (!state.attendFile) state.attendFile = emptyAttendance();
   state.hrQuarter = state.hrQuarter || currentQuarter();
   state.hrMonth = state.hrMonth || today().slice(0, 7);
+  state.hrPerson = state.hrPerson || "";
   state.attendWeek = state.attendWeek || fridayStart(today());
 
   state.reportDay = state.reportDay || today();
@@ -1712,17 +1714,41 @@ function viewEvalModal() {
   ];
 }
 
+function hrMembers() {
+  return people().filter((p) => p.name !== "Amr");
+}
+
+function profileBar(label, value) {
+  const n = Number(value) || 0;
+  const pct = Math.max(0, Math.min(100, Math.round((n / 5) * 100)));
+  return $("div", { class: "profile-bar" }, [
+    $("span", {}, label),
+    $("div", { class: "load-bar" }, $("span", { style: `width:${pct}%` })),
+    $("strong", { class: scoreTone(n) }, formatScore(n)),
+  ]);
+}
+
 function viewHr() {
   const q = state.hrQuarter || currentQuarter();
   const month = state.hrMonth || today().slice(0, 7);
   const monthly = state.hrTab === "attitude" || state.hrTab === "warnings";
+  const profile = state.hrTab === "profile";
+  const roster = hrMembers();
+  if (!state.hrPerson || !roster.some((p) => p.name === state.hrPerson)) {
+    state.hrPerson = roster[0]?.name || "";
+  }
   const tabs = [
+    ["profile", "Profile"],
     ["scores", "Performance"],
     ["tasks", "Task tracking"],
     ["attitude", "Attitude"],
     ["warnings", "Warnings"],
     ["rewards", "Rewards"],
   ];
+  const whoSel = $("select", {
+    class: "date-select",
+    onchange: (e) => { state.hrPerson = e.target.value; render(); },
+  }, roster.map((p) => $("option", { value: p.name, selected: p.name === state.hrPerson }, p.name)));
   return $("div", { class: "dash" }, [
     $("div", { class: "hr-tabs" }, tabs.map(([id, label]) =>
       $("button", {
@@ -1730,18 +1756,24 @@ function viewHr() {
         onclick: () => { state.hrTab = id; render(); },
       }, label)
     )),
-    $("div", { class: "cal-nav" }, monthly
+    $("div", { class: "cal-nav" }, profile
       ? [
-        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, -1); render(); } }, "Prev"),
-        $("h2", {}, monthLabel(month)),
-        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, 1); render(); } }, "Next"),
+        $("h2", {}, "Member"),
+        whoSel,
       ]
-      : [
-        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, -1); render(); } }, "Prev"),
-        $("h2", {}, q),
-        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
-      ]),
-    state.hrTab === "tasks" ? viewHrTasks()
+      : monthly
+        ? [
+          $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, -1); render(); } }, "Prev"),
+          $("h2", {}, monthLabel(month)),
+          $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, 1); render(); } }, "Next"),
+        ]
+        : [
+          $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, -1); render(); } }, "Prev"),
+          $("h2", {}, q),
+          $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
+        ]),
+    state.hrTab === "profile" ? viewHrProfile()
+      : state.hrTab === "tasks" ? viewHrTasks()
       : state.hrTab === "attitude" ? viewHrAttitude(month)
       : state.hrTab === "warnings" ? viewHrWarnings(month)
       : state.hrTab === "rewards" ? viewHrRewards()
@@ -1763,6 +1795,193 @@ function monthInQuarter(quarter) {
   const year = q.slice(0, 4);
   const n = Number(q.slice(-1));
   return `${year}-${String(n * 3).padStart(2, "0")}`;
+}
+
+function viewHrProfile() {
+  const name = state.hrPerson || hrMembers()[0]?.name;
+  const person = people().find((p) => p.name === name);
+  if (!person) return $("p", { class: "empty" }, "Choose a teammate.");
+  const q = currentQuarter();
+  const month = today().slice(0, 7);
+  const lastMonth = shiftYm(month, -1);
+  const work = workFor(name);
+  const load = loadForPerson(name, month);
+  const score = personScore(name, q, month);
+  const weights = ensureHr().weights;
+  const tasks = allTasks().filter((t) => t.who === name);
+  const open = tasks.filter((t) => t.status !== "Done").sort((a, b) => (a.due || "").localeCompare(b.due || ""));
+  const doneMonth = tasks.filter((t) => t.status === "Done" && doneMonthOf(t) === month);
+  const doneLast = tasks.filter((t) => t.status === "Done" && doneMonthOf(t) === lastMonth);
+  const delivered = tasks.filter((t) => ["Review", "Revisions", "Done"].includes(t.status) && inQuarter(deliveryDate(t) || t.done_on || t.due, q));
+  const onTime = delivered.filter((t) => !isLateTask(t) || delayExcused(t)).length;
+  const onTimePct = delivered.length ? `${Math.round((onTime / delivered.length) * 100)}%` : "—";
+  const missingDrive = open.filter((t) => t.drive_missing);
+  const revisions = tasks.reduce((n, t) => n + (Number(t.revisions) || 0), 0);
+  const liveHours = open.filter((t) => t.status === "In progress").reduce((n, t) => n + loggedHours(t), 0);
+  const friday = fridayStart(today());
+  const attend = attendDaysFor(name, friday);
+  const days = weekDates(friday);
+  const officeDays = days.filter((d) => attend[d] === "Office").length;
+  const homeDays = days.filter((d) => attend[d] === "Home").length;
+  const reports = (state.reportsFile?.reports || []).filter((r) => r.who === name);
+  const reportsMonth = reports.filter((r) => (r.date || "").startsWith(month)).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  const lastReport = [...reports].sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
+  const warningsAll = ensureHr().warnings.filter((wrow) => wrow.who === name);
+  const warningsMonth = warningsAll.filter((wrow) => (wrow.date || "").startsWith(month));
+  const attitudeRow = ensureHr().attitude.find((a) => a.who === name && a.month === month);
+  const reviews = reviewsFor(name, q);
+  const taskRow = (t) => $("tr", { class: (t.due && t.due < today() && t.status !== "Done") || (isLateTask(t) && !delayExcused(t)) ? "tone-orange" : "" }, [
+    $("td", {}, [$("strong", {}, t.title), t.project ? $("span", { class: "muted" }, ` ${t.project}`) : null]),
+    $("td", {}, t.status),
+    $("td", {}, t.due || "—"),
+    $("td", {}, loggedHours(t) > 0 ? formatHours(loggedHours(t)) : (t.progress_hours ? formatHours(t.progress_hours) : "—")),
+    $("td", {}, t.delay_reason || (t.due && t.due < today() && t.status !== "Done" ? "Late" : "—")),
+    $("td", { class: t.drive_missing ? "tone-orange" : "" }, t.drive_missing ? "Missing" : (t.drive ? "Yes" : "—")),
+    $("td", {}, $("div", { style: "display:flex;gap:6px;flex-wrap:wrap" }, [
+      $("button", { class: "btn ghost", type: "button", onclick: () => { state.openTaskId = t.id; render(); } }, "Open"),
+      t.status === "Review" || t.status === "Done"
+        ? $("button", { class: "btn ghost", type: "button", onclick: () => { state.evalTaskId = t.id; render(); } }, "Evaluate")
+        : null,
+    ])),
+  ]);
+  const table = (rows, empty) => rows.length
+    ? $("div", { class: "load-table-wrap" }, [
+      $("table", { class: "load-table" }, [
+        $("thead", {}, $("tr", {}, ["Task", "Status", "Due", "Time", "Delay", "Drive", ""].map((h) => $("th", {}, h)))),
+        $("tbody", {}, rows.map(taskRow)),
+      ]),
+    ])
+    : $("p", { class: "empty" }, empty);
+  return $("div", { class: "dash" }, [
+    $("section", { class: "card" }, [
+      $("div", { class: "profile-head" }, [
+        $("div", {}, [
+          $("h2", {}, person.name),
+          $("p", { class: "muted" }, `${person.role || ""}${person.home ? ` · ${person.home}` : ""}${person.email ? ` · ${person.email}` : ""}`),
+          $("p", { class: "muted" }, `${work.type} · ${work.days} · ${work.hours} · ${work.mode}${work.office_days ? ` · Office ${work.office_days}` : ""}`),
+        ]),
+        $("span", { class: `pill ${loadTone(load)}` }, load.open >= 3 ? "Overloaded" : load.open === 0 ? "Clear" : "Active"),
+      ]),
+    ]),
+    $("div", { class: "stat-row dense" }, [
+      statBox(formatScore(score.total), `${q} score`, scoreTone(score.total)),
+      statBox(load.open, "Open now", load.open >= 3 ? "tone-red" : ""),
+      statBox(load.overdue, "Overdue", load.overdue ? "tone-red" : ""),
+      statBox(load.done, `Done ${monthLabel(month)}`, load.done ? "tone-green" : ""),
+      statBox(onTimePct, "On time this quarter", delivered.length && onTime / delivered.length < 0.8 ? "tone-orange" : ""),
+      statBox(warningsMonth.length, "Warnings this month", warningsMonth.length ? "tone-orange" : ""),
+    ]),
+    $("div", { class: "profile-grid" }, [
+      $("section", { class: "card" }, [
+        $("h3", {}, "Performance"),
+        $("p", { class: "muted" }, `${q} · Delivery ${weights.delivery}% · Quality ${weights.quality}% · Revisions ${weights.revisions}% · Creativity ${weights.creativity}%. Attitude is ${monthLabel(month)}.`),
+        profileBar("Delivery", score.delivery),
+        profileBar("Quality", score.quality),
+        profileBar("Revisions", score.revisions),
+        profileBar("Creativity", score.creativity),
+        profileBar("Attitude", score.attitude),
+        $("p", { class: "muted", style: "margin-top:12px" }, `${reviews.length} task evaluation${reviews.length === 1 ? "" : "s"} this quarter.`),
+      ]),
+      $("section", { class: "card" }, [
+        $("h3", {}, "Analytics"),
+        $("p", { class: "muted" }, "Current load, delivery, time, files, attendance, and reports."),
+        $("div", { class: "stat-row dense" }, [
+          statBox(load.todo, "To do"),
+          statBox(load.progress, "In progress"),
+          statBox(load.review, "Review"),
+          statBox(doneLast.length, `Done ${monthLabel(lastMonth).split(" ")[0]}`),
+          statBox(liveHours > 0 ? formatHours(liveHours) : "—", "In progress now"),
+          statBox(String(revisions), "Revisions logged"),
+          statBox(missingDrive.length, "Missing Drive", missingDrive.length ? "tone-orange" : ""),
+          statBox(`${officeDays} / ${homeDays}`, "Office / home this week"),
+          statBox(reportsMonth.length, `Reports · ${monthLabel(month).split(" ")[0]}`),
+          statBox(warningsAll.length, "Warnings all time", warningsAll.length ? "tone-orange" : ""),
+        ]),
+      ]),
+    ]),
+    $("section", { class: "card" }, [
+      $("h3", {}, "Now"),
+      $("p", { class: "muted" }, "Open tasks assigned to this person."),
+      table(open, "Nothing open right now."),
+    ]),
+    $("section", { class: "card" }, [
+      $("h3", {}, `Done · ${monthLabel(month)}`),
+      table(doneMonth, "No done tasks this month yet."),
+    ]),
+    $("div", { class: "profile-grid" }, [
+      $("section", { class: "card" }, [
+        $("h3", {}, "Attendance this week"),
+        $("p", { class: "muted" }, `${friday} → ${days[6]} · ${attendSaved(name, friday) ? "Saved" : "Not saved yet"}.`),
+        $("div", { class: "chip-row" }, days.map((date) => {
+          const mode = attend[date] || "";
+          return $("span", { class: `attend-chip ${mode === "Office" ? "office" : mode === "Home" ? "home" : "unset"}` }, `${cairoWeekday(date)} ${date.slice(8)} · ${mode || "—"}`);
+        })),
+      ]),
+      $("section", { class: "card" }, [
+        $("h3", {}, "Daily reports"),
+        $("p", { class: "muted" }, lastReport ? `Last report ${lastReport.date}${lastReport.place ? ` · ${lastReport.place}` : ""}.` : "No reports yet."),
+        reportsMonth.length
+          ? $("div", { class: "load-table-wrap" }, [
+            $("table", { class: "load-table" }, [
+              $("thead", {}, $("tr", {}, ["Date", "Place", "Need review"].map((h) => $("th", {}, h)))),
+              $("tbody", {}, reportsMonth.map((r) => $("tr", {}, [
+                $("td", {}, r.date),
+                $("td", {}, r.place || "—"),
+                $("td", {}, r.need_review ? "Yes" : "No"),
+              ]))),
+            ]),
+          ])
+          : $("p", { class: "empty" }, "No reports this month."),
+        reportsMonth.length
+          ? $("p", { class: "muted", style: "margin-top:10px" }, `Office ${reportsMonth.filter((r) => r.place === "Office").length} · Remote ${reportsMonth.filter((r) => r.place === "Remote").length}.`)
+          : null,
+      ]),
+    ]),
+    $("div", { class: "profile-grid" }, [
+      $("section", { class: "card" }, [
+        $("h3", {}, `Attitude · ${monthLabel(month)}`),
+        ...(attitudeRow
+          ? ATTITUDE_CRITERIA.map(([key, label]) => profileBar(label, attitudeRow[key]))
+          : [$("p", { class: "empty" }, "No attitude score this month yet.")]),
+      ]),
+      $("section", { class: "card" }, [
+        $("h3", {}, "Warnings this month"),
+        warningsMonth.length
+          ? $("div", { class: "load-table-wrap" }, [
+            $("table", { class: "load-table" }, [
+              $("thead", {}, $("tr", {}, ["Date", "Issue", "Status"].map((h) => $("th", {}, h)))),
+              $("tbody", {}, warningsMonth.map((wrow) => $("tr", {}, [
+                $("td", {}, wrow.date),
+                $("td", {}, wrow.issue),
+                $("td", { class: wrow.status === "Note" ? "" : "tone-orange" }, wrow.status),
+              ]))),
+            ]),
+          ])
+          : $("p", { class: "empty" }, "No warnings this month."),
+      ]),
+    ]),
+    $("section", { class: "card" }, [
+      $("h3", {}, `Evaluations · ${q}`),
+      reviews.length
+        ? $("div", { class: "load-table-wrap" }, [
+          $("table", { class: "load-table" }, [
+            $("thead", {}, $("tr", {}, ["Task", "Delivery", "Quality", "Revisions", "Creativity", "By"].map((h) => $("th", {}, h)))),
+            $("tbody", {}, reviews.map((row) => {
+              const task = findTask(row.task_id);
+              return $("tr", {}, [
+                $("td", {}, task?.title || row.task_id),
+                $("td", { class: scoreTone(row.delivery) }, formatScore(row.delivery)),
+                $("td", { class: scoreTone(row.quality_avg) }, formatScore(row.quality_avg)),
+                $("td", { class: scoreTone(row.revision_rating) }, formatScore(row.revision_rating)),
+                $("td", { class: scoreTone(row.creativity) }, formatScore(row.creativity)),
+                $("td", {}, row.by || "—"),
+              ]);
+            })),
+          ]),
+        ])
+        : $("p", { class: "empty" }, "No task evaluations this quarter yet."),
+    ]),
+  ]);
 }
 
 function viewHrScores(q) {
@@ -2765,7 +2984,7 @@ function viewGuide() {
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "From Friday, set Home or Office for the week and press Save. After Save the week is locked. To change a day, request it. Amr or Tasneem approve or decline on the Attendance dashboard."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Admins read it on the dashboard."],
-    ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, and quality by role. Attitude and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%. Rewards come later."],
+    ["HR", "Amr and Tasneem open HR. Profile shows one person: current tasks, scores, attendance, reports, warnings, and evaluations. Attitude and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
     $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
