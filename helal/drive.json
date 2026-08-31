@@ -1,43 +1,43 @@
 {
   "status": "linked",
   "note": "Helal files live in this Drive. Team uploads into the matching client folder. Do not upload files into GitHub.",
-  "root_url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing",
+  "root_url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
   "folders": [
     {
       "id": "root",
       "name": "Helal Drive",
       "who": "Everyone",
-      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
     },
     {
       "id": "social",
       "name": "Social uploads",
       "who": "Mariam, Judi",
-      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
     },
     {
       "id": "design",
       "name": "Design uploads",
       "who": "Seif, Alaa, Sara",
-      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
     },
     {
       "id": "video",
       "name": "Video uploads",
       "who": "Ganna",
-      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
     },
     {
       "id": "hr",
       "name": "HR uploads",
       "who": "Tasneem",
-      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
     },
     {
       "id": "projects",
       "name": "Client folders",
       "who": "Everyone — one folder per client",
-      "url": "https://drive.google.com/drive/folders/1uQctTK7TqyhcfY4oES6bsZxbNf7hmEO0?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
     },
     {
       "id": "logos",
