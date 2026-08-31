@@ -2840,20 +2840,23 @@ function viewReport() {
 }
 
 function viewDrive() {
-  const clients = (state.drive?.folders || []).filter((f) => f.who === "Client" || f.id === "content-calendars");
-  const team = (state.drive?.folders || []).filter((f) => f.who !== "Client" && f.id !== "content-calendars");
+  const folders = (state.drive?.folders || []).filter((f) => !f.hidden && f.id !== "root");
+  const clients = folders.filter((f) => f.section === "clients" || f.who === "Client");
+  const helal = folders.filter((f) => f.section === "helal");
   const card = (f) =>
     $("article", { class: "card" }, [
       $("p", { class: "title" }, f.name),
       $("p", { class: "muted" }, f.who),
       f.url ? $("a", { href: f.url, target: "_blank", rel: "noreferrer" }, "Open folder") : $("p", {}, "Link missing."),
     ]);
+  const root = rootDrive();
   return $("div", {}, [
-    $("p", { class: "muted" }, "Upload into the matching client folder. Files stay in Drive."),
-    $("h2", { style: "margin:16px 0 10px" }, "Clients"),
+    $("p", { class: "muted" }, "Upload into the matching folder. Files stay in Drive."),
+    root ? $("p", {}, $("a", { href: root, target: "_blank", rel: "noreferrer" }, "Open HELAL CONTENT MARKETING")) : null,
+    $("h2", { style: "margin:16px 0 10px" }, "CLINTES"),
     $("div", { class: "people" }, clients.map(card)),
-    $("h2", { style: "margin:22px 0 10px" }, "Team"),
-    $("div", { class: "people" }, team.map(card)),
+    $("h2", { style: "margin:22px 0 10px" }, "HELAL"),
+    $("div", { class: "people" }, helal.map(card)),
   ]);
 }
 

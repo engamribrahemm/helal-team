@@ -3,50 +3,34 @@
   "note": "Clients already in the Helal Drive. Upload work into the matching folder.",
   "projects": [
     {
-      "id": "logos",
-      "name": "Logos",
-      "url": "https://drive.google.com/drive/folders/1AKEI5DMQP7AqHvmte8M_9etY0gFjjdR6"
+      "id": "ahmed-eldalil",
+      "name": "Ahmed Eldalil",
+      "url": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj"
+    },
+    {
+      "id": "blushed",
+      "name": "Blushed",
+      "url": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88"
     },
     {
       "id": "mas",
       "name": "MAS",
-      "url": "https://drive.google.com/drive/folders/1UckK2XLzVyyLJxsc-hbXMK7pPM3emORG"
+      "url": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX"
     },
     {
       "id": "medc",
       "name": "MEDC",
-      "url": "https://drive.google.com/drive/folders/1RliAIFhycJBbEpfq1lQ0fNqDvm45oWYC"
+      "url": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov"
     },
     {
       "id": "omega",
       "name": "OMEGA",
-      "url": "https://drive.google.com/drive/folders/1W7iGADCNAv5uVaQM5zH7OILcJjq5eq43"
+      "url": "https://drive.google.com/drive/folders/1DajVWQGmGc81vtm_so9wAVoMDvzDnMeP"
     },
     {
       "id": "osama-helal",
-      "name": "Osama Helal",
-      "url": "https://drive.google.com/drive/folders/1qmXWl5fFvtTY_CAFVVEQDsdQX997Fq8f"
-    },
-    {
-      "id": "stac",
-      "name": "STAC",
-      "url": "https://drive.google.com/drive/folders/1axP56y_-y0-ihM6IsZFG3snvbnkh5VV_"
-    },
-    {
-      "id": "thermotec",
-      "name": "ThermoTEC",
-      "url": "https://drive.google.com/drive/folders/1DhvReBZpNASFctyoH5kLqyA0MUpBEPDm"
-    },
-    {
-      "id": "trust-engineering",
-      "name": "Trust engineering",
-      "url": "https://drive.google.com/drive/folders/1RioLV4hTfKMAwqxv1Ia06JFqs0n8OjxI"
-    },
-    {
-      "id": "content-calendars",
-      "name": "Content Calendars",
-      "url": "https://docs.google.com/spreadsheets/d/15YjvqzhpCaPqruCsQKOagTU7c-EpF6YKZyVpQOZm-_s",
-      "type": "sheet"
+      "name": "OSAMA HELAL",
+      "url": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj"
     }
   ]
 }

@@ -1,97 +1,125 @@
 {
   "status": "linked",
-  "note": "Helal files live in this Drive. Team uploads into the matching client folder. Do not upload files into GitHub.",
+  "note": "Helal files live in this Drive. Team uploads into the matching folder. Do not upload files into GitHub.",
   "root_url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
   "folders": [
     {
       "id": "root",
-      "name": "Helal Drive",
+      "name": "HELAL CONTENT MARKETING",
       "who": "Everyone",
       "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
     },
     {
-      "id": "social",
-      "name": "Social uploads",
-      "who": "Mariam, Judi",
-      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
+      "id": "clients",
+      "name": "CLINTES",
+      "section": "clients",
+      "who": "All clients",
+      "url": "https://drive.google.com/drive/folders/1CHbz5iEjmgycfMBtmJNo7q0N_93vrAPG"
     },
     {
-      "id": "design",
-      "name": "Design uploads",
-      "who": "Seif, Alaa, Sara",
-      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
-    },
-    {
-      "id": "video",
-      "name": "Video uploads",
-      "who": "Ganna",
-      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
-    },
-    {
-      "id": "hr",
-      "name": "HR uploads",
-      "who": "Tasneem",
-      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
-    },
-    {
-      "id": "projects",
-      "name": "Client folders",
-      "who": "Everyone — one folder per client",
-      "url": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing"
-    },
-    {
-      "id": "logos",
-      "name": "Logos",
+      "id": "ahmed-eldalil",
+      "name": "Ahmed Eldalil",
+      "section": "clients",
       "who": "Client",
-      "url": "https://drive.google.com/drive/folders/1AKEI5DMQP7AqHvmte8M_9etY0gFjjdR6"
+      "url": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj"
+    },
+    {
+      "id": "blushed",
+      "name": "Blushed",
+      "section": "clients",
+      "who": "Client",
+      "url": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88"
     },
     {
       "id": "mas",
       "name": "MAS",
+      "section": "clients",
       "who": "Client",
-      "url": "https://drive.google.com/drive/folders/1UckK2XLzVyyLJxsc-hbXMK7pPM3emORG"
+      "url": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX"
     },
     {
       "id": "medc",
       "name": "MEDC",
+      "section": "clients",
       "who": "Client",
-      "url": "https://drive.google.com/drive/folders/1RliAIFhycJBbEpfq1lQ0fNqDvm45oWYC"
+      "url": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov"
     },
     {
       "id": "omega",
       "name": "OMEGA",
+      "section": "clients",
       "who": "Client",
-      "url": "https://drive.google.com/drive/folders/1W7iGADCNAv5uVaQM5zH7OILcJjq5eq43"
+      "url": "https://drive.google.com/drive/folders/1DajVWQGmGc81vtm_so9wAVoMDvzDnMeP"
     },
     {
       "id": "osama-helal",
-      "name": "Osama Helal",
+      "name": "OSAMA HELAL",
+      "section": "clients",
       "who": "Client",
-      "url": "https://drive.google.com/drive/folders/1qmXWl5fFvtTY_CAFVVEQDsdQX997Fq8f"
+      "url": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj"
     },
     {
-      "id": "stac",
-      "name": "STAC",
-      "who": "Client",
-      "url": "https://drive.google.com/drive/folders/1axP56y_-y0-ihM6IsZFG3snvbnkh5VV_"
+      "id": "helal",
+      "name": "HELAL",
+      "section": "helal",
+      "who": "Internal work",
+      "url": "https://drive.google.com/drive/folders/1PjKCu03FZl2F-eOOMiHWAtqC-pXbG4Cx"
     },
     {
-      "id": "thermotec",
-      "name": "ThermoTEC",
-      "who": "Client",
-      "url": "https://drive.google.com/drive/folders/1DhvReBZpNASFctyoH5kLqyA0MUpBEPDm"
+      "id": "september",
+      "name": "September",
+      "section": "helal",
+      "who": "This month",
+      "url": "https://drive.google.com/drive/folders/1BcPFkTgcpR47W5Kmsnk_iKeohhE7pR5V"
     },
     {
-      "id": "trust-engineering",
-      "name": "Trust engineering",
-      "who": "Client",
-      "url": "https://drive.google.com/drive/folders/1RioLV4hTfKMAwqxv1Ia06JFqs0n8OjxI"
+      "id": "posts",
+      "name": "Posts",
+      "section": "helal",
+      "who": "Social and design",
+      "url": "https://drive.google.com/drive/folders/1fvlhFwB82omI1fYMHbfycU5fSPtQp1c7"
     },
     {
-      "id": "content-calendars",
-      "name": "Content Calendars",
-      "who": "Everyone",
-      "url": "https://docs.google.com/spreadsheets/d/15YjvqzhpCaPqruCsQKOagTU7c-EpF6YKZyVpQOZm-_s"
+      "id": "raw-footage",
+      "name": "Raw Footage",
+      "section": "helal",
+      "who": "Video",
+      "url": "https://drive.google.com/drive/folders/1SRLY8SFp9Q16e8KpITCKswuUF8VB_at3"
+    },
+    {
+      "id": "videos",
+      "name": "Videos",
+      "section": "helal",
+      "who": "Video",
+      "url": "https://drive.google.com/drive/folders/1RwK8xRWQBpSoNmuuPKOLNFTXZ9BEZD-q"
+    },
+    {
+      "id": "social",
+      "name": "Posts",
+      "who": "Mariam, Judi",
+      "hidden": true,
+      "url": "https://drive.google.com/drive/folders/1fvlhFwB82omI1fYMHbfycU5fSPtQp1c7"
+    },
+    {
+      "id": "design",
+      "name": "Posts",
+      "who": "Seif, Alaa, Sara",
+      "hidden": true,
+      "url": "https://drive.google.com/drive/folders/1fvlhFwB82omI1fYMHbfycU5fSPtQp1c7"
+    },
+    {
+      "id": "video",
+      "name": "Videos",
+      "who": "Ganna",
+      "hidden": true,
+      "url": "https://drive.google.com/drive/folders/1RwK8xRWQBpSoNmuuPKOLNFTXZ9BEZD-q"
+    },
+    {
+      "id": "hr",
+      "name": "HELAL",
+      "who": "Tasneem",
+      "hidden": true,
+      "url": "https://drive.google.com/drive/folders/1PjKCu03FZl2F-eOOMiHWAtqC-pXbG4Cx"
     }
   ]
 }
