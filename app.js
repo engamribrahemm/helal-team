@@ -1719,7 +1719,6 @@ function viewHr() {
   const tabs = [
     ["scores", "Performance"],
     ["tasks", "Task tracking"],
-    ["hours", "Hours"],
     ["attitude", "Attitude"],
     ["warnings", "Warnings"],
     ["rewards", "Rewards"],
@@ -1743,7 +1742,6 @@ function viewHr() {
         $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
       ]),
     state.hrTab === "tasks" ? viewHrTasks()
-      : state.hrTab === "hours" ? viewHrHours()
       : state.hrTab === "attitude" ? viewHrAttitude(month)
       : state.hrTab === "warnings" ? viewHrWarnings(month)
       : state.hrTab === "rewards" ? viewHrRewards()
@@ -1840,49 +1838,6 @@ function viewHrTasks() {
             }, "Evaluate")),
           ])
         ) : $("tr", {}, $("td", { colspan: "12" }, "No tasks in Review or Done yet."))),
-      ]),
-    ]),
-  ]);
-}
-
-function viewHrHours() {
-  const roster = people().filter((p) => p.name !== "Amr");
-  return $("section", { class: "card" }, [
-    $("p", { class: "muted" }, "Type, work days, hours, office days, and reply reliability during those hours. Tasneem can edit and save."),
-    $("div", { class: "load-table-wrap" }, [
-      $("table", { class: "load-table" }, [
-        $("thead", {}, $("tr", {}, ["Employee", "Type", "Work days", "Hours", "Office days", "Office / remote", "Replies"].map((h) => $("th", {}, h)))),
-        $("tbody", {}, roster.map((p) => {
-          const w = workFor(p.name);
-          const type = $("select", {}, WORK_TYPES.map((t) => $("option", { value: t, selected: w.type === t }, t)));
-          const days = $("input", { value: w.days || "Sun–Thu" });
-          const hours = $("input", { value: w.hours || "10:00–18:00" });
-          const office = $("input", { value: w.office_days || "", placeholder: "Tue, Thu" });
-          const mode = $("select", {}, WORK_MODES.map((t) => $("option", { value: t, selected: w.mode === t }, t)));
-          const response = $("select", {}, RESPONSE_LEVELS.map((t) => $("option", { value: t, selected: (w.response || "Reliable") === t }, t)));
-          const save = () => {
-            ensureHr().work[p.name] = {
-              type: type.value,
-              days: days.value.trim(),
-              hours: hours.value.trim(),
-              office_days: office.value.trim(),
-              mode: mode.value,
-              response: response.value,
-            };
-            render();
-            saveHr(`hr: ${state.who} updated hours for ${p.name}`);
-          };
-          [type, mode, response, days, hours, office].forEach((el) => el.addEventListener("change", save));
-          return $("tr", {}, [
-            $("td", {}, [$("strong", {}, p.name), $("span", { class: "muted" }, ` ${p.role || ""}`)]),
-            $("td", {}, type),
-            $("td", {}, days),
-            $("td", {}, hours),
-            $("td", {}, office),
-            $("td", {}, mode),
-            $("td", {}, response),
-          ]);
-        })),
       ]),
     ]),
   ]);
@@ -2810,7 +2765,7 @@ function viewGuide() {
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "From Friday, set Home or Office for the week and press Save. After Save the week is locked. To change a day, request it. Amr or Tasneem approve or decline on the Attendance dashboard."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Admins read it on the dashboard."],
-    ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, quality by role, revision level, and hours. Attitude and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%. Rewards come later."],
+    ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, and quality by role. Attitude and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%. Rewards come later."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
     $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
