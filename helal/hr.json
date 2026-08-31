@@ -136,7 +136,23 @@
       "updated_at": "2026-08-31T15:30:36.249Z"
     }
   ],
-  "attitude": [],
+  "attitude": [
+    {
+      "id": "at-Mariam-2026-08",
+      "who": "Mariam",
+      "month": "2026-08",
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-08-31T15:46:29.649Z",
+      "updated_at": "2026-08-31T15:46:29.649Z",
+      "communication": 1,
+      "teamwork": 2,
+      "responsibility": 2,
+      "respect": 4,
+      "feedback": 4,
+      "problems": 2
+    }
+  ],
   "warnings": [],
   "rewards": []
 }
