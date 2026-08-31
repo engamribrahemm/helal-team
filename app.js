@@ -606,20 +606,30 @@ function pickAttendPerson(pa, pb) {
 }
 
 function mergeAttendance(remote, local) {
+  const resetAt = Math.max(fileReset(remote), fileReset(local));
+  const resetIso = resetAt ? new Date(resetAt).toISOString() : (remote?.reset_at || local?.reset_at || "");
+  const usable = (file) => {
+    if (!file) return { weeks: {}, requests: [] };
+    if (!resetAt || fileReset(file) >= resetAt) return file;
+    return { weeks: {}, requests: [], reset_at: resetIso };
+  };
+  const a = usable(remote);
+  const b = usable(local);
   const weeks = {};
-  const keys = new Set([...Object.keys(remote?.weeks || {}), ...Object.keys(local?.weeks || {})]);
+  const keys = new Set([...Object.keys(a.weeks || {}), ...Object.keys(b.weeks || {})]);
   for (const key of keys) {
-    const a = remote?.weeks?.[key]?.people || {};
-    const b = local?.weeks?.[key]?.people || {};
-    const names = new Set([...Object.keys(a), ...Object.keys(b)]);
+    const pa = a.weeks?.[key]?.people || {};
+    const pb = b.weeks?.[key]?.people || {};
+    const names = new Set([...Object.keys(pa), ...Object.keys(pb)]);
     const peopleMap = {};
-    for (const name of names) peopleMap[name] = pickAttendPerson(a[name], b[name]);
+    for (const name of names) peopleMap[name] = pickAttendPerson(pa[name], pb[name]);
     weeks[key] = { start: key, people: peopleMap };
   }
   return {
-    note: local?.note || remote?.note || emptyAttendance().note,
+    note: b.note || a.note || emptyAttendance().note,
+    reset_at: resetIso,
     weeks,
-    requests: mergeById(remote?.requests || [], local?.requests || []),
+    requests: mergeById(a.requests || [], b.requests || []),
   };
 }
 
