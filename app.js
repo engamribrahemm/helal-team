@@ -88,6 +88,7 @@ const state = {
   attendChange: null,
   hrTab: "scores",
   hrQuarter: "",
+  hrMonth: "",
   evalTaskId: null,
   pendingDelay: null,
   pendingRevision: null,
@@ -512,10 +513,14 @@ function inQuarter(date, quarter) {
   return currentQuarter(date) === quarter;
 }
 
+function canonicalHrWeights() {
+  return { delivery: 35, quality: 35, revisions: 15, creativity: 15 };
+}
+
 function emptyHr() {
   return {
     note: "HR evaluation system. Rewards and deductions come later.",
-    weights: { delivery: 25, quality: 35, revisions: 15, creativity: 15, discipline: 10 },
+    weights: canonicalHrWeights(),
     work: {},
     reviews: [],
     attitude: [],
@@ -724,7 +729,7 @@ function mergeHr(remote, local) {
   const b = local || emptyHr();
   return {
     note: b.note || a.note,
-    weights: { ...a.weights, ...b.weights },
+    weights: canonicalHrWeights(),
     work: { ...a.work, ...b.work },
     reviews: mergeById(a.reviews, b.reviews),
     attitude: mergeById(a.attitude, b.attitude),
@@ -1092,6 +1097,7 @@ async function loadAll() {
     state.hrFile = hrFile?.work || hrFile?.reviews ? hrFile : emptyHr();
     state.attendFile = mergeAttendance(attendFile || emptyAttendance(), cache.attend || state.attendFile || emptyAttendance());
     state.hrQuarter = state.hrQuarter || currentQuarter();
+    state.hrMonth = state.hrMonth || today().slice(0, 7);
     state.saveState = writeToken() ? "saved" : "idle";
     cacheBoard();
     if (replay && writeToken()) saveTasks(`board: ${state.who} replay unsaved moves`);
@@ -1104,6 +1110,7 @@ async function loadAll() {
   if (!state.hrFile) state.hrFile = emptyHr();
   if (!state.attendFile) state.attendFile = emptyAttendance();
   state.hrQuarter = state.hrQuarter || currentQuarter();
+  state.hrMonth = state.hrMonth || today().slice(0, 7);
   state.attendWeek = state.attendWeek || fridayStart(today());
 
   state.reportDay = state.reportDay || today();
@@ -1500,7 +1507,7 @@ function ensureHr() {
   if (!state.hrFile.attitude) state.hrFile.attitude = [];
   if (!state.hrFile.warnings) state.hrFile.warnings = [];
   if (!state.hrFile.work) state.hrFile.work = {};
-  if (!state.hrFile.weights) state.hrFile.weights = emptyHr().weights;
+  state.hrFile.weights = canonicalHrWeights();
   return state.hrFile;
 }
 
@@ -1535,39 +1542,26 @@ function computedDelivery(name, quarter) {
   return 1;
 }
 
-function computedDiscipline(name, quarter) {
-  const warns = ensureHr().warnings.filter((w) => w.who === name && inQuarter(w.date, quarter) && w.status !== "Note").length;
-  const late = allTasks().filter((t) => t.who === name && isLateTask(t) && !delayExcused(t) && !t.delay_notified && inQuarter(deliveryDate(t) || t.due, quarter)).length;
-  const files = allTasks().filter((t) => t.who === name && t.drive_missing && t.status !== "To do").length;
-  let score = 5;
-  if (warns >= 3 || late >= 5) score = 1;
-  else if (warns === 2 || late >= 3 || files >= 3) score = 2;
-  else if (warns === 1 || late >= 1 || files >= 1) score = 3;
-  else if (late === 0 && warns === 0) score = 5;
-  return score;
-}
-
-function personScore(name, quarter) {
+function personScore(name, quarter, month) {
   const q = quarter || currentQuarter();
+  const m = month || today().slice(0, 7);
   const rows = reviewsFor(name, q);
   const w = ensureHr().weights;
   const delivery = avg(rows.map((r) => r.delivery).filter(Boolean)) || computedDelivery(name, q);
   const quality = avg(rows.map((r) => r.quality_avg).filter(Boolean));
   const revisions = avg(rows.map((r) => r.revision_rating).filter(Boolean));
   const creativity = avg(rows.map((r) => r.creativity).filter(Boolean));
-  const discipline = computedDiscipline(name, q);
   const parts = [
     [delivery, w.delivery],
     [quality, w.quality],
     [revisions, w.revisions],
     [creativity, w.creativity],
-    [discipline, w.discipline],
   ].filter(([n]) => n > 0);
   const weightSum = parts.reduce((s, [, wt]) => s + wt, 0) || 1;
   const total = parts.reduce((s, [n, wt]) => s + n * wt, 0) / weightSum;
-  const attitudeRows = ensureHr().attitude.filter((a) => a.who === name && currentQuarter(`${a.month}-01`) === q);
+  const attitudeRows = ensureHr().attitude.filter((a) => a.who === name && a.month === m);
   const attitude = avg(attitudeRows.map((a) => avg(ATTITUDE_CRITERIA.map(([k]) => Number(a[k]) || 0))));
-  return { name, quarter: q, delivery, quality, revisions, creativity, discipline, total, attitude, reviews: rows.length };
+  return { name, quarter: q, month: m, delivery, quality, revisions, creativity, total, attitude, reviews: rows.length };
 }
 
 function scoreSelect(value) {
@@ -1720,6 +1714,8 @@ function viewEvalModal() {
 
 function viewHr() {
   const q = state.hrQuarter || currentQuarter();
+  const month = state.hrMonth || today().slice(0, 7);
+  const monthly = state.hrTab === "attitude" || state.hrTab === "warnings";
   const tabs = [
     ["scores", "Performance"],
     ["tasks", "Task tracking"],
@@ -1736,16 +1732,22 @@ function viewHr() {
         onclick: () => { state.hrTab = id; render(); },
       }, label)
     )),
-    $("div", { class: "cal-nav" }, [
-      $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, -1); render(); } }, "Prev"),
-      $("h2", {}, q),
-      $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
-    ]),
+    $("div", { class: "cal-nav" }, monthly
+      ? [
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, -1); render(); } }, "Prev"),
+        $("h2", {}, monthLabel(month)),
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrMonth = shiftYm(month, 1); render(); } }, "Next"),
+      ]
+      : [
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, -1); render(); } }, "Prev"),
+        $("h2", {}, q),
+        $("button", { class: "btn ghost", type: "button", onclick: () => { state.hrQuarter = shiftQuarter(q, 1); render(); } }, "Next"),
+      ]),
     state.hrTab === "tasks" ? viewHrTasks()
       : state.hrTab === "revisions" ? viewHrRevisions()
       : state.hrTab === "hours" ? viewHrHours()
-      : state.hrTab === "attitude" ? viewHrAttitude(q)
-      : state.hrTab === "warnings" ? viewHrWarnings()
+      : state.hrTab === "attitude" ? viewHrAttitude(month)
+      : state.hrTab === "warnings" ? viewHrWarnings(month)
       : state.hrTab === "rewards" ? viewHrRewards()
       : viewHrScores(q),
   ]);
@@ -1759,14 +1761,23 @@ function shiftQuarter(q, delta) {
   return `${year}-Q${n}`;
 }
 
+function monthInQuarter(quarter) {
+  const q = quarter || currentQuarter();
+  if (currentQuarter() === q) return today().slice(0, 7);
+  const year = q.slice(0, 4);
+  const n = Number(q.slice(-1));
+  return `${year}-${String(n * 3).padStart(2, "0")}`;
+}
+
 function viewHrScores(q) {
   const w = ensureHr().weights;
-  const rows = people().filter((p) => p.name !== "Amr").map((p) => ({ ...p, ...personScore(p.name, q) }));
+  const month = monthInQuarter(q);
+  const rows = people().filter((p) => p.name !== "Amr").map((p) => ({ ...p, ...personScore(p.name, q, month) }));
   const best = [...rows].sort((a, b) => b.total - a.total)[0];
   const late = allTasks().filter((t) => isLateTask(t) && !delayExcused(t));
   const missingDrive = allTasks().filter((t) => t.drive_missing && t.status !== "To do");
   return $("div", { class: "dash" }, [
-    $("p", { class: "muted" }, `Delivery ${w.delivery}% · Quality ${w.quality}% · Revisions ${w.revisions}% · Creativity ${w.creativity}% · Discipline ${w.discipline}%. Attitude is scored separately.`),
+    $("p", { class: "muted" }, `Delivery ${w.delivery}% · Quality ${w.quality}% · Revisions ${w.revisions}% · Creativity ${w.creativity}%. Attitude and warnings are scored by month, separate from this score.`),
     $("div", { class: "stat-row" }, [
       statBox(rows.filter((r) => r.total >= 4).length, "On track (4+)"),
       statBox(late.length, "Late without a clear blocker", late.length ? "tone-orange" : ""),
@@ -1776,7 +1787,15 @@ function viewHrScores(q) {
     $("section", { class: "card" }, [
       $("div", { class: "load-table-wrap" }, [
         $("table", { class: "load-table" }, [
-          $("thead", {}, $("tr", {}, ["Name", "Delivery 25%", "Quality 35%", "Revisions 15%", "Creativity 15%", "Discipline 10%", "Score", "Attitude"].map((h) => $("th", {}, h)))),
+          $("thead", {}, $("tr", {}, [
+            "Name",
+            `Delivery ${w.delivery}%`,
+            `Quality ${w.quality}%`,
+            `Revisions ${w.revisions}%`,
+            `Creativity ${w.creativity}%`,
+            "Score",
+            `Attitude · ${monthLabel(month)}`,
+          ].map((h) => $("th", {}, h)))),
           $("tbody", {}, rows.map((r) =>
             $("tr", {}, [
               $("td", {}, [$("strong", {}, r.name), $("span", { class: "muted" }, ` ${r.role || ""}`)]),
@@ -1784,7 +1803,6 @@ function viewHrScores(q) {
               $("td", { class: scoreTone(r.quality) }, formatScore(r.quality)),
               $("td", { class: scoreTone(r.revisions) }, formatScore(r.revisions)),
               $("td", { class: scoreTone(r.creativity) }, formatScore(r.creativity)),
-              $("td", { class: scoreTone(r.discipline) }, formatScore(r.discipline)),
               $("td", { class: scoreTone(r.total) }, $("strong", {}, formatScore(r.total))),
               $("td", { class: scoreTone(r.attitude) }, formatScore(r.attitude)),
             ])
@@ -1906,16 +1924,15 @@ function viewHrHours() {
   ]);
 }
 
-function viewHrAttitude(q) {
-  const month = today().slice(0, 7);
+function viewHrAttitude(month) {
   const who = $("select", {}, people().filter((p) => p.name !== "Amr").map((p) => $("option", { value: p.name }, p.name)));
   const inputs = ATTITUDE_CRITERIA.map(([key, label]) => [key, label, scoreSelect()]);
   const notes = $("textarea", { placeholder: "Optional note" });
-  const rows = ensureHr().attitude.filter((a) => currentQuarter(`${a.month}-01`) === q);
+  const rows = ensureHr().attitude.filter((a) => a.month === month);
   return $("div", { class: "dash" }, [
     $("section", { class: "card", style: "max-width:640px" }, [
       $("h2", {}, "Attitude & collaboration"),
-      $("p", { class: "muted" }, "Separate from task scores. Communication, teamwork, responsibility, respect, feedback, problem solving."),
+      $("p", { class: "muted" }, "Scored each month, separate from task scores. Communication, teamwork, responsibility, respect, feedback, problem solving."),
       $("form", {
         class: "form",
         onsubmit: (e) => {
@@ -1934,17 +1951,17 @@ function viewHrAttitude(q) {
           hr.attitude = hr.attitude.filter((a) => a.id !== row.id);
           hr.attitude.unshift(row);
           render();
-          saveHr(`hr: ${state.who} scored attitude for ${who.value}`);
+          saveHr(`hr: ${state.who} scored attitude for ${who.value} ${month}`);
         },
       }, [
         $("label", {}, ["Employee", who]),
         ...inputs.map(([, label, input]) => $("label", {}, [label, input])),
         $("label", {}, ["Notes", notes]),
-        $("button", { class: "btn primary", type: "submit" }, `Save · ${month}`),
+        $("button", { class: "btn primary", type: "submit" }, `Save · ${monthLabel(month)}`),
       ]),
     ]),
     $("section", { class: "card" }, [
-      $("h2", {}, "This quarter"),
+      $("h2", {}, monthLabel(month)),
       rows.length
         ? $("div", { class: "load-table-wrap" }, [
           $("table", { class: "load-table" }, [
@@ -1959,22 +1976,24 @@ function viewHrAttitude(q) {
             )),
           ]),
         ])
-        : $("p", { class: "empty" }, "No attitude scores this quarter yet."),
+        : $("p", { class: "empty" }, "No attitude scores this month yet."),
     ]),
   ]);
 }
 
-function viewHrWarnings() {
+function viewHrWarnings(month) {
   const who = $("select", {}, people().filter((p) => p.name !== "Amr").map((p) => $("option", { value: p.name }, p.name)));
-  const date = $("input", { type: "date", value: today() });
+  const date = $("input", { type: "date", value: today().startsWith(month) ? today() : `${month}-01` });
   const issue = $("select", {}, WARNING_ISSUES.map((s) => $("option", { value: s }, s)));
   const detail = $("input", { placeholder: "Optional detail" });
   const status = $("select", {}, WARNING_STATUSES.map((s) => $("option", { value: s }, s)));
-  const rows = [...(ensureHr().warnings || [])].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  const rows = [...(ensureHr().warnings || [])]
+    .filter((w) => (w.date || "").startsWith(month))
+    .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   return $("div", { class: "dash" }, [
     $("section", { class: "card", style: "max-width:640px" }, [
       $("h2", {}, "Attendance & process"),
-      $("p", { class: "muted" }, "First time: feedback. Repeat: formal warning. After that: deduction policy (added later)."),
+      $("p", { class: "muted" }, "Logged each month. First time: feedback. Repeat: formal warning. After that: deduction policy (added later)."),
       $("form", {
         class: "form",
         onsubmit: (e) => {
@@ -2003,6 +2022,7 @@ function viewHrWarnings() {
       ]),
     ]),
     $("section", { class: "card" }, [
+      $("h2", {}, monthLabel(month)),
       $("div", { class: "load-table-wrap" }, [
         $("table", { class: "load-table" }, [
           $("thead", {}, $("tr", {}, ["Employee", "Date", "Issue", "Status", "By"].map((h) => $("th", {}, h)))),
@@ -2014,7 +2034,7 @@ function viewHrWarnings() {
               $("td", { class: w.status === "Note" ? "" : "tone-orange" }, w.status),
               $("td", {}, w.by || "—"),
             ])
-          ) : $("tr", {}, $("td", { colspan: "5" }, "No warnings yet."))),
+          ) : $("tr", {}, $("td", { colspan: "5" }, "No warnings this month yet."))),
         ]),
       ]),
     ]),
@@ -2038,7 +2058,7 @@ function myHrCard() {
   const score = personScore(state.who, currentQuarter());
   return $("section", { class: "card" }, [
     $("h2", {}, "Your performance"),
-    $("p", { class: "muted" }, `${score.quarter} · Attitude is separate from this score.`),
+    $("p", { class: "muted" }, `${score.quarter} · Attitude is this month, separate from this score.`),
     $("div", { class: "stat-row" }, [
       statBox(formatScore(score.total), "Score", scoreTone(score.total)),
       statBox(formatScore(score.quality), "Quality", scoreTone(score.quality)),
@@ -2826,7 +2846,7 @@ function viewGuide() {
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "From Friday, set Home or Office for the week and press Save. After Save the week is locked. To change a day, request it. Amr or Tasneem approve or decline on the Attendance dashboard."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Admins read it on the dashboard."],
-    ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, quality by role, revision level, hours, attitude, and warnings. Rewards come later."],
+    ["HR", "Amr and Tasneem open HR for delivery dates, delay reasons, quality by role, revision level, and hours. Attitude and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%. Rewards come later."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
     $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
