@@ -1,7 +1,7 @@
 {
   "status": "ready",
-  "reset_at": "2026-08-31T16:05:00.000Z",
   "note": "Amr sends the day's tasks in chat or assigns on the board. Record them here, tag each person, and attach the matching Drive upload folder.",
+  "reset_at": "2026-08-31T16:05:00.000Z",
   "statuses": [
     "To do",
     "In progress",
@@ -9,5 +9,45 @@
     "Revisions",
     "Done"
   ],
-  "days": []
+  "days": [
+    {
+      "date": "2026-09-04",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20260904-judi-mtm0g3i3",
+          "who": "Judi",
+          "space": "HR",
+          "project": "Blushed",
+          "title": "ycjgc",
+          "notes": "",
+          "due": "2026-09-04",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
+          "drive_missing": false,
+          "assigned_at": "2026-09-04",
+          "created_by": "Judi",
+          "created_at": "2026-09-03T21:01:44.763Z",
+          "updated_at": "2026-09-03T21:02:02.152Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-03T21:01:49.342Z",
+              "ended_at": "2026-09-03T21:01:59.583Z",
+              "hours": 0.002844722222222222,
+              "by": "Judi"
+            }
+          ],
+          "progress_started_at": "",
+          "start_on": "2026-09-04",
+          "progress_hours": 0.002844722222222222,
+          "review_at": "2026-09-03T21:01:59.583Z",
+          "delivered_on": "2026-09-04"
+        }
+      ]
+    }
+  ]
 }
