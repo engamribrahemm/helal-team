@@ -3,7 +3,7 @@ const BOARD_STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session";
-const LS_TASKS = "helal.tasksCache.v5";
+const LS_TASKS = "helal.tasksCache.v6";
 const LS_REPORTS = "helal.reportsCache.v5";
 const LS_HR = "helal.hrCache.v5";
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -12,6 +12,7 @@ const ATTEND_MODES = ["Office", "Home", "Off"];
 const LS_ATTEND = "helal.attendCache.v5";
 const LS_SHAS = "helal.fileShas";
 const BOARD_RESET = "2026-09-05T14:12:00.000Z";
+const BLOCKED_TASK_IDS = ["t-20260906-seif-mtokld6v"];
 const OLD_CACHE_KEYS = [
   "helal.tasksCache",
   "helal.reportsCache",
@@ -22,6 +23,7 @@ const OLD_CACHE_KEYS = [
   "helal.reportsCache.v4",
   "helal.hrCache.v4",
   "helal.attendCache.v4",
+  "helal.tasksCache.v5",
 ];
 const DELAY_REASONS = [
   "Unclear brief",
@@ -522,13 +524,23 @@ function dropStaleCaches() {
   }
 }
 
+function removedTaskIds(remote, local) {
+  return new Set([
+    ...BLOCKED_TASK_IDS,
+    ...(remote?.removed_ids || []),
+    ...(local?.removed_ids || []),
+  ]);
+}
+
 function mergeTaskFiles(remote, local) {
   const resetAt = effectiveReset(remote, local);
   const resetIso = new Date(resetAt).toISOString();
+  const blocked = removedTaskIds(remote, local);
   const byId = new Map();
   for (const file of [remote, local]) {
     for (const day of file?.days || []) {
       for (const task of day.tasks || []) {
+        if (!task?.id || blocked.has(task.id)) continue;
         if (!keptAfterReset(task, resetAt)) continue;
         const next = { ...task, _day: day.date };
         const prev = byId.get(task.id);
@@ -548,6 +560,7 @@ function mergeTaskFiles(remote, local) {
     status: local?.status || remote?.status || "ready",
     note: remote?.note || local?.note || "",
     reset_at: resetIso,
+    removed_ids: [...blocked],
     statuses: STATUSES,
     days: [...daysMap.entries()]
       .sort((x, y) => x[0].localeCompare(y[0]))
@@ -956,7 +969,9 @@ function mineNewerFile(remote, local) {
   if (!who || !local?.days) return null;
   const remoteById = new Map(flatTasks(remote).map((t) => [t.id, t]));
   const keep = [];
+  const blocked = removedTaskIds(remote, local);
   for (const task of flatTasks(local)) {
+    if (!task?.id || blocked.has(task.id)) continue;
     if (!keptAfterReset(task, resetAt)) continue;
     if (!samePerson(task.updated_by, who) && !samePerson(task.created_by, who)) continue;
     const other = remoteById.get(task.id);
