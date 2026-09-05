@@ -10,6 +10,7 @@ const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const ATTEND_WEEK = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
 const ATTEND_MODES = ["Office", "Home", "Off"];
 const LS_ATTEND = "helal.attendCache.v3";
+const LS_SHAS = "helal.fileShas";
 const DELAY_REASONS = [
   "Unclear brief",
   "Waiting on information",
@@ -1007,7 +1008,26 @@ function waitMs(ms) {
 }
 
 function saveBackoff(attempt) {
-  return 350 * (attempt + 1) + Math.floor(Math.random() * 400);
+  return 180 * (attempt + 1) + Math.floor(Math.random() * 120);
+}
+
+function loadShaCache() {
+  try {
+    const row = JSON.parse(localStorage.getItem(LS_SHAS) || "{}");
+    if (row && typeof row === "object") Object.assign(state.shas, row);
+  } catch (_) {}
+}
+
+function persistShaCache() {
+  try {
+    localStorage.setItem(LS_SHAS, JSON.stringify(state.shas || {}));
+  } catch (_) {}
+}
+
+function rememberSha(path, sha) {
+  if (!path || !sha) return;
+  state.shas[path] = sha;
+  persistShaCache();
 }
 
 function fetchErrorMessage(err) {
@@ -1037,11 +1057,22 @@ function markSaved(message) {
   state.saveNote = friendlySaveNote(message);
 }
 
+async function githubGet(url, withAuth) {
+  return fetch(url, { headers: withAuth ? githubHeaders() : githubReadHeaders() });
+}
+
+async function githubGetPreferAuth(url) {
+  if (writeToken()) {
+    const auth = await githubGet(url, true);
+    if (auth.ok) return auth;
+  }
+  return githubGet(url, false);
+}
+
 async function fetchHeadSha() {
   const { owner, repo, branch } = repoInfo();
-  const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(branch)}?t=${Date.now()}`,
-    { headers: githubReadHeaders() }
+  const res = await githubGetPreferAuth(
+    `https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(branch)}?t=${Date.now()}`
   );
   if (!res.ok) return "";
   const json = await res.json();
@@ -1057,38 +1088,33 @@ async function dbGetRaw(path) {
   return res.json();
 }
 
-async function dbGetShaFromFolder(path) {
+async function refreshShaTree() {
   const { owner, repo, branch } = repoInfo();
-  const parts = String(path).split("/");
-  const name = parts.pop();
-  const folder = parts.join("/");
-  if (!folder || !name) return "";
-  const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${folder}?ref=${encodeURIComponent(branch)}&t=${Date.now()}`,
-    { headers: githubReadHeaders() }
+  const res = await githubGetPreferAuth(
+    `https://api.github.com/repos/${owner}/${repo}/git/trees/${encodeURIComponent(branch)}?recursive=1&t=${Date.now()}`
   );
-  if (!res.ok) return "";
-  const list = await res.json();
-  const row = (Array.isArray(list) ? list : []).find((f) => f.name === name);
-  return row?.sha || "";
+  if (!res.ok) return false;
+  const json = await res.json();
+  for (const item of json.tree || []) {
+    if (item.type === "blob" && item.path && item.sha) state.shas[item.path] = item.sha;
+  }
+  persistShaCache();
+  return true;
 }
 
 async function dbGet(path, ref) {
   const { owner, repo, branch } = repoInfo();
   const at = ref || branch;
   const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(at)}&t=${Date.now()}`;
-  let res = await fetch(url, { headers: githubReadHeaders() });
-  if (!res.ok && writeToken()) {
-    res = await fetch(url, { headers: githubHeaders() });
-  }
+  const res = await githubGetPreferAuth(url);
   if (!res.ok) {
     if (res.status === 403) throw new Error("GitHub is busy. Wait a few seconds, then try again.");
     throw new Error(`GitHub ${res.status}`);
   }
   const json = await res.json();
-  if (!json?.sha || json.type && json.type !== "file") throw new Error("GitHub file was not ready.");
+  if (!json?.sha || (json.type && json.type !== "file")) throw new Error("GitHub file was not ready.");
   const data = decodeGithubFile(json);
-  state.shas[path] = json.sha;
+  rememberSha(path, json.sha);
   return data;
 }
 
@@ -1096,8 +1122,7 @@ async function readRemoteForSave(path) {
   try {
     return await dbGet(path);
   } catch (_) {}
-  const sha = await dbGetShaFromFolder(path);
-  if (sha) state.shas[path] = sha;
+  if (!state.shas[path]) await refreshShaTree();
   try {
     return await dbGetRaw(path);
   } catch (_) {
@@ -1133,6 +1158,7 @@ function applyRemoteMerge(path, remote, payload) {
 
 async function dbPut(path, data, message) {
   cacheBoard();
+  loadShaCache();
   const { owner, repo, branch } = repoInfo();
   const token = writeToken();
   if (!token) {
@@ -1141,16 +1167,13 @@ async function dbPut(path, data, message) {
   }
   let payload = data;
   let lastError = "";
-  for (let attempt = 0; attempt < 12; attempt += 1) {
+  for (let attempt = 0; attempt < 5; attempt += 1) {
     const remote = await readRemoteForSave(path);
     if (remote) payload = applyRemoteMerge(path, remote, payload);
-    if (!state.shas[path]) {
-      const folderSha = await dbGetShaFromFolder(path);
-      if (folderSha) state.shas[path] = folderSha;
-    }
+    if (!state.shas[path]) await refreshShaTree();
     const sha = state.shas[path];
     if (!sha) {
-      lastError = "Could not read the GitHub file before saving.";
+      lastError = "GitHub did not return the file yet. Retrying…";
       await waitMs(saveBackoff(attempt));
       continue;
     }
@@ -1176,7 +1199,7 @@ async function dbPut(path, data, message) {
     }
     if (res.ok) {
       const json = await res.json();
-      state.shas[path] = json.content?.sha || sha;
+      rememberSha(path, json.content?.sha || sha);
       state.headSha = json.commit?.sha || state.headSha;
       if (path.endsWith("daily-tasks.json")) state.taskCommitSha = json.commit?.sha || "";
       markSaved(message);
@@ -1185,15 +1208,14 @@ async function dbPut(path, data, message) {
     }
     const text = await res.text();
     if (res.status === 409 || res.status === 422) {
-      lastError = "Someone else saved at the same time. Merging and retrying…";
-      const latest = await dbGetShaFromFolder(path);
-      if (latest) state.shas[path] = latest;
+      lastError = "Someone else saved at the same time. Merging…";
+      await refreshShaTree();
       await waitMs(saveBackoff(attempt));
       continue;
     }
     if (res.status === 403) {
       lastError = "GitHub is busy. Retrying…";
-      await waitMs(1500 + saveBackoff(attempt));
+      await waitMs(400 + saveBackoff(attempt));
       continue;
     }
     throw new Error(res.status === 401
@@ -1205,6 +1227,7 @@ async function dbPut(path, data, message) {
 
 async function loadAll() {
   if (state.session) state.who = state.session.who;
+  loadShaCache();
   const local = async () => {
     const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg, hrFile, attendFile] = await Promise.all([
       fetchLocal("./helal/team.json"),
@@ -1255,7 +1278,10 @@ async function loadAll() {
     state.hrQuarter = state.hrQuarter || currentQuarter();
     state.hrMonth = state.hrMonth || today().slice(0, 7);
     state.saveState = writeToken() ? "saved" : "idle";
+    if (!state.saveNote) state.saveNote = "Ready. New work will save to GitHub.";
+    await refreshShaTree();
     cacheBoard();
+    persistShaCache();
     if (replay && writeToken()) saveTasks(`board: ${state.who} replay unsaved moves`);
   } catch (_) {
     if (cache.tasks?.days) state.tasksFile = mergeTaskFiles(state.tasksFile, cache.tasks);
@@ -1426,11 +1452,11 @@ async function pullRemoteBoard() {
   pullTick += 1;
   try {
     const live = [
-      dbGet("helal/daily-tasks.json").catch(() => dbGetRaw("helal/daily-tasks.json")),
-      dbGet("helal/attendance.json").catch(() => state.attendFile || emptyAttendance()),
+      dbGetRaw("helal/daily-tasks.json").catch(() => dbGet("helal/daily-tasks.json")),
+      dbGetRaw("helal/attendance.json").catch(() => state.attendFile || emptyAttendance()),
     ];
     if (state.view === "report" || state.view === "review" || pullTick % 2 === 0) {
-      live.push(dbGet("helal/reports.json").catch(() => state.reportsFile));
+      live.push(dbGetRaw("helal/reports.json").catch(() => state.reportsFile));
     } else {
       live.push(Promise.resolve(state.reportsFile));
     }
@@ -1438,11 +1464,12 @@ async function pullRemoteBoard() {
     let remoteHr = state.hrFile || emptyHr();
     let remoteTeam = state.team;
     let remoteAuth = state.auth;
+    if (pullTick % 4 === 0) await refreshShaTree();
     if (pullTick % 5 === 0) {
       [remoteHr, remoteTeam, remoteAuth] = await Promise.all([
-        dbGet("helal/hr.json").catch(() => state.hrFile || emptyHr()),
-        dbGet("helal/team.json").catch(() => state.team),
-        dbGet("helal/auth.json").catch(() => state.auth),
+        dbGetRaw("helal/hr.json").catch(() => state.hrFile || emptyHr()),
+        dbGetRaw("helal/team.json").catch(() => state.team),
+        dbGetRaw("helal/auth.json").catch(() => state.auth),
       ]);
     }
     if (state.saveState === "saving") return;
@@ -3570,7 +3597,7 @@ function pullInterval() {
   const who = state.who || "";
   let n = 0;
   for (let i = 0; i < who.length; i += 1) n += who.charCodeAt(i);
-  return 8000 + (n % 4000);
+  return 10000 + (n % 4000);
 }
 
 function watchCairoDay() {
