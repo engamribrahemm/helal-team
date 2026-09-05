@@ -295,7 +295,8 @@ function canSeeTask(task) {
   if (!task) return false;
   if (isAdmin()) return true;
   if (samePerson(task.who, state.who)) return true;
-  return isSocial() && samePerson(task.created_by, state.who);
+  if (isSocial() && samePerson(task.created_by, state.who)) return true;
+  return isSocial() && people().some((p) => p.home === "social" && samePerson(p.name, task.created_by));
 }
 
 function canMoveTask(task) {
@@ -910,7 +911,7 @@ function mineNewerFile(remote, local) {
   const remoteById = new Map(flatTasks(remote).map((t) => [t.id, t]));
   const keep = [];
   for (const task of flatTasks(local)) {
-    if (task.updated_by !== who && task.created_by !== who) continue;
+    if (!samePerson(task.updated_by, who) && !samePerson(task.created_by, who)) continue;
     const other = remoteById.get(task.id);
     if (!other || taskStamp(task) > taskStamp(other)) keep.push(task);
   }
@@ -1209,6 +1210,7 @@ async function loadAll() {
 let saveChain = Promise.resolve();
 
 function enqueueSave(job) {
+  state.saveState = "saving";
   const run = saveChain.then(job, job);
   saveChain = run.then(() => {}, () => {});
   return run;
@@ -1354,7 +1356,10 @@ async function pullRemoteBoard() {
     const before = tasksSignature(state.tasksFile);
     const attendBefore = attendSignature(state.attendFile);
     const replay = mineNewerFile(remoteTasks, state.tasksFile);
-    state.tasksFile = replay ? mergeTaskFiles(remoteTasks, replay) : remoteTasks;
+    state.tasksFile = mergeTaskFiles(
+      remoteTasks || { days: [] },
+      replay || state.tasksFile || { days: [] }
+    );
     if (remoteReports) state.reportsFile = remoteReports;
     state.hrFile = remoteHr || emptyHr();
     state.attendFile = mergeAttendance(remoteAttend || emptyAttendance(), state.attendFile || emptyAttendance());
@@ -1401,8 +1406,22 @@ function logout() {
   render();
 }
 
-function ensureDay(date) {
+function ensureTasksFile() {
+  if (!state.tasksFile || !Array.isArray(state.tasksFile.days)) {
+    state.tasksFile = {
+      status: "ready",
+      note: "",
+      statuses: STATUSES,
+      days: state.tasksFile?.days || [],
+      reset_at: state.tasksFile?.reset_at || "",
+    };
+  }
   if (!state.tasksFile.days) state.tasksFile.days = [];
+  return state.tasksFile;
+}
+
+function ensureDay(date) {
+  ensureTasksFile();
   let day = state.tasksFile.days.find((d) => d.date === date);
   if (!day) {
     day = { date, source: "Helal board", tasks: [] };
@@ -1495,8 +1514,12 @@ function assignTask({ who, space, title, due, drive, project, status, notes }) {
   });
   state.creating = false;
   state.draft = null;
+  cacheBoard();
+  state.saveState = "saving";
+  state.saveError = "";
   render();
   saveTasks(`board: ${state.who} assigned ${who} — ${title}`).then(() => {
+    if (state.saveState === "error") return;
     pullRemoteBoard();
   });
 }
@@ -3270,7 +3293,7 @@ function viewGuide() {
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, so they can follow progress. Admins see the team. Columns are To do, In progress, Review, Revisions, and Done."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
-    ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it, and social still sees it on their board."],
+    ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "Everyone sees the same live grid. From Friday, set Office, Home, or Off on your row and press Save. The team sees your days as soon as they are saved. After Save the week is locked. To change a day, request it. Admins approve or decline on the Attendance dashboard."],
