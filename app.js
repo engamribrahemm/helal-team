@@ -990,13 +990,16 @@ async function fetchLocal(path) {
 
 function githubHeaders(extra) {
   const headers = {
-    Accept: "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
+    Accept: "application/json",
     ...(extra || {}),
   };
   const token = writeToken();
   if (token) headers.Authorization = `Bearer ${token}`;
   return headers;
+}
+
+function githubReadHeaders() {
+  return { Accept: "application/json" };
 }
 
 function waitMs(ms) {
@@ -1038,7 +1041,7 @@ async function fetchHeadSha() {
   const { owner, repo, branch } = repoInfo();
   const res = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(branch)}?t=${Date.now()}`,
-    { headers: githubHeaders() }
+    { headers: githubReadHeaders() }
   );
   if (!res.ok) return "";
   const json = await res.json();
@@ -1054,20 +1057,52 @@ async function dbGetRaw(path) {
   return res.json();
 }
 
+async function dbGetShaFromFolder(path) {
+  const { owner, repo, branch } = repoInfo();
+  const parts = String(path).split("/");
+  const name = parts.pop();
+  const folder = parts.join("/");
+  if (!folder || !name) return "";
+  const res = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/${folder}?ref=${encodeURIComponent(branch)}&t=${Date.now()}`,
+    { headers: githubReadHeaders() }
+  );
+  if (!res.ok) return "";
+  const list = await res.json();
+  const row = (Array.isArray(list) ? list : []).find((f) => f.name === name);
+  return row?.sha || "";
+}
+
 async function dbGet(path, ref) {
   const { owner, repo, branch } = repoInfo();
   const at = ref || branch;
-  const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(at)}&t=${Date.now()}`,
-    { headers: githubHeaders() }
-  );
+  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(at)}&t=${Date.now()}`;
+  let res = await fetch(url, { headers: githubReadHeaders() });
+  if (!res.ok && writeToken()) {
+    res = await fetch(url, { headers: githubHeaders() });
+  }
   if (!res.ok) {
     if (res.status === 403) throw new Error("GitHub is busy. Wait a few seconds, then try again.");
     throw new Error(`GitHub ${res.status}`);
   }
   const json = await res.json();
+  if (!json?.sha || json.type && json.type !== "file") throw new Error("GitHub file was not ready.");
+  const data = decodeGithubFile(json);
   state.shas[path] = json.sha;
-  return decodeGithubFile(json);
+  return data;
+}
+
+async function readRemoteForSave(path) {
+  try {
+    return await dbGet(path);
+  } catch (_) {}
+  const sha = await dbGetShaFromFolder(path);
+  if (sha) state.shas[path] = sha;
+  try {
+    return await dbGetRaw(path);
+  } catch (_) {
+    return null;
+  }
 }
 
 function applyRemoteMerge(path, remote, payload) {
@@ -1107,13 +1142,11 @@ async function dbPut(path, data, message) {
   let payload = data;
   let lastError = "";
   for (let attempt = 0; attempt < 12; attempt += 1) {
-    try {
-      const remote = await dbGet(path);
-      payload = applyRemoteMerge(path, remote, payload);
-    } catch (err) {
-      lastError = fetchErrorMessage(err);
-      await waitMs(saveBackoff(attempt));
-      if (!state.shas[path]) continue;
+    const remote = await readRemoteForSave(path);
+    if (remote) payload = applyRemoteMerge(path, remote, payload);
+    if (!state.shas[path]) {
+      const folderSha = await dbGetShaFromFolder(path);
+      if (folderSha) state.shas[path] = folderSha;
     }
     const sha = state.shas[path];
     if (!sha) {
@@ -1153,7 +1186,8 @@ async function dbPut(path, data, message) {
     const text = await res.text();
     if (res.status === 409 || res.status === 422) {
       lastError = "Someone else saved at the same time. Merging and retrying…";
-      state.shas[path] = "";
+      const latest = await dbGetShaFromFolder(path);
+      if (latest) state.shas[path] = latest;
       await waitMs(saveBackoff(attempt));
       continue;
     }
