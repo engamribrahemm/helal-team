@@ -1,7 +1,7 @@
 {
   "status": "ready",
   "note": "Amr sends the day's tasks in chat or assigns on the board. Record them here, tag each person, and attach the matching Drive upload folder.",
-  "reset_at": "2026-09-05T14:12:00.000Z",
+  "reset_at": "2026-09-05T16:05:00.000Z",
   "statuses": [
     "To do",
     "In progress",
@@ -9,30 +9,5 @@
     "Revisions",
     "Done"
   ],
-  "days": [
-    {
-      "date": "2026-09-06",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20260906-seif-mtokld6v",
-          "who": "Seif",
-          "space": "Graphic",
-          "project": "Blushed",
-          "title": "dsad",
-          "notes": "das",
-          "due": "2026-09-06",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
-          "drive_missing": false,
-          "assigned_at": "2026-09-05",
-          "created_by": "Amr",
-          "created_at": "2026-09-05T16:01:15.271Z",
-          "updated_at": "2026-09-05T16:01:15.271Z",
-          "updated_by": "Amr",
-          "revisions": 0
-        }
-      ]
-    }
-  ]
+  "days": []
 }
