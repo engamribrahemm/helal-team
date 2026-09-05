@@ -43,5 +43,19 @@
       }
     }
   },
-  "requests": []
+  "requests": [
+    {
+      "id": "ar-mtoe4yyp",
+      "who": "Amr",
+      "friday": "2026-09-04",
+      "date": "2026-09-08",
+      "from": "Office",
+      "to": "Home",
+      "reason": "خالتي بتولد",
+      "status": "Pending",
+      "created_at": "2026-09-05T13:00:32.641Z",
+      "decided_at": "",
+      "decided_by": ""
+    }
+  ]
 }
