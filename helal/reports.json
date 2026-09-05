@@ -1,5 +1,17 @@
 {
   "note": "Evening reports from the Helal board. Amr reads these as question and answer on the dashboard.",
   "reset_at": "2026-08-31T16:05:00.000Z",
-  "reports": []
+  "reports": [
+    {
+      "id": "r-mtoedaoh",
+      "who": "Judi",
+      "date": "2026-09-05",
+      "finished": "-",
+      "unfinished": "-",
+      "drive": "",
+      "need_review": true,
+      "place": "Office",
+      "created_at": "2026-09-05T13:07:01.074Z"
+    }
+  ]
 }
