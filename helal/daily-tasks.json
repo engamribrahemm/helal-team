@@ -61,15 +61,18 @@
           "title": "dddddddd",
           "notes": "d",
           "due": "2026-09-12",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-05",
           "created_by": "Amr",
           "created_at": "2026-09-05T12:56:27.602Z",
-          "updated_at": "2026-09-05T12:56:27.602Z",
-          "updated_by": "Amr",
-          "revisions": 0
+          "updated_at": "2026-09-05T12:56:41.607Z",
+          "updated_by": "Ganna",
+          "revisions": 0,
+          "time_log": [],
+          "progress_started_at": "2026-09-05T12:56:41.605Z",
+          "start_on": "2026-09-05"
         }
       ]
     },
