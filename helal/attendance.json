@@ -64,6 +64,21 @@
           "saved_at": "2026-09-05T14:01:14.102Z",
           "updated_at": "2026-09-05T14:01:14.102Z",
           "updated_by": "Tasneem"
+        },
+        "Ganna": {
+          "days": {
+            "2026-09-05": "Office",
+            "2026-09-06": "Office",
+            "2026-09-07": "Office",
+            "2026-09-08": "Office",
+            "2026-09-09": "Office",
+            "2026-09-10": "Office",
+            "2026-09-04": "Office"
+          },
+          "saved": true,
+          "saved_at": "2026-09-05T14:01:49.953Z",
+          "updated_at": "2026-09-05T14:01:49.953Z",
+          "updated_by": "Ganna"
         }
       }
     }
