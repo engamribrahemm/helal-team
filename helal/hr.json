@@ -1,6 +1,6 @@
 {
   "note": "HR evaluation system. Task delivery, quality, revisions, creativity, hours, and attitude. Rewards and deductions come later.",
-  "reset_at": "2026-09-05T13:30:00.000Z",
+  "reset_at": "2026-09-05T13:42:00.000Z",
   "weights": {
     "delivery": 35,
     "quality": 35,

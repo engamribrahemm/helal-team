@@ -3,14 +3,22 @@ const BOARD_STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session";
-const LS_TASKS = "helal.tasksCache";
-const LS_REPORTS = "helal.reportsCache";
-const LS_HR = "helal.hrCache";
+const LS_TASKS = "helal.tasksCache.v4";
+const LS_REPORTS = "helal.reportsCache.v4";
+const LS_HR = "helal.hrCache.v4";
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const ATTEND_WEEK = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
 const ATTEND_MODES = ["Office", "Home", "Off"];
-const LS_ATTEND = "helal.attendCache.v3";
+const LS_ATTEND = "helal.attendCache.v4";
 const LS_SHAS = "helal.fileShas";
+const BOARD_RESET = "2026-09-05T13:42:00.000Z";
+const OLD_CACHE_KEYS = [
+  "helal.tasksCache",
+  "helal.reportsCache",
+  "helal.hrCache",
+  "helal.attendCache",
+  "helal.attendCache.v3",
+];
 const DELAY_REASONS = [
   "Unclear brief",
   "Waiting on information",
@@ -486,20 +494,38 @@ function fileReset(file) {
   return Date.parse(file?.reset_at || 0) || 0;
 }
 
+function boardResetAt() {
+  return Date.parse(BOARD_RESET) || 0;
+}
+
+function effectiveReset(remote, local) {
+  return Math.max(fileReset(remote), fileReset(local), boardResetAt());
+}
+
+function rowTime(row) {
+  return Date.parse(row?.updated_at || row?.created_at || row?.saved_at || row?.done_at || 0) || 0;
+}
+
+function keptAfterReset(row, resetAt) {
+  if (!row) return false;
+  if (!resetAt) return true;
+  return rowTime(row) >= resetAt;
+}
+
+function dropStaleCaches() {
+  for (const key of OLD_CACHE_KEYS) {
+    try { localStorage.removeItem(key); } catch (_) {}
+  }
+}
+
 function mergeTaskFiles(remote, local) {
-  const resetAt = Math.max(fileReset(remote), fileReset(local));
-  const resetIso = resetAt ? new Date(resetAt).toISOString() : (remote?.reset_at || local?.reset_at || "");
-  const usable = (file) => {
-    if (!file) return file;
-    if (!resetAt || fileReset(file) >= resetAt) return file;
-    return { ...file, days: [], reset_at: resetIso };
-  };
-  const a = usable(remote);
-  const b = usable(local);
+  const resetAt = effectiveReset(remote, local);
+  const resetIso = new Date(resetAt).toISOString();
   const byId = new Map();
-  for (const file of [a, b]) {
+  for (const file of [remote, local]) {
     for (const day of file?.days || []) {
       for (const task of day.tasks || []) {
+        if (!keptAfterReset(task, resetAt)) continue;
         const next = { ...task, _day: day.date };
         const prev = byId.get(task.id);
         byId.set(task.id, prev ? pickTask(prev, next) : next);
@@ -515,8 +541,8 @@ function mergeTaskFiles(remote, local) {
     daysMap.get(date).push(copy);
   }
   return {
-    status: b?.status || a?.status || "ready",
-    note: a?.note || b?.note || "",
+    status: local?.status || remote?.status || "ready",
+    note: remote?.note || local?.note || "",
     reset_at: resetIso,
     statuses: STATUSES,
     days: [...daysMap.entries()]
@@ -551,6 +577,7 @@ function canonicalHrWeights() {
 function emptyHr() {
   return {
     note: "HR evaluation system. Rewards and deductions come later.",
+    reset_at: BOARD_RESET,
     weights: canonicalHrWeights(),
     work: {},
     reviews: [],
@@ -563,6 +590,7 @@ function emptyHr() {
 function emptyAttendance() {
   return {
     note: "Each person marks Office, Home, or Off for the week that starts Friday, then saves. The whole team sees every saved row live. After save, day changes need admin approval.",
+    reset_at: BOARD_RESET,
     weeks: {},
     requests: [],
   };
@@ -618,32 +646,37 @@ function canOverlayAttendRow(name, row) {
 }
 
 function mergeAttendance(remote, local) {
-  const resetIso = remote?.reset_at || local?.reset_at || "";
-  const resetAt = Date.parse(resetIso) || 0;
-  const usable = (file) => {
-    if (!file) return { weeks: {}, requests: [] };
-    if (!resetAt || fileReset(file) >= resetAt) return file;
-    return { weeks: {}, requests: [], reset_at: resetIso };
+  const resetAt = effectiveReset(remote, local);
+  const resetIso = new Date(resetAt).toISOString();
+  const takePeople = (week) => {
+    const people = {};
+    for (const [name, row] of Object.entries(week?.people || {})) {
+      if (keptAfterReset(row, resetAt)) people[name] = row;
+    }
+    return people;
   };
-  const a = usable(remote);
-  const b = usable(local);
   const weeks = {};
-  for (const key of Object.keys(a.weeks || {})) {
-    weeks[key] = { start: key, people: { ...(a.weeks[key].people || {}) } };
+  for (const key of Object.keys(remote?.weeks || {})) {
+    const people = takePeople(remote.weeks[key]);
+    if (Object.keys(people).length) weeks[key] = { start: key, people };
   }
-  for (const key of Object.keys(b.weeks || {})) {
-    if (!weeks[key]) weeks[key] = { start: key, people: {} };
-    const localPeople = b.weeks[key].people || {};
+  for (const key of Object.keys(local?.weeks || {})) {
+    const localPeople = local.weeks[key].people || {};
     for (const name of Object.keys(localPeople)) {
+      if (!keptAfterReset(localPeople[name], resetAt)) continue;
       if (!canOverlayAttendRow(name, localPeople[name])) continue;
+      if (!weeks[key]) weeks[key] = { start: key, people: {} };
       weeks[key].people[name] = pickAttendPerson(weeks[key].people[name], localPeople[name], name);
     }
   }
   return {
-    note: a.note || b.note || emptyAttendance().note,
+    note: remote?.note || local?.note || emptyAttendance().note,
     reset_at: resetIso,
     weeks,
-    requests: mergeById(a.requests || [], b.requests || []),
+    requests: mergeById(
+      (remote?.requests || []).filter((row) => keptAfterReset(row, resetAt)),
+      (local?.requests || []).filter((row) => keptAfterReset(row, resetAt))
+    ),
   };
 }
 
@@ -788,12 +821,9 @@ function mergeById(remote = [], local = []) {
 function mergeHr(remote, local) {
   const a = remote || emptyHr();
   const b = local || emptyHr();
-  const resetAt = Math.max(fileReset(a), fileReset(b));
-  const resetIso = resetAt ? new Date(resetAt).toISOString() : (a.reset_at || b.reset_at || "");
-  const lists = (file, key) => {
-    if (!resetAt || fileReset(file) >= resetAt) return file?.[key] || [];
-    return [];
-  };
+  const resetAt = effectiveReset(a, b);
+  const resetIso = new Date(resetAt).toISOString();
+  const lists = (file, key) => (file?.[key] || []).filter((row) => keptAfterReset(row, resetAt));
   const work = { ...a.work, ...b.work };
   delete work["Graphic (name unconfirmed)"];
   return {
@@ -874,6 +904,7 @@ function formatScore(n) {
 function emptyReports() {
   return {
     note: "Evening reports from the Helal board. Amr reads every saved report on the dashboard.",
+    reset_at: BOARD_RESET,
     reports: [],
   };
 }
@@ -883,12 +914,9 @@ function reportsSignature(file) {
 }
 
 function mergeReports(remote, local) {
-  const resetAt = Math.max(fileReset(remote), fileReset(local));
-  const resetIso = resetAt ? new Date(resetAt).toISOString() : (remote?.reset_at || local?.reset_at || "");
-  const usable = (file) => {
-    if (!resetAt || fileReset(file) >= resetAt) return file?.reports || [];
-    return [];
-  };
+  const resetAt = effectiveReset(remote, local);
+  const resetIso = new Date(resetAt).toISOString();
+  const usable = (file) => (file?.reports || []).filter((row) => keptAfterReset(row, resetAt));
   const byId = new Map();
   for (const report of [...usable(remote), ...usable(local)]) {
     const prev = byId.get(report.id);
@@ -917,12 +945,13 @@ function flatTasks(file) {
 }
 
 function mineNewerFile(remote, local) {
-  if (fileReset(remote) > fileReset(local)) return null;
+  const resetAt = Math.max(fileReset(remote), boardResetAt());
   const who = state.who || state.session?.who;
   if (!who || !local?.days) return null;
   const remoteById = new Map(flatTasks(remote).map((t) => [t.id, t]));
   const keep = [];
   for (const task of flatTasks(local)) {
+    if (!keptAfterReset(task, resetAt)) continue;
     if (!samePerson(task.updated_by, who) && !samePerson(task.created_by, who)) continue;
     const other = remoteById.get(task.id);
     if (!other || taskStamp(task) > taskStamp(other)) keep.push(task);
@@ -1120,14 +1149,23 @@ async function dbGet(path, ref) {
 
 async function readRemoteForSave(path) {
   try {
-    return await dbGet(path);
-  } catch (_) {}
-  if (!state.shas[path]) await refreshShaTree();
-  try {
     return await dbGetRaw(path);
+  } catch (_) {}
+  try {
+    return await dbGet(path);
   } catch (_) {
     return null;
   }
+}
+
+async function ensureFileSha(path) {
+  if (state.shas[path]) return state.shas[path];
+  await refreshShaTree();
+  if (state.shas[path]) return state.shas[path];
+  try {
+    await dbGet(path);
+  } catch (_) {}
+  return state.shas[path] || "";
 }
 
 function applyRemoteMerge(path, remote, payload) {
@@ -1170,8 +1208,7 @@ async function dbPut(path, data, message) {
   for (let attempt = 0; attempt < 5; attempt += 1) {
     const remote = await readRemoteForSave(path);
     if (remote) payload = applyRemoteMerge(path, remote, payload);
-    if (!state.shas[path]) await refreshShaTree();
-    const sha = state.shas[path];
+    const sha = await ensureFileSha(path);
     if (!sha) {
       lastError = "GitHub did not return the file yet. Retrying…";
       await waitMs(saveBackoff(attempt));
@@ -1227,6 +1264,7 @@ async function dbPut(path, data, message) {
 
 async function loadAll() {
   if (state.session) state.who = state.session.who;
+  dropStaleCaches();
   loadShaCache();
   const local = async () => {
     const [team, auth, drive, projects, tasksFile, reportsFile, githubCfg, hrFile, attendFile] = await Promise.all([
@@ -1251,30 +1289,28 @@ async function loadAll() {
   const cache = readCacheFiles();
   try {
     const localCfg = state.githubCfg;
-    const remoteCfg = await dbGet("helal/github.json");
+    const remoteCfg = await dbGetRaw("helal/github.json").catch(() => localCfg);
     const githubCfg = persistBoardCfg(
       { ...localCfg, ...remoteCfg },
       assembleBoardKey(remoteCfg) || assembleBoardKey(localCfg)
     );
     state.githubCfg = githubCfg;
-    const head = await fetchHeadSha();
-    state.headSha = head;
     const [team, auth, drive, projects, tasksFile, reportsFile, hrFile, attendFile] = await Promise.all([
-      dbGet("helal/team.json"),
-      dbGet("helal/auth.json"),
-      dbGet("helal/drive.json"),
-      dbGet("helal/projects.json"),
-      dbGet("helal/daily-tasks.json"),
-      dbGet("helal/reports.json"),
-      dbGet("helal/hr.json").catch(() => cache.hr || state.hrFile || emptyHr()),
-      dbGet("helal/attendance.json").catch(() => cache.attend || state.attendFile || emptyAttendance()),
+      dbGetRaw("helal/team.json"),
+      dbGetRaw("helal/auth.json"),
+      dbGetRaw("helal/drive.json"),
+      dbGetRaw("helal/projects.json"),
+      dbGetRaw("helal/daily-tasks.json"),
+      dbGetRaw("helal/reports.json"),
+      dbGetRaw("helal/hr.json").catch(() => emptyHr()),
+      dbGetRaw("helal/attendance.json").catch(() => emptyAttendance()),
     ]);
     Object.assign(state, { team, auth, drive, projects, githubCfg });
     const replay = mineNewerFile(tasksFile, cache.tasks);
-    state.tasksFile = replay ? mergeTaskFiles(tasksFile, replay) : tasksFile;
-    state.reportsFile = mergeReports(reportsFile || emptyReports(), cache.reports || state.reportsFile || emptyReports());
-    state.hrFile = hrFile?.work || hrFile?.reviews ? hrFile : emptyHr();
-    state.attendFile = mergeAttendance(attendFile || emptyAttendance(), cache.attend || state.attendFile || emptyAttendance());
+    state.tasksFile = mergeTaskFiles(tasksFile, replay);
+    state.reportsFile = mergeReports(reportsFile || emptyReports(), cache.reports);
+    state.hrFile = mergeHr(hrFile || emptyHr(), cache.hr);
+    state.attendFile = mergeAttendance(attendFile || emptyAttendance(), cache.attend);
     state.hrQuarter = state.hrQuarter || currentQuarter();
     state.hrMonth = state.hrMonth || today().slice(0, 7);
     state.saveState = writeToken() ? "saved" : "idle";
@@ -1284,10 +1320,10 @@ async function loadAll() {
     persistShaCache();
     if (replay && writeToken()) saveTasks(`board: ${state.who} replay unsaved moves`);
   } catch (_) {
-    if (cache.tasks?.days) state.tasksFile = mergeTaskFiles(state.tasksFile, cache.tasks);
-    if (cache.reports?.reports) state.reportsFile = mergeReports(state.reportsFile, cache.reports);
-    if (cache.hr) state.hrFile = mergeHr(state.hrFile || emptyHr(), cache.hr);
-    if (cache.attend) state.attendFile = mergeAttendance(state.attendFile || emptyAttendance(), cache.attend);
+    state.tasksFile = mergeTaskFiles(state.tasksFile, cache.tasks);
+    state.reportsFile = mergeReports(state.reportsFile || emptyReports(), cache.reports);
+    state.hrFile = mergeHr(state.hrFile || emptyHr(), cache.hr);
+    state.attendFile = mergeAttendance(state.attendFile || emptyAttendance(), cache.attend);
   }
   if (!state.hrFile) state.hrFile = emptyHr();
   if (!state.attendFile) state.attendFile = emptyAttendance();
@@ -1541,7 +1577,7 @@ function ensureTasksFile() {
       note: "",
       statuses: STATUSES,
       days: state.tasksFile?.days || [],
-      reset_at: state.tasksFile?.reset_at || "",
+      reset_at: state.tasksFile?.reset_at || BOARD_RESET,
     };
   }
   if (!state.tasksFile.days) state.tasksFile.days = [];
