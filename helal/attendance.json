@@ -31,13 +31,13 @@
             "2026-09-05": "Office",
             "2026-09-06": "Home",
             "2026-09-07": "Office",
-            "2026-09-08": "Office",
+            "2026-09-08": "Home",
             "2026-09-09": "Office",
             "2026-09-10": "Office"
           },
           "saved": true,
           "saved_at": "2026-09-05T12:59:37.247Z",
-          "updated_at": "2026-09-05T12:59:37.247Z",
+          "updated_at": "2026-09-05T13:00:43.953Z",
           "updated_by": "Amr"
         }
       }
@@ -52,10 +52,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "خالتي بتولد",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-05T13:00:32.641Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-05T13:00:43.953Z",
+      "decided_by": "Amr"
     }
   ]
 }
