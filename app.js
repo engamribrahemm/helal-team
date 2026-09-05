@@ -870,6 +870,17 @@ function formatScore(n) {
   return n.toFixed(1);
 }
 
+function emptyReports() {
+  return {
+    note: "Evening reports from the Helal board. Amr reads every saved report on the dashboard.",
+    reports: [],
+  };
+}
+
+function reportsSignature(file) {
+  return (file?.reports || []).map((r) => `${r.id}:${r.created_at || ""}`).sort().join("|");
+}
+
 function mergeReports(remote, local) {
   const resetAt = Math.max(fileReset(remote), fileReset(local));
   const resetIso = resetAt ? new Date(resetAt).toISOString() : (remote?.reset_at || local?.reset_at || "");
@@ -1176,7 +1187,7 @@ async function loadAll() {
     Object.assign(state, { team, auth, drive, projects, githubCfg });
     const replay = mineNewerFile(tasksFile, cache.tasks);
     state.tasksFile = replay ? mergeTaskFiles(tasksFile, replay) : tasksFile;
-    state.reportsFile = reportsFile;
+    state.reportsFile = mergeReports(reportsFile || emptyReports(), cache.reports || state.reportsFile || emptyReports());
     state.hrFile = hrFile?.work || hrFile?.reviews ? hrFile : emptyHr();
     state.attendFile = mergeAttendance(attendFile || emptyAttendance(), cache.attend || state.attendFile || emptyAttendance());
     state.hrQuarter = state.hrQuarter || currentQuarter();
@@ -1192,6 +1203,7 @@ async function loadAll() {
   }
   if (!state.hrFile) state.hrFile = emptyHr();
   if (!state.attendFile) state.attendFile = emptyAttendance();
+  if (!state.reportsFile) state.reportsFile = emptyReports();
   state.hrQuarter = state.hrQuarter || currentQuarter();
   state.hrMonth = state.hrMonth || today().slice(0, 7);
   state.hrPerson = state.hrPerson || "";
@@ -1355,12 +1367,13 @@ async function pullRemoteBoard() {
     if (state.saveState === "saving") return;
     const before = tasksSignature(state.tasksFile);
     const attendBefore = attendSignature(state.attendFile);
+    const reportsBefore = reportsSignature(state.reportsFile);
     const replay = mineNewerFile(remoteTasks, state.tasksFile);
     state.tasksFile = mergeTaskFiles(
       remoteTasks || { days: [] },
       replay || state.tasksFile || { days: [] }
     );
-    if (remoteReports) state.reportsFile = remoteReports;
+    state.reportsFile = mergeReports(remoteReports || emptyReports(), state.reportsFile || emptyReports());
     state.hrFile = remoteHr || emptyHr();
     state.attendFile = mergeAttendance(remoteAttend || emptyAttendance(), state.attendFile || emptyAttendance());
     if (remoteTeam) state.team = pickNewerFile(remoteTeam, state.team);
@@ -1370,7 +1383,11 @@ async function pullRemoteBoard() {
       return;
     }
     cacheBoard();
-    if (tasksSignature(state.tasksFile) !== before || attendSignature(state.attendFile) !== attendBefore) render();
+    if (
+      tasksSignature(state.tasksFile) !== before
+      || attendSignature(state.attendFile) !== attendBefore
+      || reportsSignature(state.reportsFile) !== reportsBefore
+    ) render();
   } catch (_) {}
 }
 
@@ -1525,7 +1542,7 @@ function assignTask({ who, space, title, due, drive, project, status, notes }) {
 }
 
 function submitReport(fields) {
-  if (!state.reportsFile) state.reportsFile = { reports: [] };
+  if (!state.reportsFile) state.reportsFile = emptyReports();
   if (!state.reportsFile.reports) state.reportsFile.reports = [];
   state.reportsFile.reports.unshift({
     id: `r-${Date.now().toString(36)}`,
@@ -1540,6 +1557,9 @@ function submitReport(fields) {
   });
   state.reportDay = fields.date || today();
   state.calMonth = state.reportDay.slice(0, 7);
+  cacheBoard();
+  state.saveState = "saving";
+  state.saveError = "";
   render();
   saveReports(`report: ${state.who} ${state.reportDay}`);
 }
@@ -2753,16 +2773,28 @@ function viewReview() {
   const month = day.slice(0, 7);
   const doneDay = allTasks().filter((t) => t.status === "Done" && t.done_on === day);
   const doneMonth = allTasks().filter((t) => t.status === "Done" && doneMonthOf(t) === month);
-  const dayReports = (state.reportsFile?.reports || []).filter((r) => r.date === day);
+  const allReports = [...(state.reportsFile?.reports || [])].sort(
+    (a, b) => Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0)
+  );
+  const dayReports = allReports.filter((r) => r.date === day);
   return $("div", { class: "dash" }, [
     viewCalendar(),
     $("section", {}, [
       $("h2", {}, `Reports · ${day}`),
-      $("p", { class: "muted" }, "Who sent a report today, who has not, then each report as question and answer."),
+      $("p", { class: "muted" }, "Every saved report is kept. Pick a day, or read the latest submissions below."),
       reportDaySummary(day),
       dayReports.length
         ? $("div", { class: "cards", style: "margin-top:18px" }, dayReports.map(reportCard))
         : $("p", { class: "empty" }, "No report submissions on this day yet."),
+    ]),
+    $("section", {}, [
+      $("h2", {}, "All saved reports"),
+      $("p", { class: "muted" }, allReports.length
+        ? `${allReports.length} saved. Newest first. Nothing is dropped after submit.`
+        : "New reports appear here as soon as someone submits."),
+      allReports.length
+        ? $("div", { class: "cards", style: "margin-top:14px" }, allReports.map(reportCard))
+        : $("p", { class: "empty" }, "No reports saved yet."),
     ]),
     $("section", {}, [
       $("h2", {}, "Attendance requests"),
@@ -3297,7 +3329,7 @@ function viewGuide() {
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "Everyone sees the same live grid. From Friday, set Office, Home, or Off on your row and press Save. The team sees your days as soon as they are saved. After Save the week is locked. To change a day, request it. Admins approve or decline on the Attendance dashboard."],
-    ["Evening report", "Open Report, choose Remote or Office, and answer each question. Admins read it on the dashboard."],
+    ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. Admins see every saved report on the Dashboard."],
     ["HR", "Amr and Tasneem open HR. Profile shows one person. Performance, task tracking, attitude, and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
