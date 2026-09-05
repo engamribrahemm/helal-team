@@ -559,7 +559,7 @@ function emptyHr() {
 
 function emptyAttendance() {
   return {
-    note: "Each person marks Office, Home, or Off for the week that starts Friday, then saves. After save, day changes need admin approval.",
+    note: "Each person marks Office, Home, or Off for the week that starts Friday, then saves. The whole team sees saved days live. After save, day changes need admin approval.",
     weeks: {},
     requests: [],
   };
@@ -595,14 +595,16 @@ function canEditAttendWeek(friday) {
   return friday >= fridayStart(today());
 }
 
-function pickAttendPerson(pa, pb) {
-  if (!pa) return pb;
-  if (!pb) return pa;
-  if (pa.saved && !pb.saved) return pa;
-  if (pb.saved && !pa.saved) return pb;
-  const ta = Date.parse(pa.updated_at || 0);
-  const tb = Date.parse(pb.updated_at || 0);
-  return tb >= ta ? pb : pa;
+function pickAttendPerson(remoteRow, localRow, name) {
+  if (!remoteRow) return localRow;
+  if (!localRow) return remoteRow;
+  const me = state.who || state.session?.who;
+  const rt = Date.parse(remoteRow.updated_at || 0);
+  const lt = Date.parse(localRow.updated_at || 0);
+  if (name === me && !localRow.saved && !remoteRow.saved) return lt >= rt ? localRow : remoteRow;
+  if (remoteRow.saved && !localRow.saved) return remoteRow;
+  if (localRow.saved && !remoteRow.saved) return localRow;
+  return lt > rt ? localRow : remoteRow;
 }
 
 function mergeAttendance(remote, local) {
@@ -622,7 +624,7 @@ function mergeAttendance(remote, local) {
     const pb = b.weeks?.[key]?.people || {};
     const names = new Set([...Object.keys(pa), ...Object.keys(pb)]);
     const peopleMap = {};
-    for (const name of names) peopleMap[name] = pickAttendPerson(pa[name], pb[name]);
+    for (const name of names) peopleMap[name] = pickAttendPerson(pa[name], pb[name], name);
     weeks[key] = { start: key, people: peopleMap };
   }
   return {
@@ -644,6 +646,10 @@ function ensureAttendance() {
 
 function attendDaysFor(name, friday) {
   return ensureAttendance().weeks[friday]?.people?.[name]?.days || {};
+}
+
+function attendDaysLive(name, friday) {
+  return attendDaysFor(name, friday);
 }
 
 function attendPerson(name, friday) {
@@ -672,6 +678,19 @@ function canDraftAttend(name, friday) {
   return name === state.who && friday >= fridayStart(today()) && !attendSaved(name, friday);
 }
 
+let attendDraftTimer = 0;
+
+function queueAttendDraftSave(friday) {
+  clearTimeout(attendDraftTimer);
+  attendDraftTimer = setTimeout(() => {
+    if (state.saveState === "saving") {
+      queueAttendDraftSave(friday);
+      return;
+    }
+    saveAttendance(`attend: ${state.who} set days ${friday}`);
+  }, 700);
+}
+
 function setAttendDay(name, friday, date, mode) {
   const file = ensureAttendance();
   if (!file.weeks[friday]) file.weeks[friday] = { start: friday, people: {} };
@@ -687,6 +706,7 @@ function setAttendDay(name, friday, date, mode) {
     updated_by: state.who,
   };
   state.attendFile = file;
+  if (name === state.who && !prev.saved) queueAttendDraftSave(friday);
 }
 
 function lockMyAttendance(friday) {
@@ -698,6 +718,7 @@ function lockMyAttendance(friday) {
     render();
     return;
   }
+  clearTimeout(attendDraftTimer);
   const file = ensureAttendance();
   if (!file.weeks[friday]) file.weeks[friday] = { start: friday, people: {} };
   const prev = file.weeks[friday].people[state.who] || { days };
@@ -3154,9 +3175,9 @@ function viewAttendance() {
   const roster = people();
   const mineSaved = attendSaved(state.who, friday);
   const canDraft = canDraftAttend(state.who, friday);
-  const officeToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Office").length;
-  const homeToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Home").length;
-  const offToday = roster.filter((p) => attendDaysFor(p.name, thisFriday)[todayDate] === "Off").length;
+  const officeToday = roster.filter((p) => attendDaysLive(p.name, thisFriday)[todayDate] === "Office").length;
+  const homeToday = roster.filter((p) => attendDaysLive(p.name, thisFriday)[todayDate] === "Home").length;
+  const offToday = roster.filter((p) => attendDaysLive(p.name, thisFriday)[todayDate] === "Off").length;
   const unsetToday = roster.length - officeToday - homeToday - offToday;
   const change = state.attendChange;
 
@@ -3193,9 +3214,9 @@ function viewAttendance() {
       statBox(unsetToday, "Not set today"),
     ]),
     $("p", { class: "muted" }, canDraft
-      ? "Set Office, Home, or Off for every day on your row, then Save. After Save you cannot edit; you can only request a change."
+      ? "Everyone sees this grid live. Set Office, Home, or Off on your row, then Save. After Save you cannot edit; you can only request a change."
       : mineSaved
-        ? "Your week is locked. Tap one of your days to request Office, Home, or Off."
+        ? "Your week is locked and live for the team. Tap one of your days to request Office, Home, or Off."
         : "This week is closed. Open This week or Next week to set days, or request a change on a locked week."),
     canDraft
       ? $("div", {}, $("button", { class: "btn primary", type: "button", onclick: () => lockMyAttendance(friday) }, "Save my week"))
@@ -3213,7 +3234,7 @@ function viewAttendance() {
         ])),
         $("tbody", {}, roster.map((p) => {
           const mine = p.name === state.who;
-          const days = attendDaysFor(p.name, friday);
+          const days = attendDaysLive(p.name, friday);
           const saved = attendSaved(p.name, friday);
           return $("tr", { class: mine ? "attend-mine" : "" }, [
             $("td", {}, [$("strong", {}, p.name), $("span", { class: "muted" }, ` ${p.role || ""}`)]),
@@ -3232,7 +3253,11 @@ function viewAttendance() {
                 pending ? $("span", { class: "pill" }, "Requested") : null,
               ]);
             }),
-            $("td", {}, saved ? $("span", { class: "pill tone-green" }, "Saved") : $("span", { class: "pill" }, "Draft")),
+            $("td", {}, saved
+              ? $("span", { class: "pill tone-green" }, "Saved")
+              : Object.keys(days).length
+                ? $("span", { class: "pill" }, mine ? "Editing" : "Setting")
+                : $("span", { class: "pill" }, "Not set")),
           ]);
         })),
       ])
@@ -3248,7 +3273,7 @@ function viewGuide() {
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. The assigned person sees it, and social still sees it on their board."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
-    ["Attendance", "From Friday, set Office, Home, or Off for the week and press Save. After Save the week is locked. To change a day, request it. Admins approve or decline on the Attendance dashboard."],
+    ["Attendance", "Everyone sees the same live grid. From Friday, set Office, Home, or Off on your row and press Save. The team sees your days as soon as they are saved. After Save the week is locked. To change a day, request it. Admins approve or decline on the Attendance dashboard."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Admins read it on the dashboard."],
     ["HR", "Amr and Tasneem open HR. Profile shows one person. Performance, task tracking, attitude, and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
