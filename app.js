@@ -9,7 +9,7 @@ const LS_HR = "helal.hrCache";
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const ATTEND_WEEK = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
 const ATTEND_MODES = ["Office", "Home", "Off"];
-const LS_ATTEND = "helal.attendCache";
+const LS_ATTEND = "helal.attendCache.v3";
 const DELAY_REASONS = [
   "Unclear brief",
   "Waiting on information",
@@ -608,9 +608,16 @@ function pickAttendPerson(remoteRow, localRow, name) {
   return lt > rt ? localRow : remoteRow;
 }
 
+function canOverlayAttendRow(name, row) {
+  const me = state.who || state.session?.who;
+  if (!name || !row || !me) return false;
+  if (samePerson(name, me)) return true;
+  return isAdmin() && samePerson(row.updated_by, me);
+}
+
 function mergeAttendance(remote, local) {
-  const resetAt = Math.max(fileReset(remote), fileReset(local));
-  const resetIso = resetAt ? new Date(resetAt).toISOString() : (remote?.reset_at || local?.reset_at || "");
+  const resetIso = remote?.reset_at || local?.reset_at || "";
+  const resetAt = Date.parse(resetIso) || 0;
   const usable = (file) => {
     if (!file) return { weeks: {}, requests: [] };
     if (!resetAt || fileReset(file) >= resetAt) return file;
@@ -619,17 +626,19 @@ function mergeAttendance(remote, local) {
   const a = usable(remote);
   const b = usable(local);
   const weeks = {};
-  const keys = new Set([...Object.keys(a.weeks || {}), ...Object.keys(b.weeks || {})]);
-  for (const key of keys) {
-    const pa = a.weeks?.[key]?.people || {};
-    const pb = b.weeks?.[key]?.people || {};
-    const names = new Set([...Object.keys(pa), ...Object.keys(pb)]);
-    const peopleMap = {};
-    for (const name of names) peopleMap[name] = pickAttendPerson(pa[name], pb[name], name);
-    weeks[key] = { start: key, people: peopleMap };
+  for (const key of Object.keys(a.weeks || {})) {
+    weeks[key] = { start: key, people: { ...(a.weeks[key].people || {}) } };
+  }
+  for (const key of Object.keys(b.weeks || {})) {
+    if (!weeks[key]) weeks[key] = { start: key, people: {} };
+    const localPeople = b.weeks[key].people || {};
+    for (const name of Object.keys(localPeople)) {
+      if (!canOverlayAttendRow(name, localPeople[name])) continue;
+      weeks[key].people[name] = pickAttendPerson(weeks[key].people[name], localPeople[name], name);
+    }
   }
   return {
-    note: b.note || a.note || emptyAttendance().note,
+    note: a.note || b.note || emptyAttendance().note,
     reset_at: resetIso,
     weeks,
     requests: mergeById(a.requests || [], b.requests || []),
@@ -650,7 +659,10 @@ function attendDaysFor(name, friday) {
 }
 
 function attendDaysLive(name, friday) {
-  return attendDaysFor(name, friday);
+  const row = attendPerson(name, friday);
+  if (!row) return {};
+  if (samePerson(name, state.who) || row.saved) return row.days || {};
+  return {};
 }
 
 function attendPerson(name, friday) {
@@ -679,19 +691,6 @@ function canDraftAttend(name, friday) {
   return name === state.who && friday >= fridayStart(today()) && !attendSaved(name, friday);
 }
 
-let attendDraftTimer = 0;
-
-function queueAttendDraftSave(friday) {
-  clearTimeout(attendDraftTimer);
-  attendDraftTimer = setTimeout(() => {
-    if (state.saveState === "saving") {
-      queueAttendDraftSave(friday);
-      return;
-    }
-    saveAttendance(`attend: ${state.who} set days ${friday}`);
-  }, 700);
-}
-
 function setAttendDay(name, friday, date, mode) {
   const file = ensureAttendance();
   if (!file.weeks[friday]) file.weeks[friday] = { start: friday, people: {} };
@@ -707,7 +706,6 @@ function setAttendDay(name, friday, date, mode) {
     updated_by: state.who,
   };
   state.attendFile = file;
-  if (name === state.who && !prev.saved) queueAttendDraftSave(friday);
 }
 
 function lockMyAttendance(friday) {
@@ -719,7 +717,6 @@ function lockMyAttendance(friday) {
     render();
     return;
   }
-  clearTimeout(attendDraftTimer);
   const file = ensureAttendance();
   if (!file.weeks[friday]) file.weeks[friday] = { start: friday, people: {} };
   const prev = file.weeks[friday].people[state.who] || { days };
@@ -733,6 +730,8 @@ function lockMyAttendance(friday) {
   };
   state.attendFile = file;
   state.saveError = "";
+  state.saveState = "saving";
+  cacheBoard();
   saveAttendance(`attend: ${state.who} locked ${friday}`);
 }
 
@@ -3269,9 +3268,9 @@ function viewAttendance() {
       statBox(unsetToday, "Not set today"),
     ]),
     $("p", { class: "muted" }, canDraft
-      ? "Everyone sees this grid live. Set Office, Home, or Off on your row, then Save. After Save you cannot edit; you can only request a change."
+      ? "Set Office, Home, or Off on your row, then press Save. The whole team sees your week as soon as it is saved."
       : mineSaved
-        ? "Your week is locked and live for the team. Tap one of your days to request Office, Home, or Off."
+        ? "Your week is locked and visible to everyone. Tap one of your days to request Office, Home, or Off."
         : "This week is closed. Open This week or Next week to set days, or request a change on a locked week."),
     canDraft
       ? $("div", {}, $("button", { class: "btn primary", type: "button", onclick: () => lockMyAttendance(friday) }, "Save my week"))
@@ -3328,7 +3327,7 @@ function viewGuide() {
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
-    ["Attendance", "Everyone sees the same live grid. From Friday, set Office, Home, or Off on your row and press Save. The team sees your days as soon as they are saved. After Save the week is locked. To change a day, request it. Admins approve or decline on the Attendance dashboard."],
+    ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. Admins see every saved report on the Dashboard."],
     ["HR", "Amr and Tasneem open HR. Profile shows one person. Performance, task tracking, attitude, and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
