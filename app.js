@@ -96,6 +96,7 @@ const state = {
   pendingRevision: null,
   saveState: "idle",
   saveError: "",
+  saveNote: "",
   loginError: "",
   connectError: "",
   shas: {},
@@ -998,41 +999,56 @@ function githubHeaders(extra) {
   return headers;
 }
 
+function waitMs(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+function saveBackoff(attempt) {
+  return 350 * (attempt + 1) + Math.floor(Math.random() * 400);
+}
+
 function fetchErrorMessage(err) {
   const msg = String(err?.message || err || "");
   if (/failed to fetch|networkerror|load failed/i.test(msg)) {
-    return "Could not reach GitHub from this browser. Refresh, then create the task again.";
+    return "Could not reach GitHub from this browser. Refresh, then try again.";
+  }
+  if (/403|rate limit|busy/i.test(msg)) {
+    return "GitHub is busy. Wait a few seconds, then try again.";
   }
   return msg;
+}
+
+function friendlySaveNote(message) {
+  const text = String(message || "");
+  if (text.startsWith("attend:")) return "Attendance saved. The whole team can see it now.";
+  if (text.startsWith("report:")) return "Report saved. It is on the dashboard.";
+  if (text.startsWith("board:")) return "Task saved. It is on the live board.";
+  if (text.startsWith("hr:")) return "HR saved.";
+  if (text.startsWith("team:") || text.startsWith("auth:")) return "People saved.";
+  return "Saved. The team can see it now.";
+}
+
+function markSaved(message) {
+  state.saveState = "saved";
+  state.saveError = "";
+  state.saveNote = friendlySaveNote(message);
 }
 
 async function fetchHeadSha() {
   const { owner, repo, branch } = repoInfo();
   const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(branch)}`,
-    { cache: "no-store", headers: githubHeaders() }
+    `https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(branch)}?t=${Date.now()}`,
+    { headers: githubHeaders() }
   );
   if (!res.ok) return "";
   const json = await res.json();
   return json.object?.sha || "";
 }
 
-async function fetchPathCommit(path) {
-  const { owner, repo, branch } = repoInfo();
-  const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/commits?path=${encodeURIComponent(path)}&sha=${encodeURIComponent(branch)}&per_page=1`,
-    { cache: "no-store", headers: githubHeaders() }
-  );
-  if (!res.ok) return "";
-  const json = await res.json();
-  return json[0]?.sha || "";
-}
-
 async function dbGetRaw(path) {
   const { owner, repo, branch } = repoInfo();
   const res = await fetch(
-    `https://raw.githubusercontent.com/${owner}/${repo}/${encodeURIComponent(branch)}/${path}?t=${Date.now()}`,
-    { cache: "no-store" }
+    `https://raw.githubusercontent.com/${owner}/${repo}/${encodeURIComponent(branch)}/${path}?t=${Date.now()}`
   );
   if (!res.ok) throw new Error(`GitHub ${res.status}`);
   return res.json();
@@ -1043,12 +1059,41 @@ async function dbGet(path, ref) {
   const at = ref || branch;
   const res = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(at)}&t=${Date.now()}`,
-    { cache: "no-store", headers: githubHeaders() }
+    { headers: githubHeaders() }
   );
-  if (!res.ok) throw new Error(`GitHub ${res.status}`);
+  if (!res.ok) {
+    if (res.status === 403) throw new Error("GitHub is busy. Wait a few seconds, then try again.");
+    throw new Error(`GitHub ${res.status}`);
+  }
   const json = await res.json();
   state.shas[path] = json.sha;
   return decodeGithubFile(json);
+}
+
+function applyRemoteMerge(path, remote, payload) {
+  if (path.endsWith("daily-tasks.json")) {
+    payload = mergeTaskFiles(remote, payload);
+    state.tasksFile = payload;
+  } else if (path.endsWith("reports.json")) {
+    payload = mergeReports(remote, payload);
+    state.reportsFile = payload;
+  } else if (path.endsWith("hr.json")) {
+    payload = mergeHr(remote, payload);
+    state.hrFile = payload;
+  } else if (path.endsWith("attendance.json")) {
+    payload = mergeAttendance(remote, payload);
+    state.attendFile = payload;
+  } else if (path.endsWith("github.json")) {
+    payload = persistBoardCfg({ ...remote, ...payload }, assembleBoardKey(payload) || assembleBoardKey(remote));
+    state.githubCfg = payload;
+  } else if (path.endsWith("team.json")) {
+    payload = pickNewerFile(remote, payload);
+    state.team = payload;
+  } else if (path.endsWith("auth.json")) {
+    payload = mergeAuth(remote, payload);
+    state.auth = payload;
+  }
+  return payload;
 }
 
 async function dbPut(path, data, message) {
@@ -1061,39 +1106,19 @@ async function dbPut(path, data, message) {
   }
   let payload = data;
   let lastError = "";
-  for (let attempt = 0; attempt < 6; attempt += 1) {
+  for (let attempt = 0; attempt < 12; attempt += 1) {
     try {
-      const head = await fetchHeadSha();
-      const remote = await dbGet(path, head);
-      if (path.endsWith("daily-tasks.json")) {
-        payload = mergeTaskFiles(remote, payload);
-        state.tasksFile = payload;
-      } else if (path.endsWith("reports.json")) {
-        payload = mergeReports(remote, payload);
-        state.reportsFile = payload;
-      } else if (path.endsWith("hr.json")) {
-        payload = mergeHr(remote, payload);
-        state.hrFile = payload;
-      } else if (path.endsWith("attendance.json")) {
-        payload = mergeAttendance(remote, payload);
-        state.attendFile = payload;
-      } else if (path.endsWith("github.json")) {
-        payload = persistBoardCfg({ ...remote, ...payload }, assembleBoardKey(payload) || assembleBoardKey(remote));
-        state.githubCfg = payload;
-      } else if (path.endsWith("team.json")) {
-        payload = pickNewerFile(remote, payload);
-        state.team = payload;
-      } else if (path.endsWith("auth.json")) {
-        payload = mergeAuth(remote, payload);
-        state.auth = payload;
-      }
+      const remote = await dbGet(path);
+      payload = applyRemoteMerge(path, remote, payload);
     } catch (err) {
-      lastError = err.message;
+      lastError = fetchErrorMessage(err);
+      await waitMs(saveBackoff(attempt));
+      if (!state.shas[path]) continue;
     }
     const sha = state.shas[path];
-    if (!sha && attempt > 1) {
+    if (!sha) {
       lastError = "Could not read the GitHub file before saving.";
-      await new Promise((r) => setTimeout(r, 250 * (attempt + 1)));
+      await waitMs(saveBackoff(attempt));
       continue;
     }
     let res;
@@ -1102,19 +1127,18 @@ async function dbPut(path, data, message) {
         `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
         {
           method: "PUT",
-          cache: "no-store",
           headers: githubHeaders({ "Content-Type": "application/json" }),
           body: JSON.stringify({
             message,
             content: toBase64(JSON.stringify(payload, null, 2) + "\n"),
             branch,
-            ...(sha ? { sha } : {}),
+            sha,
           }),
         }
       );
     } catch (err) {
       lastError = fetchErrorMessage(err);
-      await new Promise((r) => setTimeout(r, 300 * (attempt + 1)));
+      await waitMs(saveBackoff(attempt));
       continue;
     }
     if (res.ok) {
@@ -1122,22 +1146,27 @@ async function dbPut(path, data, message) {
       state.shas[path] = json.content?.sha || sha;
       state.headSha = json.commit?.sha || state.headSha;
       if (path.endsWith("daily-tasks.json")) state.taskCommitSha = json.commit?.sha || "";
-      state.saveState = "saved";
-      state.saveError = "";
+      markSaved(message);
       cacheBoard();
       return true;
     }
     const text = await res.text();
     if (res.status === 409 || res.status === 422) {
-      lastError = "GitHub was updated by someone else. Retrying…";
-      await new Promise((r) => setTimeout(r, 300 * (attempt + 1)));
+      lastError = "Someone else saved at the same time. Merging and retrying…";
+      state.shas[path] = "";
+      await waitMs(saveBackoff(attempt));
+      continue;
+    }
+    if (res.status === 403) {
+      lastError = "GitHub is busy. Retrying…";
+      await waitMs(1500 + saveBackoff(attempt));
       continue;
     }
     throw new Error(res.status === 401
       ? "GitHub could not save. The board database token needs a refresh."
       : `GitHub ${res.status}: ${text.slice(0, 140)}`);
   }
-  throw new Error(lastError || "Could not save to GitHub. Click Refresh, then move the task again.");
+  throw new Error(lastError || "Could not save to GitHub. Click Refresh, then try again.");
 }
 
 async function loadAll() {
@@ -1354,15 +1383,34 @@ async function saveAttendance(message) {
   });
 }
 
+let pullBusy = false;
+let pullTick = 0;
+
 async function pullRemoteBoard() {
-  if (!state.session || state.saveState === "saving") return;
+  if (!state.session || state.saveState === "saving" || pullBusy) return;
+  pullBusy = true;
+  pullTick += 1;
   try {
-    const remoteTasks = await dbGet("helal/daily-tasks.json").catch(() => dbGetRaw("helal/daily-tasks.json"));
-    const remoteReports = await dbGet("helal/reports.json").catch(() => state.reportsFile);
-    const remoteHr = await dbGet("helal/hr.json").catch(() => state.hrFile || emptyHr());
-    const remoteAttend = await dbGet("helal/attendance.json").catch(() => state.attendFile || emptyAttendance());
-    const remoteTeam = await dbGet("helal/team.json").catch(() => state.team);
-    const remoteAuth = await dbGet("helal/auth.json").catch(() => state.auth);
+    const live = [
+      dbGet("helal/daily-tasks.json").catch(() => dbGetRaw("helal/daily-tasks.json")),
+      dbGet("helal/attendance.json").catch(() => state.attendFile || emptyAttendance()),
+    ];
+    if (state.view === "report" || state.view === "review" || pullTick % 2 === 0) {
+      live.push(dbGet("helal/reports.json").catch(() => state.reportsFile));
+    } else {
+      live.push(Promise.resolve(state.reportsFile));
+    }
+    const [remoteTasks, remoteAttend, remoteReports] = await Promise.all(live);
+    let remoteHr = state.hrFile || emptyHr();
+    let remoteTeam = state.team;
+    let remoteAuth = state.auth;
+    if (pullTick % 5 === 0) {
+      [remoteHr, remoteTeam, remoteAuth] = await Promise.all([
+        dbGet("helal/hr.json").catch(() => state.hrFile || emptyHr()),
+        dbGet("helal/team.json").catch(() => state.team),
+        dbGet("helal/auth.json").catch(() => state.auth),
+      ]);
+    }
     if (state.saveState === "saving") return;
     const before = tasksSignature(state.tasksFile);
     const attendBefore = attendSignature(state.attendFile);
@@ -1387,7 +1435,10 @@ async function pullRemoteBoard() {
       || attendSignature(state.attendFile) !== attendBefore
       || reportsSignature(state.reportsFile) !== reportsBefore
     ) render();
-  } catch (_) {}
+  } catch (_) {
+  } finally {
+    pullBusy = false;
+  }
 }
 
 function login(who, pin) {
@@ -1565,9 +1616,9 @@ function submitReport(fields) {
 
 function banner() {
   if (!writeToken() && state.session) return viewConnectBanner();
-  if (state.saveState === "saving") return $("div", { class: "banner" }, "Saving to GitHub…");
+  if (state.saveState === "saving") return $("div", { class: "banner" }, "Saving…");
   if (state.saveState === "saved") {
-    return $("div", { class: "banner ok" }, "Saved to the Helal GitHub database.");
+    return $("div", { class: "banner ok" }, state.saveNote || "Saved. The team can see it now.");
   }
   if (state.saveState === "error") return $("div", { class: "banner err" }, state.saveError);
   if (state.saveState === "local-only") return viewConnectBanner();
@@ -3322,7 +3373,7 @@ function viewAttendance() {
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
-    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, so they can follow progress. Admins see the team. Columns are To do, In progress, Review, Revisions, and Done."],
+    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned. Admins see the team. After you save, a green Saved message appears and GitHub has the update."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it."],
     ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
@@ -3481,17 +3532,22 @@ function render() {
   if (prompts.length) root.append(...prompts);
 }
 
+function pullInterval() {
+  const who = state.who || "";
+  let n = 0;
+  for (let i = 0; i < who.length; i += 1) n += who.charCodeAt(i);
+  return 8000 + (n % 4000);
+}
+
 function watchCairoDay() {
-  setInterval(() => {
+  const tick = () => {
     const now = today();
     if (now !== lastCairoDay) lastCairoDay = now;
-    if (state.saveState === "saving") return;
-    if (state.session) {
-      pullRemoteBoard();
-      return;
-    }
-    if (state.view === "load" && allTasks().some((t) => t.status === "In progress")) render();
-  }, 4000);
+    if (state.saveState !== "saving" && state.session) pullRemoteBoard();
+    else if (!state.session && state.view === "load" && allTasks().some((t) => t.status === "In progress")) render();
+    setTimeout(tick, pullInterval());
+  };
+  setTimeout(tick, pullInterval());
 }
 
 loadAll()
