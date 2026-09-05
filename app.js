@@ -3,21 +3,25 @@ const BOARD_STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session";
-const LS_TASKS = "helal.tasksCache.v4";
-const LS_REPORTS = "helal.reportsCache.v4";
-const LS_HR = "helal.hrCache.v4";
+const LS_TASKS = "helal.tasksCache.v5";
+const LS_REPORTS = "helal.reportsCache.v5";
+const LS_HR = "helal.hrCache.v5";
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const ATTEND_WEEK = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
 const ATTEND_MODES = ["Office", "Home", "Off"];
-const LS_ATTEND = "helal.attendCache.v4";
+const LS_ATTEND = "helal.attendCache.v5";
 const LS_SHAS = "helal.fileShas";
-const BOARD_RESET = "2026-09-05T13:42:00.000Z";
+const BOARD_RESET = "2026-09-05T14:12:00.000Z";
 const OLD_CACHE_KEYS = [
   "helal.tasksCache",
   "helal.reportsCache",
   "helal.hrCache",
   "helal.attendCache",
   "helal.attendCache.v3",
+  "helal.tasksCache.v4",
+  "helal.reportsCache.v4",
+  "helal.hrCache.v4",
+  "helal.attendCache.v4",
 ];
 const DELAY_REASONS = [
   "Unclear brief",
