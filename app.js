@@ -560,7 +560,7 @@ function emptyHr() {
 
 function emptyAttendance() {
   return {
-    note: "Each person marks Office, Home, or Off for the week that starts Friday, then saves. The whole team sees saved days live. After save, day changes need admin approval.",
+    note: "Each person marks Office, Home, or Off for the week that starts Friday, then saves. The whole team sees every saved row live. After save, day changes need admin approval.",
     weeks: {},
     requests: [],
   };
