@@ -638,9 +638,10 @@ function pickAttendPerson(remoteRow, localRow, name) {
   return lt > rt ? localRow : remoteRow;
 }
 
-function canOverlayAttendRow(name, row) {
+function canKeepLocalAttendRow(name, row) {
   const me = state.who || state.session?.who;
-  if (!name || !row || !me) return false;
+  if (!name || !row) return false;
+  if (row.saved) return true;
   if (samePerson(name, me)) return true;
   return isAdmin() && samePerson(row.updated_by, me);
 }
@@ -648,26 +649,27 @@ function canOverlayAttendRow(name, row) {
 function mergeAttendance(remote, local) {
   const resetAt = effectiveReset(remote, local);
   const resetIso = new Date(resetAt).toISOString();
-  const takePeople = (week) => {
-    const people = {};
-    for (const [name, row] of Object.entries(week?.people || {})) {
-      if (keptAfterReset(row, resetAt)) people[name] = row;
-    }
-    return people;
-  };
   const weeks = {};
-  for (const key of Object.keys(remote?.weeks || {})) {
-    const people = takePeople(remote.weeks[key]);
-    if (Object.keys(people).length) weeks[key] = { start: key, people };
-  }
-  for (const key of Object.keys(local?.weeks || {})) {
-    const localPeople = local.weeks[key].people || {};
-    for (const name of Object.keys(localPeople)) {
-      if (!keptAfterReset(localPeople[name], resetAt)) continue;
-      if (!canOverlayAttendRow(name, localPeople[name])) continue;
-      if (!weeks[key]) weeks[key] = { start: key, people: {} };
-      weeks[key].people[name] = pickAttendPerson(weeks[key].people[name], localPeople[name], name);
+  const keys = new Set([
+    ...Object.keys(remote?.weeks || {}),
+    ...Object.keys(local?.weeks || {}),
+  ]);
+  for (const key of keys) {
+    const people = {};
+    const names = new Set([
+      ...Object.keys(remote?.weeks?.[key]?.people || {}),
+      ...Object.keys(local?.weeks?.[key]?.people || {}),
+    ]);
+    for (const name of names) {
+      const remoteRow = remote?.weeks?.[key]?.people?.[name];
+      const localRow = local?.weeks?.[key]?.people?.[name];
+      const keepRemote = !!(remoteRow && keptAfterReset(remoteRow, resetAt));
+      const keepLocal = !!(localRow && keptAfterReset(localRow, resetAt) && canKeepLocalAttendRow(name, localRow));
+      if (keepRemote && keepLocal) people[name] = pickAttendPerson(remoteRow, localRow, name);
+      else if (keepRemote) people[name] = remoteRow;
+      else if (keepLocal) people[name] = localRow;
     }
+    if (Object.keys(people).length) weeks[key] = { start: key, people };
   }
   return {
     note: remote?.note || local?.note || emptyAttendance().note,
@@ -1149,10 +1151,10 @@ async function dbGet(path, ref) {
 
 async function readRemoteForSave(path) {
   try {
-    return await dbGetRaw(path);
+    return await dbGet(path);
   } catch (_) {}
   try {
-    return await dbGet(path);
+    return await dbGetRaw(path);
   } catch (_) {
     return null;
   }
@@ -1207,8 +1209,13 @@ async function dbPut(path, data, message) {
   let lastError = "";
   for (let attempt = 0; attempt < 5; attempt += 1) {
     const remote = await readRemoteForSave(path);
-    if (remote) payload = applyRemoteMerge(path, remote, payload);
-    const sha = await ensureFileSha(path);
+    if (!remote) {
+      lastError = "GitHub did not return the file yet. Retrying…";
+      await waitMs(saveBackoff(attempt));
+      continue;
+    }
+    payload = applyRemoteMerge(path, remote, payload);
+    const sha = state.shas[path] || await ensureFileSha(path);
     if (!sha) {
       lastError = "GitHub did not return the file yet. Retrying…";
       await waitMs(saveBackoff(attempt));
@@ -1246,7 +1253,7 @@ async function dbPut(path, data, message) {
     const text = await res.text();
     if (res.status === 409 || res.status === 422) {
       lastError = "Someone else saved at the same time. Merging…";
-      await refreshShaTree();
+      try { await dbGet(path); } catch (_) { await refreshShaTree(); }
       await waitMs(saveBackoff(attempt));
       continue;
     }
@@ -1303,7 +1310,7 @@ async function loadAll() {
       dbGetRaw("helal/daily-tasks.json"),
       dbGetRaw("helal/reports.json"),
       dbGetRaw("helal/hr.json").catch(() => emptyHr()),
-      dbGetRaw("helal/attendance.json").catch(() => emptyAttendance()),
+      dbGet("helal/attendance.json").catch(() => dbGetRaw("helal/attendance.json").catch(() => emptyAttendance())),
     ]);
     Object.assign(state, { team, auth, drive, projects, githubCfg });
     const replay = mineNewerFile(tasksFile, cache.tasks);
@@ -1489,7 +1496,9 @@ async function pullRemoteBoard() {
   try {
     const live = [
       dbGetRaw("helal/daily-tasks.json").catch(() => dbGet("helal/daily-tasks.json")),
-      dbGetRaw("helal/attendance.json").catch(() => state.attendFile || emptyAttendance()),
+      (state.view === "attend" ? dbGet("helal/attendance.json") : dbGetRaw("helal/attendance.json"))
+        .catch(() => dbGet("helal/attendance.json"))
+        .catch(() => state.attendFile || emptyAttendance()),
     ];
     if (state.view === "report" || state.view === "review" || pullTick % 2 === 0) {
       live.push(dbGetRaw("helal/reports.json").catch(() => state.reportsFile));
