@@ -307,18 +307,31 @@ function canAssignTasks() {
   return isAdmin() || isSocial();
 }
 
+function canReviewTasks() {
+  return isAdmin() || isSocial();
+}
+
 function canSeeTask(task) {
   if (!task) return false;
   if (isAdmin()) return true;
   if (samePerson(task.who, state.who)) return true;
-  if (isSocial() && samePerson(task.created_by, state.who)) return true;
-  return isSocial() && people().some((p) => p.home === "social" && samePerson(p.name, task.created_by));
+  if (!isSocial()) return false;
+  if (task.status === "Review" || task.status === "Revisions") return true;
+  if (samePerson(task.created_by, state.who)) return true;
+  return people().some((p) => p.home === "social" && samePerson(p.name, task.created_by));
+}
+
+function canMarkDone(task) {
+  if (isAdmin()) return true;
+  if (!isSocial()) return false;
+  return !task || canSeeTask(task);
 }
 
 function canMoveTask(task) {
   if (!task) return false;
   if (isAdmin()) return true;
-  return samePerson(task.who, state.who);
+  if (samePerson(task.who, state.who)) return true;
+  return isSocial() && canSeeTask(task);
 }
 
 function allTasks() {
@@ -418,7 +431,12 @@ function stampTime(task, prev, next) {
 }
 
 function projectList() {
-  return state.projects?.projects || [];
+  const fromProjects = state.projects?.projects || [];
+  const seen = new Set(fromProjects.map((p) => String(p.name || "").trim().toLowerCase()));
+  const fromDrive = (state.drive?.folders || [])
+    .filter((f) => f.section === "clients" && f.who === "Client" && f.name && !seen.has(String(f.name).trim().toLowerCase()))
+    .map((f) => ({ id: f.id, name: f.name, url: f.url || "" }));
+  return [...fromProjects, ...fromDrive];
 }
 
 function rootDrive() {
@@ -442,8 +460,9 @@ function findTask(taskId) {
   return null;
 }
 
-function canSetStatus(next) {
-  return isAdmin() || next !== "Done";
+function canSetStatus(next, task) {
+  if (next !== "Done") return true;
+  return canMarkDone(task);
 }
 
 function doneMonthOf(task) {
@@ -1623,9 +1642,9 @@ function ensureDay(date) {
 }
 
 function applyStatus(taskId, next, extra = {}) {
-  if (!canSetStatus(next)) return;
   const current = findTask(taskId);
-  if (!canMoveTask(current)) return;
+  if (!canSetStatus(next, current)) return;
+  if (next === "Done" ? !canMarkDone(current) : !canMoveTask(current)) return;
   let found = null;
   for (const day of state.tasksFile.days) {
     const task = day.tasks.find((t) => t.id === taskId);
@@ -1664,8 +1683,8 @@ function applyStatus(taskId, next, extra = {}) {
 }
 
 function setStatus(taskId, next) {
-  if (!canSetStatus(next)) return;
   const task = findTask(taskId);
+  if (!canSetStatus(next, task)) return;
   if (!task || task.status === next) return;
   if (next === "Review" && task.due && task.due < today() && !task.delay_reason) {
     state.pendingDelay = { taskId, next };
@@ -1830,7 +1849,7 @@ function viewBoard() {
         class: "kanban-col",
         ondragover: (e) => {
           e.preventDefault();
-          if (!canSetStatus(status)) {
+          if (status === "Done" && !canMarkDone()) {
             e.dataTransfer.dropEffect = "none";
             return;
           }
@@ -1846,7 +1865,10 @@ function viewBoard() {
           e.currentTarget.classList.remove("drop");
           const id = e.dataTransfer.getData("text/plain");
           cardDidDrag = false;
-          if (id && canSetStatus(status) && canMoveTask(findTask(id))) setStatus(id, status);
+          const current = findTask(id);
+          if (id && canSetStatus(status, current) && (status === "Done" ? canMarkDone(current) : canMoveTask(current))) {
+            setStatus(id, status);
+          }
         },
       }, [
         $("div", { class: "kanban-head" }, [
@@ -1857,9 +1879,9 @@ function viewBoard() {
           col.length ? col.map(kanbanCard) : $("p", { class: "empty" }, "No tasks")
         ),
         status === "Done"
-          ? (isAdmin()
+          ? (canMarkDone()
             ? $("p", { class: "muted" }, "Drop here to mark done. Saved to GitHub.")
-            : $("p", { class: "muted" }, "Only admins can mark Done."))
+            : $("p", { class: "muted" }, "Ask social or an admin to mark Done."))
           : (canAssignTasks()
             ? $("button", {
               class: "btn",
@@ -2832,12 +2854,12 @@ function viewTaskDrawer() {
             $("button", {
               type: "button",
               class: s === task.status ? "on" : "",
-              disabled: !canSetStatus(s),
-              onclick: () => { if (canSetStatus(s)) setStatus(task.id, s); },
+              disabled: !canSetStatus(s, task),
+              onclick: () => { if (canSetStatus(s, task)) setStatus(task.id, s); },
             }, s)
           )
         ),
-        isAdmin() && (task.status === "Review" || task.status === "Revisions")
+        canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
           ? $("div", { style: "display:grid;gap:8px;margin-top:8px" }, [
             $("label", { class: "done-check" }, [
               $("input", {
@@ -2952,17 +2974,18 @@ function viewReview() {
     (a, b) => Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0)
   );
   const dayReports = allReports.filter((r) => r.date === day);
+  const adminDash = isAdmin();
   return $("div", { class: "dash" }, [
-    viewCalendar(),
-    $("section", {}, [
+    adminDash ? viewCalendar() : null,
+    adminDash ? $("section", {}, [
       $("h2", {}, `Reports · ${day}`),
       $("p", { class: "muted" }, "Every saved report is kept. Pick a day, or read the latest submissions below."),
       reportDaySummary(day),
       dayReports.length
         ? $("div", { class: "cards", style: "margin-top:18px" }, dayReports.map(reportCard))
         : $("p", { class: "empty" }, "No report submissions on this day yet."),
-    ]),
-    $("section", {}, [
+    ]) : null,
+    adminDash ? $("section", {}, [
       $("h2", {}, "All saved reports"),
       $("p", { class: "muted" }, allReports.length
         ? `${allReports.length} saved. Newest first. Nothing is dropped after submit.`
@@ -2970,8 +2993,8 @@ function viewReview() {
       allReports.length
         ? $("div", { class: "cards", style: "margin-top:14px" }, allReports.map(reportCard))
         : $("p", { class: "empty" }, "No reports saved yet."),
-    ]),
-    $("section", {}, [
+    ]) : null,
+    adminDash ? $("section", {}, [
       $("h2", {}, "Attendance requests"),
       $("p", { class: "muted" }, "Day-change requests from the team. Approve or decline on Attendance, or here."),
       pendingAttendRequests().length
@@ -2990,7 +3013,7 @@ function viewReview() {
           ])
         ))
         : $("p", { class: "empty" }, "No pending attendance requests."),
-    ]),
+    ]) : null,
     $("section", {}, [
       $("h2", {}, "Waiting on review"),
       $("p", { class: "muted" }, "When a member moves a task to Review, it lands here. Check it done. It stays in Done on the board, here, and on My work."),
@@ -3006,18 +3029,22 @@ function viewReview() {
             ]),
             t.drive ? $("a", { href: t.drive, target: "_blank", rel: "noreferrer" }, "Open Drive") : null,
             $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;align-items:center" }, [
-              $("label", { class: "done-check" }, [
-                $("input", {
-                  type: "checkbox",
-                  onchange: () => setStatus(t.id, "Done"),
-                }),
-                "Mark done",
-              ]),
-              $("button", {
-                class: "btn ghost",
-                type: "button",
-                onclick: () => { state.evalTaskId = t.id; render(); },
-              }, "Evaluate"),
+              canMarkDone(t)
+                ? $("label", { class: "done-check" }, [
+                  $("input", {
+                    type: "checkbox",
+                    onchange: () => setStatus(t.id, "Done"),
+                  }),
+                  "Mark done",
+                ])
+                : null,
+              isAdmin()
+                ? $("button", {
+                  class: "btn ghost",
+                  type: "button",
+                  onclick: () => { state.evalTaskId = t.id; render(); },
+                }, "Evaluate")
+                : null,
             ]),
           ])
         ))
@@ -3498,10 +3525,10 @@ function viewAttendance() {
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
-    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned. Admins see the team. After you save, a green Saved message appears and GitHub has the update."],
+    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. After you save, a green Saved message appears and GitHub has the update."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it."],
-    ["Review", "Drag to Review when ready. Amr or Tasneem check it done on the Dashboard. It stays in Done for both of you and in GitHub."],
+    ["Review", "Drag to Review when ready. Amr, Tasneem, Moamen, Mariam, or Judi can mark it Done. It stays in Done for both of you and in GitHub."],
     ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. Admins see every saved report on the Dashboard."],
@@ -3564,6 +3591,8 @@ function navItems() {
     items.splice(2, 0, ["review", "Dashboard"]);
     items.push(["hr", "HR"]);
     items.push(["people", "People"]);
+  } else if (isSocial()) {
+    items.splice(2, 0, ["review", "Review"]);
   }
   return items;
 }
@@ -3590,7 +3619,7 @@ function render() {
         $("h1", {}, "Team Management"),
       ]),
       $("div", { class: "top-actions" }, [
-        $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : "Member"}`),
+        $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : isSocial() ? "Social" : "Member"}`),
         $("span", { class: "cairo-chip" }, `${cairoClock()} · Cairo`),
         $("select", {
           class: "date-select",
@@ -3640,7 +3669,7 @@ function render() {
   else if (state.view === "board") main.append(viewBoard());
   else if (state.view === "load") main.append(viewWorkload());
   else if (state.view === "attend") main.append(viewAttendance());
-  else if (state.view === "review" && isAdmin()) main.append(viewReview());
+  else if (state.view === "review" && canReviewTasks()) main.append(viewReview());
   else if (state.view === "report") main.append(viewReport());
   else if (state.view === "drive") main.append(viewDrive());
   else if (state.view === "people" && isAdmin()) main.append(viewPeople());
