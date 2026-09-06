@@ -91,15 +91,18 @@
           "title": "Upload osama’s September Work",
           "notes": "Upload the work completed for Osama Helal in September to the new Drive.",
           "due": "2026-09-06",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-06",
           "created_by": "Mariam",
           "created_at": "2026-09-06T11:29:41.724Z",
-          "updated_at": "2026-09-06T11:29:41.724Z",
-          "updated_by": "Mariam",
-          "revisions": 0
+          "updated_at": "2026-09-06T19:50:40.569Z",
+          "updated_by": "Seif",
+          "revisions": 0,
+          "time_log": [],
+          "review_at": "2026-09-06T19:50:40.569Z",
+          "delivered_on": "2026-09-06"
         },
         {
           "id": "t-20260906-alaa-mtpqgraa",
