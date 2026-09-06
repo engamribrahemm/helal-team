@@ -3,6 +3,17 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mtq5jdhg",
+      "who": "Ganna",
+      "date": "2026-09-06",
+      "finished": "Chat gpt video (Open AI)",
+      "unfinished": "",
+      "drive": "https://drive.google.com/drive/folders/1zm9ly2MCpdJHgXNYpdmER24o1v-TL0fk",
+      "need_review": false,
+      "place": "Remote",
+      "created_at": "2026-09-06T18:35:20.452Z"
+    },
+    {
       "id": "r-mtq0ra94",
       "who": "Judi",
       "date": "2026-09-06",
