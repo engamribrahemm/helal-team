@@ -129,13 +129,13 @@
           "title": "portfolio helal",
           "notes": "Updating the portfolio based on the changes discussed in the meeting, and adding it to Google Slides along with the insights screenshots.",
           "due": "2026-09-07",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-06",
           "created_by": "Mariam",
           "created_at": "2026-09-06T11:23:06.393Z",
-          "updated_at": "2026-09-06T13:12:08.080Z",
+          "updated_at": "2026-09-06T16:18:07.808Z",
           "updated_by": "Judi",
           "revisions": 0,
           "time_log": [
@@ -146,11 +146,21 @@
               "ended_at": "2026-09-06T13:12:05.249Z",
               "hours": 0.5402480555555556,
               "by": "Judi"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-06T13:12:08.080Z",
+              "ended_at": "2026-09-06T16:18:07.807Z",
+              "hours": 3.099924166666667,
+              "by": "Judi"
             }
           ],
-          "progress_started_at": "2026-09-06T13:12:08.080Z",
+          "progress_started_at": "",
           "start_on": "2026-09-06",
-          "progress_hours": 0.5402480555555556
+          "progress_hours": 3.6401722222222226,
+          "review_at": "2026-09-06T16:18:07.807Z",
+          "delivered_on": "2026-09-06"
         }
       ]
     },
