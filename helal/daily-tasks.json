@@ -102,15 +102,15 @@
           "title": "Finalize Latest Designs – Mohamed Abdelsalam",
           "notes": "Complete the final revisions for the 7 MAS designs and send them via WhatsApp for review.",
           "due": "2026-09-06",
-          "status": "Review",
+          "status": "Revisions",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-06",
           "created_by": "Mariam",
           "created_at": "2026-09-06T11:33:24.130Z",
-          "updated_at": "2026-09-06T20:08:25.954Z",
+          "updated_at": "2026-09-06T20:08:38.019Z",
           "updated_by": "Alaa",
-          "revisions": 0,
+          "revisions": 1,
           "time_log": [
             {
               "from": "In progress",
@@ -125,7 +125,15 @@
           "start_on": "2026-09-06",
           "progress_hours": 7.540568611111111,
           "review_at": "2026-09-06T20:08:25.954Z",
-          "delivered_on": "2026-09-06"
+          "delivered_on": "2026-09-06",
+          "revision_log": [
+            {
+              "level": "Minor",
+              "reason": "",
+              "at": "2026-09-06T20:08:38.019Z",
+              "by": "Alaa"
+            }
+          ]
         }
       ]
     },
