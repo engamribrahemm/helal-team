@@ -25,13 +25,13 @@
           "title": "Upload Helal’s September Work",
           "notes": "Upload the work completed for Helal in September to the new Drive.",
           "due": "2026-09-06",
-          "status": "Revisions",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-06",
           "created_by": "Mariam",
           "created_at": "2026-09-06T11:27:19.390Z",
-          "updated_at": "2026-09-06T14:35:52.626Z",
+          "updated_at": "2026-09-06T19:36:23.727Z",
           "updated_by": "Mariam",
           "revisions": 1,
           "time_log": [
@@ -56,7 +56,11 @@
               "at": "2026-09-06T12:34:12.945Z",
               "by": "Alaa"
             }
-          ]
+          ],
+          "done_at": "2026-09-06T19:36:23.726Z",
+          "done_on": "2026-09-06",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260906-seif-mtpqadr6",
