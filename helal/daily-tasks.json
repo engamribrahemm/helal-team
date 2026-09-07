@@ -193,7 +193,7 @@
       "frozen_at": "2026-09-07T12:52:41.236Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-07T14:15:48.007Z",
+      "updated_at": "2026-09-07T14:16:54.118Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -236,8 +236,8 @@
           "live": 0
         },
         "Alaa": {
-          "open": 1,
-          "todo": 0,
+          "open": 2,
+          "todo": 1,
           "progress": 0,
           "review": 1,
           "overdue": 1,
@@ -287,10 +287,10 @@
         }
       },
       "time": {
-        "avgTodo": 923,
+        "avgTodo": 693,
         "avgProgress": 0,
         "avgToDone": 489,
-        "open": 8
+        "open": 9
       },
       "hr": {
         "people": {
@@ -660,6 +660,27 @@
           "updated_at": "2026-09-05T16:23:55.402Z",
           "updated_by": "Amr",
           "revisions": 0
+        },
+        {
+          "id": "t-20260912-alaa-mtrbqvdp",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "14 - 9 designs",
+          "notes": "",
+          "due": "2026-09-12",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-07",
+          "month": "2026-09",
+          "created_by": "Judi",
+          "created_at": "2026-09-07T14:16:54.109Z",
+          "updated_at": "2026-09-07T14:16:54.109Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     }
