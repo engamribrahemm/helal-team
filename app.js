@@ -471,8 +471,9 @@ function taskStageTimes(task) {
   const progressAt = taskFirstProgressAt(task);
   const reviewAt = taskFirstReviewAt(task);
   const doneAt = task.done_at || "";
-  const stillTodo = task.status === "To do" && !progressAt;
-  const todoEnd = progressAt || (task.status === "To do" ? now : "");
+  const leftTodoAt = progressAt || reviewAt || doneAt;
+  const stillTodo = task.status === "To do" && !leftTodoAt;
+  const todoEnd = leftTodoAt || (task.status === "To do" ? now : "");
   const todoMins = created && todoEnd ? minutesBetween(created, todoEnd, stillTodo) : 0;
   const progressMins = Math.max(0, Math.round((loggedHours(task) || 0) * 60));
   const toDoneMins = created ? minutesBetween(created, doneAt || now, !doneAt) : 0;
