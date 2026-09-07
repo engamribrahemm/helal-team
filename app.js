@@ -1920,11 +1920,13 @@ function kanbanCard(task) {
     task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
     taskFactList(task),
     canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
-      ? $("button", {
-        class: "btn primary",
-        type: "button",
-        onclick: (e) => markTaskDone(task.id, e),
-      }, "Mark done")
+      ? $("div", { class: "kcard-done" }, [
+        $("button", {
+          class: "btn primary compact",
+          type: "button",
+          onclick: (e) => markTaskDone(task.id, e),
+        }, "Mark done"),
+      ])
       : null,
   ]);
 }
@@ -2960,24 +2962,23 @@ function viewTaskDrawer() {
         ]),
       ]),
       $("div", { class: "form", style: "margin-top:12px" }, [
-        $("div", { class: "statuses" },
-          BOARD_STATUSES.map((s) =>
+        $("div", { class: "statuses" }, [
+          ...BOARD_STATUSES.map((s) =>
             $("button", {
               type: "button",
               class: boardColumnOf(task.status) === s ? "on" : "",
               disabled: !canSetStatus(s, task),
               onclick: () => { if (canSetStatus(s, task)) setStatus(task.id, s === "Review" && task.status === "Revisions" ? "Revisions" : s); },
             }, s)
-          )
-        ),
-        canMarkDone(task) && task.status !== "Done"
-          ? $("button", {
-            class: "btn primary",
-            type: "button",
-            style: "margin-top:8px",
-            onclick: (e) => markTaskDone(task.id, e),
-          }, "Mark done")
-          : null,
+          ),
+          canMarkDone(task) && task.status !== "Done"
+            ? $("button", {
+              type: "button",
+              class: "on",
+              onclick: (e) => markTaskDone(task.id, e),
+            }, "Mark done")
+            : null,
+        ]),
         isAdmin() && (task.status === "Review" || task.status === "Revisions" || task.status === "Done")
           ? $("button", {
             class: "btn ghost",
@@ -3184,14 +3185,14 @@ function viewReview() {
             $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;align-items:center" }, [
               canMarkDone(t)
                 ? $("button", {
-                  class: "btn primary",
+                  class: "btn primary compact",
                   type: "button",
                   onclick: (e) => markTaskDone(t.id, e),
                 }, "Mark done")
                 : null,
               isAdmin()
                 ? $("button", {
-                  class: "btn ghost",
+                  class: "btn ghost compact",
                   type: "button",
                   onclick: () => { state.evalTaskId = t.id; render(); },
                 }, "Evaluate")

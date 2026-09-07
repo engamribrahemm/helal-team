@@ -376,6 +376,26 @@ label {
   color: var(--text);
   word-break: break-word;
 }
+.kcard-done {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 8px;
+  margin-top: 4px;
+  align-items: center;
+}
+.kcard-done .btn {
+  grid-column: 2;
+  justify-self: start;
+}
+.btn.compact,
+.kcard .btn.compact {
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 600;
+  width: max-content;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
 .time-track-table tr { cursor: pointer; }
 
 .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
