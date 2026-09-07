@@ -375,12 +375,28 @@ function hoursBetween(start, end) {
   return (b - a) / 36e5;
 }
 
+function minutesBetween(start, end, live) {
+  const a = Date.parse(start);
+  const b = Date.parse(end);
+  if (!Number.isFinite(a) || !Number.isFinite(b) || b < a) return 0;
+  const mins = (b - a) / 60000;
+  return live ? Math.max(0, Math.floor(mins)) : Math.max(0, Math.round(mins));
+}
+
+function formatMinutes(mins) {
+  if (mins == null || !Number.isFinite(mins) || mins < 0) return "—";
+  if (mins === 0) return "0m";
+  if (mins < 60) return `${mins}m`;
+  const days = Math.floor(mins / 1440);
+  const hours = Math.floor((mins % 1440) / 60);
+  const rest = mins % 60;
+  if (days) return hours ? `${days}d ${hours}h` : `${days}d`;
+  return rest ? `${hours}h ${rest}m` : `${hours}h`;
+}
+
 function formatHours(h) {
   if (h == null || Number.isNaN(h) || h <= 0) return "—";
-  if (h < 1) return `${Math.max(1, Math.round(h * 60))}m`;
-  const hours = Math.floor(h);
-  const mins = Math.round((h - hours) * 60);
-  return mins ? `${hours}h ${mins}m` : `${hours}h`;
+  return formatMinutes(Math.round(h * 60));
 }
 
 function progressStart(task) {
@@ -399,7 +415,10 @@ function loggedHours(task) {
 function stampTime(task, prev, next) {
   const now = new Date().toISOString();
   if (!task.time_log) task.time_log = [];
-  if (next === "In progress" && prev !== "In progress") task.progress_started_at = now;
+  if (next === "In progress" && prev !== "In progress") {
+    task.progress_started_at = now;
+    if (!task.first_progress_at) task.first_progress_at = now;
+  }
   if (prev === "In progress" && next !== "In progress") {
     const start = progressStart(task);
     if (start) {
@@ -418,6 +437,7 @@ function stampTime(task, prev, next) {
   }
   if (next === "Review") {
     task.review_at = now;
+    if (!task.first_review_at) task.first_review_at = now;
     task.delivered_on = today();
   }
   if (next === "In progress" && !task.start_on) task.start_on = today();
@@ -428,6 +448,61 @@ function stampTime(task, prev, next) {
     task.done_by = state.who;
     if (!task.delivered_on) task.delivered_on = today();
   }
+}
+
+function taskFirstProgressAt(task) {
+  if (task.first_progress_at) return task.first_progress_at;
+  const log = (task.time_log || []).find((row) => row.from === "In progress" && row.started_at);
+  if (log?.started_at) return log.started_at;
+  if (task.progress_started_at) return task.progress_started_at;
+  return "";
+}
+
+function taskFirstReviewAt(task) {
+  if (task.first_review_at) return task.first_review_at;
+  if (task.review_at) return task.review_at;
+  const log = (task.time_log || []).find((row) => row.to === "Review" && row.ended_at);
+  return log?.ended_at || "";
+}
+
+function taskStageTimes(task) {
+  const now = new Date().toISOString();
+  const created = task.created_at || "";
+  const progressAt = taskFirstProgressAt(task);
+  const reviewAt = taskFirstReviewAt(task);
+  const doneAt = task.done_at || "";
+  const stillTodo = task.status === "To do" && !progressAt;
+  const todoEnd = progressAt || (task.status === "To do" ? now : "");
+  const todoMins = created && todoEnd ? minutesBetween(created, todoEnd, stillTodo) : 0;
+  const progressMins = Math.max(0, Math.round((loggedHours(task) || 0) * 60));
+  const toDoneMins = created ? minutesBetween(created, doneAt || now, !doneAt) : 0;
+  return {
+    created,
+    progressAt,
+    reviewAt,
+    doneAt,
+    todoMins,
+    progressMins,
+    toDoneMins,
+    stillTodo,
+    stillProgress: task.status === "In progress",
+    stillOpen: task.status !== "Done",
+  };
+}
+
+function formatStageMinutes(mins, live) {
+  const text = formatMinutes(mins);
+  return live && mins >= 0 ? `${text} · live` : text;
+}
+
+function taskFactList(task) {
+  const times = taskStageTimes(task);
+  return $("dl", { class: "task-facts" }, [
+    $("div", {}, [$("dt", {}, "Assigned"), $("dd", {}, task.who || "—")]),
+    $("div", {}, [$("dt", {}, "Created by"), $("dd", {}, task.created_by || "—")]),
+    $("div", {}, [$("dt", {}, "Deadline"), $("dd", {}, task.due || "—")]),
+    $("div", {}, [$("dt", {}, "Minutes"), $("dd", {}, formatMinutes(times.toDoneMins))]),
+  ]);
 }
 
 function projectList() {
@@ -487,11 +562,9 @@ function taskTone(task) {
 function doneCard(task, { checked } = {}) {
   return $("article", { class: `card done-card ${taskTone(task)}` }, [
     $("p", { class: "title" }, task.title),
+    taskFactList(task),
     $("div", { class: "meta" }, [
       $("span", { class: "pill tone-green" }, "Done"),
-      $("span", { class: "pill" }, task.who),
-      $("span", { class: "pill" }, task.done_on || task.due),
-      task.progress_hours ? $("span", { class: "pill" }, formatHours(task.progress_hours)) : null,
       task.done_by ? $("span", { class: "pill" }, `Checked by ${task.done_by}`) : null,
     ]),
     checked
@@ -1722,6 +1795,8 @@ function assignTask({ who, space, title, due, drive, project, status, notes }) {
     updated_at: new Date().toISOString(),
     updated_by: state.who,
     revisions: 0,
+    first_progress_at: (status || "To do") === "In progress" ? new Date().toISOString() : "",
+    progress_started_at: (status || "To do") === "In progress" ? new Date().toISOString() : "",
   });
   state.creating = false;
   state.draft = null;
@@ -1830,13 +1905,7 @@ function kanbanCard(task) {
     },
   }, [
     $("p", { class: "title" }, task.title),
-    $("div", { class: `meta ${taskTone(task)}` }, [
-      $("span", { class: "pill" }, task.who),
-      task.project ? $("span", { class: "pill" }, task.project) : null,
-      $("span", { class: "pill" }, `Due ${task.due}`),
-      loggedHours(task) > 0 ? $("span", { class: `pill ${taskTone(task)}` }, formatHours(loggedHours(task))) : null,
-      task.created_by && task.created_by !== task.who ? $("span", { class: "pill" }, `From ${task.created_by}`) : null,
-    ]),
+    taskFactList(task),
   ]);
 }
 
@@ -2614,10 +2683,9 @@ function viewMy() {
       ? $("div", { class: "cards", style: "margin-top:14px" }, open.map((task) =>
         $("article", { class: `card ${taskTone(task)}`, onclick: () => { state.openTaskId = task.id; render(); } }, [
           $("p", { class: "title" }, task.title),
+          taskFactList(task),
           $("div", { class: "meta" }, [
             $("span", { class: `pill ${taskTone(task)}` }, task.status),
-            $("span", { class: "pill" }, `Due ${task.due}`),
-            loggedHours(task) > 0 ? $("span", { class: `pill ${taskTone(task)}` }, formatHours(loggedHours(task))) : null,
           ]),
         ])
       ))
@@ -2812,14 +2880,22 @@ function viewTaskDrawer() {
         ? `Created by ${task.created_by || "Helal"}. You can edit the brief.`
         : `Only ${task.created_by || "the creator"} can edit the brief. You can still move status.`),
       hours > 0 ? $("p", { class: "time-line" }, `Time in progress: ${formatHours(hours)}`) : null,
-      $("div", { class: "track-grid" }, [
-        $("span", {}, `Assigned ${assignedDate(task) || "—"}`),
-        $("span", {}, `Start ${startDate(task) || "—"}`),
-        $("span", {}, `Deadline ${task.due || "—"}`),
-        $("span", {}, `Delivery ${deliveryDate(task) || "—"}`),
-        task.delay_reason ? $("span", {}, `Delay · ${task.delay_reason}`) : null,
-        (task.revisions || 0) > 0 ? $("span", {}, `Revisions ${task.revisions}${task.revision_log?.length ? ` · ${task.revision_log[task.revision_log.length - 1].level}` : ""}`) : null,
-      ]),
+      (() => {
+        const times = taskStageTimes(task);
+        return $("div", { class: "track-grid" }, [
+          $("span", {}, `Assigned: ${task.who || "—"}`),
+          $("span", {}, `Created by: ${task.created_by || "—"}`),
+          $("span", {}, `Deadline: ${task.due || "—"}`),
+          $("span", {}, `Minutes: ${formatMinutes(times.toDoneMins)}`),
+          $("span", {}, `To do wait: ${formatStageMinutes(times.todoMins, times.stillTodo)}`),
+          $("span", {}, `In progress: ${formatStageMinutes(times.progressMins, times.stillProgress)}`),
+          $("span", {}, `Until done: ${formatStageMinutes(times.toDoneMins, times.stillOpen)}`),
+          $("span", {}, `Start ${startDate(task) || "—"}`),
+          $("span", {}, `Delivery ${deliveryDate(task) || "—"}`),
+          task.delay_reason ? $("span", {}, `Delay · ${task.delay_reason}`) : null,
+          (task.revisions || 0) > 0 ? $("span", {}, `Revisions ${task.revisions}${task.revision_log?.length ? ` · ${task.revision_log[task.revision_log.length - 1].level}` : ""}`) : null,
+        ]);
+      })(),
       $("form", {
         class: "form",
         onsubmit: (e) => {
@@ -2964,6 +3040,56 @@ function viewCalendar() {
   ]);
 }
 
+function viewTaskTimeDashboard() {
+  const tasks = [...allTasks()].sort((a, b) => {
+    const as = a.status === "Done" ? 1 : 0;
+    const bs = b.status === "Done" ? 1 : 0;
+    if (as !== bs) return as - bs;
+    return Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0);
+  });
+  const open = tasks.filter((t) => t.status !== "Done");
+  const avg = (rows, key) => {
+    const nums = rows.map((t) => taskStageTimes(t)[key]).filter((n) => n > 0);
+    if (!nums.length) return 0;
+    return Math.round(nums.reduce((a, b) => a + b, 0) / nums.length);
+  };
+  return $("section", { class: "card" }, [
+    $("h2", {}, "Task time tracking"),
+    $("p", { class: "muted" }, "From create: how long a task waits in To do, how long it stays In progress until Review, and how long until it is marked Done."),
+    $("div", { class: "stat-row" }, [
+      statBox(formatMinutes(avg(open.filter((t) => t.status === "To do"), "todoMins")), "Avg wait in To do"),
+      statBox(formatMinutes(avg(open.filter((t) => t.status === "In progress"), "progressMins")), "Avg In progress now"),
+      statBox(formatMinutes(avg(tasks.filter((t) => t.status === "Done"), "toDoneMins")), "Avg time to Done"),
+      statBox(String(open.length), "Open tasks"),
+    ]),
+    tasks.length
+      ? $("div", { class: "load-table-wrap", style: "margin-top:14px" }, [
+        $("table", { class: "load-table time-track-table" }, [
+          $("thead", {}, $("tr", {}, [
+            "Task", "Assigned", "Created by", "Deadline", "Status", "To do", "In progress", "Until done",
+          ].map((h) => $("th", {}, h)))),
+          $("tbody", {}, tasks.map((t) => {
+            const times = taskStageTimes(t);
+            return $("tr", {
+              class: t.status === "Done" ? "tone-green" : "",
+              onclick: () => { state.openTaskId = t.id; render(); },
+            }, [
+              $("td", {}, [$("strong", {}, t.title), t.project ? $("span", { class: "muted" }, ` ${t.project}`) : null]),
+              $("td", {}, t.who || "—"),
+              $("td", {}, t.created_by || "—"),
+              $("td", {}, t.due || "—"),
+              $("td", {}, t.status),
+              $("td", {}, formatStageMinutes(times.todoMins, times.stillTodo)),
+              $("td", {}, formatStageMinutes(times.progressMins, times.stillProgress)),
+              $("td", {}, formatStageMinutes(times.toDoneMins, times.stillOpen)),
+            ]);
+          })),
+        ]),
+      ])
+      : $("p", { class: "empty" }, "No tasks to track yet."),
+  ]);
+}
+
 function viewReview() {
   const waiting = allTasks().filter((t) => t.status === "Review" || t.status === "Revisions");
   const day = state.reportDay || today();
@@ -2976,6 +3102,7 @@ function viewReview() {
   const dayReports = allReports.filter((r) => r.date === day);
   const adminDash = isAdmin();
   return $("div", { class: "dash" }, [
+    adminDash ? viewTaskTimeDashboard() : null,
     adminDash ? viewCalendar() : null,
     adminDash ? $("section", {}, [
       $("h2", {}, `Reports · ${day}`),
@@ -3021,11 +3148,9 @@ function viewReview() {
         ? $("div", { class: "cards", style: "margin-top:14px" }, waiting.map((t) =>
           $("article", { class: `card review-card ${taskTone(t)}` }, [
             $("p", { class: "title" }, t.title),
+            taskFactList(t),
             $("div", { class: "meta" }, [
-              $("span", { class: "pill" }, t.who),
               $("span", { class: `pill ${taskTone(t)}` }, t.status),
-              $("span", { class: "pill" }, `Due ${t.due}`),
-              loggedHours(t) > 0 ? $("span", { class: `pill ${taskTone(t)}` }, formatHours(loggedHours(t))) : null,
             ]),
             t.drive ? $("a", { href: t.drive, target: "_blank", rel: "noreferrer" }, "Open Drive") : null,
             $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;align-items:center" }, [
@@ -3529,7 +3654,7 @@ function viewGuide() {
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it."],
     ["Review", "Drag to Review when ready. Amr, Tasneem, Moamen, Mariam, or Judi can mark it Done. It stays in Done for both of you and in GitHub."],
-    ["Workload", "Green is clear, orange needs attention, red is overload. Time in progress is tracked until Review."],
+    ["Workload", "Green is clear, orange needs attention, red is overload. The Dashboard tracks how long each task waits in To do, stays In progress, and takes until Done."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. Admins see every saved report on the Dashboard."],
     ["HR", "Amr and Tasneem open HR. Profile shows one person. Performance, task tracking, attitude, and warnings are scored each month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
@@ -3697,7 +3822,18 @@ function watchCairoDay() {
   const tick = () => {
     const now = today();
     if (now !== lastCairoDay) lastCairoDay = now;
-    if (state.saveState !== "saving" && state.session) pullRemoteBoard();
+    if (state.saveState !== "saving" && state.session) {
+      pullRemoteBoard();
+      if (
+        ["board", "review", "my", "load"].includes(state.view)
+        && !state.creating
+        && !state.openTaskId
+        && !state.pendingDelay
+        && !state.pendingRevision
+        && !state.evalTaskId
+        && !state.attendChange
+      ) render();
+    }
     else if (!state.session && state.view === "load" && allTasks().some((t) => t.status === "In progress")) render();
     setTimeout(tick, pullInterval());
   };
