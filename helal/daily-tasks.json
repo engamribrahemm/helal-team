@@ -200,19 +200,29 @@
           "title": "Calculate and send the MAS messages during August",
           "notes": "",
           "due": "2026-09-07",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "created_by": "Amr",
           "created_at": "2026-09-07T10:42:09.297Z",
-          "updated_at": "2026-09-07T10:54:19.706Z",
+          "updated_at": "2026-09-07T10:54:23.357Z",
           "updated_by": "Amr",
           "revisions": 0,
-          "time_log": [],
-          "progress_started_at": "2026-09-07T10:54:19.705Z",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-09-07T10:54:19.705Z",
+              "ended_at": "2026-09-07T10:54:23.357Z",
+              "hours": 0.0010144444444444446,
+              "by": "Amr"
+            }
+          ],
+          "progress_started_at": "",
           "first_progress_at": "2026-09-07T10:54:19.705Z",
-          "start_on": "2026-09-07"
+          "start_on": "2026-09-07",
+          "progress_hours": 0.0010144444444444446
         }
       ]
     },
