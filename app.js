@@ -300,7 +300,8 @@ function personOf(name) {
 
 function isSocial() {
   const person = personOf(state.who);
-  return person?.home === "social" || qualityTrack(person) === "social";
+  if (person?.home === "social" || qualityTrack(person) === "social") return true;
+  return ["Mariam", "Judi"].some((name) => samePerson(name, state.who));
 }
 
 function canAssignTasks() {
@@ -322,9 +323,18 @@ function canSeeTask(task) {
 }
 
 function canMarkDone(task) {
-  if (isAdmin()) return true;
-  if (!isSocial()) return false;
+  if (!(isAdmin() || isSocial())) return false;
   return !task || canSeeTask(task);
+}
+
+function markTaskDone(taskId, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  if (!canMarkDone(findTask(taskId))) return;
+  setStatus(taskId, "Done");
+  if (state.openTaskId === taskId) state.openTaskId = null;
 }
 
 function canMoveTask(task) {
@@ -1890,6 +1900,7 @@ function kanbanCard(task) {
       cardDidDrag = true;
       e.dataTransfer.effectAllowed = "move";
       e.dataTransfer.setData("text/plain", task.id);
+      e.dataTransfer.setData("text", task.id);
       e.currentTarget.classList.add("dragging");
     },
     ondragend: (e) => {
@@ -1907,6 +1918,13 @@ function kanbanCard(task) {
   }, [
     $("p", { class: "title" }, task.title),
     taskFactList(task),
+    canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
+      ? $("button", {
+        class: "btn primary",
+        type: "button",
+        onclick: (e) => markTaskDone(task.id, e),
+      }, "Mark done")
+      : null,
   ]);
 }
 
@@ -1933,7 +1951,7 @@ function viewBoard() {
         ondrop: (e) => {
           e.preventDefault();
           e.currentTarget.classList.remove("drop");
-          const id = e.dataTransfer.getData("text/plain");
+          const id = e.dataTransfer.getData("text/plain") || e.dataTransfer.getData("text");
           cardDidDrag = false;
           const current = findTask(id);
           if (id && canSetStatus(status, current) && (status === "Done" ? canMarkDone(current) : canMoveTask(current))) {
@@ -1950,8 +1968,8 @@ function viewBoard() {
         ),
         status === "Done"
           ? (canMarkDone()
-            ? $("p", { class: "muted" }, "Drop here to mark done. Saved to GitHub.")
-            : $("p", { class: "muted" }, "Ask social or an admin to mark Done."))
+            ? $("p", { class: "muted" }, "Mariam, Judi, and admins can drop here or press Mark done. It saves to GitHub.")
+            : $("p", { class: "muted" }, "Ask Mariam, Judi, or an admin to mark Done."))
           : (canAssignTasks()
             ? $("button", {
               class: "btn",
@@ -2926,6 +2944,12 @@ function viewTaskDrawer() {
         $("label", {}, ["Notes", notes]),
         $("label", {}, ["Drive link", drive]),
         task.drive ? $("a", { href: task.drive, target: "_blank", rel: "noreferrer" }, "Open Drive folder") : null,
+        $("div", { style: "display:flex;gap:8px" }, [
+          editable ? $("button", { class: "btn primary", type: "submit" }, "Save") : null,
+          $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
+        ]),
+      ]),
+      $("div", { class: "form", style: "margin-top:12px" }, [
         $("div", { class: "statuses" },
           BOARD_STATUSES.map((s) =>
             $("button", {
@@ -2936,29 +2960,22 @@ function viewTaskDrawer() {
             }, s)
           )
         ),
-        canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
-          ? $("div", { style: "display:grid;gap:8px;margin-top:8px" }, [
-            $("label", { class: "done-check" }, [
-              $("input", {
-                type: "checkbox",
-                onchange: () => {
-                  setStatus(task.id, "Done");
-                  state.openTaskId = null;
-                },
-              }),
-              "Mark done — stays on the board Done column and in the database",
-            ]),
-            $("button", {
-              class: "btn ghost",
-              type: "button",
-              onclick: () => { state.evalTaskId = task.id; render(); },
-            }, "Evaluate quality"),
-          ])
+        canMarkDone(task) && task.status !== "Done"
+          ? $("button", {
+            class: "btn primary",
+            type: "button",
+            style: "margin-top:8px",
+            onclick: (e) => markTaskDone(task.id, e),
+          }, "Mark done")
           : null,
-        $("div", { style: "display:flex;gap:8px" }, [
-          editable ? $("button", { class: "btn primary", type: "submit" }, "Save") : null,
-          $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
-        ]),
+        isAdmin() && (task.status === "Review" || task.status === "Revisions" || task.status === "Done")
+          ? $("button", {
+            class: "btn ghost",
+            type: "button",
+            style: "margin-top:8px",
+            onclick: () => { state.evalTaskId = task.id; render(); },
+          }, "Evaluate quality")
+          : null,
       ]),
     ]),
   ];
@@ -3156,13 +3173,11 @@ function viewReview() {
             t.drive ? $("a", { href: t.drive, target: "_blank", rel: "noreferrer" }, "Open Drive") : null,
             $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;align-items:center" }, [
               canMarkDone(t)
-                ? $("label", { class: "done-check" }, [
-                  $("input", {
-                    type: "checkbox",
-                    onchange: () => setStatus(t.id, "Done"),
-                  }),
-                  "Mark done",
-                ])
+                ? $("button", {
+                  class: "btn primary",
+                  type: "button",
+                  onclick: (e) => markTaskDone(t.id, e),
+                }, "Mark done")
                 : null,
               isAdmin()
                 ? $("button", {
@@ -3654,7 +3669,7 @@ function viewGuide() {
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. After you save, a green Saved message appears and GitHub has the update."],
     ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it."],
-    ["Review", "Drag to Review when ready. Amr, Tasneem, Moamen, Mariam, or Judi can mark it Done. It stays in Done for both of you and in GitHub."],
+    ["Review", "Drag to Review when ready. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Green is clear, orange needs attention, red is overload. The Dashboard tracks how long each task waits in To do, stays In progress, and takes until Done."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. Admins see every saved report on the Dashboard."],
