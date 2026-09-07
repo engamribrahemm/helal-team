@@ -193,7 +193,7 @@
       "frozen_at": "2026-09-07T12:52:41.236Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-07T20:14:10.274Z",
+      "updated_at": "2026-09-07T20:27:08.100Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -256,14 +256,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 10,
+          "open": 9,
           "todo": 7,
           "progress": 2,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 0,
-          "hours": 0.3244490277777778,
-          "live": 0.6488980555555556
+          "done": 1,
+          "hours": 0.5581398148148148,
+          "live": 1.0810208333333333
         },
         "Tasneem": {
           "open": 0,
@@ -287,10 +287,10 @@
         }
       },
       "time": {
-        "avgTodo": 495,
-        "avgProgress": 39,
-        "avgToDone": 1159,
-        "open": 22
+        "avgTodo": 507,
+        "avgProgress": 33,
+        "avgToDone": 896,
+        "open": 21
       },
       "hr": {
         "people": {
@@ -630,15 +630,15 @@
           "title": "13 - 12 reel",
           "notes": "shoot and edit the video",
           "due": "2026-09-11",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:15:47.998Z",
-          "updated_at": "2026-09-07T20:10:00.864Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-07T20:27:08.045Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-09-07T19:33:59.087Z",
           "progress_started_at": "",
@@ -664,7 +664,11 @@
           "progress_hours": 0.5933986111111111,
           "review_at": "2026-09-07T20:10:00.864Z",
           "first_review_at": "2026-09-07T20:09:26.419Z",
-          "delivered_on": "2026-09-07"
+          "delivered_on": "2026-09-07",
+          "done_at": "2026-09-07T20:27:08.044Z",
+          "done_on": "2026-09-07",
+          "done_month": "2026-09",
+          "done_by": "Judi"
         }
       ]
     },
