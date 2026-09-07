@@ -193,7 +193,7 @@
       "frozen_at": "2026-09-07T12:52:41.236Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-07T20:34:11.614Z",
+      "updated_at": "2026-09-07T20:34:16.558Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -226,12 +226,12 @@
           "live": 0
         },
         "Seif": {
-          "open": 5,
+          "open": 4,
           "todo": 4,
           "progress": 0,
-          "review": 1,
-          "overdue": 1,
-          "done": 1,
+          "review": 0,
+          "overdue": 0,
+          "done": 2,
           "hours": 0,
           "live": 0
         },
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 0.636569074074074,
-          "live": 1.316308611111111
+          "hours": 0.6374846296296296,
+          "live": 1.3190552777777778
         },
         "Tasneem": {
           "open": 0,
@@ -289,8 +289,8 @@
       "time": {
         "avgTodo": 547,
         "avgProgress": 40,
-        "avgToDone": 1207,
-        "open": 18
+        "avgToDone": 1318,
+        "open": 17
       },
       "hr": {
         "people": {
@@ -429,18 +429,22 @@
           "title": "Upload Helal’s September Work",
           "notes": "Upload the work completed for Helal in September to the new Drive.",
           "due": "2026-09-06",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-06",
           "created_by": "Mariam",
           "created_at": "2026-09-06T11:28:26.659Z",
-          "updated_at": "2026-09-06T19:50:38.979Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-09-07T20:34:16.540Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "time_log": [],
           "review_at": "2026-09-06T19:50:38.979Z",
-          "delivered_on": "2026-09-06"
+          "delivered_on": "2026-09-06",
+          "done_at": "2026-09-07T20:34:16.539Z",
+          "done_on": "2026-09-07",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260906-seif-mtpqbzoc",
