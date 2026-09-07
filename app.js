@@ -127,6 +127,7 @@ const state = {
   reportDay: "",
   calMonth: "",
   workMonth: "",
+  dashPerson: "",
 };
 
 let cardDidDrag = false;
@@ -2804,6 +2805,81 @@ function shiftYm(ym, delta) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
 }
 
+function monthDates(ym, { untilToday = true } = {}) {
+  const [y, m] = String(ym || thisMonth()).split("-").map(Number);
+  if (!y || !m) return [];
+  const last = new Date(y, m, 0).getDate();
+  const dates = [];
+  for (let day = 1; day <= last; day += 1) {
+    dates.push(`${y}-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}`);
+  }
+  if (untilToday && ym === thisMonth()) return dates.filter((d) => d <= today());
+  if (untilToday && ym > thisMonth()) return [];
+  return dates;
+}
+
+function matchesDashPerson(name) {
+  if (!state.dashPerson) return true;
+  return samePerson(name, state.dashPerson);
+}
+
+function dashPersonSelect() {
+  return $("select", {
+    class: "date-select",
+    onchange: (e) => { state.dashPerson = e.target.value; render(); },
+  }, [
+    $("option", { value: "", selected: !state.dashPerson }, "Everyone"),
+    ...people().map((p) => $("option", { value: p.name, selected: p.name === state.dashPerson }, p.name)),
+  ]);
+}
+
+function cairoMs(date, hour = 0) {
+  return Date.parse(`${date}T${String(hour).padStart(2, "0")}:00:00+03:00`);
+}
+
+function progressIntervalsFor(task) {
+  const rows = [];
+  for (const row of task.time_log || []) {
+    if (row.from !== "In progress" || !row.started_at) continue;
+    rows.push({ start: row.started_at, end: row.ended_at || new Date().toISOString(), task });
+  }
+  if (task.status === "In progress") {
+    const start = progressStart(task);
+    if (start) rows.push({ start, end: new Date().toISOString(), task });
+  }
+  return rows;
+}
+
+function addProgressSlice(buckets, startIso, endIso, month, task) {
+  let t = Date.parse(startIso);
+  const end = Date.parse(endIso);
+  if (!Number.isFinite(t) || !Number.isFinite(end) || end <= t) return;
+  for (let i = 0; i < 40 && t < end; i += 1) {
+    const day = cairoDate(new Date(t).toISOString());
+    if (!day) break;
+    const next = cairoMs(addCairoDays(day, 1));
+    const sliceEnd = Math.min(end, Number.isFinite(next) && next > t ? next : end);
+    if (inMonth(day, month) && sliceEnd > t) {
+      if (!buckets[day]) buckets[day] = { mins: 0, tasks: [], people: [] };
+      buckets[day].mins += (sliceEnd - t) / 60000;
+      if (task && !buckets[day].tasks.some((row) => row.id === task.id)) buckets[day].tasks.push(task);
+      if (task?.who && !buckets[day].people.some((name) => samePerson(name, task.who))) buckets[day].people.push(task.who);
+    }
+    if (sliceEnd <= t) break;
+    t = sliceEnd;
+  }
+}
+
+function progressByDay(month, name) {
+  const buckets = {};
+  for (const task of allTasks()) {
+    if (name && !samePerson(task.who, name)) continue;
+    if (!name && state.dashPerson && !matchesDashPerson(task.who)) continue;
+    for (const row of progressIntervalsFor(task)) addProgressSlice(buckets, row.start, row.end, month, task);
+  }
+  return buckets;
+}
+
 function calendarDays(ym, selected, onPick, counts) {
   const [y, m] = ym.split("-").map(Number);
   const first = new Date(y, m - 1, 1);
@@ -3059,20 +3135,21 @@ function qaBlock(question, answer) {
   ]);
 }
 
-function reportDaySummary(day) {
-  const dayReports = (state.reportsFile?.reports || []).filter((r) => r.date === day);
+function reportDaySummary(day, who) {
+  const dayReports = (state.reportsFile?.reports || []).filter((r) => r.date === day && (!who || samePerson(r.who, who)));
   const submittedNames = [...new Set(dayReports.map((r) => r.who))];
-  const missing = people().filter((p) => !submittedNames.includes(p.name));
+  const roster = who ? people().filter((p) => samePerson(p.name, who)) : people();
+  const missing = roster.filter((p) => !submittedNames.includes(p.name));
   const chip = (name, tone) => $("span", { class: `name-chip ${tone}` }, name);
   const office = dayReports.filter((r) => r.place === "Office").map((r) => r.who);
   const remote = dayReports.filter((r) => r.place === "Remote").map((r) => r.who);
   return $("div", { class: "report-summary" }, [
     $("article", { class: "card" }, [
       $("h3", {}, "Submitted"),
-      $("p", { class: "muted" }, `${submittedNames.length} of ${people().length}`),
+      $("p", { class: "muted" }, who ? (submittedNames.length ? `${who} submitted` : `${who} has not submitted`) : `${submittedNames.length} of ${roster.length}`),
       submittedNames.length
         ? $("div", { class: "chip-row" }, submittedNames.map((name) => chip(name, "tone-green")))
-        : $("p", { class: "empty" }, "Nobody has submitted yet."),
+        : $("p", { class: "empty" }, who ? "No report from this person on this day." : "Nobody has submitted yet."),
       office.length || remote.length
         ? $("p", { class: "muted", style: "margin-top:10px" }, [
           office.length ? `Office: ${office.join(", ")}. ` : "",
@@ -3080,7 +3157,7 @@ function reportDaySummary(day) {
         ].join(""))
         : null,
     ]),
-    $("article", { class: "card" }, [
+    who ? null : $("article", { class: "card" }, [
       $("h3", {}, "Not yet"),
       $("p", { class: "muted" }, `${missing.length} missing`),
       missing.length
@@ -3105,17 +3182,25 @@ function reportCard(r) {
 
 function viewCalendar() {
   const ym = state.calMonth || today().slice(0, 7);
+  const who = state.dashPerson;
   const counts = {};
-  for (const r of state.reportsFile?.reports || []) counts[r.date] = (counts[r.date] || 0) + 1;
+  for (const r of state.reportsFile?.reports || []) {
+    if (!matchesDashPerson(r.who)) continue;
+    counts[r.date] = (counts[r.date] || 0) + 1;
+  }
   for (const t of allTasks()) {
-    if (t.status === "Done" && t.done_on) counts[t.done_on] = (counts[t.done_on] || 0) + 1;
+    if (t.status === "Done" && t.done_on && matchesDashPerson(t.who)) counts[t.done_on] = (counts[t.done_on] || 0) + 1;
   }
   return $("section", { class: "card cal-wrap" }, [
     $("div", { class: "cal-nav" }, [
       $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(ym, -1)); render(); } }, "Prev"),
       $("h2", {}, monthLabel(ym)),
       $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(ym, 1)); render(); } }, "Next"),
+      dashPersonSelect(),
     ]),
+    $("p", { class: "muted" }, who
+      ? `Calendar, reports, and In progress time for ${who} only.`
+      : "Pick a person to see only their reports this month and In progress time each day."),
     $("div", { class: "cal-week" }, WEEKDAYS.map((d) => $("span", {}, d))),
     $("div", { class: "cal-grid" }, calendarDays(ym, state.reportDay, (date) => {
       state.reportDay = date;
@@ -3130,13 +3215,14 @@ function viewCalendar() {
 
 function viewTaskTimeDashboard(month) {
   const m = month || thisMonth();
-  const tasks = [...tasksForMonth(m)].sort((a, b) => {
+  const who = state.dashPerson;
+  const tasks = [...tasksForMonth(m)].filter((t) => matchesDashPerson(t.who)).sort((a, b) => {
     const as = a.status === "Done" ? 1 : 0;
     const bs = b.status === "Done" ? 1 : 0;
     if (as !== bs) return as - bs;
     return Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0);
   });
-  const snap = !isCurrentMonth(m) ? monthSnapshot(m)?.time : null;
+  const snap = !who && !isCurrentMonth(m) ? monthSnapshot(m)?.time : null;
   const open = tasks.filter((t) => t.status !== "Done");
   const avg = (rows, key) => {
     const nums = rows.map((t) => taskStageTimes(t)[key]).filter((n) => n > 0);
@@ -3148,7 +3234,7 @@ function viewTaskTimeDashboard(month) {
   const avgToDone = snap ? snap.avgToDone : avg(tasks.filter((t) => t.status === "Done"), "toDoneMins");
   const openCount = snap ? snap.open : open.length;
   return $("section", { class: "card" }, [
-    $("h2", {}, `Task time tracking · ${monthLabel(m)}`),
+    $("h2", {}, `Task time tracking · ${who || "Team"} · ${monthLabel(m)}`),
     $("p", { class: "muted" }, isCurrentMonth(m)
       ? "This month only. Closed months keep their stored numbers."
       : "Stored month. Live open tasks sit in the current month."),
@@ -3186,42 +3272,87 @@ function viewTaskTimeDashboard(month) {
   ]);
 }
 
+function viewProgressByDay(month) {
+  const m = month || thisMonth();
+  const who = state.dashPerson;
+  const buckets = progressByDay(m, who);
+  const dates = monthDates(m);
+  const total = dates.reduce((n, date) => n + (buckets[date]?.mins || 0), 0);
+  const selected = state.reportDay && String(state.reportDay).startsWith(m) ? state.reportDay : "";
+  return $("section", { class: "card" }, [
+    $("h2", {}, `In progress time · ${who || "Team"} · ${monthLabel(m)}`),
+    $("p", { class: "muted" }, who
+      ? `How long ${who} stayed In progress each day this month.`
+      : "Pick a person above to see only their days. Everyone shows the team total per day."),
+    $("div", { class: "stat-row" }, [
+      statBox(formatMinutes(Math.round(total)), "In progress this month", total ? "tone-green" : ""),
+      statBox(String(dates.filter((date) => (buckets[date]?.mins || 0) > 0).length), "Days with time"),
+    ]),
+    dates.length
+      ? $("div", { class: "load-table-wrap", style: "margin-top:14px" }, [
+        $("table", { class: "load-table" }, [
+          $("thead", {}, $("tr", {}, ["Day", "In progress", who ? "Tasks" : "People"].map((h) => $("th", {}, h)))),
+          $("tbody", {}, dates.map((date) => {
+            const row = buckets[date];
+            const mins = row?.mins || 0;
+            return $("tr", {
+              class: date === selected ? "tone-ok" : "",
+              onclick: () => { state.reportDay = date; render(); },
+            }, [
+              $("td", {}, date),
+              $("td", {}, mins > 0 ? formatMinutes(Math.round(mins)) : "—"),
+              $("td", {}, who
+                ? (row?.tasks || []).map((t) => t.title).join(", ") || "—"
+                : (row?.people || []).join(", ") || "—"),
+            ]);
+          })),
+        ]),
+      ])
+      : $("p", { class: "empty" }, "No days in this month yet."),
+  ]);
+}
+
 function viewReview() {
   const month = state.calMonth || thisMonth();
   const current = isCurrentMonth(month);
   const day = state.reportDay && String(state.reportDay).startsWith(month)
     ? state.reportDay
     : (current ? today() : `${month}-01`);
+  const who = state.dashPerson;
   const waiting = current
-    ? allTasks().filter((t) => t.status === "Review" || t.status === "Revisions")
+    ? allTasks().filter((t) => (t.status === "Review" || t.status === "Revisions") && matchesDashPerson(t.who))
     : [];
-  const doneDay = allTasks().filter((t) => t.status === "Done" && t.done_on === day);
-  const doneMonth = allTasks().filter((t) => t.status === "Done" && doneMonthOf(t) === month);
-  const allReports = [...(state.reportsFile?.reports || [])].sort(
-    (a, b) => Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0)
-  );
+  const doneDay = allTasks().filter((t) => t.status === "Done" && t.done_on === day && matchesDashPerson(t.who));
+  const doneMonth = allTasks().filter((t) => t.status === "Done" && doneMonthOf(t) === month && matchesDashPerson(t.who));
+  const allReports = [...(state.reportsFile?.reports || [])]
+    .filter((r) => matchesDashPerson(r.who))
+    .sort((a, b) => Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0));
   const monthReports = allReports.filter((r) => (r.date || "").startsWith(month));
   const dayReports = allReports.filter((r) => r.date === day);
   const adminDash = isAdmin();
+  const personLabel = who ? ` · ${who}` : "";
   return $("div", { class: "dash" }, [
     adminDash ? viewTaskTimeDashboard(month) : null,
     adminDash ? viewCalendar() : null,
+    adminDash ? viewProgressByDay(month) : null,
     adminDash ? $("section", {}, [
-      $("h2", {}, `Reports · ${day}`),
-      $("p", { class: "muted" }, "Every saved report is kept. Pick a day, or read the latest submissions below."),
-      reportDaySummary(day),
+      $("h2", {}, `Reports · ${day}${personLabel}`),
+      $("p", { class: "muted" }, who
+        ? `Only ${who}’s reports. Switch the name next to the calendar to see someone else.`
+        : "Every saved report is kept. Pick a person next to the calendar, or pick a day."),
+      reportDaySummary(day, who),
       dayReports.length
         ? $("div", { class: "cards", style: "margin-top:18px" }, dayReports.map(reportCard))
-        : $("p", { class: "empty" }, "No report submissions on this day yet."),
+        : $("p", { class: "empty" }, who ? `No report from ${who} on this day.` : "No report submissions on this day yet."),
     ]) : null,
     adminDash ? $("section", {}, [
-      $("h2", {}, `Saved reports · ${monthLabel(month)}`),
+      $("h2", {}, `Saved reports · ${monthLabel(month)}${personLabel}`),
       $("p", { class: "muted" }, monthReports.length
-        ? `${monthReports.length} saved this month. Newest first. Older months stay stored.`
-        : "No reports stored for this month."),
+        ? `${monthReports.length} saved this month${who ? ` for ${who}` : ""}. Newest first. Older months stay stored.`
+        : (who ? `No reports from ${who} this month.` : "No reports stored for this month.")),
       monthReports.length
         ? $("div", { class: "cards", style: "margin-top:14px" }, monthReports.map(reportCard))
-        : $("p", { class: "empty" }, "No reports saved this month yet."),
+        : $("p", { class: "empty" }, who ? `No reports from ${who} this month.` : "No reports saved this month yet."),
     ]) : null,
     adminDash ? $("section", {}, [
       $("h2", {}, "Attendance requests"),
@@ -3276,17 +3407,17 @@ function viewReview() {
         : $("p", { class: "empty" }, "Nothing in Review."),
     ]),
     $("section", { class: "done-section" }, [
-      $("h2", {}, `Done · ${day}`),
+      $("h2", {}, `Done · ${day}${personLabel}`),
       $("p", { class: "muted" }, "Checked work stays here and on the member’s Done list. It is stored in helal/daily-tasks.json on GitHub."),
       doneDay.length
         ? $("div", { class: "cards", style: "margin-top:14px" }, doneDay.map((t) => doneCard(t, { checked: true })))
-        : $("p", { class: "empty" }, "No tasks marked done on this day."),
+        : $("p", { class: "empty" }, who ? `No done tasks for ${who} on this day.` : "No tasks marked done on this day."),
     ]),
     $("section", { class: "done-section" }, [
-      $("h2", {}, `Done this month · ${monthLabel(month)}`),
+      $("h2", {}, `Done this month · ${monthLabel(month)}${personLabel}`),
       doneMonth.length
         ? $("div", { class: "cards", style: "margin-top:14px" }, doneMonth.map((t) => doneCard(t, { checked: true })))
-        : $("p", { class: "empty" }, "No done tasks stored this month yet."),
+        : $("p", { class: "empty" }, who ? `No done tasks for ${who} this month.` : "No done tasks stored this month yet."),
     ]),
   ]);
 }
@@ -3874,7 +4005,7 @@ function viewGuide() {
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
-    ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. Admins see every saved report on the Dashboard."],
+    ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. On the Dashboard, pick a person to read only their reports that month and see In progress time for each day."],
     ["HR", "Amr and Tasneem open HR. Profile, performance, task tracking, attitude, and warnings are scored each month separately. Switching months does not mix in the current month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>

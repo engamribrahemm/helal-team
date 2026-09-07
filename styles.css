@@ -396,7 +396,8 @@ label {
   line-height: 1.3;
   letter-spacing: 0.02em;
 }
-.time-track-table tr { cursor: pointer; }
+.time-track-table tr,
+.load-table tr[onclick] { cursor: pointer; }
 
 .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 
@@ -503,13 +504,19 @@ a { color: var(--gold); }
 .sop-list p { color: var(--muted); line-height: 1.6; margin: 0; }
 
 .dash { display: grid; gap: 28px; }
-.cal-wrap { max-width: 640px; }
+.cal-wrap { max-width: 760px; }
 .cal-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.cal-nav select {
+  width: auto;
+  min-width: 160px;
+  padding: 8px 10px;
 }
 .cal-week, .cal-grid, .due-grid {
   display: grid;
