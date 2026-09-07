@@ -193,7 +193,7 @@
       "frozen_at": "2026-09-07T12:52:41.236Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-07T14:16:54.118Z",
+      "updated_at": "2026-09-07T14:22:39.050Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -287,7 +287,7 @@
         }
       },
       "time": {
-        "avgTodo": 693,
+        "avgTodo": 559,
         "avgProgress": 0,
         "avgToDone": 489,
         "open": 9
