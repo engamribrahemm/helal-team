@@ -193,7 +193,7 @@
       "frozen_at": "2026-09-07T12:52:41.236Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-07T20:34:06.970Z",
+      "updated_at": "2026-09-07T20:34:11.614Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 0.6357090740740741,
-          "live": 1.313728611111111
+          "hours": 0.636569074074074,
+          "live": 1.316308611111111
         },
         "Tasneem": {
           "open": 0,
@@ -456,7 +456,7 @@
           "assigned_at": "2026-09-06",
           "created_by": "Mariam",
           "created_at": "2026-09-06T11:29:41.724Z",
-          "updated_at": "2026-09-07T20:34:06.952Z",
+          "updated_at": "2026-09-07T20:34:11.597Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "time_log": [],
