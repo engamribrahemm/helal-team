@@ -193,7 +193,7 @@
       "frozen_at": "2026-09-07T12:52:41.236Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-07T20:33:57.091Z",
+      "updated_at": "2026-09-07T20:34:06.970Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -226,12 +226,12 @@
           "live": 0
         },
         "Seif": {
-          "open": 6,
+          "open": 5,
           "todo": 4,
           "progress": 0,
-          "review": 2,
-          "overdue": 2,
-          "done": 0,
+          "review": 1,
+          "overdue": 1,
+          "done": 1,
           "hours": 0,
           "live": 0
         },
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 0.6338796296296296,
-          "live": 1.3082402777777777
+          "hours": 0.6357090740740741,
+          "live": 1.313728611111111
         },
         "Tasneem": {
           "open": 0,
@@ -289,8 +289,8 @@
       "time": {
         "avgTodo": 547,
         "avgProgress": 40,
-        "avgToDone": 1052,
-        "open": 19
+        "avgToDone": 1207,
+        "open": 18
       },
       "hr": {
         "people": {
@@ -450,18 +450,22 @@
           "title": "Upload osama’s September Work",
           "notes": "Upload the work completed for Osama Helal in September to the new Drive.",
           "due": "2026-09-06",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-06",
           "created_by": "Mariam",
           "created_at": "2026-09-06T11:29:41.724Z",
-          "updated_at": "2026-09-06T19:50:40.569Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-09-07T20:34:06.952Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "time_log": [],
           "review_at": "2026-09-06T19:50:40.569Z",
-          "delivered_on": "2026-09-06"
+          "delivered_on": "2026-09-06",
+          "done_at": "2026-09-07T20:34:06.952Z",
+          "done_on": "2026-09-07",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260906-alaa-mtpqgraa",
