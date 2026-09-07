@@ -1,5 +1,5 @@
 const STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
-const BOARD_STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
+const BOARD_STATUSES = ["To do", "In progress", "Review", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session";
@@ -1917,6 +1917,7 @@ function kanbanCard(task) {
     },
   }, [
     $("p", { class: "title" }, task.title),
+    task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
     taskFactList(task),
     canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
       ? $("button", {
@@ -1928,11 +1929,20 @@ function kanbanCard(task) {
   ]);
 }
 
+function boardColumnOf(status) {
+  return status === "Revisions" ? "Review" : status;
+}
+
+function tasksInBoardColumn(tasks, column) {
+  if (column === "Review") return tasks.filter((t) => t.status === "Review" || t.status === "Revisions");
+  return tasks.filter((t) => t.status === column);
+}
+
 function viewBoard() {
   const tasks = tasksForView();
   return $("div", { class: "kanban" },
     BOARD_STATUSES.map((status) => {
-      const col = tasks.filter((t) => t.status === status);
+      const col = tasksInBoardColumn(tasks, status);
       return $("section", {
         class: "kanban-col",
         ondragover: (e) => {
@@ -2693,8 +2703,7 @@ function viewMy() {
     isAdmin() ? null : myHrCard(),
     $("div", { class: "stat-row" }, [
       statBox(open.length, "Open now"),
-      statBox(open.filter((t) => t.status === "Review").length, "In review", "tone-orange"),
-      statBox(open.filter((t) => t.status === "Revisions").length, "Edits required", "tone-orange"),
+      statBox(open.filter((t) => t.status === "Review" || t.status === "Revisions").length, "In review", "tone-orange"),
       statBox(finished.length, "Done this month", "tone-green"),
     ]),
     $("h2", {}, "Open"),
@@ -2704,7 +2713,8 @@ function viewMy() {
           $("p", { class: "title" }, task.title),
           taskFactList(task),
           $("div", { class: "meta" }, [
-            $("span", { class: `pill ${taskTone(task)}` }, task.status),
+            $("span", { class: `pill ${taskTone(task)}` }, boardColumnOf(task.status)),
+            task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
           ]),
         ])
       ))
@@ -2954,9 +2964,9 @@ function viewTaskDrawer() {
           BOARD_STATUSES.map((s) =>
             $("button", {
               type: "button",
-              class: s === task.status ? "on" : "",
+              class: boardColumnOf(task.status) === s ? "on" : "",
               disabled: !canSetStatus(s, task),
-              onclick: () => { if (canSetStatus(s, task)) setStatus(task.id, s); },
+              onclick: () => { if (canSetStatus(s, task)) setStatus(task.id, s === "Review" && task.status === "Revisions" ? "Revisions" : s); },
             }, s)
           )
         ),
@@ -3189,7 +3199,7 @@ function viewReview() {
             ]),
           ])
         ))
-        : $("p", { class: "empty" }, "Nothing in Review or Revisions."),
+        : $("p", { class: "empty" }, "Nothing in Review."),
     ]),
     $("section", { class: "done-section" }, [
       $("h2", {}, `Done · ${day}`),
@@ -3667,9 +3677,9 @@ function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. After you save, a green Saved message appears and GitHub has the update."],
-    ["Do the work", "Drag a card across columns. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
+    ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it."],
-    ["Review", "Drag to Review when ready. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
+    ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Green is clear, orange needs attention, red is overload. The Dashboard tracks how long each task waits in To do, stays In progress, and takes until Done."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. Admins see every saved report on the Dashboard."],
