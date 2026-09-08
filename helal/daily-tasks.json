@@ -3,7 +3,8 @@
   "note": "Amr sends the day's tasks in chat or assigns on the board. Record them here, tag each person, and attach the matching Drive upload folder.",
   "reset_at": "2026-09-05T16:12:00.000Z",
   "removed_ids": [
-    "t-20260906-seif-mtokld6v"
+    "t-20260906-seif-mtokld6v",
+    "t-20260908-sara-mtsncp78"
   ],
   "statuses": [
     "To do",
@@ -193,7 +194,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-08T14:00:51.905Z",
+      "updated_at": "2026-09-08T14:13:52.986Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -212,8 +213,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 1.0261741666666666,
-          "live": 2.0503383333333334
+          "hours": 1.1346568055555555,
+          "live": 2.267303611111111
         },
         "Judi": {
           "open": 1,
@@ -232,8 +233,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 14.940402222222222,
-          "live": 14.940402222222222
+          "hours": 15.157368055555555,
+          "live": 15.157368055555555
         },
         "Alaa": {
           "open": 5,
@@ -242,12 +243,12 @@
           "review": 1,
           "overdue": 0,
           "done": 2,
-          "hours": 2.9222612962962966,
-          "live": 1.2214275
+          "hours": 2.994583240740741,
+          "live": 1.4383933333333334
         },
         "Sara": {
-          "open": 5,
-          "todo": 5,
+          "open": 4,
+          "todo": 4,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -258,12 +259,12 @@
         "Ganna": {
           "open": 12,
           "todo": 6,
-          "progress": 5,
-          "review": 1,
+          "progress": 4,
+          "review": 2,
           "overdue": 0,
           "done": 1,
-          "hours": 9.169003055555555,
-          "live": 54.42061972222222
+          "hours": 11.125822444444443,
+          "live": 55.03571361111111
         },
         "Tasneem": {
           "open": 1,
@@ -287,10 +288,10 @@
         }
       },
       "time": {
-        "avgTodo": 922,
-        "avgProgress": 545,
+        "avgTodo": 986,
+        "avgProgress": 633,
         "avgToDone": 1318,
-        "open": 29
+        "open": 28
       },
       "hr": {
         "people": {
@@ -730,50 +731,6 @@
           "start_on": "2026-09-08",
           "progress_hours": 0.22000194444444443,
           "review_at": "2026-09-08T13:58:53.938Z",
-          "delivered_on": "2026-09-08"
-        },
-        {
-          "id": "t-20260908-sara-mtsncp78",
-          "who": "Sara",
-          "space": "Graphic",
-          "project": "OSAMA HELAL",
-          "title": "TASK 1111111111",
-          "notes": "",
-          "due": "2026-09-08",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
-          "drive_missing": false,
-          "assigned_at": "2026-09-08",
-          "month": "2026-09",
-          "created_by": "Tasneem",
-          "created_at": "2026-09-08T12:29:34.485Z",
-          "updated_at": "2026-09-08T12:35:47.874Z",
-          "updated_by": "Sara",
-          "revisions": 0,
-          "first_progress_at": "2026-09-08T12:35:40.114Z",
-          "progress_started_at": "",
-          "time_log": [
-            {
-              "from": "In progress",
-              "to": "Review",
-              "started_at": "2026-09-08T12:35:40.114Z",
-              "ended_at": "2026-09-08T12:35:43.842Z",
-              "hours": 0.0010355555555555556,
-              "by": "Sara"
-            },
-            {
-              "from": "In progress",
-              "to": "To do",
-              "started_at": "2026-09-08T12:35:45.643Z",
-              "ended_at": "2026-09-08T12:35:47.874Z",
-              "hours": 0.0006197222222222222,
-              "by": "Sara"
-            }
-          ],
-          "start_on": "2026-09-08",
-          "progress_hours": 0.0016552777777777779,
-          "review_at": "2026-09-08T12:35:43.842Z",
-          "first_review_at": "2026-09-08T12:35:43.842Z",
           "delivered_on": "2026-09-08"
         },
         {
