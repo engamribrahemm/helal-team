@@ -34,37 +34,6 @@ const DELAY_REASONS = [
 ];
 const REVISION_LEVELS = ["Minor", "Medium", "Major"];
 const RATE_LABEL = { 5: "Excellent", 4: "Very good", 3: "Meets expectations", 2: "Needs improvement", 1: "Poor" };
-const QUALITY_CRITERIA = {
-  design: [
-    ["color", "Color selection"],
-    ["type", "Typography & fonts"],
-    ["brand", "Brand alignment"],
-    ["layout", "Layout & visual balance"],
-    ["detail", "Attention to details"],
-    ["ready", "Final output readiness"],
-  ],
-  video: [
-    ["video", "Video quality"],
-    ["edit", "Editing & transitions"],
-    ["sound", "Sound quality"],
-    ["pace", "Timing & pacing"],
-    ["story", "Visual storytelling"],
-    ["fit", "Content suitability"],
-  ],
-  social: [
-    ["understand", "Content understanding"],
-    ["caption", "Caption quality"],
-    ["audience", "Audience understanding"],
-    ["trend", "Trend awareness"],
-    ["plan", "Content planning"],
-    ["ready", "Final output readiness"],
-  ],
-  other: [
-    ["overall", "Overall quality"],
-    ["brief", "Brief understanding"],
-    ["ready", "Final output readiness"],
-  ],
-};
 const ATTITUDE_CRITERIA = [
   ["communication", "Communication"],
   ["teamwork", "Teamwork"],
@@ -2238,27 +2207,24 @@ function viewEvalModal() {
   if (!task || !["Review", "Revisions", "Done"].includes(task.status)) return [];
   const person = people().find((p) => p.name === task.who);
   const track = qualityTrack(person);
-  const criteria = QUALITY_CRITERIA[track] || QUALITY_CRITERIA.other;
   const existing = ensureHr().reviews.find((r) => r.task_id === task.id);
+  const existingQuality = existing?.quality_avg || avg(Object.values(existing?.quality || {}));
   const delivery = scoreSelect(existing?.delivery);
+  const quality = scoreSelect(existingQuality);
   const revision = scoreSelect(existing?.revision_rating);
   const creativity = scoreSelect(existing?.creativity);
-  const qualityInputs = criteria.map(([key, label]) => [key, label, scoreSelect(existing?.quality?.[key])]);
-  const notes = $("textarea", {}, existing?.notes || "");
   const close = () => { state.evalTaskId = null; render(); };
   return [
     $("div", { class: "modal-bg", onclick: close }),
-    $("section", { class: "modal wide" }, [
-      $("p", { class: "muted" }, "Quality evaluation"),
+    $("section", { class: "modal" }, [
+      $("p", { class: "muted" }, "Evaluation"),
       $("h2", {}, task.title),
-      $("p", { class: "muted" }, `${task.who} · ${person?.role || track} · 5 publish-ready · 4 small edits · 3 meets the brief · 2 needs heavy work · 1 redo.`),
+      $("p", { class: "muted" }, `${task.who} · ${person?.role || track} · 5 excellent · 4 good · 3 average · 2 weak · 1 poor.`),
       $("form", {
         class: "form",
         onsubmit: (e) => {
           e.preventDefault();
-          const quality = {};
-          qualityInputs.forEach(([key, , input]) => { quality[key] = Number(input.value) || 0; });
-          const quality_avg = avg(Object.values(quality).filter(Boolean));
+          const qualityScore = Number(quality.value) || 0;
           const row = {
             id: existing?.id || `ev-${task.id}`,
             task_id: task.id,
@@ -2267,12 +2233,12 @@ function viewEvalModal() {
             month: (deliveryDate(task) || today()).slice(0, 7),
             quarter: currentQuarter(deliveryDate(task) || today()),
             delivery: Number(delivery.value) || 0,
-            quality,
-            quality_avg,
+            quality: { overall: qualityScore },
+            quality_avg: qualityScore,
             revision_rating: Number(revision.value) || 0,
             revision_count: task.revisions || 0,
             creativity: Number(creativity.value) || 0,
-            notes: notes.value.trim(),
+            notes: existing?.notes || "",
             by: state.who,
             created_at: existing?.created_at || new Date().toISOString(),
             updated_at: new Date().toISOString(),
@@ -2285,15 +2251,10 @@ function viewEvalModal() {
           saveHr(`hr: ${state.who} evaluated ${task.id}`);
         },
       }, [
-        $("label", {}, ["Task delivery (on time and managed)", delivery]),
-        $("p", { class: "muted" }, "5 on time and self-managed · 4 small rare delay · 3 needs some follow-up · 2 often late · 1 never finishes without chasing."),
-        $("p", { class: "muted" }, "Quality by role"),
-        ...qualityInputs.map(([, label, input]) => $("label", {}, [label, input])),
-        $("label", {}, ["Revision handling", revision]),
-        $("p", { class: "muted" }, "5 few natural edits · 4 small tweaks · 3 a normal amount · 2 many edits from a missed brief · 1 full redo."),
-        $("label", {}, ["Creativity & initiative", creativity]),
-        $("p", { class: "muted" }, "5 proposes new ideas · 4 sometimes improves · 3 does the brief only · 2 waits for instructions · 1 no initiative."),
-        $("label", {}, ["Notes", notes]),
+        $("label", {}, ["Delivery", delivery]),
+        $("label", {}, ["Quality", quality]),
+        $("label", {}, ["Revisions", revision]),
+        $("label", {}, ["Creativity", creativity]),
         $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
           $("button", { class: "btn primary", type: "submit" }, "Save evaluation"),
           task.status !== "Done"
