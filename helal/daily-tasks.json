@@ -12,6 +12,365 @@
     "Revisions",
     "Done"
   ],
+  "months": {
+    "2026-08": {
+      "updated_at": "2026-09-08T13:58:58.427Z",
+      "people": {
+        "Amr": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Mariam": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Judi": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Seif": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Alaa": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Sara": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Ganna": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Tasneem": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Moamen": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        }
+      },
+      "time": {
+        "avgTodo": 0,
+        "avgProgress": 0,
+        "avgToDone": 0,
+        "open": 0
+      },
+      "hr": {
+        "people": {
+          "Mariam": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Judi": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Seif": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Alaa": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Sara": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Ganna": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Tasneem": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Moamen": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          }
+        }
+      },
+      "frozen": true,
+      "frozen_at": "2026-09-08T13:58:58.428Z"
+    },
+    "2026-09": {
+      "updated_at": "2026-09-08T13:58:58.454Z",
+      "people": {
+        "Amr": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Mariam": {
+          "open": 1,
+          "todo": 0,
+          "progress": 1,
+          "review": 0,
+          "overdue": 0,
+          "done": 1,
+          "hours": 1.01041625,
+          "live": 2.0188225
+        },
+        "Judi": {
+          "open": 1,
+          "todo": 1,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 1,
+          "hours": 3.6401722222222226,
+          "live": 0
+        },
+        "Seif": {
+          "open": 4,
+          "todo": 3,
+          "progress": 1,
+          "review": 0,
+          "overdue": 0,
+          "done": 2,
+          "hours": 14.908886666666668,
+          "live": 14.908886666666668
+        },
+        "Alaa": {
+          "open": 5,
+          "todo": 3,
+          "progress": 1,
+          "review": 1,
+          "overdue": 0,
+          "done": 2,
+          "hours": 2.9117562962962964,
+          "live": 1.1899125
+        },
+        "Sara": {
+          "open": 5,
+          "todo": 5,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Ganna": {
+          "open": 12,
+          "todo": 6,
+          "progress": 4,
+          "review": 2,
+          "overdue": 0,
+          "done": 1,
+          "hours": 10.927037777777779,
+          "live": 54.04179083333334
+        },
+        "Tasneem": {
+          "open": 1,
+          "todo": 1,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Moamen": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        }
+      },
+      "time": {
+        "avgTodo": 920,
+        "avgProgress": 618,
+        "avgToDone": 1318,
+        "open": 29
+      },
+      "hr": {
+        "people": {
+          "Mariam": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Judi": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Seif": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Alaa": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Sara": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Ganna": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Tasneem": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Moamen": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          }
+        }
+      },
+      "frozen": false
+    }
+  },
   "days": [
     {
       "date": "2026-09-06",
