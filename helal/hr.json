@@ -63,8 +63,187 @@
       "mode": "Remote"
     }
   },
-  "reviews": [],
+  "reviews": [
+    {
+      "id": "ev-t-20260907-mariam-mtr42pe9",
+      "task_id": "t-20260907-mariam-mtr42pe9",
+      "who": "Mariam",
+      "role": "social",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 5,
+      "quality": {
+        "overall": 4
+      },
+      "quality_avg": 4,
+      "revision_rating": 5,
+      "revision_count": 0,
+      "creativity": 4,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-09-08T14:26:31.125Z",
+      "updated_at": "2026-09-08T14:26:41.278Z"
+    }
+  ],
   "attitude": [],
   "warnings": [],
-  "rewards": []
+  "rewards": [],
+  "months": {
+    "2026-08": {
+      "people": {
+        "Mariam": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Judi": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Seif": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Alaa": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Sara": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Ganna": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Tasneem": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Moamen": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        }
+      },
+      "frozen": true,
+      "frozen_at": "2026-09-08T14:25:53.714Z"
+    },
+    "2026-09": {
+      "people": {
+        "Mariam": {
+          "delivery": 5,
+          "quality": 4,
+          "revisions": 5,
+          "creativity": 4,
+          "total": 4.5,
+          "attitude": 0,
+          "reviews": 1
+        },
+        "Judi": {
+          "delivery": 5,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 5,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Seif": {
+          "delivery": 5,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 5,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Alaa": {
+          "delivery": 5,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 5,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Sara": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Ganna": {
+          "delivery": 5,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 5,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Tasneem": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        },
+        "Moamen": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
+        }
+      },
+      "updated_at": "2026-09-08T14:26:41.289Z",
+      "frozen": false
+    }
+  }
 }
