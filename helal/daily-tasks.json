@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-08T14:14:42.631Z",
+      "updated_at": "2026-09-08T14:15:34.058Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 1.1415520833333332,
-          "live": 2.2810944444444443
+          "hours": 1.1486952777777777,
+          "live": 2.2953805555555555
         },
         "Judi": {
           "open": 1,
@@ -236,8 +236,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 15.17115861111111,
-          "live": 15.17115861111111
+          "hours": 15.185444722222222,
+          "live": 15.185444722222222
         },
         "Alaa": {
           "open": 5,
@@ -246,18 +246,18 @@
           "review": 1,
           "overdue": 0,
           "done": 2,
-          "hours": 2.9991800925925927,
-          "live": 1.452183888888889
+          "hours": 3.003942037037037,
+          "live": 1.4664697222222223
         },
         "Sara": {
-          "open": 4,
+          "open": 5,
           "todo": 4,
-          "progress": 0,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 0,
-          "live": 0
+          "hours": 0.000002777777777777778,
+          "live": 0.000002777777777777778
         },
         "Ganna": {
           "open": 12,
@@ -266,8 +266,8 @@
           "review": 2,
           "overdue": 0,
           "done": 1,
-          "hours": 11.136854888888887,
-          "live": 55.09087583333334
+          "hours": 11.148283333333334,
+          "live": 55.14801805555555
         },
         "Tasneem": {
           "open": 1,
@@ -291,10 +291,10 @@
         }
       },
       "time": {
-        "avgTodo": 987,
-        "avgProgress": 634,
+        "avgTodo": 986,
+        "avgProgress": 635,
         "avgToDone": 1318,
-        "open": 28
+        "open": 29
       },
       "hr": {
         "people": {
@@ -744,18 +744,20 @@
           "title": "Create 3 MAS Designs",
           "notes": "Create 3 MAS designs and send them via WhatsApp for review.",
           "due": "2026-09-08",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-08",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-08T13:37:31.817Z",
-          "updated_at": "2026-09-08T13:37:31.817Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-08T14:15:34.048Z",
+          "updated_by": "Sara",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-08T14:15:34.047Z",
+          "progress_started_at": "2026-09-08T14:15:34.047Z",
+          "time_log": [],
+          "start_on": "2026-09-08"
         }
       ]
     },
