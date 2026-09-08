@@ -193,7 +193,7 @@
       "frozen_at": "2026-09-07T12:52:41.236Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-08T11:15:58.449Z",
+      "updated_at": "2026-09-08T11:18:00.130Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "live": 0
         },
         "Judi": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -232,8 +232,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 12.19222,
-          "live": 12.19222
+          "hours": 12.226020277777778,
+          "live": 12.226020277777778
         },
         "Alaa": {
           "open": 5,
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 11.498485763888889,
-          "live": 45.40054444444444
+          "hours": 11.523835972222223,
+          "live": 45.50194527777778
         },
         "Tasneem": {
           "open": 1,
@@ -287,10 +287,10 @@
         }
       },
       "time": {
-        "avgTodo": 971,
-        "avgProgress": 864,
+        "avgTodo": 973,
+        "avgProgress": 866,
         "avgToDone": 1318,
-        "open": 21
+        "open": 22
       },
       "hr": {
         "people": {
@@ -703,6 +703,27 @@
           "created_by": "Amr",
           "created_at": "2026-09-08T11:14:19.881Z",
           "updated_at": "2026-09-08T11:14:19.881Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260909-judi-mtsksnn9",
+          "who": "Judi",
+          "space": "Social",
+          "project": "Helal",
+          "title": "Ideas for TikTok series",
+          "notes": "",
+          "due": "2026-09-09",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-08",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-08T11:18:00.117Z",
+          "updated_at": "2026-09-08T11:18:00.117Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
