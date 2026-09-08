@@ -94,6 +94,36 @@
           "saved_at": "2026-09-06T12:42:17.866Z",
           "updated_at": "2026-09-06T12:42:17.866Z",
           "updated_by": "Seif"
+        },
+        "Tasneem": {
+          "days": {
+            "2026-09-05": "Office",
+            "2026-09-09": "Office",
+            "2026-09-04": "Off",
+            "2026-09-06": "Home",
+            "2026-09-07": "Home",
+            "2026-09-08": "Home",
+            "2026-09-10": "Home"
+          },
+          "saved": true,
+          "saved_at": "2026-09-08T12:34:20.603Z",
+          "updated_at": "2026-09-08T12:34:20.603Z",
+          "updated_by": "Tasneem"
+        },
+        "Sara": {
+          "days": {
+            "2026-09-09": "Office",
+            "2026-09-04": "Off",
+            "2026-09-05": "Off",
+            "2026-09-06": "Off",
+            "2026-09-07": "Off",
+            "2026-09-08": "Home",
+            "2026-09-10": "Off"
+          },
+          "saved": true,
+          "saved_at": "2026-09-08T12:34:58.804Z",
+          "updated_at": "2026-09-08T14:02:20.439Z",
+          "updated_by": "Amr"
         }
       }
     }
@@ -123,6 +153,19 @@
       "status": "Approved",
       "created_at": "2026-09-06T08:45:15.256Z",
       "decided_at": "2026-09-06T08:45:17.382Z",
+      "decided_by": "Amr"
+    },
+    {
+      "id": "ar-mtsqmzqm",
+      "who": "Sara",
+      "friday": "2026-09-04",
+      "date": "2026-09-08",
+      "from": "Off",
+      "to": "Home",
+      "reason": "",
+      "status": "Approved",
+      "created_at": "2026-09-08T14:01:33.550Z",
+      "decided_at": "2026-09-08T14:02:20.439Z",
       "decided_by": "Amr"
     }
   ]

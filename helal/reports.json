@@ -3,6 +3,61 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mtrpzjeq",
+      "who": "Seif",
+      "date": "2026-09-07",
+      "finished": "1carousel \n1 single visual \nd osama",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "created_at": "2026-09-07T20:55:33.122Z"
+    },
+    {
+      "id": "r-mtrp9w8p",
+      "who": "Mariam",
+      "date": "2026-09-07",
+      "finished": "_ رفع بوست اسامه \n_ الرد على رسايل \n_ مراجعه البرتفوليو",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "created_at": "2026-09-07T20:35:36.697Z"
+    },
+    {
+      "id": "r-mtrognt4",
+      "who": "Ganna",
+      "date": "2026-09-07",
+      "finished": "TikTok Plan",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "created_at": "2026-09-07T20:12:52.744Z"
+    },
+    {
+      "id": "r-mtro5cwp",
+      "who": "Alaa",
+      "date": "2026-09-07",
+      "finished": "الكاوسيل بتاع يوم 7عشان هينزل يوم 9",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "created_at": "2026-09-07T20:04:05.401Z"
+    },
+    {
+      "id": "r-mtrjfin3",
+      "who": "Judi",
+      "date": "2026-09-07",
+      "finished": "- posted the carousel for today.\n- Distributed the tasks\n- finished and submitted the portfolio.",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "created_at": "2026-09-07T17:52:01.311Z"
+    },
+    {
       "id": "r-mtq8w9f1",
       "who": "Alaa",
       "date": "2026-09-06",
