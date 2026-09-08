@@ -2612,11 +2612,12 @@ function viewHrTasks(month) {
     $("p", { class: "muted" }, `${monthLabel(month)} · only Review and Done this month. Score delivery and quality here.`),
     $("div", { class: "load-table-wrap" }, [
       $("table", { class: "load-table" }, [
-        $("thead", {}, $("tr", {}, ["Task", "Employee", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Days", "Notice", "Drive", ""].map((h) => $("th", {}, h)))),
+        $("thead", {}, $("tr", {}, ["Task", "Employee", "Created by", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Days", "Notice", "Drive", ""].map((h) => $("th", {}, h)))),
         $("tbody", {}, tasks.length ? tasks.map((t) =>
           $("tr", { class: isLateTask(t) && !delayExcused(t) ? "tone-orange" : "" }, [
             $("td", {}, [$("strong", {}, t.title), t.project ? $("span", { class: "muted" }, ` ${t.project}`) : null]),
             $("td", {}, t.who),
+            $("td", {}, t.created_by || "—"),
             $("td", {}, assignedDate(t) || "—"),
             $("td", {}, startDate(t) || "—"),
             $("td", {}, t.due || "—"),
@@ -2632,7 +2633,7 @@ function viewHrTasks(month) {
               onclick: () => { state.evalTaskId = t.id; render(); },
             }, "Evaluate")),
           ])
-        ) : $("tr", {}, $("td", { colspan: "12" }, "No Review or Done tasks this month."))),
+        ) : $("tr", {}, $("td", { colspan: "13" }, "No Review or Done tasks this month."))),
       ]),
     ]),
   ]);
