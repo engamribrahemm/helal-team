@@ -375,6 +375,29 @@ function canEditDetails(task) {
   return task.created_by === state.who;
 }
 
+function canRemoveTask(task) {
+  if (!task) return false;
+  if (isAdmin()) return true;
+  return canAssignTasks() && samePerson(task.created_by, state.who);
+}
+
+function removeTask(taskId) {
+  const task = findTask(taskId);
+  if (!canRemoveTask(task)) return;
+  if (!window.confirm(`Remove “${task.title}” from the board and the Helal database?`)) return;
+  const file = ensureTasksFile();
+  if (!Array.isArray(file.removed_ids)) file.removed_ids = [];
+  if (!file.removed_ids.includes(taskId)) file.removed_ids.push(taskId);
+  for (const day of file.days || []) {
+    day.tasks = (day.tasks || []).filter((t) => t.id !== taskId);
+  }
+  if (state.openTaskId === taskId) state.openTaskId = null;
+  if (state.evalTaskId === taskId) state.evalTaskId = null;
+  cacheBoard();
+  render();
+  saveTasks(`board: ${state.who} removed ${taskId}`);
+}
+
 function thisMonth() {
   return today().slice(0, 7);
 }
@@ -678,6 +701,7 @@ function removedTaskIds(remote, local) {
     ...BLOCKED_TASK_IDS,
     ...(remote?.removed_ids || []),
     ...(local?.removed_ids || []),
+    ...(state.tasksFile?.removed_ids || []),
   ]);
 }
 
@@ -1140,6 +1164,7 @@ function mineNewerFile(remote, local) {
   }
   return {
     days: [...days.entries()].map(([date, tasks]) => ({ date, source: "Helal board", tasks })),
+    removed_ids: [...blocked],
   };
 }
 
@@ -1766,6 +1791,7 @@ function ensureTasksFile() {
   }
   if (!state.tasksFile.days) state.tasksFile.days = [];
   if (!state.tasksFile.months) state.tasksFile.months = {};
+  if (!Array.isArray(state.tasksFile.removed_ids)) state.tasksFile.removed_ids = [];
   return state.tasksFile;
 }
 
@@ -3090,9 +3116,16 @@ function viewTaskDrawer() {
         $("label", {}, ["Notes", notes]),
         $("label", {}, ["Drive link", drive]),
         task.drive ? $("a", { href: task.drive, target: "_blank", rel: "noreferrer" }, "Open Drive folder") : null,
-        $("div", { style: "display:flex;gap:8px" }, [
+        $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
           editable ? $("button", { class: "btn primary", type: "submit" }, "Save") : null,
           $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
+          canRemoveTask(task)
+            ? $("button", {
+              class: "btn danger",
+              type: "button",
+              onclick: () => removeTask(task.id),
+            }, "Remove task")
+            : null,
         ]),
       ]),
       $("div", { class: "form", style: "margin-top:12px" }, [
@@ -4001,7 +4034,7 @@ function viewGuide() {
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. After you save, a green Saved message appears and GitHub has the update."],
     ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
-    ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it."],
+    ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],

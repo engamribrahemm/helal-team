@@ -221,6 +221,8 @@ nav button.active {
 }
 .btn.primary:hover { background: var(--gold-2); }
 .btn.ghost { color: var(--muted); }
+.btn.danger { color: var(--red); border-color: var(--red); }
+.btn.danger:hover { background: rgba(231, 76, 60, 0.12); }
 .btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
 input, textarea, select {
