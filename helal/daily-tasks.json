@@ -193,7 +193,7 @@
       "frozen_at": "2026-09-08T13:30:33.196Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-08T13:30:33.210Z",
+      "updated_at": "2026-09-08T13:37:31.878Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -212,8 +212,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 0.7735770833333334,
-          "live": 1.5451441666666668
+          "hours": 0.83172375,
+          "live": 1.6614375
         },
         "Judi": {
           "open": 1,
@@ -232,8 +232,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 14.435208333333334,
-          "live": 14.435208333333334
+          "hours": 14.551501944444444,
+          "live": 14.551501944444444
         },
         "Alaa": {
           "open": 5,
@@ -242,12 +242,12 @@
           "review": 1,
           "overdue": 0,
           "done": 2,
-          "hours": 2.7538632407407406,
-          "live": 0.7162333333333334
+          "hours": 2.7926280555555554,
+          "live": 0.8325277777777778
         },
         "Sara": {
-          "open": 4,
-          "todo": 4,
+          "open": 5,
+          "todo": 5,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 7.539894365079365,
-          "live": 52.18586194444445
+          "hours": 7.6395760317460315,
+          "live": 52.88363361111111
         },
         "Tasneem": {
           "open": 1,
@@ -287,10 +287,10 @@
         }
       },
       "time": {
-        "avgTodo": 943,
-        "avgProgress": 459,
+        "avgTodo": 950,
+        "avgProgress": 466,
         "avgToDone": 1318,
-        "open": 28
+        "open": 29
       },
       "hr": {
         "people": {
@@ -782,6 +782,27 @@
           "created_at": "2026-09-08T12:30:48.101Z",
           "updated_at": "2026-09-08T12:30:48.101Z",
           "updated_by": "Tasneem",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260908-sara-mtsps3ag",
+          "who": "Sara",
+          "space": "Graphic",
+          "project": "MAS",
+          "title": "Create 3 MAS Designs",
+          "notes": "Create 3 MAS designs and send them via WhatsApp for review.",
+          "due": "2026-09-08",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
+          "drive_missing": false,
+          "assigned_at": "2026-09-08",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-08T13:37:31.817Z",
+          "updated_at": "2026-09-08T13:37:31.817Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
