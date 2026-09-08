@@ -2094,6 +2094,11 @@ function reviewsFor(name, month) {
   return ensureHr().reviews.filter((r) => r.who === name && (!month || reviewMonth(r) === month));
 }
 
+function isTaskEvaluated(task) {
+  if (!task?.id) return false;
+  return (ensureHr().reviews || []).some((r) => r.task_id === task.id);
+}
+
 function computedDelivery(name, month) {
   const m = month || thisMonth();
   const tasks = allTasks().filter((t) => {
@@ -2564,13 +2569,14 @@ function viewHrScores(month) {
 function viewHrTasks(month) {
   const tasks = [...allTasks()]
     .filter((t) => {
+      if (isTaskEvaluated(t)) return false;
       if (t.status === "Done") return doneMonthOf(t) === month;
       if (!isCurrentMonth(month)) return false;
       return t.status === "Review" || t.status === "Revisions";
     })
     .sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""));
   return $("section", { class: "card" }, [
-    $("p", { class: "muted" }, `${monthLabel(month)} · only Review and Done this month. Score delivery and quality here.`),
+    $("p", { class: "muted" }, `${monthLabel(month)} · Review and Done this month that still need a score. After you evaluate a task, it leaves this tab.`),
     $("div", { class: "load-table-wrap" }, [
       $("table", { class: "load-table" }, [
         $("thead", {}, $("tr", {}, ["Task", "Employee", "Created by", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Days", "Notice", "Drive", ""].map((h) => $("th", {}, h)))),
@@ -2594,7 +2600,7 @@ function viewHrTasks(month) {
               onclick: () => { state.evalTaskId = t.id; render(); },
             }, "Evaluate")),
           ])
-        ) : $("tr", {}, $("td", { colspan: "13" }, "No Review or Done tasks this month."))),
+        ) : $("tr", {}, $("td", { colspan: "13" }, "No tasks waiting for evaluation this month."))),
       ]),
     ]),
   ]);
