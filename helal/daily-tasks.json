@@ -4,7 +4,8 @@
   "reset_at": "2026-09-05T16:12:00.000Z",
   "removed_ids": [
     "t-20260906-seif-mtokld6v",
-    "t-20260908-sara-mtsncp78"
+    "t-20260908-sara-mtsncp78",
+    "t-20260908-sara-mtsndug7"
   ],
   "statuses": [
     "To do",
@@ -194,7 +195,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-08T14:13:52.986Z",
+      "updated_at": "2026-09-08T14:13:58.996Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -213,8 +214,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 1.1346568055555555,
-          "live": 2.267303611111111
+          "hours": 1.1354916666666666,
+          "live": 2.2689733333333333
         },
         "Judi": {
           "open": 1,
@@ -233,8 +234,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 15.157368055555555,
-          "live": 15.157368055555555
+          "hours": 15.1590375,
+          "live": 15.1590375
         },
         "Alaa": {
           "open": 5,
@@ -243,12 +244,12 @@
           "review": 1,
           "overdue": 0,
           "done": 2,
-          "hours": 2.994583240740741,
-          "live": 1.4383933333333334
+          "hours": 2.995139722222222,
+          "live": 1.4400627777777777
         },
         "Sara": {
-          "open": 4,
-          "todo": 4,
+          "open": 3,
+          "todo": 3,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -263,8 +264,8 @@
           "review": 2,
           "overdue": 0,
           "done": 1,
-          "hours": 11.125822444444443,
-          "live": 55.03571361111111
+          "hours": 11.127158222222224,
+          "live": 55.042392500000005
         },
         "Tasneem": {
           "open": 1,
@@ -288,10 +289,10 @@
         }
       },
       "time": {
-        "avgTodo": 986,
-        "avgProgress": 633,
+        "avgTodo": 1038,
+        "avgProgress": 634,
         "avgToDone": 1318,
-        "open": 28
+        "open": 27
       },
       "hr": {
         "people": {
@@ -732,27 +733,6 @@
           "progress_hours": 0.22000194444444443,
           "review_at": "2026-09-08T13:58:53.938Z",
           "delivered_on": "2026-09-08"
-        },
-        {
-          "id": "t-20260908-sara-mtsndug7",
-          "who": "Sara",
-          "space": "Graphic",
-          "project": "Ahmed Eldalil",
-          "title": "FDFESERSRXRF",
-          "notes": "",
-          "due": "2026-09-08",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
-          "drive_missing": false,
-          "assigned_at": "2026-09-08",
-          "month": "2026-09",
-          "created_by": "Tasneem",
-          "created_at": "2026-09-08T12:30:27.944Z",
-          "updated_at": "2026-09-08T12:30:27.944Z",
-          "updated_by": "Tasneem",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         },
         {
           "id": "t-20260908-sara-mtsnea05",
