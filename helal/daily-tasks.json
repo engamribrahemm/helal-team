@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-08T21:53:00.447Z",
+      "updated_at": "2026-09-08T21:53:02.878Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 4.96069375,
-          "live": 9.9193775
+          "hours": 4.961031527777778,
+          "live": 9.920053055555556
         },
         "Judi": {
           "open": 1,
@@ -236,18 +236,18 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 22.809441666666668,
-          "live": 22.809441666666668
+          "hours": 22.81011722222222,
+          "live": 22.81011722222222
         },
         "Alaa": {
           "open": 4,
-          "todo": 2,
-          "progress": 2,
+          "todo": 3,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 3.628449666666667,
-          "live": 9.090468055555554
+          "hours": 4.535730625,
+          "live": 9.091142222222222
         },
         "Sara": {
           "open": 1,
@@ -266,8 +266,8 @@
           "review": 4,
           "overdue": 2,
           "done": 1,
-          "hours": 17.512279074074076,
-          "live": 51.94343861111111
+          "hours": 17.512729444444446,
+          "live": 51.944789722222225
         },
         "Tasneem": {
           "open": 1,
@@ -291,7 +291,7 @@
         }
       },
       "time": {
-        "avgTodo": 1688,
+        "avgTodo": 1702,
         "avgProgress": 1125,
         "avgToDone": 1248,
         "open": 24
@@ -1087,20 +1087,30 @@
           "title": "17 - 9 carousel",
           "notes": "",
           "due": "2026-09-15",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:28:35.865Z",
-          "updated_at": "2026-09-08T21:53:00.440Z",
+          "updated_at": "2026-09-08T21:53:02.071Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-09-08T21:53:00.440Z",
-          "progress_started_at": "2026-09-08T21:53:00.440Z",
-          "time_log": [],
-          "start_on": "2026-09-09"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-09-08T21:53:00.440Z",
+              "ended_at": "2026-09-08T21:53:02.071Z",
+              "hours": 0.00045305555555555556,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-09-09",
+          "progress_hours": 0.00045305555555555556
         }
       ]
     },
