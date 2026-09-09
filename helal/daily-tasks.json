@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-09T15:52:24.332Z",
+      "updated_at": "2026-09-09T16:04:58.905Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 13.955675833333332,
-          "live": 27.909341666666666
+          "hours": 14.06047875,
+          "live": 28.1189475
         },
         "Judi": {
           "open": 1,
@@ -236,8 +236,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 40.79940638888889,
-          "live": 40.79940638888889
+          "hours": 41.009011944444445,
+          "live": 41.009011944444445
         },
         "Alaa": {
           "open": 6,
@@ -246,8 +246,8 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 9.033053055555555,
-          "live": 27.08043222222222
+          "hours": 9.085454444444444,
+          "live": 27.2900375
         },
         "Sara": {
           "open": 1,
@@ -266,18 +266,18 @@
           "review": 4,
           "overdue": 2,
           "done": 1,
-          "hours": 29.505590092592588,
-          "live": 87.92337194444444
+          "hours": 29.645326574074073,
+          "live": 88.34258138888889
         },
         "Tasneem": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
-          "progress": 1,
+          "progress": 0,
           "review": 0,
           "overdue": 0,
-          "done": 0,
-          "hours": 1.9363852777777777,
-          "live": 1.9363852777777777
+          "done": 1,
+          "hours": 2.1459805555555556,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -291,10 +291,10 @@
         }
       },
       "time": {
-        "avgTodo": 2410,
-        "avgProgress": 1857,
-        "avgToDone": 1248,
-        "open": 27
+        "avgTodo": 2271,
+        "avgProgress": 2217,
+        "avgToDone": 1302,
+        "open": 26
       },
       "hr": {
         "people": {
@@ -353,11 +353,11 @@
             "reviews": 0
           },
           "Tasneem": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -849,20 +849,35 @@
           "title": "shortlist of the candidates for the intern program",
           "notes": "",
           "due": "2026-09-09",
-          "status": "In progress",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-08",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-08T11:14:19.881Z",
-          "updated_at": "2026-09-09T13:56:13.340Z",
+          "updated_at": "2026-09-09T16:04:58.871Z",
           "updated_by": "Tasneem",
           "revisions": 0,
           "first_progress_at": "2026-09-09T13:56:13.340Z",
-          "progress_started_at": "2026-09-09T13:56:13.340Z",
-          "time_log": [],
-          "start_on": "2026-09-09"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Done",
+              "started_at": "2026-09-09T13:56:13.340Z",
+              "ended_at": "2026-09-09T16:04:58.870Z",
+              "hours": 2.1459805555555556,
+              "by": "Tasneem"
+            }
+          ],
+          "start_on": "2026-09-09",
+          "progress_hours": 2.1459805555555556,
+          "done_at": "2026-09-09T16:04:58.870Z",
+          "done_on": "2026-09-09",
+          "done_month": "2026-09",
+          "done_by": "Tasneem",
+          "delivered_on": "2026-09-09"
         },
         {
           "id": "t-20260909-judi-mtsksnn9",
