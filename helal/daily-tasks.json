@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-08T21:53:02.878Z",
+      "updated_at": "2026-09-09T13:56:13.361Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 4.961031527777778,
-          "live": 9.920053055555556
+          "hours": 12.987486527777778,
+          "live": 25.972963055555557
         },
         "Judi": {
           "open": 1,
@@ -236,8 +236,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 22.81011722222222,
-          "live": 22.81011722222222
+          "hours": 38.86302722222222,
+          "live": 38.86302722222222
         },
         "Alaa": {
           "open": 4,
@@ -246,8 +246,8 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 4.535730625,
-          "live": 9.091142222222222
+          "hours": 8.548958194444445,
+          "live": 25.1440525
         },
         "Sara": {
           "open": 1,
@@ -266,18 +266,18 @@
           "review": 4,
           "overdue": 2,
           "done": 1,
-          "hours": 17.512729444444446,
-          "live": 51.944789722222225
+          "hours": 28.21467,
+          "live": 84.05061138888888
         },
         "Tasneem": {
           "open": 1,
-          "todo": 1,
-          "progress": 0,
+          "todo": 0,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 0,
-          "live": 0
+          "hours": 0.000004722222222222222,
+          "live": 0.000004722222222222222
         },
         "Moamen": {
           "open": 0,
@@ -291,8 +291,8 @@
         }
       },
       "time": {
-        "avgTodo": 1702,
-        "avgProgress": 1125,
+        "avgTodo": 2673,
+        "avgProgress": 2088,
         "avgToDone": 1248,
         "open": 24
       },
@@ -849,18 +849,20 @@
           "title": "shortlist of the candidates for the intern program",
           "notes": "",
           "due": "2026-09-09",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-08",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-08T11:14:19.881Z",
-          "updated_at": "2026-09-08T11:14:19.881Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-09T13:56:13.340Z",
+          "updated_by": "Tasneem",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-09T13:56:13.340Z",
+          "progress_started_at": "2026-09-09T13:56:13.340Z",
+          "time_log": [],
+          "start_on": "2026-09-09"
         },
         {
           "id": "t-20260909-judi-mtsksnn9",
