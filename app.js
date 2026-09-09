@@ -1073,6 +1073,11 @@ function emptyReports() {
   };
 }
 
+function reportFor(name, date) {
+  const day = date || today();
+  return (state.reportsFile?.reports || []).find((r) => samePerson(r.who, name) && r.date === day) || null;
+}
+
 function reportsSignature(file) {
   return (file?.reports || []).map((r) => `${r.id}:${r.created_at || ""}`).sort().join("|");
 }
@@ -1872,12 +1877,17 @@ function assignTask({ who, space, title, due, drive, project, status, notes }) {
 }
 
 function submitReport(fields) {
+  const day = fields.date || today();
+  if (reportFor(state.who, day)) {
+    render();
+    return;
+  }
   if (!state.reportsFile) state.reportsFile = emptyReports();
   if (!state.reportsFile.reports) state.reportsFile.reports = [];
   state.reportsFile.reports.unshift({
     id: `r-${Date.now().toString(36)}`,
     who: state.who,
-    date: fields.date || today(),
+    date: day,
     finished: fields.finished,
     unfinished: fields.unfinished,
     drive: fields.drive,
@@ -1885,7 +1895,7 @@ function submitReport(fields) {
     place: fields.place || "",
     created_at: new Date().toISOString(),
   });
-  state.reportDay = fields.date || today();
+  state.reportDay = day;
   state.calMonth = state.reportDay.slice(0, 7);
   cacheBoard();
   state.saveState = "saving";
@@ -3424,6 +3434,16 @@ function viewReview() {
 }
 
 function viewReport() {
+  const day = today();
+  const mine = reportFor(state.who, day);
+  if (mine) {
+    return $("section", { class: "card", style: "max-width:640px" }, [
+      $("h2", {}, "Daily report"),
+      $("p", { class: "muted" }, `Cairo date ${day}. One report per day. The next day opens at 12:00 midnight Cairo time.`),
+      $("p", { class: "banner ok" }, "You already submitted your report today."),
+      $("div", { style: "margin-top:18px" }, reportCard(mine)),
+    ]);
+  }
   const finished = $("textarea", { required: true, placeholder: "Your answer" });
   const unfinished = $("textarea", { placeholder: "Your answer" });
   const drive = $("input", { type: "url", placeholder: "https://" });
@@ -3432,12 +3452,16 @@ function viewReport() {
   const office = $("input", { type: "radio", name: "report-place", value: "Office", required: true });
   return $("section", { class: "card", style: "max-width:640px" }, [
     $("h2", {}, "Daily report"),
-    $("p", { class: "muted" }, `Cairo date ${today()}. Admins read this as question and answer on the dashboard.`),
+    $("p", { class: "muted" }, `Cairo date ${day}. One report per person per day. After midnight Cairo time you can submit again.`),
     $("form", {
       class: "form",
       style: "margin-top:16px",
       onsubmit: (e) => {
         e.preventDefault();
+        if (reportFor(state.who, today())) {
+          render();
+          return;
+        }
         const place = remote.checked ? "Remote" : office.checked ? "Office" : "";
         submitReport({
           date: today(),
@@ -3447,12 +3471,6 @@ function viewReport() {
           need_review: need.checked,
           place,
         });
-        finished.value = "";
-        unfinished.value = "";
-        drive.value = "";
-        need.checked = false;
-        remote.checked = false;
-        office.checked = false;
       },
     }, [
       $("label", {}, [
@@ -4006,7 +4024,7 @@ function viewGuide() {
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
-    ["Evening report", "Open Report, choose Remote or Office, and answer each question. Submit saves it to the live board. On the Dashboard, pick a person to read only their reports that month and see In progress time for each day."],
+    ["Evening report", "Open Report, choose Remote or Office, and answer each question. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
     ["HR", "Amr and Tasneem open HR. Profile, performance, task tracking, attitude, and warnings are scored each month separately. Switching months does not mix in the current month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
@@ -4171,17 +4189,21 @@ function pullInterval() {
 function watchCairoDay() {
   const tick = () => {
     const now = today();
+    const rolled = !!(lastCairoDay && now !== lastCairoDay);
     if (now !== lastCairoDay) lastCairoDay = now;
     if (state.saveState !== "saving" && state.session) {
       pullRemoteBoard();
       if (
-        ["board", "review", "my", "load"].includes(state.view)
-        && !state.creating
-        && !state.openTaskId
-        && !state.pendingDelay
-        && !state.pendingRevision
-        && !state.evalTaskId
-        && !state.attendChange
+        rolled
+        || (
+          ["board", "review", "my", "load", "report"].includes(state.view)
+          && !state.creating
+          && !state.openTaskId
+          && !state.pendingDelay
+          && !state.pendingRevision
+          && !state.evalTaskId
+          && !state.attendChange
+        )
       ) render();
     }
     else if (!state.session && state.view === "load" && allTasks().some((t) => t.status === "In progress")) render();
