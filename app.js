@@ -282,6 +282,10 @@ function canReviewTasks() {
   return isAdmin() || isSocial();
 }
 
+function canSeeTeamWorkload() {
+  return isAdmin() || isSocial();
+}
+
 function canSeeTask(task) {
   if (!task) return false;
   if (isAdmin()) return true;
@@ -3790,13 +3794,13 @@ function loadForPerson(name, month) {
 
 function viewWorkload() {
   const ym = state.workMonth || thisMonth();
-  const roster = isAdmin() ? people() : people().filter((p) => p.name === state.who);
+  const roster = canSeeTeamWorkload() ? people() : people().filter((p) => p.name === state.who);
   const rows = roster.map((p) => ({ ...p, ...loadForPerson(p.name, ym) }));
   const maxOpen = Math.max(1, ...rows.map((r) => r.open));
   const finished = rows.flatMap((r) => r.finished);
   return $("div", { class: "dash" }, [
     $("div", { class: "stat-row" }, [
-      statBox(rows.reduce((n, r) => n + r.open, 0), isAdmin() ? "Open across the team" : "Your open tasks"),
+      statBox(rows.reduce((n, r) => n + r.open, 0), canSeeTeamWorkload() ? "Open across the team" : "Your open tasks"),
       statBox(rows.reduce((n, r) => n + r.review, 0), "Waiting on review", "tone-orange"),
       statBox(rows.reduce((n, r) => n + r.overdue, 0), "Overdue", "tone-red"),
       statBox(rows.reduce((n, r) => n + r.done, 0), "Done this month", "tone-green"),
@@ -4022,7 +4026,7 @@ function viewGuide() {
     ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
-    ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers."],
+    ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
     ["HR", "Amr and Tasneem open HR. Profile, performance, task tracking, attitude, and warnings are scored each month separately. Switching months does not mix in the current month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
