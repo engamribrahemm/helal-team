@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T17:49:10.183Z",
+      "updated_at": "2026-09-10T18:21:28.861Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 26.92871013888889,
-          "live": 53.85541027777778
+          "hours": 27.197972777777778,
+          "live": 54.39393555555556
         },
         "Judi": {
           "open": 2,
@@ -232,12 +232,12 @@
         "Seif": {
           "open": 4,
           "todo": 2,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 0,
           "done": 3,
-          "hours": 31.45198648148148,
-          "live": 91.86420805555557
+          "hours": 34.887875972222226,
+          "live": 67.284
         },
         "Alaa": {
           "open": 7,
@@ -246,8 +246,8 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 2.065714888888889,
-          "live": 1.2767941666666667
+          "hours": 2.281124555555556,
+          "live": 2.3538425
         },
         "Sara": {
           "open": 1,
@@ -266,8 +266,8 @@
           "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 23.520382182539684,
-          "live": 139.81550972222223
+          "hours": 23.674245992063494,
+          "live": 140.8925563888889
         },
         "Tasneem": {
           "open": 0,
@@ -291,8 +291,8 @@
         }
       },
       "time": {
-        "avgTodo": 3468,
-        "avgProgress": 2458,
+        "avgTodo": 3496,
+        "avgProgress": 2649,
         "avgToDone": 2138,
         "open": 23
       },
@@ -976,20 +976,33 @@
           "title": "2 designs ( carousel / single visual ) no 8 & 9",
           "notes": "",
           "due": "2026-09-10",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-09",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-09T15:50:32.364Z",
-          "updated_at": "2026-09-09T16:42:02.731Z",
+          "updated_at": "2026-09-10T18:21:28.850Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-09-09T16:42:02.730Z",
-          "progress_started_at": "2026-09-09T16:42:02.730Z",
-          "time_log": [],
-          "start_on": "2026-09-09"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-09T16:42:02.730Z",
+              "ended_at": "2026-09-10T18:21:28.850Z",
+              "hours": 25.657255555555555,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-09-09",
+          "progress_hours": 25.657255555555555,
+          "review_at": "2026-09-10T18:21:28.850Z",
+          "first_review_at": "2026-09-10T18:21:28.850Z",
+          "delivered_on": "2026-09-10"
         },
         {
           "id": "t-20260910-alaa-mtua1e5b",
