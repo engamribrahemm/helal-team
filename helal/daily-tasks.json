@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T21:26:41.101Z",
+      "updated_at": "2026-09-10T21:26:56.191Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -222,13 +222,13 @@
         },
         "Judi": {
           "open": 2,
-          "todo": 2,
-          "progress": 0,
+          "todo": 1,
+          "progress": 1,
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 3.6401722222222226,
-          "live": 0
+          "hours": 1.8200883333333335,
+          "live": 0.000004444444444444444
         },
         "Seif": {
           "open": 3,
@@ -237,8 +237,8 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 32.839913055555556,
-          "live": 70.37073166666667
+          "hours": 32.84131037037037,
+          "live": 70.37492361111111
         },
         "Alaa": {
           "open": 7,
@@ -247,8 +247,8 @@
           "review": 0,
           "overdue": 2,
           "done": 3,
-          "hours": 3.5158173333333336,
-          "live": 8.527306388888888
+          "hours": 3.517494111111111,
+          "live": 8.535690277777778
         },
         "Sara": {
           "open": 1,
@@ -267,8 +267,8 @@
           "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 16.339288148148146,
-          "live": 73.20856333333333
+          "hours": 16.339986805555554,
+          "live": 73.21275527777777
         },
         "Tasneem": {
           "open": 0,
@@ -292,7 +292,7 @@
         }
       },
       "time": {
-        "avgTodo": 3657,
+        "avgTodo": 3669,
         "avgProgress": 2282,
         "avgToDone": 2184,
         "open": 20
@@ -919,18 +919,20 @@
           "title": "Ideas for TikTok series",
           "notes": "",
           "due": "2026-09-09",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-08",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-08T11:18:00.117Z",
-          "updated_at": "2026-09-08T11:18:00.117Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-10T21:26:56.163Z",
+          "updated_by": "Judi",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-10T21:26:56.163Z",
+          "progress_started_at": "2026-09-10T21:26:56.163Z",
+          "time_log": [],
+          "start_on": "2026-09-11"
         }
       ]
     },
