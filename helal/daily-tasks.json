@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T14:29:43.958Z",
+      "updated_at": "2026-09-10T14:30:00.579Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 25.266734166666666,
-          "live": 50.53145833333333
+          "hours": 25.269044722222223,
+          "live": 50.53607944444445
         },
         "Judi": {
           "open": 1,
@@ -236,8 +236,8 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 29.236019074074076,
-          "live": 85.21630527777778
+          "hours": 29.23909888888889,
+          "live": 85.22554472222222
         },
         "Alaa": {
           "open": 7,
@@ -246,8 +246,8 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 14.688582638888889,
-          "live": 49.702550277777775
+          "hours": 14.689737361111112,
+          "live": 49.70716916666667
         },
         "Sara": {
           "open": 0,
@@ -266,8 +266,8 @@
           "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 22.570682023809525,
-          "live": 133.16760861111112
+          "hours": 22.572001388888886,
+          "live": 133.17684416666665
         },
         "Tasneem": {
           "open": 0,
@@ -291,8 +291,8 @@
         }
       },
       "time": {
-        "avgTodo": 3388,
-        "avgProgress": 3186,
+        "avgTodo": 3389,
+        "avgProgress": 3187,
         "avgToDone": 2138,
         "open": 21
       },
@@ -1090,7 +1090,7 @@
           "who": "Alaa",
           "space": "Graphic",
           "project": "Helal",
-          "title": "Internship",
+          "title": "Internship Certificates",
           "notes": "Internship Certificates",
           "due": "2026-09-11",
           "status": "To do",
@@ -1100,7 +1100,7 @@
           "month": "2026-09",
           "created_by": "Tasneem",
           "created_at": "2026-09-10T14:28:29.569Z",
-          "updated_at": "2026-09-10T14:28:29.569Z",
+          "updated_at": "2026-09-10T14:30:00.558Z",
           "updated_by": "Tasneem",
           "revisions": 0,
           "first_progress_at": "",
