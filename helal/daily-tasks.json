@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T14:29:24.380Z",
+      "updated_at": "2026-09-10T14:29:37.274Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 25.264015138888887,
-          "live": 50.526020555555554
+          "hours": 25.265806805555556,
+          "live": 50.52960361111111
         },
         "Judi": {
           "open": 1,
@@ -236,22 +236,22 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 29.232393333333334,
-          "live": 85.20542861111112
+          "hours": 29.234781851851853,
+          "live": 85.21259361111112
         },
         "Alaa": {
-          "open": 7,
-          "todo": 6,
+          "open": 6,
+          "todo": 5,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 14.687222986111111,
-          "live": 49.697111666666665
+          "hours": 14.688118680555556,
+          "live": 49.700694444444444
         },
         "Sara": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -266,8 +266,8 @@
           "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 22.569128214285715,
-          "live": 133.15673194444446
+          "hours": 22.570151626984124,
+          "live": 133.16389583333333
         },
         "Tasneem": {
           "open": 0,
@@ -1005,6 +1005,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-09T15:52:24.288Z",
           "updated_at": "2026-09-09T15:52:24.288Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260910-sara-mtvmis7n",
+          "who": "Sara",
+          "space": "Graphic",
+          "project": "MAS",
+          "title": "6 Designs for MAS (NEW COLLACTION)",
+          "notes": "",
+          "due": "2026-09-10",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
+          "drive_missing": false,
+          "assigned_at": "2026-09-10",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-10T14:29:37.236Z",
+          "updated_at": "2026-09-10T14:29:37.236Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
