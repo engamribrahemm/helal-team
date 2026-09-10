@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T19:26:03.276Z",
+      "updated_at": "2026-09-10T19:31:10.425Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -210,18 +210,18 @@
           "live": 0
         },
         "Mariam": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
-          "progress": 1,
+          "progress": 0,
           "review": 0,
-          "overdue": 1,
-          "done": 1,
-          "hours": 27.736085694444444,
-          "live": 55.47016138888889
+          "overdue": 0,
+          "done": 2,
+          "hours": 27.778741805555555,
+          "live": 0
         },
         "Judi": {
-          "open": 2,
-          "todo": 2,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 1,
@@ -232,28 +232,28 @@
         "Seif": {
           "open": 4,
           "todo": 2,
-          "progress": 1,
-          "review": 1,
-          "overdue": 0,
-          "done": 3,
-          "hours": 35.42598902777778,
-          "live": 68.36022611111112
-        },
-        "Alaa": {
-          "open": 7,
-          "todo": 5,
           "progress": 2,
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 2.711615,
-          "live": 4.506294722222222
+          "hours": 32.58536518518519,
+          "live": 95.26434361111112
+        },
+        "Alaa": {
+          "open": 7,
+          "todo": 6,
+          "progress": 1,
+          "review": 0,
+          "overdue": 0,
+          "done": 3,
+          "hours": 15.944587361111111,
+          "live": 54.726569166666664
         },
         "Sara": {
           "open": 1,
-          "todo": 0,
+          "todo": 1,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
           "done": 1,
           "hours": 1.5802480555555556,
@@ -262,12 +262,12 @@
         "Ganna": {
           "open": 8,
           "todo": 6,
-          "progress": 1,
-          "review": 1,
+          "progress": 2,
+          "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 16.00420375,
-          "live": 71.19805722222222
+          "hours": 24.006115912698412,
+          "live": 143.21564583333333
         },
         "Tasneem": {
           "open": 0,
@@ -291,10 +291,10 @@
         }
       },
       "time": {
-        "avgTodo": 3552,
-        "avgProgress": 2394,
-        "avgToDone": 2138,
-        "open": 23
+        "avgTodo": 3459,
+        "avgProgress": 3519,
+        "avgToDone": 2216,
+        "open": 21
       },
       "hr": {
         "people": {
@@ -842,20 +842,35 @@
           "title": "Make sure having access to Eldalil & Blushed | Review the old material",
           "notes": "",
           "due": "2026-09-09",
-          "status": "In progress",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-08",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-08T11:12:55.138Z",
-          "updated_at": "2026-09-08T11:57:50.685Z",
+          "updated_at": "2026-09-10T19:31:10.391Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-08T11:57:50.685Z",
-          "progress_started_at": "2026-09-08T11:57:50.685Z",
-          "time_log": [],
-          "start_on": "2026-09-08"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Done",
+              "started_at": "2026-09-08T11:57:50.685Z",
+              "ended_at": "2026-09-10T19:31:10.390Z",
+              "hours": 55.55547361111111,
+              "by": "Mariam"
+            }
+          ],
+          "start_on": "2026-09-08",
+          "progress_hours": 55.55547361111111,
+          "done_at": "2026-09-10T19:31:10.390Z",
+          "done_on": "2026-09-10",
+          "done_month": "2026-09",
+          "done_by": "Mariam",
+          "delivered_on": "2026-09-10"
         },
         {
           "id": "t-20260909-tasneem-mtsknxpl",
