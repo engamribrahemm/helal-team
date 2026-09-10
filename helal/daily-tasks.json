@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T13:46:07.899Z",
+      "updated_at": "2026-09-10T14:28:29.614Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 24.90339388888889,
-          "live": 49.80477777777778
+          "hours": 25.256410694444444,
+          "live": 50.51081138888889
         },
         "Judi": {
           "open": 1,
@@ -236,18 +236,18 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 28.75156462962963,
-          "live": 83.76294194444445
+          "hours": 29.222253333333338,
+          "live": 85.17500805555557
         },
         "Alaa": {
-          "open": 6,
-          "todo": 5,
+          "open": 7,
+          "todo": 6,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 14.506912083333335,
-          "live": 48.97586805555556
+          "hours": 14.683420277777778,
+          "live": 49.68190083333333
         },
         "Sara": {
           "open": 0,
@@ -266,8 +266,8 @@
           "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 22.36305837301587,
-          "live": 131.71424305555556
+          "hours": 22.564781944444444,
+          "live": 133.12630805555557
         },
         "Tasneem": {
           "open": 0,
@@ -291,10 +291,10 @@
         }
       },
       "time": {
-        "avgTodo": 3590,
-        "avgProgress": 3143,
+        "avgTodo": 3629,
+        "avgProgress": 3185,
         "avgToDone": 2138,
-        "open": 20
+        "open": 21
       },
       "hr": {
         "people": {
@@ -1063,6 +1063,27 @@
           "done_on": "2026-09-07",
           "done_month": "2026-09",
           "done_by": "Judi"
+        },
+        {
+          "id": "t-20260911-alaa-mtvmhc00",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "Internship",
+          "notes": "Internship Certificates",
+          "due": "2026-09-11",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-10",
+          "month": "2026-09",
+          "created_by": "Tasneem",
+          "created_at": "2026-09-10T14:28:29.569Z",
+          "updated_at": "2026-09-10T14:28:29.569Z",
+          "updated_by": "Tasneem",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
