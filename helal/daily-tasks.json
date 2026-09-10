@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T14:56:47.911Z",
+      "updated_at": "2026-09-10T17:10:48.947Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 25.49228597222222,
-          "live": 50.98256194444444
+          "hours": 26.609096527777776,
+          "live": 53.216183055555554
         },
         "Judi": {
           "open": 2,
@@ -236,18 +236,18 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 29.536753703703706,
-          "live": 86.11850916666667
+          "hours": 31.025834444444445,
+          "live": 90.5857513888889
         },
         "Alaa": {
           "open": 7,
-          "todo": 6,
-          "progress": 1,
+          "todo": 5,
+          "progress": 2,
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 14.801357847222222,
-          "live": 50.15365111111111
+          "hours": 12.287810666666667,
+          "live": 52.38727305555555
         },
         "Sara": {
           "open": 1,
@@ -266,8 +266,8 @@
           "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 22.699567579365077,
-          "live": 134.0698075
+          "hours": 23.337745039682538,
+          "live": 138.5370497222222
         },
         "Tasneem": {
           "open": 0,
@@ -291,8 +291,8 @@
         }
       },
       "time": {
-        "avgTodo": 3202,
-        "avgProgress": 3213,
+        "avgTodo": 3241,
+        "avgProgress": 3347,
         "avgToDone": 2138,
         "open": 23
       },
@@ -953,18 +953,20 @@
           "title": "4 designs for medc",
           "notes": "Create 3 carousels for the previous courses, placing the logo and the program name each carousel.",
           "due": "2026-09-10",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-09",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-09T15:47:55.725Z",
-          "updated_at": "2026-09-09T15:47:55.725Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-10T17:10:48.943Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-10T17:10:48.942Z",
+          "progress_started_at": "2026-09-10T17:10:48.942Z",
+          "time_log": [],
+          "start_on": "2026-09-10"
         },
         {
           "id": "t-20260910-seif-mtu9yzsb",
