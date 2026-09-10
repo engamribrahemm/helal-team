@@ -163,10 +163,23 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-08T14:01:33.550Z",
-      "decided_at": "2026-09-08T14:02:20.439Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
+    },
+    {
+      "id": "ar-mtviokjc",
+      "who": "Sara",
+      "friday": "2026-09-04",
+      "date": "2026-09-10",
+      "from": "Off",
+      "to": "Home",
+      "reason": "work on mas",
+      "status": "Pending",
+      "created_at": "2026-09-10T12:42:08.760Z",
+      "decided_at": "",
+      "decided_by": ""
     }
   ]
 }
