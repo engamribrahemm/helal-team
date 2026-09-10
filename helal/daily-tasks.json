@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T13:42:46.793Z",
+      "updated_at": "2026-09-10T13:42:54.289Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,8 +216,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 24.87546222222222,
-          "live": 49.748914444444445
+          "hours": 24.876503472222222,
+          "live": 49.750996944444445
         },
         "Judi": {
           "open": 1,
@@ -236,8 +236,8 @@
           "review": 1,
           "overdue": 0,
           "done": 2,
-          "hours": 41.82560763888889,
-          "live": 83.65121527777778
+          "hours": 41.82769013888889,
+          "live": 83.65538027777778
         },
         "Alaa": {
           "open": 6,
@@ -246,8 +246,8 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 14.492946250000001,
-          "live": 48.920004722222224
+          "hours": 14.493466875000001,
+          "live": 48.922087222222224
         },
         "Sara": {
           "open": 1,
@@ -260,14 +260,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 11,
+          "open": 9,
           "todo": 6,
           "progress": 2,
-          "review": 3,
-          "overdue": 2,
-          "done": 2,
-          "hours": 33.10233736111111,
-          "live": 131.60251694444446
+          "review": 1,
+          "overdue": 0,
+          "done": 4,
+          "hours": 22.328503935185182,
+          "live": 131.60668194444443
         },
         "Tasneem": {
           "open": 0,
@@ -293,8 +293,8 @@
       "time": {
         "avgTodo": 3587,
         "avgProgress": 3139,
-        "avgToDone": 1470,
-        "open": 25
+        "avgToDone": 1719,
+        "open": 23
       },
       "hr": {
         "people": {
@@ -709,15 +709,15 @@
           "title": "Upload Blused Materials to New Drive",
           "notes": "Upload Blused materials to the new Drive, including both photos and videos.",
           "due": "2026-09-08",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-08",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-08T12:03:20.083Z",
-          "updated_at": "2026-09-08T13:58:53.939Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-10T13:42:54.261Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
@@ -742,7 +742,11 @@
           "start_on": "2026-09-08",
           "progress_hours": 0.22000194444444443,
           "review_at": "2026-09-08T13:58:53.938Z",
-          "delivered_on": "2026-09-08"
+          "delivered_on": "2026-09-08",
+          "done_at": "2026-09-10T13:42:54.260Z",
+          "done_on": "2026-09-10",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260908-sara-mtsps3ag",
