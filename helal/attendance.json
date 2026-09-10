@@ -118,11 +118,11 @@
             "2026-09-06": "Off",
             "2026-09-07": "Off",
             "2026-09-08": "Home",
-            "2026-09-10": "Off"
+            "2026-09-10": "Home"
           },
           "saved": true,
           "saved_at": "2026-09-08T12:34:58.804Z",
-          "updated_at": "2026-09-08T14:02:20.439Z",
+          "updated_at": "2026-09-10T14:28:06.584Z",
           "updated_by": "Amr"
         }
       }
@@ -163,10 +163,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-08T14:01:33.550Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-08T14:02:20.439Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mtviokjc",
@@ -176,10 +176,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-10T14:28:06.584Z",
+      "decided_by": "Amr"
     }
   ]
 }
