@@ -197,7 +197,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-10T14:30:00.579Z",
+      "updated_at": "2026-09-10T14:56:47.911Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -216,12 +216,12 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 25.269044722222223,
-          "live": 50.53607944444445
+          "hours": 25.49228597222222,
+          "live": 50.98256194444444
         },
         "Judi": {
-          "open": 1,
-          "todo": 1,
+          "open": 2,
+          "todo": 2,
           "progress": 0,
           "review": 0,
           "overdue": 1,
@@ -236,8 +236,8 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 29.23909888888889,
-          "live": 85.22554472222222
+          "hours": 29.536753703703706,
+          "live": 86.11850916666667
         },
         "Alaa": {
           "open": 7,
@@ -246,12 +246,12 @@
           "review": 0,
           "overdue": 0,
           "done": 3,
-          "hours": 14.689737361111112,
-          "live": 49.70716916666667
+          "hours": 14.801357847222222,
+          "live": 50.15365111111111
         },
         "Sara": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -266,8 +266,8 @@
           "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 22.572001388888886,
-          "live": 133.17684416666665
+          "hours": 22.699567579365077,
+          "live": 134.0698075
         },
         "Tasneem": {
           "open": 0,
@@ -291,10 +291,10 @@
         }
       },
       "time": {
-        "avgTodo": 3389,
-        "avgProgress": 3187,
+        "avgTodo": 3202,
+        "avgProgress": 3213,
         "avgToDone": 2138,
-        "open": 21
+        "open": 23
       },
       "hr": {
         "people": {
@@ -1102,6 +1102,27 @@
           "created_at": "2026-09-10T14:28:29.569Z",
           "updated_at": "2026-09-10T14:30:00.558Z",
           "updated_by": "Tasneem",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260911-judi-mtvnhqg0",
+          "who": "Judi",
+          "space": "Social",
+          "project": "Helal",
+          "title": "Start Publishing LinkedIn Campaign",
+          "notes": "",
+          "due": "2026-09-11",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-10",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-10T14:56:47.904Z",
+          "updated_at": "2026-09-10T14:56:47.904Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
