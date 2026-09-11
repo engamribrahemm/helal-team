@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-11T16:19:27.810Z",
+      "updated_at": "2026-09-11T19:53:11.577Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -223,12 +223,12 @@
         "Judi": {
           "open": 2,
           "todo": 0,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 1,
           "done": 1,
-          "hours": 7.50899574074074,
-          "live": 18.886815
+          "hours": 13.038892916666667,
+          "live": 22.43761361111111
         },
         "Seif": {
           "open": 3,
@@ -237,8 +237,8 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 39.13312712962963,
-          "live": 89.25037388888889
+          "hours": 40.32051333333333,
+          "live": 92.8125325
         },
         "Alaa": {
           "open": 7,
@@ -247,8 +247,8 @@
           "review": 2,
           "overdue": 2,
           "done": 3,
-          "hours": 19.491160625000003,
-          "live": 68.91286222222223
+          "hours": 20.381700277777778,
+          "live": 72.47502083333333
         },
         "Sara": {
           "open": 1,
@@ -267,8 +267,8 @@
           "review": 0,
           "overdue": 0,
           "done": 5,
-          "hours": 19.48589513888889,
-          "live": 92.08820527777777
+          "hours": 20.079588148148147,
+          "live": 95.65036333333333
         },
         "Tasneem": {
           "open": 0,
@@ -292,8 +292,8 @@
         }
       },
       "time": {
-        "avgTodo": 5174,
-        "avgProgress": 3230,
+        "avgTodo": 4973,
+        "avgProgress": 4251,
         "avgToDone": 2184,
         "open": 21
       },
@@ -1166,20 +1166,33 @@
           "title": "Start Publishing LinkedIn Campaign",
           "notes": "",
           "due": "2026-09-11",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-10",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-10T14:56:47.904Z",
-          "updated_at": "2026-09-11T16:18:46.902Z",
+          "updated_at": "2026-09-11T19:53:11.564Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-09-11T16:18:46.901Z",
-          "progress_started_at": "2026-09-11T16:18:46.901Z",
-          "time_log": [],
-          "start_on": "2026-09-11"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-11T16:18:46.901Z",
+              "ended_at": "2026-09-11T19:53:11.564Z",
+              "hours": 3.5735175,
+              "by": "Judi"
+            }
+          ],
+          "start_on": "2026-09-11",
+          "progress_hours": 3.5735175,
+          "review_at": "2026-09-11T19:53:11.564Z",
+          "first_review_at": "2026-09-11T19:53:11.564Z",
+          "delivered_on": "2026-09-11"
         },
         {
           "id": "t-20260911-ganna-mtx5vw63",
