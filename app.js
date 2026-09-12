@@ -551,6 +551,7 @@ function formatStageMinutes(mins, live) {
 function taskFactList(task) {
   const times = taskStageTimes(task);
   return $("dl", { class: "task-facts" }, [
+    $("div", {}, [$("dt", {}, "Client"), $("dd", {}, task.project || "—")]),
     $("div", {}, [$("dt", {}, "Assigned"), $("dd", {}, task.who || "—")]),
     $("div", {}, [$("dt", {}, "Created by"), $("dd", {}, task.created_by || "—")]),
     $("div", {}, [$("dt", {}, "Deadline"), $("dd", {}, task.due || "—")]),
