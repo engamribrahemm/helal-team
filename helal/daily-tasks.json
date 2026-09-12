@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-12T19:30:27.693Z",
+      "updated_at": "2026-09-12T23:20:05.952Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,18 +227,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 17.757481851851853,
-          "live": 46.058755833333336
+          "hours": 19.033247037037036,
+          "live": 49.88605138888889
         },
         "Seif": {
           "open": 5,
           "todo": 2,
           "progress": 3,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 4,
-          "hours": 30.112995222222224,
-          "live": 122.41596861111111
+          "hours": 32.40937272222222,
+          "live": 133.8978561111111
         },
         "Alaa": {
           "open": 5,
@@ -247,8 +247,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 19.187361574074075,
-          "live": 9.872494722222221
+          "hours": 19.825244166666668,
+          "live": 13.699790277777778
         },
         "Sara": {
           "open": 1,
@@ -262,13 +262,13 @@
         },
         "Ganna": {
           "open": 7,
-          "todo": 7,
-          "progress": 0,
+          "todo": 6,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 4.162750370370371,
-          "live": 0
+          "hours": 20.508176230158732,
+          "live": 118.58073138888889
         },
         "Tasneem": {
           "open": 0,
@@ -292,8 +292,8 @@
         }
       },
       "time": {
-        "avgTodo": 6183,
-        "avgProgress": 2140,
+        "avgTodo": 6879,
+        "avgProgress": 3161,
         "avgToDone": 2535,
         "open": 19
       },
@@ -1401,18 +1401,18 @@
           "title": "16 - 9 reel",
           "notes": "",
           "due": "2026-09-14",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:25:07.338Z",
-          "updated_at": "2026-09-12T18:49:00.893Z",
+          "updated_at": "2026-09-12T23:20:05.943Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-07T20:14:10.267Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-09-12T23:20:05.943Z",
           "time_log": [
             {
               "from": "In progress",
