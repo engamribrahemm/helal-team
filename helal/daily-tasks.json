@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-12T15:54:08.066Z",
+      "updated_at": "2026-09-12T16:30:49.544Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,18 +227,18 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 23.046737638888892,
-          "live": 42.45330305555556
+          "hours": 23.352499305555554,
+          "live": 43.06482638888889
         },
         "Seif": {
           "open": 5,
-          "todo": 4,
-          "progress": 1,
+          "todo": 3,
+          "progress": 2,
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 46.99241009259259,
-          "live": 112.82822277777778
+          "hours": 35.39718868055556,
+          "live": 113.43974722222222
         },
         "Alaa": {
           "open": 5,
@@ -247,8 +247,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 18.58645291666667,
-          "live": 6.267042777777777
+          "hours": 18.68837337962963,
+          "live": 6.878565555555555
         },
         "Sara": {
           "open": 1,
@@ -267,8 +267,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 20.09179373015873,
-          "live": 115.66605388888888
+          "hours": 20.179154047619047,
+          "live": 116.27757611111112
         },
         "Tasneem": {
           "open": 0,
@@ -292,8 +292,8 @@
         }
       },
       "time": {
-        "avgTodo": 5556,
-        "avgProgress": 4158,
+        "avgTodo": 6012,
+        "avgProgress": 4195,
         "avgToDone": 2504,
         "open": 20
       },
@@ -1368,18 +1368,20 @@
           "title": "2 designs ( carousel / single visual ) no 12 & 13",
           "notes": "",
           "due": "2026-09-13",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1DajVWQGmGc81vtm_so9wAVoMDvzDnMeP",
           "drive_missing": false,
           "assigned_at": "2026-09-12",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-12T14:41:32.371Z",
-          "updated_at": "2026-09-12T14:41:32.371Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-12T16:30:49.533Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-12T16:30:49.533Z",
+          "progress_started_at": "2026-09-12T16:30:49.533Z",
+          "time_log": [],
+          "start_on": "2026-09-12"
         }
       ]
     },
@@ -1418,18 +1420,20 @@
           "title": "2 designs ( carousel / single visual ) no 14 & 15",
           "notes": "",
           "due": "2026-09-14",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-12",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-12T14:42:05.767Z",
-          "updated_at": "2026-09-12T14:42:05.767Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-12T16:31:09.577Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-12T16:31:09.577Z",
+          "progress_started_at": "2026-09-12T16:31:09.577Z",
+          "time_log": [],
+          "start_on": "2026-09-12"
         }
       ]
     },
