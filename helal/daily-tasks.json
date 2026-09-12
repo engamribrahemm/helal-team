@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-12T14:42:05.824Z",
+      "updated_at": "2026-09-12T14:51:34.308Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,8 +227,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 22.446424583333332,
-          "live": 41.252676944444445
+          "hours": 22.525381666666668,
+          "live": 41.41059111111111
         },
         "Seif": {
           "open": 5,
@@ -237,18 +237,18 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 46.59220138888889,
-          "live": 111.62759666666666
+          "hours": 46.64483944444444,
+          "live": 111.78551083333333
         },
         "Alaa": {
           "open": 6,
           "todo": 4,
-          "progress": 0,
-          "review": 2,
+          "progress": 1,
+          "review": 1,
           "overdue": 2,
           "done": 4,
-          "hours": 3.8194090972222225,
-          "live": 0
+          "hours": 4.300659277777778,
+          "live": 6.2256599999999995
         },
         "Sara": {
           "open": 1,
@@ -267,8 +267,8 @@
           "review": 1,
           "overdue": 1,
           "done": 5,
-          "hours": 23.2154325462963,
-          "live": 114.46542972222223
+          "hours": 23.24175138888889,
+          "live": 114.62334277777778
         },
         "Tasneem": {
           "open": 0,
@@ -292,8 +292,8 @@
         }
       },
       "time": {
-        "avgTodo": 6404,
-        "avgProgress": 5347,
+        "avgTodo": 5498,
+        "avgProgress": 4111,
         "avgToDone": 2298,
         "open": 22
       },
@@ -1031,18 +1031,18 @@
           "title": "4 designs ( 2 carousels / 2 single post)",
           "notes": "",
           "due": "2026-09-10",
-          "status": "Review",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-09",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-09T15:52:24.288Z",
-          "updated_at": "2026-09-10T23:24:27.237Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-09-12T14:51:34.220Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-10T17:10:54.937Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-09-12T14:51:34.220Z",
           "time_log": [
             {
               "from": "In progress",
