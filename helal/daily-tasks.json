@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-12T14:34:00.756Z",
+      "updated_at": "2026-09-12T14:41:32.425Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,18 +227,18 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 22.379054305555556,
-          "live": 41.117936388888886
+          "hours": 22.441786666666665,
+          "live": 41.24340111111111
         },
         "Seif": {
-          "open": 3,
-          "todo": 2,
+          "open": 4,
+          "todo": 3,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 46.54728796296297,
-          "live": 111.4928563888889
+          "hours": 46.58910944444444,
+          "live": 111.61832083333333
         },
         "Alaa": {
           "open": 6,
@@ -267,8 +267,8 @@
           "review": 1,
           "overdue": 1,
           "done": 5,
-          "hours": 23.19297578703704,
-          "live": 114.33068916666667
+          "hours": 23.21388638888889,
+          "live": 114.45615277777777
         },
         "Tasneem": {
           "open": 0,
@@ -292,10 +292,10 @@
         }
       },
       "time": {
-        "avgTodo": 6397,
-        "avgProgress": 5339,
+        "avgTodo": 6404,
+        "avgProgress": 5346,
         "avgToDone": 2298,
-        "open": 20
+        "open": 21
       },
       "hr": {
         "people": {
@@ -1351,6 +1351,27 @@
           "done_on": "2026-09-10",
           "done_month": "2026-09",
           "done_by": "Mariam"
+        },
+        {
+          "id": "t-20260913-seif-mtyhttci",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "2 designs ( carousel / single visual ) no 12 & 13",
+          "notes": "",
+          "due": "2026-09-13",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1DajVWQGmGc81vtm_so9wAVoMDvzDnMeP",
+          "drive_missing": false,
+          "assigned_at": "2026-09-12",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-12T14:41:32.371Z",
+          "updated_at": "2026-09-12T14:41:32.371Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
