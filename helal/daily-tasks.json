@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-13T12:44:50.352Z",
+      "updated_at": "2026-09-13T14:56:34.934Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,8 +227,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 23.504023611111112,
-          "live": 63.29838111111111
+          "hours": 24.235930555555555,
+          "live": 65.49410194444444
         },
         "Seif": {
           "open": 5,
@@ -237,18 +237,18 @@
           "review": 0,
           "overdue": 1,
           "done": 4,
-          "hours": 40.456770722222224,
-          "live": 174.1348461111111
+          "hours": 41.77420305555556,
+          "live": 180.7220077777778
         },
         "Alaa": {
           "open": 5,
-          "todo": 4,
-          "progress": 0,
+          "todo": 3,
+          "progress": 1,
           "review": 1,
           "overdue": 2,
           "done": 5,
-          "hours": 21.050334944444447,
-          "live": 0
+          "hours": 17.541945972222226,
+          "live": 0.000001111111111111111
         },
         "Sara": {
           "open": 1,
@@ -257,8 +257,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 0.7901270833333334,
-          "live": 0.000006111111111111111
+          "hours": 1.8879868055555558,
+          "live": 2.1957255555555557
         },
         "Ganna": {
           "open": 7,
@@ -267,8 +267,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 22.424223650793653,
-          "live": 131.99306333333334
+          "hours": 22.737897738095235,
+          "live": 134.18878194444443
         },
         "Tasneem": {
           "open": 0,
@@ -292,8 +292,8 @@
         }
       },
       "time": {
-        "avgTodo": 7617,
-        "avgProgress": 4433,
+        "avgTodo": 8046,
+        "avgProgress": 3826,
         "avgToDone": 2535,
         "open": 19
       },
@@ -1158,18 +1158,20 @@
           "title": "Internship Certificates",
           "notes": "Internship Certificates",
           "due": "2026-09-11",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-10",
           "month": "2026-09",
           "created_by": "Tasneem",
           "created_at": "2026-09-10T14:28:29.569Z",
-          "updated_at": "2026-09-10T14:30:00.558Z",
-          "updated_by": "Tasneem",
+          "updated_at": "2026-09-13T14:56:34.927Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-13T14:56:34.927Z",
+          "progress_started_at": "2026-09-13T14:56:34.927Z",
+          "time_log": [],
+          "start_on": "2026-09-13"
         },
         {
           "id": "t-20260911-judi-mtvnhqg0",
