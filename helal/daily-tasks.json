@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-13T01:29:24.814Z",
+      "updated_at": "2026-09-13T12:44:50.352Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,8 +227,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 19.75166037037037,
-          "live": 52.04129138888889
+          "hours": 23.504023611111112,
+          "live": 63.29838111111111
         },
         "Seif": {
           "open": 5,
@@ -237,8 +237,8 @@
           "review": 0,
           "overdue": 1,
           "done": 4,
-          "hours": 33.70251655555556,
-          "live": 140.36357527777778
+          "hours": 40.456770722222224,
+          "live": 174.1348461111111
         },
         "Alaa": {
           "open": 5,
@@ -253,12 +253,12 @@
         "Sara": {
           "open": 1,
           "todo": 0,
-          "progress": 0,
-          "review": 1,
+          "progress": 1,
+          "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 1.5802480555555556,
-          "live": 0
+          "hours": 0.7901270833333334,
+          "live": 0.000006111111111111111
         },
         "Ganna": {
           "open": 7,
@@ -267,8 +267,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 20.81606761904762,
-          "live": 120.73597111111111
+          "hours": 22.424223650793653,
+          "live": 131.99306333333334
         },
         "Tasneem": {
           "open": 0,
@@ -292,8 +292,8 @@
         }
       },
       "time": {
-        "avgTodo": 6998,
-        "avgProgress": 3758,
+        "avgTodo": 7617,
+        "avgProgress": 4433,
         "avgToDone": 2535,
         "open": 19
       },
@@ -1078,22 +1078,23 @@
           "title": "6 Designs for MAS (NEW COLLACTION)",
           "notes": "",
           "due": "2026-09-10",
-          "status": "Review",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-10",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-10T14:29:37.236Z",
-          "updated_at": "2026-09-10T16:19:01.370Z",
-          "updated_by": "Sara",
+          "updated_at": "2026-09-13T12:44:50.320Z",
+          "updated_by": "Mariam",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": "",
+          "first_progress_at": "2026-09-13T12:44:50.319Z",
+          "progress_started_at": "2026-09-13T12:44:50.319Z",
           "time_log": [],
           "review_at": "2026-09-10T16:19:01.370Z",
           "first_review_at": "2026-09-10T16:19:01.370Z",
-          "delivered_on": "2026-09-10"
+          "delivered_on": "2026-09-10",
+          "start_on": "2026-09-13"
         }
       ]
     },
