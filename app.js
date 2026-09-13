@@ -97,6 +97,7 @@ const state = {
   calMonth: "",
   workMonth: "",
   dashPerson: "",
+  timePerson: "",
   doneHistoryOpen: false,
 };
 
@@ -2928,7 +2929,6 @@ function progressByDay(month, name) {
   const buckets = {};
   for (const task of allTasks()) {
     if (name && !samePerson(task.who, name)) continue;
-    if (!name && state.dashPerson && !matchesDashPerson(task.who)) continue;
     for (const row of progressIntervalsFor(task)) addProgressSlice(buckets, row.start, row.end, month, task);
   }
   return buckets;
@@ -3260,8 +3260,8 @@ function viewCalendar() {
       dashPersonSelect(),
     ]),
     $("p", { class: "muted" }, who
-      ? `Calendar, reports, and In progress time for ${who} only.`
-      : "Pick a person to see only their reports this month and In progress time each day."),
+      ? `Reports for ${who} only. Switch the name to see someone else.`
+      : "Pick a person to see only their reports this month, or pick a day."),
     $("div", { class: "cal-week" }, WEEKDAYS.map((d) => $("span", {}, d))),
     $("div", { class: "cal-grid" }, calendarDays(ym, state.reportDay, (date) => {
       state.reportDay = date;
@@ -3274,102 +3274,155 @@ function viewCalendar() {
   ]);
 }
 
-function viewTaskTimeDashboard(month) {
-  const m = month || thisMonth();
-  const who = state.dashPerson;
-  const tasks = [...tasksForMonth(m)].filter((t) => matchesDashPerson(t.who)).sort((a, b) => {
-    const as = a.status === "Done" ? 1 : 0;
-    const bs = b.status === "Done" ? 1 : 0;
-    if (as !== bs) return as - bs;
-    return Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0);
-  });
-  const snap = !who && !isCurrentMonth(m) ? monthSnapshot(m)?.time : null;
-  const open = tasks.filter((t) => t.status !== "Done");
+function canSeeTime() {
+  return isAdmin();
+}
+
+function timeFact(label, value) {
+  return $("div", { class: "time-fact" }, [
+    $("span", {}, label),
+    $("strong", {}, value),
+  ]);
+}
+
+function timeRoster(month) {
   const avg = (rows, key) => {
     const nums = rows.map((t) => taskStageTimes(t)[key]).filter((n) => n > 0);
     if (!nums.length) return 0;
     return Math.round(nums.reduce((a, b) => a + b, 0) / nums.length);
   };
-  const avgTodo = snap ? snap.avgTodo : avg(open.filter((t) => t.status === "To do"), "todoMins");
-  const avgProgress = snap ? snap.avgProgress : avg(open.filter((t) => t.status === "In progress"), "progressMins");
-  const avgToDone = snap ? snap.avgToDone : avg(tasks.filter((t) => t.status === "Done"), "toDoneMins");
-  const openCount = snap ? snap.open : open.length;
-  return $("section", { class: "card" }, [
-    $("h2", {}, `Task time tracking · ${who || "Team"} · ${monthLabel(m)}`),
-    $("p", { class: "muted" }, isCurrentMonth(m)
-      ? "This month only. Closed months keep their stored numbers."
-      : "Stored month. Live open tasks sit in the current month."),
-    $("div", { class: "stat-row" }, [
-      statBox(formatMinutes(avgTodo), "Avg wait in To do"),
-      statBox(formatMinutes(avgProgress), "Avg In progress now"),
-      statBox(formatMinutes(avgToDone), "Avg time to Done"),
-      statBox(String(openCount || 0), "Open tasks"),
+  return people()
+    .filter((p) => p.name !== "Amr")
+    .map((person) => {
+      const tasks = [...tasksForMonth(month)].filter((t) => samePerson(t.who, person.name)).sort((a, b) => {
+        const as = a.status === "Done" ? 1 : 0;
+        const bs = b.status === "Done" ? 1 : 0;
+        if (as !== bs) return as - bs;
+        return (taskStageTimes(b).progressMins || 0) - (taskStageTimes(a).progressMins || 0);
+      });
+      const buckets = progressByDay(month, person.name);
+      const open = tasks.filter((t) => t.status !== "Done");
+      const live = open.filter((t) => t.status === "In progress");
+      const done = tasks.filter((t) => t.status === "Done");
+      return {
+        person,
+        tasks,
+        buckets,
+        progressMins: Math.round(Object.values(buckets).reduce((n, row) => n + (row.mins || 0), 0)),
+        open: open.length,
+        liveMins: Math.round(live.reduce((n, t) => n + (loggedHours(t) || 0) * 60, 0)),
+        done: done.length,
+        avgTodo: avg(open.filter((t) => t.status === "To do"), "todoMins"),
+        avgToDone: avg(done, "toDoneMins"),
+      };
+    })
+    .sort((a, b) => b.progressMins - a.progressMins || b.open - a.open || a.person.name.localeCompare(b.person.name));
+}
+
+function viewTimeTaskRow(task) {
+  const times = taskStageTimes(task);
+  const todo = times.todoMins || 0;
+  const prog = times.progressMins || 0;
+  const sum = todo + prog;
+  return $("button", {
+    type: "button",
+    class: `time-task${task.status === "Done" ? " is-done" : ""}`,
+    onclick: () => { state.openTaskId = task.id; render(); },
+  }, [
+    $("div", { class: "time-task-main" }, [
+      $("strong", {}, task.title),
+      $("span", { class: "muted" }, [task.project || "No client", task.due ? ` · due ${task.due}` : ""].filter(Boolean).join("")),
     ]),
-    tasks.length
-      ? $("div", { class: "load-table-wrap", style: "margin-top:14px" }, [
-        $("table", { class: "load-table time-track-table" }, [
-          $("thead", {}, $("tr", {}, [
-            "Task", "Assigned", "Created by", "Deadline", "Status", "To do", "In progress", "Until done",
-          ].map((h) => $("th", {}, h)))),
-          $("tbody", {}, tasks.map((t) => {
-            const times = taskStageTimes(t);
-            return $("tr", {
-              class: t.status === "Done" ? "tone-green" : "",
-              onclick: () => { state.openTaskId = t.id; render(); },
-            }, [
-              $("td", {}, [$("strong", {}, t.title), t.project ? $("span", { class: "muted" }, ` ${t.project}`) : null]),
-              $("td", {}, t.who || "—"),
-              $("td", {}, t.created_by || "—"),
-              $("td", {}, t.due || "—"),
-              $("td", {}, t.status),
-              $("td", {}, formatStageMinutes(times.todoMins, times.stillTodo)),
-              $("td", {}, formatStageMinutes(times.progressMins, times.stillProgress)),
-              $("td", {}, formatStageMinutes(times.toDoneMins, times.stillOpen)),
-            ]);
-          })),
-        ]),
-      ])
-      : $("p", { class: "empty" }, isCurrentMonth(m) ? "No tasks to track yet." : "No tasks stored for this month."),
+    $("span", { class: `pill ${taskTone(task)}` }, task.status),
+    timeFact("To do", formatStageMinutes(times.todoMins, times.stillTodo)),
+    timeFact("In progress", formatStageMinutes(times.progressMins, times.stillProgress)),
+    timeFact("Until done", formatStageMinutes(times.toDoneMins, times.stillOpen)),
+    $("div", { class: "time-bar", "aria-hidden": "true" }, sum
+      ? [
+        $("span", { class: "wait", style: `width:${Math.round((todo / sum) * 100)}%` }),
+        $("span", { class: "work", style: `width:${Math.round((prog / sum) * 100)}%` }),
+      ]
+      : null),
   ]);
 }
 
-function viewProgressByDay(month) {
-  const m = month || thisMonth();
-  const who = state.dashPerson;
-  const buckets = progressByDay(m, who);
-  const dates = monthDates(m);
-  const total = dates.reduce((n, date) => n + (buckets[date]?.mins || 0), 0);
-  const selected = state.reportDay && String(state.reportDay).startsWith(m) ? state.reportDay : "";
-  return $("section", { class: "card" }, [
-    $("h2", {}, `In progress time · ${who || "Team"} · ${monthLabel(m)}`),
-    $("p", { class: "muted" }, who
-      ? `How long ${who} stayed In progress each day this month.`
-      : "Pick a person above to see only their days. Everyone shows the team total per day."),
-    $("div", { class: "stat-row" }, [
-      statBox(formatMinutes(Math.round(total)), "In progress this month", total ? "tone-green" : ""),
-      statBox(String(dates.filter((date) => (buckets[date]?.mins || 0) > 0).length), "Days with time"),
+function viewPersonTime(row, month, { days = false } = {}) {
+  const { person } = row;
+  const dates = monthDates(month).filter((date) => (row.buckets[date]?.mins || 0) > 0).reverse();
+  return $("article", { class: "card time-person" }, [
+    $("div", { class: "time-person-head" }, [
+      $("div", {}, [
+        $("h3", {}, person.name),
+        $("p", { class: "muted" }, [person.role, person.home].filter(Boolean).join(" · ") || "Team"),
+      ]),
+      $("div", { class: "time-kpis" }, [
+        timeFact("In progress", formatMinutes(row.progressMins)),
+        timeFact("Live now", row.liveMins ? formatMinutes(row.liveMins) : "—"),
+        timeFact("Open", String(row.open)),
+        timeFact("Done", String(row.done)),
+        timeFact("Avg wait", formatMinutes(row.avgTodo)),
+        timeFact("Avg to done", formatMinutes(row.avgToDone)),
+      ]),
     ]),
-    dates.length
-      ? $("div", { class: "load-table-wrap", style: "margin-top:14px" }, [
-        $("table", { class: "load-table" }, [
-          $("thead", {}, $("tr", {}, ["Day", "In progress", who ? "Tasks" : "People"].map((h) => $("th", {}, h)))),
-          $("tbody", {}, dates.map((date) => {
-            const row = buckets[date];
-            const mins = row?.mins || 0;
-            return $("tr", {
-              class: date === selected ? "tone-ok" : "",
-              onclick: () => { state.reportDay = date; render(); },
-            }, [
-              $("td", {}, date),
-              $("td", {}, mins > 0 ? formatMinutes(Math.round(mins)) : "—"),
-              $("td", {}, who
-                ? (row?.tasks || []).map((t) => t.title).join(", ") || "—"
-                : (row?.people || []).join(", ") || "—"),
-            ]);
-          })),
-        ]),
+    row.tasks.length
+      ? $("div", { class: "time-tasks" }, row.tasks.map(viewTimeTaskRow))
+      : $("p", { class: "empty" }, isCurrentMonth(month) ? "No tasks this month." : "No tasks stored for this month."),
+    days && dates.length
+      ? $("div", { class: "time-days" }, [
+        $("p", { class: "time-days-label" }, "In progress by day"),
+        ...dates.map((date) => {
+          const bucket = row.buckets[date];
+          return $("div", { class: "time-day" }, [
+            $("span", {}, date),
+            $("strong", {}, formatMinutes(Math.round(bucket.mins))),
+            $("span", { class: "muted" }, (bucket.tasks || []).map((t) => t.title).join(", ") || "—"),
+          ]);
+        }),
       ])
-      : $("p", { class: "empty" }, "No days in this month yet."),
+      : null,
+  ]);
+}
+
+function viewTime() {
+  const month = state.calMonth || thisMonth();
+  const who = state.timePerson;
+  const allRows = timeRoster(month);
+  const rows = who ? allRows.filter((row) => samePerson(row.person.name, who)) : allRows;
+  const teamMins = allRows.reduce((n, row) => n + row.progressMins, 0);
+  const teamOpen = (who ? rows : allRows).reduce((n, row) => n + row.open, 0);
+  const teamLive = (who ? rows : allRows).reduce((n, row) => n + row.liveMins, 0);
+  const withTime = allRows.filter((row) => row.progressMins > 0).length;
+  const focused = rows[0];
+  return $("div", { class: "dash time-page" }, [
+    $("section", { class: "card" }, [
+      $("div", { class: "cal-nav" }, [
+        $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, -1)); render(); } }, "Prev"),
+        $("h2", {}, `Time tracking · ${monthLabel(month)}`),
+        $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
+      ]),
+      $("p", { class: "muted" }, who
+        ? `Task time for ${who}. Pick another name to compare, or Everyone to see the whole team.`
+        : "Check how long each person spent In progress, waiting in To do, and getting to Done."),
+      $("div", { class: "stat-row" }, [
+        statBox(formatMinutes(who ? (focused?.progressMins || 0) : teamMins), who ? "In progress this month" : "Team in progress", (who ? focused?.progressMins : teamMins) ? "tone-green" : ""),
+        statBox(formatMinutes(teamLive), "Live now"),
+        statBox(String(teamOpen), "Open tasks"),
+        statBox(who ? String(focused?.done || 0) : String(withTime), who ? "Done this month" : "People with time"),
+      ]),
+      $("div", { class: "time-roster" }, [
+        $("button", {
+          type: "button",
+          class: `time-chip${!who ? " on" : ""}`,
+          onclick: () => { state.timePerson = ""; render(); },
+        }, `Everyone · ${formatMinutes(teamMins)}`),
+        ...allRows.map((row) => $("button", {
+          type: "button",
+          class: `time-chip${who && samePerson(row.person.name, who) ? " on" : ""}`,
+          onclick: () => { state.timePerson = row.person.name; render(); },
+        }, `${row.person.name} · ${row.progressMins ? formatMinutes(row.progressMins) : "0m"}`)),
+      ]),
+    ]),
+    ...rows.map((row) => viewPersonTime(row, month, { days: !!who })),
   ]);
 }
 
@@ -3393,14 +3446,12 @@ function viewReview() {
   const adminDash = isAdmin();
   const personLabel = who ? ` · ${who}` : "";
   return $("div", { class: "dash" }, [
-    adminDash ? viewTaskTimeDashboard(month) : null,
     adminDash ? viewCalendar() : null,
-    adminDash ? viewProgressByDay(month) : null,
     adminDash ? $("section", {}, [
       $("h2", {}, `Reports · ${day}${personLabel}`),
       $("p", { class: "muted" }, who
         ? `Only ${who}’s reports. Switch the name next to the calendar to see someone else.`
-        : "Every saved report is kept. Pick a person next to the calendar, or pick a day."),
+        : "Every saved report is kept. Pick a person next to the calendar, or pick a day. Time tracking is on the Time tab."),
       reportDaySummary(day, who),
       dayReports.length
         ? $("div", { class: "cards", style: "margin-top:18px" }, dayReports.map(reportCard))
@@ -4131,7 +4182,7 @@ function navItems() {
     ["guide", "SOP"],
   ];
   if (isAdmin()) {
-    items.splice(2, 0, ["review", "Dashboard"]);
+    items.splice(2, 0, ["review", "Dashboard"], ["time", "Time"]);
     items.push(["hr", "HR"]);
     items.push(["people", "People"]);
   } else if (isSocial()) {
@@ -4213,6 +4264,7 @@ function render() {
   else if (state.view === "load") main.append(viewWorkload());
   else if (state.view === "attend") main.append(viewAttendance());
   else if (state.view === "review" && canReviewTasks()) main.append(viewReview());
+  else if (state.view === "time" && canSeeTime()) main.append(viewTime());
   else if (state.view === "report") main.append(viewReport());
   else if (state.view === "drive") main.append(viewDrive());
   else if (state.view === "people" && isAdmin()) main.append(viewPeople());
@@ -4246,7 +4298,7 @@ function watchCairoDay() {
       if (
         rolled
         || (
-          ["board", "review", "my", "load", "report"].includes(state.view)
+          ["board", "review", "time", "my", "load", "report"].includes(state.view)
           && !state.creating
           && !state.openTaskId
           && !state.pendingDelay
