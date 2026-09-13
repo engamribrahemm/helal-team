@@ -97,6 +97,7 @@ const state = {
   calMonth: "",
   workMonth: "",
   dashPerson: "",
+  doneHistoryOpen: false,
 };
 
 let cardDidDrag = false;
@@ -1996,6 +1997,37 @@ function kanbanCard(task) {
   ]);
 }
 
+function doneDayOf(task) {
+  return task.done_on || cairoDate(task.done_at) || "";
+}
+
+function dayLabel(date) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return date || "Earlier";
+  const [y, m, d] = date.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: CAIRO,
+  });
+}
+
+function viewDoneHistory(tasks) {
+  const byDay = new Map();
+  for (const task of tasks) {
+    const day = doneDayOf(task) || "earlier";
+    if (!byDay.has(day)) byDay.set(day, []);
+    byDay.get(day).push(task);
+  }
+  const days = [...byDay.keys()].sort((a, b) => String(b).localeCompare(String(a)));
+  return $("div", { class: "done-history" }, days.map((day) =>
+    $("div", { class: "done-day" }, [
+      $("h4", {}, dayLabel(day)),
+      ...byDay.get(day).map(kanbanCard),
+    ])
+  ));
+}
+
 function boardColumnOf(status) {
   return status === "Revisions" ? "Review" : status;
 }
@@ -2007,9 +2039,13 @@ function tasksInBoardColumn(tasks, column) {
 
 function viewBoard() {
   const tasks = tasksForView();
+  const day = today();
   return $("div", { class: "kanban" },
     BOARD_STATUSES.map((status) => {
       const col = tasksInBoardColumn(tasks, status);
+      const todayDone = status === "Done" ? col.filter((t) => doneDayOf(t) === day) : col;
+      const prevDone = status === "Done" ? col.filter((t) => doneDayOf(t) !== day) : [];
+      const shown = status === "Done" ? todayDone : col;
       return $("section", {
         class: "kanban-col",
         ondragover: (e) => {
@@ -2037,12 +2073,21 @@ function viewBoard() {
         },
       }, [
         $("div", { class: "kanban-head" }, [
-          $("h3", {}, status),
-          $("span", {}, String(col.length)),
+          $("h3", {}, status === "Done" ? "Done · today" : status),
+          $("span", {}, String(shown.length)),
         ]),
-        $("div", { class: "kanban-cards" },
-          col.length ? col.map(kanbanCard) : $("p", { class: "empty" }, "No tasks")
-        ),
+        $("div", { class: "kanban-cards" }, [
+          ...(shown.length ? shown.map(kanbanCard) : [$("p", { class: "empty" }, status === "Done" ? "No tasks done today" : "No tasks")]),
+          status === "Done" && state.doneHistoryOpen && prevDone.length ? viewDoneHistory(prevDone) : null,
+        ]),
+        status === "Done" && prevDone.length
+          ? $("button", {
+            class: "btn ghost",
+            type: "button",
+            style: "margin-top:12px",
+            onclick: () => { state.doneHistoryOpen = !state.doneHistoryOpen; render(); },
+          }, state.doneHistoryOpen ? "Hide previous tasks" : `See previous tasks · ${prevDone.length}`)
+          : null,
         status === "Done"
           ? (canMarkDone()
             ? $("p", { class: "muted" }, "Mariam, Judi, and admins can drop here or press Mark done. It saves to GitHub.")
@@ -4024,7 +4069,7 @@ function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. After you save, a green Saved message appears and GitHub has the update."],
-    ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
+    ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],

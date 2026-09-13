@@ -344,6 +344,16 @@ label {
 }
 
 .kanban-cards { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.done-history { display: grid; gap: 14px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.done-day { display: grid; gap: 8px; }
+.done-day h4 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
 
 .kcard {
   background: var(--bg);
