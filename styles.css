@@ -298,6 +298,14 @@ label {
   padding: 8px 10px;
 }
 
+.board-wrap { display: grid; gap: 10px; }
+.board-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.board-filter-note { margin: 0; }
 .kanban {
   display: flex;
   gap: 12px;

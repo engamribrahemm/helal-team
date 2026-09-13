@@ -98,6 +98,7 @@ const state = {
   workMonth: "",
   dashPerson: "",
   timePerson: "",
+  boardPerson: "",
   doneHistoryOpen: false,
 };
 
@@ -330,10 +331,58 @@ function samePerson(a, b) {
   return String(a || "").trim().toLowerCase() === String(b || "").trim().toLowerCase();
 }
 
+function canFilterBoardPerson() {
+  return canSeeTeamWorkload();
+}
+
+function boardPeople() {
+  return people().filter((p) => p.name !== "Amr");
+}
+
+function matchesBoardPerson(name) {
+  if (!state.boardPerson) return true;
+  return samePerson(name, state.boardPerson);
+}
+
+function setBoardPerson(name) {
+  state.boardPerson = name || "";
+  render();
+}
+
+function boardPersonSelect() {
+  return $("select", {
+    class: "date-select",
+    onchange: (e) => setBoardPerson(e.target.value),
+  }, [
+    $("option", { value: "", selected: !state.boardPerson }, "All people"),
+    ...boardPeople().map((p) => $("option", { value: p.name, selected: p.name === state.boardPerson }, p.name)),
+  ]);
+}
+
+function viewBoardFilter() {
+  if (!canFilterBoardPerson()) return null;
+  const who = state.boardPerson;
+  return $("div", { class: "board-filter" }, [
+    $("button", {
+      type: "button",
+      class: `time-chip${!who ? " on" : ""}`,
+      onclick: () => setBoardPerson(""),
+    }, "All"),
+    ...boardPeople().map((p) => $("button", {
+      type: "button",
+      class: `time-chip${who && samePerson(p.name, who) ? " on" : ""}`,
+      onclick: () => setBoardPerson(p.name),
+    }, p.name)),
+  ]);
+}
+
 function tasksForView() {
   let tasks = allTasks();
   if (state.view === "my") tasks = tasks.filter((t) => samePerson(t.who, state.who));
   else if (!isAdmin()) tasks = tasks.filter(canSeeTask);
+  if (state.view === "board" && state.boardPerson) {
+    tasks = tasks.filter((t) => matchesBoardPerson(t.who));
+  }
   if (state.dateFilter && state.dateFilter !== "all") {
     tasks = tasks.filter((t) =>
       t.due === state.dateFilter
@@ -2041,7 +2090,8 @@ function tasksInBoardColumn(tasks, column) {
 function viewBoard() {
   const tasks = tasksForView();
   const day = today();
-  return $("div", { class: "kanban" },
+  const who = state.boardPerson;
+  const board = $("div", { class: "kanban" },
     BOARD_STATUSES.map((status) => {
       const col = tasksInBoardColumn(tasks, status);
       const todayDone = status === "Done" ? col.filter((t) => doneDayOf(t) === day) : col;
@@ -2109,6 +2159,11 @@ function viewBoard() {
       ]);
     })
   );
+  return $("div", { class: "board-wrap" }, [
+    viewBoardFilter(),
+    who ? $("p", { class: "muted board-filter-note" }, `Showing ${who} only. Press All for the full team.`) : null,
+    board,
+  ]);
 }
 
 function ensureHr() {
@@ -4118,7 +4173,7 @@ function viewAttendance() {
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
-    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. After you save, a green Saved message appears and GitHub has the update."],
+    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. On the Board, press All or a name to see one person or the whole team. After you save, a green Saved message appears and GitHub has the update."],
     ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
@@ -4224,6 +4279,7 @@ function render() {
           $("option", { value: "all", selected: state.dateFilter === "all" }, "All dates"),
           $("option", { value: today(), selected: state.dateFilter === today() }, `Today · ${today()}`),
         ]),
+        state.view === "board" && canFilterBoardPerson() ? boardPersonSelect() : null,
         canAssignTasks()
           ? $("button", {
             class: "btn primary",
