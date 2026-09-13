@@ -2077,18 +2077,17 @@ function viewBoard() {
           $("h3", {}, status === "Done" ? "Done · today" : status),
           $("span", {}, String(shown.length)),
         ]),
+        status === "Done" && prevDone.length
+          ? $("button", {
+            class: "btn ghost done-history-btn",
+            type: "button",
+            onclick: () => { state.doneHistoryOpen = !state.doneHistoryOpen; render(); },
+          }, state.doneHistoryOpen ? "Hide previous tasks" : `See previous tasks · ${prevDone.length}`)
+          : null,
         $("div", { class: "kanban-cards" }, [
           ...(shown.length ? shown.map(kanbanCard) : [$("p", { class: "empty" }, status === "Done" ? "No tasks done today" : "No tasks")]),
           status === "Done" && state.doneHistoryOpen && prevDone.length ? viewDoneHistory(prevDone) : null,
         ]),
-        status === "Done" && prevDone.length
-          ? $("button", {
-            class: "btn ghost",
-            type: "button",
-            style: "margin-top:12px",
-            onclick: () => { state.doneHistoryOpen = !state.doneHistoryOpen; render(); },
-          }, state.doneHistoryOpen ? "Hide previous tasks" : `See previous tasks · ${prevDone.length}`)
-          : null,
         status === "Done"
           ? (canMarkDone()
             ? $("p", { class: "muted" }, "Mariam, Judi, and admins can drop here or press Mark done. It saves to GitHub.")
