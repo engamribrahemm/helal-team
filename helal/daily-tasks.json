@@ -200,7 +200,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-14T12:03:06.319Z",
+      "updated_at": "2026-09-14T12:03:39.796Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -229,18 +229,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 31.2721687962963,
-          "live": 86.60281666666667
+          "hours": 31.275268611111112,
+          "live": 86.6121161111111
         },
         "Seif": {
-          "open": 5,
-          "todo": 3,
+          "open": 6,
+          "todo": 4,
           "progress": 2,
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 50.398530111111114,
-          "live": 200.51016055555556
+          "hours": 50.40224988888889,
+          "live": 200.52875944444446
         },
         "Alaa": {
           "open": 5,
@@ -249,8 +249,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 20.31648861111111,
-          "live": 21.108716666666666
+          "hours": 20.31781714285714,
+          "live": 21.11801638888889
         },
         "Sara": {
           "open": 1,
@@ -269,8 +269,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 25.75342869047619,
-          "live": 155.2974986111111
+          "hours": 25.75475714285714,
+          "live": 155.30679777777777
         },
         "Tasneem": {
           "open": 0,
@@ -294,10 +294,10 @@
         }
       },
       "time": {
-        "avgTodo": 8436,
-        "avgProgress": 5562,
+        "avgTodo": 8437,
+        "avgProgress": 5563,
         "avgToDone": 2730,
-        "open": 19
+        "open": 20
       },
       "hr": {
         "people": {
@@ -1572,6 +1572,33 @@
           "created_by": "Mariam",
           "created_at": "2026-09-14T12:03:06.279Z",
           "updated_at": "2026-09-14T12:03:06.279Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20260916-seif-mu172hka",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "MEDC",
+          "title": "2 designs ( carousel / single visual ) no 18 & 19",
+          "notes": "",
+          "due": "2026-09-16",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-09-14",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-14T12:03:39.755Z",
+          "updated_at": "2026-09-14T12:03:39.755Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
