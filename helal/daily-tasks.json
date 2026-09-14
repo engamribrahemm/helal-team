@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-13T15:50:50.081Z",
+      "updated_at": "2026-09-14T10:49:24.999Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,28 +227,28 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 24.537332777777777,
-          "live": 66.3983086111111
+          "hours": 30.86278740740741,
+          "live": 85.3746725
         },
         "Seif": {
           "open": 5,
           "todo": 2,
           "progress": 2,
           "review": 1,
-          "overdue": 1,
+          "overdue": 2,
           "done": 4,
-          "hours": 47.062537847222224,
-          "live": 160.10114388888888
+          "hours": 56.55071993055556,
+          "live": 198.0538722222222
         },
         "Alaa": {
-          "open": 5,
+          "open": 4,
           "todo": 3,
           "progress": 1,
-          "review": 1,
-          "overdue": 2,
-          "done": 5,
-          "hours": 17.692647175925927,
-          "live": 0.9042083333333333
+          "review": 0,
+          "overdue": 1,
+          "done": 6,
+          "hours": 20.14103944444444,
+          "live": 19.8805725
         },
         "Sara": {
           "open": 1,
@@ -257,8 +257,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 2.3400904166666665,
-          "live": 3.0999327777777776
+          "hours": 11.828272638888889,
+          "live": 22.076297222222223
         },
         "Ganna": {
           "open": 7,
@@ -267,8 +267,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 22.867070238095238,
-          "live": 135.09298944444444
+          "hours": 25.577979444444445,
+          "live": 154.06935388888888
         },
         "Tasneem": {
           "open": 0,
@@ -292,10 +292,10 @@
         }
       },
       "time": {
-        "avgTodo": 8095,
-        "avgProgress": 3656,
-        "avgToDone": 2535,
-        "open": 19
+        "avgTodo": 9130,
+        "avgProgress": 4795,
+        "avgToDone": 2733,
+        "open": 18
       },
       "hr": {
         "people": {
@@ -1031,15 +1031,15 @@
           "title": "4 designs ( 2 carousels / 2 single post)",
           "notes": "",
           "due": "2026-09-10",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-09",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-09T15:52:24.288Z",
-          "updated_at": "2026-09-13T01:29:24.808Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-09-14T10:49:24.967Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-10T17:10:54.937Z",
           "progress_started_at": "",
@@ -1068,7 +1068,11 @@
           "progress_hours": 15.855028888888889,
           "review_at": "2026-09-13T01:29:24.808Z",
           "first_review_at": "2026-09-10T23:24:27.237Z",
-          "delivered_on": "2026-09-13"
+          "delivered_on": "2026-09-13",
+          "done_at": "2026-09-14T10:49:24.966Z",
+          "done_on": "2026-09-14",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260910-sara-mtvmis7n",
