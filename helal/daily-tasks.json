@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-14T10:50:26.147Z",
+      "updated_at": "2026-09-14T10:51:01.032Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,18 +227,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 30.868449166666668,
-          "live": 85.39165777777778
+          "hours": 30.87167861111111,
+          "live": 85.40134611111111
         },
         "Seif": {
-          "open": 5,
-          "todo": 3,
+          "open": 6,
+          "todo": 4,
           "progress": 2,
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 49.914066777777784,
-          "live": 198.08784388888887
+          "hours": 49.91794211111111,
+          "live": 198.10722055555556
         },
         "Alaa": {
           "open": 4,
@@ -247,8 +247,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 20.14346599206349,
-          "live": 19.897558333333333
+          "hours": 20.14485003968254,
+          "live": 19.907246666666666
         },
         "Sara": {
           "open": 1,
@@ -257,8 +257,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 11.836765555555555,
-          "live": 22.093283055555556
+          "hours": 11.841609722222222,
+          "live": 22.10297138888889
         },
         "Ganna": {
           "open": 7,
@@ -267,8 +267,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 25.580405992063493,
-          "live": 154.08633972222222
+          "hours": 25.581790079365078,
+          "live": 154.09602833333332
         },
         "Tasneem": {
           "open": 0,
@@ -292,10 +292,10 @@
         }
       },
       "time": {
-        "avgTodo": 9131,
+        "avgTodo": 9132,
         "avgProgress": 4796,
         "avgToDone": 2730,
-        "open": 18
+        "open": 19
       },
       "hr": {
         "people": {
@@ -1536,6 +1536,33 @@
           "created_by": "Mariam",
           "created_at": "2026-09-14T10:50:26.107Z",
           "updated_at": "2026-09-14T10:50:26.107Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20260916-seif-mu14h2b5",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "2 designs ( carousel / single visual ) no 16 & 17",
+          "notes": "",
+          "due": "2026-09-16",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-09-14",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-14T10:51:00.978Z",
+          "updated_at": "2026-09-14T10:51:00.978Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
