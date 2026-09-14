@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-14T19:30:45.128Z",
+      "updated_at": "2026-09-14T19:30:52.102Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 33.759095555555554,
-          "live": 94.06359694444444
+          "hours": 33.75974175925926,
+          "live": 94.06553555555556
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 53.38284244444444,
-          "live": 215.43172222222222
+          "hours": 53.38361766666666,
+          "live": 215.4355983333333
         },
         "Alaa": {
           "open": 5,
@@ -250,8 +250,8 @@
           "review": 2,
           "overdue": 1,
           "done": 6,
-          "hours": 17.44845888888889,
-          "live": 1.032508611111111
+          "hours": 17.448735714285714,
+          "live": 1.0344463888888888
         },
         "Sara": {
           "open": 1,
@@ -266,12 +266,12 @@
         "Ganna": {
           "open": 8,
           "todo": 6,
-          "progress": 1,
-          "review": 1,
+          "progress": 0,
+          "review": 2,
           "overdue": 0,
           "done": 6,
-          "hours": 3.5680726190476193,
-          "live": 0.000006111111111111111
+          "hours": 4.162750370370371,
+          "live": 0
         },
         "Tasneem": {
           "open": 0,
@@ -1636,20 +1636,33 @@
           "title": "Ideas for blushed shooting day 16-9",
           "notes": "",
           "due": "2026-09-15",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-14",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-14T17:10:32.242Z",
-          "updated_at": "2026-09-14T19:30:45.098Z",
+          "updated_at": "2026-09-14T19:30:52.074Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-14T19:30:45.098Z",
-          "progress_started_at": "2026-09-14T19:30:45.098Z",
-          "time_log": [],
-          "start_on": "2026-09-14"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-14T19:30:45.098Z",
+              "ended_at": "2026-09-14T19:30:52.073Z",
+              "hours": 0.0019375,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-14",
+          "progress_hours": 0.0019375,
+          "review_at": "2026-09-14T19:30:52.073Z",
+          "first_review_at": "2026-09-14T19:30:52.073Z",
+          "delivered_on": "2026-09-14"
         }
       ]
     },
