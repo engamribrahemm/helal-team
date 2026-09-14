@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-14T16:28:25.810Z",
+      "updated_at": "2026-09-14T16:28:36.399Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 32.74619694444444,
-          "live": 91.0249011111111
+          "hours": 32.74717722222223,
+          "live": 91.02784222222222
         },
         "Seif": {
           "open": 7,
@@ -240,18 +240,18 @@
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 52.16736366666667,
-          "live": 209.35432833333334
+          "hours": 52.16854011111111,
+          "live": 209.36021055555557
         },
         "Alaa": {
           "open": 5,
           "todo": 3,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 1,
           "done": 6,
-          "hours": 18.32968815972222,
-          "live": 25.53080166666667
+          "hours": 17.301378015873016,
+          "live": 0.0029425
         },
         "Sara": {
           "open": 1,
@@ -270,8 +270,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 23.36042847222222,
-          "live": 161.90692555555555
+          "hours": 23.36116375,
+          "live": 161.91280777777777
         },
         "Tasneem": {
           "open": 0,
@@ -296,7 +296,7 @@
       },
       "time": {
         "avgTodo": 7263,
-        "avgProgress": 4878,
+        "avgProgress": 5547,
         "avgToDone": 2730,
         "open": 21
       },
@@ -1178,20 +1178,36 @@
           "title": "Internship Certificates",
           "notes": "Internship Certificates",
           "due": "2026-09-11",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-10",
           "month": "2026-09",
           "created_by": "Tasneem",
           "created_at": "2026-09-10T14:28:29.569Z",
-          "updated_at": "2026-09-13T14:56:34.927Z",
+          "updated_at": "2026-09-14T16:28:36.390Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-09-13T14:56:34.927Z",
-          "progress_started_at": "2026-09-13T14:56:34.927Z",
-          "time_log": [],
-          "start_on": "2026-09-13"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-13T14:56:34.927Z",
+              "ended_at": "2026-09-14T16:28:36.390Z",
+              "hours": 25.533739722222222,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-09-13",
+          "delay_reason": "Unclear brief",
+          "delay_notified": true,
+          "delay_days": 3,
+          "progress_hours": 25.533739722222222,
+          "review_at": "2026-09-14T16:28:36.390Z",
+          "first_review_at": "2026-09-14T16:28:36.390Z",
+          "delivered_on": "2026-09-14"
         },
         {
           "id": "t-20260911-judi-mtvnhqg0",
