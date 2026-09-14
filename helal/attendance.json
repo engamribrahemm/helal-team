@@ -180,15 +180,15 @@
             "2026-09-11": "Off",
             "2026-09-12": "Home",
             "2026-09-13": "Home",
-            "2026-09-14": "Office",
-            "2026-09-15": "Off",
+            "2026-09-14": "Home",
+            "2026-09-15": "Home",
             "2026-09-16": "Home",
             "2026-09-17": "Home"
           },
           "saved": true,
           "saved_at": "2026-09-11T16:24:16.834Z",
-          "updated_at": "2026-09-11T16:24:16.834Z",
-          "updated_by": "Judi"
+          "updated_at": "2026-09-14T17:13:10.064Z",
+          "updated_by": "Amr"
         },
         "Tasneem": {
           "days": {
@@ -299,10 +299,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-14T17:13:09.437Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mu1fbg3s",
@@ -312,10 +312,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-14T17:13:10.064Z",
+      "decided_by": "Amr"
     }
   ]
 }
