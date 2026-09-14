@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-14T18:02:00.878Z",
+      "updated_at": "2026-09-14T18:04:46.638Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 33.26611055555556,
-          "live": 92.58464194444444
+          "hours": 33.28145888888889,
+          "live": 92.63068694444445
         },
         "Seif": {
           "open": 7,
@@ -240,18 +240,18 @@
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 52.7912601111111,
-          "live": 212.47381055555553
+          "hours": 52.809678,
+          "live": 212.5659
         },
         "Alaa": {
           "open": 5,
-          "todo": 3,
-          "progress": 0,
+          "todo": 2,
+          "progress": 1,
           "review": 2,
           "overdue": 1,
           "done": 6,
-          "hours": 20.184450601851854,
-          "live": 0
+          "hours": 17.301022817460318,
+          "live": 0.0004561111111111111
         },
         "Sara": {
           "open": 1,
@@ -270,8 +270,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 23.750363680555555,
-          "live": 165.02640722222222
+          "hours": 23.76187486111111,
+          "live": 165.11849666666666
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 7349,
-        "avgProgress": 5641,
+        "avgTodo": 7807,
+        "avgProgress": 5644,
         "avgToDone": 2730,
         "open": 21
       },
@@ -1527,18 +1527,18 @@
           "title": "17 - 9 carousel",
           "notes": "",
           "due": "2026-09-15",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:28:35.865Z",
-          "updated_at": "2026-09-08T21:53:02.071Z",
+          "updated_at": "2026-09-14T18:04:46.626Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-09-08T21:53:00.440Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-09-14T18:04:46.626Z",
           "time_log": [
             {
               "from": "In progress",
