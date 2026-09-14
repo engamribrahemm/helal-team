@@ -1140,6 +1140,10 @@ function reportTyping() {
   return state.view === "report" && !!state.session && !reportFor(state.who, today());
 }
 
+function reportFormOpen() {
+  return reportTyping() && !!document.getElementById("report-form");
+}
+
 function emptyReportDraft() {
   return { who: state.who, day: today(), finished: "", unfinished: "", drive: "", need_review: false, place: "" };
 }
@@ -1769,7 +1773,7 @@ let pullBusy = false;
 let pullTick = 0;
 
 async function pullRemoteBoard() {
-  if (!state.session || state.saveState === "saving" || pullBusy) return;
+  if (!state.session || state.saveState === "saving" || pullBusy || reportFormOpen()) return;
   pullBusy = true;
   pullTick += 1;
   try {
@@ -1816,7 +1820,7 @@ async function pullRemoteBoard() {
     }
     cacheBoard();
     if (
-      !reportTyping()
+      !reportFormOpen()
       && (
         tasksSignature(state.tasksFile) !== before
         || attendSignature(state.attendFile) !== attendBefore
@@ -3670,53 +3674,53 @@ function viewReport() {
       place: remote.checked ? "Remote" : office.checked ? "Office" : "",
     });
   };
-  finished.addEventListener("input", keep);
-  unfinished.addEventListener("input", keep);
-  drive.addEventListener("input", keep);
-  need.addEventListener("change", keep);
-  remote.addEventListener("change", keep);
-  office.addEventListener("change", keep);
+  const form = $("form", {
+    class: "form",
+    id: "report-form",
+    style: "margin-top:16px",
+    onsubmit: (e) => {
+      e.preventDefault();
+      keep();
+      if (reportFor(state.who, today())) {
+        clearReportDraft();
+        render(true);
+        return;
+      }
+      const place = remote.checked ? "Remote" : office.checked ? "Office" : "";
+      submitReport({
+        date: today(),
+        finished: finished.value.trim(),
+        unfinished: unfinished.value.trim(),
+        drive: drive.value.trim(),
+        need_review: need.checked,
+        place,
+      });
+    },
+  }, [
+    $("label", {}, [
+      "Were you remote or in the office today?",
+      $("div", { class: "place-picks" }, [
+        $("label", { class: "place-pick" }, [remote, "Remote"]),
+        $("label", { class: "place-pick" }, [office, "Office"]),
+      ]),
+    ]),
+    $("label", {}, ["What did you finish today?", finished]),
+    $("label", {}, ["What is unfinished or blocking you?", unfinished]),
+    $("label", {}, ["Drive links", drive]),
+    $("label", { style: "grid-template-columns: auto 1fr; align-items: center; letter-spacing: 0" }, [
+      need,
+      "I need review",
+    ]),
+    $("button", { class: "btn primary", type: "submit" }, "Submit report"),
+  ]);
+  form.addEventListener("input", keep);
+  form.addEventListener("change", keep);
+  form.addEventListener("keyup", keep);
+  form.addEventListener("compositionend", keep);
   return $("section", { class: "card", style: "max-width:640px" }, [
     $("h2", {}, "Daily report"),
-    $("p", { class: "muted" }, `Cairo date ${day}. One report per person per day. After midnight Cairo time you can submit again.`),
-    $("form", {
-      class: "form",
-      style: "margin-top:16px",
-      onsubmit: (e) => {
-        e.preventDefault();
-        keep();
-        if (reportFor(state.who, today())) {
-          clearReportDraft();
-          render();
-          return;
-        }
-        const place = remote.checked ? "Remote" : office.checked ? "Office" : "";
-        submitReport({
-          date: today(),
-          finished: finished.value.trim(),
-          unfinished: unfinished.value.trim(),
-          drive: drive.value.trim(),
-          need_review: need.checked,
-          place,
-        });
-      },
-    }, [
-      $("label", {}, [
-        "Were you remote or in the office today?",
-        $("div", { class: "place-picks" }, [
-          $("label", { class: "place-pick" }, [remote, "Remote"]),
-          $("label", { class: "place-pick" }, [office, "Office"]),
-        ]),
-      ]),
-      $("label", {}, ["What did you finish today?", finished]),
-      $("label", {}, ["What is unfinished or blocking you?", unfinished]),
-      $("label", {}, ["Drive links", drive]),
-      $("label", { style: "grid-template-columns: auto 1fr; align-items: center; letter-spacing: 0" }, [
-        need,
-        "I need review",
-      ]),
-      $("button", { class: "btn primary", type: "submit" }, "Submit report"),
-    ]),
+    $("p", { class: "muted" }, `Cairo date ${day}. Take your time. This page will not refresh until you submit.`),
+    form,
   ]);
 }
 
@@ -4252,7 +4256,7 @@ function viewGuide() {
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
-    ["Evening report", "Open Report, choose Remote or Office, and answer each question. What you type is kept until you submit, even if the board refreshes. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
+    ["Evening report", "Open Report, choose Remote or Office, and answer each question. The Report page stays still until you submit, so the text cannot disappear while typing. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
     ["HR", "Amr and Tasneem open HR. Profile, performance, task tracking, attitude, and warnings are scored each month separately. Switching months does not mix in the current month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
@@ -4318,7 +4322,19 @@ function navItems() {
   return items;
 }
 
-function render() {
+function render(force) {
+  if (
+    !force
+    && reportFormOpen()
+    && !state.creating
+    && !state.openTaskId
+    && !state.pendingDelay
+    && !state.pendingRevision
+    && !state.evalTaskId
+    && !state.attendChange
+  ) {
+    return;
+  }
   const root = document.getElementById("app");
   root.replaceChildren();
   if (!state.team) {
@@ -4418,6 +4434,10 @@ function pullInterval() {
 
 function watchCairoDay() {
   const tick = () => {
+    if (reportFormOpen()) {
+      setTimeout(tick, pullInterval());
+      return;
+    }
     const now = today();
     const rolled = !!(lastCairoDay && now !== lastCairoDay);
     if (now !== lastCairoDay) lastCairoDay = now;
@@ -4426,9 +4446,8 @@ function watchCairoDay() {
       if (
         rolled
         || (
-          ["board", "review", "time", "my", "load", "report"].includes(state.view)
+          ["board", "review", "time", "my", "load"].includes(state.view)
           && !state.creating
-          && !reportTyping()
           && !state.openTaskId
           && !state.pendingDelay
           && !state.pendingRevision
