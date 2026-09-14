@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-14T19:30:26.741Z",
+      "updated_at": "2026-09-14T19:30:30.791Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 33.75739333333333,
-          "live": 94.05849027777778
+          "hours": 33.75776833333334,
+          "live": 94.05961555555555
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 53.38079966666667,
-          "live": 215.42150833333335
+          "hours": 53.38124972222223,
+          "live": 215.42375888888887
         },
         "Alaa": {
           "open": 5,
@@ -250,8 +250,8 @@
           "review": 2,
           "overdue": 1,
           "done": 6,
-          "hours": 17.447729325396825,
-          "live": 1.0274016666666665
+          "hours": 17.44789007936508,
+          "live": 1.0285269444444445
         },
         "Sara": {
           "open": 1,
@@ -265,13 +265,13 @@
         },
         "Ganna": {
           "open": 8,
-          "todo": 6,
-          "progress": 1,
+          "todo": 7,
+          "progress": 0,
           "review": 1,
           "overdue": 0,
           "done": 6,
-          "hours": 4.313919642857143,
-          "live": 5.2209352777777776
+          "hours": 4.162750370370371,
+          "live": 0
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 7297,
-        "avgProgress": 3789,
+        "avgTodo": 7495,
+        "avgProgress": 4658,
         "avgToDone": 2730,
         "open": 22
       },
@@ -1690,20 +1690,30 @@
           "title": "19 - 9 bts video",
           "notes": "",
           "due": "2026-09-17",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:29:20.361Z",
-          "updated_at": "2026-09-14T14:17:11.370Z",
+          "updated_at": "2026-09-14T19:30:30.760Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-14T14:17:11.369Z",
-          "progress_started_at": "2026-09-14T14:17:11.369Z",
-          "time_log": [],
-          "start_on": "2026-09-14"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-09-14T14:17:11.369Z",
+              "ended_at": "2026-09-14T19:30:30.760Z",
+              "hours": 5.2220530555555555,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-14",
+          "progress_hours": 5.2220530555555555
         },
         {
           "id": "t-20260917-seif-mu173hvn",
