@@ -286,8 +286,21 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-10T12:42:08.760Z",
+      "decided_at": "2026-09-10T14:28:06.584Z",
+      "decided_by": "Amr"
+    },
+    {
+      "id": "ar-mu1fb5ew",
+      "who": "Judi",
+      "friday": "2026-09-11",
+      "date": "2026-09-14",
+      "from": "Office",
+      "to": "Home",
+      "reason": "",
+      "status": "Pending",
+      "created_at": "2026-09-14T15:54:20.840Z",
       "decided_at": "",
       "decided_by": ""
     }
