@@ -198,7 +198,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-14T10:49:24.999Z",
+      "updated_at": "2026-09-14T10:49:45.725Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -227,18 +227,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 30.86278740740741,
-          "live": 85.3746725
+          "hours": 30.86470601851852,
+          "live": 85.38042833333333
         },
         "Seif": {
-          "open": 5,
+          "open": 4,
           "todo": 2,
           "progress": 2,
-          "review": 1,
-          "overdue": 2,
-          "done": 4,
-          "hours": 56.55071993055556,
-          "live": 198.0538722222222
+          "review": 0,
+          "overdue": 1,
+          "done": 5,
+          "hours": 49.90957488888888,
+          "live": 198.06538444444442
         },
         "Alaa": {
           "open": 4,
@@ -247,8 +247,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 20.14103944444444,
-          "live": 19.8805725
+          "hours": 20.141861746031744,
+          "live": 19.88632861111111
         },
         "Sara": {
           "open": 1,
@@ -257,8 +257,8 @@
           "review": 0,
           "overdue": 1,
           "done": 1,
-          "hours": 11.828272638888889,
-          "live": 22.076297222222223
+          "hours": 11.831150833333332,
+          "live": 22.08205361111111
         },
         "Ganna": {
           "open": 7,
@@ -267,8 +267,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 25.577979444444445,
-          "live": 154.06935388888888
+          "hours": 25.578801825396827,
+          "live": 154.07511055555557
         },
         "Tasneem": {
           "open": 0,
@@ -294,8 +294,8 @@
       "time": {
         "avgTodo": 9130,
         "avgProgress": 4795,
-        "avgToDone": 2733,
-        "open": 18
+        "avgToDone": 2730,
+        "open": 17
       },
       "hr": {
         "people": {
@@ -1387,15 +1387,15 @@
           "title": "2 designs ( carousel / single visual ) no 12 & 13",
           "notes": "",
           "due": "2026-09-13",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1DajVWQGmGc81vtm_so9wAVoMDvzDnMeP",
           "drive_missing": false,
           "assigned_at": "2026-09-12",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-12T14:41:32.371Z",
-          "updated_at": "2026-09-13T15:50:50.070Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-09-14T10:49:45.646Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-12T16:30:49.533Z",
           "progress_started_at": "",
@@ -1413,7 +1413,11 @@
           "progress_hours": 23.3334825,
           "review_at": "2026-09-13T15:50:50.070Z",
           "first_review_at": "2026-09-13T15:50:50.070Z",
-          "delivered_on": "2026-09-13"
+          "delivered_on": "2026-09-13",
+          "done_at": "2026-09-14T10:49:45.645Z",
+          "done_on": "2026-09-14",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         }
       ]
     },
