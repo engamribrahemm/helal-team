@@ -143,6 +143,26 @@
       "by": "Amr",
       "created_at": "2026-09-15T15:55:49.869Z",
       "updated_at": "2026-09-15T15:55:49.869Z"
+    },
+    {
+      "id": "ev-t-20260909-ganna-mtshx52s",
+      "task_id": "t-20260909-ganna-mtshx52s",
+      "who": "Ganna",
+      "role": "video",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 5,
+      "quality": {
+        "overall": 4
+      },
+      "quality_avg": 4,
+      "revision_rating": 5,
+      "revision_count": 0,
+      "creativity": 5,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-09-15T15:56:18.473Z",
+      "updated_at": "2026-09-15T15:56:18.473Z"
     }
   ],
   "attitude": [],
@@ -275,13 +295,13 @@
           "reviews": 0
         },
         "Ganna": {
-          "delivery": 4,
-          "quality": 5,
-          "revisions": 4,
+          "delivery": 4.5,
+          "quality": 4.5,
+          "revisions": 4.5,
           "creativity": 5,
-          "total": 4.5,
+          "total": 4.575,
           "attitude": 0,
-          "reviews": 1
+          "reviews": 2
         },
         "Tasneem": {
           "delivery": 5,
@@ -302,7 +322,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-09-15T15:55:49.876Z",
+      "updated_at": "2026-09-15T15:56:18.482Z",
       "frozen": false
     }
   }
