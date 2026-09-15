@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-15T13:24:41.207Z",
+      "updated_at": "2026-09-15T14:38:45.059Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 39.72540037037037,
-          "live": 111.96251138888888
+          "hours": 40.136868148148146,
+          "live": 113.19691472222222
         },
         "Seif": {
           "open": 7,
@@ -240,18 +240,18 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 60.54240777777778,
-          "live": 251.22954888888887
+          "hours": 61.03616911111111,
+          "live": 253.69835555555557
         },
         "Alaa": {
           "open": 5,
           "todo": 2,
-          "progress": 1,
-          "review": 2,
+          "progress": 0,
+          "review": 3,
           "overdue": 1,
           "done": 6,
-          "hours": 17.30096238095238,
-          "live": 0.000033055555555555553
+          "hours": 20.184450601851854,
+          "live": 0
         },
         "Sara": {
           "open": 1,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 8316,
-        "avgProgress": 7264,
+        "avgTodo": 8379,
+        "avgProgress": 7338,
         "avgToDone": 2662,
         "open": 21
       },
@@ -1850,20 +1850,33 @@
           "title": "22 - 9 single visual",
           "notes": "",
           "due": "2026-09-20",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:31:48.512Z",
-          "updated_at": "2026-09-15T13:24:41.087Z",
+          "updated_at": "2026-09-15T14:38:45.054Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-09-15T13:24:41.086Z",
-          "progress_started_at": "2026-09-15T13:24:41.086Z",
-          "time_log": [],
-          "start_on": "2026-09-15"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-15T13:24:41.086Z",
+              "ended_at": "2026-09-15T14:38:45.054Z",
+              "hours": 1.2344355555555555,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-09-15",
+          "progress_hours": 1.2344355555555555,
+          "review_at": "2026-09-15T14:38:45.054Z",
+          "first_review_at": "2026-09-15T14:38:45.054Z",
+          "delivered_on": "2026-09-15"
         }
       ]
     },
