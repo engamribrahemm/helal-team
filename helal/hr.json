@@ -123,6 +123,26 @@
       "by": "Amr",
       "created_at": "2026-09-15T15:55:32.725Z",
       "updated_at": "2026-09-15T15:55:32.725Z"
+    },
+    {
+      "id": "ev-t-20260909-mariam-mtskm4bl",
+      "task_id": "t-20260909-mariam-mtskm4bl",
+      "who": "Mariam",
+      "role": "social",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 3,
+      "quality": {
+        "overall": 5
+      },
+      "quality_avg": 5,
+      "revision_rating": 4,
+      "revision_count": 0,
+      "creativity": 5,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-09-15T15:55:49.869Z",
+      "updated_at": "2026-09-15T15:55:49.869Z"
     }
   ],
   "attitude": [],
@@ -210,13 +230,13 @@
     "2026-09": {
       "people": {
         "Mariam": {
-          "delivery": 5,
-          "quality": 4,
-          "revisions": 5,
-          "creativity": 4,
-          "total": 4.5,
+          "delivery": 4,
+          "quality": 4.5,
+          "revisions": 4.5,
+          "creativity": 4.5,
+          "total": 4.325,
           "attitude": 0,
-          "reviews": 1
+          "reviews": 2
         },
         "Judi": {
           "delivery": 5,
@@ -255,13 +275,13 @@
           "reviews": 0
         },
         "Ganna": {
-          "delivery": 5,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
-          "total": 5,
+          "delivery": 4,
+          "quality": 5,
+          "revisions": 4,
+          "creativity": 5,
+          "total": 4.5,
           "attitude": 0,
-          "reviews": 0
+          "reviews": 1
         },
         "Tasneem": {
           "delivery": 5,
@@ -282,7 +302,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-09-15T15:55:32.736Z",
+      "updated_at": "2026-09-15T15:55:49.876Z",
       "frozen": false
     }
   }
