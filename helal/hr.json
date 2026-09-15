@@ -103,6 +103,26 @@
       "by": "Amr",
       "created_at": "2026-09-15T15:55:15.829Z",
       "updated_at": "2026-09-15T15:55:15.829Z"
+    },
+    {
+      "id": "ev-t-20260911-judi-mtvnhqg0",
+      "task_id": "t-20260911-judi-mtvnhqg0",
+      "who": "Judi",
+      "role": "social",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 5,
+      "quality": {
+        "overall": 5
+      },
+      "quality_avg": 5,
+      "revision_rating": 5,
+      "revision_count": 0,
+      "creativity": 5,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-09-15T15:55:32.725Z",
+      "updated_at": "2026-09-15T15:55:32.725Z"
     }
   ],
   "attitude": [],
@@ -200,12 +220,12 @@
         },
         "Judi": {
           "delivery": 5,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
+          "quality": 5,
+          "revisions": 5,
+          "creativity": 5,
           "total": 5,
           "attitude": 0,
-          "reviews": 0
+          "reviews": 1
         },
         "Seif": {
           "delivery": 5,
@@ -235,13 +255,13 @@
           "reviews": 0
         },
         "Ganna": {
-          "delivery": 4,
-          "quality": 5,
-          "revisions": 4,
-          "creativity": 5,
-          "total": 4.5,
+          "delivery": 5,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 5,
           "attitude": 0,
-          "reviews": 1
+          "reviews": 0
         },
         "Tasneem": {
           "delivery": 5,
@@ -262,7 +282,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-09-15T15:55:15.841Z",
+      "updated_at": "2026-09-15T15:55:32.736Z",
       "frozen": false
     }
   }
