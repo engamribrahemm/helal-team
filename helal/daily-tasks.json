@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-15T14:38:45.059Z",
+      "updated_at": "2026-09-16T13:09:26.968Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,28 +230,28 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 40.136868148148146,
-          "live": 113.19691472222222
+          "hours": 47.640748611111114,
+          "live": 135.7085561111111
         },
         "Seif": {
           "open": 7,
           "todo": 5,
           "progress": 2,
           "review": 0,
-          "overdue": 2,
+          "overdue": 3,
           "done": 5,
-          "hours": 61.03616911111111,
-          "live": 253.69835555555557
+          "hours": 70.04082577777777,
+          "live": 298.7216388888889
         },
         "Alaa": {
           "open": 5,
-          "todo": 2,
-          "progress": 0,
+          "todo": 1,
+          "progress": 1,
           "review": 3,
-          "overdue": 1,
+          "overdue": 3,
           "done": 6,
-          "hours": 20.184450601851854,
-          "live": 0
+          "hours": 20.005334206349207,
+          "live": 18.930635833333337
         },
         "Sara": {
           "open": 1,
@@ -295,30 +295,30 @@
         }
       },
       "time": {
-        "avgTodo": 8379,
-        "avgProgress": 7338,
+        "avgTodo": 10158,
+        "avgProgress": 6801,
         "avgToDone": 2662,
         "open": 21
       },
       "hr": {
         "people": {
           "Mariam": {
-            "delivery": 5,
-            "quality": 4,
-            "revisions": 5,
-            "creativity": 4,
-            "total": 4.5,
+            "delivery": 4,
+            "quality": 4.5,
+            "revisions": 4.5,
+            "creativity": 4.5,
+            "total": 4.325,
             "attitude": 0,
-            "reviews": 1
+            "reviews": 2
           },
           "Judi": {
             "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
+            "quality": 5,
+            "revisions": 5,
+            "creativity": 5,
             "total": 5,
             "attitude": 0,
-            "reviews": 0
+            "reviews": 1
           },
           "Seif": {
             "delivery": 5,
@@ -348,13 +348,13 @@
             "reviews": 0
           },
           "Ganna": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
+            "delivery": 4.5,
+            "quality": 4.5,
+            "revisions": 4.5,
+            "creativity": 5,
+            "total": 4.575,
             "attitude": 0,
-            "reviews": 0
+            "reviews": 2
           },
           "Tasneem": {
             "delivery": 5,
@@ -1538,18 +1538,18 @@
           "title": "17 - 9 carousel",
           "notes": "",
           "due": "2026-09-15",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:28:35.865Z",
-          "updated_at": "2026-09-15T13:24:38.373Z",
+          "updated_at": "2026-09-16T13:09:26.963Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-09-08T21:53:00.440Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-09-16T13:09:26.963Z",
           "time_log": [
             {
               "from": "In progress",
