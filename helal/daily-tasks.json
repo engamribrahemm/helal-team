@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-16T15:24:49.086Z",
+      "updated_at": "2026-09-16T15:26:51.841Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 48.392794351851855,
-          "live": 137.96469333333334
+          "hours": 48.40416092592593,
+          "live": 137.99879305555555
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 3,
           "done": 5,
-          "hours": 70.94328111111112,
-          "live": 303.23391555555554
+          "hours": 70.95692077777777,
+          "live": 303.30211388888887
         },
         "Alaa": {
           "open": 5,
@@ -250,12 +250,12 @@
           "review": 3,
           "overdue": 3,
           "done": 6,
-          "hours": 20.32763976190476,
-          "live": 21.186774722222225
+          "hours": 20.332511071428574,
+          "live": 21.220873888888892
         },
         "Sara": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -295,10 +295,10 @@
         }
       },
       "time": {
-        "avgTodo": 4482,
-        "avgProgress": 6936,
+        "avgTodo": 4484,
+        "avgProgress": 6938,
         "avgToDone": 2903,
-        "open": 36
+        "open": 37
       },
       "hr": {
         "people": {
@@ -1829,6 +1829,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:18:21.320Z",
           "updated_at": "2026-09-16T13:18:21.320Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260918-sara-mu497ic6",
+          "who": "Sara",
+          "space": "Graphic",
+          "project": "MAS",
+          "title": "19 Designs for MAS (NEW COLLACTION)",
+          "notes": "",
+          "due": "2026-09-18",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
+          "drive_missing": false,
+          "assigned_at": "2026-09-16",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-16T15:26:51.799Z",
+          "updated_at": "2026-09-16T15:26:51.799Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
