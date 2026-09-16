@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-16T13:23:14.150Z",
+      "updated_at": "2026-09-16T15:24:49.086Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 47.717337500000006,
-          "live": 135.93832277777778
+          "hours": 48.392794351851855,
+          "live": 137.96469333333334
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 3,
           "done": 5,
-          "hours": 70.13273266666667,
-          "live": 299.18117333333333
+          "hours": 70.94328111111112,
+          "live": 303.23391555555554
         },
         "Alaa": {
           "open": 5,
@@ -250,17 +250,17 @@
           "review": 3,
           "overdue": 3,
           "done": 6,
-          "hours": 20.038158174603176,
-          "live": 19.160403611111114
+          "hours": 20.32763976190476,
+          "live": 21.186774722222225
         },
         "Sara": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
           "progress": 0,
-          "review": 1,
-          "overdue": 1,
-          "done": 1,
-          "hours": 1.5802480555555556,
+          "review": 0,
+          "overdue": 0,
+          "done": 2,
+          "hours": 12.308827638888888,
           "live": 0
         },
         "Ganna": {
@@ -295,10 +295,10 @@
         }
       },
       "time": {
-        "avgTodo": 4700,
-        "avgProgress": 6814,
-        "avgToDone": 2662,
-        "open": 37
+        "avgTodo": 4482,
+        "avgProgress": 6936,
+        "avgToDone": 2903,
+        "open": 36
       },
       "hr": {
         "people": {
@@ -1085,15 +1085,15 @@
           "title": "6 Designs for MAS (NEW COLLACTION)",
           "notes": "",
           "due": "2026-09-10",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-10",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-10T14:29:37.236Z",
-          "updated_at": "2026-09-14T11:47:04.985Z",
-          "updated_by": "Sara",
+          "updated_at": "2026-09-16T15:24:49.044Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-13T12:44:50.319Z",
           "progress_started_at": "",
@@ -1114,7 +1114,11 @@
           "delay_reason": "Other",
           "delay_notified": false,
           "delay_days": 4,
-          "progress_hours": 23.03740722222222
+          "progress_hours": 23.03740722222222,
+          "done_at": "2026-09-16T15:24:49.044Z",
+          "done_on": "2026-09-16",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         }
       ]
     },
