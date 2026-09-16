@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-16T13:21:55.230Z",
+      "updated_at": "2026-09-16T13:22:47.029Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 47.71003037037037,
-          "live": 135.9164013888889
+          "hours": 47.714826388888895,
+          "live": 135.93078944444446
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 3,
           "done": 5,
-          "hours": 70.12396411111112,
-          "live": 299.13733055555554
+          "hours": 70.12971933333333,
+          "live": 299.1661066666667
         },
         "Alaa": {
           "open": 5,
@@ -250,8 +250,8 @@
           "review": 3,
           "overdue": 3,
           "done": 6,
-          "hours": 20.03502654761905,
-          "live": 19.138482222222226
+          "hours": 20.037082023809525,
+          "live": 19.15287055555556
         },
         "Sara": {
           "open": 1,
@@ -264,8 +264,8 @@
           "live": 0
         },
         "Ganna": {
-          "open": 21,
-          "todo": 20,
+          "open": 22,
+          "todo": 21,
           "progress": 0,
           "review": 1,
           "overdue": 1,
@@ -295,10 +295,10 @@
         }
       },
       "time": {
-        "avgTodo": 5091,
-        "avgProgress": 6813,
+        "avgTodo": 4888,
+        "avgProgress": 6814,
         "avgToDone": 2662,
-        "open": 35
+        "open": 36
       },
       "hr": {
         "people": {
@@ -2314,6 +2314,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:06:23.541Z",
           "updated_at": "2026-09-16T13:06:23.542Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260927-ganna-mu44rxvj",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Blushed",
+          "title": "Reel 7 Delivery",
+          "notes": "",
+          "due": "2026-09-27",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
+          "drive_missing": false,
+          "assigned_at": "2026-09-16",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-16T13:22:46.976Z",
+          "updated_at": "2026-09-16T13:22:46.976Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
