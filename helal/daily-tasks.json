@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-16T15:26:51.841Z",
+      "updated_at": "2026-09-16T20:04:31.547Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 48.40416092592593,
-          "live": 137.99879305555555
+          "hours": 49.946727407407415,
+          "live": 142.6264925
         },
         "Seif": {
           "open": 7,
@@ -240,18 +240,18 @@
           "review": 0,
           "overdue": 3,
           "done": 5,
-          "hours": 70.95692077777777,
-          "live": 303.30211388888887
+          "hours": 72.80800044444445,
+          "live": 312.5575122222222
         },
         "Alaa": {
-          "open": 5,
+          "open": 4,
           "todo": 1,
           "progress": 1,
-          "review": 3,
-          "overdue": 3,
-          "done": 6,
-          "hours": 20.332511071428574,
-          "live": 21.220873888888892
+          "review": 2,
+          "overdue": 2,
+          "done": 7,
+          "hours": 18.564376805555558,
+          "live": 25.84857305555556
         },
         "Sara": {
           "open": 1,
@@ -295,30 +295,30 @@
         }
       },
       "time": {
-        "avgTodo": 4484,
-        "avgProgress": 6938,
-        "avgToDone": 2903,
-        "open": 37
+        "avgTodo": 4597,
+        "avgProgress": 7216,
+        "avgToDone": 2921,
+        "open": 36
       },
       "hr": {
         "people": {
           "Mariam": {
-            "delivery": 5,
-            "quality": 4,
-            "revisions": 5,
-            "creativity": 4,
-            "total": 4.5,
+            "delivery": 4,
+            "quality": 4.5,
+            "revisions": 4.5,
+            "creativity": 4.5,
+            "total": 4.325,
             "attitude": 0,
-            "reviews": 1
+            "reviews": 2
           },
           "Judi": {
             "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
+            "quality": 5,
+            "revisions": 5,
+            "creativity": 5,
             "total": 5,
             "attitude": 0,
-            "reviews": 0
+            "reviews": 1
           },
           "Seif": {
             "delivery": 5,
@@ -348,13 +348,13 @@
             "reviews": 0
           },
           "Ganna": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
+            "delivery": 4.5,
+            "quality": 4.5,
+            "revisions": 4.5,
+            "creativity": 5,
+            "total": 4.575,
             "attitude": 0,
-            "reviews": 0
+            "reviews": 2
           },
           "Tasneem": {
             "delivery": 5,
@@ -1612,15 +1612,15 @@
           "title": "3 carousel for medc",
           "notes": "",
           "due": "2026-09-15",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-14",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-14T12:05:35.015Z",
-          "updated_at": "2026-09-14T18:02:00.859Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-09-16T20:04:31.502Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-14T16:28:25.803Z",
           "progress_started_at": "",
@@ -1638,7 +1638,11 @@
           "progress_hours": 1.5597377777777777,
           "review_at": "2026-09-14T18:02:00.859Z",
           "first_review_at": "2026-09-14T18:02:00.859Z",
-          "delivered_on": "2026-09-14"
+          "delivered_on": "2026-09-14",
+          "done_at": "2026-09-16T20:04:31.501Z",
+          "done_on": "2026-09-16",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260915-ganna-mu1i14q9",
