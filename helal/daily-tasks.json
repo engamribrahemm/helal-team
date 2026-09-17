@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T12:41:27.142Z",
+      "updated_at": "2026-09-17T12:41:36.433Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 55.4852075,
-          "live": 159.24193277777778
+          "hours": 55.486068611111115,
+          "live": 159.24451611111112
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 4,
           "done": 5,
-          "hours": 79.4541768888889,
-          "live": 345.78839444444446
+          "hours": 79.45520983333333,
+          "live": 345.79355944444444
         },
         "Alaa": {
           "open": 4,
@@ -250,8 +250,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 20.641306979166668,
-          "live": 42.464014444444445
+          "hours": 20.641629722222223,
+          "live": 42.46659638888889
         },
         "Sara": {
           "open": 1,
@@ -260,18 +260,18 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 8.513777407407407,
-          "live": 0.9236769444444445
+          "hours": 8.514638055555555,
+          "live": 0.9262588888888889
         },
         "Ganna": {
           "open": 23,
           "todo": 19,
-          "progress": 2,
-          "review": 2,
+          "progress": 1,
+          "review": 3,
           "overdue": 1,
           "done": 7,
-          "hours": 2.775946697530864,
-          "live": 0.005081111111111111
+          "hours": 3.122840069444444,
+          "live": 0.0042808333333333335
         },
         "Tasneem": {
           "open": 0,
@@ -2007,20 +2007,33 @@
           "title": "Reel 2 Submission",
           "notes": "",
           "due": "2026-09-20",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:02:26.324Z",
-          "updated_at": "2026-09-17T12:41:14.965Z",
+          "updated_at": "2026-09-17T12:41:36.382Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-17T12:41:14.964Z",
-          "progress_started_at": "2026-09-17T12:41:14.964Z",
-          "time_log": [],
-          "start_on": "2026-09-17"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-17T12:41:14.964Z",
+              "ended_at": "2026-09-17T12:41:36.381Z",
+              "hours": 0.005949166666666667,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-17",
+          "progress_hours": 0.005949166666666667,
+          "review_at": "2026-09-17T12:41:36.381Z",
+          "first_review_at": "2026-09-17T12:41:36.381Z",
+          "delivered_on": "2026-09-17"
         }
       ]
     },
