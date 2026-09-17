@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T15:13:45.340Z",
+      "updated_at": "2026-09-17T15:16:59.193Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 56.331336759259266,
-          "live": 161.78032083333332
+          "hours": 56.34928611111112,
+          "live": 161.83416861111112
         },
         "Seif": {
           "open": 7,
@@ -240,18 +240,18 @@
           "review": 0,
           "overdue": 4,
           "done": 5,
-          "hours": 80.4695318888889,
-          "live": 350.86516944444446
+          "hours": 80.491071,
+          "live": 350.972865
         },
         "Alaa": {
-          "open": 3,
+          "open": 2,
           "todo": 1,
           "progress": 1,
-          "review": 1,
-          "overdue": 2,
-          "done": 8,
-          "hours": 18.767030956790123,
-          "live": 45.00240166666667
+          "review": 0,
+          "overdue": 1,
+          "done": 9,
+          "hours": 19.449086611111113,
+          "live": 45.05624944444445
         },
         "Sara": {
           "open": 2,
@@ -260,8 +260,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 9.359906574074072,
-          "live": 3.4620644444444446
+          "hours": 9.377855833333333,
+          "live": 3.515912222222222
         },
         "Ganna": {
           "open": 22,
@@ -295,10 +295,10 @@
         }
       },
       "time": {
-        "avgTodo": 6363,
-        "avgProgress": 6733,
-        "avgToDone": 3774,
-        "open": 35
+        "avgTodo": 6122,
+        "avgProgress": 6737,
+        "avgToDone": 3993,
+        "open": 34
       },
       "hr": {
         "people": {
@@ -1182,15 +1182,15 @@
           "title": "Internship Certificates",
           "notes": "Internship Certificates",
           "due": "2026-09-11",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-10",
           "month": "2026-09",
           "created_by": "Tasneem",
           "created_at": "2026-09-10T14:28:29.569Z",
-          "updated_at": "2026-09-14T16:28:36.390Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-09-17T15:16:59.155Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-13T14:56:34.927Z",
           "progress_started_at": "",
@@ -1211,7 +1211,11 @@
           "progress_hours": 25.533739722222222,
           "review_at": "2026-09-14T16:28:36.390Z",
           "first_review_at": "2026-09-14T16:28:36.390Z",
-          "delivered_on": "2026-09-14"
+          "delivered_on": "2026-09-14",
+          "done_at": "2026-09-17T15:16:59.155Z",
+          "done_on": "2026-09-17",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260911-judi-mtvnhqg0",
