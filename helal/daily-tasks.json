@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T12:41:36.433Z",
+      "updated_at": "2026-09-17T12:41:41.809Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 55.486068611111115,
-          "live": 159.24451611111112
+          "hours": 55.48656638888889,
+          "live": 159.24600944444444
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 4,
           "done": 5,
-          "hours": 79.45520983333333,
-          "live": 345.79355944444444
+          "hours": 79.45580722222222,
+          "live": 345.7965461111111
         },
         "Alaa": {
           "open": 4,
@@ -250,8 +250,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 20.641629722222223,
-          "live": 42.46659638888889
+          "hours": 20.64181638888889,
+          "live": 42.468089722222224
         },
         "Sara": {
           "open": 1,
@@ -260,18 +260,18 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 8.514638055555555,
-          "live": 0.9262588888888889
+          "hours": 8.515135833333332,
+          "live": 0.9277522222222222
         },
         "Ganna": {
           "open": 23,
           "todo": 19,
-          "progress": 1,
-          "review": 3,
+          "progress": 0,
+          "review": 4,
           "overdue": 1,
           "done": 7,
-          "hours": 3.122840069444444,
-          "live": 0.0042808333333333335
+          "hours": 3.5683485317460315,
+          "live": 0
         },
         "Tasneem": {
           "open": 0,
@@ -2118,20 +2118,33 @@
           "title": "Reel 3 Submission",
           "notes": "",
           "due": "2026-09-22",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:03:17.659Z",
-          "updated_at": "2026-09-17T12:41:21.020Z",
+          "updated_at": "2026-09-17T12:41:41.784Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-17T12:41:21.018Z",
-          "progress_started_at": "2026-09-17T12:41:21.018Z",
-          "time_log": [],
-          "start_on": "2026-09-17"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-17T12:41:21.018Z",
+              "ended_at": "2026-09-17T12:41:41.783Z",
+              "hours": 0.005768055555555556,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-17",
+          "progress_hours": 0.005768055555555556,
+          "review_at": "2026-09-17T12:41:41.783Z",
+          "first_review_at": "2026-09-17T12:41:41.783Z",
+          "delivered_on": "2026-09-17"
         },
         {
           "id": "t-20260922-ganna-mu44pb9j",
