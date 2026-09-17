@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-16T20:04:37.539Z",
+      "updated_at": "2026-09-17T10:38:42.873Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,18 +230,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 49.94728194444445,
-          "live": 142.6281561111111
+          "hours": 54.80333212962963,
+          "live": 157.19630666666666
         },
         "Seif": {
           "open": 7,
           "todo": 5,
           "progress": 2,
           "review": 0,
-          "overdue": 3,
+          "overdue": 4,
           "done": 5,
-          "hours": 72.8086658888889,
-          "live": 312.56083944444447
+          "hours": 78.635926,
+          "live": 341.69714
         },
         "Alaa": {
           "open": 4,
@@ -250,8 +250,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 18.564584722222225,
-          "live": 25.85023638888889
+          "hours": 20.385603472222222,
+          "live": 40.41838638888889
         },
         "Sara": {
           "open": 1,
@@ -265,13 +265,13 @@
         },
         "Ganna": {
           "open": 23,
-          "todo": 22,
-          "progress": 0,
+          "todo": 21,
+          "progress": 1,
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 3.5683485317460315,
-          "live": 0
+          "hours": 3.122305347222222,
+          "live": 0.0000030555555555555556
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 4597,
-        "avgProgress": 7216,
+        "avgTodo": 5590,
+        "avgProgress": 8090,
         "avgToDone": 2921,
         "open": 36
       },
@@ -1825,18 +1825,20 @@
           "title": "Reel 1 Delivery",
           "notes": "",
           "due": "2026-09-18",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:18:21.320Z",
-          "updated_at": "2026-09-16T13:18:21.320Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-17T10:38:42.861Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-17T10:38:42.860Z",
+          "progress_started_at": "2026-09-17T10:38:42.860Z",
+          "time_log": [],
+          "start_on": "2026-09-17"
         },
         {
           "id": "t-20260918-sara-mu497ic6",
