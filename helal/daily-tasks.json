@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T12:41:41.809Z",
+      "updated_at": "2026-09-17T13:25:30.734Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 55.48656638888889,
-          "live": 159.24600944444444
+          "hours": 55.72998416666667,
+          "live": 159.97626277777778
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 4,
           "done": 5,
-          "hours": 79.45580722222222,
-          "live": 345.7965461111111
+          "hours": 79.74790866666666,
+          "live": 347.2570538888889
         },
         "Alaa": {
           "open": 4,
@@ -250,8 +250,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 20.64181638888889,
-          "live": 42.468089722222224
+          "hours": 20.733098159722225,
+          "live": 43.19834388888889
         },
         "Sara": {
           "open": 1,
@@ -260,17 +260,17 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 8.515135833333332,
-          "live": 0.9277522222222222
+          "hours": 8.758554166666665,
+          "live": 1.6580072222222222
         },
         "Ganna": {
-          "open": 23,
+          "open": 22,
           "todo": 19,
           "progress": 0,
-          "review": 4,
-          "overdue": 1,
-          "done": 7,
-          "hours": 3.5683485317460315,
+          "review": 3,
+          "overdue": 0,
+          "done": 8,
+          "hours": 23.466450555555554,
           "live": 0
         },
         "Tasneem": {
@@ -295,10 +295,10 @@
         }
       },
       "time": {
-        "avgTodo": 6223,
-        "avgProgress": 6581,
-        "avgToDone": 2921,
-        "open": 36
+        "avgTodo": 6264,
+        "avgProgress": 6625,
+        "avgToDone": 3344,
+        "open": 35
       },
       "hr": {
         "people": {
@@ -1469,15 +1469,15 @@
           "title": "16 - 9 reel",
           "notes": "",
           "due": "2026-09-14",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:25:07.338Z",
-          "updated_at": "2026-09-14T19:30:26.711Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-17T13:25:30.685Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-09-07T20:14:10.267Z",
           "progress_started_at": "",
@@ -1503,7 +1503,11 @@
           "progress_hours": 162.7531647222222,
           "review_at": "2026-09-14T19:30:26.710Z",
           "first_review_at": "2026-09-14T19:30:26.710Z",
-          "delivered_on": "2026-09-14"
+          "delivered_on": "2026-09-14",
+          "done_at": "2026-09-17T13:25:30.684Z",
+          "done_on": "2026-09-17",
+          "done_month": "2026-09",
+          "done_by": "Judi"
         },
         {
           "id": "t-20260914-seif-mtyhuj46",
