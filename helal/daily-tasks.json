@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T11:46:01.912Z",
+      "updated_at": "2026-09-17T12:41:07.515Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 55.177316851851856,
-          "live": 158.31826083333334
+          "hours": 55.483390462962966,
+          "live": 159.23648166666666
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 4,
           "done": 5,
-          "hours": 79.08470766666667,
-          "live": 343.9410488888889
+          "hours": 79.45199611111111,
+          "live": 345.7774905555556
         },
         "Alaa": {
           "open": 4,
@@ -250,8 +250,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 20.525847812500004,
-          "live": 41.54034111111112
+          "hours": 20.640625486111112,
+          "live": 42.45856277777778
         },
         "Sara": {
           "open": 1,
@@ -260,18 +260,18 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 8.205886296296296,
-          "live": 0.000003611111111111111
+          "hours": 8.511960277777776,
+          "live": 0.9182255555555555
         },
         "Ganna": {
           "open": 23,
-          "todo": 20,
-          "progress": 2,
+          "todo": 21,
+          "progress": 1,
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 3.024649382716049,
-          "live": 2.2434047222222224
+          "hours": 3.3772636111111107,
+          "live": 2.0396691666666666
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 5991,
-        "avgProgress": 5460,
+        "avgTodo": 5867,
+        "avgProgress": 5504,
         "avgToDone": 2921,
         "open": 36
       },
@@ -1825,20 +1825,30 @@
           "title": "Reel 1 Delivery",
           "notes": "",
           "due": "2026-09-18",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:18:21.320Z",
-          "updated_at": "2026-09-17T10:38:42.861Z",
+          "updated_at": "2026-09-17T12:41:07.469Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-17T10:38:42.860Z",
-          "progress_started_at": "2026-09-17T10:38:42.860Z",
-          "time_log": [],
-          "start_on": "2026-09-17"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-09-17T10:38:42.860Z",
+              "ended_at": "2026-09-17T12:41:07.469Z",
+              "hours": 2.040169166666667,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-17",
+          "progress_hours": 2.040169166666667
         },
         {
           "id": "t-20260918-sara-mu497ic6",
