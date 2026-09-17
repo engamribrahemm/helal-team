@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T15:18:06.749Z",
+      "updated_at": "2026-09-17T15:45:27.188Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 56.355541388888895,
-          "live": 161.85293444444446
+          "hours": 56.507435092592594,
+          "live": 162.30861583333333
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 4,
           "done": 5,
-          "hours": 80.49857733333333,
-          "live": 351.0103966666667
+          "hours": 80.68084966666666,
+          "live": 351.92175833333334
         },
         "Alaa": {
           "open": 2,
@@ -250,18 +250,18 @@
           "review": 0,
           "overdue": 1,
           "done": 9,
-          "hours": 19.450963194444444,
-          "live": 45.07501527777778
+          "hours": 19.496531222222224,
+          "live": 45.53069555555555
         },
         "Sara": {
           "open": 2,
           "todo": 1,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 2,
-          "hours": 9.384111203703702,
-          "live": 3.5346783333333334
+          "hours": 12.308827638888888,
+          "live": 0
         },
         "Ganna": {
           "open": 19,
@@ -295,30 +295,30 @@
         }
       },
       "time": {
-        "avgTodo": 6123,
-        "avgProgress": 6738,
+        "avgTodo": 6148,
+        "avgProgress": 8397,
         "avgToDone": 3766,
         "open": 31
       },
       "hr": {
         "people": {
           "Mariam": {
-            "delivery": 5,
-            "quality": 4,
-            "revisions": 5,
-            "creativity": 4,
-            "total": 4.5,
+            "delivery": 4,
+            "quality": 4.5,
+            "revisions": 4.5,
+            "creativity": 4.5,
+            "total": 4.325,
             "attitude": 0,
-            "reviews": 1
+            "reviews": 2
           },
           "Judi": {
             "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
+            "quality": 5,
+            "revisions": 5,
+            "creativity": 5,
             "total": 5,
             "attitude": 0,
-            "reviews": 0
+            "reviews": 1
           },
           "Seif": {
             "delivery": 5,
@@ -339,22 +339,22 @@
             "reviews": 0
           },
           "Sara": {
-            "delivery": 2,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 2,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
           "Ganna": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
+            "delivery": 4.5,
+            "quality": 4.5,
+            "revisions": 4.5,
+            "creativity": 5,
+            "total": 4.575,
             "attitude": 0,
-            "reviews": 0
+            "reviews": 2
           },
           "Tasneem": {
             "delivery": 5,
@@ -1866,20 +1866,33 @@
           "title": "19 Designs for MAS (NEW COLLACTION)",
           "notes": "",
           "due": "2026-09-18",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T15:26:51.799Z",
-          "updated_at": "2026-09-17T11:46:01.894Z",
+          "updated_at": "2026-09-17T15:45:27.172Z",
           "updated_by": "Sara",
           "revisions": 0,
           "first_progress_at": "2026-09-17T11:46:01.893Z",
-          "progress_started_at": "2026-09-17T11:46:01.893Z",
-          "time_log": [],
-          "start_on": "2026-09-17"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-17T11:46:01.893Z",
+              "ended_at": "2026-09-17T15:45:27.171Z",
+              "hours": 3.990355,
+              "by": "Sara"
+            }
+          ],
+          "start_on": "2026-09-17",
+          "progress_hours": 3.990355,
+          "review_at": "2026-09-17T15:45:27.171Z",
+          "first_review_at": "2026-09-17T15:45:27.171Z",
+          "delivered_on": "2026-09-17"
         },
         {
           "id": "t-20260918-sara-mu5o5iyw",
