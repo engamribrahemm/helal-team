@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T10:38:45.182Z",
+      "updated_at": "2026-09-17T11:46:01.912Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 54.80354620370371,
-          "live": 157.1969488888889
+          "hours": 55.177316851851856,
+          "live": 158.31826083333334
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 4,
           "done": 5,
-          "hours": 78.63618277777778,
-          "live": 341.6984238888889
+          "hours": 79.08470766666667,
+          "live": 343.9410488888889
         },
         "Alaa": {
           "open": 4,
@@ -250,18 +250,18 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 20.385683750000002,
-          "live": 40.419028611111116
+          "hours": 20.525847812500004,
+          "live": 41.54034111111112
         },
         "Sara": {
           "open": 1,
-          "todo": 1,
-          "progress": 0,
+          "todo": 0,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 12.308827638888888,
-          "live": 0
+          "hours": 8.205886296296296,
+          "live": 0.000003611111111111111
         },
         "Ganna": {
           "open": 23,
@@ -270,8 +270,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 2.7754686419753085,
-          "live": 0.0007780555555555555
+          "hours": 3.024649382716049,
+          "live": 2.2434047222222224
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 5749,
-        "avgProgress": 8090,
+        "avgTodo": 5991,
+        "avgProgress": 5460,
         "avgToDone": 2921,
         "open": 36
       },
@@ -1848,18 +1848,20 @@
           "title": "19 Designs for MAS (NEW COLLACTION)",
           "notes": "",
           "due": "2026-09-18",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T15:26:51.799Z",
-          "updated_at": "2026-09-16T15:26:51.799Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-17T11:46:01.894Z",
+          "updated_by": "Sara",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-17T11:46:01.893Z",
+          "progress_started_at": "2026-09-17T11:46:01.893Z",
+          "time_log": [],
+          "start_on": "2026-09-17"
         }
       ]
     },
