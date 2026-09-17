@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T12:41:07.515Z",
+      "updated_at": "2026-09-17T12:41:14.997Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 55.483390462962966,
-          "live": 159.23648166666666
+          "hours": 55.48408416666667,
+          "live": 159.2385627777778
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 4,
           "done": 5,
-          "hours": 79.45199611111111,
-          "live": 345.7774905555556
+          "hours": 79.45282844444445,
+          "live": 345.7816522222222
         },
         "Alaa": {
           "open": 4,
@@ -250,8 +250,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 20.640625486111112,
-          "live": 42.45856277777778
+          "hours": 20.640885520833336,
+          "live": 42.46064277777778
         },
         "Sara": {
           "open": 1,
@@ -260,18 +260,18 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 8.511960277777776,
-          "live": 0.9182255555555555
+          "hours": 8.512653518518517,
+          "live": 0.9203052777777778
         },
         "Ganna": {
           "open": 23,
-          "todo": 21,
-          "progress": 1,
+          "todo": 20,
+          "progress": 2,
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 3.3772636111111107,
-          "live": 2.0396691666666666
+          "hours": 3.002244012345679,
+          "live": 2.0417563888888886
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 5867,
-        "avgProgress": 5504,
+        "avgTodo": 6038,
+        "avgProgress": 5505,
         "avgToDone": 2921,
         "open": 36
       },
@@ -1994,18 +1994,20 @@
           "title": "Reel 2 Submission",
           "notes": "",
           "due": "2026-09-20",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:02:26.324Z",
-          "updated_at": "2026-09-16T13:02:26.324Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-17T12:41:14.965Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-17T12:41:14.964Z",
+          "progress_started_at": "2026-09-17T12:41:14.964Z",
+          "time_log": [],
+          "start_on": "2026-09-17"
         }
       ]
     },
