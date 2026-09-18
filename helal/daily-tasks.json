@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-18T00:06:43.453Z",
+      "updated_at": "2026-09-18T12:53:46.486Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 59.29227453703704,
-          "live": 170.6631338888889
+          "hours": 63.553666481481486,
+          "live": 183.44730972222223
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 1,
           "overdue": 5,
           "done": 5,
-          "hours": 73.13013576388889,
-          "live": 241.03805305555557
+          "hours": 76.32617986111111,
+          "live": 253.82222944444445
         },
         "Alaa": {
           "open": 2,
@@ -250,8 +250,8 @@
           "review": 0,
           "overdue": 1,
           "done": 9,
-          "hours": 20.331983055555558,
-          "live": 53.88521388888889
+          "hours": 21.610400666666667,
+          "live": 66.66938999999999
         },
         "Sara": {
           "open": 2,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 6611,
-        "avgProgress": 9312,
+        "avgTodo": 7258,
+        "avgProgress": 10079,
         "avgToDone": 3766,
         "open": 31
       },
@@ -2013,11 +2013,23 @@
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:18:55.852Z",
-          "updated_at": "2026-09-16T13:18:55.852Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-17T10:39:01.723Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-17T10:38:46.613Z",
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-09-17T10:38:46.613Z",
+              "ended_at": "2026-09-17T10:39:01.723Z",
+              "hours": 0.004197222222222222,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-17",
+          "progress_hours": 0.004197222222222222
         }
       ]
     },
