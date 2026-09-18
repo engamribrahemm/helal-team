@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-18T12:53:46.486Z",
+      "updated_at": "2026-09-18T12:53:59.118Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 63.553666481481486,
-          "live": 183.44730972222223
+          "hours": 63.554836111111115,
+          "live": 183.45081861111112
         },
         "Seif": {
           "open": 7,
@@ -240,8 +240,8 @@
           "review": 1,
           "overdue": 5,
           "done": 5,
-          "hours": 76.32617986111111,
-          "live": 253.82222944444445
+          "hours": 76.32705694444445,
+          "live": 253.8257377777778
         },
         "Alaa": {
           "open": 2,
@@ -250,8 +250,8 @@
           "review": 0,
           "overdue": 1,
           "done": 9,
-          "hours": 21.610400666666667,
-          "live": 66.66938999999999
+          "hours": 21.610751555555556,
+          "live": 66.67289888888888
         },
         "Sara": {
           "open": 2,
@@ -265,13 +265,13 @@
         },
         "Ganna": {
           "open": 19,
-          "todo": 19,
-          "progress": 0,
+          "todo": 18,
+          "progress": 1,
           "review": 0,
           "overdue": 1,
           "done": 11,
-          "hours": 17.25349381313131,
-          "live": 0
+          "hours": 15.98571710648148,
+          "live": 2.0401733333333336
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 7258,
-        "avgProgress": 10079,
+        "avgTodo": 7498,
+        "avgProgress": 7590,
         "avgToDone": 3766,
         "open": 31
       },
@@ -1849,18 +1849,18 @@
           "title": "Reel 1 Delivery",
           "notes": "",
           "due": "2026-09-18",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:18:21.320Z",
-          "updated_at": "2026-09-17T12:41:07.469Z",
+          "updated_at": "2026-09-18T12:53:59.101Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-17T10:38:42.860Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-09-18T12:53:59.101Z",
           "time_log": [
             {
               "from": "In progress",
