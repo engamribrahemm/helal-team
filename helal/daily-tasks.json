@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-17T15:45:37.037Z",
+      "updated_at": "2026-09-18T00:06:43.453Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,18 +230,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 56.50834675925926,
-          "live": 162.31135055555555
+          "hours": 59.29227453703704,
+          "live": 170.6631338888889
         },
         "Seif": {
           "open": 7,
           "todo": 5,
-          "progress": 2,
-          "review": 0,
-          "overdue": 4,
+          "progress": 1,
+          "review": 1,
+          "overdue": 5,
           "done": 5,
-          "hours": 80.68194366666667,
-          "live": 351.92722833333335
+          "hours": 73.13013576388889,
+          "live": 241.03805305555557
         },
         "Alaa": {
           "open": 2,
@@ -250,8 +250,8 @@
           "review": 0,
           "overdue": 1,
           "done": 9,
-          "hours": 19.496804750000003,
-          "live": 45.533430833333334
+          "hours": 20.331983055555558,
+          "live": 53.88521388888889
         },
         "Sara": {
           "open": 2,
@@ -268,7 +268,7 @@
           "todo": 19,
           "progress": 0,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 11,
           "hours": 17.25349381313131,
           "live": 0
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 6148,
-        "avgProgress": 8397,
+        "avgTodo": 6611,
+        "avgProgress": 9312,
         "avgToDone": 3766,
         "open": 31
       },
@@ -1521,20 +1521,36 @@
           "title": "2 designs ( carousel / single visual ) no 14 & 15",
           "notes": "",
           "due": "2026-09-14",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-12",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-12T14:42:05.767Z",
-          "updated_at": "2026-09-12T16:31:09.577Z",
+          "updated_at": "2026-09-18T00:06:43.438Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-09-12T16:31:09.577Z",
-          "progress_started_at": "2026-09-12T16:31:09.577Z",
-          "time_log": [],
-          "start_on": "2026-09-12"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-12T16:31:09.577Z",
+              "ended_at": "2026-09-18T00:06:43.438Z",
+              "hours": 127.59273916666666,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-09-12",
+          "delay_reason": "Workload pressure",
+          "delay_notified": false,
+          "delay_days": 4,
+          "progress_hours": 127.59273916666666,
+          "review_at": "2026-09-18T00:06:43.438Z",
+          "first_review_at": "2026-09-18T00:06:43.438Z",
+          "delivered_on": "2026-09-18"
         }
       ]
     },
