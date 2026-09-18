@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-18T12:54:05.665Z",
+      "updated_at": "2026-09-18T21:10:23.140Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,18 +230,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 63.55544212962963,
-          "live": 183.45263666666668
+          "hours": 66.31261583333334,
+          "live": 191.72415777777778
         },
         "Seif": {
           "open": 7,
-          "todo": 5,
-          "progress": 1,
+          "todo": 4,
+          "progress": 2,
           "review": 1,
           "overdue": 5,
           "done": 5,
-          "hours": 76.32751145833333,
-          "live": 253.82755583333332
+          "hours": 62.71631394444444,
+          "live": 262.0990797222222
         },
         "Alaa": {
           "open": 2,
@@ -250,15 +250,15 @@
           "review": 0,
           "overdue": 1,
           "done": 9,
-          "hours": 21.61093333333333,
-          "live": 66.67471666666667
+          "hours": 22.438085472222223,
+          "live": 74.94623805555557
         },
         "Sara": {
           "open": 2,
           "todo": 1,
           "progress": 0,
           "review": 1,
-          "overdue": 0,
+          "overdue": 2,
           "done": 2,
           "hours": 12.308827638888888,
           "live": 0
@@ -268,10 +268,10 @@
           "todo": 17,
           "progress": 2,
           "review": 0,
-          "overdue": 1,
+          "overdue": 2,
           "done": 11,
-          "hours": 14.756509572649573,
-          "live": 2.046193055555556
+          "hours": 16.029051324786323,
+          "live": 18.589235277777778
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 7757,
-        "avgProgress": 7590,
+        "avgTodo": 8316,
+        "avgProgress": 6568,
         "avgToDone": 3766,
         "open": 31
       },
@@ -1615,18 +1615,20 @@
           "title": "2 designs ( carousel / single visual ) no 16 & 17",
           "notes": "",
           "due": "2026-09-15",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-14",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-14T12:03:06.279Z",
-          "updated_at": "2026-09-14T12:03:06.279Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-18T21:10:23.124Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-18T21:10:23.124Z",
+          "progress_started_at": "2026-09-18T21:10:23.124Z",
+          "time_log": [],
+          "start_on": "2026-09-19"
         },
         {
           "id": "t-20260915-alaa-mu174yhy",
