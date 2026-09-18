@@ -254,6 +254,21 @@
           "saved_at": "2026-09-18T15:51:01.922Z",
           "updated_at": "2026-09-18T15:51:01.922Z",
           "updated_by": "Amr"
+        },
+        "Alaa": {
+          "days": {
+            "2026-09-18": "Home",
+            "2026-09-19": "Off",
+            "2026-09-24": "Off",
+            "2026-09-20": "Home",
+            "2026-09-21": "Home",
+            "2026-09-22": "Home",
+            "2026-09-23": "Home"
+          },
+          "saved": true,
+          "saved_at": "2026-09-18T21:58:00.656Z",
+          "updated_at": "2026-09-18T21:58:00.656Z",
+          "updated_by": "Alaa"
         }
       }
     }
@@ -319,10 +334,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "2026-09-14T17:13:09.437Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fbg3s",
@@ -332,10 +347,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "2026-09-14T17:13:10.064Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     }
   ]
 }
