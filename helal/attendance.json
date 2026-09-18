@@ -269,6 +269,21 @@
           "saved_at": "2026-09-18T21:58:00.656Z",
           "updated_at": "2026-09-18T21:58:00.656Z",
           "updated_by": "Alaa"
+        },
+        "Seif": {
+          "days": {
+            "2026-09-18": "Off",
+            "2026-09-19": "Office",
+            "2026-09-20": "Office",
+            "2026-09-21": "Home",
+            "2026-09-22": "Home",
+            "2026-09-23": "Office",
+            "2026-09-24": "Home"
+          },
+          "saved": true,
+          "saved_at": "2026-09-18T21:16:14.945Z",
+          "updated_at": "2026-09-18T21:16:14.945Z",
+          "updated_by": "Seif"
         }
       }
     }
@@ -321,10 +336,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fb5ew",
