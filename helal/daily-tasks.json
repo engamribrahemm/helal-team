@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-18T21:10:42.249Z",
+      "updated_at": "2026-09-18T21:15:19.445Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,18 +230,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 66.3143837962963,
-          "live": 191.72946166666668
+          "hours": 66.34005148148148,
+          "live": 191.80646472222222
         },
         "Seif": {
           "open": 7,
           "todo": 3,
-          "progress": 3,
-          "review": 1,
+          "progress": 2,
+          "review": 2,
           "overdue": 5,
           "done": 5,
-          "hours": 52.26555444444444,
-          "live": 262.11083666666667
+          "hours": 10.328590222222221,
+          "live": 0.1604611111111111
         },
         "Alaa": {
           "open": 2,
@@ -250,8 +250,8 @@
           "review": 0,
           "overdue": 1,
           "done": 9,
-          "hours": 22.438616000000003,
-          "live": 74.95154333333333
+          "hours": 22.44631613888889,
+          "live": 75.02854472222222
         },
         "Sara": {
           "open": 2,
@@ -270,8 +270,8 @@
           "review": 0,
           "overdue": 2,
           "done": 11,
-          "hours": 16.02986752136752,
-          "live": 18.599845833333333
+          "hours": 16.041713888888886,
+          "live": 18.75384861111111
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 7956,
-        "avgProgress": 6569,
+        "avgTodo": 7961,
+        "avgProgress": 2858,
         "avgToDone": 3766,
         "open": 31
       },
@@ -321,11 +321,11 @@
             "reviews": 1
           },
           "Seif": {
-            "delivery": 5,
+            "delivery": 4,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 5,
+            "total": 4,
             "attitude": 0,
             "reviews": 0
           },
