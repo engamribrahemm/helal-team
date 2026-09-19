@@ -299,6 +299,21 @@
           "saved_at": "2026-09-18T22:44:15.127Z",
           "updated_at": "2026-09-18T22:44:15.127Z",
           "updated_by": "Judi"
+        },
+        "Ganna": {
+          "days": {
+            "2026-09-18": "Home",
+            "2026-09-19": "Office",
+            "2026-09-20": "Home",
+            "2026-09-21": "Home",
+            "2026-09-22": "Home",
+            "2026-09-23": "Home",
+            "2026-09-24": "Off"
+          },
+          "saved": true,
+          "saved_at": "2026-09-19T08:19:32.518Z",
+          "updated_at": "2026-09-19T08:19:32.518Z",
+          "updated_by": "Ganna"
         }
       }
     }
@@ -351,10 +366,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fb5ew",
