@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-19T11:46:50.390Z",
+      "updated_at": "2026-09-19T11:46:55.190Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,17 +230,17 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 71.18180425925927,
-          "live": 206.33172305555556
+          "hours": 71.18224712962963,
+          "live": 206.33305166666668
         },
         "Seif": {
-          "open": 6,
+          "open": 5,
           "todo": 3,
           "progress": 0,
-          "review": 3,
-          "overdue": 4,
-          "done": 6,
-          "hours": 44.76880729166666,
+          "review": 2,
+          "overdue": 3,
+          "done": 7,
+          "hours": 36.16536322222222,
           "live": 0
         },
         "Alaa": {
@@ -270,8 +270,8 @@
           "review": 1,
           "overdue": 2,
           "done": 11,
-          "hours": 17.722643564814813,
-          "live": 22.88329083333333
+          "hours": 17.722754537037037,
+          "live": 22.8846225
         },
         "Tasneem": {
           "open": 0,
@@ -297,8 +297,8 @@
       "time": {
         "avgTodo": 9084,
         "avgProgress": 6877,
-        "avgToDone": 3952,
-        "open": 30
+        "avgToDone": 4047,
+        "open": 29
       },
       "hr": {
         "people": {
@@ -1649,15 +1649,15 @@
           "title": "2 designs ( carousel / single visual ) no 16 & 17",
           "notes": "",
           "due": "2026-09-15",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-14",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-14T12:03:06.279Z",
-          "updated_at": "2026-09-18T22:55:28.837Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-09-19T11:46:55.046Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-18T21:10:23.124Z",
           "progress_started_at": "",
@@ -1678,7 +1678,11 @@
           "progress_hours": 1.7515869444444445,
           "review_at": "2026-09-18T22:55:28.837Z",
           "first_review_at": "2026-09-18T22:55:28.837Z",
-          "delivered_on": "2026-09-19"
+          "delivered_on": "2026-09-19",
+          "done_at": "2026-09-19T11:46:55.045Z",
+          "done_on": "2026-09-19",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260915-alaa-mu174yhy",
