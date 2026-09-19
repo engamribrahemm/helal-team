@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-19T09:14:17.955Z",
+      "updated_at": "2026-09-19T09:22:46.951Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 70.33435805555555,
-          "live": 203.78938444444444
+          "hours": 70.38148481481481,
+          "live": 203.930765
         },
         "Seif": {
           "open": 7,
@@ -255,13 +255,13 @@
         },
         "Sara": {
           "open": 2,
-          "todo": 1,
-          "progress": 0,
+          "todo": 0,
+          "progress": 1,
           "review": 1,
           "overdue": 2,
           "done": 2,
-          "hours": 12.308827638888888,
-          "live": 0
+          "hours": 8.205888055555555,
+          "live": 0.000008888888888888888
         },
         "Ganna": {
           "open": 19,
@@ -270,8 +270,8 @@
           "review": 1,
           "overdue": 2,
           "done": 11,
-          "hours": 17.510781759259256,
-          "live": 20.340949166666665
+          "hours": 17.522563842592593,
+          "live": 20.482334166666664
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 8647,
-        "avgProgress": 6724,
+        "avgTodo": 8947,
+        "avgProgress": 6733,
         "avgToDone": 3766,
         "open": 31
       },
@@ -1980,18 +1980,20 @@
           "title": "12 Designs for MAS (NEW COLLACTION)",
           "notes": "",
           "due": "2026-09-18",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-17",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-17T15:12:59.721Z",
-          "updated_at": "2026-09-17T15:12:59.721Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-19T09:22:46.899Z",
+          "updated_by": "Sara",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-19T09:22:46.898Z",
+          "progress_started_at": "2026-09-19T09:22:46.898Z",
+          "time_log": [],
+          "start_on": "2026-09-19"
         }
       ]
     },
