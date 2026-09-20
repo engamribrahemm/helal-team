@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-20T16:44:57.535Z",
+      "updated_at": "2026-09-20T16:45:33.916Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 80.83802342592593,
-          "live": 235.30038055555556
+          "hours": 80.84139212962963,
+          "live": 235.31048666666666
         },
         "Seif": {
           "open": 3,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 2,
           "done": 9,
-          "hours": 55.276507006172835,
-          "live": 51.97548638888889
+          "hours": 55.27875280864197,
+          "live": 51.99569861111111
         },
         "Alaa": {
           "open": 1,
@@ -250,12 +250,12 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 21.179545808080807,
-          "live": 3.957270277777778
+          "hours": 21.180464545454544,
+          "live": 3.967376388888889
         },
         "Sara": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -270,8 +270,8 @@
           "review": 0,
           "overdue": 3,
           "done": 12,
-          "hours": 20.309162478632476,
-          "live": 51.85194416666667
+          "hours": 20.309939871794867,
+          "live": 51.86205027777778
         },
         "Tasneem": {
           "open": 0,
@@ -296,9 +296,9 @@
       },
       "time": {
         "avgTodo": 10491,
-        "avgProgress": 4117,
+        "avgProgress": 4118,
         "avgToDone": 5248,
-        "open": 24
+        "open": 25
       },
       "hr": {
         "people": {
@@ -2733,6 +2733,33 @@
           "created_at": "2026-09-16T13:23:14.095Z",
           "updated_at": "2026-09-16T13:23:14.095Z",
           "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-09-30",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20260930-sara-mua1s4lv",
+          "who": "Sara",
+          "space": "HR",
+          "project": "",
+          "title": "trttr",
+          "notes": "trttr",
+          "due": "2026-09-30",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-20",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-20T16:45:33.908Z",
+          "updated_at": "2026-09-20T16:45:33.908Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
