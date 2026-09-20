@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-20T16:44:14.352Z",
+      "updated_at": "2026-09-20T16:44:57.535Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 80.83402500000001,
-          "live": 235.2883852777778
+          "hours": 80.83802342592593,
+          "live": 235.30038055555556
         },
         "Seif": {
           "open": 3,
@@ -240,8 +240,8 @@
           "review": 0,
           "overdue": 2,
           "done": 9,
-          "hours": 55.27384138888888,
-          "live": 51.95149583333333
+          "hours": 55.276507006172835,
+          "live": 51.97548638888889
         },
         "Alaa": {
           "open": 1,
@@ -250,8 +250,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 21.17845532828283,
-          "live": 3.945275
+          "hours": 21.179545808080807,
+          "live": 3.957270277777778
         },
         "Sara": {
           "open": 0,
@@ -264,14 +264,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 18,
-          "todo": 17,
+          "open": 19,
+          "todo": 18,
           "progress": 1,
           "review": 0,
-          "overdue": 2,
+          "overdue": 3,
           "done": 12,
-          "hours": 20.308239764957264,
-          "live": 51.83994888888889
+          "hours": 20.309162478632476,
+          "live": 51.85194416666667
         },
         "Tasneem": {
           "open": 0,
@@ -295,10 +295,10 @@
         }
       },
       "time": {
-        "avgTodo": 10490,
-        "avgProgress": 4116,
+        "avgTodo": 10491,
+        "avgProgress": 4117,
         "avgToDone": 5248,
-        "open": 23
+        "open": 24
       },
       "hr": {
         "people": {
@@ -1119,6 +1119,27 @@
           "done_on": "2026-09-16",
           "done_month": "2026-09",
           "done_by": "Mariam"
+        },
+        {
+          "id": "t-20260910-ganna-mua1rcjc",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "",
+          "title": "rttrt",
+          "notes": "rtrh",
+          "due": "2026-09-10",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-20",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-20T16:44:57.528Z",
+          "updated_at": "2026-09-20T16:44:57.528Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
