@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-20T16:46:13.246Z",
+      "updated_at": "2026-09-20T19:59:32.551Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,18 +230,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 80.8450337962963,
-          "live": 235.32141166666668
+          "hours": 81.91904296296296,
+          "live": 238.54343916666667
         },
         "Seif": {
           "open": 3,
           "todo": 1,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 2,
           "done": 9,
-          "hours": 55.28118064814814,
-          "live": 52.01754916666667
+          "hours": 59.342933159722214,
+          "live": 29.23038861111111
         },
         "Alaa": {
           "open": 1,
@@ -250,8 +250,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 21.18145775252525,
-          "live": 3.978301666666667
+          "hours": 21.474369343434343,
+          "live": 7.200329166666666
         },
         "Sara": {
           "open": 1,
@@ -270,8 +270,8 @@
           "review": 0,
           "overdue": 3,
           "done": 12,
-          "hours": 20.31078025641025,
-          "live": 51.87297527777778
+          "hours": 20.55862856837607,
+          "live": 55.09500333333334
         },
         "Tasneem": {
           "open": 0,
@@ -295,8 +295,8 @@
         }
       },
       "time": {
-        "avgTodo": 9940,
-        "avgProgress": 4118,
+        "avgTodo": 9626,
+        "avgProgress": 4951,
         "avgToDone": 5248,
         "open": 25
       },
@@ -1807,20 +1807,36 @@
           "title": "2 designs ( carousel / single visual ) no 18 & 19",
           "notes": "",
           "due": "2026-09-16",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-14",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-14T12:03:39.755Z",
-          "updated_at": "2026-09-19T14:45:40.170Z",
+          "updated_at": "2026-09-20T19:59:32.539Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-09-19T14:45:40.170Z",
-          "progress_started_at": "2026-09-19T14:45:40.170Z",
-          "time_log": [],
-          "start_on": "2026-09-19"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-19T14:45:40.170Z",
+              "ended_at": "2026-09-20T19:59:32.539Z",
+              "hours": 29.231213611111112,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-09-19",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 4,
+          "progress_hours": 29.231213611111112,
+          "review_at": "2026-09-20T19:59:32.539Z",
+          "first_review_at": "2026-09-20T19:59:32.539Z",
+          "delivered_on": "2026-09-20"
         }
       ]
     },
