@@ -201,7 +201,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-20T16:44:09.529Z",
+      "updated_at": "2026-09-20T16:44:11.489Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -230,8 +230,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 80.83357851851852,
-          "live": 235.28704611111112
+          "hours": 80.83376,
+          "live": 235.28759027777778
         },
         "Seif": {
           "open": 3,
@@ -240,27 +240,27 @@
           "review": 0,
           "overdue": 2,
           "done": 9,
-          "hours": 55.273543796296295,
-          "live": 51.9488175
+          "hours": 55.273664722222215,
+          "live": 51.94990583333333
         },
         "Alaa": {
-          "open": 2,
-          "todo": 0,
-          "progress": 1,
-          "review": 1,
-          "overdue": 1,
-          "done": 9,
-          "hours": 15.33785525,
-          "live": 3.943935833333333
-        },
-        "Sara": {
           "open": 1,
           "todo": 0,
+          "progress": 1,
+          "review": 0,
+          "overdue": 0,
+          "done": 10,
+          "hours": 21.178383055555557,
+          "live": 3.94448
+        },
+        "Sara": {
+          "open": 0,
+          "todo": 0,
           "progress": 0,
-          "review": 1,
-          "overdue": 1,
-          "done": 3,
-          "hours": 8.75276972222222,
+          "review": 0,
+          "overdue": 0,
+          "done": 4,
+          "hours": 7.562166041666666,
           "live": 0
         },
         "Ganna": {
@@ -270,8 +270,8 @@
           "review": 0,
           "overdue": 2,
           "done": 12,
-          "hours": 20.308136730769228,
-          "live": 51.838609444444444
+          "hours": 20.308178611111106,
+          "live": 51.83915388888889
         },
         "Tasneem": {
           "open": 0,
@@ -297,8 +297,8 @@
       "time": {
         "avgTodo": 10490,
         "avgProgress": 4116,
-        "avgToDone": 4875,
-        "open": 25
+        "avgToDone": 5248,
+        "open": 23
       },
       "hr": {
         "people": {
@@ -1590,15 +1590,15 @@
           "title": "17 - 9 carousel",
           "notes": "",
           "due": "2026-09-15",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:28:35.865Z",
-          "updated_at": "2026-09-19T01:48:35.899Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-09-20T16:44:11.276Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-09-08T21:53:00.440Z",
           "progress_started_at": "",
@@ -1643,7 +1643,11 @@
           "delay_days": 4,
           "review_at": "2026-09-19T01:48:35.898Z",
           "first_review_at": "2026-09-19T01:48:35.898Z",
-          "delivered_on": "2026-09-19"
+          "delivered_on": "2026-09-19",
+          "done_at": "2026-09-20T16:44:11.275Z",
+          "done_on": "2026-09-20",
+          "done_month": "2026-09",
+          "done_by": "Amr"
         },
         {
           "id": "t-20260915-seif-mu171rqe",
