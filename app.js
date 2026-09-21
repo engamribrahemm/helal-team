@@ -2,7 +2,7 @@ const STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
 const BOARD_STATUSES = ["To do", "In progress", "Review", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
-const LS_SESSION = "helal.session";
+const LS_SESSION = "helal.session.v2";
 const LS_TASKS = "helal.tasksCache.v6";
 const LS_REPORTS = "helal.reportsCache.v5";
 const LS_HR = "helal.hrCache.v5";
@@ -79,6 +79,7 @@ const state = {
   evalTaskId: null,
   pendingDelay: null,
   pendingRevision: null,
+  issuedPins: {},
   saveState: "idle",
   saveError: "",
   saveNote: "",
@@ -168,36 +169,15 @@ function repoInfo() {
   };
 }
 
-function assembleBoardKey(cfg) {
-  if (!cfg) return "";
-  const direct = String(cfg.write_token || "").trim();
-  if (/^(ghp_|github_pat_)/.test(direct)) return direct;
-  const prefix = String(cfg.write_prefix || "").trim();
-  const key = String(cfg.write_key || "").trim();
-  if (prefix && key) {
-    const assembled = prefix + key;
-    if (/^(ghp_|github_pat_)/.test(assembled) && assembled.length >= 20) return assembled;
-  }
-  return "";
-}
-
-function persistBoardCfg(cfg, token) {
+function persistBoardCfg(cfg) {
   const next = { ...(cfg || {}) };
   delete next.write_token;
-  const clean = String(token || assembleBoardKey(cfg) || "").trim();
-  if (clean.startsWith("github_pat_")) {
-    next.write_prefix = "github_pat_";
-    next.write_key = clean.slice("github_pat_".length);
-  } else if (clean.startsWith("ghp_")) {
-    next.write_prefix = "ghp_";
-    next.write_key = clean.slice(4);
-  }
+  delete next.write_key;
+  delete next.write_prefix;
   return next;
 }
 
 function writeToken() {
-  const assembled = assembleBoardKey(state.githubCfg);
-  if (/^(ghp_|github_pat_)/.test(assembled)) return assembled;
   try {
     const stored = localStorage.getItem("helal.ghToken") || "";
     if (/^(ghp_|github_pat_)/.test(stored)) return stored;
@@ -224,7 +204,7 @@ async function connectDatabase(token) {
   try {
     localStorage.setItem("helal.ghToken", clean);
   } catch (_) {}
-  state.githubCfg = persistBoardCfg(state.githubCfg || {}, clean);
+  state.githubCfg = persistBoardCfg(state.githubCfg || {});
   state.connectError = "";
   state.saveState = "saving";
   render();
@@ -233,7 +213,7 @@ async function connectDatabase(token) {
       headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${clean}` },
     });
     if (!probe.ok) throw new Error("GitHub rejected that key. Generate a new one and paste it.");
-    await dbPut("helal/github.json", persistBoardCfg(state.githubCfg, clean), "board: connect Helal database");
+    await dbPut("helal/github.json", persistBoardCfg(state.githubCfg), "board: connect Helal database");
     state.saveState = "saved";
     state.connectError = "";
     render();
@@ -255,10 +235,37 @@ function people() {
   return allPeople().filter((p) => p.active !== false);
 }
 
-function pinFor(name) {
-  const row = state.auth?.users?.[name];
-  if (row?.pin) return row.pin;
-  return accessFor(name) === "admin" ? state.auth?.admin_pin : state.auth?.member_pin;
+function pinHashFor(name) {
+  return state.auth?.users?.[name]?.pin_hash || "";
+}
+
+async function hashPin(name, pin) {
+  const secret = String(pin || "");
+  if (!secret || !window.crypto?.subtle) return "";
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey("raw", enc.encode(secret), "PBKDF2", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits(
+    {
+      name: "PBKDF2",
+      salt: enc.encode(`helal-v1:${String(name || "").trim().toLowerCase()}`),
+      iterations: 120000,
+      hash: "SHA-256",
+    },
+    key,
+    256
+  );
+  return [...new Uint8Array(bits)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function pinMatches(name, pin) {
+  const expected = pinHashFor(name);
+  if (!expected || !pin) return false;
+  const got = await hashPin(name, pin);
+  return !!got && got === expected;
+}
+
+function rememberIssuedPin(name, password) {
+  state.issuedPins = { ...(state.issuedPins || {}), [name]: password };
 }
 
 function accessFor(name) {
@@ -1464,7 +1471,7 @@ function applyRemoteMerge(path, remote, payload) {
     payload = mergeAttendance(remote, payload);
     state.attendFile = payload;
   } else if (path.endsWith("github.json")) {
-    payload = persistBoardCfg({ ...remote, ...payload }, assembleBoardKey(payload) || assembleBoardKey(remote));
+    payload = persistBoardCfg({ ...remote, ...payload });
     state.githubCfg = payload;
   } else if (path.endsWith("team.json")) {
     payload = pickNewerFile(remote, payload);
@@ -1577,10 +1584,7 @@ async function loadAll() {
   try {
     const localCfg = state.githubCfg;
     const remoteCfg = await dbGetRaw("helal/github.json").catch(() => localCfg);
-    const githubCfg = persistBoardCfg(
-      { ...localCfg, ...remoteCfg },
-      assembleBoardKey(remoteCfg) || assembleBoardKey(localCfg)
-    );
+    const githubCfg = persistBoardCfg({ ...localCfg, ...remoteCfg });
     state.githubCfg = githubCfg;
     const [team, auth, drive, projects, tasksFile, reportsFile, hrFile, attendFile] = await Promise.all([
       dbGetRaw("helal/team.json"),
@@ -1699,10 +1703,15 @@ function pickNewerFile(remote, local) {
 function mergeAuth(remote, local) {
   const newer = pickNewerFile(remote, local) || {};
   const older = newer === local ? remote : local;
+  const users = {};
+  for (const name of new Set([...Object.keys(older?.users || {}), ...Object.keys(newer?.users || {})])) {
+    const row = { ...(older?.users?.[name] || {}), ...(newer?.users?.[name] || {}) };
+    if (row.pin_hash) users[name] = { pin_hash: row.pin_hash };
+  }
   return {
-    note: newer.note || older?.note || "",
+    note: "Passwords are stored as hashes. They cannot be read from the public files.",
     updated_at: newer.updated_at || older?.updated_at || "",
-    users: { ...(older?.users || {}), ...(newer.users || {}) },
+    users,
   };
 }
 
@@ -1833,15 +1842,15 @@ async function pullRemoteBoard() {
   }
 }
 
-function login(who, pin) {
+async function login(who, pin) {
   const person = people().find((p) => p.name === who);
   if (!person) {
     state.loginError = "This name is not active. Ask an admin.";
     render();
     return;
   }
-  const expected = pinFor(who);
-  if (!pin || !expected || pin !== expected) {
+  const ok = await pinMatches(who, pin);
+  if (!ok) {
     state.loginError = "Wrong password for this name.";
     render();
     return;
@@ -1852,6 +1861,7 @@ function login(who, pin) {
   state.loginError = "";
   state.view = "board";
   localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
+  try { localStorage.removeItem("helal.session"); } catch (_) {}
   state.headSha = "";
   state.taskCommitSha = "";
   render();
@@ -2031,24 +2041,23 @@ function banner() {
 }
 
 function viewConnectBanner() {
-  if (!isAdmin()) {
-    return $("div", { class: "banner warn" }, "The Helal database is not connected yet. Ask Amr or Tasneem.");
-  }
   const key = $("input", {
     type: "password",
     placeholder: "ghp_…",
     autocomplete: "off",
   });
   return $("div", { class: "banner warn connect-box" }, [
-    $("p", {}, "The board can read GitHub, but it cannot write yet. Connect once so Seif and the team see new tasks."),
-    $("p", { class: "muted" }, [
-      $("a", {
-        href: "https://github.com/settings/tokens/new?scopes=public_repo&description=Helal%20board",
-        target: "_blank",
-        rel: "noreferrer",
-      }, "Create the Helal board key"),
-      " while logged in as engamribrahemm. Leave public_repo checked. Copy the value that starts with ghp_. Do not paste the Helal password.",
-    ]),
+    $("p", {}, "Paste the board key from Amr. It is not stored in the public GitHub files. Connect once on this browser."),
+    isAdmin()
+      ? $("p", { class: "muted" }, [
+        $("a", {
+          href: "https://github.com/settings/tokens/new?scopes=public_repo&description=Helal%20board",
+          target: "_blank",
+          rel: "noreferrer",
+        }, "Create a new Helal board key"),
+        " while logged in as engamribrahemm. Leave public_repo checked. Revoke the old key. Paste the new value that starts with ghp_.",
+      ])
+      : $("p", { class: "muted" }, "Ask Amr for the board key. Do not use your Helal login password here."),
     $("form", {
       class: "connect-form",
       onsubmit: (e) => {
@@ -3785,8 +3794,6 @@ function viewPeople() {
     ]),
     $("div", { class: "people" }, roster.map((p) => {
       const isOwner = p.name === "Amr";
-      const pinValue = pinFor(p.name) || "";
-      const pinBox = $("input", { value: pinValue, readOnly: true });
       return $("article", { class: "card" }, [
         $("p", { class: "title" }, p.name),
         $("p", { class: "muted" }, p.role),
@@ -3796,7 +3803,9 @@ function viewPeople() {
           $("span", { class: "pill" }, p.access || "member"),
           p.active === false ? $("span", { class: "pill tone-orange" }, "Deactivated") : $("span", { class: "pill tone-green" }, "Active"),
         ]),
-        $("label", {}, ["Password", pinBox]),
+        $("p", { class: "muted" }, state.issuedPins?.[p.name]
+          ? `New password (copy now): ${state.issuedPins[p.name]}`
+          : "Password is hashed. Press New password to issue one. It is shown once."),
         $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;margin-top:10px" }, [
           $("button", {
             class: "btn ghost",
@@ -3842,8 +3851,15 @@ function addPerson(fields) {
   if (!state.auth) state.auth = { users: {} };
   if (!state.auth.users) state.auth.users = {};
   const password = fields.pin || makePersonPin(name);
-  state.auth.users[name] = { pin: password };
-  state.auth.updated_at = new Date().toISOString();
+  rememberIssuedPin(name, password);
+  hashPin(name, password).then((pin_hash) => {
+    if (!state.auth) state.auth = { users: {} };
+    if (!state.auth.users) state.auth.users = {};
+    state.auth.users[name] = { pin_hash };
+    state.auth.updated_at = new Date().toISOString();
+    render();
+    saveAuth(`auth: password for ${name}`);
+  });
   ensureHr().work[name] = {
     type: "Full-time",
     days: "Sun–Thu",
@@ -3852,7 +3868,6 @@ function addPerson(fields) {
   };
   render();
   saveTeam(`team: add ${name}`);
-  saveAuth(`auth: password for ${name}`);
   saveHr(`hr: hours for ${name}`);
 }
 
@@ -3873,12 +3888,15 @@ function setPersonActive(name, active) {
   saveTeam(`team: ${active ? "reactivate" : "deactivate"} ${name}`);
 }
 
-function resetPersonPin(name) {
+async function resetPersonPin(name) {
   if (!state.auth) state.auth = { users: {} };
   if (!state.auth.users) state.auth.users = {};
   const password = makePersonPin(name);
-  state.auth.users[name] = { pin: password };
+  const pin_hash = await hashPin(name, password);
+  if (!pin_hash) return;
+  state.auth.users[name] = { pin_hash };
   state.auth.updated_at = new Date().toISOString();
+  rememberIssuedPin(name, password);
   render();
   saveAuth(`auth: new password for ${name}`);
 }
@@ -4283,7 +4301,7 @@ function viewWelcome() {
       ]),
       $("section", { class: "login-card" }, [
         $("h2", {}, "Sign in"),
-        $("p", { class: "lede" }, "Choose your name and enter your own password."),
+        $("p", { class: "lede" }, "Choose your name and enter your own password. Old passwords were reset."),
         $("form", {
           class: "form",
           onsubmit: (e) => {

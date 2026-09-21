@@ -13,7 +13,5 @@
     "helal/hr.json",
     "helal/attendance.json"
   ],
-  "note": "GitHub JSON in this repo is the Helal database. The board reads and writes these files. There is no Setup screen.",
-  "write_prefix": "ghp_",
-  "write_key": "donFTRm7H5qVg7PX0P0aEoDA0zXmSX1exWhh"
+  "note": "GitHub JSON in this repo is the Helal database. The write key is not stored in this public file. Each browser stores it locally after Connect."
 }
