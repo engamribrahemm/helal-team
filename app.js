@@ -2,7 +2,7 @@ const STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
 const BOARD_STATUSES = ["To do", "In progress", "Review", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
-const LS_SESSION = "helal.session.v2";
+const LS_SESSION = "helal.session.v3";
 const LS_TASKS = "helal.tasksCache.v6";
 const LS_REPORTS = "helal.reportsCache.v5";
 const LS_HR = "helal.hrCache.v5";
@@ -1861,7 +1861,10 @@ async function login(who, pin) {
   state.loginError = "";
   state.view = "board";
   localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
-  try { localStorage.removeItem("helal.session"); } catch (_) {}
+  try {
+    localStorage.removeItem("helal.session");
+    localStorage.removeItem("helal.session.v2");
+  } catch (_) {}
   state.headSha = "";
   state.taskCommitSha = "";
   render();

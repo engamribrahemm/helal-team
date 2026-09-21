@@ -4,3 +4,6 @@ Thumbs.db
 .env.*
 *.pem
 .token
+.new-pins.json
+helal/passwords.local.json
+helal/*.local.json
