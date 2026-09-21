@@ -203,7 +203,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-21T12:53:28.044Z",
+      "updated_at": "2026-09-21T12:53:31.057Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -232,8 +232,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 87.55195907407408,
-          "live": 255.4421875
+          "hours": 87.55223814814815,
+          "live": 255.44302472222222
         },
         "Seif": {
           "open": 3,
@@ -242,8 +242,8 @@
           "review": 1,
           "overdue": 2,
           "done": 9,
-          "hours": 61.4552767361111,
-          "live": 46.12913722222222
+          "hours": 61.45538138888888,
+          "live": 46.12997444444444
         },
         "Alaa": {
           "open": 1,
@@ -252,8 +252,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 23.01061919191919,
-          "live": 24.0990775
+          "hours": 23.010695303030303,
+          "live": 24.099914722222223
         },
         "Sara": {
           "open": 0,
@@ -267,13 +267,13 @@
         },
         "Ganna": {
           "open": 18,
-          "todo": 11,
-          "progress": 5,
+          "todo": 10,
+          "progress": 6,
           "review": 2,
           "overdue": 2,
           "done": 12,
-          "hours": 16.715625686274503,
-          "live": 71.99846861111111
+          "hours": 15.787212499999997,
+          "live": 72.00265694444444
         },
         "Tasneem": {
           "open": 0,
@@ -297,7 +297,7 @@
         }
       },
       "time": {
-        "avgTodo": 12544,
+        "avgTodo": 13031,
         "avgProgress": 5965,
         "avgToDone": 5248,
         "open": 23
@@ -2628,18 +2628,20 @@
           "title": "Reel 6 Submission",
           "notes": "",
           "due": "2026-09-26",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:05:46.800Z",
-          "updated_at": "2026-09-16T13:05:46.800Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-21T12:53:31.047Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-21T12:53:31.047Z",
+          "progress_started_at": "2026-09-21T12:53:31.047Z",
+          "time_log": [],
+          "start_on": "2026-09-21"
         }
       ]
     },
