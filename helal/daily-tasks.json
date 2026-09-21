@@ -203,7 +203,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-21T12:31:35.994Z",
+      "updated_at": "2026-09-21T12:31:47.558Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -232,8 +232,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 87.43047296296295,
-          "live": 255.07772916666667
+          "hours": 87.43154398148148,
+          "live": 255.08094222222223
         },
         "Seif": {
           "open": 3,
@@ -242,8 +242,8 @@
           "review": 1,
           "overdue": 2,
           "done": 9,
-          "hours": 61.409719409722214,
-          "live": 45.76467861111111
+          "hours": 61.41012104166666,
+          "live": 45.767891666666664
         },
         "Alaa": {
           "open": 1,
@@ -252,8 +252,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 22.977486616161617,
-          "live": 23.73461916666667
+          "hours": 22.97777868686869,
+          "live": 23.737831944444444
         },
         "Sara": {
           "open": 0,
@@ -268,12 +268,12 @@
         "Ganna": {
           "open": 18,
           "todo": 15,
-          "progress": 3,
-          "review": 0,
+          "progress": 2,
+          "review": 1,
           "overdue": 2,
           "done": 12,
-          "hours": 19.38967435185185,
-          "live": 78.6779472222222
+          "hours": 20.775109880952378,
+          "live": 78.68437027777777
         },
         "Tasneem": {
           "open": 0,
@@ -297,7 +297,7 @@
         }
       },
       "time": {
-        "avgTodo": 11181,
+        "avgTodo": 11182,
         "avgProgress": 4839,
         "avgToDone": 5248,
         "open": 23
@@ -2451,20 +2451,33 @@
           "title": "26 - 9 bts video",
           "notes": "",
           "due": "2026-09-24",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:34:50.503Z",
-          "updated_at": "2026-09-21T12:31:35.982Z",
+          "updated_at": "2026-09-21T12:31:41.311Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-21T12:31:35.982Z",
-          "progress_started_at": "2026-09-21T12:31:35.982Z",
-          "time_log": [],
-          "start_on": "2026-09-21"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-21T12:31:35.982Z",
+              "ended_at": "2026-09-21T12:31:41.311Z",
+              "hours": 0.0014802777777777778,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-21",
+          "progress_hours": 0.0014802777777777778,
+          "review_at": "2026-09-21T12:31:41.311Z",
+          "first_review_at": "2026-09-21T12:31:41.311Z",
+          "delivered_on": "2026-09-21"
         },
         {
           "id": "t-20260924-ganna-mu44q2ob",
