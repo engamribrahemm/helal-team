@@ -203,7 +203,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-22T12:18:26.413Z",
+      "updated_at": "2026-09-22T14:33:23.445Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -232,8 +232,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 95.35736388888888,
-          "live": 278.85840194444444
+          "hours": 96.1070887962963,
+          "live": 281.10757666666666
         },
         "Seif": {
           "open": 3,
@@ -242,22 +242,22 @@
           "review": 1,
           "overdue": 2,
           "done": 9,
-          "hours": 64.38230354166666,
-          "live": 69.54535166666666
+          "hours": 64.66345038194444,
+          "live": 71.79452638888888
         },
         "Alaa": {
-          "open": 2,
-          "todo": 1,
+          "open": 1,
+          "todo": 0,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 25.139365959595963,
-          "live": 47.51529194444444
+          "hours": 25.343836388888885,
+          "live": 49.764466666666664
         },
         "Sara": {
-          "open": 1,
-          "todo": 1,
+          "open": 2,
+          "todo": 2,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -272,8 +272,8 @@
           "review": 4,
           "overdue": 4,
           "done": 12,
-          "hours": 18.420080654761904,
-          "live": 45.71396111111111
+          "hours": 18.74139136904762,
+          "live": 50.212311111111106
         },
         "Tasneem": {
           "open": 0,
@@ -297,8 +297,8 @@
         }
       },
       "time": {
-        "avgTodo": 11748,
-        "avgProgress": 5300,
+        "avgTodo": 11064,
+        "avgProgress": 5435,
         "avgToDone": 5248,
         "open": 25
       },
@@ -2488,7 +2488,7 @@
         },
         {
           "id": "t-20260923-alaa-muclilin",
-          "who": "Alaa",
+          "who": "Sara",
           "space": "Graphic",
           "project": "MEDC",
           "title": "MEDC internship design",
@@ -2501,7 +2501,7 @@
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-22T11:33:33.935Z",
-          "updated_at": "2026-09-22T11:33:33.935Z",
+          "updated_at": "2026-09-22T14:33:23.436Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
