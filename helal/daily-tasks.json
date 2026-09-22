@@ -203,7 +203,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-22T11:33:33.948Z",
+      "updated_at": "2026-09-22T12:18:26.413Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -232,8 +232,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 95.10806157407409,
-          "live": 278.110495
+          "hours": 95.35736388888888,
+          "live": 278.85840194444444
         },
         "Seif": {
           "open": 3,
@@ -242,8 +242,8 @@
           "review": 1,
           "overdue": 2,
           "done": 9,
-          "hours": 64.28881513888888,
-          "live": 68.79744444444445
+          "hours": 64.38230354166666,
+          "live": 69.54535166666666
         },
         "Alaa": {
           "open": 2,
@@ -252,12 +252,12 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 25.071374393939394,
-          "live": 46.767384722222225
+          "hours": 25.139365959595963,
+          "live": 47.51529194444444
         },
         "Sara": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -272,8 +272,8 @@
           "review": 4,
           "overdue": 4,
           "done": 12,
-          "hours": 18.31323676587301,
-          "live": 44.21814666666667
+          "hours": 18.420080654761904,
+          "live": 45.71396111111111
         },
         "Tasneem": {
           "open": 0,
@@ -297,10 +297,10 @@
         }
       },
       "time": {
-        "avgTodo": 12617,
-        "avgProgress": 5255,
+        "avgTodo": 11748,
+        "avgProgress": 5300,
         "avgToDone": 5248,
-        "open": 24
+        "open": 25
       },
       "hr": {
         "people": {
@@ -2502,6 +2502,27 @@
           "created_by": "Amr",
           "created_at": "2026-09-22T11:33:33.935Z",
           "updated_at": "2026-09-22T11:33:33.935Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260923-sara-mucn4b1h",
+          "who": "Sara",
+          "space": "Graphic",
+          "project": "MAS",
+          "title": "re-edit MAS pictures | 12 design",
+          "notes": "",
+          "due": "2026-09-23",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
+          "drive_missing": false,
+          "assigned_at": "2026-09-22",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-22T12:18:26.405Z",
+          "updated_at": "2026-09-22T12:18:26.405Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
