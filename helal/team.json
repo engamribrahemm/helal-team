@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-09-24T13:55:00.000Z",
+  "updated_at": "2026-09-24T14:01:00.000Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -93,13 +93,13 @@
     {
       "id": "mohamed",
       "name": "Mohamed",
-      "role": "Team member",
-      "home": "social",
+      "role": "Video editor",
+      "home": "video",
       "mention": "@Mohamed",
       "email": "",
       "access": "member",
       "active": true,
-      "updated_at": "2026-09-24T13:55:00.000Z"
+      "updated_at": "2026-09-24T14:01:00.000Z"
     }
   ]
 }
