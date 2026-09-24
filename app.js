@@ -169,11 +169,33 @@ function repoInfo() {
   };
 }
 
-function persistBoardCfg(cfg) {
+function assembleBoardKey(cfg) {
+  if (!cfg) return "";
+  const direct = String(cfg.write_token || "").trim();
+  if (/^(ghp_|github_pat_)/.test(direct)) return direct;
+  const prefix = String(cfg.write_prefix || "").trim();
+  const key = String(cfg.write_key || "").trim();
+  if (prefix && key) {
+    const assembled = prefix + key;
+    if (/^(ghp_|github_pat_)/.test(assembled) && assembled.length >= 20) return assembled;
+  }
+  return "";
+}
+
+function persistBoardCfg(cfg, token) {
   const next = { ...(cfg || {}) };
   delete next.write_token;
-  delete next.write_key;
-  delete next.write_prefix;
+  const clean = String(token || assembleBoardKey(cfg) || "").trim();
+  if (clean.startsWith("github_pat_")) {
+    next.write_prefix = "github_pat_";
+    next.write_key = clean.slice("github_pat_".length);
+  } else if (clean.startsWith("ghp_")) {
+    next.write_prefix = "ghp_";
+    next.write_key = clean.slice(4);
+  } else {
+    delete next.write_prefix;
+    delete next.write_key;
+  }
   return next;
 }
 
@@ -182,7 +204,13 @@ function writeToken() {
     const stored = localStorage.getItem("helal.ghToken") || "";
     if (/^(ghp_|github_pat_)/.test(stored)) return stored;
   } catch (_) {}
+  const assembled = assembleBoardKey(state.githubCfg);
+  if (/^(ghp_|github_pat_)/.test(assembled)) return assembled;
   return "";
+}
+
+function forgetBoardKey() {
+  try { localStorage.removeItem("helal.ghToken"); } catch (_) {}
 }
 
 function isBoardKey(token) {
@@ -204,7 +232,7 @@ async function connectDatabase(token) {
   try {
     localStorage.setItem("helal.ghToken", clean);
   } catch (_) {}
-  state.githubCfg = persistBoardCfg(state.githubCfg || {});
+  state.githubCfg = persistBoardCfg(state.githubCfg || {}, clean);
   state.connectError = "";
   state.saveState = "saving";
   render();
@@ -213,7 +241,7 @@ async function connectDatabase(token) {
       headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${clean}` },
     });
     if (!probe.ok) throw new Error("GitHub rejected that key. Generate a new one and paste it.");
-    await dbPut("helal/github.json", persistBoardCfg(state.githubCfg), "board: connect Helal database");
+    await dbPut("helal/github.json", persistBoardCfg(state.githubCfg, clean), "board: connect Helal database");
     state.saveState = "saved";
     state.connectError = "";
     render();
@@ -1471,7 +1499,7 @@ function applyRemoteMerge(path, remote, payload) {
     payload = mergeAttendance(remote, payload);
     state.attendFile = payload;
   } else if (path.endsWith("github.json")) {
-    payload = persistBoardCfg({ ...remote, ...payload });
+    payload = persistBoardCfg({ ...remote, ...payload }, assembleBoardKey(payload) || assembleBoardKey(remote));
     state.githubCfg = payload;
   } else if (path.endsWith("team.json")) {
     payload = pickNewerFile(remote, payload);
@@ -1549,9 +1577,12 @@ async function dbPut(path, data, message) {
       await waitMs(400 + saveBackoff(attempt));
       continue;
     }
-    throw new Error(res.status === 401
-      ? "GitHub could not save. The board database token needs a refresh."
-      : `GitHub ${res.status}: ${text.slice(0, 140)}`);
+    if (res.status === 401) {
+      forgetBoardKey();
+      state.connectError = "The old board key was rejected. Create a new GitHub key and paste it below.";
+      throw new Error("GitHub could not save. Paste a new board key to reconnect.");
+    }
+    throw new Error(`GitHub ${res.status}: ${text.slice(0, 140)}`);
   }
   throw new Error(lastError || "Could not save to GitHub. Click Refresh, then try again.");
 }
@@ -1584,7 +1615,10 @@ async function loadAll() {
   try {
     const localCfg = state.githubCfg;
     const remoteCfg = await dbGetRaw("helal/github.json").catch(() => localCfg);
-    const githubCfg = persistBoardCfg({ ...localCfg, ...remoteCfg });
+    const githubCfg = persistBoardCfg(
+      { ...localCfg, ...remoteCfg },
+      assembleBoardKey(remoteCfg) || assembleBoardKey(localCfg)
+    );
     state.githubCfg = githubCfg;
     const [team, auth, drive, projects, tasksFile, reportsFile, hrFile, attendFile] = await Promise.all([
       dbGetRaw("helal/team.json"),
@@ -2050,17 +2084,18 @@ function viewConnectBanner() {
     autocomplete: "off",
   });
   return $("div", { class: "banner warn connect-box" }, [
-    $("p", {}, "Paste the board key from Amr. It is not stored in the public GitHub files. Connect once on this browser."),
+    $("p", {}, "The board cannot save until you paste a new GitHub board key."),
     isAdmin()
       ? $("p", { class: "muted" }, [
+        "Open ",
         $("a", {
           href: "https://github.com/settings/tokens/new?scopes=public_repo&description=Helal%20board",
           target: "_blank",
           rel: "noreferrer",
-        }, "Create a new Helal board key"),
-        " while logged in as engamribrahemm. Leave public_repo checked. Revoke the old key. Paste the new value that starts with ghp_.",
+        }, "this link"),
+        " while logged in as engamribrahemm. Check public_repo. Generate, copy the ghp_ value, paste it here. Do not paste your Helal login password.",
       ])
-      : $("p", { class: "muted" }, "Ask Amr for the board key. Do not use your Helal login password here."),
+      : $("p", { class: "muted" }, "Ask Amr to reconnect the board. Do not paste your Helal login password here."),
     $("form", {
       class: "connect-form",
       onsubmit: (e) => {
