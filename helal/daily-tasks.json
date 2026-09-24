@@ -204,7 +204,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-24T15:40:21.340Z",
+      "updated_at": "2026-09-24T17:59:15.257Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -233,8 +233,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 112.47911574074074,
-          "live": 330.2236575
+          "hours": 113.2507750925926,
+          "live": 332.5386355555556
         },
         "Seif": {
           "open": 4,
@@ -243,8 +243,8 @@
           "review": 3,
           "overdue": 3,
           "done": 9,
-          "hours": 55.68913479166666,
-          "live": 0.0000016666666666666667
+          "hours": 55.97850704861111,
+          "live": 2.314979722222222
         },
         "Alaa": {
           "open": 3,
@@ -253,8 +253,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 29.80893464646465,
-          "live": 98.8805475
+          "hours": 30.019387196969696,
+          "live": 101.19552555555556
         },
         "Sara": {
           "open": 0,
@@ -267,14 +267,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 18,
-          "todo": 9,
+          "open": 19,
+          "todo": 10,
           "progress": 2,
           "review": 7,
           "overdue": 7,
           "done": 12,
-          "hours": 21.52747240079365,
-          "live": 89.21744555555556
+          "hours": 21.858183511904762,
+          "live": 93.84740111111111
         },
         "Tasneem": {
           "open": 0,
@@ -308,10 +308,10 @@
         }
       },
       "time": {
-        "avgTodo": 12196,
-        "avgProgress": 7775,
+        "avgTodo": 12297,
+        "avgProgress": 6359,
         "avgToDone": 5248,
-        "open": 26
+        "open": 27
       },
       "hr": {
         "people": {
@@ -2805,6 +2805,27 @@
           ],
           "start_on": "2026-09-21",
           "progress_hours": 1.2133713888888888
+        },
+        {
+          "id": "t-20260925-ganna-mufu6asn",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "MEDC",
+          "title": "Edit MEDC video",
+          "notes": "",
+          "due": "2026-09-25",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-09-24",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-24T17:59:15.239Z",
+          "updated_at": "2026-09-24T17:59:15.239Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
