@@ -13,7 +13,8 @@
     "t-20260916-seif-mu14h2b5",
     "t-20260915-alaa-mu14o9q4",
     "t-20260910-ganna-mua1rcjc",
-    "t-20260930-sara-mua1s4lv"
+    "t-20260930-sara-mua1s4lv",
+    "t-20260923-sara-mucn4b1h"
   ],
   "statuses": [
     "To do",
@@ -203,7 +204,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-22T15:58:23.002Z",
+      "updated_at": "2026-09-24T01:03:57.871Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -232,32 +233,32 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 96.57927000000001,
-          "live": 282.5241202777778
+          "hours": 107.61027564814815,
+          "live": 315.6171372222222
         },
         "Seif": {
           "open": 4,
           "todo": 2,
           "progress": 1,
           "review": 1,
-          "overdue": 2,
+          "overdue": 3,
           "done": 9,
-          "hours": 64.84051833333334,
-          "live": 73.21107
+          "hours": 68.97714548611111,
+          "live": 106.30408722222222
         },
         "Alaa": {
-          "open": 1,
-          "todo": 0,
+          "open": 3,
+          "todo": 2,
           "progress": 1,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 10,
-          "hours": 25.47261308080808,
-          "live": 51.18101027777778
+          "hours": 28.481069242424244,
+          "live": 84.27402833333333
         },
         "Sara": {
-          "open": 2,
-          "todo": 2,
+          "open": 0,
+          "todo": 0,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -270,10 +271,10 @@
           "todo": 12,
           "progress": 2,
           "review": 4,
-          "overdue": 4,
+          "overdue": 7,
           "done": 12,
-          "hours": 18.943754742063494,
-          "live": 53.04539833333334
+          "hours": 23.671328829365077,
+          "live": 119.23143555555555
         },
         "Tasneem": {
           "open": 0,
@@ -297,8 +298,8 @@
         }
       },
       "time": {
-        "avgTodo": 11126,
-        "avgProgress": 5520,
+        "avgTodo": 11783,
+        "avgProgress": 7505,
         "avgToDone": 5248,
         "open": 26
       },
@@ -2488,7 +2489,7 @@
         },
         {
           "id": "t-20260923-alaa-muclilin",
-          "who": "Sara",
+          "who": "Alaa",
           "space": "Graphic",
           "project": "MEDC",
           "title": "MEDC internship design",
@@ -2501,28 +2502,7 @@
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-22T11:33:33.935Z",
-          "updated_at": "2026-09-22T14:33:23.436Z",
-          "updated_by": "Amr",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
-        {
-          "id": "t-20260923-sara-mucn4b1h",
-          "who": "Sara",
-          "space": "Graphic",
-          "project": "MAS",
-          "title": "re-edit MAS pictures | 12 design",
-          "notes": "",
-          "due": "2026-09-23",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
-          "drive_missing": false,
-          "assigned_at": "2026-09-22",
-          "month": "2026-09",
-          "created_by": "Amr",
-          "created_at": "2026-09-22T12:18:26.405Z",
-          "updated_at": "2026-09-22T12:18:26.405Z",
+          "updated_at": "2026-09-24T00:48:25.159Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
@@ -2623,6 +2603,27 @@
           ],
           "start_on": "2026-09-21",
           "progress_hours": 1.2152025
+        },
+        {
+          "id": "t-20260924-alaa-muetdvaw",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "MAS",
+          "title": "re-edit MAS pictures | 12 design",
+          "notes": "",
+          "due": "2026-09-24",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
+          "drive_missing": false,
+          "assigned_at": "2026-09-24",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-24T00:49:22.616Z",
+          "updated_at": "2026-09-24T00:49:22.616Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
