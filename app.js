@@ -1502,7 +1502,7 @@ function applyRemoteMerge(path, remote, payload) {
     payload = persistBoardCfg({ ...remote, ...payload }, assembleBoardKey(payload) || assembleBoardKey(remote));
     state.githubCfg = payload;
   } else if (path.endsWith("team.json")) {
-    payload = pickNewerFile(remote, payload);
+    payload = mergeTeam(remote, payload);
     state.team = payload;
   } else if (path.endsWith("auth.json")) {
     payload = mergeAuth(remote, payload);
@@ -1630,7 +1630,9 @@ async function loadAll() {
       dbGetRaw("helal/hr.json").catch(() => emptyHr()),
       dbGet("helal/attendance.json").catch(() => dbGetRaw("helal/attendance.json").catch(() => emptyAttendance())),
     ]);
-    Object.assign(state, { team, auth, drive, projects, githubCfg });
+    Object.assign(state, { drive, projects, githubCfg });
+    state.team = mergeTeam(team, state.team);
+    state.auth = mergeAuth(auth, state.auth);
     const replay = mineNewerFile(tasksFile, cache.tasks);
     state.tasksFile = mergeTaskFiles(tasksFile, replay);
     state.reportsFile = mergeReports(reportsFile || emptyReports(), cache.reports);
@@ -1732,6 +1734,40 @@ function pickNewerFile(remote, local) {
   const rt = Date.parse(remote?.updated_at || 0) || 0;
   const lt = Date.parse(local?.updated_at || 0) || 0;
   return lt >= rt ? local : (remote || local);
+}
+
+function mergePersonRow(a, b) {
+  if (!a) return b;
+  if (!b) return a;
+  const at = Date.parse(a.updated_at || 0) || 0;
+  const bt = Date.parse(b.updated_at || 0) || 0;
+  return bt >= at ? { ...a, ...b } : { ...b, ...a };
+}
+
+function mergeTeam(remote, local) {
+  const newer = pickNewerFile(remote, local) || {};
+  const older = newer === local ? remote : local;
+  const owner = mergePersonRow(older?.owner, newer?.owner) || newer.owner || older?.owner;
+  const byName = new Map();
+  for (const row of [...(older?.people || []), ...(newer?.people || [])]) {
+    if (!row?.name || samePerson(row.name, owner?.name)) continue;
+    const key = String(row.name).trim().toLowerCase();
+    byName.set(key, mergePersonRow(byName.get(key), row));
+  }
+  const people = [];
+  const seen = new Set();
+  for (const row of [...(older?.people || []), ...(newer?.people || [])]) {
+    const key = String(row?.name || "").trim().toLowerCase();
+    if (!key || seen.has(key) || samePerson(row.name, owner?.name)) continue;
+    seen.add(key);
+    people.push(byName.get(key));
+  }
+  return {
+    agency: newer.agency || older?.agency || "Helal",
+    updated_at: newer.updated_at || older?.updated_at || "",
+    owner,
+    people,
+  };
 }
 
 function mergeAuth(remote, local) {
@@ -1855,7 +1891,7 @@ async function pullRemoteBoard() {
     state.reportsFile = mergeReports(remoteReports || emptyReports(), state.reportsFile || emptyReports());
     state.hrFile = remoteHr || emptyHr();
     state.attendFile = mergeAttendance(remoteAttend || emptyAttendance(), state.attendFile || emptyAttendance());
-    if (remoteTeam) state.team = pickNewerFile(remoteTeam, state.team);
+    if (remoteTeam) state.team = mergeTeam(remoteTeam, state.team);
     if (remoteAuth) state.auth = mergeAuth(remoteAuth, state.auth);
     if (state.session && !people().some((p) => p.name === state.session.who)) {
       logout();
@@ -3890,14 +3926,6 @@ function addPerson(fields) {
   if (!state.auth.users) state.auth.users = {};
   const password = fields.pin || makePersonPin(name);
   rememberIssuedPin(name, password);
-  hashPin(name, password).then((pin_hash) => {
-    if (!state.auth) state.auth = { users: {} };
-    if (!state.auth.users) state.auth.users = {};
-    state.auth.users[name] = { pin_hash };
-    state.auth.updated_at = new Date().toISOString();
-    render();
-    saveAuth(`auth: password for ${name}`);
-  });
   ensureHr().work[name] = {
     type: "Full-time",
     days: "Sun–Thu",
@@ -3905,8 +3933,21 @@ function addPerson(fields) {
     mode: "Remote",
   };
   render();
-  saveTeam(`team: add ${name}`);
-  saveHr(`hr: hours for ${name}`);
+  hashPin(name, password).then((pin_hash) => {
+    if (!pin_hash) {
+      state.saveState = "error";
+      state.saveError = `Could not create a password for ${name}. Try New password.`;
+      render();
+      return;
+    }
+    if (!state.auth.users) state.auth.users = {};
+    state.auth.users[name] = { pin_hash };
+    state.auth.updated_at = new Date().toISOString();
+    saveTeam(`team: add ${name}`);
+    saveAuth(`auth: password for ${name}`);
+    saveHr(`hr: hours for ${name}`);
+    render();
+  });
 }
 
 function setPersonActive(name, active) {
