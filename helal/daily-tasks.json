@@ -204,7 +204,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-25T18:55:19.935Z",
+      "updated_at": "2026-09-25T18:55:22.828Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -233,8 +233,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 121.56231953703703,
-          "live": 357.47326888888887
+          "hours": 121.56258731481482,
+          "live": 357.4740722222222
         },
         "Seif": {
           "open": 4,
@@ -243,18 +243,18 @@
           "review": 3,
           "overdue": 3,
           "done": 9,
-          "hours": 59.09533618055555,
-          "live": 27.249612777777777
+          "hours": 59.09543663194444,
+          "live": 27.25041638888889
         },
         "Alaa": {
           "open": 3,
           "todo": 0,
-          "progress": 2,
-          "review": 1,
+          "progress": 1,
+          "review": 2,
           "overdue": 2,
           "done": 10,
-          "hours": 29.66548886574074,
-          "live": 126.96813277777778
+          "hours": 32.28624507575758,
+          "live": 126.1309625
         },
         "Sara": {
           "open": 0,
@@ -273,8 +273,8 @@
           "review": 7,
           "overdue": 9,
           "done": 12,
-          "hours": 25.42027390873016,
-          "live": 143.71666666666667
+          "hours": 25.420388749999997,
+          "live": 143.71827444444443
         },
         "Tasneem": {
           "open": 0,
@@ -309,7 +309,7 @@
       },
       "time": {
         "avgTodo": 14145,
-        "avgProgress": 6554,
+        "avgProgress": 7855,
         "avgToDone": 5248,
         "open": 27
       },
@@ -2715,20 +2715,36 @@
           "title": "re-edit MAS pictures | 12 design",
           "notes": "",
           "due": "2026-09-24",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-24",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-24T00:49:22.616Z",
-          "updated_at": "2026-09-25T18:05:03.225Z",
+          "updated_at": "2026-09-25T18:55:22.819Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-09-25T18:05:03.224Z",
-          "progress_started_at": "2026-09-25T18:05:03.224Z",
-          "time_log": [],
-          "start_on": "2026-09-25"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-25T18:05:03.224Z",
+              "ended_at": "2026-09-25T18:55:22.819Z",
+              "hours": 0.8387763888888888,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-09-25",
+          "delay_reason": "Unclear brief",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 0.8387763888888888,
+          "review_at": "2026-09-25T18:55:22.819Z",
+          "first_review_at": "2026-09-25T18:55:22.819Z",
+          "delivered_on": "2026-09-25"
         }
       ]
     },
