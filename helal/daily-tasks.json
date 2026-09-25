@@ -204,7 +204,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-25T18:42:48.070Z",
+      "updated_at": "2026-09-25T18:55:19.935Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -233,8 +233,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 121.49270231481482,
-          "live": 357.2644172222222
+          "hours": 121.56231953703703,
+          "live": 357.47326888888887
         },
         "Seif": {
           "open": 4,
@@ -243,18 +243,18 @@
           "review": 3,
           "overdue": 3,
           "done": 9,
-          "hours": 59.06922975694444,
-          "live": 27.04076138888889
+          "hours": 59.09533618055555,
+          "live": 27.249612777777777
         },
         "Alaa": {
           "open": 3,
           "todo": 0,
-          "progress": 3,
-          "review": 0,
+          "progress": 2,
+          "review": 1,
           "overdue": 2,
           "done": 10,
-          "hours": 27.351397371794874,
-          "live": 126.55043222222221
+          "hours": 29.66548886574074,
+          "live": 126.96813277777778
         },
         "Sara": {
           "open": 0,
@@ -273,8 +273,8 @@
           "review": 7,
           "overdue": 9,
           "done": 12,
-          "hours": 25.390437996031746,
-          "live": 143.2989638888889
+          "hours": 25.42027390873016,
+          "live": 143.71666666666667
         },
         "Tasneem": {
           "open": 0,
@@ -308,8 +308,8 @@
         }
       },
       "time": {
-        "avgTodo": 14136,
-        "avgProgress": 6542,
+        "avgTodo": 14145,
+        "avgProgress": 6554,
         "avgToDone": 5248,
         "open": 27
       },
@@ -2562,20 +2562,36 @@
           "title": "MEDC internship design",
           "notes": "",
           "due": "2026-09-23",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-22",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-22T11:33:33.935Z",
-          "updated_at": "2026-09-25T18:42:48.062Z",
+          "updated_at": "2026-09-25T18:55:19.926Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-09-25T18:42:48.061Z",
-          "progress_started_at": "2026-09-25T18:42:48.061Z",
-          "time_log": [],
-          "start_on": "2026-09-25"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-25T18:42:48.061Z",
+              "ended_at": "2026-09-25T18:55:19.926Z",
+              "hours": 0.20885138888888888,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-09-25",
+          "delay_reason": "Unclear brief",
+          "delay_notified": false,
+          "delay_days": 2,
+          "progress_hours": 0.20885138888888888,
+          "review_at": "2026-09-25T18:55:19.926Z",
+          "first_review_at": "2026-09-25T18:55:19.926Z",
+          "delivered_on": "2026-09-25"
         },
         {
           "id": "t-20260923-seif-mucuz5l7",
