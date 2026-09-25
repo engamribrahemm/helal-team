@@ -204,7 +204,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-24T17:59:15.257Z",
+      "updated_at": "2026-09-25T18:05:03.235Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -233,8 +233,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 113.2507750925926,
-          "live": 332.5386355555556
+          "hours": 121.28299527777779,
+          "live": 356.63529611111113
         },
         "Seif": {
           "open": 4,
@@ -243,18 +243,18 @@
           "review": 3,
           "overdue": 3,
           "done": 9,
-          "hours": 55.97850704861111,
-          "live": 2.314979722222222
+          "hours": 58.99058961805555,
+          "live": 26.411640277777778
         },
         "Alaa": {
           "open": 3,
-          "todo": 2,
-          "progress": 1,
+          "todo": 1,
+          "progress": 2,
           "review": 0,
-          "overdue": 1,
+          "overdue": 2,
           "done": 10,
-          "hours": 30.019387196969696,
-          "live": 101.19552555555556
+          "hours": 29.525826828703703,
+          "live": 125.29218833333334
         },
         "Sara": {
           "open": 0,
@@ -271,10 +271,10 @@
           "todo": 10,
           "progress": 2,
           "review": 7,
-          "overdue": 7,
+          "overdue": 9,
           "done": 12,
-          "hours": 21.858183511904762,
-          "live": 93.84740111111111
+          "hours": 25.300563591269842,
+          "live": 142.04072222222223
         },
         "Tasneem": {
           "open": 0,
@@ -308,8 +308,8 @@
         }
       },
       "time": {
-        "avgTodo": 12297,
-        "avgProgress": 6359,
+        "avgTodo": 13255,
+        "avgProgress": 7805,
         "avgToDone": 5248,
         "open": 27
       },
@@ -2697,18 +2697,20 @@
           "title": "re-edit MAS pictures | 12 design",
           "notes": "",
           "due": "2026-09-24",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-24",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-24T00:49:22.616Z",
-          "updated_at": "2026-09-24T00:49:22.616Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-25T18:05:03.225Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-25T18:05:03.224Z",
+          "progress_started_at": "2026-09-25T18:05:03.224Z",
+          "time_log": [],
+          "start_on": "2026-09-25"
         }
       ]
     },
