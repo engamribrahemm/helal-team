@@ -204,7 +204,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-26T12:53:16.421Z",
+      "updated_at": "2026-09-26T12:53:27.431Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -233,18 +233,18 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 127.55088296296297,
-          "live": 375.4389591666667
+          "hours": 127.55190203703704,
+          "live": 375.4420163888889
         },
         "Seif": {
-          "open": 3,
+          "open": 2,
           "todo": 0,
           "progress": 1,
-          "review": 2,
-          "overdue": 2,
-          "done": 10,
-          "hours": 56.810920586419755,
-          "live": 45.21530305555556
+          "review": 1,
+          "overdue": 1,
+          "done": 11,
+          "hours": 54.053571083333324,
+          "live": 45.218360555555556
         },
         "Alaa": {
           "open": 3,
@@ -253,8 +253,8 @@
           "review": 2,
           "overdue": 2,
           "done": 10,
-          "hours": 33.91941661616161,
-          "live": 144.09584916666665
+          "hours": 33.91969454545454,
+          "live": 144.09890638888888
         },
         "Sara": {
           "open": 0,
@@ -269,12 +269,12 @@
         "Ganna": {
           "open": 19,
           "todo": 5,
-          "progress": 6,
-          "review": 8,
+          "progress": 5,
+          "review": 9,
           "overdue": 13,
           "done": 12,
-          "hours": 28.23948978395061,
-          "live": 296.14364805555556
+          "hours": 29.866636993464052,
+          "live": 295.5656608333333
         },
         "Tasneem": {
           "open": 0,
@@ -309,9 +309,9 @@
       },
       "time": {
         "avgTodo": 14069,
-        "avgProgress": 5739,
-        "avgToDone": 5256,
-        "open": 26
+        "avgProgress": 6452,
+        "avgToDone": 5544,
+        "open": 25
       },
       "hr": {
         "people": {
@@ -1808,15 +1808,15 @@
           "title": "2 designs ( carousel / single visual ) no 18 & 19",
           "notes": "",
           "due": "2026-09-16",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-14",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-14T12:03:39.755Z",
-          "updated_at": "2026-09-20T21:40:05.915Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-09-26T12:53:27.414Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-09-19T14:45:40.170Z",
           "progress_started_at": "",
@@ -1845,7 +1845,11 @@
           "progress_hours": 29.234368333333336,
           "review_at": "2026-09-20T21:40:05.914Z",
           "first_review_at": "2026-09-20T19:59:32.539Z",
-          "delivered_on": "2026-09-21"
+          "delivered_on": "2026-09-21",
+          "done_at": "2026-09-26T12:53:27.414Z",
+          "done_on": "2026-09-26",
+          "done_month": "2026-09",
+          "done_by": "Amr"
         }
       ]
     },
