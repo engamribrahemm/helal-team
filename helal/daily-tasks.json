@@ -204,7 +204,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-26T13:30:23.295Z",
+      "updated_at": "2026-09-26T13:30:28.445Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -233,8 +233,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 127.7570749074074,
-          "live": 376.057535
+          "hours": 127.75755185185186,
+          "live": 376.05896583333333
         },
         "Seif": {
           "open": 1,
@@ -243,8 +243,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 60.18091126262627,
-          "live": 45.83387888888889
+          "hours": 60.181041338383835,
+          "live": 45.83530972222222
         },
         "Alaa": {
           "open": 1,
@@ -253,8 +253,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 28.82921433760684,
-          "live": 144.714425
+          "hours": 28.829324401709407,
+          "live": 144.71585583333334
         },
         "Sara": {
           "open": 0,
@@ -267,14 +267,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 18,
+          "open": 17,
           "todo": 5,
           "progress": 5,
-          "review": 8,
-          "overdue": 12,
-          "done": 13,
-          "hours": 28.789677777777772,
-          "live": 298.6432525
+          "review": 7,
+          "overdue": 11,
+          "done": 14,
+          "hours": 27.2748859502924,
+          "live": 298.6504052777778
         },
         "Tasneem": {
           "open": 0,
@@ -310,8 +310,8 @@
       "time": {
         "avgTodo": 14091,
         "avgProgress": 6489,
-        "avgToDone": 6237,
-        "open": 21
+        "avgToDone": 6685,
+        "open": 20
       },
       "hr": {
         "people": {
@@ -2668,15 +2668,15 @@
           "title": "26 - 9 bts video",
           "notes": "",
           "due": "2026-09-24",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:34:50.503Z",
-          "updated_at": "2026-09-21T12:31:41.311Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-26T13:30:28.435Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-09-21T12:31:35.982Z",
           "progress_started_at": "",
@@ -2694,7 +2694,11 @@
           "progress_hours": 0.0014802777777777778,
           "review_at": "2026-09-21T12:31:41.311Z",
           "first_review_at": "2026-09-21T12:31:41.311Z",
-          "delivered_on": "2026-09-21"
+          "delivered_on": "2026-09-21",
+          "done_at": "2026-09-26T13:30:28.435Z",
+          "done_on": "2026-09-26",
+          "done_month": "2026-09",
+          "done_by": "Judi"
         },
         {
           "id": "t-20260924-ganna-mu44q2ob",
