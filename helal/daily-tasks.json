@@ -204,7 +204,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-26T12:17:40.632Z",
+      "updated_at": "2026-09-26T12:52:38.866Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -233,8 +233,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 127.35312481481482,
-          "live": 374.84568472222225
+          "hours": 127.54740546296296,
+          "live": 375.42852666666664
         },
         "Seif": {
           "open": 4,
@@ -243,8 +243,8 @@
           "review": 3,
           "overdue": 3,
           "done": 9,
-          "hours": 61.266888159722214,
-          "live": 44.62202861111111
+          "hours": 61.33974343749999,
+          "live": 45.20487083333333
         },
         "Alaa": {
           "open": 3,
@@ -253,8 +253,8 @@
           "review": 2,
           "overdue": 2,
           "done": 10,
-          "hours": 33.86548255050505,
-          "live": 143.50257444444443
+          "hours": 33.91846823232323,
+          "live": 144.08541694444443
         },
         "Sara": {
           "open": 0,
@@ -269,12 +269,12 @@
         "Ganna": {
           "open": 19,
           "todo": 5,
-          "progress": 6,
-          "review": 8,
+          "progress": 5,
+          "review": 9,
           "overdue": 13,
           "done": 12,
-          "hours": 28.041731635802464,
-          "live": 292.58400138888885
+          "hours": 29.86266950980392,
+          "live": 295.4982136111111
         },
         "Tasneem": {
           "open": 0,
@@ -308,8 +308,8 @@
         }
       },
       "time": {
-        "avgTodo": 14047,
-        "avgProgress": 6417,
+        "avgTodo": 14068,
+        "avgProgress": 6452,
         "avgToDone": 5248,
         "open": 27
       },
@@ -2864,20 +2864,36 @@
           "title": "Edit MEDC video",
           "notes": "",
           "due": "2026-09-25",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-24",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-24T17:59:15.239Z",
-          "updated_at": "2026-09-26T12:17:40.624Z",
+          "updated_at": "2026-09-26T12:52:38.851Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-26T12:17:40.624Z",
-          "progress_started_at": "2026-09-26T12:17:40.624Z",
-          "time_log": [],
-          "start_on": "2026-09-26"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-26T12:17:40.624Z",
+              "ended_at": "2026-09-26T12:52:38.851Z",
+              "hours": 0.5828408333333334,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-26",
+          "delay_reason": "Unclear brief",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 0.5828408333333334,
+          "review_at": "2026-09-26T12:52:38.851Z",
+          "first_review_at": "2026-09-26T12:52:38.851Z",
+          "delivered_on": "2026-09-26"
         }
       ]
     },
