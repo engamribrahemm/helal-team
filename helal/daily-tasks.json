@@ -14,7 +14,8 @@
     "t-20260915-alaa-mu14o9q4",
     "t-20260910-ganna-mua1rcjc",
     "t-20260930-sara-mua1s4lv",
-    "t-20260923-sara-mucn4b1h"
+    "t-20260923-sara-mucn4b1h",
+    "t-20260921-ganna-mtrcc493"
   ],
   "statuses": [
     "To do",
@@ -204,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-26T13:30:28.445Z",
+      "updated_at": "2026-09-26T13:31:27.118Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -233,8 +234,8 @@
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 127.75755185185186,
-          "live": 376.05896583333333
+          "hours": 127.76298453703704,
+          "live": 376.0752638888889
         },
         "Seif": {
           "open": 1,
@@ -243,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 60.181041338383835,
-          "live": 45.83530972222222
+          "hours": 60.18252297979798,
+          "live": 45.85160777777778
         },
         "Alaa": {
           "open": 1,
@@ -253,8 +254,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 28.829324401709407,
-          "live": 144.71585583333334
+          "hours": 28.830578098290598,
+          "live": 144.7321538888889
         },
         "Sara": {
           "open": 0,
@@ -267,14 +268,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 17,
-          "todo": 5,
+          "open": 16,
+          "todo": 4,
           "progress": 5,
           "review": 7,
-          "overdue": 11,
+          "overdue": 10,
           "done": 14,
-          "hours": 27.2748859502924,
-          "live": 298.6504052777778
+          "hours": 27.27917498538012,
+          "live": 298.73189694444443
         },
         "Tasneem": {
           "open": 0,
@@ -308,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 14091,
-        "avgProgress": 6489,
+        "avgTodo": 10790,
+        "avgProgress": 6490,
         "avgToDone": 6685,
-        "open": 20
+        "open": 19
       },
       "hr": {
         "people": {
@@ -2364,27 +2365,6 @@
       "date": "2026-09-21",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20260921-ganna-mtrcc493",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "23 - 9 video",
-          "notes": "",
-          "due": "2026-09-21",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-07",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-07T14:33:25.383Z",
-          "updated_at": "2026-09-07T14:33:25.383Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20260921-ganna-mu44o0y8",
           "who": "Ganna",
