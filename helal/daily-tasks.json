@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T12:46:18.800Z",
+      "updated_at": "2026-09-27T12:47:18.739Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -218,8 +218,8 @@
           "live": 0
         },
         "Mariam": {
-          "open": 3,
-          "todo": 3,
+          "open": 4,
+          "todo": 4,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.29594929292929,
-          "live": 69.09929722222222
+          "hours": 62.29746292929293,
+          "live": 69.11594722222222
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.618861880341885,
-          "live": 167.97984305555556
+          "hours": 30.620142670940172,
+          "live": 167.99649333333332
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.39698792397661,
-          "live": 414.9703427777778
+          "hours": 33.40136950292397,
+          "live": 415.0535927777778
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 3288,
-        "avgProgress": 5589,
+        "avgTodo": 3289,
+        "avgProgress": 5590,
         "avgToDone": 6685,
-        "open": 31
+        "open": 32
       },
       "hr": {
         "people": {
@@ -3094,6 +3094,27 @@
           "created_by": "Amr",
           "created_at": "2026-09-27T12:43:21.077Z",
           "updated_at": "2026-09-27T12:43:21.077Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260927-mariam-mujtcp1l",
+          "who": "Mariam",
+          "space": "Social",
+          "project": "Ahmed Eldalil",
+          "title": "Ask for material if he have to till the shooting",
+          "notes": "",
+          "due": "2026-09-27",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
+          "drive_missing": false,
+          "assigned_at": "2026-09-27",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-27T12:47:18.729Z",
+          "updated_at": "2026-09-27T12:47:18.729Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
