@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T11:22:46.947Z",
+      "updated_at": "2026-09-27T11:23:07.628Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.16938681818181,
-          "live": 67.70711027777777
+          "hours": 62.16990906565657,
+          "live": 67.71285472222222
         },
         "Alaa": {
           "open": 2,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.51177061965812,
-          "live": 166.58765694444443
+          "hours": 30.512212521367523,
+          "live": 166.59340138888888
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.030623669590646,
-          "live": 408.00942194444445
+          "hours": 33.03213529239766,
+          "live": 408.0381427777778
         },
         "Tasneem": {
           "open": 0,
@@ -310,7 +310,7 @@
       },
       "time": {
         "avgTodo": 4841,
-        "avgProgress": 5505,
+        "avgProgress": 5506,
         "avgToDone": 6685,
         "open": 25
       },
@@ -3252,7 +3252,7 @@
           "who": "Ganna",
           "space": "Social",
           "project": "Helal",
-          "title": "3-10 bts",
+          "title": "4-10 bts",
           "notes": "مين اكتر قسم بيتعب في الشركة",
           "due": "2026-09-30",
           "status": "To do",
@@ -3262,7 +3262,7 @@
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-27T11:20:05.925Z",
-          "updated_at": "2026-09-27T11:20:05.925Z",
+          "updated_at": "2026-09-27T11:23:07.577Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
