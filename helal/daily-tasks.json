@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T11:26:25.636Z",
+      "updated_at": "2026-09-27T12:43:21.090Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -218,8 +218,8 @@
           "live": 0
         },
         "Mariam": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.1749092929293,
-          "live": 67.76785722222222
+          "hours": 62.29146166666667,
+          "live": 69.04993333333333
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.516443461538465,
-          "live": 166.64840361111112
+          "hours": 30.61506467948718,
+          "live": 167.93047944444444
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.04660956140351,
-          "live": 408.3131538888889
+          "hours": 33.383997426900585,
+          "live": 414.72352333333333
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 4037,
-        "avgProgress": 5509,
+        "avgTodo": 3791,
+        "avgProgress": 5586,
         "avgToDone": 6685,
-        "open": 28
+        "open": 29
       },
       "hr": {
         "people": {
@@ -3074,6 +3074,27 @@
           "created_at": "2026-09-16T13:22:46.976Z",
           "updated_at": "2026-09-16T13:22:46.976Z",
           "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260927-mariam-mujt7lo5",
+          "who": "Mariam",
+          "space": "Social",
+          "project": "MAS",
+          "title": "send 15 old items to Alaa to work on it | 2 Pics per each piece",
+          "notes": "",
+          "due": "2026-09-27",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
+          "drive_missing": false,
+          "assigned_at": "2026-09-27",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-27T12:43:21.077Z",
+          "updated_at": "2026-09-27T12:43:21.077Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
