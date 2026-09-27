@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T12:44:00.712Z",
+      "updated_at": "2026-09-27T12:46:18.800Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -218,8 +218,8 @@
           "live": 0
         },
         "Mariam": {
-          "open": 2,
-          "todo": 2,
+          "open": 3,
+          "todo": 3,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.29246224747475,
-          "live": 69.06093972222222
+          "hours": 62.29594929292929,
+          "live": 69.09929722222222
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.615911324786325,
-          "live": 167.94148583333333
+          "hours": 30.618861880341885,
+          "live": 167.97984305555556
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.38689384502924,
-          "live": 414.7785552777778
+          "hours": 33.39698792397661,
+          "live": 414.9703427777778
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 3791,
-        "avgProgress": 5587,
+        "avgTodo": 3288,
+        "avgProgress": 5589,
         "avgToDone": 6685,
-        "open": 30
+        "open": 31
       },
       "hr": {
         "people": {
@@ -3209,6 +3209,27 @@
           "created_by": "Amr",
           "created_at": "2026-09-26T13:37:04.772Z",
           "updated_at": "2026-09-26T13:37:04.772Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260928-mariam-mujtbesk",
+          "who": "Mariam",
+          "space": "Social",
+          "project": "Blushed",
+          "title": "Review the material to have some content till shooting",
+          "notes": "",
+          "due": "2026-09-28",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
+          "drive_missing": false,
+          "assigned_at": "2026-09-27",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-27T12:46:18.789Z",
+          "updated_at": "2026-09-27T12:46:18.789Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
