@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T12:51:29.462Z",
+      "updated_at": "2026-09-27T12:51:59.154Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -218,8 +218,8 @@
           "live": 0
         },
         "Mariam": {
-          "open": 6,
-          "todo": 6,
+          "open": 7,
+          "todo": 7,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.30379431818182,
-          "live": 69.1855925
+          "hours": 62.30454411616162,
+          "live": 69.19384055555555
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.625500000000002,
-          "live": 168.0661386111111
+          "hours": 30.626134444444443,
+          "live": 168.07438638888888
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.41969720760233,
-          "live": 415.40181916666666
+          "hours": 33.42186767543859,
+          "live": 415.4430580555555
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 2744,
-        "avgProgress": 5594,
+        "avgTodo": 2745,
+        "avgProgress": 5595,
         "avgToDone": 6685,
-        "open": 34
+        "open": 35
       },
       "hr": {
         "people": {
@@ -3368,6 +3368,33 @@
           "created_by": "Amr",
           "created_at": "2026-09-27T12:44:00.703Z",
           "updated_at": "2026-09-27T12:44:00.703Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-01",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261001-mariam-mujtipeu",
+          "who": "Mariam",
+          "space": "Social",
+          "project": "MEDC",
+          "title": "MEDC monthly report",
+          "notes": "",
+          "due": "2026-10-01",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-09-27",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-27T12:51:59.143Z",
+          "updated_at": "2026-09-27T12:51:59.143Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
