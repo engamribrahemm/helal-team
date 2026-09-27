@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T12:47:18.739Z",
+      "updated_at": "2026-09-27T12:50:16.551Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -218,8 +218,8 @@
           "live": 0
         },
         "Mariam": {
-          "open": 4,
-          "todo": 4,
+          "open": 5,
+          "todo": 5,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.29746292929293,
-          "live": 69.11594722222222
+          "hours": 62.30195305555556,
+          "live": 69.16533861111111
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.620142670940172,
-          "live": 167.99649333333332
+          "hours": 30.623941987179485,
+          "live": 168.04588444444445
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.40136950292397,
-          "live": 415.0535927777778
+          "hours": 33.41436730994152,
+          "live": 415.30055111111113
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 3289,
-        "avgProgress": 5590,
+        "avgTodo": 2905,
+        "avgProgress": 5593,
         "avgToDone": 6685,
-        "open": 32
+        "open": 33
       },
       "hr": {
         "people": {
@@ -3375,6 +3375,33 @@
           "created_at": "2026-09-27T11:21:02.909Z",
           "updated_at": "2026-09-27T11:23:15.571Z",
           "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-03",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261003-mariam-mujtgi8o",
+          "who": "Mariam",
+          "space": "Social",
+          "project": "MEDC",
+          "title": "Content calendar | Asking for the catalogue and working on the content",
+          "notes": "",
+          "due": "2026-10-03",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-09-27",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-27T12:50:16.537Z",
+          "updated_at": "2026-09-27T12:50:16.537Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
