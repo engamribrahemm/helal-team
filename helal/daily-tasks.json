@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T11:18:12.908Z",
+      "updated_at": "2026-09-27T11:19:20.194Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,18 +244,18 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.16246664141415,
-          "live": 67.63098805555556
+          "hours": 62.16416583333334,
+          "live": 67.64967916666667
         },
         "Alaa": {
-          "open": 1,
-          "todo": 0,
+          "open": 2,
+          "todo": 1,
           "progress": 1,
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.505915064102563,
-          "live": 166.51153444444444
+          "hours": 30.50735284188034,
+          "live": 166.53022583333333
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.01059143274854,
-          "live": 407.6288094444444
+          "hours": 33.01551007309941,
+          "live": 407.7222636111111
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 8063,
-        "avgProgress": 5501,
+        "avgTodo": 6912,
+        "avgProgress": 5502,
         "avgToDone": 6685,
-        "open": 22
+        "open": 23
       },
       "hr": {
         "people": {
@@ -3215,6 +3215,33 @@
           "created_by": "Judi",
           "created_at": "2026-09-27T11:18:12.831Z",
           "updated_at": "2026-09-27T11:18:12.831Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-09-30",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20260930-alaa-mujq7k1t",
+          "who": "Alaa",
+          "space": "Social",
+          "project": "Helal",
+          "title": "2-10 carousel",
+          "notes": "الهدف من الإعلان مش انه يوصل لأكبر عدد",
+          "due": "2026-09-30",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-27",
+          "month": "2026-09",
+          "created_by": "Judi",
+          "created_at": "2026-09-27T11:19:20.130Z",
+          "updated_at": "2026-09-27T11:19:20.130Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
