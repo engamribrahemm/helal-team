@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T12:53:07.008Z",
+      "updated_at": "2026-09-27T14:07:41.323Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.30625757575758,
-          "live": 69.21268833333333
+          "hours": 62.41924527777778,
+          "live": 70.45555305555555
         },
         "Alaa": {
           "open": 3,
@@ -254,18 +254,18 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.627584273504276,
-          "live": 168.09323416666666
+          "hours": 30.723189273504275,
+          "live": 169.33609916666666
         },
         "Sara": {
           "open": 1,
-          "todo": 1,
-          "progress": 0,
+          "todo": 0,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 7.562166041666666,
-          "live": 0
+          "hours": 6.049733555555555,
+          "live": 0.000003611111111111111
         },
         "Ganna": {
           "open": 21,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.42682774853801,
-          "live": 415.53729972222226
+          "hours": 33.753897499999994,
+          "live": 421.75162472222223
         },
         "Tasneem": {
           "open": 0,
@@ -309,8 +309,8 @@
         }
       },
       "time": {
-        "avgTodo": 2471,
-        "avgProgress": 5596,
+        "avgTodo": 2355,
+        "avgProgress": 5670,
         "avgToDone": 6685,
         "open": 37
       },
@@ -3222,18 +3222,20 @@
           "title": "Saturate designs | 1 single visual & 1 carousel",
           "notes": "https://docs.google.com/presentation/d/1XF-5a4q3DYXhZPAXQa4AcoaFP-w2qhbMs3o6R3CIhMc/edit?usp=sharing",
           "due": "2026-09-28",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1I7q6FiMcVZWIDJVRjH87GBkR4lXz2yqq?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-26",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-26T13:37:04.772Z",
-          "updated_at": "2026-09-26T13:37:04.772Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-27T14:07:41.305Z",
+          "updated_by": "Sara",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-27T14:07:41.305Z",
+          "progress_started_at": "2026-09-27T14:07:41.305Z",
+          "time_log": [],
+          "start_on": "2026-09-27"
         },
         {
           "id": "t-20260928-mariam-mujtbesk",
