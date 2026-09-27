@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T12:52:29.470Z",
+      "updated_at": "2026-09-27T12:53:07.008Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -228,8 +228,8 @@
           "live": 0
         },
         "Judi": {
-          "open": 1,
-          "todo": 0,
+          "open": 2,
+          "todo": 1,
           "progress": 0,
           "review": 1,
           "overdue": 1,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.305309671717175,
-          "live": 69.20226138888889
+          "hours": 62.30625757575758,
+          "live": 69.21268833333333
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.626782222222225,
-          "live": 168.0828075
+          "hours": 30.627584273504276,
+          "live": 168.09323416666666
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.424083757309944,
-          "live": 415.48516361111115
+          "hours": 33.42682774853801,
+          "live": 415.53729972222226
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 2601,
-        "avgProgress": 5595,
+        "avgTodo": 2471,
+        "avgProgress": 5596,
         "avgToDone": 6685,
-        "open": 36
+        "open": 37
       },
       "hr": {
         "people": {
@@ -3368,6 +3368,27 @@
           "created_by": "Amr",
           "created_at": "2026-09-27T12:44:00.703Z",
           "updated_at": "2026-09-27T12:44:00.703Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20260930-judi-mujtk5rm",
+          "who": "Judi",
+          "space": "Social",
+          "project": "Helal",
+          "title": "Helal monthly report",
+          "notes": "",
+          "due": "2026-09-30",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-27",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-27T12:53:06.995Z",
+          "updated_at": "2026-09-27T12:53:06.995Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
