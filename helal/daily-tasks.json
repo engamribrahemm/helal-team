@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T12:51:59.154Z",
+      "updated_at": "2026-09-27T12:52:29.470Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -218,8 +218,8 @@
           "live": 0
         },
         "Mariam": {
-          "open": 7,
-          "todo": 7,
+          "open": 8,
+          "todo": 8,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.30454411616162,
-          "live": 69.19384055555555
+          "hours": 62.305309671717175,
+          "live": 69.20226138888889
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.626134444444443,
-          "live": 168.07438638888888
+          "hours": 30.626782222222225,
+          "live": 168.0828075
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.42186767543859,
-          "live": 415.4430580555555
+          "hours": 33.424083757309944,
+          "live": 415.48516361111115
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 2745,
+        "avgTodo": 2601,
         "avgProgress": 5595,
         "avgToDone": 6685,
-        "open": 35
+        "open": 36
       },
       "hr": {
         "people": {
@@ -3423,6 +3423,27 @@
           "created_at": "2026-09-27T11:21:02.909Z",
           "updated_at": "2026-09-27T11:23:15.571Z",
           "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261002-mariam-mujtjcsy",
+          "who": "Mariam",
+          "space": "Social",
+          "project": "OSAMA HELAL",
+          "title": "Osama Helal monthly report",
+          "notes": "",
+          "due": "2026-10-02",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1DajVWQGmGc81vtm_so9wAVoMDvzDnMeP",
+          "drive_missing": false,
+          "assigned_at": "2026-09-27",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-27T12:52:29.459Z",
+          "updated_at": "2026-09-27T12:52:29.459Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
