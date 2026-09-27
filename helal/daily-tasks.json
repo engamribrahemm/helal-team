@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-27T11:21:02.983Z",
+      "updated_at": "2026-09-27T11:21:53.157Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 12,
-          "hours": 62.166761439393944,
-          "live": 67.67823083333333
+          "hours": 62.168028434343434,
+          "live": 67.69216777777778
         },
         "Alaa": {
           "open": 2,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 30.509549145299143,
-          "live": 166.5587775
+          "hours": 30.51062123931624,
+          "live": 166.57271472222223
         },
         "Sara": {
           "open": 1,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 11,
           "done": 14,
-          "hours": 33.02302378654971,
-          "live": 407.8650247222222
+          "hours": 33.026691432748535,
+          "live": 407.93471027777775
         },
         "Tasneem": {
           "open": 0,
@@ -309,8 +309,8 @@
         }
       },
       "time": {
-        "avgTodo": 6049,
-        "avgProgress": 5504,
+        "avgTodo": 5378,
+        "avgProgress": 5505,
         "avgToDone": 6685,
         "open": 25
       },
@@ -3231,7 +3231,7 @@
           "who": "Alaa",
           "space": "Social",
           "project": "Helal",
-          "title": "2-10 carousel",
+          "title": "3-10 carousel",
           "notes": "الهدف من الإعلان مش انه يوصل لأكبر عدد",
           "due": "2026-09-30",
           "status": "To do",
@@ -3241,7 +3241,7 @@
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-27T11:19:20.130Z",
-          "updated_at": "2026-09-27T11:19:20.130Z",
+          "updated_at": "2026-09-27T11:21:53.100Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
