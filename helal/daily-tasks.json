@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T00:35:25.815Z",
+      "updated_at": "2026-09-28T00:37:13.470Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 58.74633587962963,
-          "live": 88.79988555555555
+          "hours": 58.75131995370371,
+          "live": 88.85969444444446
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 31.52798611111111,
-          "live": 179.79845805555556
+          "hours": 31.53028645299145,
+          "live": 179.8283625
         },
         "Sara": {
           "open": 1,
@@ -264,18 +264,18 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 8.142205277777776,
-          "live": 10.462362222222222
+          "hours": 8.148186166666665,
+          "live": 10.492266666666668
         },
         "Ganna": {
           "open": 21,
-          "todo": 11,
-          "progress": 2,
+          "todo": 12,
+          "progress": 1,
           "review": 8,
           "overdue": 13,
           "done": 14,
-          "hours": 26.552791163194442,
-          "live": 205.27223083333334
+          "hours": 21.519438537037036,
+          "live": 103.21915027777779
         },
         "Tasneem": {
           "open": 0,
@@ -309,8 +309,8 @@
         }
       },
       "time": {
-        "avgTodo": 4774,
-        "avgProgress": 4843,
+        "avgTodo": 5020,
+        "avgProgress": 4589,
         "avgToDone": 6685,
         "open": 37
       },
@@ -3188,20 +3188,30 @@
           "title": "Reel 8&9 Submission",
           "notes": "",
           "due": "2026-09-28",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:07:02.627Z",
-          "updated_at": "2026-09-23T18:30:27.067Z",
+          "updated_at": "2026-09-28T00:37:13.455Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-23T18:30:27.067Z",
-          "progress_started_at": "2026-09-23T18:30:27.067Z",
-          "time_log": [],
-          "start_on": "2026-09-23"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-09-23T18:30:27.067Z",
+              "ended_at": "2026-09-28T00:37:13.455Z",
+              "hours": 102.11288555555555,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-23",
+          "progress_hours": 102.11288555555555
         },
         {
           "id": "t-20260928-ganna-mu44sisu",
