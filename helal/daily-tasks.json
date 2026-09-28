@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T00:37:13.470Z",
+      "updated_at": "2026-09-28T00:37:15.689Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 58.75131995370371,
-          "live": 88.85969444444446
+          "hours": 58.75142236111111,
+          "live": 88.86092333333333
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 31.53028645299145,
-          "live": 179.8283625
+          "hours": 31.530333717948718,
+          "live": 179.82897694444443
         },
         "Sara": {
           "open": 1,
@@ -264,18 +264,18 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 8.148186166666665,
-          "live": 10.492266666666668
+          "hours": 8.148309166666667,
+          "live": 10.492881666666667
         },
         "Ganna": {
           "open": 21,
-          "todo": 12,
-          "progress": 1,
+          "todo": 13,
+          "progress": 0,
           "review": 8,
           "overdue": 13,
           "done": 14,
-          "hours": 21.519438537037036,
-          "live": 103.21915027777779
+          "hours": 15.68374484126984,
+          "live": 0
         },
         "Tasneem": {
           "open": 0,
@@ -309,8 +309,8 @@
         }
       },
       "time": {
-        "avgTodo": 5020,
-        "avgProgress": 4589,
+        "avgTodo": 5110,
+        "avgProgress": 4188,
         "avgToDone": 6685,
         "open": 37
       },
@@ -2507,18 +2507,18 @@
           "title": "Reel 4 Delivery",
           "notes": "",
           "due": "2026-09-22",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:20:44.360Z",
-          "updated_at": "2026-09-23T18:37:03.344Z",
+          "updated_at": "2026-09-28T00:37:14.409Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-21T12:53:19.970Z",
-          "progress_started_at": "2026-09-23T18:37:03.344Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -2527,10 +2527,18 @@
               "ended_at": "2026-09-21T14:06:18.788Z",
               "hours": 1.2163383333333333,
               "by": "Ganna"
+            },
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-09-23T18:37:03.344Z",
+              "ended_at": "2026-09-28T00:37:14.409Z",
+              "hours": 102.0030736111111,
+              "by": "Ganna"
             }
           ],
           "start_on": "2026-09-21",
-          "progress_hours": 1.2163383333333333
+          "progress_hours": 103.21941194444445
         }
       ]
     },
