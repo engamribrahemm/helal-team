@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T15:12:28.961Z",
+      "updated_at": "2026-09-28T17:05:30.843Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.03946780092593,
-          "live": 22.499508333333335
+          "hours": 61.196456365740744,
+          "live": 24.38337111111111
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 32.652411923076926,
-          "live": 194.4159936111111
+          "hours": 32.797324358974365,
+          "live": 196.29985527777777
         },
         "Sara": {
           "open": 1,
@@ -264,18 +264,18 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 11.0657125,
-          "live": 25.079898333333333
+          "hours": 11.442484722222222,
+          "live": 26.963759444444445
         },
         "Ganna": {
-          "open": 20,
+          "open": 19,
           "todo": 11,
           "progress": 1,
-          "review": 8,
-          "overdue": 13,
-          "done": 15,
-          "hours": 20.591429374999997,
-          "live": 14.537013611111112
+          "review": 7,
+          "overdue": 12,
+          "done": 16,
+          "hours": 19.52526887254902,
+          "live": 16.420873611111112
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 5742,
-        "avgProgress": 3848,
-        "avgToDone": 7648,
-        "open": 35
+        "avgTodo": 5829,
+        "avgProgress": 3961,
+        "avgToDone": 7609,
+        "open": 34
       },
       "hr": {
         "people": {
@@ -2914,15 +2914,15 @@
           "title": "Edit MEDC video",
           "notes": "",
           "due": "2026-09-25",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-24",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-24T17:59:15.239Z",
-          "updated_at": "2026-09-26T12:52:38.851Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-28T17:01:47.508Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-09-26T12:17:40.624Z",
           "progress_started_at": "",
@@ -2943,7 +2943,11 @@
           "progress_hours": 0.5828408333333334,
           "review_at": "2026-09-26T12:52:38.851Z",
           "first_review_at": "2026-09-26T12:52:38.851Z",
-          "delivered_on": "2026-09-26"
+          "delivered_on": "2026-09-26",
+          "done_at": "2026-09-28T17:01:47.507Z",
+          "done_on": "2026-09-28",
+          "done_month": "2026-09",
+          "done_by": "Amr"
         }
       ]
     },
