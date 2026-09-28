@@ -16,7 +16,8 @@
     "t-20260930-sara-mua1s4lv",
     "t-20260923-sara-mucn4b1h",
     "t-20260921-ganna-mtrcc493",
-    "t-20260922-ganna-mtrcd98f"
+    "t-20260922-ganna-mtrcd98f",
+    "t-20260929-ganna-mujq644e"
   ],
   "statuses": [
     "To do",
@@ -206,7 +207,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T21:52:43.775Z",
+      "updated_at": "2026-09-28T21:53:04.369Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -245,8 +246,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.5953662037037,
-          "live": 29.170289166666667
+          "hours": 61.59584280092593,
+          "live": 29.176008333333332
         },
         "Alaa": {
           "open": 5,
@@ -255,8 +256,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 33.16554888888889,
-          "live": 201.08677416666666
+          "hours": 33.16598884615385,
+          "live": 201.0924936111111
         },
         "Sara": {
           "open": 1,
@@ -269,14 +270,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 22,
-          "todo": 14,
+          "open": 21,
+          "todo": 13,
           "progress": 1,
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 19.80685248366013,
-          "live": 21.207795
+          "hours": 19.807188921568628,
+          "live": 21.213514444444446
         },
         "Tasneem": {
           "open": 0,
@@ -310,10 +311,10 @@
         }
       },
       "time": {
-        "avgTodo": 3862,
-        "avgProgress": 5029,
+        "avgTodo": 3926,
+        "avgProgress": 5030,
         "avgToDone": 7609,
-        "open": 41
+        "open": 40
       },
       "hr": {
         "people": {
@@ -3344,33 +3345,6 @@
           "created_at": "2026-09-27T12:51:29.451Z",
           "updated_at": "2026-09-27T12:51:29.451Z",
           "updated_by": "Amr",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-09-29",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20260929-ganna-mujq644e",
-          "who": "Ganna",
-          "space": "Social",
-          "project": "Helal",
-          "title": "1-10 bts",
-          "notes": "تيم الماركتنج جاتلي فكرة جديدة",
-          "due": "2026-09-29",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-27",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-27T11:18:12.831Z",
-          "updated_at": "2026-09-27T11:18:12.831Z",
-          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
