@@ -491,10 +491,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-10T14:28:06.584Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mu1fb5ew",
@@ -504,10 +504,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-14T17:13:09.437Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mu1fbg3s",
@@ -517,10 +517,23 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-14T17:13:10.064Z",
+      "decided_by": "Amr"
+    },
+    {
+      "id": "ar-mulhzjb9",
+      "who": "Amr",
+      "friday": "2026-09-25",
+      "date": "2026-09-29",
+      "from": "Home",
+      "to": "Office",
+      "reason": "",
+      "status": "Declined",
+      "created_at": "2026-09-28T17:04:41.349Z",
+      "decided_at": "2026-09-28T17:05:42.674Z",
+      "decided_by": "Amr"
     }
   ]
 }
