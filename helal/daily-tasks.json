@@ -210,7 +210,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T21:59:02.892Z",
+      "updated_at": "2026-09-28T21:59:34.866Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -249,8 +249,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.604142245370376,
-          "live": 29.275601666666667
+          "hours": 61.60488240740741,
+          "live": 29.28448361111111
         },
         "Alaa": {
           "open": 5,
@@ -259,8 +259,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 33.173649829059826,
-          "live": 201.1920863888889
+          "hours": 33.17433305555556,
+          "live": 201.20096833333332
         },
         "Sara": {
           "open": 1,
@@ -273,14 +273,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 18,
-          "todo": 10,
+          "open": 19,
+          "todo": 11,
           "progress": 1,
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 19.81304725490196,
-          "live": 21.31310611111111
+          "hours": 19.813569705882355,
+          "live": 21.321987777777778
         },
         "Tasneem": {
           "open": 0,
@@ -314,10 +314,10 @@
         }
       },
       "time": {
-        "avgTodo": 3723,
+        "avgTodo": 3724,
         "avgProgress": 5036,
         "avgToDone": 7609,
-        "open": 42
+        "open": 43
       },
       "hr": {
         "people": {
@@ -3876,6 +3876,33 @@
           "created_by": "Judi",
           "created_at": "2026-09-28T21:59:02.827Z",
           "updated_at": "2026-09-28T21:59:02.827Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-18",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261018-ganna-mulsiro4",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "20 - 10 reel",
+          "notes": "",
+          "due": "2026-10-18",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-29",
+          "month": "2026-09",
+          "created_by": "Judi",
+          "created_at": "2026-09-28T21:59:34.805Z",
+          "updated_at": "2026-09-28T21:59:34.805Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
