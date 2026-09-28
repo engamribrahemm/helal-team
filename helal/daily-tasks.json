@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T15:12:25.773Z",
+      "updated_at": "2026-09-28T15:12:28.961Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -238,14 +238,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 2,
+          "open": 1,
           "todo": 0,
           "progress": 1,
-          "review": 1,
-          "overdue": 1,
-          "done": 12,
-          "hours": 58.05952436868687,
-          "live": 22.498623055555555
+          "review": 0,
+          "overdue": 0,
+          "done": 13,
+          "hours": 61.03946780092593,
+          "live": 22.499508333333335
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 32.6523438034188,
-          "live": 194.41510805555555
+          "hours": 32.652411923076926,
+          "live": 194.4159936111111
         },
         "Sara": {
           "open": 1,
@@ -264,8 +264,8 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 11.065535388888888,
-          "live": 25.079012777777777
+          "hours": 11.0657125,
+          "live": 25.079898333333333
         },
         "Ganna": {
           "open": 20,
@@ -274,8 +274,8 @@
           "review": 8,
           "overdue": 13,
           "done": 15,
-          "hours": 20.591374027777775,
-          "live": 14.536128055555556
+          "hours": 20.591429374999997,
+          "live": 14.537013611111112
         },
         "Tasneem": {
           "open": 0,
@@ -311,8 +311,8 @@
       "time": {
         "avgTodo": 5742,
         "avgProgress": 3848,
-        "avgToDone": 7177,
-        "open": 36
+        "avgToDone": 7648,
+        "open": 35
       },
       "hr": {
         "people": {
@@ -3024,15 +3024,15 @@
           "title": "29 - 9 Single visual",
           "notes": "",
           "due": "2026-09-27",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:36:56.758Z",
-          "updated_at": "2026-09-28T13:29:25.982Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-09-28T15:12:28.607Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-09-24T15:40:21.325Z",
           "progress_started_at": "",
@@ -3053,7 +3053,11 @@
           "progress_hours": 93.81796027777777,
           "review_at": "2026-09-28T13:29:25.982Z",
           "first_review_at": "2026-09-28T13:29:25.982Z",
-          "delivered_on": "2026-09-28"
+          "delivered_on": "2026-09-28",
+          "done_at": "2026-09-28T15:12:28.606Z",
+          "done_on": "2026-09-28",
+          "done_month": "2026-09",
+          "done_by": "Judi"
         },
         {
           "id": "t-20260927-ganna-mu446v1x",
