@@ -210,7 +210,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T21:59:34.866Z",
+      "updated_at": "2026-09-28T22:00:50.204Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -249,8 +249,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.60488240740741,
-          "live": 29.28448361111111
+          "hours": 61.606626319444445,
+          "live": 29.305410555555557
         },
         "Alaa": {
           "open": 5,
@@ -259,8 +259,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 33.17433305555556,
-          "live": 201.20096833333332
+          "hours": 33.17594282051282,
+          "live": 201.22189527777778
         },
         "Sara": {
           "open": 1,
@@ -279,8 +279,8 @@
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 19.813569705882355,
-          "live": 21.321987777777778
+          "hours": 19.81480071895425,
+          "live": 21.342915
         },
         "Tasneem": {
           "open": 0,
@@ -303,8 +303,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 4,
-          "todo": 4,
+          "open": 5,
+          "todo": 5,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -314,10 +314,10 @@
         }
       },
       "time": {
-        "avgTodo": 3724,
-        "avgProgress": 5036,
+        "avgTodo": 3485,
+        "avgProgress": 5037,
         "avgToDone": 7609,
-        "open": 43
+        "open": 44
       },
       "hr": {
         "people": {
@@ -3903,6 +3903,33 @@
           "created_by": "Judi",
           "created_at": "2026-09-28T21:59:34.805Z",
           "updated_at": "2026-09-28T21:59:34.805Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-19",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261019-mohamed-mulskdst",
+          "who": "Mohamed",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "21 - 10 bts",
+          "notes": "",
+          "due": "2026-10-19",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-29",
+          "month": "2026-09",
+          "created_by": "Judi",
+          "created_at": "2026-09-28T22:00:50.142Z",
+          "updated_at": "2026-09-28T22:00:50.142Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
