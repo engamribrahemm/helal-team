@@ -206,7 +206,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T21:44:25.280Z",
+      "updated_at": "2026-09-28T21:45:30.115Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -245,8 +245,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.58382682870371,
-          "live": 29.031816944444444
+          "hours": 61.585327847222224,
+          "live": 29.04982888888889
         },
         "Alaa": {
           "open": 4,
@@ -255,8 +255,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 33.154897222222225,
-          "live": 200.9483025
+          "hours": 33.15628271367522,
+          "live": 200.9663138888889
         },
         "Sara": {
           "open": 1,
@@ -269,14 +269,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 18,
-          "todo": 10,
+          "open": 19,
+          "todo": 11,
           "progress": 1,
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 19.7987070751634,
-          "live": 21.069323055555557
+          "hours": 19.799766552287583,
+          "live": 21.08733416666667
         },
         "Tasneem": {
           "open": 0,
@@ -310,10 +310,10 @@
         }
       },
       "time": {
-        "avgTodo": 5324,
-        "avgProgress": 5021,
+        "avgTodo": 4862,
+        "avgProgress": 5022,
         "avgToDone": 7609,
-        "open": 35
+        "open": 36
       },
       "hr": {
         "people": {
@@ -3695,6 +3695,33 @@
           "created_by": "Judi",
           "created_at": "2026-09-28T21:44:16.420Z",
           "updated_at": "2026-09-28T21:44:16.420Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-10",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261010-ganna-muls0nue",
+          "who": "Ganna",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "12 - 10 bts",
+          "notes": "",
+          "due": "2026-10-10",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-29",
+          "month": "2026-09",
+          "created_by": "Judi",
+          "created_at": "2026-09-28T21:45:30.039Z",
+          "updated_at": "2026-09-28T21:45:30.039Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
