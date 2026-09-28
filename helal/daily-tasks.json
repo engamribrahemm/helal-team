@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T18:58:44.803Z",
+      "updated_at": "2026-09-28T21:43:35.807Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -222,7 +222,7 @@
           "todo": 8,
           "progress": 0,
           "review": 0,
-          "overdue": 2,
+          "overdue": 4,
           "done": 2,
           "hours": 27.778741805555555,
           "live": 0
@@ -238,14 +238,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 1,
-          "todo": 0,
+          "open": 2,
+          "todo": 1,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.353723726851854,
-          "live": 26.270579444444444
+          "hours": 61.582681782407406,
+          "live": 29.01807611111111
         },
         "Alaa": {
           "open": 3,
@@ -254,15 +254,15 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 32.942494252136754,
-          "live": 198.1870638888889
+          "hours": 33.1538401923077,
+          "live": 200.93456111111112
         },
         "Sara": {
           "open": 1,
           "todo": 0,
           "progress": 0,
           "review": 1,
-          "overdue": 0,
+          "overdue": 1,
           "done": 4,
           "hours": 7.562166041666666,
           "live": 0
@@ -272,10 +272,10 @@
           "todo": 11,
           "progress": 1,
           "review": 7,
-          "overdue": 12,
+          "overdue": 15,
           "done": 16,
-          "hours": 19.636281209150326,
-          "live": 18.308083333333332
+          "hours": 19.797898741830064,
+          "live": 21.05558138888889
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +309,10 @@
         }
       },
       "time": {
-        "avgTodo": 5917,
-        "avgProgress": 4855,
+        "avgTodo": 6044,
+        "avgProgress": 5020,
         "avgToDone": 7609,
-        "open": 34
+        "open": 35
       },
       "hr": {
         "people": {
@@ -3677,6 +3677,33 @@
           "progress_started_at": "2026-09-28T00:40:15.696Z",
           "time_log": [],
           "start_on": "2026-09-28"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261008-seif-mulry7n1",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "10-10 carousel",
+          "notes": "",
+          "due": "2026-10-08",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-29",
+          "month": "2026-09",
+          "created_by": "Judi",
+          "created_at": "2026-09-28T21:43:35.726Z",
+          "updated_at": "2026-09-28T21:43:35.726Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     }
