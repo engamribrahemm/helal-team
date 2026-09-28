@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T00:37:15.689Z",
+      "updated_at": "2026-09-28T00:39:53.058Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 58.75142236111111,
-          "live": 88.86092333333333
+          "hours": 58.75870824074074,
+          "live": 88.94835388888889
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 31.530333717948718,
-          "live": 179.82897694444443
+          "hours": 31.53369643162393,
+          "live": 179.8726922222222
         },
         "Sara": {
           "open": 1,
@@ -264,18 +264,18 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 8.148309166666667,
-          "live": 10.492881666666667
+          "hours": 8.15705211111111,
+          "live": 10.536596388888888
         },
         "Ganna": {
           "open": 21,
-          "todo": 13,
-          "progress": 0,
+          "todo": 12,
+          "progress": 1,
           "review": 8,
           "overdue": 13,
           "done": 14,
-          "hours": 15.68374484126984,
-          "live": 0
+          "hours": 21.445687777777778,
+          "live": 102.11288888888889
         },
         "Tasneem": {
           "open": 0,
@@ -309,8 +309,8 @@
         }
       },
       "time": {
-        "avgTodo": 5110,
-        "avgProgress": 4188,
+        "avgTodo": 4881,
+        "avgProgress": 4578,
         "avgToDone": 6685,
         "open": 37
       },
@@ -3196,18 +3196,18 @@
           "title": "Reel 8&9 Submission",
           "notes": "",
           "due": "2026-09-28",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:07:02.627Z",
-          "updated_at": "2026-09-28T00:37:13.455Z",
+          "updated_at": "2026-09-28T00:39:53.043Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-23T18:30:27.067Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-09-28T00:39:53.043Z",
           "time_log": [
             {
               "from": "In progress",
