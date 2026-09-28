@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T00:40:15.711Z",
+      "updated_at": "2026-09-28T13:29:25.999Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -240,12 +240,12 @@
         "Seif": {
           "open": 2,
           "todo": 0,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 1,
           "done": 12,
-          "hours": 58.75975694444444,
-          "live": 88.96093833333335
+          "hours": 57.903469898989904,
+          "live": 20.78202388888889
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 31.534180448717954,
-          "live": 179.87898444444446
+          "hours": 32.520297670940174,
+          "live": 192.69850833333334
         },
         "Sara": {
           "open": 1,
@@ -264,8 +264,8 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 8.15831061111111,
-          "live": 10.54288888888889
+          "hours": 10.722215388888888,
+          "live": 23.362412777777777
         },
         "Ganna": {
           "open": 21,
@@ -274,8 +274,8 @@
           "review": 9,
           "overdue": 13,
           "done": 14,
-          "hours": 14.638162055555556,
-          "live": 0.0000030555555555555556
+          "hours": 15.492797,
+          "live": 12.819527222222222
         },
         "Tasneem": {
           "open": 0,
@@ -309,8 +309,8 @@
         }
       },
       "time": {
-        "avgTodo": 5068,
-        "avgProgress": 4191,
+        "avgTodo": 5662,
+        "avgProgress": 3745,
         "avgToDone": 6685,
         "open": 37
       },
@@ -3024,20 +3024,36 @@
           "title": "29 - 9 Single visual",
           "notes": "",
           "due": "2026-09-27",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:36:56.758Z",
-          "updated_at": "2026-09-24T15:40:21.325Z",
+          "updated_at": "2026-09-28T13:29:25.982Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-09-24T15:40:21.325Z",
-          "progress_started_at": "2026-09-24T15:40:21.325Z",
-          "time_log": [],
-          "start_on": "2026-09-24"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-24T15:40:21.325Z",
+              "ended_at": "2026-09-28T13:29:25.982Z",
+              "hours": 93.81796027777777,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-09-24",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 93.81796027777777,
+          "review_at": "2026-09-28T13:29:25.982Z",
+          "first_review_at": "2026-09-28T13:29:25.982Z",
+          "delivered_on": "2026-09-28"
         },
         {
           "id": "t-20260927-ganna-mu446v1x",
