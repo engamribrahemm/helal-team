@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T17:05:30.843Z",
+      "updated_at": "2026-09-28T18:58:44.803Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.196456365740744,
-          "live": 24.38337111111111
+          "hours": 61.353723726851854,
+          "live": 26.270579444444444
         },
         "Alaa": {
           "open": 3,
@@ -254,18 +254,18 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 32.797324358974365,
-          "live": 196.29985527777777
+          "hours": 32.942494252136754,
+          "live": 198.1870638888889
         },
         "Sara": {
           "open": 1,
           "todo": 0,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 4,
-          "hours": 11.442484722222222,
-          "live": 26.963759444444445
+          "hours": 7.562166041666666,
+          "live": 0
         },
         "Ganna": {
           "open": 19,
@@ -274,8 +274,8 @@
           "review": 7,
           "overdue": 12,
           "done": 16,
-          "hours": 19.52526887254902,
-          "live": 16.420873611111112
+          "hours": 19.636281209150326,
+          "live": 18.308083333333332
         },
         "Tasneem": {
           "open": 0,
@@ -309,8 +309,8 @@
         }
       },
       "time": {
-        "avgTodo": 5829,
-        "avgProgress": 3961,
+        "avgTodo": 5917,
+        "avgProgress": 4855,
         "avgToDone": 7609,
         "open": 34
       },
@@ -353,11 +353,11 @@
             "reviews": 0
           },
           "Sara": {
-            "delivery": 2,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 2,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
@@ -3310,20 +3310,33 @@
           "title": "Saturate designs | 1 single visual & 1 carousel",
           "notes": "https://docs.google.com/presentation/d/1XF-5a4q3DYXhZPAXQa4AcoaFP-w2qhbMs3o6R3CIhMc/edit?usp=sharing",
           "due": "2026-09-28",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1I7q6FiMcVZWIDJVRjH87GBkR4lXz2yqq?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-26",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-26T13:37:04.772Z",
-          "updated_at": "2026-09-27T14:07:41.305Z",
+          "updated_at": "2026-09-28T18:58:44.774Z",
           "updated_by": "Sara",
           "revisions": 0,
           "first_progress_at": "2026-09-27T14:07:41.305Z",
-          "progress_started_at": "2026-09-27T14:07:41.305Z",
-          "time_log": [],
-          "start_on": "2026-09-27"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-27T14:07:41.305Z",
+              "ended_at": "2026-09-28T18:58:44.774Z",
+              "hours": 28.850963611111112,
+              "by": "Sara"
+            }
+          ],
+          "start_on": "2026-09-27",
+          "progress_hours": 28.850963611111112,
+          "review_at": "2026-09-28T18:58:44.774Z",
+          "first_review_at": "2026-09-28T18:58:44.774Z",
+          "delivered_on": "2026-09-28"
         },
         {
           "id": "t-20260928-mariam-mujtbesk",
