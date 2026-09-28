@@ -205,7 +205,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T00:40:05.604Z",
+      "updated_at": "2026-09-28T00:40:15.711Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +244,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 58.75928907407408,
-          "live": 88.95532416666667
+          "hours": 58.75975694444444,
+          "live": 88.96093833333335
         },
         "Alaa": {
           "open": 3,
@@ -254,8 +254,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 31.533964508547008,
-          "live": 179.87617722222222
+          "hours": 31.534180448717954,
+          "live": 179.87898444444446
         },
         "Sara": {
           "open": 1,
@@ -264,18 +264,18 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 8.15774911111111,
-          "live": 10.540081388888888
+          "hours": 8.15831061111111,
+          "live": 10.54288888888889
         },
         "Ganna": {
           "open": 21,
-          "todo": 12,
-          "progress": 0,
+          "todo": 11,
+          "progress": 1,
           "review": 9,
           "overdue": 13,
           "done": 14,
-          "hours": 15.68374484126984,
-          "live": 0
+          "hours": 14.638162055555556,
+          "live": 0.0000030555555555555556
         },
         "Tasneem": {
           "open": 0,
@@ -309,7 +309,7 @@
         }
       },
       "time": {
-        "avgTodo": 4882,
+        "avgTodo": 5068,
         "avgProgress": 4191,
         "avgToDone": 6685,
         "open": 37
@@ -3622,18 +3622,20 @@
           "title": "8-10 reel",
           "notes": "الكلاينت الي بيرجع اهم من ترند وخلاص",
           "due": "2026-10-06",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-27T11:26:25.571Z",
-          "updated_at": "2026-09-27T11:26:25.571Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-09-28T00:40:15.697Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-28T00:40:15.696Z",
+          "progress_started_at": "2026-09-28T00:40:15.696Z",
+          "time_log": [],
+          "start_on": "2026-09-28"
         }
       ]
     }
