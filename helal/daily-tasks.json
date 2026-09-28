@@ -15,7 +15,8 @@
     "t-20260910-ganna-mua1rcjc",
     "t-20260930-sara-mua1s4lv",
     "t-20260923-sara-mucn4b1h",
-    "t-20260921-ganna-mtrcc493"
+    "t-20260921-ganna-mtrcc493",
+    "t-20260922-ganna-mtrcd98f"
   ],
   "statuses": [
     "To do",
@@ -205,7 +206,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T21:44:16.498Z",
+      "updated_at": "2026-09-28T21:44:25.280Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -244,8 +245,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.58362372685185,
-          "live": 29.029379444444444
+          "hours": 61.58382682870371,
+          "live": 29.031816944444444
         },
         "Alaa": {
           "open": 4,
@@ -254,8 +255,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 33.1547097008547,
-          "live": 200.9458647222222
+          "hours": 33.154897222222225,
+          "live": 200.9483025
         },
         "Sara": {
           "open": 1,
@@ -268,14 +269,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 19,
-          "todo": 11,
+          "open": 18,
+          "todo": 10,
           "progress": 1,
           "review": 7,
-          "overdue": 15,
+          "overdue": 14,
           "done": 16,
-          "hours": 19.79856366013072,
-          "live": 21.066885
+          "hours": 19.7987070751634,
+          "live": 21.069323055555557
         },
         "Tasneem": {
           "open": 0,
@@ -309,10 +310,10 @@
         }
       },
       "time": {
-        "avgTodo": 6044,
+        "avgTodo": 5324,
         "avgProgress": 5021,
         "avgToDone": 7609,
-        "open": 36
+        "open": 35
       },
       "hr": {
         "people": {
@@ -2426,39 +2427,6 @@
       "date": "2026-09-22",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20260922-ganna-mtrcd98f",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "24 - 9 reel",
-          "notes": "",
-          "due": "2026-09-22",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-07",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-07T14:34:18.495Z",
-          "updated_at": "2026-09-28T00:34:44.036Z",
-          "updated_by": "Ganna",
-          "revisions": 0,
-          "first_progress_at": "2026-09-22T07:32:15.854Z",
-          "progress_started_at": "",
-          "time_log": [
-            {
-              "from": "In progress",
-              "to": "To do",
-              "started_at": "2026-09-22T07:32:15.854Z",
-              "ended_at": "2026-09-28T00:34:44.036Z",
-              "hours": 137.04116166666665,
-              "by": "Ganna"
-            }
-          ],
-          "start_on": "2026-09-22",
-          "progress_hours": 137.04116166666665
-        },
         {
           "id": "t-20260922-ganna-mu442vmh",
           "who": "Ganna",
