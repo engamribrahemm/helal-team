@@ -18,7 +18,8 @@
     "t-20260921-ganna-mtrcc493",
     "t-20260922-ganna-mtrcd98f",
     "t-20260929-ganna-mujq644e",
-    "t-20261004-ganna-mujqdux0"
+    "t-20261004-ganna-mujqdux0",
+    "t-20261011-ganna-muls1jt3"
   ],
   "statuses": [
     "To do",
@@ -208,7 +209,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-28T21:54:52.314Z",
+      "updated_at": "2026-09-28T21:55:17.433Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -247,8 +248,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 61.5983418287037,
-          "live": 29.205996666666667
+          "hours": 61.59892324074074,
+          "live": 29.21297361111111
         },
         "Alaa": {
           "open": 5,
@@ -257,8 +258,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 33.1682955982906,
-          "live": 201.1224813888889
+          "hours": 33.168832286324786,
+          "live": 201.12945833333333
         },
         "Sara": {
           "open": 1,
@@ -271,14 +272,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 20,
-          "todo": 12,
+          "open": 19,
+          "todo": 11,
           "progress": 1,
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 19.808952859477124,
-          "live": 21.243501388888888
+          "hours": 19.809363267973854,
+          "live": 21.250478333333334
         },
         "Tasneem": {
           "open": 0,
@@ -312,10 +313,10 @@
         }
       },
       "time": {
-        "avgTodo": 3853,
-        "avgProgress": 5031,
+        "avgTodo": 3996,
+        "avgProgress": 5032,
         "avgToDone": 7609,
-        "open": 41
+        "open": 40
       },
       "hr": {
         "people": {
@@ -3718,33 +3719,6 @@
           "created_by": "Judi",
           "created_at": "2026-09-28T21:45:30.039Z",
           "updated_at": "2026-09-28T21:45:30.039Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-10-11",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20261011-ganna-muls1jt3",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "13 - 10 reel",
-          "notes": "",
-          "due": "2026-10-11",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-29",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-28T21:46:11.464Z",
-          "updated_at": "2026-09-28T21:46:11.464Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
