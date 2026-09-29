@@ -210,7 +210,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-29T15:03:29.502Z",
+      "updated_at": "2026-09-29T21:56:59.213Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -223,12 +223,12 @@
           "live": 0
         },
         "Mariam": {
-          "open": 8,
-          "todo": 8,
+          "open": 7,
+          "todo": 7,
           "progress": 0,
           "review": 0,
-          "overdue": 4,
-          "done": 2,
+          "overdue": 3,
+          "done": 3,
           "hours": 27.778741805555555,
           "live": 0
         },
@@ -249,8 +249,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 63.02694048611111,
-          "live": 46.34918055555555
+          "hours": 63.60123877314815,
+          "live": 53.240759999999995
         },
         "Alaa": {
           "open": 7,
@@ -279,8 +279,8 @@
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 20.817403807189542,
-          "live": 38.3871675
+          "hours": 21.222790996732027,
+          "live": 45.27874972222222
         },
         "Tasneem": {
           "open": 0,
@@ -314,10 +314,10 @@
         }
       },
       "time": {
-        "avgTodo": 3687,
-        "avgProgress": 2542,
-        "avgToDone": 7609,
-        "open": 51
+        "avgTodo": 4075,
+        "avgProgress": 2956,
+        "avgToDone": 7527,
+        "open": 50
       },
       "hr": {
         "people": {
@@ -3124,18 +3124,24 @@
           "title": "send 15 old items to Alaa to work on it | 2 Pics per each piece",
           "notes": "",
           "due": "2026-09-27",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:43:21.077Z",
-          "updated_at": "2026-09-27T12:43:21.077Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-29T21:56:59.146Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-09-29T21:56:59.144Z",
+          "done_on": "2026-09-30",
+          "done_month": "2026-09",
+          "done_by": "Mariam",
+          "delivered_on": "2026-09-30"
         },
         {
           "id": "t-20260927-mariam-mujtcp1l",
