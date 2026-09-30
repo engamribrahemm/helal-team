@@ -28,7 +28,8 @@
     "t-20261019-mohamed-mulskdst",
     "t-20261018-ganna-mulsiro4",
     "t-20261015-mohamed-mulsfic1",
-    "t-20261013-ganna-muls422q"
+    "t-20261013-ganna-muls422q",
+    "t-20261011-mohamed-mulsdryt"
   ],
   "statuses": [
     "To do",
@@ -218,7 +219,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T00:38:15.112Z",
+      "updated_at": "2026-09-30T00:38:23.271Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -257,8 +258,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 63.825217916666666,
-          "live": 55.928509722222216
+          "hours": 63.825406828703706,
+          "live": 55.93077666666666
         },
         "Alaa": {
           "open": 7,
@@ -287,8 +288,8 @@
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 21.380893921568628,
-          "live": 47.966499722222224
+          "hours": 21.381027238562094,
+          "live": 47.968765833333336
         },
         "Tasneem": {
           "open": 0,
@@ -311,8 +312,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 3,
-          "todo": 3,
+          "open": 2,
+          "todo": 2,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -322,10 +323,10 @@
         }
       },
       "time": {
-        "avgTodo": 4918,
+        "avgTodo": 5032,
         "avgProgress": 3117,
         "avgToDone": 7527,
-        "open": 42
+        "open": 41
       },
       "hr": {
         "people": {
@@ -3763,33 +3764,6 @@
           "created_by": "Judi",
           "created_at": "2026-09-28T21:45:30.039Z",
           "updated_at": "2026-09-28T21:45:30.039Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-10-11",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20261011-mohamed-mulsdryt",
-          "who": "Mohamed",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "13 - 10 reel",
-          "notes": "",
-          "due": "2026-10-11",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-29",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-28T21:55:41.910Z",
-          "updated_at": "2026-09-28T21:55:41.910Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
