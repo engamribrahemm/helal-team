@@ -241,7 +241,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T20:47:24.840Z",
+      "updated_at": "2026-09-30T20:49:08.531Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -255,13 +255,13 @@
         },
         "Mariam": {
           "open": 5,
-          "todo": 4,
+          "todo": 3,
           "progress": 1,
-          "review": 0,
+          "review": 1,
           "overdue": 2,
           "done": 5,
-          "hours": 20.03670935185185,
-          "live": 4.552644444444445
+          "hours": 20.04630990740741,
+          "live": 4.581446111111111
         },
         "Judi": {
           "open": 2,
@@ -310,8 +310,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 26.216016748971196,
-          "live": 74.35608111111111
+          "hours": 26.22028378600823,
+          "live": 74.4712911111111
         },
         "Tasneem": {
           "open": 0,
@@ -345,8 +345,8 @@
         }
       },
       "time": {
-        "avgTodo": 1131,
-        "avgProgress": 947,
+        "avgTodo": 1026,
+        "avgProgress": 949,
         "avgToDone": 9099,
         "open": 55
       },
@@ -3225,18 +3225,25 @@
           "title": "Review the material to have some content till shooting",
           "notes": "",
           "due": "2026-09-28",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:46:18.789Z",
-          "updated_at": "2026-09-27T12:46:18.789Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-30T20:49:08.493Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "delay_reason": "Unclear brief",
+          "delay_notified": false,
+          "delay_days": 2,
+          "time_log": [],
+          "review_at": "2026-09-30T20:49:08.493Z",
+          "first_review_at": "2026-09-30T20:49:08.493Z",
+          "delivered_on": "2026-09-30"
         },
         {
           "id": "t-20260928-mariam-mujti2i3",
