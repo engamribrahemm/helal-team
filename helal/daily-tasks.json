@@ -240,7 +240,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T16:27:02.987Z",
+      "updated_at": "2026-09-30T16:27:51.749Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -259,8 +259,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 18.590239351851853,
-          "live": 0.21323444444444445
+          "hours": 18.594754537037037,
+          "live": 0.22678
         },
         "Judi": {
           "open": 2,
@@ -273,14 +273,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 17,
-          "todo": 16,
+          "open": 18,
+          "todo": 17,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 14,
-          "hours": 60.132532670940165,
-          "live": 0.7005683333333333
+          "hours": 60.13357463675213,
+          "live": 0.7141138888888889
         },
         "Alaa": {
           "open": 6,
@@ -309,8 +309,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.05234037037037,
-          "live": 63.77979777777778
+          "hours": 29.05290474537037,
+          "live": 63.79334277777778
         },
         "Tasneem": {
           "open": 0,
@@ -344,10 +344,10 @@
         }
       },
       "time": {
-        "avgTodo": 1013,
-        "avgProgress": 1294,
+        "avgTodo": 1014,
+        "avgProgress": 1295,
         "avgToDone": 9099,
-        "open": 46
+        "open": 47
       },
       "hr": {
         "people": {
@@ -4101,6 +4101,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:39:42.597Z",
           "updated_at": "2026-09-30T14:39:42.597Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261018-seif-muobjvnj",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "Delivery of Carousel No. 2",
+          "notes": "",
+          "due": "2026-10-18",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T16:27:51.680Z",
+          "updated_at": "2026-09-30T16:27:51.680Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
