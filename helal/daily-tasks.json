@@ -223,7 +223,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T13:58:22.478Z",
+      "updated_at": "2026-09-30T13:58:47.732Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -236,12 +236,12 @@
           "live": 0
         },
         "Mariam": {
-          "open": 6,
-          "todo": 6,
+          "open": 5,
+          "todo": 5,
           "progress": 0,
           "review": 0,
           "overdue": 2,
-          "done": 4,
+          "done": 5,
           "hours": 27.778741805555555,
           "live": 0
         },
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 64.93649969907408,
-          "live": 69.2638911111111
+          "hours": 64.93708412037037,
+          "live": 69.27090416666667
         },
         "Alaa": {
           "open": 6,
@@ -292,8 +292,8 @@
           "review": 0,
           "overdue": 7,
           "done": 23,
-          "hours": 28.949093796296296,
-          "live": 61.30188
+          "hours": 28.949386099537037,
+          "live": 61.30889527777778
         },
         "Tasneem": {
           "open": 0,
@@ -327,10 +327,10 @@
         }
       },
       "time": {
-        "avgTodo": 6244,
-        "avgProgress": 3917,
-        "avgToDone": 9380,
-        "open": 28
+        "avgTodo": 6325,
+        "avgProgress": 3918,
+        "avgToDone": 9298,
+        "open": 27
       },
       "hr": {
         "people": {
@@ -3598,18 +3598,24 @@
           "title": "Content calendar | Asking for the catalogue and working on the content",
           "notes": "",
           "due": "2026-10-03",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:50:16.537Z",
-          "updated_at": "2026-09-27T12:50:16.537Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-30T13:58:47.654Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-09-30T13:58:47.652Z",
+          "done_on": "2026-09-30",
+          "done_month": "2026-09",
+          "done_by": "Mariam",
+          "delivered_on": "2026-09-30"
         }
       ]
     },
