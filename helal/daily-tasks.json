@@ -47,7 +47,8 @@
     "t-20260922-ganna-mu44pb9j",
     "t-20260924-ganna-mu44q2ob",
     "t-20260925-ganna-mu44qtws",
-    "t-20260927-ganna-mu44rxvj"
+    "t-20260927-ganna-mu44rxvj",
+    "t-20260928-ganna-mu44sisu"
   ],
   "statuses": [
     "To do",
@@ -237,7 +238,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:52:34.831Z",
+      "updated_at": "2026-09-30T15:52:41.043Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -276,8 +277,8 @@
           "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 59.17501548611111,
-          "live": 0.12608055555555556
+          "hours": 59.1751593287037,
+          "live": 0.12780666666666668
         },
         "Alaa": {
           "open": 6,
@@ -300,14 +301,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 2,
-          "todo": 1,
+          "open": 1,
+          "todo": 0,
           "progress": 1,
           "review": 0,
-          "overdue": 1,
+          "overdue": 0,
           "done": 24,
-          "hours": 29.028403379629633,
-          "live": 63.20531
+          "hours": 29.028475277777776,
+          "live": 63.20703555555556
         },
         "Tasneem": {
           "open": 0,
@@ -341,10 +342,10 @@
         }
       },
       "time": {
-        "avgTodo": 1989,
+        "avgTodo": 1434,
         "avgProgress": 1900,
         "avgToDone": 9244,
-        "open": 39
+        "open": 38
       },
       "hr": {
         "people": {
@@ -3149,27 +3150,6 @@
           "done_on": "2026-09-30",
           "done_month": "2026-09",
           "done_by": "Mariam"
-        },
-        {
-          "id": "t-20260928-ganna-mu44sisu",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Blushed",
-          "title": "Reel 8 Delivery",
-          "notes": "",
-          "due": "2026-09-28",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
-          "drive_missing": false,
-          "assigned_at": "2026-09-16",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-16T13:23:14.095Z",
-          "updated_at": "2026-09-16T13:23:14.095Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         },
         {
           "id": "t-20260928-ganna-muifkscs",
