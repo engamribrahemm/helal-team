@@ -228,7 +228,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T14:40:48.234Z",
+      "updated_at": "2026-09-30T14:41:30.954Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -261,14 +261,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 17,
-          "todo": 16,
+          "open": 18,
+          "todo": 17,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 64.99542918981481,
-          "live": 69.971045
+          "hours": 64.99641805555555,
+          "live": 69.98291138888888
         },
         "Alaa": {
           "open": 6,
@@ -297,8 +297,8 @@
           "review": 0,
           "overdue": 7,
           "done": 23,
-          "hours": 28.97855854166667,
-          "live": 62.00903388888889
+          "hours": 28.979052974537037,
+          "live": 62.02090027777778
         },
         "Tasneem": {
           "open": 0,
@@ -332,10 +332,10 @@
         }
       },
       "time": {
-        "avgTodo": 4434,
+        "avgTodo": 4304,
         "avgProgress": 3960,
         "avgToDone": 9298,
-        "open": 39
+        "open": 40
       },
       "hr": {
         "people": {
@@ -4145,6 +4145,27 @@
           "created_at": "2026-09-28T22:02:44.087Z",
           "updated_at": "2026-09-28T22:02:44.087Z",
           "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261024-seif-muo7r479",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "Delivery of Carousel No. 25 and Single Post No. 26",
+          "notes": "",
+          "due": "2026-10-24",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T14:41:30.886Z",
+          "updated_at": "2026-09-30T14:41:30.886Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
