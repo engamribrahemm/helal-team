@@ -44,7 +44,8 @@
     "t-20261012-seif-muls2ppa",
     "t-20261017-seif-mulsi2zu",
     "t-20261024-seif-mulsmtpy",
-    "t-20260922-ganna-mu44pb9j"
+    "t-20260922-ganna-mu44pb9j",
+    "t-20260924-ganna-mu44q2ob"
   ],
   "statuses": [
     "To do",
@@ -234,7 +235,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:52:16.731Z",
+      "updated_at": "2026-09-30T15:52:22.457Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -273,8 +274,8 @@
           "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 59.174596504629626,
-          "live": 0.12105277777777777
+          "hours": 59.174729120370365,
+          "live": 0.12264416666666667
         },
         "Alaa": {
           "open": 6,
@@ -297,14 +298,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 5,
-          "todo": 4,
+          "open": 4,
+          "todo": 3,
           "progress": 1,
           "review": 0,
-          "overdue": 4,
+          "overdue": 3,
           "done": 24,
-          "hours": 29.02819388888889,
-          "live": 63.20028222222222
+          "hours": 29.028260173611113,
+          "live": 63.20187305555555
         },
         "Tasneem": {
           "open": 0,
@@ -338,10 +339,10 @@
         }
       },
       "time": {
-        "avgTodo": 2764,
+        "avgTodo": 2642,
         "avgProgress": 1900,
         "avgToDone": 9244,
-        "open": 42
+        "open": 41
       },
       "hr": {
         "people": {
@@ -2680,39 +2681,6 @@
           "done_on": "2026-09-26",
           "done_month": "2026-09",
           "done_by": "Judi"
-        },
-        {
-          "id": "t-20260924-ganna-mu44q2ob",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Blushed",
-          "title": "Reel 5 Delivery",
-          "notes": "",
-          "due": "2026-09-24",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
-          "drive_missing": false,
-          "assigned_at": "2026-09-16",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-16T13:21:19.885Z",
-          "updated_at": "2026-09-21T14:06:19.573Z",
-          "updated_by": "Ganna",
-          "revisions": 0,
-          "first_progress_at": "2026-09-21T12:53:24.843Z",
-          "progress_started_at": "",
-          "time_log": [
-            {
-              "from": "In progress",
-              "to": "To do",
-              "started_at": "2026-09-21T12:53:24.843Z",
-              "ended_at": "2026-09-21T14:06:19.572Z",
-              "hours": 1.2152025,
-              "by": "Ganna"
-            }
-          ],
-          "start_on": "2026-09-21",
-          "progress_hours": 1.2152025
         },
         {
           "id": "t-20260924-alaa-muetdvaw",
