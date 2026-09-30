@@ -233,7 +233,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:45:00.939Z",
+      "updated_at": "2026-09-30T15:45:26.175Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -268,12 +268,12 @@
         "Seif": {
           "open": 16,
           "todo": 14,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 60.07810423076923,
-          "live": 71.04124972222223
+          "hours": 59.165093356481485,
+          "live": 0.007015
         },
         "Alaa": {
           "open": 6,
@@ -302,8 +302,8 @@
           "review": 0,
           "overdue": 6,
           "done": 23,
-          "hours": 29.02315013888889,
-          "live": 63.079232222222224
+          "hours": 29.0234422337963,
+          "live": 63.0862425
         },
         "Tasneem": {
           "open": 0,
@@ -337,8 +337,8 @@
         }
       },
       "time": {
-        "avgTodo": 3597,
-        "avgProgress": 4024,
+        "avgTodo": 3598,
+        "avgProgress": 3785,
         "avgToDone": 9298,
         "open": 37
       },
@@ -3527,18 +3527,18 @@
           "title": "5-10 single visual",
           "notes": "من غير ماركتنج محدش هيعرفك",
           "due": "2026-10-02",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-27T11:21:02.909Z",
-          "updated_at": "2026-09-29T13:14:46.237Z",
+          "updated_at": "2026-09-30T15:45:26.150Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-09-27T16:42:30.703Z",
-          "progress_started_at": "2026-09-29T13:14:46.237Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -3547,13 +3547,21 @@
               "ended_at": "2026-09-29T13:14:44.494Z",
               "hours": 44.53716416666666,
               "by": "Seif"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-29T13:14:46.237Z",
+              "ended_at": "2026-09-30T15:45:26.150Z",
+              "hours": 26.511086944444443,
+              "by": "Seif"
             }
           ],
           "start_on": "2026-09-27",
-          "progress_hours": 44.53716416666666,
-          "review_at": "2026-09-29T13:14:44.494Z",
+          "progress_hours": 71.04825111111111,
+          "review_at": "2026-09-30T15:45:26.150Z",
           "first_review_at": "2026-09-29T13:14:44.494Z",
-          "delivered_on": "2026-09-29"
+          "delivered_on": "2026-09-30"
         },
         {
           "id": "t-20261002-mariam-mujtjcsy",
