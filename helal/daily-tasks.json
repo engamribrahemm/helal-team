@@ -50,7 +50,8 @@
     "t-20260927-ganna-mu44rxvj",
     "t-20260928-ganna-mu44sisu",
     "t-20261007-mohamed-muoaehwo",
-    "t-20261007-mohamed-muoacwz1"
+    "t-20261007-mohamed-muoacwz1",
+    "t-20261003-moamen-muoa2oau"
   ],
   "statuses": [
     "To do",
@@ -240,7 +241,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T16:59:40.539Z",
+      "updated_at": "2026-09-30T17:01:17.005Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -259,8 +260,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 18.77149398148148,
-          "live": 0.7569983333333333
+          "hours": 18.78042287037037,
+          "live": 0.783785
         },
         "Judi": {
           "open": 2,
@@ -279,8 +280,8 @@
           "review": 0,
           "overdue": 0,
           "done": 14,
-          "hours": 60.174360641025636,
-          "live": 1.2443319444444445
+          "hours": 60.17642115384615,
+          "live": 1.271118611111111
         },
         "Alaa": {
           "open": 12,
@@ -309,8 +310,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.074997222222223,
-          "live": 64.32356222222222
+          "hours": 29.07611334490741,
+          "live": 64.35034944444445
         },
         "Tasneem": {
           "open": 0,
@@ -323,8 +324,8 @@
           "live": 0
         },
         "Moamen": {
-          "open": 1,
-          "todo": 1,
+          "open": 0,
+          "todo": 0,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -344,10 +345,10 @@
         }
       },
       "time": {
-        "avgTodo": 870,
-        "avgProgress": 1326,
+        "avgTodo": 852,
+        "avgProgress": 1328,
         "avgToDone": 9099,
-        "open": 55
+        "open": 54
       },
       "hr": {
         "people": {
@@ -3563,27 +3564,6 @@
           "done_month": "2026-09",
           "done_by": "Mariam",
           "delivered_on": "2026-09-30"
-        },
-        {
-          "id": "t-20261003-moamen-muoa2oau",
-          "who": "Moamen",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "Delivery of Reel No. 1",
-          "notes": "",
-          "due": "2026-10-03",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T15:46:29.383Z",
-          "updated_at": "2026-09-30T15:46:29.383Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         },
         {
           "id": "t-20261003-mohamed-muoa4zmt",
