@@ -38,7 +38,8 @@
     "t-20260930-seif-muo68z0c",
     "t-20261002-seif-muo6a2wn",
     "t-20261005-seif-muo6cw4g",
-    "t-20260904-seif-muo7eh0x"
+    "t-20260904-seif-muo7eh0x",
+    "t-20260925-ganna-mtrcek3y"
   ],
   "statuses": [
     "To do",
@@ -228,7 +229,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T14:43:57.879Z",
+      "updated_at": "2026-09-30T15:27:30.558Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -267,8 +268,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 64.99981912037036,
-          "live": 70.02372416666667
+          "hours": 65.06029828703704,
+          "live": 70.74947416666666
         },
         "Alaa": {
           "open": 6,
@@ -291,14 +292,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 8,
-          "todo": 7,
+          "open": 7,
+          "todo": 6,
           "progress": 1,
           "review": 0,
-          "overdue": 7,
+          "overdue": 6,
           "done": 23,
-          "hours": 28.980753506944442,
-          "live": 62.06171305555556
+          "hours": 29.010993009259263,
+          "live": 62.787461111111114
         },
         "Tasneem": {
           "open": 0,
@@ -332,10 +333,10 @@
         }
       },
       "time": {
-        "avgTodo": 4067,
-        "avgProgress": 3963,
+        "avgTodo": 3369,
+        "avgProgress": 4006,
         "avgToDone": 9298,
-        "open": 42
+        "open": 41
       },
       "hr": {
         "people": {
@@ -2798,47 +2799,6 @@
       "date": "2026-09-25",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20260925-ganna-mtrcek3y",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "27 - 9 reel",
-          "notes": "",
-          "due": "2026-09-25",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-07",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-07T14:35:19.247Z",
-          "updated_at": "2026-09-28T00:35:25.801Z",
-          "updated_by": "Ganna",
-          "revisions": 0,
-          "first_progress_at": "2026-09-23T18:21:15.353Z",
-          "progress_started_at": "",
-          "time_log": [
-            {
-              "from": "In progress",
-              "to": "To do",
-              "started_at": "2026-09-23T18:21:15.353Z",
-              "ended_at": "2026-09-23T18:26:24.173Z",
-              "hours": 0.08578333333333334,
-              "by": "Ganna"
-            },
-            {
-              "from": "In progress",
-              "to": "To do",
-              "started_at": "2026-09-26T12:17:33.305Z",
-              "ended_at": "2026-09-28T00:35:25.801Z",
-              "hours": 36.297915555555555,
-              "by": "Ganna"
-            }
-          ],
-          "start_on": "2026-09-23",
-          "progress_hours": 36.38369888888889
-        },
         {
           "id": "t-20260925-ganna-mu444o3p",
           "who": "Ganna",
