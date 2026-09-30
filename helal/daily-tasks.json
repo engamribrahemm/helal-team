@@ -223,7 +223,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T13:56:22.573Z",
+      "updated_at": "2026-09-30T13:56:27.960Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 64.93372405092593,
-          "live": 69.23058361111111
+          "hours": 64.93384877314814,
+          "live": 69.23208
         },
         "Alaa": {
           "open": 7,
@@ -286,14 +286,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 14,
+          "open": 13,
           "todo": 7,
           "progress": 1,
-          "review": 6,
-          "overdue": 13,
-          "done": 17,
-          "hours": 26.93908229938271,
-          "live": 61.26857277777778
+          "review": 5,
+          "overdue": 12,
+          "done": 18,
+          "hours": 25.551624371345024,
+          "live": 61.270069166666666
         },
         "Tasneem": {
           "open": 0,
@@ -329,8 +329,8 @@
       "time": {
         "avgTodo": 6168,
         "avgProgress": 3915,
-        "avgToDone": 7771,
-        "open": 36
+        "avgToDone": 8006,
+        "open": 35
       },
       "hr": {
         "people": {
@@ -2543,15 +2543,15 @@
           "title": "Reel 4 Submission",
           "notes": "",
           "due": "2026-09-23",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:03:54.003Z",
-          "updated_at": "2026-09-21T13:27:55.525Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-30T13:56:27.906Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-21T12:53:22.338Z",
           "progress_started_at": "",
@@ -2569,7 +2569,11 @@
           "progress_hours": 0.5758852777777778,
           "review_at": "2026-09-21T13:27:55.525Z",
           "first_review_at": "2026-09-21T13:27:55.525Z",
-          "delivered_on": "2026-09-21"
+          "delivered_on": "2026-09-21",
+          "done_at": "2026-09-30T13:56:27.905Z",
+          "done_on": "2026-09-30",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260923-alaa-muclilin",
