@@ -240,7 +240,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T16:57:26.186Z",
+      "updated_at": "2026-09-30T16:58:00.940Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -259,8 +259,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 18.759053703703703,
-          "live": 0.7196775
+          "hours": 18.762271944444446,
+          "live": 0.7293322222222223
         },
         "Judi": {
           "open": 2,
@@ -279,12 +279,12 @@
           "review": 0,
           "overdue": 0,
           "done": 14,
-          "hours": 60.17148985042734,
-          "live": 1.2070116666666666
+          "hours": 60.17223252136752,
+          "live": 1.216666388888889
         },
         "Alaa": {
-          "open": 8,
-          "todo": 7,
+          "open": 9,
+          "todo": 8,
           "progress": 0,
           "review": 1,
           "overdue": 0,
@@ -309,8 +309,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.07344217592593,
-          "live": 64.28624111111111
+          "hours": 29.07384445601852,
+          "live": 64.29589583333333
         },
         "Tasneem": {
           "open": 0,
@@ -344,10 +344,10 @@
         }
       },
       "time": {
-        "avgTodo": 927,
-        "avgProgress": 1324,
+        "avgTodo": 928,
+        "avgProgress": 1325,
         "avgToDone": 9099,
-        "open": 51
+        "open": 52
       },
       "hr": {
         "people": {
@@ -3993,6 +3993,33 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:58:04.156Z",
           "updated_at": "2026-09-30T15:58:04.156Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-13",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261013-alaa-muocmnmr",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "Delivery of Carousel No. 2",
+          "notes": "",
+          "due": "2026-10-13",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T16:58:00.868Z",
+          "updated_at": "2026-09-30T16:58:00.868Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
