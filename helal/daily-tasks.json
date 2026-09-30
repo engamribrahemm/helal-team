@@ -233,7 +233,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:45:39.762Z",
+      "updated_at": "2026-09-30T15:46:29.443Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -267,13 +267,13 @@
         },
         "Seif": {
           "open": 16,
-          "todo": 15,
-          "progress": 1,
+          "todo": 14,
+          "progress": 2,
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 65.08551083333333,
-          "live": 71.052025
+          "hours": 60.081885726495734,
+          "live": 71.09040916666666
         },
         "Alaa": {
           "open": 6,
@@ -302,8 +302,8 @@
           "review": 0,
           "overdue": 6,
           "done": 23,
-          "hours": 29.023599375,
-          "live": 63.09001388888889
+          "hours": 29.024174386574074,
+          "live": 63.103814166666666
         },
         "Tasneem": {
           "open": 0,
@@ -316,8 +316,8 @@
           "live": 0
         },
         "Moamen": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -337,10 +337,10 @@
         }
       },
       "time": {
-        "avgTodo": 3491,
-        "avgProgress": 4024,
+        "avgTodo": 3599,
+        "avgProgress": 2684,
         "avgToDone": 9298,
-        "open": 38
+        "open": 39
       },
       "hr": {
         "people": {
@@ -3658,6 +3658,27 @@
           "done_month": "2026-09",
           "done_by": "Mariam",
           "delivered_on": "2026-09-30"
+        },
+        {
+          "id": "t-20261003-moamen-muoa2oau",
+          "who": "Moamen",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "Delivery of Reel No. 1",
+          "notes": "",
+          "due": "2026-10-03",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T15:46:29.383Z",
+          "updated_at": "2026-09-30T15:46:29.383Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
