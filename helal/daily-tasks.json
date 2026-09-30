@@ -22,7 +22,8 @@
     "t-20261011-ganna-muls1jt3",
     "t-20261015-ganna-muls50kj",
     "t-20261028-mohamed-mulsq5qj",
-    "t-20261026-ganna-mulsoi6s"
+    "t-20261026-ganna-mulsoi6s",
+    "t-20261025-ganna-mulsns4e"
   ],
   "statuses": [
     "To do",
@@ -212,7 +213,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T00:37:28.662Z",
+      "updated_at": "2026-09-30T00:37:37.512Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -251,8 +252,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 63.82414259259259,
-          "live": 55.91560583333333
+          "hours": 63.82434752314814,
+          "live": 55.918065
         },
         "Alaa": {
           "open": 7,
@@ -275,14 +276,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 20,
-          "todo": 12,
+          "open": 19,
+          "todo": 11,
           "progress": 1,
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 21.380134869281047,
-          "live": 47.95359555555556
+          "hours": 21.38027955882353,
+          "live": 47.95605527777778
         },
         "Tasneem": {
           "open": 0,
@@ -316,10 +317,10 @@
         }
       },
       "time": {
-        "avgTodo": 4364,
+        "avgTodo": 4443,
         "avgProgress": 3116,
         "avgToDone": 7527,
-        "open": 48
+        "open": 47
       },
       "hr": {
         "people": {
@@ -4048,33 +4049,6 @@
           "created_by": "Judi",
           "created_at": "2026-09-28T22:02:44.087Z",
           "updated_at": "2026-09-28T22:02:44.087Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-10-25",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20261025-ganna-mulsns4e",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "27 - 10 bts",
-          "notes": "",
-          "due": "2026-10-25",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-29",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-28T22:03:28.671Z",
-          "updated_at": "2026-09-28T22:03:28.672Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
