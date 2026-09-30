@@ -240,7 +240,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T16:02:23.767Z",
+      "updated_at": "2026-09-30T16:14:15.356Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -254,13 +254,13 @@
         },
         "Mariam": {
           "open": 5,
-          "todo": 5,
-          "progress": 0,
+          "todo": 4,
+          "progress": 1,
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 27.778741805555555,
-          "live": 0
+          "hours": 18.51916287037037,
+          "live": 0.000005
         },
         "Judi": {
           "open": 2,
@@ -279,8 +279,8 @@
           "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 59.18864831018519,
-          "live": 0.28967444444444446
+          "hours": 59.20512027777778,
+          "live": 0.48733805555555554
         },
         "Alaa": {
           "open": 5,
@@ -309,8 +309,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.035219780092593,
-          "live": 63.36890361111111
+          "hours": 29.043455775462963,
+          "live": 63.5665675
         },
         "Tasneem": {
           "open": 0,
@@ -344,8 +344,8 @@
         }
       },
       "time": {
-        "avgTodo": 1133,
-        "avgProgress": 1910,
+        "avgTodo": 1027,
+        "avgProgress": 1922,
         "avgToDone": 9170,
         "open": 44
       },
@@ -3370,18 +3370,20 @@
           "title": "MEDC monthly report",
           "notes": "",
           "due": "2026-10-01",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:51:59.143Z",
-          "updated_at": "2026-09-27T12:51:59.143Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-30T16:14:15.303Z",
+          "updated_by": "Mariam",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-30T16:14:15.302Z",
+          "progress_started_at": "2026-09-30T16:14:15.302Z",
+          "time_log": [],
+          "start_on": "2026-09-30"
         },
         {
           "id": "t-20261001-mohamed-muoa1lyt",
