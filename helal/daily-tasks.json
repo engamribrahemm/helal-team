@@ -240,7 +240,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T16:59:05.273Z",
+      "updated_at": "2026-09-30T16:59:40.539Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -259,8 +259,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 18.768228703703702,
-          "live": 0.7472027777777778
+          "hours": 18.77149398148148,
+          "live": 0.7569983333333333
         },
         "Judi": {
           "open": 2,
@@ -279,12 +279,12 @@
           "review": 0,
           "overdue": 0,
           "done": 14,
-          "hours": 60.17360713675213,
-          "live": 1.234536388888889
+          "hours": 60.174360641025636,
+          "live": 1.2443319444444445
         },
         "Alaa": {
-          "open": 11,
-          "todo": 10,
+          "open": 12,
+          "todo": 11,
           "progress": 0,
           "review": 1,
           "overdue": 0,
@@ -309,8 +309,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.074589050925926,
-          "live": 64.31376611111111
+          "hours": 29.074997222222223,
+          "live": 64.32356222222222
         },
         "Tasneem": {
           "open": 0,
@@ -344,10 +344,10 @@
         }
       },
       "time": {
-        "avgTodo": 889,
+        "avgTodo": 870,
         "avgProgress": 1326,
         "avgToDone": 9099,
-        "open": 54
+        "open": 55
       },
       "hr": {
         "people": {
@@ -4410,6 +4410,33 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:59:05.200Z",
           "updated_at": "2026-09-30T16:59:05.200Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261025-alaa-muocoshd",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "Delivery of Single Post No. 3",
+          "notes": "",
+          "due": "2026-10-25",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T16:59:40.466Z",
+          "updated_at": "2026-09-30T16:59:40.466Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
