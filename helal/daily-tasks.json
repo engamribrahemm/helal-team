@@ -223,7 +223,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T00:39:15.985Z",
+      "updated_at": "2026-09-30T13:56:22.573Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 63.82662717592592,
-          "live": 55.94542083333333
+          "hours": 64.93372405092593,
+          "live": 69.23058361111111
         },
         "Alaa": {
           "open": 7,
@@ -286,14 +286,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 15,
+          "open": 14,
           "todo": 7,
           "progress": 1,
-          "review": 7,
-          "overdue": 14,
-          "done": 16,
-          "hours": 21.38188866013072,
-          "live": 47.98341
+          "review": 6,
+          "overdue": 13,
+          "done": 17,
+          "hours": 26.93908229938271,
+          "live": 61.26857277777778
         },
         "Tasneem": {
           "open": 0,
@@ -327,10 +327,10 @@
         }
       },
       "time": {
-        "avgTodo": 5498,
-        "avgProgress": 3118,
-        "avgToDone": 7527,
-        "open": 37
+        "avgTodo": 6168,
+        "avgProgress": 3915,
+        "avgToDone": 7771,
+        "open": 36
       },
       "hr": {
         "people": {
@@ -2260,15 +2260,15 @@
           "title": "Reel 2 Delivery",
           "notes": "",
           "due": "2026-09-19",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:18:55.852Z",
-          "updated_at": "2026-09-23T18:26:47.898Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-30T13:56:22.423Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-17T10:38:46.613Z",
           "progress_started_at": "",
@@ -2305,7 +2305,11 @@
           "delay_days": 4,
           "review_at": "2026-09-23T18:26:47.898Z",
           "first_review_at": "2026-09-23T18:26:47.898Z",
-          "delivered_on": "2026-09-23"
+          "delivered_on": "2026-09-23",
+          "done_at": "2026-09-30T13:56:22.422Z",
+          "done_on": "2026-09-30",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         }
       ]
     },
