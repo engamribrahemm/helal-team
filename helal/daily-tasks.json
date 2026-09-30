@@ -241,7 +241,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T18:31:12.445Z",
+      "updated_at": "2026-09-30T18:32:00.381Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -260,8 +260,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 19.280006574074076,
-          "live": 2.2825361111111113
+          "hours": 19.28444509259259,
+          "live": 2.2958516666666666
         },
         "Judi": {
           "open": 2,
@@ -280,8 +280,8 @@
           "review": 0,
           "overdue": 0,
           "done": 14,
-          "hours": 60.29170955128205,
-          "live": 2.769867777777778
+          "hours": 60.292733824786325,
+          "live": 2.783183333333333
         },
         "Alaa": {
           "open": 12,
@@ -305,13 +305,13 @@
         },
         "Ganna": {
           "open": 8,
-          "todo": 6,
-          "progress": 2,
+          "todo": 5,
+          "progress": 3,
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 27.973018777777778,
-          "live": 65.84909833333334
+          "hours": 26.89815795940171,
+          "live": 65.87573583333332
         },
         "Tasneem": {
           "open": 0,
@@ -345,8 +345,8 @@
         }
       },
       "time": {
-        "avgTodo": 959,
-        "avgProgress": 1418,
+        "avgTodo": 977,
+        "avgProgress": 1065,
         "avgToDone": 9099,
         "open": 54
       },
@@ -3967,18 +3967,20 @@
           "title": "Delivery of BTS No. 2",
           "notes": "",
           "due": "2026-10-12",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:58:04.156Z",
-          "updated_at": "2026-09-30T15:58:04.156Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-30T18:32:00.354Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-30T18:32:00.354Z",
+          "progress_started_at": "2026-09-30T18:32:00.354Z",
+          "time_log": [],
+          "start_on": "2026-09-30"
         }
       ]
     },
