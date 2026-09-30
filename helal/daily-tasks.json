@@ -435,6 +435,204 @@
           }
         }
       },
+      "frozen": true,
+      "frozen_at": "2026-09-30T21:17:52.008Z"
+    },
+    "2026-10": {
+      "updated_at": "2026-09-30T21:17:52.022Z",
+      "people": {
+        "Amr": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Mariam": {
+          "open": 5,
+          "todo": 2,
+          "progress": 1,
+          "review": 2,
+          "overdue": 3,
+          "done": 0,
+          "hours": 5.060196666666666,
+          "live": 5.060196666666666
+        },
+        "Judi": {
+          "open": 2,
+          "todo": 1,
+          "progress": 0,
+          "review": 1,
+          "overdue": 2,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Seif": {
+          "open": 20,
+          "todo": 19,
+          "progress": 0,
+          "review": 1,
+          "overdue": 1,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Alaa": {
+          "open": 13,
+          "todo": 12,
+          "progress": 0,
+          "review": 1,
+          "overdue": 1,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Sara": {
+          "open": 1,
+          "todo": 0,
+          "progress": 0,
+          "review": 1,
+          "overdue": 1,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Ganna": {
+          "open": 8,
+          "todo": 4,
+          "progress": 3,
+          "review": 1,
+          "overdue": 0,
+          "done": 0,
+          "hours": 24.536206296296296,
+          "live": 73.60861888888888
+        },
+        "Tasneem": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Moamen": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Mohamed": {
+          "open": 6,
+          "todo": 6,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        }
+      },
+      "time": {
+        "avgTodo": 969,
+        "avgProgress": 1180,
+        "avgToDone": 0,
+        "open": 55
+      },
+      "hr": {
+        "people": {
+          "Mariam": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Judi": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Seif": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Alaa": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Sara": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Ganna": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Tasneem": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Moamen": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Mohamed": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          }
+        }
+      },
       "frozen": false
     }
   },
@@ -3696,20 +3894,33 @@
           "title": "Delivery of BTS No. 1",
           "notes": "",
           "due": "2026-10-05",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:53:32.653Z",
-          "updated_at": "2026-09-30T18:31:12.426Z",
+          "updated_at": "2026-09-30T21:17:52.001Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-30T18:31:12.426Z",
-          "progress_started_at": "2026-09-30T18:31:12.426Z",
-          "time_log": [],
-          "start_on": "2026-09-30"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-30T18:31:12.426Z",
+              "ended_at": "2026-09-30T21:17:52.000Z",
+              "hours": 2.7776594444444442,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-30",
+          "progress_hours": 2.7776594444444442,
+          "review_at": "2026-09-30T21:17:52.000Z",
+          "first_review_at": "2026-09-30T21:17:52.000Z",
+          "delivered_on": "2026-10-01"
         }
       ]
     },
