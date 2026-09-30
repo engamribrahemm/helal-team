@@ -20,7 +20,8 @@
     "t-20260929-ganna-mujq644e",
     "t-20261004-ganna-mujqdux0",
     "t-20261011-ganna-muls1jt3",
-    "t-20261015-ganna-muls50kj"
+    "t-20261015-ganna-muls50kj",
+    "t-20261028-mohamed-mulsq5qj"
   ],
   "statuses": [
     "To do",
@@ -210,7 +211,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-29T21:56:59.213Z",
+      "updated_at": "2026-09-30T00:37:21.318Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -249,8 +250,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 63.60123877314815,
-          "live": 53.240759999999995
+          "hours": 63.823972708333336,
+          "live": 55.91356722222222
         },
         "Alaa": {
           "open": 7,
@@ -279,8 +280,8 @@
           "review": 7,
           "overdue": 14,
           "done": 16,
-          "hours": 21.222790996732027,
-          "live": 45.27874972222222
+          "hours": 21.380014950980392,
+          "live": 47.95155694444444
         },
         "Tasneem": {
           "open": 0,
@@ -303,8 +304,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 7,
-          "todo": 7,
+          "open": 6,
+          "todo": 6,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -314,10 +315,10 @@
         }
       },
       "time": {
-        "avgTodo": 4075,
-        "avgProgress": 2956,
+        "avgTodo": 4289,
+        "avgProgress": 3116,
         "avgToDone": 7527,
-        "open": 50
+        "open": 49
       },
       "hr": {
         "people": {
@@ -4127,33 +4128,6 @@
           "created_by": "Judi",
           "created_at": "2026-09-28T22:04:43.543Z",
           "updated_at": "2026-09-28T22:04:43.543Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-10-28",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20261028-mohamed-mulsq5qj",
-          "who": "Mohamed",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "30 - 10 bts",
-          "notes": "",
-          "due": "2026-10-28",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-29",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-28T22:05:19.628Z",
-          "updated_at": "2026-09-28T22:05:19.628Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
