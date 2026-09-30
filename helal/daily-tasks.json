@@ -240,7 +240,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:58:04.218Z",
+      "updated_at": "2026-09-30T15:58:54.836Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -279,8 +279,8 @@
           "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 59.18264025462963,
-          "live": 0.2175777777777778
+          "hours": 59.18381189814815,
+          "live": 0.2316375
         },
         "Alaa": {
           "open": 6,
@@ -303,14 +303,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 4,
-          "todo": 3,
+          "open": 5,
+          "todo": 4,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.032215740740742,
-          "live": 63.29680666666667
+          "hours": 29.032801574074075,
+          "live": 63.31086666666667
         },
         "Tasneem": {
           "open": 0,
@@ -344,10 +344,10 @@
         }
       },
       "time": {
-        "avgTodo": 1357,
-        "avgProgress": 1906,
+        "avgTodo": 1358,
+        "avgProgress": 1907,
         "avgToDone": 9244,
-        "open": 41
+        "open": 42
       },
       "hr": {
         "people": {
@@ -3889,6 +3889,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:38:37.644Z",
           "updated_at": "2026-09-30T14:38:37.644Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261014-ganna-muoainfo",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "Delivery of Reel No. 2",
+          "notes": "",
+          "due": "2026-10-14",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T15:58:54.757Z",
+          "updated_at": "2026-09-30T15:58:54.757Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
