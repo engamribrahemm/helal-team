@@ -241,7 +241,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T20:49:20.143Z",
+      "updated_at": "2026-09-30T20:49:31.818Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -255,13 +255,13 @@
         },
         "Mariam": {
           "open": 5,
-          "todo": 3,
+          "todo": 2,
           "progress": 1,
-          "review": 1,
+          "review": 2,
           "overdue": 2,
           "done": 5,
-          "hours": 20.04738351851852,
-          "live": 4.5846672222222224
+          "hours": 20.048466018518518,
+          "live": 4.587914444444444
         },
         "Judi": {
           "open": 2,
@@ -310,8 +310,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 26.22076131687243,
-          "live": 74.48418444444445
+          "hours": 26.22124209876543,
+          "live": 74.49716555555555
         },
         "Tasneem": {
           "open": 0,
@@ -345,7 +345,7 @@
         }
       },
       "time": {
-        "avgTodo": 1026,
+        "avgTodo": 941,
         "avgProgress": 949,
         "avgToDone": 9099,
         "open": 55
@@ -3253,18 +3253,25 @@
           "title": "October Content calendar & Assign tasks to seif",
           "notes": "",
           "due": "2026-09-28",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:51:29.451Z",
-          "updated_at": "2026-09-27T12:51:29.451Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-30T20:49:31.779Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "delay_reason": "Unclear brief",
+          "delay_notified": false,
+          "delay_days": 2,
+          "time_log": [],
+          "review_at": "2026-09-30T20:49:31.778Z",
+          "first_review_at": "2026-09-30T20:49:31.778Z",
+          "delivered_on": "2026-09-30"
         }
       ]
     },
