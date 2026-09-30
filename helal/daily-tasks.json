@@ -439,7 +439,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-09-30T21:17:52.022Z",
+      "updated_at": "2026-09-30T21:23:03.230Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -453,13 +453,13 @@
         },
         "Mariam": {
           "open": 5,
-          "todo": 2,
+          "todo": 1,
           "progress": 1,
-          "review": 2,
+          "review": 3,
           "overdue": 3,
           "done": 0,
-          "hours": 5.060196666666666,
-          "live": 5.060196666666666
+          "hours": 5.146639166666667,
+          "live": 5.146639166666667
         },
         "Judi": {
           "open": 2,
@@ -508,8 +508,8 @@
           "review": 1,
           "overdue": 0,
           "done": 0,
-          "hours": 24.536206296296296,
-          "live": 73.60861888888888
+          "hours": 24.622651851851852,
+          "live": 73.86795555555555
         },
         "Tasneem": {
           "open": 0,
@@ -543,19 +543,19 @@
         }
       },
       "time": {
-        "avgTodo": 969,
-        "avgProgress": 1180,
+        "avgTodo": 884,
+        "avgProgress": 1185,
         "avgToDone": 0,
         "open": 55
       },
       "hr": {
         "people": {
           "Mariam": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -3512,18 +3512,25 @@
           "title": "MAS monthly report",
           "notes": "",
           "due": "2026-09-30",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:44:00.703Z",
-          "updated_at": "2026-09-27T12:44:00.703Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-09-30T21:23:03.186Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "delay_reason": "Unclear brief",
+          "delay_notified": false,
+          "delay_days": 1,
+          "time_log": [],
+          "review_at": "2026-09-30T21:23:03.185Z",
+          "first_review_at": "2026-09-30T21:23:03.185Z",
+          "delivered_on": "2026-10-01"
         },
         {
           "id": "t-20260930-judi-mujtk5rm",
