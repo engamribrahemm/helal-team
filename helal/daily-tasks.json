@@ -238,7 +238,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:53:32.718Z",
+      "updated_at": "2026-09-30T15:54:27.246Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -277,8 +277,8 @@
           "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 59.1763555787037,
-          "live": 0.14216166666666666
+          "hours": 59.17761775462963,
+          "live": 0.15730777777777777
         },
         "Alaa": {
           "open": 6,
@@ -307,8 +307,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.029073391203706,
-          "live": 63.22139027777778
+          "hours": 29.02970449074074,
+          "live": 63.236536666666666
         },
         "Tasneem": {
           "open": 0,
@@ -331,8 +331,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 6,
-          "todo": 6,
+          "open": 7,
+          "todo": 7,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -342,10 +342,10 @@
         }
       },
       "time": {
-        "avgTodo": 1435,
-        "avgProgress": 1901,
+        "avgTodo": 1436,
+        "avgProgress": 1902,
         "avgToDone": 9244,
-        "open": 39
+        "open": 40
       },
       "hr": {
         "people": {
@@ -3683,6 +3683,33 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:32:55.281Z",
           "updated_at": "2026-09-30T14:32:55.281Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-07",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261007-mohamed-muoacwz1",
+          "who": "Mohamed",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "Delivery of Reel No. 1",
+          "notes": "",
+          "due": "2026-10-07",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T15:54:27.182Z",
+          "updated_at": "2026-09-30T15:54:27.182Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
