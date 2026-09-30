@@ -240,7 +240,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T16:14:15.356Z",
+      "updated_at": "2026-09-30T16:18:59.131Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -259,8 +259,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 18.51916287037037,
-          "live": 0.000005
+          "hours": 18.545438055555554,
+          "live": 0.07883055555555556
         },
         "Judi": {
           "open": 2,
@@ -279,12 +279,12 @@
           "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 59.20512027777778,
-          "live": 0.48733805555555554
+          "hours": 59.21168909722223,
+          "live": 0.5661638888888889
         },
         "Alaa": {
-          "open": 5,
-          "todo": 5,
+          "open": 6,
+          "todo": 6,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -309,8 +309,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.043455775462963,
-          "live": 63.5665675
+          "hours": 29.046740173611113,
+          "live": 63.64539305555556
         },
         "Tasneem": {
           "open": 0,
@@ -344,10 +344,10 @@
         }
       },
       "time": {
-        "avgTodo": 1027,
-        "avgProgress": 1922,
+        "avgTodo": 1031,
+        "avgProgress": 1286,
         "avgToDone": 9170,
-        "open": 44
+        "open": 45
       },
       "hr": {
         "people": {
@@ -3355,6 +3355,27 @@
           "progress_started_at": "2026-09-30T15:45:00.911Z",
           "time_log": [],
           "start_on": "2026-09-30"
+        },
+        {
+          "id": "t-20260930-alaa-muob8gol",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "MAS",
+          "title": "13 design mas",
+          "notes": "",
+          "due": "2026-09-30",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T16:18:59.062Z",
+          "updated_at": "2026-09-30T16:18:59.062Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
