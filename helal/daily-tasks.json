@@ -241,7 +241,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T18:32:00.381Z",
+      "updated_at": "2026-09-30T19:04:48.987Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -260,8 +260,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 19.28444509259259,
-          "live": 2.2958516666666666
+          "hours": 19.46672361111111,
+          "live": 2.842687222222222
         },
         "Judi": {
           "open": 2,
@@ -280,8 +280,8 @@
           "review": 0,
           "overdue": 0,
           "done": 14,
-          "hours": 60.292733824786325,
-          "live": 2.783183333333333
+          "hours": 60.33479809829059,
+          "live": 3.330018888888889
         },
         "Alaa": {
           "open": 12,
@@ -305,13 +305,13 @@
         },
         "Ganna": {
           "open": 8,
-          "todo": 5,
-          "progress": 3,
+          "todo": 4,
+          "progress": 4,
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 26.89815795940171,
-          "live": 65.87573583333332
+          "hours": 25.962689547325105,
+          "live": 67.51624777777778
         },
         "Tasneem": {
           "open": 0,
@@ -345,8 +345,8 @@
         }
       },
       "time": {
-        "avgTodo": 977,
-        "avgProgress": 1065,
+        "avgTodo": 1028,
+        "avgProgress": 885,
         "avgToDone": 9099,
         "open": 54
       },
@@ -3769,18 +3769,20 @@
           "title": "Delivery of Reel No. 1",
           "notes": "",
           "due": "2026-10-07",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:56:29.057Z",
-          "updated_at": "2026-09-30T15:56:29.057Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-09-30T19:04:48.965Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-09-30T19:04:48.964Z",
+          "progress_started_at": "2026-09-30T19:04:48.964Z",
+          "time_log": [],
+          "start_on": "2026-09-30"
         }
       ]
     },
