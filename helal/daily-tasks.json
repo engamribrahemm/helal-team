@@ -223,7 +223,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T13:57:04.452Z",
+      "updated_at": "2026-09-30T13:57:18.586Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 64.93469356481482,
-          "live": 69.2422175
+          "hours": 64.93502069444445,
+          "live": 69.24614305555555
         },
         "Alaa": {
           "open": 6,
@@ -286,14 +286,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 12,
+          "open": 11,
           "todo": 7,
           "progress": 1,
-          "review": 4,
-          "overdue": 11,
-          "done": 19,
-          "hours": 24.33037031944444,
-          "live": 61.28020638888889
+          "review": 3,
+          "overdue": 10,
+          "done": 20,
+          "hours": 25.724086812169308,
+          "live": 61.28413222222222
         },
         "Tasneem": {
           "open": 0,
@@ -329,8 +329,8 @@
       "time": {
         "avgTodo": 6169,
         "avgProgress": 3916,
-        "avgToDone": 8684,
-        "open": 33
+        "avgToDone": 8889,
+        "open": 32
       },
       "hr": {
         "people": {
