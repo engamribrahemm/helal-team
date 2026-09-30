@@ -241,7 +241,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T19:04:48.987Z",
+      "updated_at": "2026-09-30T20:14:46.556Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -260,8 +260,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 19.46672361111111,
-          "live": 2.842687222222222
+          "hours": 19.855386759259257,
+          "live": 4.008676666666667
         },
         "Judi": {
           "open": 2,
@@ -276,12 +276,12 @@
         "Seif": {
           "open": 20,
           "todo": 19,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 14,
-          "hours": 60.33479809829059,
-          "live": 3.330018888888889
+          "hours": 65.08519636574074,
+          "live": 0
         },
         "Alaa": {
           "open": 12,
@@ -310,8 +310,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 25.962689547325105,
-          "live": 67.51624777777778
+          "hours": 26.135428888888892,
+          "live": 72.1802088888889
         },
         "Tasneem": {
           "open": 0,
@@ -345,8 +345,8 @@
         }
       },
       "time": {
-        "avgTodo": 1028,
-        "avgProgress": 885,
+        "avgTodo": 1098,
+        "avgProgress": 915,
         "avgToDone": 9099,
         "open": 54
       },
@@ -3342,20 +3342,33 @@
           "title": "Delivery of Carousel No. 1 and Single Post No. 2",
           "notes": "",
           "due": "2026-09-30",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:29:01.101Z",
-          "updated_at": "2026-09-30T15:45:00.911Z",
+          "updated_at": "2026-09-30T20:14:46.530Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-09-30T15:45:00.911Z",
-          "progress_started_at": "2026-09-30T15:45:00.911Z",
-          "time_log": [],
-          "start_on": "2026-09-30"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-09-30T15:45:00.911Z",
+              "ended_at": "2026-09-30T20:14:46.530Z",
+              "hours": 4.496005277777778,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-09-30",
+          "progress_hours": 4.496005277777778,
+          "review_at": "2026-09-30T20:14:46.530Z",
+          "first_review_at": "2026-09-30T20:14:46.530Z",
+          "delivered_on": "2026-09-30"
         },
         {
           "id": "t-20260930-alaa-muob8gol",
