@@ -223,7 +223,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T13:57:31.108Z",
+      "updated_at": "2026-09-30T13:57:39.555Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -262,8 +262,8 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 64.93531055555555,
-          "live": 69.24962138888888
+          "hours": 64.93550608796296,
+          "live": 69.25196777777778
         },
         "Alaa": {
           "open": 6,
@@ -286,14 +286,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 10,
+          "open": 9,
           "todo": 7,
           "progress": 1,
-          "review": 2,
-          "overdue": 9,
-          "done": 21,
-          "hours": 29.196621414141415,
-          "live": 61.28761083333333
+          "review": 1,
+          "overdue": 8,
+          "done": 22,
+          "hours": 28.689129649758453,
+          "live": 61.28995694444444
         },
         "Tasneem": {
           "open": 0,
@@ -329,8 +329,8 @@
       "time": {
         "avgTodo": 6169,
         "avgProgress": 3916,
-        "avgToDone": 9088,
-        "open": 31
+        "avgToDone": 9280,
+        "open": 30
       },
       "hr": {
         "people": {
@@ -3092,15 +3092,15 @@
           "title": "Reel 7 Submission",
           "notes": "",
           "due": "2026-09-27",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:06:23.541Z",
-          "updated_at": "2026-09-23T18:29:18.195Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-30T13:57:39.504Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-21T14:00:31.517Z",
           "progress_started_at": "",
@@ -3126,7 +3126,11 @@
           "progress_hours": 17.521964722222226,
           "review_at": "2026-09-23T18:29:18.195Z",
           "first_review_at": "2026-09-23T18:29:18.195Z",
-          "delivered_on": "2026-09-23"
+          "delivered_on": "2026-09-23",
+          "done_at": "2026-09-30T13:57:39.503Z",
+          "done_on": "2026-09-30",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260927-ganna-mu44rxvj",
