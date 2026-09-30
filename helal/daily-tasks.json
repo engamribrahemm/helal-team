@@ -241,7 +241,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T20:14:46.556Z",
+      "updated_at": "2026-09-30T20:47:24.840Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -260,8 +260,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 19.855386759259257,
-          "live": 4.008676666666667
+          "hours": 20.03670935185185,
+          "live": 4.552644444444445
         },
         "Judi": {
           "open": 2,
@@ -284,8 +284,8 @@
           "live": 0
         },
         "Alaa": {
-          "open": 12,
-          "todo": 11,
+          "open": 13,
+          "todo": 12,
           "progress": 0,
           "review": 1,
           "overdue": 0,
@@ -310,8 +310,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 26.135428888888892,
-          "live": 72.1802088888889
+          "hours": 26.216016748971196,
+          "live": 74.35608111111111
         },
         "Tasneem": {
           "open": 0,
@@ -345,10 +345,10 @@
         }
       },
       "time": {
-        "avgTodo": 1098,
-        "avgProgress": 915,
+        "avgTodo": 1131,
+        "avgProgress": 947,
         "avgToDone": 9099,
-        "open": 54
+        "open": 55
       },
       "hr": {
         "people": {
@@ -3444,6 +3444,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:45:39.701Z",
           "updated_at": "2026-09-30T15:45:39.701Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261001-alaa-muoktny3",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "MEDC",
+          "title": "38 design for medc",
+          "notes": "",
+          "due": "2026-10-01",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T20:47:24.795Z",
+          "updated_at": "2026-09-30T20:47:24.795Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
