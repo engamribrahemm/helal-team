@@ -40,7 +40,8 @@
     "t-20261005-seif-muo6cw4g",
     "t-20260904-seif-muo7eh0x",
     "t-20260925-ganna-mtrcek3y",
-    "t-20261008-seif-mulry7n1"
+    "t-20261008-seif-mulry7n1",
+    "t-20261012-seif-muls2ppa"
   ],
   "statuses": [
     "To do",
@@ -230,7 +231,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:27:51.322Z",
+      "updated_at": "2026-09-30T15:27:58.325Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -263,14 +264,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 19,
-          "todo": 18,
+          "open": 18,
+          "todo": 17,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 65.06077886574074,
-          "live": 70.7552411111111
+          "hours": 65.06094099537036,
+          "live": 70.75718666666666
         },
         "Alaa": {
           "open": 6,
@@ -299,8 +300,8 @@
           "review": 0,
           "overdue": 6,
           "done": 23,
-          "hours": 29.011233310185187,
-          "live": 62.79322833333333
+          "hours": 29.01131435185185,
+          "live": 62.79517333333333
         },
         "Tasneem": {
           "open": 0,
@@ -334,10 +335,10 @@
         }
       },
       "time": {
-        "avgTodo": 3393,
+        "avgTodo": 3418,
         "avgProgress": 4007,
         "avgToDone": 9298,
-        "open": 40
+        "open": 39
       },
       "hr": {
         "people": {
@@ -3810,27 +3811,6 @@
       "date": "2026-10-12",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261012-seif-muls2ppa",
-          "who": "Seif",
-          "space": "Graphic",
-          "project": "Helal",
-          "title": "14 - 10 single visual",
-          "notes": "",
-          "due": "2026-10-12",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-29",
-          "month": "2026-09",
-          "created_by": "Judi",
-          "created_at": "2026-09-28T21:47:05.759Z",
-          "updated_at": "2026-09-28T21:47:05.759Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20261012-seif-muo7mnz6",
           "who": "Seif",
