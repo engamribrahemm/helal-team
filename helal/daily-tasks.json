@@ -233,7 +233,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:47:34.407Z",
+      "updated_at": "2026-09-30T15:48:17.448Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -272,8 +272,8 @@
           "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 59.1680612037037,
-          "live": 0.04262916666666667
+          "hours": 59.16905756944445,
+          "live": 0.054585555555555554
         },
         "Alaa": {
           "open": 6,
@@ -302,8 +302,8 @@
           "review": 0,
           "overdue": 6,
           "done": 23,
-          "hours": 29.02492622685185,
-          "live": 63.12185861111111
+          "hours": 29.025424409722223,
+          "live": 63.13381472222222
         },
         "Tasneem": {
           "open": 0,
@@ -326,8 +326,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 2,
-          "todo": 2,
+          "open": 3,
+          "todo": 3,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -337,10 +337,10 @@
         }
       },
       "time": {
-        "avgTodo": 3388,
-        "avgProgress": 1895,
+        "avgTodo": 3389,
+        "avgProgress": 1896,
         "avgToDone": 9298,
-        "open": 40
+        "open": 41
       },
       "hr": {
         "people": {
@@ -3675,6 +3675,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:46:29.383Z",
           "updated_at": "2026-09-30T15:46:29.383Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261003-mohamed-muoa4zmt",
+          "who": "Mohamed",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "Delivery of Reel No. 1",
+          "notes": "",
+          "due": "2026-10-03",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T15:48:17.382Z",
+          "updated_at": "2026-09-30T15:48:17.382Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
