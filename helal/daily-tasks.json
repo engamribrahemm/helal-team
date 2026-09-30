@@ -227,7 +227,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T14:26:57.837Z",
+      "updated_at": "2026-09-30T14:27:55.069Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -260,14 +260,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 8,
-          "todo": 7,
+          "open": 5,
+          "todo": 4,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 64.97620699074075,
-          "live": 69.74037861111111
+          "hours": 64.97753136574075,
+          "live": 69.7562711111111
         },
         "Alaa": {
           "open": 6,
@@ -296,8 +296,8 @@
           "review": 0,
           "overdue": 7,
           "done": 23,
-          "hours": 28.96894746527778,
-          "live": 61.77836833333333
+          "hours": 28.96960972222222,
+          "live": 61.79426222222222
         },
         "Tasneem": {
           "open": 0,
@@ -331,10 +331,10 @@
         }
       },
       "time": {
-        "avgTodo": 5619,
-        "avgProgress": 3946,
+        "avgTodo": 6349,
+        "avgProgress": 3947,
         "avgToDone": 9298,
-        "open": 30
+        "open": 27
       },
       "hr": {
         "people": {
