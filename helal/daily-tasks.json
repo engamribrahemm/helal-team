@@ -240,7 +240,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T15:59:27.700Z",
+      "updated_at": "2026-09-30T16:00:08.873Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -279,8 +279,8 @@
           "review": 1,
           "overdue": 0,
           "done": 13,
-          "hours": 59.18457270833333,
-          "live": 0.24076722222222222
+          "hours": 59.18552576388888,
+          "live": 0.2522038888888889
         },
         "Alaa": {
           "open": 6,
@@ -303,14 +303,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 6,
-          "todo": 5,
+          "open": 7,
+          "todo": 6,
           "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.033181967592594,
-          "live": 63.31999611111111
+          "hours": 29.033658518518518,
+          "live": 63.33143333333334
         },
         "Tasneem": {
           "open": 0,
@@ -344,10 +344,10 @@
         }
       },
       "time": {
-        "avgTodo": 1321,
-        "avgProgress": 1907,
+        "avgTodo": 1286,
+        "avgProgress": 1908,
         "avgToDone": 9244,
-        "open": 43
+        "open": 44
       },
       "hr": {
         "people": {
@@ -4244,6 +4244,27 @@
           "created_at": "2026-09-28T22:04:43.543Z",
           "updated_at": "2026-09-28T22:04:43.543Z",
           "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261027-ganna-muoak8kl",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "Delivery of BTS No. 3",
+          "notes": "",
+          "due": "2026-10-27",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T16:00:08.806Z",
+          "updated_at": "2026-09-30T16:00:08.806Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
