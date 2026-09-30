@@ -223,7 +223,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T13:56:59.662Z",
+      "updated_at": "2026-09-30T13:57:04.452Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -262,17 +262,17 @@
           "review": 0,
           "overdue": 0,
           "done": 13,
-          "hours": 64.93458261574074,
-          "live": 69.24088611111111
+          "hours": 64.93469356481482,
+          "live": 69.2422175
         },
         "Alaa": {
-          "open": 7,
+          "open": 6,
           "todo": 6,
           "progress": 0,
-          "review": 1,
-          "overdue": 1,
-          "done": 12,
-          "hours": 19.172113449074075,
+          "review": 0,
+          "overdue": 0,
+          "done": 13,
+          "hours": 34.48703903846154,
           "live": 0
         },
         "Sara": {
@@ -292,8 +292,8 @@
           "review": 4,
           "overdue": 11,
           "done": 19,
-          "hours": 24.330303777777775,
-          "live": 61.27887555555556
+          "hours": 24.33037031944444,
+          "live": 61.28020638888889
         },
         "Tasneem": {
           "open": 0,
@@ -329,8 +329,8 @@
       "time": {
         "avgTodo": 6169,
         "avgProgress": 3916,
-        "avgToDone": 8232,
-        "open": 34
+        "avgToDone": 8684,
+        "open": 33
       },
       "hr": {
         "people": {
@@ -2960,15 +2960,15 @@
           "title": "28 - 9 carousel",
           "notes": "",
           "due": "2026-09-26",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-07",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-07T14:36:02.174Z",
-          "updated_at": "2026-09-29T15:03:29.486Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-09-30T13:57:04.268Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-20T12:47:31.360Z",
           "progress_started_at": "",
@@ -2989,7 +2989,11 @@
           "progress_hours": 218.2661461111111,
           "review_at": "2026-09-29T15:03:29.486Z",
           "first_review_at": "2026-09-29T15:03:29.486Z",
-          "delivered_on": "2026-09-29"
+          "delivered_on": "2026-09-29",
+          "done_at": "2026-09-30T13:57:04.267Z",
+          "done_on": "2026-09-30",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20260926-ganna-mu4462pb",
@@ -2999,15 +3003,15 @@
           "title": "Reel 6 Submission",
           "notes": "",
           "due": "2026-09-26",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1EEUOdH6Gphmb4QW8JIBmWxHzMCcdIZAj",
           "drive_missing": false,
           "assigned_at": "2026-09-16",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-16T13:05:46.800Z",
-          "updated_at": "2026-09-23T18:29:11.215Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-09-30T13:57:07.588Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-09-21T12:53:31.047Z",
           "progress_started_at": "",
@@ -3025,7 +3029,11 @@
           "progress_hours": 53.59449083333333,
           "review_at": "2026-09-23T18:29:11.214Z",
           "first_review_at": "2026-09-23T18:29:11.214Z",
-          "delivered_on": "2026-09-23"
+          "delivered_on": "2026-09-23",
+          "done_at": "2026-09-30T13:57:07.587Z",
+          "done_on": "2026-09-30",
+          "done_month": "2026-09",
+          "done_by": "Mariam"
         }
       ]
     },
