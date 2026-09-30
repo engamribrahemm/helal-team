@@ -240,7 +240,7 @@
       "frozen_at": "2026-09-08T14:00:51.897Z"
     },
     "2026-09": {
-      "updated_at": "2026-09-30T16:58:00.940Z",
+      "updated_at": "2026-09-30T16:58:34.916Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -259,8 +259,8 @@
           "review": 0,
           "overdue": 2,
           "done": 5,
-          "hours": 18.762271944444446,
-          "live": 0.7293322222222223
+          "hours": 18.76541796296296,
+          "live": 0.7387702777777778
         },
         "Judi": {
           "open": 2,
@@ -279,12 +279,12 @@
           "review": 0,
           "overdue": 0,
           "done": 14,
-          "hours": 60.17223252136752,
-          "live": 1.216666388888889
+          "hours": 60.17295848290598,
+          "live": 1.2261041666666668
         },
         "Alaa": {
-          "open": 9,
-          "todo": 8,
+          "open": 10,
+          "todo": 9,
           "progress": 0,
           "review": 1,
           "overdue": 0,
@@ -309,8 +309,8 @@
           "review": 0,
           "overdue": 0,
           "done": 24,
-          "hours": 29.07384445601852,
-          "live": 64.29589583333333
+          "hours": 29.07423769675926,
+          "live": 64.30533361111111
         },
         "Tasneem": {
           "open": 0,
@@ -344,10 +344,10 @@
         }
       },
       "time": {
-        "avgTodo": 928,
+        "avgTodo": 908,
         "avgProgress": 1325,
         "avgToDone": 9099,
-        "open": 52
+        "open": 53
       },
       "hr": {
         "people": {
@@ -4095,6 +4095,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:39:10.960Z",
           "updated_at": "2026-09-30T14:39:10.960Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261016-alaa-muocndul",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "Delivery of Single Post No. 2",
+          "notes": "",
+          "due": "2026-10-16",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-30",
+          "month": "2026-09",
+          "created_by": "Mariam",
+          "created_at": "2026-09-30T16:58:34.846Z",
+          "updated_at": "2026-09-30T16:58:34.846Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
