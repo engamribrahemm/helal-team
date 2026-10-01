@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-01T15:30:04.691Z",
+      "updated_at": "2026-10-01T21:15:23.077Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -461,10 +461,10 @@
           "todo": 0,
           "progress": 1,
           "review": 4,
-          "overdue": 3,
+          "overdue": 4,
           "done": 0,
-          "hours": 23.26371361111111,
-          "live": 23.26371361111111
+          "hours": 29.01882388888889,
+          "live": 29.01882388888889
         },
         "Judi": {
           "open": 2,
@@ -489,12 +489,12 @@
         "Alaa": {
           "open": 8,
           "todo": 5,
-          "progress": 2,
-          "review": 1,
-          "overdue": 1,
+          "progress": 1,
+          "review": 2,
+          "overdue": 2,
           "done": 0,
-          "hours": 0.4721115277777778,
-          "live": 0.9442230555555556
+          "hours": 6.654654722222222,
+          "live": 6.654654722222222
         },
         "Sara": {
           "open": 0,
@@ -513,8 +513,8 @@
           "review": 1,
           "overdue": 0,
           "done": 0,
-          "hours": 42.739724814814814,
-          "live": 128.21917472222222
+          "hours": 48.49483351851851,
+          "live": 145.48450055555554
         },
         "Tasneem": {
           "open": 0,
@@ -541,15 +541,15 @@
           "todo": 6,
           "progress": 0,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 0,
           "hours": 0,
           "live": 0
         }
       },
       "time": {
-        "avgTodo": 1563,
-        "avgProgress": 1524,
+        "avgTodo": 1908,
+        "avgProgress": 2174,
         "avgToDone": 7007,
         "open": 49
       },
@@ -583,11 +583,11 @@
             "reviews": 0
           },
           "Alaa": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -3685,20 +3685,36 @@
           "title": "38 design for medc",
           "notes": "",
           "due": "2026-10-01",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T20:47:24.795Z",
-          "updated_at": "2026-10-01T15:27:23.837Z",
+          "updated_at": "2026-10-01T21:15:23.065Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-01T15:27:23.837Z",
-          "progress_started_at": "2026-10-01T15:27:23.837Z",
-          "time_log": [],
-          "start_on": "2026-10-01"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-01T15:27:23.837Z",
+              "ended_at": "2026-10-01T21:15:23.065Z",
+              "hours": 5.799785555555555,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-10-01",
+          "delay_reason": "Unclear brief",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 5.799785555555555,
+          "review_at": "2026-10-01T21:15:23.065Z",
+          "first_review_at": "2026-10-01T21:15:23.065Z",
+          "delivered_on": "2026-10-02"
         }
       ]
     },
