@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-02T01:47:53.506Z",
+      "updated_at": "2026-10-02T07:46:12.782Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -463,8 +463,8 @@
           "review": 3,
           "overdue": 3,
           "done": 1,
-          "hours": 33.560608055555555,
-          "live": 33.560608055555555
+          "hours": 39.5326275,
+          "live": 39.5326275
         },
         "Judi": {
           "open": 2,
@@ -487,14 +487,14 @@
           "live": 0
         },
         "Alaa": {
-          "open": 8,
+          "open": 7,
           "todo": 5,
           "progress": 1,
-          "review": 2,
-          "overdue": 2,
-          "done": 0,
-          "hours": 11.196439722222221,
-          "live": 11.196439722222221
+          "review": 1,
+          "overdue": 1,
+          "done": 1,
+          "hours": 11.4841225,
+          "live": 17.168459444444444
         },
         "Sara": {
           "open": 0,
@@ -513,8 +513,8 @@
           "review": 1,
           "overdue": 0,
           "done": 0,
-          "hours": 53.036618796296295,
-          "live": 159.1098563888889
+          "hours": 59.0086387962963,
+          "live": 177.0259163888889
         },
         "Tasneem": {
           "open": 0,
@@ -548,10 +548,10 @@
         }
       },
       "time": {
-        "avgTodo": 2126,
-        "avgProgress": 2447,
-        "avgToDone": 6772,
-        "open": 49
+        "avgTodo": 2485,
+        "avgProgress": 2805,
+        "avgToDone": 5214,
+        "open": 48
       },
       "hr": {
         "people": {
@@ -3689,15 +3689,15 @@
           "title": "38 design for medc",
           "notes": "",
           "due": "2026-10-01",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T20:47:24.795Z",
-          "updated_at": "2026-10-01T21:15:23.065Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-02T07:46:12.751Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-01T15:27:23.837Z",
           "progress_started_at": "",
@@ -3718,7 +3718,11 @@
           "progress_hours": 5.799785555555555,
           "review_at": "2026-10-01T21:15:23.065Z",
           "first_review_at": "2026-10-01T21:15:23.065Z",
-          "delivered_on": "2026-10-02"
+          "delivered_on": "2026-10-02",
+          "done_at": "2026-10-02T07:46:12.750Z",
+          "done_on": "2026-10-02",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         }
       ]
     },
