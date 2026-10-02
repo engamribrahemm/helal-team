@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-01T21:15:23.077Z",
+      "updated_at": "2026-10-02T01:47:53.506Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -458,13 +458,13 @@
         },
         "Mariam": {
           "open": 5,
-          "todo": 0,
+          "todo": 1,
           "progress": 1,
-          "review": 4,
-          "overdue": 4,
-          "done": 0,
-          "hours": 29.01882388888889,
-          "live": 29.01882388888889
+          "review": 3,
+          "overdue": 3,
+          "done": 1,
+          "hours": 33.560608055555555,
+          "live": 33.560608055555555
         },
         "Judi": {
           "open": 2,
@@ -493,8 +493,8 @@
           "review": 2,
           "overdue": 2,
           "done": 0,
-          "hours": 6.654654722222222,
-          "live": 6.654654722222222
+          "hours": 11.196439722222221,
+          "live": 11.196439722222221
         },
         "Sara": {
           "open": 0,
@@ -513,8 +513,8 @@
           "review": 1,
           "overdue": 0,
           "done": 0,
-          "hours": 48.49483351851851,
-          "live": 145.48450055555554
+          "hours": 53.036618796296295,
+          "live": 159.1098563888889
         },
         "Tasneem": {
           "open": 0,
@@ -548,9 +548,9 @@
         }
       },
       "time": {
-        "avgTodo": 1908,
-        "avgProgress": 2174,
-        "avgToDone": 7007,
+        "avgTodo": 2126,
+        "avgProgress": 2447,
+        "avgToDone": 6772,
         "open": 49
       },
       "hr": {
@@ -3460,15 +3460,15 @@
           "title": "October Content calendar & Assign tasks to seif",
           "notes": "",
           "due": "2026-09-28",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:51:29.451Z",
-          "updated_at": "2026-09-30T20:49:31.779Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-02T01:47:53.481Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
@@ -3478,7 +3478,11 @@
           "time_log": [],
           "review_at": "2026-09-30T20:49:31.778Z",
           "first_review_at": "2026-09-30T20:49:31.778Z",
-          "delivered_on": "2026-09-30"
+          "delivered_on": "2026-09-30",
+          "done_at": "2026-10-02T01:47:53.480Z",
+          "done_on": "2026-10-02",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         }
       ]
     },
