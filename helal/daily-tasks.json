@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-03T20:59:14.357Z",
+      "updated_at": "2026-10-03T21:57:29.495Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -463,8 +463,8 @@
           "review": 1,
           "overdue": 2,
           "done": 3,
-          "hours": 76.749735,
-          "live": 76.749735
+          "hours": 77.72060666666667,
+          "live": 77.72060666666667
         },
         "Judi": {
           "open": 2,
@@ -478,23 +478,23 @@
         },
         "Seif": {
           "open": 20,
-          "todo": 19,
+          "todo": 18,
           "progress": 1,
-          "review": 0,
-          "overdue": 0,
+          "review": 1,
+          "overdue": 1,
           "done": 2,
-          "hours": 2.514151388888889,
-          "live": 1.114656111111111
+          "hours": 2.7290393518518523,
+          "live": 1.75932
         },
         "Alaa": {
           "open": 7,
           "todo": 4,
-          "progress": 2,
-          "review": 1,
+          "progress": 1,
+          "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 20.061784444444445,
-          "live": 54.38556777777777
+          "hours": 3.3853294444444444,
+          "live": 0.9708733333333334
         },
         "Sara": {
           "open": 1,
@@ -513,8 +513,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 50.379533333333335,
-          "live": 148.36094055555554
+          "hours": 51.02678111111111,
+          "live": 150.3026838888889
         },
         "Tasneem": {
           "open": 0,
@@ -541,7 +541,7 @@
           "todo": 6,
           "progress": 0,
           "review": 0,
-          "overdue": 1,
+          "overdue": 2,
           "done": 0,
           "hours": 0,
           "live": 0
@@ -568,8 +568,8 @@
         }
       },
       "time": {
-        "avgTodo": 4391,
-        "avgProgress": 3367,
+        "avgTodo": 4439,
+        "avgProgress": 2769,
         "avgToDone": 5231,
         "open": 46
       },
@@ -4020,20 +4020,33 @@
           "title": "Delivery of Carousel No. 1",
           "notes": "",
           "due": "2026-10-04",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:55:49.143Z",
-          "updated_at": "2026-10-01T14:36:06.314Z",
+          "updated_at": "2026-10-03T21:57:29.481Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-01T14:36:06.314Z",
-          "progress_started_at": "2026-10-01T14:36:06.314Z",
-          "time_log": [],
-          "start_on": "2026-10-01"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-01T14:36:06.314Z",
+              "ended_at": "2026-10-03T21:57:29.480Z",
+              "hours": 55.356435,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-10-01",
+          "progress_hours": 55.356435,
+          "review_at": "2026-10-03T21:57:29.480Z",
+          "first_review_at": "2026-10-03T21:57:29.480Z",
+          "delivered_on": "2026-10-04"
         },
         {
           "id": "t-20261004-mariam-muq0ll3q",
