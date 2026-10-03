@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-09-24T14:01:00.000Z",
+  "updated_at": "2026-10-03T14:40:28.172Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -100,6 +100,17 @@
       "access": "member",
       "active": true,
       "updated_at": "2026-09-24T14:01:00.000Z"
+    },
+    {
+      "id": "rahma_elsaid",
+      "name": "Rahma Elsaid",
+      "role": "Graohic designer",
+      "home": "design",
+      "mention": "@RahmaElsaid",
+      "email": "",
+      "access": "member",
+      "active": true,
+      "updated_at": "2026-10-03T14:40:28.172Z"
     }
   ]
 }
