@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-02T22:19:42.751Z",
+      "updated_at": "2026-10-03T11:18:56.571Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -463,8 +463,8 @@
           "review": 3,
           "overdue": 4,
           "done": 1,
-          "hours": 54.09092944444444,
-          "live": 54.09092944444444
+          "hours": 67.07812805555555,
+          "live": 67.07812805555555
         },
         "Judi": {
           "open": 2,
@@ -493,12 +493,12 @@
           "review": 1,
           "overdue": 1,
           "done": 1,
-          "hours": 18.76327625,
-          "live": 31.726766944444446
+          "hours": 25.25687222222222,
+          "live": 44.71395888888889
         },
         "Sara": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -513,8 +513,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 55.869626874999994,
-          "live": 220.70084805555555
+          "hours": 65.61001812500001,
+          "live": 259.6624130555556
         },
         "Tasneem": {
           "open": 0,
@@ -548,10 +548,10 @@
         }
       },
       "time": {
-        "avgTodo": 3267,
-        "avgProgress": 3678,
+        "avgTodo": 4046,
+        "avgProgress": 4458,
         "avgToDone": 4108,
-        "open": 46
+        "open": 47
       },
       "hr": {
         "people": {
@@ -4038,6 +4038,27 @@
           "done_on": "2026-10-02",
           "done_month": "2026-10",
           "done_by": "Mariam"
+        },
+        {
+          "id": "t-20261005-sara-musau5uy",
+          "who": "Sara",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "Single visual | Hiring HR",
+          "notes": "we need to create a social media post for Helal for Hiring HR - communicate with seif for Helal style or anything assets needed",
+          "due": "2026-10-05",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-03",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-03T11:18:56.555Z",
+          "updated_at": "2026-10-03T11:18:56.555Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
