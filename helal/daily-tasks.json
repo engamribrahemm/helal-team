@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-03T12:10:58.278Z",
+      "updated_at": "2026-10-03T12:11:05.263Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -457,14 +457,14 @@
           "live": 0
         },
         "Mariam": {
-          "open": 4,
+          "open": 3,
           "todo": 1,
           "progress": 1,
-          "review": 2,
-          "overdue": 3,
-          "done": 2,
-          "hours": 67.94526805555556,
-          "live": 67.94526805555556
+          "review": 1,
+          "overdue": 2,
+          "done": 3,
+          "hours": 67.94720083333333,
+          "live": 67.94720083333333
         },
         "Judi": {
           "open": 2,
@@ -493,8 +493,8 @@
           "review": 1,
           "overdue": 1,
           "done": 1,
-          "hours": 25.69044236111111,
-          "live": 45.58109916666667
+          "hours": 25.691409722222225,
+          "live": 45.58303388888889
         },
         "Sara": {
           "open": 1,
@@ -513,8 +513,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 66.26037333333333,
-          "live": 262.2638338888889
+          "hours": 66.26182520833333,
+          "live": 262.2696413888889
         },
         "Tasneem": {
           "open": 0,
@@ -550,8 +550,8 @@
       "time": {
         "avgTodo": 3989,
         "avgProgress": 4510,
-        "avgToDone": 4749,
-        "open": 46
+        "avgToDone": 5231,
+        "open": 45
       },
       "hr": {
         "people": {
@@ -3525,15 +3525,15 @@
           "title": "MAS monthly report",
           "notes": "",
           "due": "2026-09-30",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:44:00.703Z",
-          "updated_at": "2026-09-30T21:23:03.186Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-03T12:10:59.648Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
@@ -3543,7 +3543,11 @@
           "time_log": [],
           "review_at": "2026-09-30T21:23:03.185Z",
           "first_review_at": "2026-09-30T21:23:03.185Z",
-          "delivered_on": "2026-10-01"
+          "delivered_on": "2026-10-01",
+          "done_at": "2026-10-03T12:10:59.647Z",
+          "done_on": "2026-10-03",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         },
         {
           "id": "t-20260930-judi-mujtk5rm",
