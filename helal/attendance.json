@@ -459,6 +459,21 @@
           "saved_at": "2026-10-03T11:19:45.411Z",
           "updated_at": "2026-10-03T11:19:45.411Z",
           "updated_by": "Amr"
+        },
+        "Tasneem": {
+          "days": {
+            "2026-10-02": "Off",
+            "2026-10-03": "Home",
+            "2026-10-04": "Office",
+            "2026-10-05": "Office",
+            "2026-10-06": "Home",
+            "2026-10-07": "Office",
+            "2026-10-08": "Home"
+          },
+          "saved": true,
+          "saved_at": "2026-10-03T14:42:51.587Z",
+          "updated_at": "2026-10-03T14:42:51.587Z",
+          "updated_by": "Tasneem"
         }
       }
     }
@@ -513,8 +528,8 @@
       "reason": "work on mas",
       "status": "Approved",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
-      "decided_by": "Amr"
+      "decided_at": "2026-09-10T14:37:56.209Z",
+      "decided_by": "Tasneem"
     },
     {
       "id": "ar-mu1fb5ew",
@@ -526,8 +541,8 @@
       "reason": "",
       "status": "Approved",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "2026-09-14T17:13:09.437Z",
-      "decided_by": "Amr"
+      "decided_at": "2026-09-30T15:54:35.605Z",
+      "decided_by": "Tasneem"
     },
     {
       "id": "ar-mu1fbg3s",
@@ -539,8 +554,8 @@
       "reason": "",
       "status": "Approved",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "2026-09-14T17:13:10.064Z",
-      "decided_by": "Amr"
+      "decided_at": "2026-09-30T15:54:36.098Z",
+      "decided_by": "Tasneem"
     },
     {
       "id": "ar-mulhzjb9",
