@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-03T12:18:21.877Z",
+      "updated_at": "2026-10-03T16:49:47.662Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -463,8 +463,8 @@
           "review": 1,
           "overdue": 2,
           "done": 3,
-          "hours": 68.06849138888889,
-          "live": 68.06849138888889
+          "hours": 72.59231888888888,
+          "live": 72.59231888888888
         },
         "Judi": {
           "open": 2,
@@ -493,8 +493,8 @@
           "review": 1,
           "overdue": 1,
           "done": 1,
-          "hours": 25.75205375,
-          "live": 45.704321944444445
+          "hours": 28.013967638888886,
+          "live": 50.22814972222222
         },
         "Sara": {
           "open": 1,
@@ -508,13 +508,13 @@
         },
         "Ganna": {
           "open": 7,
-          "todo": 4,
-          "progress": 3,
+          "todo": 5,
+          "progress": 2,
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 66.35279041666666,
-          "live": 262.6335022222222
+          "hours": 47.607922592592594,
+          "live": 140.04610833333334
         },
         "Tasneem": {
           "open": 0,
@@ -545,11 +545,31 @@
           "done": 0,
           "hours": 0,
           "live": 0
+        },
+        "Rahma Elsaid": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Menna": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
         }
       },
       "time": {
-        "avgTodo": 3996,
-        "avgProgress": 4517,
+        "avgTodo": 4076,
+        "avgProgress": 3943,
         "avgToDone": 5231,
         "open": 46
       },
@@ -628,6 +648,24 @@
             "reviews": 0
           },
           "Mohamed": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Rahma Elsaid": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Menna": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
@@ -4082,20 +4120,30 @@
           "title": "8-10 reel",
           "notes": "الكلاينت الي بيرجع اهم من ترند وخلاص",
           "due": "2026-10-06",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Judi",
           "created_at": "2026-09-27T11:26:25.571Z",
-          "updated_at": "2026-09-28T00:40:15.697Z",
+          "updated_at": "2026-10-03T16:49:47.642Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-09-28T00:40:15.696Z",
-          "progress_started_at": "2026-09-28T00:40:15.696Z",
-          "time_log": [],
-          "start_on": "2026-09-28"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-09-28T00:40:15.696Z",
+              "ended_at": "2026-10-03T16:49:47.642Z",
+              "hours": 136.15887388888888,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-09-28",
+          "progress_hours": 136.15887388888888
         },
         {
           "id": "t-20261006-seif-muo7g2cw",
