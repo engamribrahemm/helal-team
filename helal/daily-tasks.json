@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-03T16:49:47.662Z",
+      "updated_at": "2026-10-03T19:52:21.620Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -463,8 +463,8 @@
           "review": 1,
           "overdue": 2,
           "done": 3,
-          "hours": 72.59231888888888,
-          "live": 72.59231888888888
+          "hours": 75.63508194444445,
+          "live": 75.63508194444445
         },
         "Judi": {
           "open": 2,
@@ -478,13 +478,13 @@
         },
         "Seif": {
           "open": 20,
-          "todo": 20,
-          "progress": 0,
+          "todo": 19,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 3.213899027777778,
-          "live": 0
+          "hours": 2.1426005555555556,
+          "live": 0.000003611111111111111
         },
         "Alaa": {
           "open": 7,
@@ -493,8 +493,8 @@
           "review": 1,
           "overdue": 1,
           "done": 1,
-          "hours": 28.013967638888886,
-          "live": 50.22814972222222
+          "hours": 29.535349583333335,
+          "live": 53.27091361111111
         },
         "Sara": {
           "open": 1,
@@ -513,8 +513,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 47.607922592592594,
-          "live": 140.04610833333334
+          "hours": 49.636432407407405,
+          "live": 146.13163777777777
         },
         "Tasneem": {
           "open": 0,
@@ -568,8 +568,8 @@
         }
       },
       "time": {
-        "avgTodo": 4076,
-        "avgProgress": 3943,
+        "avgTodo": 4330,
+        "avgProgress": 4126,
         "avgToDone": 5231,
         "open": 46
       },
@@ -3955,18 +3955,20 @@
           "title": "Urgent Osama post",
           "notes": "",
           "due": "2026-10-03",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-03",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-02T21:07:29.018Z",
-          "updated_at": "2026-10-02T21:07:29.018Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-03T19:52:21.588Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-03T19:52:21.588Z",
+          "progress_started_at": "2026-10-03T19:52:21.588Z",
+          "time_log": [],
+          "start_on": "2026-10-03"
         }
       ]
     },
