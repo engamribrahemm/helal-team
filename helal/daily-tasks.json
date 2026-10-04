@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-04T11:28:40.407Z",
+      "updated_at": "2026-10-04T11:51:00.012Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -457,14 +457,14 @@
           "live": 0
         },
         "Mariam": {
-          "open": 3,
+          "open": 2,
           "todo": 1,
           "progress": 1,
-          "review": 1,
-          "overdue": 2,
-          "done": 3,
-          "hours": 91.24029888888889,
-          "live": 91.24029888888889
+          "review": 0,
+          "overdue": 1,
+          "done": 4,
+          "hours": 91.61241555555556,
+          "live": 91.61241555555556
         },
         "Judi": {
           "open": 2,
@@ -483,8 +483,8 @@
           "review": 1,
           "overdue": 1,
           "done": 2,
-          "hours": 7.235603888888889,
-          "live": 15.279013611111111
+          "hours": 7.359642407407407,
+          "live": 15.651129166666667
         },
         "Alaa": {
           "open": 7,
@@ -493,8 +493,8 @@
           "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 10.145176527777778,
-          "live": 14.4905675
+          "hours": 10.331234027777779,
+          "live": 14.8626825
         },
         "Sara": {
           "open": 1,
@@ -503,8 +503,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 14.425484722222222,
-          "live": 0.000005833333333333333
+          "hours": 14.611542083333333,
+          "live": 0.37212055555555557
         },
         "Ganna": {
           "open": 7,
@@ -513,8 +513,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 60.039910925925916,
-          "live": 177.34207333333333
+          "hours": 60.28798722222223,
+          "live": 178.08630222222223
         },
         "Tasneem": {
           "open": 0,
@@ -568,10 +568,10 @@
         }
       },
       "time": {
-        "avgTodo": 5335,
-        "avgProgress": 3580,
-        "avgToDone": 5231,
-        "open": 46
+        "avgTodo": 5357,
+        "avgProgress": 3006,
+        "avgToDone": 5764,
+        "open": 45
       },
       "hr": {
         "people": {
@@ -3470,15 +3470,15 @@
           "title": "Review the material to have some content till shooting",
           "notes": "",
           "due": "2026-09-28",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:46:18.789Z",
-          "updated_at": "2026-09-30T20:49:08.493Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-04T11:50:59.992Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
@@ -3488,7 +3488,11 @@
           "time_log": [],
           "review_at": "2026-09-30T20:49:08.493Z",
           "first_review_at": "2026-09-30T20:49:08.493Z",
-          "delivered_on": "2026-09-30"
+          "delivered_on": "2026-09-30",
+          "done_at": "2026-10-04T11:50:59.991Z",
+          "done_on": "2026-10-04",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         },
         {
           "id": "t-20260928-mariam-mujti2i3",
