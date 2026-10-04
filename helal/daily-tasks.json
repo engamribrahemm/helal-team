@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-04T20:17:30.165Z",
+      "updated_at": "2026-10-04T23:18:38.910Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -462,10 +462,10 @@
           "todo": 1,
           "progress": 1,
           "review": 0,
-          "overdue": 1,
+          "overdue": 2,
           "done": 4,
-          "hours": 100.054125,
-          "live": 100.054125
+          "hours": 103.07322166666667,
+          "live": 103.07322166666667
         },
         "Judi": {
           "open": 2,
@@ -482,20 +482,20 @@
           "todo": 18,
           "progress": 1,
           "review": 1,
-          "overdue": 1,
+          "overdue": 2,
           "done": 2,
-          "hours": 10.173545648148147,
-          "live": 24.09283888888889
+          "hours": 11.17991111111111,
+          "live": 27.11193527777778
         },
         "Alaa": {
           "open": 7,
           "todo": 4,
-          "progress": 1,
-          "review": 2,
-          "overdue": 1,
+          "progress": 0,
+          "review": 3,
+          "overdue": 2,
           "done": 1,
-          "hours": 14.552089027777777,
-          "live": 23.3043925
+          "hours": 5.799785555555555,
+          "live": 0
         },
         "Sara": {
           "open": 1,
@@ -514,8 +514,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 65.9157937037037,
-          "live": 194.96972166666666
+          "hours": 67.92852462962964,
+          "live": 201.00791444444445
         },
         "Tasneem": {
           "open": 0,
@@ -569,8 +569,8 @@
         }
       },
       "time": {
-        "avgTodo": 5998,
-        "avgProgress": 4109,
+        "avgTodo": 6179,
+        "avgProgress": 4968,
         "avgToDone": 5764,
         "open": 44
       },
@@ -4191,20 +4191,33 @@
           "title": "Delivery of Single Post No. 1",
           "notes": "",
           "due": "2026-10-06",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:57:26.104Z",
-          "updated_at": "2026-10-03T20:59:14.344Z",
+          "updated_at": "2026-10-04T23:18:38.894Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-03T20:59:14.344Z",
-          "progress_started_at": "2026-10-03T20:59:14.344Z",
-          "time_log": [],
-          "start_on": "2026-10-03"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-03T20:59:14.344Z",
+              "ended_at": "2026-10-04T23:18:38.894Z",
+              "hours": 26.323486111111112,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-10-03",
+          "progress_hours": 26.323486111111112,
+          "review_at": "2026-10-04T23:18:38.894Z",
+          "first_review_at": "2026-10-04T23:18:38.894Z",
+          "delivered_on": "2026-10-05"
         }
       ]
     },
