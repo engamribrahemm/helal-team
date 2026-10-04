@@ -77,6 +77,7 @@ const state = {
   hrMonth: "",
   hrPerson: "",
   evalTaskId: null,
+  editPersonName: null,
   pendingDelay: null,
   pendingRevision: null,
   issuedPins: {},
@@ -2461,7 +2462,41 @@ function viewPromptModals() {
     );
   }
   if (state.evalTaskId && isAdmin()) extra.push(...viewEvalModal());
+  if (state.editPersonName && isAdmin()) extra.push(...viewEditPersonModal());
   return extra;
+}
+
+function viewEditPersonModal() {
+  const person = allPeople().find((p) => samePerson(p.name, state.editPersonName));
+  if (!person) return [];
+  const name = $("input", { required: true, value: person.name || "" });
+  const email = $("input", { type: "email", placeholder: "name@email.com", value: person.email || "" });
+  const close = () => { state.editPersonName = null; render(); };
+  return [
+    $("div", { class: "modal-bg", onclick: close }),
+    $("section", { class: "modal" }, [
+      $("p", { class: "muted" }, "Edit person"),
+      $("h2", {}, person.name),
+      $("p", { class: "muted" }, "Change the login name or email. Login name must stay unique."),
+      $("form", {
+        class: "form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          updatePerson(person.name, {
+            name: name.value.trim(),
+            email: email.value.trim(),
+          });
+        },
+      }, [
+        $("label", {}, ["Name", name]),
+        $("label", {}, ["Email", email]),
+        $("div", { style: "display:flex;gap:8px" }, [
+          $("button", { class: "btn primary", type: "submit" }, "Save changes"),
+          $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
+        ]),
+      ]),
+    ]),
+  ];
 }
 
 function viewEvalModal() {
@@ -3830,6 +3865,7 @@ function viewDrive() {
 
 function viewPeople() {
   const name = $("input", { required: true, placeholder: "Full name" });
+  const email = $("input", { type: "email", placeholder: "name@email.com" });
   const role = $("input", { required: true, placeholder: "Role, e.g. Graphic designer" });
   const home = $("select", {}, TEAM_HOMES.map((h) => $("option", { value: h }, h)));
   const access = $("select", {}, [
@@ -3841,24 +3877,27 @@ function viewPeople() {
   return $("div", { class: "dash" }, [
     $("section", { class: "card", style: "max-width:640px" }, [
       $("h2", {}, "Add a person"),
-      $("p", { class: "muted" }, "Creates a login with its own password. Share that password with them. Deactivate if they leave."),
+      $("p", { class: "muted" }, "Creates a login with its own password. Share that password with them. You can edit name or email later."),
       $("form", {
         class: "form",
         onsubmit: (e) => {
           e.preventDefault();
           addPerson({
             name: name.value.trim(),
+            email: email.value.trim(),
             role: role.value.trim(),
             home: home.value,
             access: access.value,
             pin: pin.value.trim(),
           });
           name.value = "";
+          email.value = "";
           role.value = "";
           pin.value = "";
         },
       }, [
         $("label", {}, ["Name", name]),
+        $("label", {}, ["Email", email]),
         $("label", {}, ["Role", role]),
         $("label", {}, ["Team", home]),
         $("label", {}, ["Access", access]),
@@ -3871,7 +3910,7 @@ function viewPeople() {
       return $("article", { class: "card" }, [
         $("p", { class: "title" }, p.name),
         $("p", { class: "muted" }, p.role),
-        p.email ? $("p", {}, p.email) : null,
+        $("p", { class: "muted" }, p.email || "No email yet"),
         $("p", { class: "muted" }, `${workFor(p.name).type} · ${workFor(p.name).days} · ${workFor(p.name).hours} · ${workFor(p.name).mode}`),
         $("div", { class: "meta" }, [
           $("span", { class: "pill" }, p.access || "member"),
@@ -3881,6 +3920,11 @@ function viewPeople() {
           ? `New password (copy now): ${state.issuedPins[p.name]}`
           : "Password is hashed. Press New password to issue one. It is shown once."),
         $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;margin-top:10px" }, [
+          $("button", {
+            class: "btn ghost",
+            type: "button",
+            onclick: () => { state.editPersonName = p.name; render(); },
+          }, "Edit name / email"),
           $("button", {
             class: "btn ghost",
             type: "button",
@@ -3899,6 +3943,109 @@ function viewPeople() {
   ]);
 }
 
+function renameKeyedRow(map, from, to) {
+  if (!map || !from || !to || samePerson(from, to) || !(from in map)) return false;
+  if (!(to in map)) map[to] = map[from];
+  delete map[from];
+  return true;
+}
+
+function renamePersonEverywhere(from, to) {
+  if (!from || !to || samePerson(from, to)) return;
+  if (!state.auth) state.auth = { users: {} };
+  if (!state.auth.users) state.auth.users = {};
+  renameKeyedRow(state.auth.users, from, to);
+  const hr = ensureHr();
+  if (!hr.work) hr.work = {};
+  renameKeyedRow(hr.work, from, to);
+  for (const key of ["reviews", "attitude", "warnings", "rewards"]) {
+    for (const row of hr[key] || []) {
+      if (samePerson(row.who, from)) row.who = to;
+    }
+  }
+  if (state.issuedPins?.[from]) {
+    state.issuedPins[to] = state.issuedPins[from];
+    delete state.issuedPins[from];
+  }
+  for (const task of allTasks()) {
+    if (samePerson(task.who, from)) task.who = to;
+    if (samePerson(task.created_by, from)) task.created_by = to;
+    if (samePerson(task.done_by, from)) task.done_by = to;
+    if (samePerson(task.updated_by, from)) task.updated_by = to;
+  }
+  for (const report of state.reportsFile?.reports || []) {
+    if (samePerson(report.who, from)) report.who = to;
+  }
+  const attend = ensureAttendance();
+  for (const week of Object.values(attend.weeks || {})) {
+    if (!week?.people) continue;
+    renameKeyedRow(week.people, from, to);
+    for (const row of Object.values(week.people)) {
+      if (samePerson(row.updated_by, from)) row.updated_by = to;
+    }
+  }
+  for (const req of attend.requests || []) {
+    if (samePerson(req.who, from)) req.who = to;
+  }
+  if (samePerson(state.who, from)) state.who = to;
+  if (samePerson(state.session?.who, from)) {
+    state.session.who = to;
+    localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
+  }
+  if (samePerson(state.hrPerson, from)) state.hrPerson = to;
+  if (samePerson(state.dashPerson, from)) state.dashPerson = to;
+  if (samePerson(state.timePerson, from)) state.timePerson = to;
+  if (samePerson(state.boardPerson, from)) state.boardPerson = to;
+}
+
+function updatePerson(currentName, fields) {
+  if (!isAdmin()) return;
+  const nextName = String(fields.name || "").trim();
+  const nextEmail = String(fields.email || "").trim();
+  if (!nextName) {
+    state.saveState = "error";
+    state.saveError = "Name is required.";
+    render();
+    return;
+  }
+  const person = allPeople().find((p) => samePerson(p.name, currentName));
+  if (!person) return;
+  if (!samePerson(currentName, nextName) && allPeople().some((p) => samePerson(p.name, nextName))) {
+    state.saveState = "error";
+    state.saveError = `${nextName} is already on the team.`;
+    render();
+    return;
+  }
+  const renamed = !samePerson(currentName, nextName);
+  if (renamed) renamePersonEverywhere(currentName, nextName);
+  person.name = nextName;
+  person.email = nextEmail;
+  person.mention = `@${nextName.replace(/\s+/g, "")}`;
+  person.updated_at = new Date().toISOString();
+  if (state.team.owner && samePerson(state.team.owner.name, currentName)) {
+    state.team.owner.name = nextName;
+    state.team.owner.email = nextEmail;
+    state.team.owner.mention = person.mention;
+    state.team.owner.updated_at = person.updated_at;
+  }
+  state.team.updated_at = person.updated_at;
+  state.editPersonName = null;
+  state.saveState = "saving";
+  state.saveError = "";
+  render();
+  saveTeam(`team: edit ${nextName}`);
+  if (renamed) {
+    saveHr(`hr: rename ${currentName} to ${nextName}`);
+    saveTasks(`board: rename ${currentName} to ${nextName}`);
+    saveReports(`report: rename ${currentName} to ${nextName}`);
+    saveAttendance(`attend: rename ${currentName} to ${nextName}`);
+    resetPersonPin(nextName).then(() => {
+      state.saveNote = `Name updated to ${nextName}. New password issued — copy it from People.`;
+      render();
+    });
+  }
+}
+
 function addPerson(fields) {
   const name = fields.name;
   if (!name) return;
@@ -3914,7 +4061,7 @@ function addPerson(fields) {
     role: fields.role || "Team member",
     home: fields.home || "social",
     mention: `@${name.replace(/\s+/g, "")}`,
-    email: "",
+    email: fields.email || "",
     access: fields.access === "admin" ? "admin" : "member",
     active: true,
     updated_at: new Date().toISOString(),
@@ -4428,6 +4575,7 @@ function render(force) {
     && !state.pendingDelay
     && !state.pendingRevision
     && !state.evalTaskId
+    && !state.editPersonName
     && !state.attendChange
   ) {
     return;
@@ -4549,6 +4697,7 @@ function watchCairoDay() {
           && !state.pendingDelay
           && !state.pendingRevision
           && !state.evalTaskId
+          && !state.editPersonName
           && !state.attendChange
         )
       ) render();
