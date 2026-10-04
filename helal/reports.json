@@ -3,6 +3,17 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-muuax8sn",
+      "who": "Tasneem",
+      "date": "2026-10-04",
+      "finished": "- Attended Techne Summit ( 1 reel)\n- Attended an offline meeting with a candidate applying for a Sales position.\n- Responded to messages received on Helal’s page.",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Office",
+      "created_at": "2026-10-04T20:56:52.679Z"
+    },
+    {
       "id": "r-musxnxzz",
       "who": "Alaa",
       "date": "2026-10-04",
