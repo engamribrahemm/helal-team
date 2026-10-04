@@ -221,6 +221,26 @@
       "by": "Amr",
       "created_at": "2026-10-04T11:54:11.335Z",
       "updated_at": "2026-10-04T11:54:11.335Z"
+    },
+    {
+      "id": "ev-t-20260927-mariam-mujt7lo5",
+      "task_id": "t-20260927-mariam-mujt7lo5",
+      "who": "Mariam",
+      "role": "social",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 2,
+      "quality": {
+        "overall": 5
+      },
+      "quality_avg": 5,
+      "revision_rating": 5,
+      "revision_count": 0,
+      "creativity": 5,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-10-04T11:54:27.959Z",
+      "updated_at": "2026-10-04T11:54:27.959Z"
     }
   ],
   "attitude": [],
@@ -486,7 +506,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-10-04T11:54:11.354Z",
+      "updated_at": "2026-10-04T11:54:27.978Z",
       "frozen": false
     }
   }
