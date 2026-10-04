@@ -444,7 +444,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-04T11:51:16.386Z",
+      "updated_at": "2026-10-04T15:22:58.133Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -463,8 +463,8 @@
           "review": 0,
           "overdue": 1,
           "done": 4,
-          "hours": 91.61696138888888,
-          "live": 91.61696138888888
+          "hours": 95.14522388888889,
+          "live": 95.14522388888889
         },
         "Judi": {
           "open": 2,
@@ -483,8 +483,8 @@
           "review": 1,
           "overdue": 1,
           "done": 2,
-          "hours": 7.361157962962963,
-          "live": 15.655675833333333
+          "hours": 8.53724537037037,
+          "live": 19.183938055555554
         },
         "Alaa": {
           "open": 7,
@@ -493,18 +493,18 @@
           "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 10.33350763888889,
-          "live": 14.867229722222222
+          "hours": 12.09763888888889,
+          "live": 18.395492222222224
         },
         "Sara": {
           "open": 1,
           "todo": 0,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 1,
-          "hours": 14.613815694444446,
-          "live": 0.37666777777777777
+          "hours": 28.850963611111112,
+          "live": 0
         },
         "Ganna": {
           "open": 7,
@@ -513,8 +513,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 60.291018703703706,
-          "live": 178.09539722222223
+          "hours": 62.64319388888888,
+          "live": 185.15192222222223
         },
         "Tasneem": {
           "open": 0,
@@ -568,8 +568,8 @@
         }
       },
       "time": {
-        "avgTodo": 5357,
-        "avgProgress": 3006,
+        "avgTodo": 5563,
+        "avgProgress": 3815,
         "avgToDone": 5764,
         "open": 45
       },
@@ -612,11 +612,11 @@
             "reviews": 0
           },
           "Sara": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -4127,20 +4127,33 @@
           "title": "Single visual | Hiring HR",
           "notes": "we need to create a social media post for Helal for Hiring HR - communicate with seif for Helal style or anything assets needed",
           "due": "2026-10-05",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-03",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-03T11:18:56.555Z",
-          "updated_at": "2026-10-04T11:28:40.368Z",
+          "updated_at": "2026-10-04T15:22:58.100Z",
           "updated_by": "Sara",
           "revisions": 0,
           "first_progress_at": "2026-10-04T11:28:40.368Z",
-          "progress_started_at": "2026-10-04T11:28:40.368Z",
-          "time_log": [],
-          "start_on": "2026-10-04"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-04T11:28:40.368Z",
+              "ended_at": "2026-10-04T15:22:58.100Z",
+              "hours": 3.9049255555555558,
+              "by": "Sara"
+            }
+          ],
+          "start_on": "2026-10-04",
+          "progress_hours": 3.9049255555555558,
+          "review_at": "2026-10-04T15:22:58.100Z",
+          "first_review_at": "2026-10-04T15:22:58.100Z",
+          "delivered_on": "2026-10-04"
         }
       ]
     },
