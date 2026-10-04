@@ -241,6 +241,26 @@
       "by": "Amr",
       "created_at": "2026-10-04T11:54:27.959Z",
       "updated_at": "2026-10-04T11:54:27.959Z"
+    },
+    {
+      "id": "ev-t-20260925-ganna-mufu6asn",
+      "task_id": "t-20260925-ganna-mufu6asn",
+      "who": "Ganna",
+      "role": "video",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 3,
+      "quality": {
+        "overall": 4
+      },
+      "quality_avg": 4,
+      "revision_rating": 2,
+      "revision_count": 0,
+      "creativity": 4,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-10-04T11:54:41.151Z",
+      "updated_at": "2026-10-04T11:54:41.151Z"
     }
   ],
   "attitude": [],
@@ -506,7 +526,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-10-04T11:54:27.978Z",
+      "updated_at": "2026-10-04T11:54:41.172Z",
       "frozen": false
     }
   }
