@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-04T23:18:38.910Z",
+      "updated_at": "2026-10-04T23:18:48.708Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 103.07322166666667,
-          "live": 103.07322166666667
+          "hours": 103.07594333333333,
+          "live": 103.07594333333333
         },
         "Judi": {
           "open": 2,
@@ -484,18 +484,18 @@
           "review": 1,
           "overdue": 2,
           "done": 2,
-          "hours": 11.17991111111111,
-          "live": 27.11193527777778
+          "hours": 11.18081824074074,
+          "live": 27.114656666666665
         },
         "Alaa": {
           "open": 7,
-          "todo": 4,
-          "progress": 0,
+          "todo": 3,
+          "progress": 1,
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 5.799785555555555,
-          "live": 0
+          "hours": 2.8998941666666664,
+          "live": 0.000002777777777777778
         },
         "Sara": {
           "open": 1,
@@ -514,8 +514,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 67.92852462962964,
-          "live": 201.00791444444445
+          "hours": 67.93033907407407,
+          "live": 201.01335777777777
         },
         "Tasneem": {
           "open": 0,
@@ -569,7 +569,7 @@
         }
       },
       "time": {
-        "avgTodo": 6179,
+        "avgTodo": 6180,
         "avgProgress": 4968,
         "avgToDone": 5764,
         "open": 44
@@ -4558,18 +4558,20 @@
           "title": "Delivery of Single Post No. 2",
           "notes": "",
           "due": "2026-10-16",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:58:34.846Z",
-          "updated_at": "2026-09-30T16:58:34.846Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-04T23:18:48.692Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-04T23:18:48.692Z",
+          "progress_started_at": "2026-10-04T23:18:48.692Z",
+          "time_log": [],
+          "start_on": "2026-10-05"
         }
       ]
     },
