@@ -341,6 +341,26 @@
       "by": "Amr",
       "created_at": "2026-10-04T11:55:23.197Z",
       "updated_at": "2026-10-04T11:55:23.197Z"
+    },
+    {
+      "id": "ev-t-20260909-tasneem-mtsknxpl",
+      "task_id": "t-20260909-tasneem-mtsknxpl",
+      "who": "Tasneem",
+      "role": "other",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 2,
+      "quality": {
+        "overall": 3
+      },
+      "quality_avg": 3,
+      "revision_rating": 4,
+      "revision_count": 0,
+      "creativity": 4,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-10-04T11:55:44.503Z",
+      "updated_at": "2026-10-04T11:55:44.503Z"
     }
   ],
   "attitude": [],
@@ -606,7 +626,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-10-04T11:55:23.215Z",
+      "updated_at": "2026-10-04T11:55:44.522Z",
       "frozen": false
     }
   }
