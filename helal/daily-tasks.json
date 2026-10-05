@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-05T12:48:57.697Z",
+      "updated_at": "2026-10-05T14:03:36.224Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 116.57842555555555,
-          "live": 116.57842583333333
+          "hours": 117.82247111111111,
+          "live": 117.82247111111111
         },
         "Judi": {
           "open": 2,
@@ -480,12 +480,12 @@
         "Seif": {
           "open": 20,
           "todo": 18,
-          "progress": 1,
-          "review": 1,
+          "progress": 0,
+          "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 15.681646481481481,
-          "live": 40.61714138888889
+          "hours": 3.213899027777778,
+          "live": 0
         },
         "Alaa": {
           "open": 7,
@@ -494,8 +494,8 @@
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 9.651136944444445,
-          "live": 13.502488333333334
+          "hours": 10.273158472222221,
+          "live": 14.746531388888888
         },
         "Sara": {
           "open": 1,
@@ -514,8 +514,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 76.93199712962962,
-          "live": 228.01833222222223
+          "hours": 77.7613587037037,
+          "live": 230.50641666666667
         },
         "Tasneem": {
           "open": 2,
@@ -524,8 +524,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 0.02431138888888889,
-          "live": 0.02431138888888889
+          "hours": 1.2683533333333334,
+          "live": 1.2683533333333334
         },
         "Moamen": {
           "open": 0,
@@ -569,8 +569,8 @@
         }
       },
       "time": {
-        "avgTodo": 6597,
-        "avgProgress": 3987,
+        "avgTodo": 6672,
+        "avgProgress": 4372,
         "avgToDone": 5764,
         "open": 47
       },
@@ -595,11 +595,11 @@
             "reviews": 0
           },
           "Seif": {
-            "delivery": 5,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 5,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
@@ -4002,20 +4002,36 @@
           "title": "Delivery of Carousel No. 5 and Single Post No. 6",
           "notes": "",
           "due": "2026-10-04",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:32:18.433Z",
-          "updated_at": "2026-10-03T20:11:55.937Z",
+          "updated_at": "2026-10-05T14:03:36.189Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-03T20:11:55.936Z",
-          "progress_started_at": "2026-10-03T20:11:55.936Z",
-          "time_log": [],
-          "start_on": "2026-10-03"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-03T20:11:55.936Z",
+              "ended_at": "2026-10-05T14:03:36.188Z",
+              "hours": 41.86118111111111,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-10-03",
+          "delay_reason": "Personal reason",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 41.86118111111111,
+          "review_at": "2026-10-05T14:03:36.188Z",
+          "first_review_at": "2026-10-05T14:03:36.188Z",
+          "delivered_on": "2026-10-05"
         },
         {
           "id": "t-20261004-alaa-muocjtzr",
