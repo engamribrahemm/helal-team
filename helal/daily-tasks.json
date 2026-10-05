@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-05T14:03:36.224Z",
+      "updated_at": "2026-10-05T18:58:23.616Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 117.82247111111111,
-          "live": 117.82247111111111
+          "hours": 122.73563722222222,
+          "live": 122.73563722222222
         },
         "Judi": {
           "open": 2,
@@ -479,13 +479,13 @@
         },
         "Seif": {
           "open": 20,
-          "todo": 18,
-          "progress": 0,
+          "todo": 17,
+          "progress": 1,
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 3.213899027777778,
-          "live": 0
+          "hours": 2.142600277777778,
+          "live": 0.000002777777777777778
         },
         "Alaa": {
           "open": 7,
@@ -494,8 +494,8 @@
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 10.273158472222221,
-          "live": 14.746531388888888
+          "hours": 12.729741388888888,
+          "live": 19.65969722222222
         },
         "Sara": {
           "open": 1,
@@ -514,8 +514,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 77.7613587037037,
-          "live": 230.50641666666667
+          "hours": 81.03680222222222,
+          "live": 240.33274722222222
         },
         "Tasneem": {
           "open": 2,
@@ -524,8 +524,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 1.2683533333333334,
-          "live": 1.2683533333333334
+          "hours": 6.181518333333333,
+          "live": 6.181518333333333
         },
         "Moamen": {
           "open": 0,
@@ -569,8 +569,8 @@
         }
       },
       "time": {
-        "avgTodo": 6672,
-        "avgProgress": 4372,
+        "avgTodo": 6955,
+        "avgProgress": 4667,
         "avgToDone": 5764,
         "open": 47
       },
@@ -4424,18 +4424,33 @@
           "title": "Delivery of Single Post No. 2",
           "notes": "",
           "due": "2026-10-11",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:27:02.914Z",
-          "updated_at": "2026-09-30T16:27:02.914Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-05T18:58:27.676Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-05T18:58:23.590Z",
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-05T18:58:23.590Z",
+              "ended_at": "2026-10-05T18:58:27.676Z",
+              "hours": 0.001135,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-10-05",
+          "progress_hours": 0.001135,
+          "review_at": "2026-10-05T18:58:27.676Z",
+          "first_review_at": "2026-10-05T18:58:27.676Z",
+          "delivered_on": "2026-10-05"
         }
       ]
     },
