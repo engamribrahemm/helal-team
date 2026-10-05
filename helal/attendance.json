@@ -504,6 +504,21 @@
           "saved_at": "2026-10-04T16:00:48.556Z",
           "updated_at": "2026-10-04T16:00:48.556Z",
           "updated_by": "Rahma Elsaid"
+        },
+        "Sara": {
+          "days": {
+            "2026-10-02": "Off",
+            "2026-10-03": "Home",
+            "2026-10-04": "Home",
+            "2026-10-05": "Home",
+            "2026-10-07": "Office",
+            "2026-10-06": "Home",
+            "2026-10-08": "Home"
+          },
+          "saved": true,
+          "saved_at": "2026-10-05T10:40:33.919Z",
+          "updated_at": "2026-10-05T10:40:33.919Z",
+          "updated_by": "Sara"
         }
       }
     }
@@ -543,10 +558,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-08T14:01:33.550Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-08T14:02:20.439Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mtviokjc",
