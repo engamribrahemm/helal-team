@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-04T23:18:48.708Z",
+      "updated_at": "2026-10-05T09:10:45.089Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 103.07594333333333,
-          "live": 103.07594333333333
+          "hours": 112.94160611111111,
+          "live": 112.94160611111111
         },
         "Judi": {
           "open": 2,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 2,
           "done": 2,
-          "hours": 11.18081824074074,
-          "live": 27.114656666666665
+          "hours": 14.469372407407407,
+          "live": 36.98031916666667
         },
         "Alaa": {
           "open": 7,
@@ -494,8 +494,8 @@
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 2.8998941666666664,
-          "live": 0.000002777777777777778
+          "hours": 7.832725277777778,
+          "live": 9.865665
         },
         "Sara": {
           "open": 1,
@@ -514,12 +514,12 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 67.93033907407407,
-          "live": 201.01335777777777
+          "hours": 74.50744703703704,
+          "live": 220.74468166666668
         },
         "Tasneem": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -569,10 +569,10 @@
         }
       },
       "time": {
-        "avgTodo": 6180,
-        "avgProgress": 4968,
+        "avgTodo": 6772,
+        "avgProgress": 4566,
         "avgToDone": 5764,
-        "open": 44
+        "open": 45
       },
       "hr": {
         "people": {
@@ -4519,6 +4519,33 @@
           "created_at": "2026-10-03T12:18:21.864Z",
           "updated_at": "2026-10-03T12:18:21.864Z",
           "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-15",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261015-tasneem-muv150em",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "عقود التوظيف",
+          "notes": "نطبع العقود ونمضي الناس عليها \nالعقود =عقد التوظيف او التدريب+اللايحة\nبداية من اليوم بحد اقصي اسبوع الكل يكون مضي \nلو يوم الخميس بتاع الخميس القادم جه كل شخص موقعش هيتخصم من HR 5oo جنية \nومن الشخص اللي ممضاش ٥٠٠جنية",
+          "due": "2026-10-15",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-05",
+          "month": "2026-10",
+          "created_by": "Moamen",
+          "created_at": "2026-10-05T09:10:45.070Z",
+          "updated_at": "2026-10-05T09:10:45.070Z",
+          "updated_by": "Moamen",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
