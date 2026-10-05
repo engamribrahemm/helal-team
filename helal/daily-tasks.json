@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-05T09:10:45.089Z",
+      "updated_at": "2026-10-05T09:16:51.655Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 112.94160611111111,
-          "live": 112.94160611111111
+          "hours": 113.04342861111111,
+          "live": 113.04342861111111
         },
         "Judi": {
           "open": 2,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 2,
           "done": 2,
-          "hours": 14.469372407407407,
-          "live": 36.98031916666667
+          "hours": 14.50331351851852,
+          "live": 37.0821425
         },
         "Alaa": {
           "open": 7,
@@ -494,8 +494,8 @@
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 7.832725277777778,
-          "live": 9.865665
+          "hours": 7.8836369444444445,
+          "live": 9.967488333333334
         },
         "Sara": {
           "open": 1,
@@ -514,12 +514,12 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 74.50744703703704,
-          "live": 220.74468166666668
+          "hours": 74.57532944444444,
+          "live": 220.94832888888888
         },
         "Tasneem": {
-          "open": 1,
-          "todo": 1,
+          "open": 2,
+          "todo": 2,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -569,10 +569,10 @@
         }
       },
       "time": {
-        "avgTodo": 6772,
-        "avgProgress": 4566,
+        "avgTodo": 6579,
+        "avgProgress": 4573,
         "avgToDone": 5764,
-        "open": 45
+        "open": 46
       },
       "hr": {
         "people": {
@@ -4218,6 +4218,27 @@
           "review_at": "2026-10-04T23:18:38.894Z",
           "first_review_at": "2026-10-04T23:18:38.894Z",
           "delivered_on": "2026-10-05"
+        },
+        {
+          "id": "t-20261006-tasneem-muv1cv8y",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "تحقيق في شكوي ٢من العملاء من الشركة",
+          "notes": "شكوي مروان المسيري الممثل للعميل محمد عبدالسلام في انه لم يتم التجاوب معه والرد علية مما اثر علي سير العمل \nونفس الموضوع مع MEDC مع العلم اني بعت لمريم وعمرو يهندلوا العميل لانه اشتكي قبل كده من يومين ولم يتم التجاوب \nبلغيني بالاجراءات اللي هتم",
+          "due": "2026-10-06",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-05",
+          "month": "2026-10",
+          "created_by": "Moamen",
+          "created_at": "2026-10-05T09:16:51.635Z",
+          "updated_at": "2026-10-05T09:16:51.635Z",
+          "updated_by": "Moamen",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
