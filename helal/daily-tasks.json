@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-05T18:59:39.412Z",
+      "updated_at": "2026-10-05T19:59:33.416Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 122.75668805555556,
-          "live": 122.75668833333333
+          "hours": 123.7550088888889,
+          "live": 123.7550088888889
         },
         "Judi": {
           "open": 2,
@@ -494,8 +494,8 @@
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 12.740266944444445,
-          "live": 19.680748333333334
+          "hours": 13.239430277777778,
+          "live": 20.679075
         },
         "Sara": {
           "open": 1,
@@ -514,18 +514,18 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 81.05083666666667,
-          "live": 240.37485055555555
+          "hours": 81.71638907407407,
+          "live": 242.37150777777777
         },
         "Tasneem": {
-          "open": 2,
+          "open": 1,
           "todo": 1,
-          "progress": 1,
+          "progress": 0,
           "review": 0,
           "overdue": 0,
-          "done": 0,
-          "hours": 6.20257,
-          "live": 6.20257
+          "done": 1,
+          "hours": 7.200874722222222,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -569,10 +569,10 @@
         }
       },
       "time": {
-        "avgTodo": 6956,
-        "avgProgress": 4668,
-        "avgToDone": 5764,
-        "open": 47
+        "avgTodo": 7016,
+        "avgProgress": 5802,
+        "avgToDone": 5252,
+        "open": 46
       },
       "hr": {
         "people": {
@@ -631,11 +631,11 @@
             "reviews": 0
           },
           "Tasneem": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -4243,20 +4243,35 @@
           "title": "تحقيق في شكوي ٢من العملاء من الشركة",
           "notes": "شكوي مروان المسيري الممثل للعميل محمد عبدالسلام في انه لم يتم التجاوب معه والرد علية مما اثر علي سير العمل \nونفس الموضوع مع MEDC مع العلم اني بعت لمريم وعمرو يهندلوا العميل لانه اشتكي قبل كده من يومين ولم يتم التجاوب \nبلغيني بالاجراءات اللي هتم",
           "due": "2026-10-06",
-          "status": "In progress",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-05",
           "month": "2026-10",
           "created_by": "Moamen",
           "created_at": "2026-10-05T09:16:51.635Z",
-          "updated_at": "2026-10-05T12:47:30.142Z",
+          "updated_at": "2026-10-05T19:59:33.290Z",
           "updated_by": "Tasneem",
           "revisions": 0,
           "first_progress_at": "2026-10-05T12:47:30.139Z",
-          "progress_started_at": "2026-10-05T12:47:30.139Z",
-          "time_log": [],
-          "start_on": "2026-10-05"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Done",
+              "started_at": "2026-10-05T12:47:30.139Z",
+              "ended_at": "2026-10-05T19:59:33.288Z",
+              "hours": 7.200874722222222,
+              "by": "Tasneem"
+            }
+          ],
+          "start_on": "2026-10-05",
+          "progress_hours": 7.200874722222222,
+          "done_at": "2026-10-05T19:59:33.288Z",
+          "done_on": "2026-10-05",
+          "done_month": "2026-10",
+          "done_by": "Tasneem",
+          "delivered_on": "2026-10-05"
         }
       ]
     },
