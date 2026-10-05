@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-05T12:46:19.585Z",
+      "updated_at": "2026-10-05T12:47:30.251Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 116.53450583333333,
-          "live": 116.53450583333333
+          "hours": 116.55412777777778,
+          "live": 116.55412777777778
         },
         "Judi": {
           "open": 2,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 2,
           "done": 2,
-          "hours": 15.667007037037038,
-          "live": 40.57322305555556
+          "hours": 15.673547962962964,
+          "live": 40.592845833333335
         },
         "Alaa": {
           "open": 7,
@@ -494,8 +494,8 @@
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 9.629177777777777,
-          "live": 13.45857
+          "hours": 9.638989444444444,
+          "live": 13.478193333333333
         },
         "Sara": {
           "open": 1,
@@ -514,18 +514,18 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 76.90271814814815,
-          "live": 227.930495
+          "hours": 76.91580185185184,
+          "live": 227.9697461111111
         },
         "Tasneem": {
           "open": 2,
-          "todo": 2,
-          "progress": 0,
+          "todo": 1,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 0,
-          "live": 0
+          "hours": 0.00001861111111111111,
+          "live": 0.00001888888888888889
         },
         "Moamen": {
           "open": 0,
@@ -569,8 +569,8 @@
         }
       },
       "time": {
-        "avgTodo": 6600,
-        "avgProgress": 4782,
+        "avgTodo": 6596,
+        "avgProgress": 4783,
         "avgToDone": 5764,
         "open": 47
       },
@@ -4227,18 +4227,20 @@
           "title": "تحقيق في شكوي ٢من العملاء من الشركة",
           "notes": "شكوي مروان المسيري الممثل للعميل محمد عبدالسلام في انه لم يتم التجاوب معه والرد علية مما اثر علي سير العمل \nونفس الموضوع مع MEDC مع العلم اني بعت لمريم وعمرو يهندلوا العميل لانه اشتكي قبل كده من يومين ولم يتم التجاوب \nبلغيني بالاجراءات اللي هتم",
           "due": "2026-10-06",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-05",
           "month": "2026-10",
           "created_by": "Moamen",
           "created_at": "2026-10-05T09:16:51.635Z",
-          "updated_at": "2026-10-05T09:16:51.635Z",
-          "updated_by": "Moamen",
+          "updated_at": "2026-10-05T12:47:30.142Z",
+          "updated_by": "Tasneem",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-05T12:47:30.139Z",
+          "progress_started_at": "2026-10-05T12:47:30.139Z",
+          "time_log": [],
+          "start_on": "2026-10-05"
         }
       ]
     },
