@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-06T12:19:20.642Z",
+      "updated_at": "2026-10-06T12:21:32.994Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,14 +478,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 22,
+          "open": 21,
           "todo": 17,
           "progress": 2,
-          "review": 3,
-          "overdue": 2,
-          "done": 2,
-          "hours": 1.63451875,
-          "live": 0.11027694444444444
+          "review": 2,
+          "overdue": 1,
+          "done": 3,
+          "hours": 1.5260650555555557,
+          "live": 0.18380916666666666
         },
         "Alaa": {
           "open": 9,
@@ -494,8 +494,8 @@
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 21.4043275,
-          "live": 37.00886944444444
+          "hours": 21.422710277777774,
+          "live": 37.045635
         },
         "Sara": {
           "open": 1,
@@ -514,8 +514,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 92.60291722222223,
-          "live": 275.03109222222224
+          "hours": 92.6274275925926,
+          "live": 275.10462333333334
         },
         "Tasneem": {
           "open": 1,
@@ -569,10 +569,10 @@
         }
       },
       "time": {
-        "avgTodo": 7728,
-        "avgProgress": 3746,
-        "avgToDone": 5252,
-        "open": 50
+        "avgTodo": 7730,
+        "avgProgress": 3748,
+        "avgToDone": 5250,
+        "open": 49
       },
       "hr": {
         "people": {
@@ -3976,15 +3976,15 @@
           "title": "Urgent Osama post",
           "notes": "",
           "due": "2026-10-03",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-03",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-02T21:07:29.018Z",
-          "updated_at": "2026-10-03T20:53:28.975Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-06T12:21:32.957Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-03T19:52:21.588Z",
           "progress_started_at": "",
@@ -4002,7 +4002,11 @@
           "progress_hours": 1.018718611111111,
           "review_at": "2026-10-03T20:53:28.975Z",
           "first_review_at": "2026-10-03T20:53:28.975Z",
-          "delivered_on": "2026-10-03"
+          "delivered_on": "2026-10-03",
+          "done_at": "2026-10-06T12:21:32.957Z",
+          "done_on": "2026-10-06",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         }
       ]
     },
