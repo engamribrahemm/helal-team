@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-05T20:33:53.140Z",
+      "updated_at": "2026-10-06T12:13:19.977Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 124.32717222222222,
-          "live": 124.32717222222222
+          "hours": 139.98462555555557,
+          "live": 139.98462555555557
         },
         "Judi": {
           "open": 2,
@@ -488,21 +488,21 @@
           "live": 0
         },
         "Alaa": {
-          "open": 7,
-          "todo": 3,
+          "open": 8,
+          "todo": 4,
           "progress": 1,
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 13.52550875,
-          "live": 21.251231944444445
+          "hours": 21.354235694444448,
+          "live": 36.90868583333334
         },
         "Sara": {
           "open": 1,
           "todo": 0,
           "progress": 0,
           "review": 1,
-          "overdue": 0,
+          "overdue": 1,
           "done": 1,
           "hours": 28.850963611111112,
           "live": 0
@@ -514,8 +514,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 82.09782518518519,
-          "live": 243.51581611111112
+          "hours": 92.53612796296295,
+          "live": 274.8307244444444
         },
         "Tasneem": {
           "open": 1,
@@ -569,10 +569,10 @@
         }
       },
       "time": {
-        "avgTodo": 7250,
-        "avgProgress": 5837,
+        "avgTodo": 8190,
+        "avgProgress": 6776,
         "avgToDone": 5252,
-        "open": 46
+        "open": 47
       },
       "hr": {
         "people": {
@@ -4272,6 +4272,27 @@
           "done_month": "2026-10",
           "done_by": "Tasneem",
           "delivered_on": "2026-10-05"
+        },
+        {
+          "id": "t-20261006-alaa-muwn3nw1",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "MAS",
+          "title": "Created a MAS post for October 6th.",
+          "notes": "",
+          "due": "2026-10-06",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-10-06",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-06T12:13:19.922Z",
+          "updated_at": "2026-10-06T12:13:19.922Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
