@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-06T12:13:19.977Z",
+      "updated_at": "2026-10-06T12:13:46.546Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -464,8 +464,8 @@
           "review": 0,
           "overdue": 2,
           "done": 4,
-          "hours": 139.98462555555557,
-          "live": 139.98462555555557
+          "hours": 139.99200416666667,
+          "live": 139.99200416666667
         },
         "Judi": {
           "open": 2,
@@ -488,14 +488,14 @@
           "live": 0
         },
         "Alaa": {
-          "open": 8,
-          "todo": 4,
+          "open": 9,
+          "todo": 5,
           "progress": 1,
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 21.354235694444448,
-          "live": 36.90868583333334
+          "hours": 21.357925555555553,
+          "live": 36.916065555555555
         },
         "Sara": {
           "open": 1,
@@ -514,8 +514,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 92.53612796296295,
-          "live": 274.8307244444444
+          "hours": 92.54104796296296,
+          "live": 274.8454844444444
         },
         "Tasneem": {
           "open": 1,
@@ -570,9 +570,9 @@
       },
       "time": {
         "avgTodo": 8190,
-        "avgProgress": 6776,
+        "avgProgress": 6777,
         "avgToDone": 5252,
-        "open": 47
+        "open": 48
       },
       "hr": {
         "people": {
@@ -4345,6 +4345,27 @@
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:33:48.296Z",
           "updated_at": "2026-09-30T14:33:48.296Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261008-alaa-muwn48dy",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "MEDC",
+          "title": "Designed MEDC visuals for October courses.",
+          "notes": "",
+          "due": "2026-10-08",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-10-06",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-06T12:13:46.488Z",
+          "updated_at": "2026-10-06T12:13:46.488Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
