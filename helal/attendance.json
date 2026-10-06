@@ -452,12 +452,12 @@
             "2026-10-04": "Home",
             "2026-10-05": "Home",
             "2026-10-06": "Home",
-            "2026-10-07": "Office",
+            "2026-10-07": "Home",
             "2026-10-08": "Office"
           },
           "saved": true,
           "saved_at": "2026-10-03T11:19:45.411Z",
-          "updated_at": "2026-10-06T22:08:30.099Z",
+          "updated_at": "2026-10-06T22:08:40.663Z",
           "updated_by": "Amr"
         },
         "Tasneem": {
@@ -636,10 +636,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-10-06T22:08:38.774Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-10-06T22:08:40.663Z",
+      "decided_by": "Amr"
     }
   ]
 }
