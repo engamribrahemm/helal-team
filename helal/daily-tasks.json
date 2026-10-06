@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-06T16:18:45.457Z",
+      "updated_at": "2026-10-06T16:19:38.628Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,13 +478,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 21,
+          "open": 20,
           "todo": 17,
           "progress": 0,
-          "review": 4,
+          "review": 3,
           "overdue": 1,
-          "done": 3,
-          "hours": 2.4821722222222222,
+          "done": 4,
+          "hours": 2.199758263888889,
           "live": 0
         },
         "Alaa": {
@@ -494,8 +494,8 @@
           "review": 4,
           "overdue": 2,
           "done": 1,
-          "hours": 16.123726296296297,
-          "live": 42.57139333333333
+          "hours": 16.13357074074074,
+          "live": 42.600926666666666
         },
         "Sara": {
           "open": 1,
@@ -509,13 +509,13 @@
         },
         "Ganna": {
           "open": 7,
-          "todo": 5,
-          "progress": 2,
-          "review": 0,
+          "todo": 4,
+          "progress": 1,
+          "review": 2,
           "overdue": 0,
           "done": 1,
-          "hours": 95.26307018518519,
-          "live": 283.0115511111111
+          "hours": 1.8377054166666666,
+          "live": 0.8977513888888888
         },
         "Tasneem": {
           "open": 1,
@@ -569,10 +569,10 @@
         }
       },
       "time": {
-        "avgTodo": 8192,
-        "avgProgress": 4884,
-        "avgToDone": 5250,
-        "open": 50
+        "avgTodo": 8179,
+        "avgProgress": 870,
+        "avgToDone": 4833,
+        "open": 49
       },
       "hr": {
         "people": {
@@ -4337,15 +4337,15 @@
           "title": "Created a MEDC post for October 6th.",
           "notes": "",
           "due": "2026-10-06",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-06",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-06T12:14:13.932Z",
-          "updated_at": "2026-10-06T13:37:09.257Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-06T16:19:38.592Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-06T12:16:00.197Z",
           "progress_started_at": "",
@@ -4363,7 +4363,11 @@
           "progress_hours": 1.352516388888889,
           "review_at": "2026-10-06T13:37:09.256Z",
           "first_review_at": "2026-10-06T13:37:09.256Z",
-          "delivered_on": "2026-10-06"
+          "delivered_on": "2026-10-06",
+          "done_at": "2026-10-06T16:19:38.591Z",
+          "done_on": "2026-10-06",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261006-seif-muwn5dgn",
