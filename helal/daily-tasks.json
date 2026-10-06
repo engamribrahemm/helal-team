@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-06T13:37:09.284Z",
+      "updated_at": "2026-10-06T14:44:22.943Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -484,18 +484,18 @@
           "review": 3,
           "overdue": 1,
           "done": 3,
-          "hours": 2.199491875,
-          "live": 1.3514508333333333
+          "hours": 2.479607013888889,
+          "live": 2.471911388888889
         },
         "Alaa": {
           "open": 9,
-          "todo": 5,
-          "progress": 1,
+          "todo": 4,
+          "progress": 2,
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 22.05275069444444,
-          "live": 38.30571583333333
+          "hours": 15.075322037037038,
+          "live": 39.426180555555554
         },
         "Sara": {
           "open": 1,
@@ -514,8 +514,8 @@
           "review": 0,
           "overdue": 0,
           "done": 1,
-          "hours": 93.46748148148147,
-          "live": 277.624785
+          "hours": 94.21445518518517,
+          "live": 279.8657061111111
         },
         "Tasneem": {
           "open": 1,
@@ -569,8 +569,8 @@
         }
       },
       "time": {
-        "avgTodo": 7589,
-        "avgProgress": 4759,
+        "avgTodo": 7871,
+        "avgProgress": 4827,
         "avgToDone": 5250,
         "open": 50
       },
@@ -4301,18 +4301,20 @@
           "title": "Created a MAS post for October 6th.",
           "notes": "",
           "due": "2026-10-06",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-06",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-06T12:13:19.922Z",
-          "updated_at": "2026-10-06T12:13:19.922Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-06T14:44:22.913Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-06T14:44:22.912Z",
+          "progress_started_at": "2026-10-06T14:44:22.912Z",
+          "time_log": [],
+          "start_on": "2026-10-06"
         },
         {
           "id": "t-20261006-seif-muwn4tka",
@@ -4437,18 +4439,20 @@
           "title": "Designed MEDC visuals for October courses.",
           "notes": "",
           "due": "2026-10-08",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-06",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-06T12:13:46.488Z",
-          "updated_at": "2026-10-06T12:13:46.488Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-06T14:44:25.192Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-06T14:44:25.192Z",
+          "progress_started_at": "2026-10-06T14:44:25.192Z",
+          "time_log": [],
+          "start_on": "2026-10-06"
         }
       ]
     },
