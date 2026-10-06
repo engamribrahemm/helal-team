@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-06T16:20:06.792Z",
+      "updated_at": "2026-10-06T17:40:34.484Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -494,8 +494,8 @@
           "review": 4,
           "overdue": 2,
           "done": 1,
-          "hours": 16.138786111111113,
-          "live": 42.616572777777776
+          "hours": 17.032804814814813,
+          "live": 45.29862888888889
         },
         "Sara": {
           "open": 1,
@@ -509,13 +509,13 @@
         },
         "Ganna": {
           "open": 7,
-          "todo": 4,
-          "progress": 1,
+          "todo": 3,
+          "progress": 2,
           "review": 2,
           "overdue": 0,
           "done": 1,
-          "hours": 1.8416169444444443,
-          "live": 0.9055744444444445
+          "hours": 1.6747547222222223,
+          "live": 2.246604722222222
         },
         "Tasneem": {
           "open": 1,
@@ -569,8 +569,8 @@
         }
       },
       "time": {
-        "avgTodo": 8179,
-        "avgProgress": 870,
+        "avgTodo": 8510,
+        "avgProgress": 951,
         "avgToDone": 5042,
         "open": 46
       },
@@ -4565,18 +4565,20 @@
           "title": "تقطيع٦ فيديوهات",
           "notes": "عايز الفيديوهات دي متقطعة مع مراعات الفريمات تبقي متظبطة مع طريقة الكلام سواء سريعة او بطيئة",
           "due": "2026-10-09",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-06",
           "month": "2026-10",
           "created_by": "Moamen",
           "created_at": "2026-10-06T13:18:21.588Z",
-          "updated_at": "2026-10-06T13:18:21.588Z",
-          "updated_by": "Moamen",
+          "updated_at": "2026-10-06T17:40:34.465Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-06T17:40:34.465Z",
+          "progress_started_at": "2026-10-06T17:40:34.465Z",
+          "time_log": [],
+          "start_on": "2026-10-06"
         }
       ]
     },
