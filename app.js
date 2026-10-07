@@ -1182,6 +1182,27 @@ function reportFormOpen() {
   return reportTyping() && !!document.getElementById("report-form");
 }
 
+function formFocused() {
+  const el = document.activeElement;
+  if (!el || el === document.body || el === document.documentElement) return false;
+  const tag = (el.tagName || "").toLowerCase();
+  return tag === "input" || tag === "textarea" || !!el.isContentEditable;
+}
+
+function uiBusy() {
+  return !!(
+    state.creating
+    || state.openTaskId
+    || state.pendingDelay
+    || state.pendingRevision
+    || state.evalTaskId
+    || state.editPersonName
+    || state.attendChange
+    || reportFormOpen()
+    || formFocused()
+  );
+}
+
 function emptyReportDraft() {
   return { who: state.who, day: today(), finished: "", unfinished: "", drive: "", need_review: false, place: "" };
 }
@@ -1902,7 +1923,7 @@ async function pullRemoteBoard() {
     }
     cacheBoard();
     if (
-      !reportFormOpen()
+      !uiBusy()
       && (
         tasksSignature(state.tasksFile) !== before
         || attendSignature(state.attendFile) !== attendBefore
@@ -4785,12 +4806,12 @@ function pullInterval() {
   const who = state.who || "";
   let n = 0;
   for (let i = 0; i < who.length; i += 1) n += who.charCodeAt(i);
-  return 10000 + (n % 4000);
+  return 30000 + (n % 10000);
 }
 
 function watchCairoDay() {
   const tick = () => {
-    if (reportFormOpen()) {
+    if (document.hidden || reportFormOpen() || formFocused()) {
       setTimeout(tick, pullInterval());
       return;
     }
@@ -4799,21 +4820,8 @@ function watchCairoDay() {
     if (now !== lastCairoDay) lastCairoDay = now;
     if (state.saveState !== "saving" && state.session) {
       pullRemoteBoard();
-      if (
-        rolled
-        || (
-          ["board", "review", "time", "my", "load"].includes(state.view)
-          && !state.creating
-          && !state.openTaskId
-          && !state.pendingDelay
-          && !state.pendingRevision
-          && !state.evalTaskId
-          && !state.editPersonName
-          && !state.attendChange
-        )
-      ) render();
+      if (rolled && !uiBusy()) render();
     }
-    else if (!state.session && state.view === "load" && allTasks().some((t) => t.status === "In progress")) render();
     setTimeout(tick, pullInterval());
   };
   setTimeout(tick, pullInterval());
