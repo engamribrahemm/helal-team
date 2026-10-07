@@ -3264,23 +3264,24 @@ function viewMy() {
     $("h2", {}, "Open"),
     $("p", { class: "muted" }, "In progress work: press To Review when ready. It saves to GitHub for the whole team."),
     open.length
-      ? $("div", { class: "cards", style: "margin-top:14px" }, open.map((task) =>
-        $("article", { class: `card ${taskTone(task)}`, onclick: () => { state.openTaskId = task.id; render(); } }, [
+      ? $("div", { class: "cards", style: "margin-top:14px" }, open.map((task) => {
+        const toReview = reviewActionButton(task);
+        return $("article", { class: `card ${taskTone(task)}`, onclick: () => { state.openTaskId = task.id; render(); } }, [
           $("p", { class: "title" }, task.title),
           taskFactList(task),
           $("div", { class: "meta" }, [
             $("span", { class: `pill ${taskTone(task)}` }, boardColumnOf(task.status)),
             task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
           ]),
-          reviewActionButton(task)
+          toReview
             ? $("div", {
               class: "card-actions",
               onclick: (e) => e.stopPropagation(),
               onpointerdown: (e) => e.stopPropagation(),
-            }, [reviewActionButton(task)])
+            }, [toReview])
             : null,
-        ])
-      ))
+        ]);
+      }))
       : $("p", { class: "empty" }, "Nothing open right now."),
     $("section", { class: "done-section" }, [
       $("h2", {}, "Done"),
