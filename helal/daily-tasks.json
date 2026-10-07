@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-07T15:46:45.093Z",
+      "updated_at": "2026-10-07T18:38:59.649Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -468,8 +468,8 @@
           "live": 0
         },
         "Judi": {
-          "open": 1,
-          "todo": 1,
+          "open": 3,
+          "todo": 3,
           "progress": 0,
           "review": 0,
           "overdue": 1,
@@ -484,18 +484,18 @@
           "review": 0,
           "overdue": 1,
           "done": 7,
-          "hours": 6.306356111111111,
-          "live": 3.4639758333333335
+          "hours": 6.9442916666666665,
+          "live": 9.205395833333334
         },
         "Alaa": {
           "open": 9,
           "todo": 3,
-          "progress": 1,
-          "review": 5,
+          "progress": 0,
+          "review": 6,
           "overdue": 4,
           "done": 1,
-          "hours": 35.132725416666666,
-          "live": 64.46566527777777
+          "hours": 5.799785555555555,
+          "live": 0
         },
         "Sara": {
           "open": 0,
@@ -514,8 +514,8 @@
           "review": 2,
           "overdue": 0,
           "done": 1,
-          "hours": 16.410053425925927,
-          "live": 46.45250083333333
+          "hours": 18.323860092592593,
+          "live": 52.19392083333334
         },
         "Tasneem": {
           "open": 1,
@@ -579,10 +579,10 @@
         }
       },
       "time": {
-        "avgTodo": 9954,
-        "avgProgress": 1373,
+        "avgTodo": 9506,
+        "avgProgress": 921,
         "avgToDone": 7150,
-        "open": 44
+        "open": 46
       },
       "hr": {
         "people": {
@@ -4983,20 +4983,33 @@
           "title": "Delivery of Single Post No. 2",
           "notes": "",
           "due": "2026-10-16",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:58:34.846Z",
-          "updated_at": "2026-10-04T23:18:48.692Z",
+          "updated_at": "2026-10-07T18:38:59.632Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-04T23:18:48.692Z",
-          "progress_started_at": "2026-10-04T23:18:48.692Z",
-          "time_log": [],
-          "start_on": "2026-10-05"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-04T23:18:48.692Z",
+              "ended_at": "2026-10-07T18:38:59.632Z",
+              "hours": 67.33637222222222,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-10-05",
+          "progress_hours": 67.33637222222222,
+          "review_at": "2026-10-07T18:38:59.632Z",
+          "first_review_at": "2026-10-07T18:38:59.632Z",
+          "delivered_on": "2026-10-07"
         }
       ]
     },
