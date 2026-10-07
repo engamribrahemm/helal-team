@@ -2427,62 +2427,74 @@ function scoreSelect(value) {
   return sel;
 }
 
+function modalOverlay(onClose, children, extraClass) {
+  return $("div", {
+    class: "modal-bg",
+    onclick: (e) => {
+      if (e.target === e.currentTarget) onClose();
+    },
+  }, [
+    $("section", {
+      class: extraClass ? `modal ${extraClass}` : "modal",
+      role: "dialog",
+      "aria-modal": "true",
+      onclick: (e) => e.stopPropagation(),
+    }, children),
+  ]);
+}
+
 function viewPromptModals() {
   const extra = [];
   if (state.pendingDelay) {
     const reason = $("select", {}, DELAY_REASONS.map((r) => $("option", { value: r }, r)));
     const notified = $("input", { type: "checkbox" });
-    extra.push(
-      $("div", { class: "modal-bg", onclick: () => { state.pendingDelay = null; render(); } }),
-      $("section", { class: "modal" }, [
-        $("p", { class: "muted" }, "Delay reason"),
-        $("h2", {}, "This task is past the deadline"),
-        $("p", { class: "muted" }, "A clear blocker is not a violation. Repeated delay without notice is escalated: feedback, then warning, then deduction later."),
-        $("form", {
-          class: "form",
-          onsubmit: (e) => {
-            e.preventDefault();
-            applyStatus(state.pendingDelay.taskId, state.pendingDelay.next, {
-              delay_reason: reason.value,
-              delay_notified: notified.checked,
-            });
-          },
-        }, [
-          $("label", {}, ["Why is it late?", reason]),
-          $("label", { class: "done-check" }, [notified, "I notified the team in advance"]),
-          $("div", { style: "display:flex;gap:8px" }, [
-            $("button", { class: "btn primary", type: "submit" }, "Move to Review"),
-            $("button", { class: "btn ghost", type: "button", onclick: () => { state.pendingDelay = null; render(); } }, "Cancel"),
-          ]),
+    const close = () => { state.pendingDelay = null; render(); };
+    extra.push(modalOverlay(close, [
+      $("p", { class: "muted" }, "Delay reason"),
+      $("h2", {}, "This task is past the deadline"),
+      $("p", { class: "muted" }, "A clear blocker is not a violation. Repeated delay without notice is escalated: feedback, then warning, then deduction later."),
+      $("form", {
+        class: "form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          applyStatus(state.pendingDelay.taskId, state.pendingDelay.next, {
+            delay_reason: reason.value,
+            delay_notified: notified.checked,
+          });
+        },
+      }, [
+        $("label", {}, ["Why is it late?", reason]),
+        $("label", { class: "done-check" }, [notified, "I notified the team in advance"]),
+        $("div", { style: "display:flex;gap:8px" }, [
+          $("button", { class: "btn primary", type: "submit" }, "Move to Review"),
+          $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
         ]),
-      ])
-    );
+      ]),
+    ]));
   }
   if (state.pendingRevision) {
     const level = $("select", {}, REVISION_LEVELS.map((r) => $("option", { value: r }, r)));
     const reason = $("input", { placeholder: "Color change, reorder, full rethink…" });
-    extra.push(
-      $("div", { class: "modal-bg", onclick: () => { state.pendingRevision = null; render(); } }),
-      $("section", { class: "modal" }, [
-        $("p", { class: "muted" }, "Revision"),
-        $("h2", {}, "Classify this revision"),
-        $("p", { class: "muted" }, "Minor is a small tweak. Medium is a large part. Major is a full rethink."),
-        $("form", {
-          class: "form",
-          onsubmit: (e) => {
-            e.preventDefault();
-            applyStatus(state.pendingRevision.taskId, "Revisions", { revision_level: level.value, revision_reason: reason.value.trim() });
-          },
-        }, [
-          $("label", {}, ["Level", level]),
-          $("label", {}, ["Reason", reason]),
-          $("div", { style: "display:flex;gap:8px" }, [
-            $("button", { class: "btn primary", type: "submit" }, "Send to Revisions"),
-            $("button", { class: "btn ghost", type: "button", onclick: () => { state.pendingRevision = null; render(); } }, "Cancel"),
-          ]),
+    const close = () => { state.pendingRevision = null; render(); };
+    extra.push(modalOverlay(close, [
+      $("p", { class: "muted" }, "Revision"),
+      $("h2", {}, "Classify this revision"),
+      $("p", { class: "muted" }, "Minor is a small tweak. Medium is a large part. Major is a full rethink."),
+      $("form", {
+        class: "form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          applyStatus(state.pendingRevision.taskId, "Revisions", { revision_level: level.value, revision_reason: reason.value.trim() });
+        },
+      }, [
+        $("label", {}, ["Level", level]),
+        $("label", {}, ["Reason", reason]),
+        $("div", { style: "display:flex;gap:8px" }, [
+          $("button", { class: "btn primary", type: "submit" }, "Send to Revisions"),
+          $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
         ]),
-      ])
-    );
+      ]),
+    ]));
   }
   if (state.evalTaskId && isAdmin()) extra.push(...viewEvalModal());
   if (state.editPersonName && isAdmin()) extra.push(...viewEditPersonModal());
@@ -2495,31 +2507,28 @@ function viewEditPersonModal() {
   const name = $("input", { required: true, value: person.name || "" });
   const email = $("input", { type: "email", placeholder: "name@email.com", value: person.email || "" });
   const close = () => { state.editPersonName = null; render(); };
-  return [
-    $("div", { class: "modal-bg", onclick: close }),
-    $("section", { class: "modal" }, [
-      $("p", { class: "muted" }, "Edit person"),
-      $("h2", {}, person.name),
-      $("p", { class: "muted" }, "Change the login name or email. Login name must stay unique."),
-      $("form", {
-        class: "form",
-        onsubmit: (e) => {
-          e.preventDefault();
-          updatePerson(person.name, {
-            name: name.value.trim(),
-            email: email.value.trim(),
-          });
-        },
-      }, [
-        $("label", {}, ["Name", name]),
-        $("label", {}, ["Email", email]),
-        $("div", { style: "display:flex;gap:8px" }, [
-          $("button", { class: "btn primary", type: "submit" }, "Save changes"),
-          $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
-        ]),
+  return [modalOverlay(close, [
+    $("p", { class: "muted" }, "Edit person"),
+    $("h2", {}, person.name),
+    $("p", { class: "muted" }, "Change the login name or email. Login name must stay unique."),
+    $("form", {
+      class: "form",
+      onsubmit: (e) => {
+        e.preventDefault();
+        updatePerson(person.name, {
+          name: name.value.trim(),
+          email: email.value.trim(),
+        });
+      },
+    }, [
+      $("label", {}, ["Name", name]),
+      $("label", {}, ["Email", email]),
+      $("div", { style: "display:flex;gap:8px" }, [
+        $("button", { class: "btn primary", type: "submit" }, "Save changes"),
+        $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
       ]),
     ]),
-  ];
+  ])];
 }
 
 function viewEvalModal() {
@@ -2534,64 +2543,61 @@ function viewEvalModal() {
   const revision = scoreSelect(existing?.revision_rating);
   const creativity = scoreSelect(existing?.creativity);
   const close = () => { state.evalTaskId = null; render(); };
-  return [
-    $("div", { class: "modal-bg", onclick: close }),
-    $("section", { class: "modal" }, [
-      $("p", { class: "muted" }, "Evaluation"),
-      $("h2", {}, task.title),
-      $("p", { class: "muted" }, `${task.who} · ${person?.role || track} · 5 excellent · 4 good · 3 average · 2 weak · 1 poor.`),
-      $("form", {
-        class: "form",
-        onsubmit: (e) => {
-          e.preventDefault();
-          const qualityScore = Number(quality.value) || 0;
-          const row = {
-            id: existing?.id || `ev-${task.id}`,
-            task_id: task.id,
-            who: task.who,
-            role: track,
-            month: (deliveryDate(task) || today()).slice(0, 7),
-            quarter: currentQuarter(deliveryDate(task) || today()),
-            delivery: Number(delivery.value) || 0,
-            quality: { overall: qualityScore },
-            quality_avg: qualityScore,
-            revision_rating: Number(revision.value) || 0,
-            revision_count: task.revisions || 0,
-            creativity: Number(creativity.value) || 0,
-            notes: existing?.notes || "",
-            by: state.who,
-            created_at: existing?.created_at || new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-          };
-          const hr = ensureHr();
-          hr.reviews = hr.reviews.filter((r) => r.id !== row.id);
-          hr.reviews.unshift(row);
-          state.evalTaskId = null;
-          render();
-          saveHr(`hr: ${state.who} evaluated ${task.id}`);
-        },
-      }, [
-        $("label", {}, ["Delivery", delivery]),
-        $("label", {}, ["Quality", quality]),
-        $("label", {}, ["Revisions", revision]),
-        $("label", {}, ["Creativity", creativity]),
-        $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
-          $("button", { class: "btn primary", type: "submit" }, "Save evaluation"),
-          task.status !== "Done"
-            ? $("button", {
-              class: "btn ghost",
-              type: "button",
-              onclick: () => {
-                close();
-                applyStatus(task.id, "Done");
-              },
-            }, "Mark done")
-            : null,
-          $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
-        ]),
+  return [modalOverlay(close, [
+    $("p", { class: "muted" }, "Evaluation"),
+    $("h2", {}, task.title),
+    $("p", { class: "muted" }, `${task.who} · ${person?.role || track} · 5 excellent · 4 good · 3 average · 2 weak · 1 poor.`),
+    $("form", {
+      class: "form",
+      onsubmit: (e) => {
+        e.preventDefault();
+        const qualityScore = Number(quality.value) || 0;
+        const row = {
+          id: existing?.id || `ev-${task.id}`,
+          task_id: task.id,
+          who: task.who,
+          role: track,
+          month: (deliveryDate(task) || today()).slice(0, 7),
+          quarter: currentQuarter(deliveryDate(task) || today()),
+          delivery: Number(delivery.value) || 0,
+          quality: { overall: qualityScore },
+          quality_avg: qualityScore,
+          revision_rating: Number(revision.value) || 0,
+          revision_count: task.revisions || 0,
+          creativity: Number(creativity.value) || 0,
+          notes: existing?.notes || "",
+          by: state.who,
+          created_at: existing?.created_at || new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
+        const hr = ensureHr();
+        hr.reviews = hr.reviews.filter((r) => r.id !== row.id);
+        hr.reviews.unshift(row);
+        state.evalTaskId = null;
+        render();
+        saveHr(`hr: ${state.who} evaluated ${task.id}`);
+      },
+    }, [
+      $("label", {}, ["Delivery", delivery]),
+      $("label", {}, ["Quality", quality]),
+      $("label", {}, ["Revisions", revision]),
+      $("label", {}, ["Creativity", creativity]),
+      $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
+        $("button", { class: "btn primary", type: "submit" }, "Save evaluation"),
+        task.status !== "Done"
+          ? $("button", {
+            class: "btn ghost",
+            type: "button",
+            onclick: () => {
+              close();
+              applyStatus(task.id, "Done");
+            },
+          }, "Mark done")
+          : null,
+        $("button", { class: "btn ghost", type: "button", onclick: close }, "Close"),
       ]),
     ]),
-  ];
+  ])];
 }
 
 function hrMembers() {
@@ -3331,15 +3337,12 @@ function createForm(onDone) {
 function viewCreateModal() {
   if (!state.creating || !canAssignTasks()) return null;
   const close = () => { state.creating = false; state.draft = null; render(); };
-  return [
-    $("div", { class: "modal-bg", onclick: close }),
-    $("section", { class: "modal" }, [
-      $("p", { class: "muted" }, "New task"),
-      $("h2", {}, "Create and assign"),
-      $("p", { class: "muted" }, "Fill the full brief, pick a due date from the calendar, then create."),
-      createForm(close),
-    ]),
-  ];
+  return [modalOverlay(close, [
+    $("p", { class: "muted" }, "New task"),
+    $("h2", {}, "Create and assign"),
+    $("p", { class: "muted" }, "Fill the full brief, pick a due date from the calendar, then create."),
+    createForm(close),
+  ], "modal-create")];
 }
 
 function viewTaskDrawer() {
