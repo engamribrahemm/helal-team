@@ -810,6 +810,8 @@ body:has(.modal-bg) {
 
 .modal.modal-create {
   width: min(560px, 100%);
+  height: min(92dvh, calc(100vh - 32px));
+  max-height: min(92dvh, calc(100vh - 32px));
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -821,7 +823,9 @@ body:has(.modal-bg) {
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
+  height: 100%;
   max-height: 100%;
+  overflow: hidden;
   gap: 0;
   margin-top: 0 !important;
 }
@@ -835,10 +839,11 @@ body:has(.modal-bg) {
   gap: 12px;
   padding-right: 4px;
   padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-footer {
-  flex-shrink: 0;
+  flex: 0 0 auto;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -847,7 +852,8 @@ body:has(.modal-bg) {
   margin-top: 10px;
   border-top: 1px solid var(--line);
   background: #101010;
-  position: relative;
+  position: sticky;
+  bottom: 0;
   z-index: 2;
 }
 

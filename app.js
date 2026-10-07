@@ -1211,7 +1211,7 @@ function formFocused() {
   return tag === "input" || tag === "textarea" || !!el.isContentEditable;
 }
 
-function uiBusy() {
+function uiOverlayOpen() {
   return !!(
     state.creating
     || state.openTaskId
@@ -1221,8 +1221,15 @@ function uiBusy() {
     || state.editPersonName
     || state.attendChange
     || reportFormOpen()
-    || formFocused()
   );
+}
+
+function uiBusy() {
+  return uiOverlayOpen() || formFocused();
+}
+
+function canSafeRender() {
+  return !reportFormOpen();
 }
 
 function emptyReportDraft() {
@@ -1741,14 +1748,20 @@ async function saveTasks(message) {
     state.saveState = "saving";
     state.saveError = "";
     stampMonthArchives();
-    if (!uiBusy()) render();
+    if (!uiOverlayOpen() && canSafeRender()) render(true);
     try {
-      await dbPut("helal/daily-tasks.json", state.tasksFile, message);
-      if (!uiBusy()) render();
+      const ok = await Promise.race([
+        dbPut("helal/daily-tasks.json", state.tasksFile, message),
+        waitMs(45000).then(() => {
+          throw new Error("Save timed out. Click Refresh, then try again.");
+        }),
+      ]);
+      if (!ok && state.saveState === "saving") state.saveState = writeToken() ? "error" : "local-only";
+      if (canSafeRender()) render(true);
     } catch (err) {
       state.saveState = "error";
       state.saveError = fetchErrorMessage(err);
-      render();
+      if (canSafeRender()) render(true);
     }
   });
 }
@@ -2104,23 +2117,37 @@ function applyStatus(taskId, next, extra = {}) {
 }
 
 function setStatus(taskId, next) {
-  const task = findTask(taskId);
-  if (!canSetStatus(next, task)) return;
-  if (!task || task.status === next) return;
-  if (next === "Review" && task.due && task.due < today() && !task.delay_reason) {
-    state.pendingDelay = { taskId, next };
-    state.openTaskId = null;
-    state.modalGuardUntil = Date.now() + 1200;
-    render();
-    return;
+  try {
+    const task = findTask(taskId);
+    if (!task) {
+      state.saveState = "error";
+      state.saveError = "Could not find that task. Click Refresh, then try again.";
+      render(true);
+      return;
+    }
+    if (!canSetStatus(next, task)) return;
+    if (task.status === next) return;
+    if (next === "Review" && task.due && task.due < today() && !task.delay_reason) {
+      state.pendingDelay = { taskId, next };
+      state.openTaskId = null;
+      state.modalGuardUntil = Date.now() + 400;
+      render(true);
+      return;
+    }
+    if (next === "Revisions") {
+      state.pendingRevision = { taskId };
+      state.modalGuardUntil = Date.now() + 400;
+      render(true);
+      return;
+    }
+    applyStatus(taskId, next);
+  } catch (err) {
+    state.pendingDelay = null;
+    state.pendingRevision = null;
+    state.saveState = "error";
+    state.saveError = err?.message || "Could not move that task. Click Refresh, then try again.";
+    render(true);
   }
-  if (next === "Revisions") {
-    state.pendingRevision = { taskId };
-    state.modalGuardUntil = Date.now() + 1200;
-    render();
-    return;
-  }
-  applyStatus(taskId, next);
 }
 
 function assignTask({ who, space, title, due, drive, project, status, notes }) {
@@ -2235,6 +2262,16 @@ function viewConnectBanner() {
   ]);
 }
 
+function moveTaskToReview(taskId, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  cardDidDrag = false;
+  dragTaskId = "";
+  setStatus(taskId, "Review");
+}
+
 function kanbanCard(task) {
   return $("article", {
     class: `kcard ${taskTone(task)}`,
@@ -2256,7 +2293,10 @@ function kanbanCard(task) {
     ondragend: (e) => {
       e.currentTarget.classList.remove("dragging");
       document.querySelectorAll(".kanban-col.drop").forEach((el) => el.classList.remove("drop"));
-      setTimeout(() => { dragTaskId = ""; }, 0);
+      cardDidDrag = false;
+      setTimeout(() => {
+        if (dragTaskId === task.id) dragTaskId = "";
+      }, 250);
     },
     onclick: () => {
       if (cardDidDrag) {
@@ -2270,6 +2310,15 @@ function kanbanCard(task) {
     $("p", { class: "title" }, task.title),
     task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
     taskFactList(task),
+    canMoveTask(task) && task.status === "In progress"
+      ? $("div", { class: "kcard-done" }, [
+        $("button", {
+          class: "btn primary compact",
+          type: "button",
+          onclick: (e) => moveTaskToReview(task.id, e),
+        }, "To Review"),
+      ])
+      : null,
     canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
       ? $("div", { class: "kcard-done" }, [
         $("button", {
@@ -3374,17 +3423,25 @@ function createForm(onDone) {
     class: "form modal-create-form",
     onsubmit: (e) => {
       e.preventDefault();
+      keep();
+      const nextWho = who.value.trim();
+      const nextTitle = title.value.trim();
+      if (!nextWho || !nextTitle) {
+        state.saveState = "error";
+        state.saveError = !nextWho ? "Choose a teammate before creating the task." : "Add a task title before creating.";
+        render(true);
+        return;
+      }
       assignTask({
-        who: who.value,
+        who: nextWho,
         space: space.value,
         project: project.value,
-        title: title.value.trim(),
+        title: nextTitle,
         notes: notes.value.trim(),
         due: state.dueDraft || today(),
         drive: drive.value.trim() || driveForProject(project.value),
         status: state.createStatus || "To do",
       });
-      if (onDone) onDone();
     },
   }, [
     $("div", { class: "modal-scroll" }, [
