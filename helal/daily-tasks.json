@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-06T22:05:28.807Z",
+      "updated_at": "2026-10-07T12:25:52.487Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -494,8 +494,8 @@
           "review": 4,
           "overdue": 4,
           "done": 1,
-          "hours": 19.9761987037037,
-          "live": 54.12881055555555
+          "hours": 29.536131111111107,
+          "live": 82.80860777777778
         },
         "Sara": {
           "open": 0,
@@ -514,8 +514,8 @@
           "review": 2,
           "overdue": 0,
           "done": 1,
-          "hours": 4.618148611111111,
-          "live": 11.076786388888888
+          "hours": 14.178082500000002,
+          "live": 39.756588055555554
         },
         "Tasneem": {
           "open": 1,
@@ -566,11 +566,21 @@
           "done": 0,
           "hours": 0,
           "live": 0
+        },
+        "Rahma": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
         }
       },
       "time": {
-        "avgTodo": 8775,
-        "avgProgress": 978,
+        "avgTodo": 9635,
+        "avgProgress": 1838,
         "avgToDone": 7150,
         "open": 44
       },
@@ -667,6 +677,15 @@
             "reviews": 0
           },
           "Menna": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Rahma": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
