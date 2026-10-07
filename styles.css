@@ -465,16 +465,27 @@ label {
   color: var(--text);
   word-break: break-word;
 }
-.kcard-done {
-  display: grid;
-  grid-template-columns: 86px 1fr;
+.kcard-actions,
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  margin-top: 4px;
-  align-items: center;
+  margin-top: 10px;
 }
-.kcard-done .btn {
-  grid-column: 2;
-  justify-self: start;
+.kcard-actions .btn,
+.card-actions .btn,
+.review-btn {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.btn.review-btn,
+.kcard .btn.review-btn {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  width: max-content;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
 }
 .btn.compact,
 .kcard .btn.compact {

@@ -2112,8 +2112,12 @@ function applyStatus(taskId, next, extra = {}) {
     state.openTaskId = null;
   }
   cacheBoard();
-  render();
-  saveTasks(`board: ${state.who} set ${taskId} to ${next}`);
+  state.saveState = "saving";
+  state.saveError = "";
+  render(true);
+  saveTasks(`board: ${state.who} set ${taskId} to ${next}`).then(() => {
+    if (canSafeRender()) render(true);
+  });
 }
 
 function setStatus(taskId, next) {
@@ -2127,11 +2131,13 @@ function setStatus(taskId, next) {
     }
     if (!canSetStatus(next, task)) return;
     if (task.status === next) return;
+    // Late Review moves must not open a blocking popup — that froze members.
+    // Auto-note the delay and save Review to GitHub in one step.
     if (next === "Review" && task.due && task.due < today() && !task.delay_reason) {
-      state.pendingDelay = { taskId, next };
-      state.openTaskId = null;
-      state.modalGuardUntil = Date.now() + 400;
-      render(true);
+      applyStatus(taskId, next, {
+        delay_reason: "Other",
+        delay_notified: false,
+      });
       return;
     }
     if (next === "Revisions") {
@@ -2269,16 +2275,52 @@ function moveTaskToReview(taskId, event) {
   }
   cardDidDrag = false;
   dragTaskId = "";
-  setStatus(taskId, "Review");
+  const task = findTask(taskId);
+  if (!task) {
+    state.saveState = "error";
+    state.saveError = "Could not find that task. Click Refresh, then try again.";
+    render(true);
+    return;
+  }
+  if (!canMoveTask(task)) {
+    state.saveState = "error";
+    state.saveError = "You cannot move this task.";
+    render(true);
+    return;
+  }
+  if (task.status === "Review" || task.status === "Revisions") return;
+  // One click to Review. Late tasks keep a default reason so the move never blocks.
+  if (task.due && task.due < today() && !task.delay_reason) {
+    applyStatus(taskId, "Review", {
+      delay_reason: "Workload pressure",
+      delay_notified: false,
+    });
+    return;
+  }
+  applyStatus(taskId, "Review");
+}
+
+function reviewActionButton(task) {
+  if (!(canMoveTask(task) && task.status === "In progress")) return null;
+  return $("button", {
+    class: "btn primary review-btn",
+    type: "button",
+    draggable: "false",
+    onpointerdown: (e) => e.stopPropagation(),
+    onmousedown: (e) => e.stopPropagation(),
+    onclick: (e) => moveTaskToReview(task.id, e),
+  }, "To Review");
 }
 
 function kanbanCard(task) {
+  const toReview = reviewActionButton(task);
   return $("article", {
     class: `kcard ${taskTone(task)}`,
     draggable: canMoveTask(task) ? "true" : "false",
     ondragstart: (e) => {
-      if (!canMoveTask(task)) {
+      if (!canMoveTask(task) || e.target.closest("button, a, input, select, textarea, .kcard-actions, .review-btn")) {
         e.preventDefault();
+        cardDidDrag = false;
         return;
       }
       cardDidDrag = true;
@@ -2310,20 +2352,15 @@ function kanbanCard(task) {
     $("p", { class: "title" }, task.title),
     task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
     taskFactList(task),
-    canMoveTask(task) && task.status === "In progress"
-      ? $("div", { class: "kcard-done" }, [
-        $("button", {
-          class: "btn primary compact",
-          type: "button",
-          onclick: (e) => moveTaskToReview(task.id, e),
-        }, "To Review"),
-      ])
-      : null,
+    toReview ? $("div", { class: "kcard-actions" }, [toReview]) : null,
     canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
-      ? $("div", { class: "kcard-done" }, [
+      ? $("div", { class: "kcard-actions" }, [
         $("button", {
-          class: "btn primary compact",
+          class: "btn primary review-btn",
           type: "button",
+          draggable: "false",
+          onpointerdown: (e) => e.stopPropagation(),
+          onmousedown: (e) => e.stopPropagation(),
           onclick: (e) => markTaskDone(task.id, e),
         }, "Mark done"),
       ])
@@ -3225,6 +3262,7 @@ function viewMy() {
       statBox(finished.length, "Done this month", "tone-green"),
     ]),
     $("h2", {}, "Open"),
+    $("p", { class: "muted" }, "In progress work: press To Review when ready. It saves to GitHub for the whole team."),
     open.length
       ? $("div", { class: "cards", style: "margin-top:14px" }, open.map((task) =>
         $("article", { class: `card ${taskTone(task)}`, onclick: () => { state.openTaskId = task.id; render(); } }, [
@@ -3234,6 +3272,13 @@ function viewMy() {
             $("span", { class: `pill ${taskTone(task)}` }, boardColumnOf(task.status)),
             task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
           ]),
+          reviewActionButton(task)
+            ? $("div", {
+              class: "card-actions",
+              onclick: (e) => e.stopPropagation(),
+              onpointerdown: (e) => e.stopPropagation(),
+            }, [reviewActionButton(task)])
+            : null,
         ])
       ))
       : $("p", { class: "empty" }, "Nothing open right now."),
