@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-07T14:03:01.174Z",
+      "updated_at": "2026-10-07T15:46:45.093Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -484,18 +484,18 @@
           "review": 0,
           "overdue": 1,
           "done": 7,
-          "hours": 5.922162901234568,
-          "live": 0.006236944444444444
+          "hours": 6.306356111111111,
+          "live": 3.4639758333333335
         },
         "Alaa": {
           "open": 9,
           "todo": 3,
-          "progress": 2,
-          "review": 4,
+          "progress": 1,
+          "review": 5,
           "overdue": 4,
           "done": 1,
-          "hours": 30.615524074074074,
-          "live": 86.04678666666666
+          "hours": 35.132725416666666,
+          "live": 64.46566527777777
         },
         "Sara": {
           "open": 0,
@@ -514,8 +514,8 @@
           "review": 2,
           "overdue": 0,
           "done": 1,
-          "hours": 15.257474166666668,
-          "live": 42.99476305555555
+          "hours": 16.410053425925927,
+          "live": 46.45250083333333
         },
         "Tasneem": {
           "open": 1,
@@ -579,8 +579,8 @@
         }
       },
       "time": {
-        "avgTodo": 9851,
-        "avgProgress": 1936,
+        "avgTodo": 9954,
+        "avgProgress": 1373,
         "avgToDone": 7150,
         "open": 44
       },
@@ -4519,20 +4519,33 @@
           "title": "Designed MEDC visuals for October courses.",
           "notes": "",
           "due": "2026-10-08",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-06",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-06T12:13:46.488Z",
-          "updated_at": "2026-10-06T14:44:25.192Z",
+          "updated_at": "2026-10-07T15:46:45.082Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-06T14:44:25.192Z",
-          "progress_started_at": "2026-10-06T14:44:25.192Z",
-          "time_log": [],
-          "start_on": "2026-10-06"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-06T14:44:25.192Z",
+              "ended_at": "2026-10-07T15:46:45.082Z",
+              "hours": 25.038858333333334,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-10-06",
+          "progress_hours": 25.038858333333334,
+          "review_at": "2026-10-07T15:46:45.082Z",
+          "first_review_at": "2026-10-07T15:46:45.082Z",
+          "delivered_on": "2026-10-07"
         }
       ]
     },
