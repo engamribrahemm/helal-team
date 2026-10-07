@@ -106,10 +106,13 @@ const state = {
   timeDaysOpen: false,
   boardPerson: "",
   doneHistoryOpen: false,
+  modalGuardUntil: 0,
 };
 
 let cardDidDrag = false;
+let dragTaskId = "";
 let lastCairoDay = "";
+let lastBoardSig = "";
 
 function readSession() {
   try {
@@ -582,6 +585,8 @@ function stampTime(task, prev, next) {
     task.review_at = now;
     if (!task.first_review_at) task.first_review_at = now;
     task.delivered_on = today();
+    // If they skipped the In progress column, start the until-Done clock here.
+    if (!task.first_progress_at) task.first_progress_at = task.progress_started_at || now;
   }
   if (next === "In progress" && !task.start_on) task.start_on = today();
   if (next === "Done") {
@@ -618,8 +623,11 @@ function taskStageTimes(task) {
   const stillTodo = task.status === "To do" && !leftTodoAt;
   const todoEnd = leftTodoAt || (task.status === "To do" ? now : "");
   const todoMins = created && todoEnd ? minutesBetween(created, todoEnd, stillTodo) : 0;
-  const progressMins = Math.max(0, Math.round((loggedHours(task) || 0) * 60));
-  const toDoneMins = created ? minutesBetween(created, doneAt || now, !doneAt) : 0;
+  // In progress = work duration from first start through Done (or live until Done).
+  const stillProgress = !doneAt && !!progressAt;
+  const progressMins = progressAt
+    ? minutesBetween(progressAt, doneAt || now, stillProgress)
+    : 0;
   return {
     created,
     progressAt,
@@ -627,9 +635,8 @@ function taskStageTimes(task) {
     doneAt,
     todoMins,
     progressMins,
-    toDoneMins,
     stillTodo,
-    stillProgress: task.status === "In progress",
+    stillProgress,
     stillOpen: task.status !== "Done",
   };
 }
@@ -646,7 +653,7 @@ function taskFactList(task) {
     $("div", {}, [$("dt", {}, "Assigned"), $("dd", {}, task.who || "—")]),
     $("div", {}, [$("dt", {}, "Created by"), $("dd", {}, task.created_by || "—")]),
     $("div", {}, [$("dt", {}, "Deadline"), $("dd", {}, task.due || "—")]),
-    $("div", {}, [$("dt", {}, "Minutes"), $("dd", {}, formatMinutes(times.toDoneMins))]),
+    $("div", {}, [$("dt", {}, "In progress"), $("dd", {}, formatStageMinutes(times.progressMins, times.stillProgress))]),
   ]);
 }
 
@@ -940,7 +947,22 @@ function mergeAttendance(remote, local) {
 }
 
 function attendSignature(file) {
-  return JSON.stringify({ weeks: file?.weeks || {}, requests: file?.requests || [] });
+  const weeks = file?.weeks || {};
+  const stableWeeks = {};
+  for (const key of Object.keys(weeks).sort()) {
+    const people = weeks[key]?.people || {};
+    const row = {};
+    for (const name of Object.keys(people).sort()) {
+      const p = people[name] || {};
+      row[name] = `${p.updated_at || ""}:${p.saved ? 1 : 0}:${JSON.stringify(p.days || {})}`;
+    }
+    stableWeeks[key] = row;
+  }
+  const reqs = (file?.requests || [])
+    .map((r) => `${r.id}:${r.status || ""}:${r.updated_at || r.created_at || ""}`)
+    .sort()
+    .join("|");
+  return `${JSON.stringify(stableWeeks)}#${reqs}`;
 }
 
 function ensureAttendance() {
@@ -1273,9 +1295,19 @@ function mergeReports(remote, local) {
 
 function tasksSignature(file) {
   return (file?.days || [])
-    .flatMap((d) => (d.tasks || []).map((t) => `${t.id}:${t.status}:${t.updated_at || ""}`))
+    .flatMap((d) => (d.tasks || []).map((t) =>
+      `${t.id}:${t.status}:${t.updated_at || ""}:${t.who || ""}:${t.delay_reason || ""}:${t.done_at || ""}`
+    ))
     .sort()
     .join("|");
+}
+
+function boardDataSignature() {
+  return [
+    tasksSignature(state.tasksFile),
+    attendSignature(state.attendFile),
+    reportsSignature(state.reportsFile),
+  ].join("||");
 }
 
 function flatTasks(file) {
@@ -1709,10 +1741,10 @@ async function saveTasks(message) {
     state.saveState = "saving";
     state.saveError = "";
     stampMonthArchives();
-    render();
+    if (!uiBusy()) render();
     try {
       await dbPut("helal/daily-tasks.json", state.tasksFile, message);
-      render();
+      if (!uiBusy()) render();
     } catch (err) {
       state.saveState = "error";
       state.saveError = fetchErrorMessage(err);
@@ -1876,7 +1908,7 @@ let pullBusy = false;
 let pullTick = 0;
 
 async function pullRemoteBoard() {
-  if (!state.session || state.saveState === "saving" || pullBusy || reportFormOpen()) return;
+  if (!state.session || state.saveState === "saving" || pullBusy || uiBusy()) return;
   pullBusy = true;
   pullTick += 1;
   try {
@@ -1903,18 +1935,31 @@ async function pullRemoteBoard() {
         dbGetRaw("helal/auth.json").catch(() => state.auth),
       ]);
     }
-    if (state.saveState === "saving") return;
-    const before = tasksSignature(state.tasksFile);
-    const attendBefore = attendSignature(state.attendFile);
-    const reportsBefore = reportsSignature(state.reportsFile);
+    if (state.saveState === "saving" || uiBusy()) return;
+    const before = boardDataSignature();
     const replay = mineNewerFile(remoteTasks, state.tasksFile);
-    state.tasksFile = mergeTaskFiles(
+    const nextTasks = mergeTaskFiles(
       remoteTasks || { days: [] },
       replay || state.tasksFile || { days: [] }
     );
-    state.reportsFile = mergeReports(remoteReports || emptyReports(), state.reportsFile || emptyReports());
+    const nextReports = mergeReports(remoteReports || emptyReports(), state.reportsFile || emptyReports());
+    const nextAttend = mergeAttendance(remoteAttend || emptyAttendance(), state.attendFile || emptyAttendance());
+    const nextSig = [
+      tasksSignature(nextTasks),
+      attendSignature(nextAttend),
+      reportsSignature(nextReports),
+    ].join("||");
+    if (nextSig === before) {
+      if (remoteTeam) state.team = mergeTeam(remoteTeam, state.team);
+      if (remoteAuth) state.auth = mergeAuth(remoteAuth, state.auth);
+      if (pullTick % 5 === 0) state.hrFile = remoteHr || emptyHr();
+      if (state.session && !people().some((p) => p.name === state.session.who)) logout();
+      return;
+    }
+    state.tasksFile = nextTasks;
+    state.reportsFile = nextReports;
+    state.attendFile = nextAttend;
     state.hrFile = remoteHr || emptyHr();
-    state.attendFile = mergeAttendance(remoteAttend || emptyAttendance(), state.attendFile || emptyAttendance());
     if (remoteTeam) state.team = mergeTeam(remoteTeam, state.team);
     if (remoteAuth) state.auth = mergeAuth(remoteAuth, state.auth);
     if (state.session && !people().some((p) => p.name === state.session.who)) {
@@ -1922,14 +1967,8 @@ async function pullRemoteBoard() {
       return;
     }
     cacheBoard();
-    if (
-      !uiBusy()
-      && (
-        tasksSignature(state.tasksFile) !== before
-        || attendSignature(state.attendFile) !== attendBefore
-        || reportsSignature(state.reportsFile) !== reportsBefore
-      )
-    ) render();
+    lastBoardSig = nextSig;
+    if (!uiBusy()) render();
   } catch (_) {
   } finally {
     pullBusy = false;
@@ -2002,13 +2041,32 @@ function ensureDay(date) {
 
 function applyStatus(taskId, next, extra = {}) {
   const current = findTask(taskId);
+  if (!current) {
+    state.pendingDelay = null;
+    state.pendingRevision = null;
+    state.saveError = "Could not find that task. Click Refresh, then try again.";
+    state.saveState = "error";
+    render();
+    return;
+  }
   if (!canSetStatus(next, current)) return;
-  if (next === "Done" ? !canMarkDone(current) : !canMoveTask(current)) return;
+  if (next === "Done" ? !canMarkDone(current) : !canMoveTask(current)) {
+    state.pendingDelay = null;
+    state.pendingRevision = null;
+    state.saveError = "You cannot move this task.";
+    state.saveState = "error";
+    render();
+    return;
+  }
   let found = null;
   for (const day of state.tasksFile.days) {
     const task = day.tasks.find((t) => t.id === taskId);
     if (task) {
-      if (task.status === next && !extra.force) return;
+      if (task.status === next && !extra.force && !extra.delay_reason) {
+        state.pendingDelay = null;
+        state.pendingRevision = null;
+        return;
+      }
       const prev = task.status;
       task.status = next;
       if (next === "Revisions") {
@@ -2037,6 +2095,10 @@ function applyStatus(taskId, next, extra = {}) {
   if (!found) return;
   state.pendingDelay = null;
   state.pendingRevision = null;
+  if (state.openTaskId === taskId && (next === "Review" || next === "Done")) {
+    state.openTaskId = null;
+  }
+  cacheBoard();
   render();
   saveTasks(`board: ${state.who} set ${taskId} to ${next}`);
 }
@@ -2047,11 +2109,14 @@ function setStatus(taskId, next) {
   if (!task || task.status === next) return;
   if (next === "Review" && task.due && task.due < today() && !task.delay_reason) {
     state.pendingDelay = { taskId, next };
+    state.openTaskId = null;
+    state.modalGuardUntil = Date.now() + 1200;
     render();
     return;
   }
   if (next === "Revisions") {
     state.pendingRevision = { taskId };
+    state.modalGuardUntil = Date.now() + 1200;
     render();
     return;
   }
@@ -2180,14 +2245,18 @@ function kanbanCard(task) {
         return;
       }
       cardDidDrag = true;
+      dragTaskId = task.id;
       e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.setData("text/plain", task.id);
-      e.dataTransfer.setData("text", task.id);
+      try {
+        e.dataTransfer.setData("text/plain", task.id);
+        e.dataTransfer.setData("text", task.id);
+      } catch (_) {}
       e.currentTarget.classList.add("dragging");
     },
     ondragend: (e) => {
       e.currentTarget.classList.remove("dragging");
       document.querySelectorAll(".kanban-col.drop").forEach((el) => el.classList.remove("drop"));
+      setTimeout(() => { dragTaskId = ""; }, 0);
     },
     onclick: () => {
       if (cardDidDrag) {
@@ -2281,8 +2350,13 @@ function viewBoard() {
         ondrop: (e) => {
           e.preventDefault();
           e.currentTarget.classList.remove("drop");
-          const id = e.dataTransfer.getData("text/plain") || e.dataTransfer.getData("text");
+          let id = "";
+          try {
+            id = e.dataTransfer.getData("text/plain") || e.dataTransfer.getData("text") || "";
+          } catch (_) {}
+          id = id || dragTaskId;
           cardDidDrag = false;
+          dragTaskId = "";
           const current = findTask(id);
           if (id && canSetStatus(status, current) && (status === "Done" ? canMarkDone(current) : canMoveTask(current))) {
             setStatus(id, status);
@@ -2428,10 +2502,14 @@ function scoreSelect(value) {
 }
 
 function modalOverlay(onClose, children, extraClass) {
+  const guardedClose = () => {
+    if (Date.now() < (state.modalGuardUntil || 0)) return;
+    onClose();
+  };
   return $("div", {
     class: "modal-bg",
     onclick: (e) => {
-      if (e.target === e.currentTarget) onClose();
+      if (e.target === e.currentTarget) guardedClose();
     },
   }, [
     $("section", {
@@ -2446,6 +2524,7 @@ function modalOverlay(onClose, children, extraClass) {
 function viewPromptModals() {
   const extra = [];
   if (state.pendingDelay) {
+    const pending = state.pendingDelay;
     const reason = $("select", {}, DELAY_REASONS.map((r) => $("option", { value: r }, r)));
     const notified = $("input", { type: "checkbox" });
     const close = () => { state.pendingDelay = null; render(); };
@@ -2457,7 +2536,8 @@ function viewPromptModals() {
         class: "form",
         onsubmit: (e) => {
           e.preventDefault();
-          applyStatus(state.pendingDelay.taskId, state.pendingDelay.next, {
+          if (!pending?.taskId) return;
+          applyStatus(pending.taskId, pending.next || "Review", {
             delay_reason: reason.value,
             delay_notified: notified.checked,
           });
@@ -3166,16 +3246,9 @@ function cairoMs(date, hour = 0) {
 }
 
 function progressIntervalsFor(task) {
-  const rows = [];
-  for (const row of task.time_log || []) {
-    if (row.from !== "In progress" || !row.started_at) continue;
-    rows.push({ start: row.started_at, end: row.ended_at || new Date().toISOString(), task });
-  }
-  if (task.status === "In progress") {
-    const start = progressStart(task);
-    if (start) rows.push({ start, end: new Date().toISOString(), task });
-  }
-  return rows;
+  const start = taskFirstProgressAt(task);
+  if (!start) return [];
+  return [{ start, end: task.done_at || new Date().toISOString(), task }];
 }
 
 function addProgressSlice(buckets, startIso, endIso, month, task) {
@@ -3292,8 +3365,13 @@ function createForm(onDone) {
   title.addEventListener("input", keep);
   notes.addEventListener("input", keep);
   drive.addEventListener("input", keep);
+  const close = () => {
+    state.creating = false;
+    state.draft = null;
+    render();
+  };
   return $("form", {
-    class: "form",
+    class: "form modal-create-form",
     onsubmit: (e) => {
       e.preventDefault();
       assignTask({
@@ -3309,27 +3387,24 @@ function createForm(onDone) {
       if (onDone) onDone();
     },
   }, [
-    $("label", {}, ["Assign to", who]),
-    $("label", {}, ["Client / folder", project]),
-    $("label", {}, ["Space", space]),
-    $("label", {}, ["Task", title]),
-    $("label", {}, ["Notes", notes]),
-    $("div", {}, [
-      $("p", { class: "muted", style: "margin:0 0 6px;font-size:12px;letter-spacing:0.04em;font-weight:500" }, "Due date"),
-      dueCalendar(),
+    $("div", { class: "modal-scroll" }, [
+      $("p", { class: "muted" }, "New task"),
+      $("h2", {}, "Create and assign"),
+      $("p", { class: "muted" }, "Fill the full brief, pick a due date from the calendar, then create."),
+      $("label", {}, ["Assign to", who]),
+      $("label", {}, ["Client / folder", project]),
+      $("label", {}, ["Space", space]),
+      $("label", {}, ["Task", title]),
+      $("label", {}, ["Notes", notes]),
+      $("div", {}, [
+        $("p", { class: "muted", style: "margin:0 0 6px;font-size:12px;letter-spacing:0.04em;font-weight:500" }, "Due date"),
+        dueCalendar(),
+      ]),
+      $("label", {}, ["Drive link", drive]),
     ]),
-    $("label", {}, ["Drive link", drive]),
-    $("div", { style: "display:flex;gap:8px" }, [
+    $("div", { class: "modal-footer" }, [
       $("button", { class: "btn primary", type: "submit" }, "Create task"),
-      $("button", {
-        class: "btn ghost",
-        type: "button",
-        onclick: () => {
-          state.creating = false;
-          state.draft = null;
-          render();
-        },
-      }, "Cancel"),
+      $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
     ]),
   ]);
 }
@@ -3337,12 +3412,7 @@ function createForm(onDone) {
 function viewCreateModal() {
   if (!state.creating || !canAssignTasks()) return null;
   const close = () => { state.creating = false; state.draft = null; render(); };
-  return [modalOverlay(close, [
-    $("p", { class: "muted" }, "New task"),
-    $("h2", {}, "Create and assign"),
-    $("p", { class: "muted" }, "Fill the full brief, pick a due date from the calendar, then create."),
-    createForm(close),
-  ], "modal-create")];
+  return [modalOverlay(close, [createForm(close)], "modal-create")];
 }
 
 function viewTaskDrawer() {
@@ -3368,22 +3438,24 @@ function viewTaskDrawer() {
       $("p", { class: "muted" }, editable
         ? `Created by ${task.created_by || "Helal"}. You can edit the brief.`
         : `Only ${task.created_by || "the creator"} can edit the brief. You can still move status.`),
-      hours > 0 ? $("p", { class: "time-line" }, `Time in progress: ${formatHours(hours)}`) : null,
       (() => {
         const times = taskStageTimes(task);
-        return $("div", { class: "track-grid" }, [
-          $("span", {}, `Assigned: ${task.who || "—"}`),
-          $("span", {}, `Created by: ${task.created_by || "—"}`),
-          $("span", {}, `Deadline: ${task.due || "—"}`),
-          $("span", {}, `Minutes: ${formatMinutes(times.toDoneMins)}`),
-          $("span", {}, `To do wait: ${formatStageMinutes(times.todoMins, times.stillTodo)}`),
-          $("span", {}, `In progress: ${formatStageMinutes(times.progressMins, times.stillProgress)}`),
-          $("span", {}, `Until done: ${formatStageMinutes(times.toDoneMins, times.stillOpen)}`),
-          $("span", {}, `Start ${startDate(task) || "—"}`),
-          $("span", {}, `Delivery ${deliveryDate(task) || "—"}`),
-          task.delay_reason ? $("span", {}, `Delay · ${task.delay_reason}`) : null,
-          (task.revisions || 0) > 0 ? $("span", {}, `Revisions ${task.revisions}${task.revision_log?.length ? ` · ${task.revision_log[task.revision_log.length - 1].level}` : ""}`) : null,
-        ]);
+        return [
+          times.progressMins > 0
+            ? $("p", { class: "time-line" }, `In progress: ${formatStageMinutes(times.progressMins, times.stillProgress)}`)
+            : (hours > 0 ? $("p", { class: "time-line" }, `In progress: ${formatHours(hours)}`) : null),
+          $("div", { class: "track-grid" }, [
+            $("span", {}, `Assigned: ${task.who || "—"}`),
+            $("span", {}, `Created by: ${task.created_by || "—"}`),
+            $("span", {}, `Deadline: ${task.due || "—"}`),
+            $("span", {}, `To do wait: ${formatStageMinutes(times.todoMins, times.stillTodo)}`),
+            $("span", {}, `In progress: ${formatStageMinutes(times.progressMins, times.stillProgress)}`),
+            $("span", {}, `Start ${startDate(task) || "—"}`),
+            $("span", {}, `Delivery ${deliveryDate(task) || "—"}`),
+            task.delay_reason ? $("span", {}, `Delay · ${task.delay_reason}`) : null,
+            (task.revisions || 0) > 0 ? $("span", {}, `Revisions ${task.revisions}${task.revision_log?.length ? ` · ${task.revision_log[task.revision_log.length - 1].level}` : ""}`) : null,
+          ]),
+        ];
       })(),
       $("form", {
         class: "form",
@@ -3572,18 +3644,18 @@ function timeRoster(month) {
       });
       const buckets = progressByDay(month, person.name);
       const open = tasks.filter((t) => t.status !== "Done");
-      const live = open.filter((t) => t.status === "In progress");
       const done = tasks.filter((t) => t.status === "Done");
+      const liveOpen = open.filter((t) => taskStageTimes(t).stillProgress);
       return {
         person,
         tasks,
         buckets,
         progressMins: Math.round(Object.values(buckets).reduce((n, row) => n + (row.mins || 0), 0)),
         open: open.length,
-        liveMins: Math.round(live.reduce((n, t) => n + (loggedHours(t) || 0) * 60, 0)),
+        liveMins: Math.round(liveOpen.reduce((n, t) => n + (taskStageTimes(t).progressMins || 0), 0)),
         done: done.length,
         avgTodo: avg(open.filter((t) => t.status === "To do"), "todoMins"),
-        avgToDone: avg(done, "toDoneMins"),
+        avgProgress: avg(done, "progressMins"),
       };
     })
     .sort((a, b) => b.progressMins - a.progressMins || b.open - a.open || a.person.name.localeCompare(b.person.name));
@@ -3606,7 +3678,6 @@ function viewTimeTaskRow(task) {
     $("span", { class: `pill ${taskTone(task)}` }, task.status),
     timeFact("To do", formatStageMinutes(times.todoMins, times.stillTodo)),
     timeFact("In progress", formatStageMinutes(times.progressMins, times.stillProgress)),
-    timeFact("Until done", formatStageMinutes(times.toDoneMins, times.stillOpen)),
     $("div", { class: "time-bar", "aria-hidden": "true" }, sum
       ? [
         $("span", { class: "wait", style: `width:${Math.round((todo / sum) * 100)}%` }),
@@ -3623,7 +3694,7 @@ function viewTimeSummary(allRows) {
     $("div", { class: "load-table-wrap" }, [
       $("table", { class: "load-table time-summary" }, [
         $("thead", {}, $("tr", {}, [
-          "Name", "In progress", "Live now", "Open", "Done", "Avg wait", "Avg to done",
+          "Name", "In progress", "Live now", "Open", "Done", "Avg wait", "Avg in progress",
         ].map((h) => $("th", {}, h)))),
         $("tbody", {}, allRows.length ? allRows.map((row) =>
           $("tr", {
@@ -3639,7 +3710,7 @@ function viewTimeSummary(allRows) {
             $("td", { class: row.open >= 3 ? "tone-orange" : "" }, String(row.open)),
             $("td", {}, String(row.done)),
             $("td", {}, formatMinutes(row.avgTodo)),
-            $("td", {}, formatMinutes(row.avgToDone)),
+            $("td", {}, formatMinutes(row.avgProgress)),
           ])
         ) : $("tr", {}, $("td", { colspan: "7" }, "No people on the roster."))),
       ]),
@@ -3673,7 +3744,7 @@ function viewPersonTime(row, month) {
         timeFact("Open", String(row.open)),
         timeFact("Done", String(row.done)),
         timeFact("Avg wait", formatMinutes(row.avgTodo)),
-        timeFact("Avg to done", formatMinutes(row.avgToDone)),
+        timeFact("Avg in progress", formatMinutes(row.avgProgress)),
       ]),
     ]),
     $("div", { class: "time-filters" }, filters.map(([id, label]) =>
@@ -3732,7 +3803,7 @@ function viewTime() {
         $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
       ]),
       $("p", { class: "muted" }, isCurrentMonth(month)
-        ? `${monthLabel(month)} only. Open work and live timers sit here. Past months keep their own Done time — switch months above to compare.`
+        ? `${monthLabel(month)} only. To do = wait before work starts. In progress = time from start until Done. Past months keep their own numbers — switch months above to compare.`
         : `${monthLabel(month)} archived month. Open work lives in the current month. Numbers below are Done and stored time for this month only.`),
       $("div", { class: "stat-row" }, [
         statBox(formatMinutes(focused ? focused.progressMins : teamMins), focused ? "In progress this month" : "Team in progress", (focused ? focused.progressMins : teamMins) ? "tone-green" : ""),
@@ -4237,8 +4308,7 @@ function monthTimeStats(month) {
   };
   return {
     avgTodo: avgOf(open.filter((t) => t.status === "To do"), "todoMins"),
-    avgProgress: avgOf(open.filter((t) => t.status === "In progress"), "progressMins"),
-    avgToDone: avgOf(tasks.filter((t) => t.status === "Done"), "toDoneMins"),
+    avgProgress: avgOf(tasks.filter((t) => t.status === "Done" || taskStageTimes(t).stillProgress), "progressMins"),
     open: open.length,
   };
 }
@@ -4595,7 +4665,7 @@ function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. On the Board, press All or a name to see one person or the whole team. After you save, a green Saved message appears and GitHub has the update."],
-    ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. Time in In progress is tracked until you move it to Review. Upload files to Drive, not GitHub."],
+    ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. To do wait starts when the task is created. In progress time runs from when work starts until Done. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],
@@ -4814,7 +4884,7 @@ function pullInterval() {
 
 function watchCairoDay() {
   const tick = () => {
-    if (document.hidden || reportFormOpen() || formFocused()) {
+    if (document.hidden || uiBusy()) {
       setTimeout(tick, pullInterval());
       return;
     }
@@ -4822,8 +4892,12 @@ function watchCairoDay() {
     const rolled = !!(lastCairoDay && now !== lastCairoDay);
     if (now !== lastCairoDay) lastCairoDay = now;
     if (state.saveState !== "saving" && state.session) {
-      pullRemoteBoard();
-      if (rolled && !uiBusy()) render();
+      if (rolled) {
+        render();
+        pullRemoteBoard();
+      } else {
+        pullRemoteBoard();
+      }
     }
     setTimeout(tick, pullInterval());
   };

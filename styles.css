@@ -551,7 +551,7 @@ label {
 .time-tasks { margin-top: 16px; }
 .time-task {
   display: grid;
-  grid-template-columns: minmax(180px, 1.5fr) 92px repeat(3, minmax(86px, 0.7fr));
+  grid-template-columns: minmax(180px, 1.5fr) 92px repeat(2, minmax(100px, 0.8fr));
   gap: 8px 14px;
   align-items: center;
   width: 100%;
@@ -808,13 +808,47 @@ body:has(.modal-bg) {
   animation: soft-pop 0.35s var(--ease) both;
 }
 
-.modal-create {
+.modal.modal-create {
   width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px 24px 16px;
 }
 
-.modal-create .form {
+.modal-create-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  gap: 0;
+  margin-top: 0 !important;
+}
+
+.modal-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
   display: grid;
   gap: 12px;
+  padding-right: 4px;
+  padding-bottom: 4px;
+}
+
+.modal-footer {
+  flex-shrink: 0;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 14px;
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
+  background: #101010;
+  position: relative;
+  z-index: 2;
 }
 
 .modal-create textarea {
