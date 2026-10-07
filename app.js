@@ -4521,13 +4521,18 @@ function viewWelcome() {
   return $("div", { class: "login-page" }, [
     $("div", { class: "login-shell" }, [
       $("aside", { class: "login-brand" }, [
-        $("p", { class: "mark" }, "Helal"),
-        $("h1", {}, "Team Management"),
+        $("img", {
+          class: "brand-mark brand-mark-hero",
+          src: "./assets/helal-mark.png",
+          alt: "Helal",
+          width: "168",
+          height: "168",
+        }),
         $("p", { class: "lede" }, "Sign in to continue."),
       ]),
       $("section", { class: "login-card" }, [
         $("h2", {}, "Sign in"),
-        $("p", { class: "lede" }, "Choose your name and enter your own password. Old passwords were reset."),
+        $("p", { class: "lede" }, "Choose your name and enter your own password."),
         $("form", {
           class: "form",
           onsubmit: (e) => {
@@ -4596,9 +4601,14 @@ function render(force) {
   root.className = state.view === "board" ? "board-mode" : "";
   root.append(
     $("header", { class: "top" }, [
-      $("div", { class: "brand" }, [
-        $("p", {}, "Helal"),
-        $("h1", {}, "Team Management"),
+      $("a", { class: "brand", href: "#", onclick: (e) => { e.preventDefault(); state.view = "board"; render(); } }, [
+        $("img", {
+          class: "brand-mark",
+          src: "./assets/helal-mark.png",
+          alt: "Helal",
+          width: "44",
+          height: "44",
+        }),
       ]),
       $("div", { class: "top-actions" }, [
         $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : isSocial() ? "Social" : "Member"}`),

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Helal">
+  <rect width="512" height="512" fill="#0a0a0a"/>
+  <path fill="#f5c400" d="M64 64 L248 256 L64 448 Z"/>
+  <path fill="#f5c400" d="M448 64 L264 256 L448 448 Z"/>
+</svg>
