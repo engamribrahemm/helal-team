@@ -79,6 +79,12 @@
       "days": "Sun–Thu",
       "hours": "10:00–18:00",
       "mode": "Remote"
+    },
+    "Rahma": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Remote"
     }
   },
   "reviews": [
@@ -565,11 +571,11 @@
           "reviews": 0
         },
         "Seif": {
-          "delivery": 3,
+          "delivery": 4,
           "quality": 0,
           "revisions": 0,
           "creativity": 0,
-          "total": 3,
+          "total": 4,
           "attitude": 0,
           "reviews": 0
         },
@@ -628,11 +634,11 @@
           "reviews": 0
         },
         "Rahma Elsaid": {
-          "delivery": 0,
+          "delivery": 5,
           "quality": 0,
           "revisions": 0,
           "creativity": 0,
-          "total": 0,
+          "total": 5,
           "attitude": 0,
           "reviews": 0
         },
@@ -644,9 +650,18 @@
           "total": 0,
           "attitude": 0,
           "reviews": 0
+        },
+        "Rahma": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
         }
       },
-      "updated_at": "2026-10-05T20:00:00.852Z",
+      "updated_at": "2026-10-07T12:25:50.124Z",
       "frozen": false
     }
   }
