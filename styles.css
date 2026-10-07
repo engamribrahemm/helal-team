@@ -488,12 +488,14 @@ label {
 .load-table tr[onclick] { cursor: pointer; }
 
 .time-page { gap: 20px; }
-.time-roster {
+.time-roster,
+.time-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 4px;
 }
+.time-filters { margin-top: 16px; }
 .time-chip {
   border: 1px solid var(--line);
   background: var(--bg);
@@ -510,6 +512,9 @@ label {
   color: var(--ink);
   border-color: var(--gold);
 }
+.time-summary-row { cursor: pointer; }
+.time-summary-row:hover td { background: rgba(212, 175, 55, 0.08); }
+.time-days-wrap { margin-top: 16px; }
 .time-person-head {
   display: flex;
   justify-content: space-between;

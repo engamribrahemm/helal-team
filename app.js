@@ -102,6 +102,8 @@ const state = {
   workMonth: "",
   dashPerson: "",
   timePerson: "",
+  timeFilter: "open",
+  timeDaysOpen: false,
   boardPerson: "",
   doneHistoryOpen: false,
 };
@@ -2587,9 +2589,11 @@ function profileBar(label, value) {
 
 function viewHr() {
   const month = state.hrMonth || today().slice(0, 7);
-  const profile = state.hrTab === "profile";
   const roster = hrMembers();
-  if (!state.hrPerson || !roster.some((p) => p.name === state.hrPerson)) {
+  const teamTabs = state.hrTab === "scores" || state.hrTab === "tasks";
+  if (teamTabs) {
+    if (state.hrPerson && !roster.some((p) => p.name === state.hrPerson)) state.hrPerson = "";
+  } else if (!state.hrPerson || !roster.some((p) => p.name === state.hrPerson)) {
     state.hrPerson = roster[0]?.name || "";
   }
   const tabs = [
@@ -2603,7 +2607,10 @@ function viewHr() {
   const whoSel = $("select", {
     class: "date-select",
     onchange: (e) => { state.hrPerson = e.target.value; render(); },
-  }, roster.map((p) => $("option", { value: p.name, selected: p.name === state.hrPerson }, p.name)));
+  }, [
+    teamTabs ? $("option", { value: "", selected: !state.hrPerson }, "Everyone") : null,
+    ...roster.map((p) => $("option", { value: p.name, selected: p.name === state.hrPerson }, p.name)),
+  ].filter(Boolean));
   return $("div", { class: "dash" }, [
     $("div", { class: "hr-tabs" }, tabs.map(([id, label]) =>
       $("button", {
@@ -2615,8 +2622,11 @@ function viewHr() {
       $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, -1)); render(); } }, "Prev"),
       $("h2", {}, monthLabel(month)),
       $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
-      profile ? whoSel : null,
+      whoSel,
     ]),
+    $("p", { class: "muted" }, isCurrentMonth(month)
+      ? `${monthLabel(month)} only. Open work lives here. Past months keep their own Done tasks and scores — they never mix.`
+      : `${monthLabel(month)} archived month. Open work sits in the current month. Scores, Done tasks, attitude, and warnings below are for this month only.`),
     state.hrTab === "profile" ? viewHrProfile(month)
       : state.hrTab === "tasks" ? viewHrTasks(month)
       : state.hrTab === "attitude" ? viewHrAttitude(month)
@@ -2817,12 +2827,15 @@ function viewHrProfile(month) {
 
 function viewHrScores(month) {
   const w = ensureHr().weights;
-  const rows = people().filter((p) => p.name !== "Amr").map((p) => ({ ...p, ...personScore(p.name, month) }));
+  const who = state.hrPerson;
+  let rows = people().filter((p) => p.name !== "Amr").map((p) => ({ ...p, ...personScore(p.name, month) }));
+  if (who) rows = rows.filter((r) => samePerson(r.name, who));
   const best = [...rows].sort((a, b) => b.total - a.total)[0];
-  const late = tasksForMonth(month).filter((t) => isLateTask(t) && !delayExcused(t));
-  const missingDrive = tasksForMonth(month).filter((t) => t.drive_missing && t.status !== "To do");
+  const monthTasks = tasksForMonth(month).filter((t) => !who || samePerson(t.who, who));
+  const late = monthTasks.filter((t) => isLateTask(t) && !delayExcused(t));
+  const missingDrive = monthTasks.filter((t) => t.drive_missing && t.status !== "To do");
   return $("div", { class: "dash" }, [
-    $("p", { class: "muted" }, `${monthLabel(month)} · Delivery ${w.delivery}% · Quality ${w.quality}% · Revisions ${w.revisions}% · Creativity ${w.creativity}%. Attitude is scored separately this month.`),
+    $("p", { class: "muted" }, `${monthLabel(month)}${who ? ` · ${who}` : ""} · Delivery ${w.delivery}% · Quality ${w.quality}% · Revisions ${w.revisions}% · Creativity ${w.creativity}%. Attitude is scored separately this month.`),
     $("div", { class: "stat-row" }, [
       statBox(rows.filter((r) => r.total >= 4).length, "On track (4+)"),
       statBox(late.length, "Late without a clear blocker", late.length ? "tone-orange" : ""),
@@ -2841,7 +2854,7 @@ function viewHrScores(month) {
             "Score",
             "Attitude",
           ].map((h) => $("th", {}, h)))),
-          $("tbody", {}, rows.map((r) =>
+          $("tbody", {}, rows.length ? rows.map((r) =>
             $("tr", {}, [
               $("td", {}, [$("strong", {}, r.name), $("span", { class: "muted" }, ` ${r.role || ""}`)]),
               $("td", { class: scoreTone(r.delivery) }, formatScore(r.delivery)),
@@ -2851,7 +2864,7 @@ function viewHrScores(month) {
               $("td", { class: scoreTone(r.total) }, $("strong", {}, formatScore(r.total))),
               $("td", { class: scoreTone(r.attitude) }, formatScore(r.attitude)),
             ])
-          )),
+          ) : $("tr", {}, $("td", { colspan: "7" }, "No scores for this month yet."))),
         ]),
       ]),
     ]),
@@ -2859,8 +2872,10 @@ function viewHrScores(month) {
 }
 
 function viewHrTasks(month) {
+  const who = state.hrPerson;
   const tasks = [...allTasks()]
     .filter((t) => {
+      if (who && !samePerson(t.who, who)) return false;
       if (isTaskEvaluated(t)) return false;
       if (t.status === "Done") return doneMonthOf(t) === month;
       if (!isCurrentMonth(month)) return false;
@@ -2868,7 +2883,7 @@ function viewHrTasks(month) {
     })
     .sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""));
   return $("section", { class: "card" }, [
-    $("p", { class: "muted" }, `${monthLabel(month)} · Review and Done this month that still need a score. After you evaluate a task, it leaves this tab.`),
+    $("p", { class: "muted" }, `${monthLabel(month)}${who ? ` · ${who}` : ""} · Review and Done this month that still need a score. After you evaluate a task, it leaves this tab.`),
     $("div", { class: "load-table-wrap" }, [
       $("table", { class: "load-table" }, [
         $("thead", {}, $("tr", {}, ["Task", "Employee", "Created by", "Assigned", "Start", "Deadline", "Delivery", "Status", "Delay", "Days", "Notice", "Drive", ""].map((h) => $("th", {}, h)))),
@@ -3577,9 +3592,51 @@ function viewTimeTaskRow(task) {
   ]);
 }
 
-function viewPersonTime(row, month, { days = false } = {}) {
+function viewTimeSummary(allRows) {
+  return $("section", { class: "card" }, [
+    $("h3", {}, "Team summary"),
+    $("p", { class: "muted" }, "One row per person for this month. Click a name to open their tasks. Task lists stay hidden here so the page stays readable."),
+    $("div", { class: "load-table-wrap" }, [
+      $("table", { class: "load-table time-summary" }, [
+        $("thead", {}, $("tr", {}, [
+          "Name", "In progress", "Live now", "Open", "Done", "Avg wait", "Avg to done",
+        ].map((h) => $("th", {}, h)))),
+        $("tbody", {}, allRows.length ? allRows.map((row) =>
+          $("tr", {
+            class: "time-summary-row",
+            onclick: () => { state.timePerson = row.person.name; state.timeFilter = "open"; state.timeDaysOpen = false; render(); },
+          }, [
+            $("td", {}, [
+              $("strong", {}, row.person.name),
+              $("span", { class: "muted" }, ` ${row.person.role || ""}`),
+            ]),
+            $("td", {}, formatMinutes(row.progressMins)),
+            $("td", {}, row.liveMins ? formatMinutes(row.liveMins) : "—"),
+            $("td", { class: row.open >= 3 ? "tone-orange" : "" }, String(row.open)),
+            $("td", {}, String(row.done)),
+            $("td", {}, formatMinutes(row.avgTodo)),
+            $("td", {}, formatMinutes(row.avgToDone)),
+          ])
+        ) : $("tr", {}, $("td", { colspan: "7" }, "No people on the roster."))),
+      ]),
+    ]),
+  ]);
+}
+
+function viewPersonTime(row, month) {
   const { person } = row;
+  const filter = state.timeFilter || "open";
+  const tasks = row.tasks.filter((t) => {
+    if (filter === "open") return t.status !== "Done";
+    if (filter === "done") return t.status === "Done";
+    return true;
+  });
   const dates = monthDates(month).filter((date) => (row.buckets[date]?.mins || 0) > 0).reverse();
+  const filters = [
+    ["open", `Open (${row.open})`],
+    ["done", `Done (${row.done})`],
+    ["all", `All (${row.tasks.length})`],
+  ];
   return $("article", { class: "card time-person" }, [
     $("div", { class: "time-person-head" }, [
       $("div", {}, [
@@ -3595,20 +3652,40 @@ function viewPersonTime(row, month, { days = false } = {}) {
         timeFact("Avg to done", formatMinutes(row.avgToDone)),
       ]),
     ]),
-    row.tasks.length
-      ? $("div", { class: "time-tasks" }, row.tasks.map(viewTimeTaskRow))
-      : $("p", { class: "empty" }, isCurrentMonth(month) ? "No tasks this month." : "No tasks stored for this month."),
-    days && dates.length
-      ? $("div", { class: "time-days" }, [
-        $("p", { class: "time-days-label" }, "In progress by day"),
-        ...dates.map((date) => {
-          const bucket = row.buckets[date];
-          return $("div", { class: "time-day" }, [
-            $("span", {}, date),
-            $("strong", {}, formatMinutes(Math.round(bucket.mins))),
-            $("span", { class: "muted" }, (bucket.tasks || []).map((t) => t.title).join(", ") || "—"),
-          ]);
-        }),
+    $("div", { class: "time-filters" }, filters.map(([id, label]) =>
+      $("button", {
+        type: "button",
+        class: `time-chip${filter === id ? " on" : ""}`,
+        onclick: () => { state.timeFilter = id; render(); },
+      }, label)
+    )),
+    tasks.length
+      ? $("div", { class: "time-tasks" }, tasks.map(viewTimeTaskRow))
+      : $("p", { class: "empty" }, filter === "done"
+        ? "No Done tasks this month."
+        : filter === "open"
+          ? (isCurrentMonth(month) ? "Nothing open right now." : "No open tasks stored for this month.")
+          : (isCurrentMonth(month) ? "No tasks this month." : "No tasks stored for this month.")),
+    dates.length
+      ? $("div", { class: "time-days-wrap" }, [
+        $("button", {
+          type: "button",
+          class: "btn ghost",
+          onclick: () => { state.timeDaysOpen = !state.timeDaysOpen; render(); },
+        }, state.timeDaysOpen ? "Hide day breakdown" : "Show day breakdown"),
+        state.timeDaysOpen
+          ? $("div", { class: "time-days" }, [
+            $("p", { class: "time-days-label" }, "In progress by day"),
+            ...dates.map((date) => {
+              const bucket = row.buckets[date];
+              return $("div", { class: "time-day" }, [
+                $("span", {}, date),
+                $("strong", {}, formatMinutes(Math.round(bucket.mins))),
+                $("span", { class: "muted" }, (bucket.tasks || []).map((t) => t.title).join(", ") || "—"),
+              ]);
+            }),
+          ])
+          : null,
       ])
       : null,
   ]);
@@ -3618,42 +3695,41 @@ function viewTime() {
   const month = state.calMonth || thisMonth();
   const who = state.timePerson;
   const allRows = timeRoster(month);
-  const rows = who ? allRows.filter((row) => samePerson(row.person.name, who)) : allRows;
+  const focused = who ? allRows.find((row) => samePerson(row.person.name, who)) : null;
   const teamMins = allRows.reduce((n, row) => n + row.progressMins, 0);
-  const teamOpen = (who ? rows : allRows).reduce((n, row) => n + row.open, 0);
-  const teamLive = (who ? rows : allRows).reduce((n, row) => n + row.liveMins, 0);
+  const teamOpen = (focused ? [focused] : allRows).reduce((n, row) => n + row.open, 0);
+  const teamLive = (focused ? [focused] : allRows).reduce((n, row) => n + row.liveMins, 0);
   const withTime = allRows.filter((row) => row.progressMins > 0).length;
-  const focused = rows[0];
   return $("div", { class: "dash time-page" }, [
     $("section", { class: "card" }, [
       $("div", { class: "cal-nav" }, [
         $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, -1)); render(); } }, "Prev"),
-        $("h2", {}, `Time tracking · ${monthLabel(month)}`),
+        $("h2", {}, `Time · ${monthLabel(month)}`),
         $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
       ]),
-      $("p", { class: "muted" }, who
-        ? `Task time for ${who}. Pick another name to compare, or Everyone to see the whole team.`
-        : "Check how long each person spent In progress, waiting in To do, and getting to Done."),
+      $("p", { class: "muted" }, isCurrentMonth(month)
+        ? `${monthLabel(month)} only. Open work and live timers sit here. Past months keep their own Done time — switch months above to compare.`
+        : `${monthLabel(month)} archived month. Open work lives in the current month. Numbers below are Done and stored time for this month only.`),
       $("div", { class: "stat-row" }, [
-        statBox(formatMinutes(who ? (focused?.progressMins || 0) : teamMins), who ? "In progress this month" : "Team in progress", (who ? focused?.progressMins : teamMins) ? "tone-green" : ""),
+        statBox(formatMinutes(focused ? focused.progressMins : teamMins), focused ? "In progress this month" : "Team in progress", (focused ? focused.progressMins : teamMins) ? "tone-green" : ""),
         statBox(formatMinutes(teamLive), "Live now"),
         statBox(String(teamOpen), "Open tasks"),
-        statBox(who ? String(focused?.done || 0) : String(withTime), who ? "Done this month" : "People with time"),
+        statBox(focused ? String(focused.done) : String(withTime), focused ? "Done this month" : "People with time"),
       ]),
       $("div", { class: "time-roster" }, [
         $("button", {
           type: "button",
           class: `time-chip${!who ? " on" : ""}`,
-          onclick: () => { state.timePerson = ""; render(); },
+          onclick: () => { state.timePerson = ""; state.timeDaysOpen = false; render(); },
         }, `Everyone · ${formatMinutes(teamMins)}`),
         ...allRows.map((row) => $("button", {
           type: "button",
           class: `time-chip${who && samePerson(row.person.name, who) ? " on" : ""}`,
-          onclick: () => { state.timePerson = row.person.name; render(); },
+          onclick: () => { state.timePerson = row.person.name; state.timeFilter = "open"; state.timeDaysOpen = false; render(); },
         }, `${row.person.name} · ${row.progressMins ? formatMinutes(row.progressMins) : "0m"}`)),
       ]),
     ]),
-    ...rows.map((row) => viewPersonTime(row, month, { days: !!who })),
+    focused ? viewPersonTime(focused, month) : viewTimeSummary(allRows),
   ]);
 }
 
@@ -4501,11 +4577,34 @@ function viewGuide() {
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. The Report page stays still until you submit, so the text cannot disappear while typing. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
-    ["HR", "Amr and Tasneem open HR. Profile, performance, task tracking, attitude, and warnings are scored each month separately. Switching months does not mix in the current month. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
+    ["HR", "Admins open HR. Profile, performance, task tracking, attitude, and warnings are scored each month separately. Use Prev / Next so months never mix. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
   return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
     $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
   ));
+}
+
+function viewAdminGuide() {
+  const steps = [
+    ["Months never mix", "Board, Workload, Time, Dashboard, and HR all use the same Prev / Next month control. What you see is one month only. Done tasks stay in the month they were finished. Open work always lives in the current month. When you open September, you see September’s Done and scores — not October’s open cards mixed in."],
+    ["Time · start with Everyone", "Open Time. Everyone shows a compact team summary: in-progress hours, live timers, open count, Done count, average wait, average time to Done. No long task lists on this screen. That keeps the page scannable."],
+    ["Time · open one person", "Click a name in the chips or the summary table. You get that person’s KPIs, then Open / Done / All filters. Default is Open so you are not buried in finished work. Press Show day breakdown only when you need hours by Cairo day. Switch months above to compare the same person month by month — each month’s Done time stays separate."],
+    ["HR · Profile", "Pick a person and a month. Profile shows that month’s score bars, open work (current month only), Done for the selected month, attendance, reports, attitude, warnings, and evaluations. Use this when you need the full picture for one teammate."],
+    ["HR · Performance", "Team score table for the selected month. Choose Everyone or one name. Delivery, Quality, Revisions, Creativity, total, and Attitude. Late tasks and missing Drive counts are for that month only. Change the month to see last month’s performance without touching this month."],
+    ["HR · Task tracking", "Review and Done tasks that still need an evaluation for the selected month. Filter by person if needed. After you evaluate, the task leaves this list. Past months only show Done items from that month that were never scored."],
+    ["HR · Attitude, warnings, rewards", "Logged against a month. Score attitude once per person per month. Warnings and rewards lists follow the month you have selected. Do not treat a September warning as part of October."],
+    ["Dashboard", "Reports and attendance requests live here. Pick a day for daily reports, and use the month for the saved-reports list. Person filter next to the calendar narrows to one teammate. Time detail is on the Time tab, not mixed into reports."],
+    ["Quick check each evening", "1) Time → Everyone for who is heavy this month. 2) Time → one person if something looks off. 3) HR → Performance for scores. 4) HR → Task tracking for evaluations waiting. 5) Switch to last month only when you need history — then switch back to the current month."],
+  ];
+  return $("div", { class: "dash" }, [
+    $("section", { class: "card" }, [
+      $("h2", {}, "Admin guide"),
+      $("p", { class: "muted" }, "How Amr, Tasneem, and Moamen read Time, HR, and performance. Team SOP stays on the SOP tab. Hard-refresh after updates."),
+    ]),
+    $("div", { class: "sop-list" }, steps.map(([title, body]) =>
+      $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
+    )),
+  ]);
 }
 
 function viewWelcome() {
@@ -4565,6 +4664,7 @@ function navItems() {
     items.splice(2, 0, ["review", "Dashboard"], ["time", "Time"]);
     items.push(["hr", "HR"]);
     items.push(["people", "People"]);
+    items.push(["admin-guide", "Admin guide"]);
   } else if (isSocial()) {
     items.splice(2, 0, ["review", "Review"]);
   }
@@ -4668,6 +4768,7 @@ function render(force) {
   else if (state.view === "drive") main.append(viewDrive());
   else if (state.view === "people" && isAdmin()) main.append(viewPeople());
   else if (state.view === "hr" && isAdmin()) main.append(viewHr());
+  else if (state.view === "admin-guide" && isAdmin()) main.append(viewAdminGuide());
   else if (state.view === "guide") main.append(viewGuide());
   else main.append(viewBoard());
   root.append(main);
