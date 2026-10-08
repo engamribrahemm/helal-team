@@ -447,6 +447,26 @@
       "by": "Amr",
       "created_at": "2026-10-08T14:01:18.657Z",
       "updated_at": "2026-10-08T14:01:18.657Z"
+    },
+    {
+      "id": "ev-t-20261001-mariam-mujtipeu",
+      "task_id": "t-20261001-mariam-mujtipeu",
+      "who": "Mariam",
+      "role": "social",
+      "month": "2026-10",
+      "quarter": "2026-Q4",
+      "delivery": 2,
+      "quality": {
+        "overall": 4
+      },
+      "quality_avg": 4,
+      "revision_rating": 4,
+      "revision_count": 0,
+      "creativity": 4,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-10-08T14:01:26.823Z",
+      "updated_at": "2026-10-08T14:01:26.823Z"
     }
   ],
   "attitude": [],
@@ -613,13 +633,13 @@
     "2026-10": {
       "people": {
         "Mariam": {
-          "delivery": 3.5,
-          "quality": 3,
-          "revisions": 3.5,
+          "delivery": 3,
+          "quality": 3.3333333333333335,
+          "revisions": 3.6666666666666665,
           "creativity": 4,
-          "total": 3.4,
+          "total": 3.3666666666666667,
           "attitude": 0,
-          "reviews": 2
+          "reviews": 3
         },
         "Judi": {
           "delivery": 5,
@@ -721,7 +741,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-10-08T14:01:18.678Z",
+      "updated_at": "2026-10-08T14:01:26.846Z",
       "frozen": false
     }
   }
