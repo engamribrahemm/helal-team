@@ -787,20 +787,19 @@ body:has(.modal-bg) {
 .modal-bg {
   position: fixed;
   inset: 0;
-  z-index: 30;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: max(16px, env(safe-area-inset-top, 0px)) 16px max(16px, env(safe-area-inset-bottom, 0px));
   overflow: auto;
   overscroll-behavior: contain;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(4px);
-  animation: fade-in 0.25s var(--ease) both;
+  background: rgba(0, 0, 0, 0.82);
+  /* No backdrop-filter — blur left a frozen empty screen on some browsers. */
 }
 
 .modal, .drawer {
-  z-index: 31;
+  z-index: 1001;
   background: #101010;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -809,24 +808,60 @@ body:has(.modal-bg) {
 .modal {
   position: relative;
   width: min(560px, 100%);
-  max-height: min(92dvh, calc(100vh - 32px));
+  max-height: min(90dvh, calc(100vh - 32px));
   overflow: auto;
   overscroll-behavior: contain;
   margin: auto;
   flex-shrink: 0;
   padding: 24px 28px;
   border-radius: 18px;
-  animation: soft-pop 0.35s var(--ease) both;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  /* Avoid soft-pop fill-mode opacity:0 — that left only the dark overlay. */
 }
 
 .modal.modal-create {
   width: min(560px, 100%);
-  height: min(92dvh, calc(100vh - 32px));
-  max-height: min(92dvh, calc(100vh - 32px));
+  height: auto;
+  max-height: min(90dvh, calc(100vh - 32px));
   display: flex;
   flex-direction: column;
   overflow: hidden;
   padding: 20px 24px 16px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-create-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.modal-create-head h2 {
+  margin: 0;
+}
+
+.modal-close {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  border-color: var(--line-strong);
+  background: var(--bg-3);
 }
 
 .modal-create-form {
@@ -834,11 +869,11 @@ body:has(.modal-bg) {
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
-  height: 100%;
-  max-height: 100%;
+  max-height: min(82dvh, calc(100vh - 64px));
   overflow: hidden;
   gap: 0;
   margin-top: 0 !important;
+  pointer-events: auto;
 }
 
 .modal-scroll {
@@ -863,8 +898,7 @@ body:has(.modal-bg) {
   margin-top: 10px;
   border-top: 1px solid var(--line);
   background: #101010;
-  position: sticky;
-  bottom: 0;
+  position: relative;
   z-index: 2;
 }
 

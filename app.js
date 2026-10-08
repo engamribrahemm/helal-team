@@ -2592,7 +2592,7 @@ function modalOverlay(onClose, children, extraClass) {
     if (Date.now() < (state.modalGuardUntil || 0)) return;
     onClose();
   };
-  return $("div", {
+  const shell = $("div", {
     class: "modal-bg",
     onclick: (e) => {
       if (e.target === e.currentTarget) guardedClose();
@@ -2605,6 +2605,18 @@ function modalOverlay(onClose, children, extraClass) {
       onclick: (e) => e.stopPropagation(),
     }, children),
   ]);
+  const onKey = (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      guardedClose();
+    }
+  };
+  shell.addEventListener("keydown", onKey);
+  setTimeout(() => {
+    try { shell.focus(); } catch (_) {}
+  }, 0);
+  shell.tabIndex = -1;
+  return shell;
 }
 
 function viewPromptModals() {
@@ -3490,10 +3502,20 @@ function createForm(onDone) {
       });
     },
   }, [
+    $("div", { class: "modal-create-head" }, [
+      $("div", {}, [
+        $("p", { class: "muted", style: "margin:0 0 4px" }, "New task"),
+        $("h2", {}, "Create and assign"),
+      ]),
+      $("button", {
+        class: "modal-close",
+        type: "button",
+        "aria-label": "Close",
+        onclick: close,
+      }, "×"),
+    ]),
     $("div", { class: "modal-scroll" }, [
-      $("p", { class: "muted" }, "New task"),
-      $("h2", {}, "Create and assign"),
-      $("p", { class: "muted" }, "Fill the full brief, pick a due date from the calendar, then create."),
+      $("p", { class: "muted" }, "Fill the brief, pick a due date, then create. Esc or × closes this window."),
       $("label", {}, ["Assign to", who]),
       $("label", {}, ["Client / folder", project]),
       $("label", {}, ["Space", space]),
@@ -3514,7 +3536,7 @@ function createForm(onDone) {
 
 function viewCreateModal() {
   if (!state.creating || !canAssignTasks()) return null;
-  const close = () => { state.creating = false; state.draft = null; render(); };
+  const close = () => { state.creating = false; state.draft = null; render(true); };
   return [modalOverlay(close, [createForm(close)], "modal-create")];
 }
 
