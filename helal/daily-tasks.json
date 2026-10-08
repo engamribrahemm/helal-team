@@ -57,7 +57,8 @@
     "t-20261027-alaa-mulspdw6",
     "t-20261021-alaa-mulsl4hq",
     "t-20261017-alaa-muls70rt",
-    "t-20261006-ganna-mujqgobm"
+    "t-20261006-ganna-mujqgobm",
+    "t-20261008-tasneem-muzlmbwa"
   ],
   "statuses": [
     "To do",
@@ -445,7 +446,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-08T13:55:10.164Z",
+      "updated_at": "2026-10-08T13:55:19.170Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +475,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 190.83038069444444,
-          "live": 4.526799722222222
+          "hours": 190.83163152777777,
+          "live": 4.5293013888888884
         },
         "Seif": {
           "open": 17,
@@ -484,8 +485,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 9.645300069444444,
-          "live": 23.86917138888889
+          "hours": 9.645612777777778,
+          "live": 23.871673055555554
         },
         "Alaa": {
           "open": 9,
@@ -514,12 +515,12 @@
           "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 31.170251574074076,
-          "live": 90.73309527777778
+          "hours": 31.17191935185185,
+          "live": 90.73809861111111
         },
         "Tasneem": {
-          "open": 2,
-          "todo": 2,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -581,7 +582,7 @@
       "time": {
         "avgTodo": 7212,
         "avgProgress": 5015,
-        "open": 64
+        "open": 63
       },
       "hr": {
         "people": {
@@ -4600,27 +4601,6 @@
           "review_at": "2026-10-07T15:46:45.082Z",
           "first_review_at": "2026-10-07T15:46:45.082Z",
           "delivered_on": "2026-10-07"
-        },
-        {
-          "id": "t-20261008-tasneem-muzlmbwa",
-          "who": "Tasneem",
-          "space": "HR",
-          "project": "MAS",
-          "title": "ds",
-          "notes": "ds",
-          "due": "2026-10-08",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
-          "drive_missing": false,
-          "assigned_at": "2026-10-08",
-          "month": "2026-10",
-          "created_by": "Amr",
-          "created_at": "2026-10-08T13:55:10.138Z",
-          "updated_at": "2026-10-08T13:55:10.138Z",
-          "updated_by": "Amr",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         }
       ]
     },
