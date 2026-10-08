@@ -387,6 +387,26 @@
       "by": "Tasneem",
       "created_at": "2026-10-05T20:00:00.742Z",
       "updated_at": "2026-10-05T20:00:00.742Z"
+    },
+    {
+      "id": "ev-t-20260928-mariam-mujti2i3",
+      "task_id": "t-20260928-mariam-mujti2i3",
+      "who": "Mariam",
+      "role": "social",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 4,
+      "quality": {
+        "overall": 4
+      },
+      "quality_avg": 4,
+      "revision_rating": 4,
+      "revision_count": 0,
+      "creativity": 4,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-10-08T14:00:53.120Z",
+      "updated_at": "2026-10-08T14:00:53.120Z"
     }
   ],
   "attitude": [],
@@ -562,11 +582,11 @@
           "reviews": 0
         },
         "Judi": {
-          "delivery": 0,
+          "delivery": 5,
           "quality": 0,
           "revisions": 0,
           "creativity": 0,
-          "total": 0,
+          "total": 5,
           "attitude": 0,
           "reviews": 0
         },
@@ -661,7 +681,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-10-07T12:26:42.964Z",
+      "updated_at": "2026-10-08T14:00:53.144Z",
       "frozen": false
     }
   }
