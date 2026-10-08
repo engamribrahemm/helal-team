@@ -58,7 +58,8 @@
     "t-20261021-alaa-mulsl4hq",
     "t-20261017-alaa-muls70rt",
     "t-20261006-ganna-mujqgobm",
-    "t-20261008-tasneem-muzlmbwa"
+    "t-20261008-tasneem-muzlmbwa",
+    "t-20261013-alaa-muocmnmr"
   ],
   "statuses": [
     "To do",
@@ -446,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-08T13:57:19.029Z",
+      "updated_at": "2026-10-08T14:47:34.359Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -475,8 +476,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 190.84827444444446,
-          "live": 4.562587222222223
+          "hours": 191.26707416666667,
+          "live": 5.4001866666666665
         },
         "Seif": {
           "open": 17,
@@ -485,12 +486,12 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 7.721931916666667,
-          "live": 23.926090833333333
+          "hours": 7.9732115,
+          "live": 26.438885833333334
         },
         "Alaa": {
-          "open": 9,
-          "todo": 3,
+          "open": 8,
+          "todo": 2,
           "progress": 0,
           "review": 6,
           "overdue": 4,
@@ -515,8 +516,8 @@
           "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 31.194112314814817,
-          "live": 90.8046775
+          "hours": 31.752509907407404,
+          "live": 92.47987027777778
         },
         "Tasneem": {
           "open": 1,
@@ -580,20 +581,20 @@
         }
       },
       "time": {
-        "avgTodo": 7027,
-        "avgProgress": 5016,
-        "open": 63
+        "avgTodo": 6979,
+        "avgProgress": 4698,
+        "open": 62
       },
       "hr": {
         "people": {
           "Mariam": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
+            "delivery": 3,
+            "quality": 3.3333333333333335,
+            "revisions": 3.6666666666666665,
+            "creativity": 4,
+            "total": 3.3666666666666667,
             "attitude": 0,
-            "reviews": 0
+            "reviews": 3
           },
           "Judi": {
             "delivery": 5,
@@ -4844,27 +4845,6 @@
       "date": "2026-10-13",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261013-alaa-muocmnmr",
-          "who": "Alaa",
-          "space": "Graphic",
-          "project": "Helal",
-          "title": "Delivery of Carousel No. 2",
-          "notes": "",
-          "due": "2026-10-13",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T16:58:00.868Z",
-          "updated_at": "2026-09-30T16:58:00.868Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20261013-ganna-muzkb53e",
           "who": "Ganna",
