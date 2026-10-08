@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-07T19:16:56.432Z",
+      "updated_at": "2026-10-08T09:17:15.639Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -469,13 +469,13 @@
         },
         "Judi": {
           "open": 3,
-          "todo": 3,
-          "progress": 0,
+          "todo": 2,
+          "progress": 1,
           "review": 0,
-          "overdue": 1,
+          "overdue": 2,
           "done": 1,
-          "hours": 377.13396166666666,
-          "live": 0
+          "hours": 188.56698180555554,
+          "live": 0.000002222222222222222
         },
         "Seif": {
           "open": 17,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 7.31565625,
-          "live": 5.232020833333333
+          "hours": 9.066323333333333,
+          "live": 19.2373575
         },
         "Alaa": {
           "open": 9,
@@ -512,10 +512,10 @@
           "todo": 3,
           "progress": 2,
           "review": 2,
-          "overdue": 0,
+          "overdue": 1,
           "done": 1,
-          "hours": 18.745484722222223,
-          "live": 53.45879472222222
+          "hours": 28.082375833333334,
+          "live": 81.46946805555555
         },
         "Tasneem": {
           "open": 1,
@@ -579,8 +579,8 @@
         }
       },
       "time": {
-        "avgTodo": 9543,
-        "avgProgress": 4858,
+        "avgTodo": 10684,
+        "avgProgress": 5261,
         "open": 46
       },
       "hr": {
@@ -4507,18 +4507,20 @@
           "title": "Assign TikTok Tasks",
           "notes": "Assign TikTok tasks for ganna and mohamed",
           "due": "2026-10-07",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-07",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-07T15:28:07.578Z",
-          "updated_at": "2026-10-07T15:28:07.578Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-10-08T09:17:15.617Z",
+          "updated_by": "Judi",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-08T09:17:15.617Z",
+          "progress_started_at": "2026-10-08T09:17:15.617Z",
+          "time_log": [],
+          "start_on": "2026-10-08"
         }
       ]
     },
