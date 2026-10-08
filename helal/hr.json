@@ -467,6 +467,26 @@
       "by": "Amr",
       "created_at": "2026-10-08T14:01:26.823Z",
       "updated_at": "2026-10-08T14:01:26.823Z"
+    },
+    {
+      "id": "ev-t-20260928-mariam-mujtbesk",
+      "task_id": "t-20260928-mariam-mujtbesk",
+      "who": "Mariam",
+      "role": "social",
+      "month": "2026-09",
+      "quarter": "2026-Q3",
+      "delivery": 2,
+      "quality": {
+        "overall": 2
+      },
+      "quality_avg": 2,
+      "revision_rating": 1,
+      "revision_count": 0,
+      "creativity": 2,
+      "notes": "",
+      "by": "Amr",
+      "created_at": "2026-10-08T14:01:37.593Z",
+      "updated_at": "2026-10-08T14:01:37.593Z"
     }
   ],
   "attitude": [],
@@ -741,7 +761,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-10-08T14:01:26.846Z",
+      "updated_at": "2026-10-08T14:01:37.611Z",
       "frozen": false
     }
   }
