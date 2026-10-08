@@ -4992,12 +4992,15 @@ function render(force) {
   else main.append(viewBoard());
   root.append(main);
 
+  // Mount overlays on body so position:fixed is always viewport-relative
+  // (a transform on #app would otherwise center the create form off-screen).
+  document.querySelectorAll("body > .modal-bg, body > .drawer").forEach((el) => el.remove());
   const modal = viewCreateModal();
-  if (modal) root.append(...modal);
+  if (modal) document.body.append(...(Array.isArray(modal) ? modal : [modal]));
   const drawer = viewTaskDrawer();
-  if (drawer) root.append(...drawer);
+  if (drawer) document.body.append(...(Array.isArray(drawer) ? drawer : [drawer]));
   const prompts = viewPromptModals();
-  if (prompts.length) root.append(...prompts);
+  if (prompts.length) document.body.append(...prompts);
 }
 
 function pullInterval() {
