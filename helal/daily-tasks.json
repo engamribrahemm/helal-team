@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-08T13:31:39.097Z",
+      "updated_at": "2026-10-08T13:32:11.050Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +474,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 128.5028825,
-          "live": 8.374685833333334
+          "hours": 128.50879953703702,
+          "live": 8.392436944444444
         },
         "Seif": {
           "open": 17,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 9.596304444444444,
-          "live": 23.477206388888888
+          "hours": 9.597413888888887,
+          "live": 23.486081944444443
         },
         "Alaa": {
           "open": 9,
@@ -508,14 +508,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 23,
-          "todo": 19,
+          "open": 24,
+          "todo": 20,
           "progress": 2,
           "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 30.908941944444447,
-          "live": 89.9491663888889
+          "hours": 30.914859166666663,
+          "live": 89.96691805555555
         },
         "Tasneem": {
           "open": 1,
@@ -579,9 +579,9 @@
         }
       },
       "time": {
-        "avgTodo": 7679,
+        "avgTodo": 7509,
         "avgProgress": 5003,
-        "open": 62
+        "open": 63
       },
       "hr": {
         "people": {
@@ -5797,6 +5797,27 @@
           "created_at": "2026-09-30T16:01:59.974Z",
           "updated_at": "2026-09-30T16:01:59.974Z",
           "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261029-ganna-muzksrrl",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "tiktok video (31-10)",
+          "notes": "",
+          "due": "2026-10-29",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
+          "drive_missing": false,
+          "assigned_at": "2026-10-08",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-08T13:32:11.025Z",
+          "updated_at": "2026-10-08T13:32:11.025Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
