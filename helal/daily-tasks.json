@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-08T13:20:35.312Z",
+      "updated_at": "2026-10-08T13:22:09.593Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +474,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 128.37995953703705,
-          "live": 8.005916944444444
+          "hours": 128.39741898148148,
+          "live": 8.058295277777777
         },
         "Seif": {
           "open": 17,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 9.573256423611111,
-          "live": 23.292822222222224
+          "hours": 9.576530069444445,
+          "live": 23.31901138888889
         },
         "Alaa": {
           "open": 9,
@@ -508,14 +508,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 10,
-          "todo": 6,
+          "open": 11,
+          "todo": 7,
           "progress": 2,
           "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 30.786018981481487,
-          "live": 89.5803975
+          "hours": 30.803478425925928,
+          "live": 89.63277583333334
         },
         "Tasneem": {
           "open": 1,
@@ -579,9 +579,9 @@
         }
       },
       "time": {
-        "avgTodo": 10885,
-        "avgProgress": 4997,
-        "open": 49
+        "avgTodo": 10227,
+        "avgProgress": 4998,
+        "open": 50
       },
       "hr": {
         "people": {
@@ -5092,6 +5092,27 @@
           "review_at": "2026-10-07T18:38:59.632Z",
           "first_review_at": "2026-10-07T18:38:59.632Z",
           "delivered_on": "2026-10-07"
+        },
+        {
+          "id": "t-20261016-ganna-muzkfvoi",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "tiktok video (18-10)",
+          "notes": "before and after",
+          "due": "2026-10-16",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
+          "drive_missing": false,
+          "assigned_at": "2026-10-08",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-08T13:22:09.571Z",
+          "updated_at": "2026-10-08T13:22:09.571Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
