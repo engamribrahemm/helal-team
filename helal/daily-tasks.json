@@ -446,7 +446,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-08T13:55:19.170Z",
+      "updated_at": "2026-10-08T13:57:19.029Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -475,18 +475,18 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 190.83163152777777,
-          "live": 4.5293013888888884
+          "hours": 190.84827444444446,
+          "live": 4.562587222222223
         },
         "Seif": {
           "open": 17,
-          "todo": 15,
-          "progress": 1,
+          "todo": 13,
+          "progress": 3,
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 9.645612777777778,
-          "live": 23.871673055555554
+          "hours": 7.721931916666667,
+          "live": 23.926090833333333
         },
         "Alaa": {
           "open": 9,
@@ -515,8 +515,8 @@
           "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 31.17191935185185,
-          "live": 90.73809861111111
+          "hours": 31.194112314814817,
+          "live": 90.8046775
         },
         "Tasneem": {
           "open": 1,
@@ -580,8 +580,8 @@
         }
       },
       "time": {
-        "avgTodo": 7212,
-        "avgProgress": 5015,
+        "avgTodo": 7027,
+        "avgProgress": 5016,
         "open": 63
       },
       "hr": {
@@ -4553,18 +4553,20 @@
           "title": "Delivery of Carousel No. 9 and Single Post No. 10",
           "notes": "",
           "due": "2026-10-08",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:33:48.296Z",
-          "updated_at": "2026-09-30T14:33:48.296Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-08T13:56:33.918Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-08T13:56:33.918Z",
+          "progress_started_at": "2026-10-08T13:56:33.918Z",
+          "time_log": [],
+          "start_on": "2026-10-08"
         },
         {
           "id": "t-20261008-alaa-muwn48dy",
@@ -4616,18 +4618,20 @@
           "title": "Delivery of Carousel No. 1",
           "notes": "",
           "due": "2026-10-09",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:25:33.689Z",
-          "updated_at": "2026-09-30T16:25:33.689Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-08T13:56:48.004Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-08T13:56:48.004Z",
+          "progress_started_at": "2026-10-08T13:56:48.004Z",
+          "time_log": [],
+          "start_on": "2026-10-08"
         },
         {
           "id": "t-20261009-rahma-elsaid-muv8u8nm",
