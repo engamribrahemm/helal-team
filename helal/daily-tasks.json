@@ -445,7 +445,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-08T13:26:08.266Z",
+      "updated_at": "2026-10-08T13:26:45.147Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +474,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 128.4416175,
-          "live": 8.190890833333334
+          "hours": 128.4484471296296,
+          "live": 8.211379722222222
         },
         "Seif": {
           "open": 17,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 9.584817291666667,
-          "live": 23.385309166666666
+          "hours": 9.586097881944443,
+          "live": 23.395553888888887
         },
         "Alaa": {
           "open": 9,
@@ -508,14 +508,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 16,
-          "todo": 12,
+          "open": 17,
+          "todo": 13,
           "progress": 2,
           "review": 2,
           "overdue": 1,
           "done": 1,
-          "hours": 30.847676944444444,
-          "live": 89.7653713888889
+          "hours": 30.854506759259255,
+          "live": 89.78586083333333
         },
         "Tasneem": {
           "open": 1,
@@ -579,9 +579,9 @@
         }
       },
       "time": {
-        "avgTodo": 9125,
-        "avgProgress": 5000,
-        "open": 55
+        "avgTodo": 8886,
+        "avgProgress": 5001,
+        "open": 56
       },
       "hr": {
         "people": {
@@ -5419,6 +5419,27 @@
           "created_at": "2026-09-30T15:59:27.634Z",
           "updated_at": "2026-09-30T15:59:27.634Z",
           "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261022-ganna-muzklsaq",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "tiktok video (24-10)",
+          "notes": "لما تشتغل والمدير جنبك",
+          "due": "2026-10-22",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
+          "drive_missing": false,
+          "assigned_at": "2026-10-08",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-08T13:26:45.122Z",
+          "updated_at": "2026-10-08T13:26:45.122Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
