@@ -564,6 +564,20 @@
           "saved_at": "",
           "updated_at": "2026-10-03T21:07:58.759Z",
           "updated_by": "Seif"
+        },
+        "Ganna": {
+          "days": {
+            "2026-10-02": "Home",
+            "2026-10-04": "Office",
+            "2026-10-03": "Home",
+            "2026-10-06": "Home",
+            "2026-10-07": "Office",
+            "2026-10-08": "Home"
+          },
+          "saved": false,
+          "saved_at": "",
+          "updated_at": "2026-10-06T13:22:40.684Z",
+          "updated_by": "Ganna"
         }
       }
     },
@@ -584,6 +598,21 @@
           "saved_at": "2026-10-08T20:59:25.489Z",
           "updated_at": "2026-10-08T20:59:25.489Z",
           "updated_by": "Seif"
+        },
+        "Ganna": {
+          "days": {
+            "2026-10-09": "Home",
+            "2026-10-10": "Office",
+            "2026-10-11": "Office",
+            "2026-10-12": "Home",
+            "2026-10-13": "Home",
+            "2026-10-14": "Home",
+            "2026-10-15": "Off"
+          },
+          "saved": true,
+          "saved_at": "2026-10-09T06:50:34.189Z",
+          "updated_at": "2026-10-09T06:50:34.189Z",
+          "updated_by": "Ganna"
         }
       }
     }
