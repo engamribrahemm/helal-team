@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T08:04:43.965Z",
+      "updated_at": "2026-10-09T15:04:30.679Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -472,12 +472,12 @@
         "Judi": {
           "open": 3,
           "todo": 1,
-          "progress": 1,
-          "review": 1,
+          "progress": 2,
+          "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 199.91007333333334,
-          "live": 22.686185
+          "hours": 137.0235651851852,
+          "live": 33.93673388888889
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 13.159011083333334,
-          "live": 78.29688166666668
+          "hours": 15.2579015,
+          "live": 99.28578583333334
         },
         "Alaa": {
           "open": 8,
@@ -516,8 +516,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 33.71344666666666,
-          "live": 64.64923388888889
+          "hours": 37.21159847222222,
+          "live": 71.6455375
         },
         "Tasneem": {
           "open": 1,
@@ -581,8 +581,8 @@
         }
       },
       "time": {
-        "avgTodo": 8016,
-        "avgProgress": 5270,
+        "avgTodo": 8436,
+        "avgProgress": 5502,
         "open": 62
       },
       "hr": {
@@ -597,11 +597,11 @@
             "reviews": 3
           },
           "Judi": {
-            "delivery": 5,
+            "delivery": 0,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 5,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -4509,18 +4509,18 @@
           "title": "Assign TikTok Tasks",
           "notes": "Assign TikTok tasks for ganna and mohamed",
           "due": "2026-10-07",
-          "status": "Review",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-07",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-07T15:28:07.578Z",
-          "updated_at": "2026-10-08T13:32:30.817Z",
+          "updated_at": "2026-10-09T15:04:30.530Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-08T09:17:15.617Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-10-09T15:04:30.530Z",
           "time_log": [
             {
               "from": "In progress",
