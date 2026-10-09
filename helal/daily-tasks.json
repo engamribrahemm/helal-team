@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T18:02:45.889Z",
+      "updated_at": "2026-10-09T18:41:30.716Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,18 +478,18 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 204.89198083333332,
-          "live": 32.65
+          "hours": 205.21656638888888,
+          "live": 33.299171111111114
         },
         "Seif": {
           "open": 17,
           "todo": 13,
-          "progress": 2,
-          "review": 2,
+          "progress": 1,
+          "review": 3,
           "overdue": 2,
           "done": 7,
-          "hours": 14.819618055555553,
-          "live": 80.08333333333334
+          "hours": 13.2418465625,
+          "live": 52.64154333333333
         },
         "Alaa": {
           "open": 8,
@@ -518,8 +518,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 38.688829722222216,
-          "live": 74.6
+          "hours": 39.019939861111105,
+          "live": 75.26222027777777
         },
         "Tasneem": {
           "open": 1,
@@ -551,11 +551,11 @@
           "hours": 0,
           "live": 0
         },
-        "Rahma": {
-          "open": 2,
-          "todo": 1,
+        "Rahma Elsaid": {
+          "open": 0,
+          "todo": 0,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
           "done": 0,
           "hours": 0,
@@ -570,11 +570,21 @@
           "done": 0,
           "hours": 0,
           "live": 0
+        },
+        "Rahma": {
+          "open": 2,
+          "todo": 1,
+          "progress": 0,
+          "review": 1,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
         }
       },
       "time": {
-        "avgTodo": 8139,
-        "avgProgress": 2846,
+        "avgTodo": 8178,
+        "avgProgress": 5617,
         "open": 63
       },
       "hr": {
@@ -660,12 +670,12 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Rahma": {
-            "delivery": 5,
+          "Rahma Elsaid": {
+            "delivery": 0,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 5,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -675,6 +685,15 @@
             "revisions": 0,
             "creativity": 0,
             "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Rahma": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           }
@@ -4549,20 +4568,36 @@
           "title": "Delivery of Carousel No. 9 and Single Post No. 10",
           "notes": "",
           "due": "2026-10-08",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:33:48.296Z",
-          "updated_at": "2026-10-08T13:56:33.918Z",
+          "updated_at": "2026-10-09T18:41:30.672Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-08T13:56:33.918Z",
-          "progress_started_at": "2026-10-08T13:56:33.918Z",
-          "time_log": [],
-          "start_on": "2026-10-08"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-08T13:56:33.918Z",
+              "ended_at": "2026-10-09T18:41:30.672Z",
+              "hours": 28.749098333333333,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-10-08",
+          "delay_reason": "Workload pressure",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 28.749098333333333,
+          "review_at": "2026-10-09T18:41:30.672Z",
+          "first_review_at": "2026-10-09T18:41:30.672Z",
+          "delivered_on": "2026-10-09"
         },
         {
           "id": "t-20261008-alaa-muwn48dy",
