@@ -60,7 +60,8 @@
     "t-20261006-ganna-mujqgobm",
     "t-20261008-tasneem-muzlmbwa",
     "t-20261013-alaa-muocmnmr",
-    "t-20261025-alaa-muocoshd"
+    "t-20261025-alaa-muocoshd",
+    "t-20261009-sara-mv15ncb8"
   ],
   "statuses": [
     "To do",
@@ -448,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T16:17:29.306Z",
+      "updated_at": "2026-10-09T16:23:59.936Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -477,8 +478,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 204.0163723611111,
-          "live": 30.898783055555555
+          "hours": 204.07062416666668,
+          "live": 31.007286666666666
         },
         "Seif": {
           "open": 17,
@@ -487,8 +488,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 14.431455555555557,
-          "live": 76.58987083333334
+          "hours": 14.455567654320987,
+          "live": 76.80687972222222
         },
         "Alaa": {
           "open": 7,
@@ -501,8 +502,8 @@
           "live": 0
         },
         "Sara": {
-          "open": 1,
-          "todo": 1,
+          "open": 0,
+          "todo": 0,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -517,8 +518,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.819745138888884,
-          "live": 72.86183083333333
+          "hours": 37.87399791666667,
+          "live": 72.9703363888889
         },
         "Tasneem": {
           "open": 1,
@@ -550,11 +551,11 @@
           "hours": 0,
           "live": 0
         },
-        "Rahma Elsaid": {
-          "open": 0,
-          "todo": 0,
+        "Rahma": {
+          "open": 2,
+          "todo": 1,
           "progress": 0,
-          "review": 0,
+          "review": 1,
           "overdue": 0,
           "done": 0,
           "hours": 0,
@@ -569,22 +570,13 @@
           "done": 0,
           "hours": 0,
           "live": 0
-        },
-        "Rahma": {
-          "open": 2,
-          "todo": 1,
-          "progress": 0,
-          "review": 1,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
         }
       },
       "time": {
-        "avgTodo": 8034,
-        "avgProgress": 5542,
-        "open": 63
+        "avgTodo": 8040,
+        "avgProgress": 2712,
+        "avgToDone": 7725,
+        "open": 62
       },
       "hr": {
         "people": {
@@ -669,12 +661,12 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Rahma Elsaid": {
-            "delivery": 0,
+          "Rahma": {
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -684,15 +676,6 @@
             "revisions": 0,
             "creativity": 0,
             "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Rahma": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
             "attitude": 0,
             "reviews": 0
           }
@@ -4720,27 +4703,6 @@
           "review_at": "2026-10-09T08:04:43.916Z",
           "first_review_at": "2026-10-09T08:04:43.916Z",
           "delivered_on": "2026-10-09"
-        },
-        {
-          "id": "t-20261009-sara-mv15ncb8",
-          "who": "Sara",
-          "space": "Graphic",
-          "project": "MEDC",
-          "title": "Adjusting the MEDC Post Dimensions",
-          "notes": "",
-          "due": "2026-10-09",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
-          "drive_missing": false,
-          "assigned_at": "2026-10-09",
-          "month": "2026-10",
-          "created_by": "Mariam",
-          "created_at": "2026-10-09T16:03:35.828Z",
-          "updated_at": "2026-10-09T16:03:35.828Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         }
       ]
     },
