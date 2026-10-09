@@ -448,7 +448,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T16:03:35.932Z",
+      "updated_at": "2026-10-09T16:17:19.959Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -461,8 +461,8 @@
           "live": 0
         },
         "Mariam": {
-          "open": 2,
-          "todo": 1,
+          "open": 3,
+          "todo": 2,
           "progress": 0,
           "review": 1,
           "overdue": 2,
@@ -477,8 +477,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 203.90062361111111,
-          "live": 30.667285555555555
+          "hours": 204.01507430555554,
+          "live": 30.896186944444445
         },
         "Seif": {
           "open": 17,
@@ -487,8 +487,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 14.380011851851853,
-          "live": 76.1268775
+          "hours": 14.430878703703703,
+          "live": 76.58467916666666
         },
         "Alaa": {
           "open": 7,
@@ -517,8 +517,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.70399722222222,
-          "live": 72.630335
+          "hours": 37.81844708333333,
+          "live": 72.85923472222223
         },
         "Tasneem": {
           "open": 1,
@@ -550,6 +550,16 @@
           "hours": 0,
           "live": 0
         },
+        "Rahma Elsaid": {
+          "open": 2,
+          "todo": 1,
+          "progress": 0,
+          "review": 1,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
         "Menna": {
           "open": 0,
           "todo": 0,
@@ -572,10 +582,9 @@
         }
       },
       "time": {
-        "avgTodo": 8203,
-        "avgProgress": 2692,
-        "avgToDone": 7150,
-        "open": 63
+        "avgTodo": 8034,
+        "avgProgress": 5542,
+        "open": 64
       },
       "hr": {
         "people": {
@@ -657,6 +666,15 @@
             "revisions": 0,
             "creativity": 0,
             "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Rahma Elsaid": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -4640,7 +4658,7 @@
         },
         {
           "id": "t-20261009-rahma-elsaid-muv8u8nm",
-          "who": "Rahma",
+          "who": "Rahma Elsaid",
           "space": "Graphic",
           "project": "Helal",
           "title": "slow marketing - fast marketing \"single visual\"",
@@ -4654,7 +4672,7 @@
           "created_by": "Tasneem",
           "created_at": "2026-10-05T12:46:19.476Z",
           "updated_at": "2026-10-05T20:33:53.116Z",
-          "updated_by": "Rahma",
+          "updated_by": "Rahma Elsaid",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
@@ -4816,7 +4834,7 @@
         },
         {
           "id": "t-20261011-rahma-elsaid-mv14puch",
-          "who": "Rahma",
+          "who": "Rahma Elsaid",
           "space": "Graphic",
           "project": "Helal",
           "title": "Single Visual | 26 Oct",
@@ -4830,6 +4848,27 @@
           "created_by": "Amr",
           "created_at": "2026-10-09T15:37:32.898Z",
           "updated_at": "2026-10-09T15:37:32.898Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261011-mariam-mv165077",
+          "who": "Mariam",
+          "space": "Social",
+          "project": "OSAMA HELAL",
+          "title": "Create 15 piece of content \"single visuals & Carousels\"",
+          "notes": "Create 15 piece of content \"single visuals & Carousels\" from the video content Moamen shared on the group and build this content plan in a sheet or pdf \n\nthe output should be ready for graphic designer work",
+          "due": "2026-10-11",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-10-09",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-09T16:17:19.939Z",
+          "updated_at": "2026-10-09T16:17:19.939Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
