@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:04:30.679Z",
+      "updated_at": "2026-10-09T15:05:24.429Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -476,8 +476,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 137.0235651851852,
-          "live": 33.93673388888889
+          "hours": 137.03352462962962,
+          "live": 33.966612222222224
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 15.2579015,
-          "live": 99.28578583333334
+          "hours": 15.262383,
+          "live": 99.33060083333334
         },
         "Alaa": {
           "open": 8,
@@ -516,8 +516,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.21159847222222,
-          "live": 71.6455375
+          "hours": 37.21906666666666,
+          "live": 71.66047388888889
         },
         "Tasneem": {
           "open": 1,
@@ -581,8 +581,8 @@
         }
       },
       "time": {
-        "avgTodo": 8436,
-        "avgProgress": 5502,
+        "avgTodo": 8437,
+        "avgProgress": 5503,
         "open": 62
       },
       "hr": {
@@ -4863,7 +4863,7 @@
           "who": "Ganna",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video (15-10)",
+          "title": "tiktok video",
           "notes": "let me introduce myself",
           "due": "2026-10-13",
           "status": "To do",
@@ -4873,7 +4873,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:18:28.491Z",
-          "updated_at": "2026-10-08T13:18:28.491Z",
+          "updated_at": "2026-10-09T15:05:24.391Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
