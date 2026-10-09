@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T20:18:38.216Z",
+      "updated_at": "2026-10-09T20:18:43.620Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,18 +478,18 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 206.02594069444444,
-          "live": 34.91791972222222
+          "hours": 206.0266909722222,
+          "live": 34.919420277777775
         },
         "Seif": {
-          "open": 17,
+          "open": 16,
           "todo": 13,
           "progress": 1,
-          "review": 3,
-          "overdue": 2,
-          "done": 7,
-          "hours": 13.44419017361111,
-          "live": 54.26029222222222
+          "review": 2,
+          "overdue": 1,
+          "done": 8,
+          "hours": 12.532585154320989,
+          "live": 54.26179277777778
         },
         "Alaa": {
           "open": 7,
@@ -518,8 +518,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 39.829314305555556,
-          "live": 76.88096916666667
+          "hours": 39.83006486111111,
+          "live": 76.88247027777778
         },
         "Tasneem": {
           "open": 1,
@@ -575,8 +575,8 @@
       "time": {
         "avgTodo": 8275,
         "avgProgress": 3321,
-        "avgToDone": 8011,
-        "open": 62
+        "avgToDone": 8276,
+        "open": 61
       },
       "hr": {
         "people": {
@@ -4230,15 +4230,15 @@
           "title": "Delivery of Carousel No. 7 and Single Post No. 8",
           "notes": "",
           "due": "2026-10-06",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T14:32:55.281Z",
-          "updated_at": "2026-10-07T19:16:56.400Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-09T20:18:43.565Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-07T14:02:38.720Z",
           "progress_started_at": "",
@@ -4259,7 +4259,11 @@
           "progress_hours": 5.238244444444445,
           "review_at": "2026-10-07T19:16:56.400Z",
           "first_review_at": "2026-10-07T19:16:56.400Z",
-          "delivered_on": "2026-10-07"
+          "delivered_on": "2026-10-07",
+          "done_at": "2026-10-09T20:18:43.564Z",
+          "done_on": "2026-10-09",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261006-alaa-muoclwt3",
