@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T16:24:22.090Z",
+      "updated_at": "2026-10-09T18:02:45.889Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +478,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 204.07370166666666,
-          "live": 31.013441666666665
+          "hours": 204.89198083333332,
+          "live": 32.65
         },
         "Seif": {
           "open": 17,
@@ -488,14 +488,14 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 14.456935308641976,
-          "live": 76.81918861111112
+          "hours": 14.819618055555553,
+          "live": 80.08333333333334
         },
         "Alaa": {
           "open": 8,
-          "todo": 2,
+          "todo": 1,
           "progress": 0,
-          "review": 6,
+          "review": 7,
           "overdue": 5,
           "done": 1,
           "hours": 5.799785555555555,
@@ -518,8 +518,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.877075,
-          "live": 72.97649055555556
+          "hours": 38.688829722222216,
+          "live": 74.6
         },
         "Tasneem": {
           "open": 1,
@@ -573,9 +573,8 @@
         }
       },
       "time": {
-        "avgTodo": 8041,
-        "avgProgress": 2712,
-        "avgToDone": 7725,
+        "avgTodo": 8139,
+        "avgProgress": 2846,
         "open": 63
       },
       "hr": {
@@ -4712,18 +4711,22 @@
           "title": "Adjusting the MEDC Post Dimensions",
           "notes": "",
           "due": "2026-10-09",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-09",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-09T16:24:22.040Z",
-          "updated_at": "2026-10-09T16:24:22.040Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-09T18:02:45.764Z",
+          "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "review_at": "2026-10-09T18:02:45.764Z",
+          "first_review_at": "2026-10-09T18:02:45.764Z",
+          "delivered_on": "2026-10-09"
         }
       ]
     },
