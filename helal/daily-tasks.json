@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:09:11.555Z",
+      "updated_at": "2026-10-09T15:21:32.958Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -472,12 +472,12 @@
         "Judi": {
           "open": 3,
           "todo": 1,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 137.07558037037037,
-          "live": 34.092779444444446
+          "hours": 203.55021125,
+          "live": 29.966460833333333
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 15.28130825,
-          "live": 99.51985333333333
+          "hours": 15.34309375,
+          "live": 100.13770833333334
         },
         "Alaa": {
           "open": 8,
@@ -516,8 +516,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.25060958333333,
-          "live": 71.72355972222222
+          "hours": 37.35358458333333,
+          "live": 71.92950972222222
         },
         "Tasneem": {
           "open": 1,
@@ -581,8 +581,8 @@
         }
       },
       "time": {
-        "avgTodo": 8441,
-        "avgProgress": 5505,
+        "avgTodo": 8453,
+        "avgProgress": 5511,
         "open": 62
       },
       "hr": {
@@ -597,11 +597,11 @@
             "reviews": 3
           },
           "Judi": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -4509,18 +4509,18 @@
           "title": "Assign TikTok Tasks",
           "notes": "Assign TikTok tasks for ganna and mohamed",
           "due": "2026-10-07",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-07",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-07T15:28:07.578Z",
-          "updated_at": "2026-10-09T15:04:30.530Z",
+          "updated_at": "2026-10-09T15:21:32.923Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-08T09:17:15.617Z",
-          "progress_started_at": "2026-10-09T15:04:30.530Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -4529,16 +4529,24 @@
               "ended_at": "2026-10-08T13:32:30.817Z",
               "hours": 4.254222222222222,
               "by": "Judi"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-09T15:04:30.530Z",
+              "ended_at": "2026-10-09T15:21:32.922Z",
+              "hours": 0.2839977777777778,
+              "by": "Judi"
             }
           ],
           "start_on": "2026-10-08",
           "delay_reason": "Workload pressure",
           "delay_notified": false,
           "delay_days": 1,
-          "progress_hours": 4.254222222222222,
-          "review_at": "2026-10-08T13:32:30.817Z",
+          "progress_hours": 4.53822,
+          "review_at": "2026-10-09T15:21:32.922Z",
           "first_review_at": "2026-10-08T13:32:30.817Z",
-          "delivered_on": "2026-10-08"
+          "delivered_on": "2026-10-09"
         }
       ]
     },
