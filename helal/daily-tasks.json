@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:07:00.915Z",
+      "updated_at": "2026-10-09T15:07:27.834Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -476,8 +476,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 137.05138722222222,
-          "live": 34.0202
+          "hours": 137.05637407407409,
+          "live": 34.03516055555556
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 15.270421416666668,
-          "live": 99.41098500000001
+          "hours": 15.272665416666666,
+          "live": 99.433425
         },
         "Alaa": {
           "open": 8,
@@ -510,14 +510,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 18,
-          "todo": 14,
+          "open": 17,
+          "todo": 13,
           "progress": 1,
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.23246486111111,
-          "live": 71.68727027777778
+          "hours": 37.236204861111105,
+          "live": 71.69475027777777
         },
         "Tasneem": {
           "open": 1,
@@ -540,8 +540,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 12,
-          "todo": 12,
+          "open": 13,
+          "todo": 13,
           "progress": 0,
           "review": 0,
           "overdue": 2,
@@ -582,7 +582,7 @@
       },
       "time": {
         "avgTodo": 8439,
-        "avgProgress": 5503,
+        "avgProgress": 5504,
         "open": 62
       },
       "hr": {
@@ -5583,10 +5583,10 @@
         },
         {
           "id": "t-20261025-ganna-muzkovix",
-          "who": "Ganna",
+          "who": "Mohamed",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video (27-10)",
+          "title": "tiktok video",
           "notes": "المدير قالنا هاتوا كلاينتس باي شكل",
           "due": "2026-10-25",
           "status": "To do",
@@ -5596,7 +5596,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:29:09.273Z",
-          "updated_at": "2026-10-08T13:29:09.273Z",
+          "updated_at": "2026-10-09T15:07:27.775Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
