@@ -682,10 +682,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-08T14:01:33.550Z",
-      "decided_at": "2026-09-08T14:02:20.439Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mtviokjc",
@@ -695,10 +695,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fb5ew",
@@ -708,10 +708,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "2026-09-14T17:13:09.437Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fbg3s",
@@ -721,10 +721,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "2026-09-14T17:13:10.064Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mulhzjb9",
@@ -764,6 +764,19 @@
       "created_at": "2026-10-06T22:08:38.774Z",
       "decided_at": "2026-10-06T22:08:40.663Z",
       "decided_by": "Amr"
+    },
+    {
+      "id": "ar-mv1460eh",
+      "who": "Alaa",
+      "friday": "2026-10-09",
+      "date": "2026-10-10",
+      "from": "Office",
+      "to": "Home",
+      "reason": "عندي كليه من 8ىونص ل 5",
+      "status": "Pending",
+      "created_at": "2026-10-09T15:22:07.625Z",
+      "decided_at": "",
+      "decided_by": ""
     }
   ]
 }
