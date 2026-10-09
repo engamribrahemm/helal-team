@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T16:23:59.936Z",
+      "updated_at": "2026-10-09T16:24:22.090Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +478,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 204.07062416666668,
-          "live": 31.007286666666666
+          "hours": 204.07370166666666,
+          "live": 31.013441666666665
         },
         "Seif": {
           "open": 17,
@@ -488,12 +488,12 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 14.455567654320987,
-          "live": 76.80687972222222
+          "hours": 14.456935308641976,
+          "live": 76.81918861111112
         },
         "Alaa": {
-          "open": 7,
-          "todo": 1,
+          "open": 8,
+          "todo": 2,
           "progress": 0,
           "review": 6,
           "overdue": 5,
@@ -518,8 +518,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.87399791666667,
-          "live": 72.9703363888889
+          "hours": 37.877075,
+          "live": 72.97649055555556
         },
         "Tasneem": {
           "open": 1,
@@ -573,10 +573,10 @@
         }
       },
       "time": {
-        "avgTodo": 8040,
+        "avgTodo": 8041,
         "avgProgress": 2712,
         "avgToDone": 7725,
-        "open": 62
+        "open": 63
       },
       "hr": {
         "people": {
@@ -4703,6 +4703,27 @@
           "review_at": "2026-10-09T08:04:43.916Z",
           "first_review_at": "2026-10-09T08:04:43.916Z",
           "delivered_on": "2026-10-09"
+        },
+        {
+          "id": "t-20261009-alaa-mv16e1w7",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "MEDC",
+          "title": "Adjusting the MEDC Post Dimensions",
+          "notes": "",
+          "due": "2026-10-09",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-10-09",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-09T16:24:22.040Z",
+          "updated_at": "2026-10-09T16:24:22.040Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
