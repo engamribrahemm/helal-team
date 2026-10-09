@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:08:45.641Z",
+      "updated_at": "2026-10-09T15:08:51.888Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -476,8 +476,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 137.07078611111112,
-          "live": 34.07839666666667
+          "hours": 137.07193833333332,
+          "live": 34.081853333333335
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 15.279150666666666,
-          "live": 99.4982775
+          "hours": 15.279669333333334,
+          "live": 99.50346416666667
         },
         "Alaa": {
           "open": 8,
@@ -516,8 +516,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.24701263888888,
-          "live": 71.71636583333333
+          "hours": 37.24787791666667,
+          "live": 71.7180963888889
         },
         "Tasneem": {
           "open": 1,
@@ -5469,7 +5469,7 @@
           "who": "Ganna",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video (25-10)",
+          "title": "tiktok video",
           "notes": "انت مع مديرك الي بتعتبره chatgpt وبتسأله في كل حاجه",
           "due": "2026-10-23",
           "status": "To do",
@@ -5479,7 +5479,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:27:37.010Z",
-          "updated_at": "2026-10-08T13:27:37.010Z",
+          "updated_at": "2026-10-09T15:08:51.823Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
