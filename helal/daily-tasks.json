@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:06:26.806Z",
+      "updated_at": "2026-10-09T15:06:47.512Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -476,8 +476,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 137.04507148148147,
-          "live": 34.00125277777778
+          "hours": 137.04890870370372,
+          "live": 34.01276444444444
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 15.26757925,
-          "live": 99.38256333333334
+          "hours": 15.269305916666667,
+          "live": 99.39983000000001
         },
         "Alaa": {
           "open": 8,
@@ -510,14 +510,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 20,
-          "todo": 16,
+          "open": 19,
+          "todo": 15,
           "progress": 1,
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.227727916666666,
-          "live": 71.6777963888889
+          "hours": 37.23060527777778,
+          "live": 71.68355111111111
         },
         "Tasneem": {
           "open": 1,
@@ -540,8 +540,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 10,
-          "todo": 10,
+          "open": 11,
+          "todo": 11,
           "progress": 0,
           "review": 0,
           "overdue": 2,
@@ -581,7 +581,7 @@
         }
       },
       "time": {
-        "avgTodo": 8438,
+        "avgTodo": 8439,
         "avgProgress": 5503,
         "open": 62
       },
@@ -5370,10 +5370,10 @@
       "tasks": [
         {
           "id": "t-20261021-ganna-muzkkzu9",
-          "who": "Ganna",
+          "who": "Mohamed",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video (23-10)",
+          "title": "tiktok video",
           "notes": "مديرك وهو بيراجع معاك الشغل",
           "due": "2026-10-21",
           "status": "To do",
@@ -5383,7 +5383,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:26:08.242Z",
-          "updated_at": "2026-10-08T13:26:08.242Z",
+          "updated_at": "2026-10-09T15:06:47.464Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
