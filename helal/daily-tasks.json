@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T20:20:09.561Z",
+      "updated_at": "2026-10-09T20:20:14.222Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -482,13 +482,13 @@
           "live": 34.93333333333333
         },
         "Seif": {
-          "open": 15,
+          "open": 14,
           "todo": 13,
           "progress": 1,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 9,
-          "hours": 14.156390527777779,
+          "done": 10,
+          "hours": 15.080064520202018,
           "live": 54.28333333333333
         },
         "Alaa": {
@@ -574,8 +574,8 @@
       },
       "time": {
         "avgTodo": 8277,
-        "avgProgress": 2595,
-        "open": 56
+        "avgProgress": 2548,
+        "open": 55
       },
       "hr": {
         "people": {
@@ -4654,15 +4654,15 @@
           "title": "Delivery of Carousel No. 1",
           "notes": "",
           "due": "2026-10-09",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:25:33.689Z",
-          "updated_at": "2026-10-09T14:15:48.501Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-09T20:20:12.763Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-08T13:56:48.004Z",
           "progress_started_at": "",
@@ -4680,7 +4680,11 @@
           "progress_hours": 24.316804444444443,
           "review_at": "2026-10-09T14:15:48.500Z",
           "first_review_at": "2026-10-09T14:15:48.500Z",
-          "delivered_on": "2026-10-09"
+          "delivered_on": "2026-10-09",
+          "done_at": "2026-10-09T20:20:12.763Z",
+          "done_on": "2026-10-09",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261009-rahma-elsaid-muv8u8nm",
