@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T20:20:14.222Z",
+      "updated_at": "2026-10-09T20:20:24.851Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -492,12 +492,12 @@
           "live": 54.28333333333333
         },
         "Alaa": {
-          "open": 3,
+          "open": 2,
           "todo": 1,
           "progress": 0,
-          "review": 2,
+          "review": 1,
           "overdue": 1,
-          "done": 6,
+          "done": 7,
           "hours": 30.237977037037037,
           "live": 0
         },
@@ -575,7 +575,7 @@
       "time": {
         "avgTodo": 8277,
         "avgProgress": 2548,
-        "open": 55
+        "open": 54
       },
       "hr": {
         "people": {
@@ -4755,22 +4755,26 @@
           "title": "Adjusting the MEDC Post Dimensions",
           "notes": "",
           "due": "2026-10-09",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-09",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-09T16:24:22.040Z",
-          "updated_at": "2026-10-09T18:02:45.764Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-09T20:20:24.795Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
           "time_log": [],
           "review_at": "2026-10-09T18:02:45.764Z",
           "first_review_at": "2026-10-09T18:02:45.764Z",
-          "delivered_on": "2026-10-09"
+          "delivered_on": "2026-10-09",
+          "done_at": "2026-10-09T20:20:24.794Z",
+          "done_on": "2026-10-09",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         }
       ]
     },
