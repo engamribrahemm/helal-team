@@ -59,7 +59,8 @@
     "t-20261017-alaa-muls70rt",
     "t-20261006-ganna-mujqgobm",
     "t-20261008-tasneem-muzlmbwa",
-    "t-20261013-alaa-muocmnmr"
+    "t-20261013-alaa-muocmnmr",
+    "t-20261025-alaa-muocoshd"
   ],
   "statuses": [
     "To do",
@@ -5581,27 +5582,6 @@
       "date": "2026-10-25",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261025-alaa-muocoshd",
-          "who": "Alaa",
-          "space": "Graphic",
-          "project": "Helal",
-          "title": "Delivery of Single Post No. 3",
-          "notes": "",
-          "due": "2026-10-25",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T16:59:40.466Z",
-          "updated_at": "2026-09-30T16:59:40.466Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20261025-ganna-muzkovix",
           "who": "Mohamed",
