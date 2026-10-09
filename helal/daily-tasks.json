@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:06:19.603Z",
+      "updated_at": "2026-10-09T15:06:26.806Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -476,8 +476,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 137.04373574074074,
-          "live": 33.99724555555556
+          "hours": 137.04507148148147,
+          "live": 34.00125277777778
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 15.266978333333332,
-          "live": 99.37655416666666
+          "hours": 15.26757925,
+          "live": 99.38256333333334
         },
         "Alaa": {
           "open": 8,
@@ -510,14 +510,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 21,
-          "todo": 17,
+          "open": 20,
+          "todo": 16,
           "progress": 1,
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.226726388888885,
-          "live": 71.67579333333333
+          "hours": 37.227727916666666,
+          "live": 71.6777963888889
         },
         "Tasneem": {
           "open": 1,
@@ -540,8 +540,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 9,
-          "todo": 9,
+          "open": 10,
+          "todo": 10,
           "progress": 0,
           "review": 0,
           "overdue": 2,
@@ -5226,10 +5226,10 @@
         },
         {
           "id": "t-20261018-ganna-muzkipaq",
-          "who": "Ganna",
+          "who": "Mohamed",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video (20-10)",
+          "title": "tiktok video",
           "notes": "لما اعمل مصيبة والبسها لمديري",
           "due": "2026-10-18",
           "status": "To do",
@@ -5239,7 +5239,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:24:21.266Z",
-          "updated_at": "2026-10-08T13:24:21.266Z",
+          "updated_at": "2026-10-09T15:06:26.736Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
