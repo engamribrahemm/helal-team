@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T20:19:15.613Z",
+      "updated_at": "2026-10-09T20:19:47.901Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +478,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 206.02531416666667,
-          "live": 34.916666666666664
+          "hours": 206.0336475,
+          "live": 34.93333333333333
         },
         "Seif": {
           "open": 15,
@@ -492,13 +492,13 @@
           "live": 54.266666666666666
         },
         "Alaa": {
-          "open": 6,
+          "open": 5,
           "todo": 1,
           "progress": 0,
-          "review": 5,
+          "review": 4,
           "overdue": 3,
-          "done": 3,
-          "hours": 29.159902222222218,
+          "done": 4,
+          "hours": 38.70401972222222,
           "live": 0
         },
         "Sara": {
@@ -518,8 +518,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 39.83049638888889,
-          "live": 76.88333333333334
+          "hours": 39.83882972222222,
+          "live": 76.9
         },
         "Tasneem": {
           "open": 1,
@@ -574,8 +574,8 @@
       },
       "time": {
         "avgTodo": 8276,
-        "avgProgress": 2702,
-        "open": 59
+        "avgProgress": 2766,
+        "open": 58
       },
       "hr": {
         "people": {
@@ -5186,15 +5186,15 @@
           "title": "Delivery of Single Post No. 2",
           "notes": "",
           "due": "2026-10-16",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:58:34.846Z",
-          "updated_at": "2026-10-07T18:38:59.632Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-09T20:19:47.844Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-04T23:18:48.692Z",
           "progress_started_at": "",
@@ -5212,7 +5212,11 @@
           "progress_hours": 67.33637222222222,
           "review_at": "2026-10-07T18:38:59.632Z",
           "first_review_at": "2026-10-07T18:38:59.632Z",
-          "delivered_on": "2026-10-07"
+          "delivered_on": "2026-10-07",
+          "done_at": "2026-10-09T20:19:47.843Z",
+          "done_on": "2026-10-09",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261016-ganna-muzkfvoi",
