@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T20:18:43.620Z",
+      "updated_at": "2026-10-09T20:18:47.555Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +478,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 206.0266909722222,
-          "live": 34.919420277777775
+          "hours": 206.02723777777777,
+          "live": 34.92051388888889
         },
         "Seif": {
           "open": 16,
@@ -488,17 +488,17 @@
           "review": 2,
           "overdue": 1,
           "done": 8,
-          "hours": 12.532585154320989,
-          "live": 54.26179277777778
+          "hours": 12.53270663580247,
+          "live": 54.26288611111111
         },
         "Alaa": {
-          "open": 7,
+          "open": 6,
           "todo": 1,
           "progress": 0,
-          "review": 6,
-          "overdue": 4,
-          "done": 2,
-          "hours": 30.578110277777775,
+          "review": 5,
+          "overdue": 3,
+          "done": 3,
+          "hours": 29.159902222222218,
           "live": 0
         },
         "Sara": {
@@ -518,8 +518,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 39.83006486111111,
-          "live": 76.88247027777778
+          "hours": 39.83061125,
+          "live": 76.88356305555556
         },
         "Tasneem": {
           "open": 1,
@@ -575,8 +575,8 @@
       "time": {
         "avgTodo": 8275,
         "avgProgress": 3321,
-        "avgToDone": 8276,
-        "open": 61
+        "avgToDone": 8508,
+        "open": 60
       },
       "hr": {
         "people": {
@@ -4273,15 +4273,15 @@
           "title": "Delivery of Single Post No. 1",
           "notes": "",
           "due": "2026-10-06",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:57:26.104Z",
-          "updated_at": "2026-10-04T23:18:38.894Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-09T20:18:46.138Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-03T20:59:14.344Z",
           "progress_started_at": "",
@@ -4299,7 +4299,11 @@
           "progress_hours": 26.323486111111112,
           "review_at": "2026-10-04T23:18:38.894Z",
           "first_review_at": "2026-10-04T23:18:38.894Z",
-          "delivered_on": "2026-10-05"
+          "delivered_on": "2026-10-05",
+          "done_at": "2026-10-09T20:18:46.137Z",
+          "done_on": "2026-10-09",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261006-tasneem-muv1cv8y",
