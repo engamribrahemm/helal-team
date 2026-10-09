@@ -648,12 +648,15 @@ function formatStageMinutes(mins, live) {
 
 function taskFactList(task) {
   const times = taskStageTimes(task);
+  const waiting = task.status === "To do";
   return $("dl", { class: "task-facts" }, [
     $("div", {}, [$("dt", {}, "Client"), $("dd", {}, task.project || "—")]),
     $("div", {}, [$("dt", {}, "Assigned"), $("dd", {}, task.who || "—")]),
     $("div", {}, [$("dt", {}, "Created by"), $("dd", {}, task.created_by || "—")]),
     $("div", {}, [$("dt", {}, "Deadline"), $("dd", {}, task.due || "—")]),
-    $("div", {}, [$("dt", {}, "In progress"), $("dd", {}, formatStageMinutes(times.progressMins, times.stillProgress))]),
+    waiting
+      ? $("div", {}, [$("dt", {}, "To do"), $("dd", {}, formatStageMinutes(times.todoMins, times.stillTodo))])
+      : $("div", {}, [$("dt", {}, "In progress"), $("dd", {}, formatStageMinutes(times.progressMins, times.stillProgress))]),
   ]);
 }
 
@@ -3450,7 +3453,7 @@ function createForm(onDone) {
     $("option", { value: "", selected: !d.project }, "No client"),
     ...projectList().map((p) => $("option", { value: p.name, selected: p.name === d.project }, p.name)),
   ]);
-  const title = $("input", { required: true, placeholder: "Task title", value: d.title || "" });
+  const title = $("input", { required: true, placeholder: "single visual | 4th Oct", value: d.title || "" });
   const notes = $("textarea", { placeholder: "Brief, references, what done looks like" }, d.notes || "");
   const drive = $("input", { type: "url", placeholder: "Drive folder (fills from client)", value: d.drive || "" });
   const keep = () => {
@@ -3515,7 +3518,7 @@ function createForm(onDone) {
       }, "×"),
     ]),
     $("div", { class: "modal-scroll" }, [
-      $("p", { class: "muted" }, "Fill the brief, pick a due date, then create. Esc or × closes this window."),
+      $("p", { class: "muted" }, "Name tasks as type | publish day — e.g. single visual | 4th Oct. Esc or × closes."),
       $("label", {}, ["Assign to", who]),
       $("label", {}, ["Client / folder", project]),
       $("label", {}, ["Space", space]),
@@ -4805,9 +4808,11 @@ function viewGuide() {
 
 function viewAdminGuide() {
   const steps = [
+    ["Task naming", "Name every task like this: content type | publish day. Content types: single visual, carousel, reel, branding (and the same idea for other formats). The day is when it goes live on the calendar, written short: 4th Oct, 12th Oct. Example: single visual | 4th Oct. Another: carousel | 12th Oct. Keep the pipe with spaces around it so the board stays easy to scan."],
     ["Months never mix", "Board, Workload, Time, Dashboard, and HR all use the same Prev / Next month control. What you see is one month only. Done tasks stay in the month they were finished. Open work always lives in the current month. When you open September, you see September’s Done and scores — not October’s open cards mixed in."],
-    ["Time · start with Everyone", "Open Time. Everyone shows a compact team summary: in-progress hours, live timers, open count, Done count, average wait, average time to Done. No long task lists on this screen. That keeps the page scannable."],
+    ["Time · start with Everyone", "Open Time. Everyone shows a compact team summary: in-progress hours, live timers, open count, Done count, average wait, average in-progress time. No long task lists on this screen. That keeps the page scannable."],
     ["Time · open one person", "Click a name in the chips or the summary table. You get that person’s KPIs, then Open / Done / All filters. Default is Open so you are not buried in finished work. Press Show day breakdown only when you need hours by Cairo day. Switch months above to compare the same person month by month — each month’s Done time stays separate."],
+    ["Board times", "On To do cards, the timer is To do wait (live from create until someone starts work). After the card moves to In progress, the timer is In progress (from start until Done)."],
     ["HR · Profile", "Pick a person and a month. Profile shows that month’s score bars, open work (current month only), Done for the selected month, attendance, reports, attitude, warnings, and evaluations. Use this when you need the full picture for one teammate."],
     ["HR · Performance", "Team score table for the selected month. Choose Everyone or one name. Delivery, Quality, Revisions, Creativity, total, and Attitude. Late tasks and missing Drive counts are for that month only. Change the month to see last month’s performance without touching this month."],
     ["HR · Task tracking", "Review and Done tasks that still need an evaluation for the selected month. Filter by person if needed. After you evaluate, the task leaves this list. Past months only show Done items from that month that were never scored."],

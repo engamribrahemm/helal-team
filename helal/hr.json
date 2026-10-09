@@ -68,12 +68,6 @@
       "hours": "10:00–18:00",
       "mode": "Remote"
     },
-    "Rahma Elsaid": {
-      "type": "Full-time",
-      "days": "Sun–Thu",
-      "hours": "10:00–18:00",
-      "mode": "Remote"
-    },
     "Menna": {
       "type": "Full-time",
       "days": "Sun–Thu",
@@ -730,15 +724,6 @@
           "revisions": 0,
           "creativity": 0,
           "total": 0,
-          "attitude": 0,
-          "reviews": 0
-        },
-        "Rahma Elsaid": {
-          "delivery": 5,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
-          "total": 5,
           "attitude": 0,
           "reviews": 0
         },

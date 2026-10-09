@@ -550,16 +550,6 @@
           "hours": 0,
           "live": 0
         },
-        "Rahma Elsaid": {
-          "open": 2,
-          "todo": 1,
-          "progress": 0,
-          "review": 1,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
         "Menna": {
           "open": 0,
           "todo": 0,
@@ -667,15 +657,6 @@
             "revisions": 0,
             "creativity": 0,
             "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Rahma Elsaid": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -4659,7 +4640,7 @@
         },
         {
           "id": "t-20261009-rahma-elsaid-muv8u8nm",
-          "who": "Rahma Elsaid",
+          "who": "Rahma",
           "space": "Graphic",
           "project": "Helal",
           "title": "slow marketing - fast marketing \"single visual\"",
@@ -4673,7 +4654,7 @@
           "created_by": "Tasneem",
           "created_at": "2026-10-05T12:46:19.476Z",
           "updated_at": "2026-10-05T20:33:53.116Z",
-          "updated_by": "Rahma Elsaid",
+          "updated_by": "Rahma",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
@@ -4835,7 +4816,7 @@
         },
         {
           "id": "t-20261011-rahma-elsaid-mv14puch",
-          "who": "Rahma Elsaid",
+          "who": "Rahma",
           "space": "Graphic",
           "project": "Helal",
           "title": "Single Visual | 26 Oct",

@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-10-08T13:32:36.446Z",
+  "updated_at": "2026-10-09T16:05:08.996Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -102,15 +102,15 @@
       "updated_at": "2026-09-24T14:01:00.000Z"
     },
     {
-      "id": "rahma_elsaid",
-      "name": "Rahma Elsaid",
+      "id": "rahma",
+      "name": "Rahma",
       "role": "Graohic designer",
       "home": "design",
-      "mention": "@RahmaElsaid",
+      "mention": "@Rahma",
       "email": "",
       "access": "member",
       "active": true,
-      "updated_at": "2026-10-08T13:32:36.446Z"
+      "updated_at": "2026-10-09T16:05:08.996Z"
     },
     {
       "id": "menna",
@@ -122,17 +122,6 @@
       "access": "member",
       "active": true,
       "updated_at": "2026-10-03T15:04:34.052Z"
-    },
-    {
-      "id": "rahma_elsaid",
-      "name": "Rahma",
-      "role": "Graohic designer",
-      "home": "design",
-      "mention": "@Rahma",
-      "email": "",
-      "access": "member",
-      "active": true,
-      "updated_at": "2026-10-07T12:26:41.094Z"
     }
   ]
 }
