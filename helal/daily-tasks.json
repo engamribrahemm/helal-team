@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:08:51.888Z",
+      "updated_at": "2026-10-09T15:08:59.819Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -476,8 +476,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 137.07193833333332,
-          "live": 34.081853333333335
+          "hours": 137.07340814814816,
+          "live": 34.086262777777776
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 15.279669333333334,
-          "live": 99.50346416666667
+          "hours": 15.280330666666666,
+          "live": 99.5100775
         },
         "Alaa": {
           "open": 8,
@@ -516,8 +516,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.24787791666667,
-          "live": 71.7180963888889
+          "hours": 37.248980277777775,
+          "live": 71.72030111111111
         },
         "Tasneem": {
           "open": 1,
@@ -5538,7 +5538,7 @@
           "who": "Ganna",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video (26-10)",
+          "title": "tiktok video",
           "notes": "مديرك بيبصلك وانت مش عارف هو فخور بيك ولا بيفكر يطردك",
           "due": "2026-10-24",
           "status": "To do",
@@ -5548,7 +5548,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:28:28.882Z",
-          "updated_at": "2026-10-08T13:28:28.882Z",
+          "updated_at": "2026-10-09T15:08:59.759Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
