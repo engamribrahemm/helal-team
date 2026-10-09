@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:05:42.188Z",
+      "updated_at": "2026-10-09T15:05:52.429Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -476,8 +476,8 @@
           "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 137.03680796296297,
-          "live": 33.976462222222224
+          "hours": 137.0387037037037,
+          "live": 33.982149444444445
         },
         "Seif": {
           "open": 17,
@@ -486,8 +486,8 @@
           "review": 1,
           "overdue": 2,
           "done": 7,
-          "hours": 15.263860666666668,
-          "live": 99.3453775
+          "hours": 15.264714000000001,
+          "live": 99.35391083333334
         },
         "Alaa": {
           "open": 8,
@@ -510,14 +510,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 23,
-          "todo": 19,
+          "open": 22,
+          "todo": 18,
           "progress": 1,
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.221530277777774,
-          "live": 71.66540111111111
+          "hours": 37.222952916666664,
+          "live": 71.66824638888889
         },
         "Tasneem": {
           "open": 1,
@@ -540,8 +540,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 7,
-          "todo": 7,
+          "open": 8,
+          "todo": 8,
           "progress": 0,
           "review": 0,
           "overdue": 2,
@@ -581,7 +581,7 @@
         }
       },
       "time": {
-        "avgTodo": 8437,
+        "avgTodo": 8438,
         "avgProgress": 5503,
         "open": 62
       },
@@ -5025,10 +5025,10 @@
         },
         {
           "id": "t-20261015-ganna-muzkduxm",
-          "who": "Ganna",
+          "who": "Mohamed",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video (17-10)",
+          "title": "tiktok video",
           "notes": "احنا اكتر من كدة!",
           "due": "2026-10-15",
           "status": "To do",
@@ -5038,7 +5038,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:20:35.290Z",
-          "updated_at": "2026-10-08T13:20:35.290Z",
+          "updated_at": "2026-10-09T15:05:52.346Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
