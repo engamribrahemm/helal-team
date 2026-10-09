@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T18:41:30.716Z",
+      "updated_at": "2026-10-09T20:18:38.216Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +478,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 205.21656638888888,
-          "live": 33.299171111111114
+          "hours": 206.02594069444444,
+          "live": 34.91791972222222
         },
         "Seif": {
           "open": 17,
@@ -488,17 +488,17 @@
           "review": 3,
           "overdue": 2,
           "done": 7,
-          "hours": 13.2418465625,
-          "live": 52.64154333333333
+          "hours": 13.44419017361111,
+          "live": 54.26029222222222
         },
         "Alaa": {
-          "open": 8,
+          "open": 7,
           "todo": 1,
           "progress": 0,
-          "review": 7,
-          "overdue": 5,
-          "done": 1,
-          "hours": 5.799785555555555,
+          "review": 6,
+          "overdue": 4,
+          "done": 2,
+          "hours": 30.578110277777775,
           "live": 0
         },
         "Sara": {
@@ -518,8 +518,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 39.019939861111105,
-          "live": 75.26222027777777
+          "hours": 39.829314305555556,
+          "live": 76.88096916666667
         },
         "Tasneem": {
           "open": 1,
@@ -551,11 +551,11 @@
           "hours": 0,
           "live": 0
         },
-        "Rahma Elsaid": {
-          "open": 0,
-          "todo": 0,
+        "Rahma": {
+          "open": 2,
+          "todo": 1,
           "progress": 0,
-          "review": 0,
+          "review": 1,
           "overdue": 0,
           "done": 0,
           "hours": 0,
@@ -570,22 +570,13 @@
           "done": 0,
           "hours": 0,
           "live": 0
-        },
-        "Rahma": {
-          "open": 2,
-          "todo": 1,
-          "progress": 0,
-          "review": 1,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
         }
       },
       "time": {
-        "avgTodo": 8178,
-        "avgProgress": 5617,
-        "open": 63
+        "avgTodo": 8275,
+        "avgProgress": 3321,
+        "avgToDone": 8011,
+        "open": 62
       },
       "hr": {
         "people": {
@@ -670,12 +661,12 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Rahma Elsaid": {
-            "delivery": 0,
+          "Rahma": {
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -685,15 +676,6 @@
             "revisions": 0,
             "creativity": 0,
             "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Rahma": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
             "attitude": 0,
             "reviews": 0
           }
@@ -4095,15 +4077,15 @@
           "title": "Delivery of Carousel No. 1",
           "notes": "",
           "due": "2026-10-04",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:55:49.143Z",
-          "updated_at": "2026-10-03T21:57:29.481Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-09T20:18:38.165Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-01T14:36:06.314Z",
           "progress_started_at": "",
@@ -4121,7 +4103,11 @@
           "progress_hours": 55.356435,
           "review_at": "2026-10-03T21:57:29.480Z",
           "first_review_at": "2026-10-03T21:57:29.480Z",
-          "delivered_on": "2026-10-04"
+          "delivered_on": "2026-10-04",
+          "done_at": "2026-10-09T20:18:38.164Z",
+          "done_on": "2026-10-09",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261004-mariam-muq0ll3q",
