@@ -448,7 +448,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T16:17:19.959Z",
+      "updated_at": "2026-10-09T16:17:29.306Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -461,13 +461,13 @@
           "live": 0
         },
         "Mariam": {
-          "open": 3,
+          "open": 2,
           "todo": 2,
           "progress": 0,
-          "review": 1,
-          "overdue": 2,
-          "done": 4,
-          "hours": 0,
+          "review": 0,
+          "overdue": 1,
+          "done": 5,
+          "hours": 140.08480472222223,
           "live": 0
         },
         "Judi": {
@@ -477,8 +477,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 204.01507430555554,
-          "live": 30.896186944444445
+          "hours": 204.0163723611111,
+          "live": 30.898783055555555
         },
         "Seif": {
           "open": 17,
@@ -487,8 +487,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 14.430878703703703,
-          "live": 76.58467916666666
+          "hours": 14.431455555555557,
+          "live": 76.58987083333334
         },
         "Alaa": {
           "open": 7,
@@ -517,8 +517,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.81844708333333,
-          "live": 72.85923472222223
+          "hours": 37.819745138888884,
+          "live": 72.86183083333333
         },
         "Tasneem": {
           "open": 1,
@@ -551,10 +551,10 @@
           "live": 0
         },
         "Rahma Elsaid": {
-          "open": 2,
-          "todo": 1,
+          "open": 0,
+          "todo": 0,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
           "done": 0,
           "hours": 0,
@@ -571,10 +571,10 @@
           "live": 0
         },
         "Rahma": {
-          "open": 0,
-          "todo": 0,
+          "open": 2,
+          "todo": 1,
           "progress": 0,
-          "review": 0,
+          "review": 1,
           "overdue": 0,
           "done": 0,
           "hours": 0,
@@ -584,7 +584,7 @@
       "time": {
         "avgTodo": 8034,
         "avgProgress": 5542,
-        "open": 64
+        "open": 63
       },
       "hr": {
         "people": {
@@ -670,11 +670,11 @@
             "reviews": 0
           },
           "Rahma Elsaid": {
-            "delivery": 5,
+            "delivery": 0,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 5,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -688,11 +688,11 @@
             "reviews": 0
           },
           "Rahma": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           }
@@ -3721,15 +3721,15 @@
           "title": "MEDC monthly report",
           "notes": "",
           "due": "2026-10-01",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:51:59.143Z",
-          "updated_at": "2026-10-06T12:19:20.599Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-09T16:17:29.289Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-09-30T16:14:15.302Z",
           "progress_started_at": "",
@@ -3750,7 +3750,11 @@
           "progress_hours": 140.08480472222223,
           "review_at": "2026-10-06T12:19:20.599Z",
           "first_review_at": "2026-10-06T12:19:20.599Z",
-          "delivered_on": "2026-10-06"
+          "delivered_on": "2026-10-06",
+          "done_at": "2026-10-09T16:17:29.289Z",
+          "done_on": "2026-10-09",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         },
         {
           "id": "t-20261001-mohamed-muoa1lyt",
@@ -4658,7 +4662,7 @@
         },
         {
           "id": "t-20261009-rahma-elsaid-muv8u8nm",
-          "who": "Rahma Elsaid",
+          "who": "Rahma",
           "space": "Graphic",
           "project": "Helal",
           "title": "slow marketing - fast marketing \"single visual\"",
@@ -4672,7 +4676,7 @@
           "created_by": "Tasneem",
           "created_at": "2026-10-05T12:46:19.476Z",
           "updated_at": "2026-10-05T20:33:53.116Z",
-          "updated_by": "Rahma Elsaid",
+          "updated_by": "Rahma",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
@@ -4834,7 +4838,7 @@
         },
         {
           "id": "t-20261011-rahma-elsaid-mv14puch",
-          "who": "Rahma Elsaid",
+          "who": "Rahma",
           "space": "Graphic",
           "project": "Helal",
           "title": "Single Visual | 26 Oct",
