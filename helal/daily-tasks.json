@@ -448,7 +448,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:37:32.929Z",
+      "updated_at": "2026-10-09T16:03:35.932Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -477,8 +477,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 203.6835411111111,
-          "live": 30.233120555555555
+          "hours": 203.90062361111111,
+          "live": 30.667285555555555
         },
         "Seif": {
           "open": 17,
@@ -487,8 +487,8 @@
           "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 14.283530617283951,
-          "live": 75.25854638888889
+          "hours": 14.380011851851853,
+          "live": 76.1268775
         },
         "Alaa": {
           "open": 7,
@@ -501,8 +501,8 @@
           "live": 0
         },
         "Sara": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -517,8 +517,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.48691402777777,
-          "live": 72.1961686111111
+          "hours": 37.70399722222222,
+          "live": 72.630335
         },
         "Tasneem": {
           "open": 1,
@@ -582,9 +582,10 @@
         }
       },
       "time": {
-        "avgTodo": 8367,
-        "avgProgress": 5520,
-        "open": 62
+        "avgTodo": 8203,
+        "avgProgress": 2692,
+        "avgToDone": 7150,
+        "open": 63
       },
       "hr": {
         "people": {
@@ -4716,6 +4717,27 @@
           "review_at": "2026-10-09T08:04:43.916Z",
           "first_review_at": "2026-10-09T08:04:43.916Z",
           "delivered_on": "2026-10-09"
+        },
+        {
+          "id": "t-20261009-sara-mv15ncb8",
+          "who": "Sara",
+          "space": "Graphic",
+          "project": "MEDC",
+          "title": "Adjusting the MEDC Post Dimensions",
+          "notes": "",
+          "due": "2026-10-09",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-10-09",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-09T16:03:35.828Z",
+          "updated_at": "2026-10-09T16:03:35.828Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
