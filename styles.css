@@ -1,4 +1,5 @@
-:root {
+:root,
+html[data-theme="dark"] {
   --bg: #080808;
   --bg-2: #121212;
   --bg-3: #1a1a1a;
@@ -18,6 +19,39 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --serif: "Figtree", sans-serif;
   --sans: "Figtree", sans-serif;
+  --panel: #101010;
+  --login-shell: rgba(18, 18, 18, 0.92);
+  --login-wash: #0c0c0c;
+  --brand-wash: #0d0d0d;
+  --overlay: rgba(0, 0, 0, 0.82);
+  --card-top: rgba(28, 28, 28, 0.98);
+  --card-bot: rgba(18, 18, 18, 0.96);
+  --scheme: dark;
+}
+
+html[data-theme="bright"] {
+  --bg: #f4f2ec;
+  --bg-2: #ffffff;
+  --bg-3: #ebe7de;
+  --line: #d6d0c4;
+  --line-strong: #b8b0a0;
+  --text: #1a1814;
+  --muted: #6f685c;
+  --gold: #c9a000;
+  --gold-2: #e0b400;
+  --ink: #1a1814;
+  --green: #1f9d55;
+  --orange: #c77700;
+  --red: #c0392b;
+  --shadow: 0 12px 36px rgba(40, 32, 12, 0.10);
+  --panel: #ffffff;
+  --login-shell: rgba(255, 255, 255, 0.96);
+  --login-wash: #efece4;
+  --brand-wash: #f7f5ef;
+  --overlay: rgba(40, 36, 28, 0.45);
+  --card-top: rgba(255, 255, 255, 0.98);
+  --card-bot: rgba(247, 245, 239, 0.96);
+  --scheme: light;
 }
 
 * { box-sizing: border-box; font-family: var(--sans); }
@@ -31,7 +65,14 @@ html, body {
     var(--bg);
   color: var(--text);
   font-family: var(--sans);
-  color-scheme: dark;
+  color-scheme: var(--scheme);
+}
+
+html[data-theme="bright"] body {
+  background:
+    radial-gradient(1100px 520px at 8% -12%, rgba(201, 160, 0, 0.12), transparent 55%),
+    radial-gradient(900px 480px at 100% 0%, rgba(201, 160, 0, 0.06), transparent 48%),
+    var(--bg);
 }
 
 button, input, select, textarea { font: inherit; color: inherit; }
@@ -69,7 +110,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 /* Login */
+.theme-toggle-login {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
 .login-page {
+  position: relative;
   min-height: 100vh;
   display: grid;
   place-items: center;
@@ -77,7 +126,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background:
     radial-gradient(920px 420px at 18% -8%, rgba(245, 196, 0, 0.18), transparent 58%),
     radial-gradient(700px 360px at 90% 110%, rgba(245, 196, 0, 0.08), transparent 50%),
-    linear-gradient(180deg, #0c0c0c 0%, var(--bg) 100%);
+    linear-gradient(180deg, var(--login-wash) 0%, var(--bg) 100%);
   animation: fade-in 0.5s var(--ease) both;
 }
 
@@ -85,7 +134,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   width: min(880px, 100%);
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  background: rgba(18, 18, 18, 0.92);
+  background: var(--login-shell);
   border: 1px solid var(--line);
   border-radius: 22px;
   min-height: 540px;
@@ -104,7 +153,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   gap: 22px;
   background:
     linear-gradient(180deg, rgba(245, 196, 0, 0.12), transparent 58%),
-    #0d0d0d;
+    var(--brand-wash);
 }
 
 .login-brand .lede,
@@ -584,10 +633,10 @@ label {
   grid-column: 1 / -1;
   display: flex;
   height: 4px;
-  background: #2a2a2a;
+  background: var(--bg-3);
   overflow: hidden;
 }
-.time-bar .wait { display: block; height: 100%; background: #4a4a4a; }
+.time-bar .wait { display: block; height: 100%; background: var(--line-strong); }
 .time-bar .work { display: block; height: 100%; background: var(--gold); }
 .time-task.is-done .time-task-main strong { color: var(--green); }
 .time-days {
@@ -630,7 +679,7 @@ label {
 .cards { display: grid; gap: 12px; }
 
 .card {
-  background: linear-gradient(180deg, rgba(28, 28, 28, 0.98), rgba(18, 18, 18, 0.96));
+  background: linear-gradient(180deg, var(--card-top), var(--card-bot));
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
@@ -640,7 +689,7 @@ label {
 
 .card:hover {
   border-color: var(--line-strong);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow);
 }
 
 .card p { margin: 0; line-height: 1.55; }
@@ -802,13 +851,13 @@ body:has(.modal-bg) {
   padding: max(16px, env(safe-area-inset-top, 0px)) 16px max(16px, env(safe-area-inset-bottom, 0px));
   overflow: auto;
   overscroll-behavior: contain;
-  background: rgba(0, 0, 0, 0.82);
+  background: var(--overlay);
   /* No backdrop-filter — blur left a frozen empty screen on some browsers. */
 }
 
 .modal, .drawer {
   z-index: 1001;
-  background: #101010;
+  background: var(--panel);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
@@ -905,7 +954,7 @@ body:has(.modal-bg) {
   padding-top: 14px;
   margin-top: 10px;
   border-top: 1px solid var(--line);
-  background: #101010;
+  background: var(--panel);
   position: relative;
   z-index: 2;
 }
@@ -1017,7 +1066,7 @@ body:has(.modal-bg) {
 .load-bar {
   margin-top: 8px;
   height: 4px;
-  background: #2a2a2a;
+  background: var(--bg-3);
   max-width: 180px;
 }
 .load-bar span {

@@ -5,19 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Helal</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <script>
+      try {
+        var t = localStorage.getItem("helal.theme");
+        document.documentElement.dataset.theme = t === "bright" ? "bright" : "dark";
+      } catch (e) {
+        document.documentElement.dataset.theme = "dark";
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261009-task-naming-rahma" />
+    <link rel="stylesheet" href="./styles.css?v=20261009-time-bright" />
     <link rel="icon" href="./assets/helal-mark.png" />
   </head>
   <body>
     <div id="app">
       <p class="boot">Loading Helal…</p>
     </div>
-    <script src="./app.js?v=20261009-task-naming-rahma"></script>
+    <script src="./app.js?v=20261009-time-bright"></script>
   </body>
 </html>

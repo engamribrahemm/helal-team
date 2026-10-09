@@ -3,6 +3,7 @@ const BOARD_STATUSES = ["To do", "In progress", "Review", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session.v3";
+const LS_THEME = "helal.theme";
 const LS_TASKS = "helal.tasksCache.v6";
 const LS_REPORTS = "helal.reportsCache.v5";
 const LS_HR = "helal.hrCache.v5";
@@ -121,6 +122,27 @@ function readSession() {
   } catch (_) {}
   return null;
 }
+
+function readTheme() {
+  try {
+    const t = localStorage.getItem(LS_THEME);
+    if (t === "bright" || t === "dark") return t;
+  } catch (_) {}
+  return "dark";
+}
+
+function applyTheme(theme) {
+  const mode = theme === "bright" ? "bright" : "dark";
+  document.documentElement.dataset.theme = mode;
+  try { localStorage.setItem(LS_THEME, mode); } catch (_) {}
+}
+
+function toggleTheme() {
+  applyTheme(readTheme() === "bright" ? "dark" : "bright");
+  render();
+}
+
+applyTheme(readTheme());
 
 const $ = (tag, attrs = {}, kids = []) => {
   const el = document.createElement(tag);
@@ -552,10 +574,7 @@ function progressStart(task) {
 }
 
 function loggedHours(task) {
-  let hours = task.progress_hours || 0;
-  const start = progressStart(task);
-  if (task.status === "In progress" && start) hours += hoursBetween(start, new Date().toISOString());
-  return hours;
+  return (taskStageTimes(task).progressMins || 0) / 60;
 }
 
 function stampTime(task, prev, next) {
@@ -585,8 +604,6 @@ function stampTime(task, prev, next) {
     task.review_at = now;
     if (!task.first_review_at) task.first_review_at = now;
     task.delivered_on = today();
-    // If they skipped the In progress column, start the until-Done clock here.
-    if (!task.first_progress_at) task.first_progress_at = task.progress_started_at || now;
   }
   if (next === "In progress" && !task.start_on) task.start_on = today();
   if (next === "Done") {
@@ -623,11 +640,20 @@ function taskStageTimes(task) {
   const stillTodo = task.status === "To do" && !leftTodoAt;
   const todoEnd = leftTodoAt || (task.status === "To do" ? now : "");
   const todoMins = created && todoEnd ? minutesBetween(created, todoEnd, stillTodo) : 0;
-  // In progress = work duration from first start through Done (or live until Done).
-  const stillProgress = !doneAt && !!progressAt;
-  const progressMins = progressAt
-    ? minutesBetween(progressAt, doneAt || now, stillProgress)
-    : 0;
+  // In progress = only time spent in the In progress column (stops at Review / Done / leave).
+  const liveStart = progressStart(task);
+  const stillProgress = task.status === "In progress" && !!liveStart;
+  let progressMins = Math.round((task.progress_hours || 0) * 60);
+  if (stillProgress) {
+    progressMins += minutesBetween(liveStart, now, true);
+  } else if (progressMins === 0 && progressAt) {
+    if (task.status === "In progress") {
+      progressMins = minutesBetween(progressAt, now, true);
+    } else {
+      const end = reviewAt || doneAt || "";
+      if (end) progressMins = minutesBetween(progressAt, end, false);
+    }
+  }
   return {
     created,
     progressAt,
@@ -3356,9 +3382,22 @@ function cairoMs(date, hour = 0) {
 }
 
 function progressIntervalsFor(task) {
-  const start = taskFirstProgressAt(task);
-  if (!start) return [];
-  return [{ start, end: task.done_at || new Date().toISOString(), task }];
+  const out = [];
+  for (const row of task.time_log || []) {
+    if (row.from === "In progress" && row.started_at && row.ended_at) {
+      out.push({ start: row.started_at, end: row.ended_at, task });
+    }
+  }
+  if (task.status === "In progress") {
+    const start = progressStart(task) || taskFirstProgressAt(task);
+    if (start) out.push({ start, end: new Date().toISOString(), task });
+  } else if (!out.length) {
+    const start = taskFirstProgressAt(task);
+    if (!start) return [];
+    const end = taskFirstReviewAt(task) || task.done_at || "";
+    if (end) out.push({ start, end, task });
+  }
+  return out;
 }
 
 function addProgressSlice(buckets, startIso, endIso, month, task) {
@@ -3773,14 +3812,17 @@ function timeRoster(month) {
       const buckets = progressByDay(month, person.name);
       const open = tasks.filter((t) => t.status !== "Done");
       const done = tasks.filter((t) => t.status === "Done");
-      const liveOpen = open.filter((t) => taskStageTimes(t).stillProgress);
+      const liveOpen = open.filter((t) => t.status === "In progress");
       return {
         person,
         tasks,
         buckets,
         progressMins: Math.round(Object.values(buckets).reduce((n, row) => n + (row.mins || 0), 0)),
         open: open.length,
-        liveMins: Math.round(liveOpen.reduce((n, t) => n + (taskStageTimes(t).progressMins || 0), 0)),
+        liveMins: Math.round(liveOpen.reduce((n, t) => {
+          const start = progressStart(t);
+          return n + (start ? minutesBetween(start, new Date().toISOString(), true) : 0);
+        }, 0)),
         done: done.length,
         avgTodo: avg(open.filter((t) => t.status === "To do"), "todoMins"),
         avgProgress: avg(done, "progressMins"),
@@ -3931,7 +3973,7 @@ function viewTime() {
         $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
       ]),
       $("p", { class: "muted" }, isCurrentMonth(month)
-        ? `${monthLabel(month)} only. To do = wait before work starts. In progress = time from start until Done. Past months keep their own numbers — switch months above to compare.`
+        ? `${monthLabel(month)} only. To do = time in To do. In progress = time in In progress only — it stops when the card moves to Review. Past months keep their own numbers — switch months above to compare.`
         : `${monthLabel(month)} archived month. Open work lives in the current month. Numbers below are Done and stored time for this month only.`),
       $("div", { class: "stat-row" }, [
         statBox(formatMinutes(focused ? focused.progressMins : teamMins), focused ? "In progress this month" : "Team in progress", (focused ? focused.progressMins : teamMins) ? "tone-green" : ""),
@@ -4436,7 +4478,7 @@ function monthTimeStats(month) {
   };
   return {
     avgTodo: avgOf(open.filter((t) => t.status === "To do"), "todoMins"),
-    avgProgress: avgOf(tasks.filter((t) => t.status === "Done" || taskStageTimes(t).stillProgress), "progressMins"),
+    avgProgress: avgOf(tasks.filter((t) => t.status === "Done" || t.status === "In progress"), "progressMins"),
     open: open.length,
   };
 }
@@ -4793,7 +4835,7 @@ function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. On the Board, press All or a name to see one person or the whole team. After you save, a green Saved message appears and GitHub has the update."],
-    ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. To do wait starts when the task is created. In progress time runs from when work starts until Done. Upload files to Drive, not GitHub."],
+    ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. To do time is how long the card waits in To do. In progress time is only while it sits in In progress — it stops when you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
     ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],
@@ -4812,7 +4854,7 @@ function viewAdminGuide() {
     ["Months never mix", "Board, Workload, Time, Dashboard, and HR all use the same Prev / Next month control. What you see is one month only. Done tasks stay in the month they were finished. Open work always lives in the current month. When you open September, you see September’s Done and scores — not October’s open cards mixed in."],
     ["Time · start with Everyone", "Open Time. Everyone shows a compact team summary: in-progress hours, live timers, open count, Done count, average wait, average in-progress time. No long task lists on this screen. That keeps the page scannable."],
     ["Time · open one person", "Click a name in the chips or the summary table. You get that person’s KPIs, then Open / Done / All filters. Default is Open so you are not buried in finished work. Press Show day breakdown only when you need hours by Cairo day. Switch months above to compare the same person month by month — each month’s Done time stays separate."],
-    ["Board times", "On To do cards, the timer is To do wait (live from create until someone starts work). After the card moves to In progress, the timer is In progress (from start until Done)."],
+    ["Board times", "On To do cards, the timer is To do (live from create until the card leaves To do). On In progress cards, the timer is In progress only while the card stays there. Moving to Review freezes In progress time — Review and Done do not add to it."],
     ["HR · Profile", "Pick a person and a month. Profile shows that month’s score bars, open work (current month only), Done for the selected month, attendance, reports, attitude, warnings, and evaluations. Use this when you need the full picture for one teammate."],
     ["HR · Performance", "Team score table for the selected month. Choose Everyone or one name. Delivery, Quality, Revisions, Creativity, total, and Attitude. Late tasks and missing Drive counts are for that month only. Change the month to see last month’s performance without touching this month."],
     ["HR · Task tracking", "Review and Done tasks that still need an evaluation for the selected month. Filter by person if needed. After you evaluate, the task leaves this list. Past months only show Done items from that month that were never scored."],
@@ -4842,6 +4884,11 @@ function viewWelcome() {
     autocomplete: "current-password",
   });
   return $("div", { class: "login-page" }, [
+    $("button", {
+      class: "btn ghost theme-toggle-login",
+      type: "button",
+      onclick: toggleTheme,
+    }, readTheme() === "bright" ? "Dark mode" : "Bright mode"),
     $("div", { class: "login-shell" }, [
       $("aside", { class: "login-brand" }, [
         $("img", {
@@ -4968,6 +5015,12 @@ function render(force) {
             loadAll().then(render);
           },
         }, "Refresh"),
+        $("button", {
+          class: "btn ghost",
+          type: "button",
+          title: readTheme() === "bright" ? "Switch to dark mode" : "Switch to bright mode",
+          onclick: toggleTheme,
+        }, readTheme() === "bright" ? "Dark" : "Bright"),
         $("button", { class: "btn ghost", onclick: logout }, "Log out"),
       ]),
     ]),
