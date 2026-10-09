@@ -447,7 +447,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-08T14:47:34.359Z",
+      "updated_at": "2026-10-09T08:04:43.965Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -476,25 +476,25 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 191.26707416666667,
-          "live": 5.4001866666666665
+          "hours": 199.91007333333334,
+          "live": 22.686185
         },
         "Seif": {
           "open": 17,
           "todo": 13,
           "progress": 3,
           "review": 1,
-          "overdue": 1,
+          "overdue": 2,
           "done": 7,
-          "hours": 7.9732115,
-          "live": 26.438885833333334
+          "hours": 13.159011083333334,
+          "live": 78.29688166666668
         },
         "Alaa": {
           "open": 8,
           "todo": 2,
           "progress": 0,
           "review": 6,
-          "overdue": 4,
+          "overdue": 5,
           "done": 1,
           "hours": 5.799785555555555,
           "live": 0
@@ -512,12 +512,12 @@
         "Ganna": {
           "open": 24,
           "todo": 20,
-          "progress": 2,
-          "review": 2,
+          "progress": 1,
+          "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 31.752509907407404,
-          "live": 92.47987027777778
+          "hours": 33.71344666666666,
+          "live": 64.64923388888889
         },
         "Tasneem": {
           "open": 1,
@@ -581,8 +581,8 @@
         }
       },
       "time": {
-        "avgTodo": 6979,
-        "avgProgress": 4698,
+        "avgTodo": 8016,
+        "avgProgress": 5270,
         "open": 62
       },
       "hr": {
@@ -4667,20 +4667,33 @@
           "title": "تقطيع٦ فيديوهات",
           "notes": "عايز الفيديوهات دي متقطعة مع مراعات الفريمات تبقي متظبطة مع طريقة الكلام سواء سريعة او بطيئة",
           "due": "2026-10-09",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-06",
           "month": "2026-10",
           "created_by": "Moamen",
           "created_at": "2026-10-06T13:18:21.588Z",
-          "updated_at": "2026-10-06T17:40:34.465Z",
+          "updated_at": "2026-10-09T08:04:43.916Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-06T17:40:34.465Z",
-          "progress_started_at": "2026-10-06T17:40:34.465Z",
-          "time_log": [],
-          "start_on": "2026-10-06"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-06T17:40:34.465Z",
+              "ended_at": "2026-10-09T08:04:43.916Z",
+              "hours": 62.40262527777778,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-10-06",
+          "progress_hours": 62.40262527777778,
+          "review_at": "2026-10-09T08:04:43.916Z",
+          "first_review_at": "2026-10-09T08:04:43.916Z",
+          "delivered_on": "2026-10-09"
         }
       ]
     },
