@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T20:20:00.861Z",
+      "updated_at": "2026-10-09T20:20:09.561Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -488,17 +488,17 @@
           "review": 1,
           "overdue": 0,
           "done": 9,
-          "hours": 14.154723861111112,
-          "live": 54.266666666666666
+          "hours": 14.156390527777779,
+          "live": 54.28333333333333
         },
         "Alaa": {
-          "open": 4,
+          "open": 3,
           "todo": 1,
           "progress": 0,
-          "review": 3,
-          "overdue": 2,
-          "done": 5,
-          "hours": 31.277800777777777,
+          "review": 2,
+          "overdue": 1,
+          "done": 6,
+          "hours": 30.237977037037037,
           "live": 0
         },
         "Sara": {
@@ -573,9 +573,9 @@
         }
       },
       "time": {
-        "avgTodo": 8276,
-        "avgProgress": 2645,
-        "open": 57
+        "avgTodo": 8277,
+        "avgProgress": 2595,
+        "open": 56
       },
       "hr": {
         "people": {
@@ -4608,15 +4608,15 @@
           "title": "Designed MEDC visuals for October courses.",
           "notes": "",
           "due": "2026-10-08",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-06",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-06T12:13:46.488Z",
-          "updated_at": "2026-10-07T15:46:45.082Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-09T20:20:09.508Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-06T14:44:25.192Z",
           "progress_started_at": "",
@@ -4634,7 +4634,11 @@
           "progress_hours": 25.038858333333334,
           "review_at": "2026-10-07T15:46:45.082Z",
           "first_review_at": "2026-10-07T15:46:45.082Z",
-          "delivered_on": "2026-10-07"
+          "delivered_on": "2026-10-07",
+          "done_at": "2026-10-09T20:20:09.508Z",
+          "done_on": "2026-10-09",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         }
       ]
     },
