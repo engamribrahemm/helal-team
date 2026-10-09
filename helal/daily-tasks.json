@@ -448,7 +448,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-09T15:21:32.958Z",
+      "updated_at": "2026-10-09T15:37:32.929Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -477,22 +477,22 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 203.55021125,
-          "live": 29.966460833333333
+          "hours": 203.6835411111111,
+          "live": 30.233120555555555
         },
         "Seif": {
           "open": 17,
           "todo": 13,
-          "progress": 3,
-          "review": 1,
+          "progress": 2,
+          "review": 2,
           "overdue": 2,
           "done": 7,
-          "hours": 15.34309375,
-          "live": 100.13770833333334
+          "hours": 14.283530617283951,
+          "live": 75.25854638888889
         },
         "Alaa": {
-          "open": 8,
-          "todo": 2,
+          "open": 7,
+          "todo": 1,
           "progress": 0,
           "review": 6,
           "overdue": 5,
@@ -517,8 +517,8 @@
           "review": 3,
           "overdue": 1,
           "done": 1,
-          "hours": 37.35358458333333,
-          "live": 71.92950972222222
+          "hours": 37.48691402777777,
+          "live": 72.1961686111111
         },
         "Tasneem": {
           "open": 1,
@@ -551,8 +551,8 @@
           "live": 0
         },
         "Rahma Elsaid": {
-          "open": 1,
-          "todo": 0,
+          "open": 2,
+          "todo": 1,
           "progress": 0,
           "review": 1,
           "overdue": 0,
@@ -582,8 +582,8 @@
         }
       },
       "time": {
-        "avgTodo": 8453,
-        "avgProgress": 5511,
+        "avgTodo": 8367,
+        "avgProgress": 5520,
         "open": 62
       },
       "hr": {
@@ -4810,6 +4810,27 @@
           "done_on": "2026-10-06",
           "done_month": "2026-10",
           "done_by": "Mariam"
+        },
+        {
+          "id": "t-20261011-rahma-elsaid-mv14puch",
+          "who": "Rahma Elsaid",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "Single Visual | 26 Oct",
+          "notes": "",
+          "due": "2026-10-11",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-09",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-09T15:37:32.898Z",
+          "updated_at": "2026-10-09T15:37:32.898Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
