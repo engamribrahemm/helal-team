@@ -777,6 +777,19 @@
       "created_at": "2026-10-09T15:22:07.625Z",
       "decided_at": "",
       "decided_by": ""
+    },
+    {
+      "id": "ar-mv146bw6",
+      "who": "Alaa",
+      "friday": "2026-10-09",
+      "date": "2026-10-11",
+      "from": "Office",
+      "to": "Home",
+      "reason": "عندي كليه من 8 ونص ل 5",
+      "status": "Pending",
+      "created_at": "2026-10-09T15:22:22.518Z",
+      "decided_at": "",
+      "decided_by": ""
     }
   ]
 }
