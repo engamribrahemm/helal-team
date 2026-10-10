@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T14:23:01.401Z",
+      "updated_at": "2026-10-10T14:23:31.663Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -573,7 +573,7 @@
         }
       },
       "time": {
-        "avgTodo": 8326,
+        "avgTodo": 8327,
         "avgProgress": 2903,
         "open": 53
       },
@@ -5238,7 +5238,7 @@
           "who": "Mohamed",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video",
+          "title": "tiktok video | 17 OCT",
           "notes": "احنا اكتر من كدة!",
           "due": "2026-10-15",
           "status": "To do",
@@ -5248,7 +5248,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:20:35.290Z",
-          "updated_at": "2026-10-09T15:05:52.346Z",
+          "updated_at": "2026-10-10T14:23:31.631Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
