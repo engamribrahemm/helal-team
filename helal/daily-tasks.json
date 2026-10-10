@@ -63,7 +63,8 @@
     "t-20261025-alaa-muocoshd",
     "t-20261009-sara-mv15ncb8",
     "t-20261028-ganna-muzks341",
-    "t-20261003-mohamed-muoa4zmt"
+    "t-20261003-mohamed-muoa4zmt",
+    "t-20261010-mohamed-muoa3vbk"
   ],
   "statuses": [
     "To do",
@@ -451,7 +452,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T15:45:45.263Z",
+      "updated_at": "2026-10-10T15:45:48.912Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -480,8 +481,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 143.1960262037037,
-          "live": 52.454116944444436
+          "hours": 143.1967026851852,
+          "live": 52.45614638888888
         },
         "Seif": {
           "open": 14,
@@ -490,8 +491,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.846329393939392,
-          "live": 73.71224694444444
+          "hours": 16.846421666666664,
+          "live": 73.71326194444444
         },
         "Alaa": {
           "open": 2,
@@ -520,8 +521,8 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 80.00144685185185,
-          "live": 96.33292527777778
+          "hours": 80.00178490740741,
+          "live": 96.33393944444444
         },
         "Tasneem": {
           "open": 3,
@@ -544,10 +545,10 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 13,
+          "open": 12,
           "todo": 10,
           "progress": 0,
-          "review": 3,
+          "review": 2,
           "overdue": 0,
           "done": 2,
           "hours": 0.043764722222222226,
@@ -578,7 +579,7 @@
         "avgTodo": 7919,
         "avgProgress": 3338,
         "avgToDone": 9007,
-        "open": 52
+        "open": 51
       },
       "hr": {
         "people": {
@@ -655,11 +656,11 @@
             "reviews": 0
           },
           "Mohamed": {
-            "delivery": 4,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 4,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
@@ -4832,31 +4833,6 @@
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
-        },
-        {
-          "id": "t-20261010-mohamed-muoa3vbk",
-          "who": "Mohamed",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "Delivery of Reel No. 2",
-          "notes": "",
-          "due": "2026-10-10",
-          "status": "Review",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T15:47:25.137Z",
-          "updated_at": "2026-10-10T13:16:46.269Z",
-          "updated_by": "Mohamed",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": "",
-          "time_log": [],
-          "review_at": "2026-10-10T13:16:46.269Z",
-          "first_review_at": "2026-10-10T13:16:46.269Z",
-          "delivered_on": "2026-10-10"
         },
         {
           "id": "t-20261010-tasneem-mv2fzp48",
