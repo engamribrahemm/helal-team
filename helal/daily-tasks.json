@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T13:01:38.632Z",
+      "updated_at": "2026-10-10T13:01:51.590Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -518,8 +518,8 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 79.0849162037037,
-          "live": 93.58333333333333
+          "hours": 79.09047175925926,
+          "live": 93.6
         },
         "Tasneem": {
           "open": 1,
@@ -543,8 +543,8 @@
         },
         "Mohamed": {
           "open": 15,
-          "todo": 13,
-          "progress": 2,
+          "todo": 12,
+          "progress": 3,
           "review": 0,
           "overdue": 2,
           "done": 0,
@@ -573,7 +573,7 @@
         }
       },
       "time": {
-        "avgTodo": 8817,
+        "avgTodo": 8963,
         "avgProgress": 2896,
         "open": 53
       },
@@ -5145,18 +5145,20 @@
           "title": "tiktok video",
           "notes": "اعلان عن 30 دقيقة سيشن for free",
           "due": "2026-10-14",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:19:36.116Z",
-          "updated_at": "2026-10-09T15:05:42.113Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-10-10T13:01:51.568Z",
+          "updated_by": "Mohamed",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-10T13:01:51.568Z",
+          "progress_started_at": "2026-10-10T13:01:51.568Z",
+          "time_log": [],
+          "start_on": "2026-10-10"
         }
       ]
     },
