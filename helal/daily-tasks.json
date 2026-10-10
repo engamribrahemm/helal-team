@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T14:29:08.321Z",
+      "updated_at": "2026-10-10T14:29:12.470Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,12 +474,12 @@
         "Judi": {
           "open": 3,
           "todo": 0,
-          "progress": 2,
-          "review": 1,
+          "progress": 3,
+          "review": 0,
           "overdue": 2,
           "done": 1,
-          "hours": 142.34465388888887,
-          "live": 49.900000000000006
+          "hours": 107.89182375,
+          "live": 54.43333333333334
         },
         "Seif": {
           "open": 14,
@@ -574,7 +574,7 @@
       },
       "time": {
         "avgTodo": 8332,
-        "avgProgress": 2795,
+        "avgProgress": 2702,
         "open": 53
       },
       "hr": {
@@ -589,11 +589,11 @@
             "reviews": 3
           },
           "Judi": {
-            "delivery": 5,
+            "delivery": 0,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 5,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -4566,18 +4566,18 @@
           "title": "Assign TikTok Tasks",
           "notes": "Assign TikTok tasks for ganna and mohamed",
           "due": "2026-10-07",
-          "status": "Review",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-07",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-07T15:28:07.578Z",
-          "updated_at": "2026-10-09T15:21:32.923Z",
+          "updated_at": "2026-10-10T14:29:12.439Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-08T09:17:15.617Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-10-10T14:29:12.439Z",
           "time_log": [
             {
               "from": "In progress",
