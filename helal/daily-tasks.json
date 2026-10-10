@@ -450,7 +450,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T14:38:02.557Z",
+      "updated_at": "2026-10-10T15:45:03.080Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -479,8 +479,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 142.43354277777777,
-          "live": 50.16666666666667
+          "hours": 143.1882150925926,
+          "live": 52.43068361111111
         },
         "Seif": {
           "open": 14,
@@ -489,8 +489,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.743700883838383,
-          "live": 72.58333333333333
+          "hours": 16.845264292929294,
+          "live": 73.70053083333333
         },
         "Alaa": {
           "open": 2,
@@ -519,12 +519,12 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 79.62380509259259,
-          "live": 95.2
+          "hours": 79.9975412037037,
+          "live": 96.32120833333333
         },
         "Tasneem": {
-          "open": 1,
-          "todo": 1,
+          "open": 3,
+          "todo": 3,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -543,13 +543,13 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 16,
+          "open": 15,
           "todo": 10,
           "progress": 0,
-          "review": 6,
-          "overdue": 2,
-          "done": 0,
-          "hours": 0,
+          "review": 5,
+          "overdue": 1,
+          "done": 1,
+          "hours": 0.043764722222222226,
           "live": 0
         },
         "Rahma": {
@@ -574,9 +574,10 @@
         }
       },
       "time": {
-        "avgTodo": 8264,
-        "avgProgress": 2796,
-        "open": 53
+        "avgTodo": 7918,
+        "avgProgress": 3337,
+        "avgToDone": 8821,
+        "open": 54
       },
       "hr": {
         "people": {
@@ -3765,15 +3766,15 @@
           "title": "Delivery of BTS No. 1",
           "notes": "",
           "due": "2026-10-01",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:45:39.701Z",
-          "updated_at": "2026-10-10T13:04:08.560Z",
-          "updated_by": "Mohamed",
+          "updated_at": "2026-10-10T15:45:03.026Z",
+          "updated_by": "Tasneem",
           "revisions": 0,
           "first_progress_at": "2026-10-10T13:01:31.007Z",
           "progress_started_at": "",
@@ -3794,7 +3795,11 @@
           "progress_hours": 0.043764722222222226,
           "review_at": "2026-10-10T13:04:08.560Z",
           "first_review_at": "2026-10-10T13:04:08.560Z",
-          "delivered_on": "2026-10-10"
+          "delivered_on": "2026-10-10",
+          "done_at": "2026-10-10T15:45:03.025Z",
+          "done_on": "2026-10-10",
+          "done_month": "2026-10",
+          "done_by": "Tasneem"
         },
         {
           "id": "t-20261001-alaa-muoktny3",
