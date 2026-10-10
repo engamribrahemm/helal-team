@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T16:58:12.390Z",
+      "updated_at": "2026-10-10T17:05:47.422Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -484,8 +484,8 @@
           "review": 2,
           "overdue": 2,
           "done": 1,
-          "hours": 214.35031416666666,
-          "live": 51.56666666666667
+          "hours": 214.4086475,
+          "live": 51.68333333333333
         },
         "Seif": {
           "open": 14,
@@ -494,8 +494,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.955822095959597,
-          "live": 74.91666666666667
+          "hours": 16.966428156565655,
+          "live": 75.03333333333333
         },
         "Alaa": {
           "open": 2,
@@ -518,18 +518,18 @@
           "live": 0
         },
         "Ganna": {
-          "open": 13,
-          "todo": 10,
+          "open": 8,
+          "todo": 7,
           "progress": 1,
-          "review": 2,
-          "overdue": 2,
-          "done": 2,
-          "hours": 80.40158287037038,
-          "live": 97.53333333333333
+          "review": 0,
+          "overdue": 0,
+          "done": 6,
+          "hours": 88.81735477777778,
+          "live": 97.66666666666667
         },
         "Tasneem": {
-          "open": 3,
-          "todo": 3,
+          "open": 4,
+          "todo": 4,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -548,8 +548,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 10,
-          "todo": 10,
+          "open": 12,
+          "todo": 12,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -576,12 +576,32 @@
           "done": 0,
           "hours": 0,
           "live": 0
+        },
+        "Aya": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Salma": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
         }
       },
       "time": {
-        "avgTodo": 7990,
-        "avgProgress": 2811,
-        "open": 49
+        "avgTodo": 7093,
+        "avgProgress": 3045,
+        "open": 47
       },
       "hr": {
         "people": {
@@ -676,6 +696,24 @@
             "reviews": 0
           },
           "Menna": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Aya": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Salma": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
@@ -4977,6 +5015,27 @@
           "created_by": "Amr",
           "created_at": "2026-10-09T16:17:19.939Z",
           "updated_at": "2026-10-09T16:17:19.939Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261011-tasneem-mv2nb6a0",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "Determine a time for meetings with the leads",
+          "notes": "",
+          "due": "2026-10-11",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-10",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-10T17:05:47.401Z",
+          "updated_at": "2026-10-10T17:05:47.401Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
