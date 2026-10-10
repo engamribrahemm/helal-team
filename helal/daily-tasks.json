@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T10:22:28.731Z",
+      "updated_at": "2026-10-10T10:28:57.052Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,12 +474,12 @@
         "Judi": {
           "open": 3,
           "todo": 0,
-          "progress": 1,
-          "review": 2,
+          "progress": 0,
+          "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 213.05031416666668,
-          "live": 48.96666666666667
+          "hours": 377.13396166666666,
+          "live": 0
         },
         "Seif": {
           "open": 14,
@@ -488,8 +488,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.355822095959596,
-          "live": 68.31666666666666
+          "hours": 16.364913005050507,
+          "live": 68.41666666666667
         },
         "Alaa": {
           "open": 2,
@@ -518,8 +518,8 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 78.20158287037037,
-          "live": 90.93333333333334
+          "hours": 78.24047175925926,
+          "live": 91.05
         },
         "Tasneem": {
           "open": 1,
@@ -573,8 +573,8 @@
         }
       },
       "time": {
-        "avgTodo": 8904,
-        "avgProgress": 2885,
+        "avgTodo": 8911,
+        "avgProgress": 2883,
         "open": 53
       },
       "hr": {
@@ -589,11 +589,11 @@
             "reviews": 3
           },
           "Judi": {
-            "delivery": 2,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 2,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
@@ -5105,20 +5105,33 @@
           "title": "Instagram content for November | Grids",
           "notes": "- Optimize the instagram content \n8 grid - 24 piece of content \n\n4 grids - projects \n4 grids - educational\n\n- research grid options - define the projects and content for these grids & refrences",
           "due": "2026-10-14",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-07",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-07T15:27:12.143Z",
-          "updated_at": "2026-10-08T09:23:33.676Z",
+          "updated_at": "2026-10-10T10:28:57.003Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-08T09:23:33.676Z",
-          "progress_started_at": "2026-10-08T09:23:33.676Z",
-          "time_log": [],
-          "start_on": "2026-10-08"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-08T09:23:33.676Z",
+              "ended_at": "2026-10-10T10:28:57.003Z",
+              "hours": 49.08981305555555,
+              "by": "Judi"
+            }
+          ],
+          "start_on": "2026-10-08",
+          "progress_hours": 49.08981305555555,
+          "review_at": "2026-10-10T10:28:57.003Z",
+          "first_review_at": "2026-10-10T10:28:57.003Z",
+          "delivered_on": "2026-10-10"
         },
         {
           "id": "t-20261014-ganna-muzkcl9w",
