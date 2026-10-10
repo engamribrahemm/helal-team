@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T14:36:23.595Z",
+      "updated_at": "2026-10-10T14:36:45.620Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -5499,7 +5499,7 @@
           "who": "Ganna",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video",
+          "title": "tiktok video | 21 OCT",
           "notes": "سايبين الشغل الي فوق راسنا وعاملين جلسة علاج نفسي",
           "due": "2026-10-19",
           "status": "To do",
@@ -5509,7 +5509,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:24:55.554Z",
-          "updated_at": "2026-10-09T15:08:39.423Z",
+          "updated_at": "2026-10-10T14:36:45.588Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
