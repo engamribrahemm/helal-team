@@ -64,7 +64,8 @@
     "t-20261009-sara-mv15ncb8",
     "t-20261028-ganna-muzks341",
     "t-20261003-mohamed-muoa4zmt",
-    "t-20261010-mohamed-muoa3vbk"
+    "t-20261010-mohamed-muoa3vbk",
+    "t-20261017-mohamed-muoa6f6b"
   ],
   "statuses": [
     "To do",
@@ -452,7 +453,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T15:45:48.912Z",
+      "updated_at": "2026-10-10T15:45:54.160Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -481,8 +482,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 143.1967026851852,
-          "live": 52.45614638888888
+          "hours": 143.19767398148147,
+          "live": 52.45906027777778
         },
         "Seif": {
           "open": 14,
@@ -491,8 +492,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.846421666666664,
-          "live": 73.71326194444444
+          "hours": 16.846554065656566,
+          "live": 73.71471833333334
         },
         "Alaa": {
           "open": 2,
@@ -521,8 +522,8 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 80.00178490740741,
-          "live": 96.33393944444444
+          "hours": 80.00227046296295,
+          "live": 96.33539611111111
         },
         "Tasneem": {
           "open": 3,
@@ -545,10 +546,10 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 12,
+          "open": 11,
           "todo": 10,
           "progress": 0,
-          "review": 2,
+          "review": 1,
           "overdue": 0,
           "done": 2,
           "hours": 0.043764722222222226,
@@ -579,7 +580,7 @@
         "avgTodo": 7919,
         "avgProgress": 3338,
         "avgToDone": 9007,
-        "open": 51
+        "open": 50
       },
       "hr": {
         "people": {
@@ -5356,37 +5357,6 @@
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-10-17",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20261017-mohamed-muoa6f6b",
-          "who": "Mohamed",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "Delivery of Reel No. 3",
-          "notes": "",
-          "due": "2026-10-17",
-          "status": "Review",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T15:49:24.180Z",
-          "updated_at": "2026-10-10T13:16:41.239Z",
-          "updated_by": "Mohamed",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": "",
-          "time_log": [],
-          "review_at": "2026-10-10T13:16:41.239Z",
-          "first_review_at": "2026-10-10T13:16:41.239Z",
-          "delivered_on": "2026-10-10"
         }
       ]
     },
