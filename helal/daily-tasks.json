@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T13:04:08.589Z",
+      "updated_at": "2026-10-10T13:04:11.019Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -544,12 +544,12 @@
         "Mohamed": {
           "open": 15,
           "todo": 12,
-          "progress": 2,
-          "review": 1,
+          "progress": 1,
+          "review": 2,
           "overdue": 2,
           "done": 0,
           "hours": 0.03333333333333333,
-          "live": 0.06666666666666667
+          "live": 0.03333333333333333
         },
         "Rahma": {
           "open": 2,
@@ -574,7 +574,7 @@
       },
       "time": {
         "avgTodo": 8965,
-        "avgProgress": 2674,
+        "avgProgress": 2780,
         "open": 53
       },
       "hr": {
@@ -4002,20 +4002,36 @@
           "title": "Delivery of Reel No. 1",
           "notes": "",
           "due": "2026-10-03",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:48:17.382Z",
-          "updated_at": "2026-10-10T13:01:38.601Z",
+          "updated_at": "2026-10-10T13:04:10.773Z",
           "updated_by": "Mohamed",
           "revisions": 0,
           "first_progress_at": "2026-10-10T13:01:38.601Z",
-          "progress_started_at": "2026-10-10T13:01:38.601Z",
-          "time_log": [],
-          "start_on": "2026-10-10"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-10T13:01:38.601Z",
+              "ended_at": "2026-10-10T13:04:10.773Z",
+              "hours": 0.04227,
+              "by": "Mohamed"
+            }
+          ],
+          "start_on": "2026-10-10",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 7,
+          "progress_hours": 0.04227,
+          "review_at": "2026-10-10T13:04:10.773Z",
+          "first_review_at": "2026-10-10T13:04:10.773Z",
+          "delivered_on": "2026-10-10"
         },
         {
           "id": "t-20261003-seif-murgf6go",
