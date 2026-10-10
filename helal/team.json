@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-10-10T15:47:48.600Z",
+  "updated_at": "2026-10-10T15:48:13.633Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -133,6 +133,17 @@
       "access": "member",
       "active": true,
       "updated_at": "2026-10-10T15:47:48.599Z"
+    },
+    {
+      "id": "salma",
+      "name": "Salma",
+      "role": "Sales",
+      "home": "social",
+      "mention": "@Salma",
+      "email": "",
+      "access": "member",
+      "active": true,
+      "updated_at": "2026-10-10T15:48:13.633Z"
     }
   ]
 }
