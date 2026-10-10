@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T14:23:31.663Z",
+      "updated_at": "2026-10-10T14:24:22.599Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -488,8 +488,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.72097361111111,
-          "live": 72.33333333333333
+          "hours": 16.72248876262626,
+          "live": 72.35
         },
         "Alaa": {
           "open": 2,
@@ -518,8 +518,8 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 79.54047175925926,
-          "live": 94.95
+          "hours": 79.54602731481482,
+          "live": 94.96666666666667
         },
         "Tasneem": {
           "open": 1,
@@ -573,7 +573,7 @@
         }
       },
       "time": {
-        "avgTodo": 8327,
+        "avgTodo": 8328,
         "avgProgress": 2903,
         "open": 53
       },
@@ -5347,7 +5347,7 @@
           "who": "Mohamed",
           "space": "Video editors",
           "project": "Helal",
-          "title": "tiktok video",
+          "title": "tiktok video | 19 OCT",
           "notes": "asking about the team.",
           "due": "2026-10-16",
           "status": "To do",
@@ -5357,7 +5357,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:23:38.978Z",
-          "updated_at": "2026-10-09T15:06:19.520Z",
+          "updated_at": "2026-10-10T14:24:22.567Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
