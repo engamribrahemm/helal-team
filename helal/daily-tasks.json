@@ -5170,18 +5170,18 @@
           "title": "Delivery of Reel No. 2",
           "notes": "",
           "due": "2026-10-14",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:58:54.757Z",
-          "updated_at": "2026-10-10T19:28:27.521Z",
+          "updated_at": "2026-10-10T19:28:37.216Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-06T15:25:46.708Z",
-          "progress_started_at": "2026-10-10T19:28:27.521Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -5190,11 +5190,19 @@
               "ended_at": "2026-10-10T19:28:18.916Z",
               "hours": 100.04228,
               "by": "Ganna"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-10T19:28:27.521Z",
+              "ended_at": "2026-10-10T19:28:37.214Z",
+              "hours": 0.0026925,
+              "by": "Ganna"
             }
           ],
           "start_on": "2026-10-06",
-          "progress_hours": 100.04228,
-          "review_at": "2026-10-10T19:28:18.916Z",
+          "progress_hours": 100.0449725,
+          "review_at": "2026-10-10T19:28:37.214Z",
           "first_review_at": "2026-10-10T19:28:18.916Z",
           "delivered_on": "2026-10-10"
         },
