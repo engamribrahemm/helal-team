@@ -449,7 +449,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T13:16:23.489Z",
+      "updated_at": "2026-10-10T13:16:41.258Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -543,9 +543,9 @@
         },
         "Mohamed": {
           "open": 15,
-          "todo": 11,
+          "todo": 10,
           "progress": 0,
-          "review": 4,
+          "review": 5,
           "overdue": 2,
           "done": 0,
           "hours": 0,
@@ -573,7 +573,7 @@
         }
       },
       "time": {
-        "avgTodo": 8561,
+        "avgTodo": 8415,
         "avgProgress": 2897,
         "open": 53
       },
@@ -652,11 +652,11 @@
             "reviews": 0
           },
           "Mohamed": {
-            "delivery": 2,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 2,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
@@ -5373,18 +5373,22 @@
           "title": "Delivery of Reel No. 3",
           "notes": "",
           "due": "2026-10-17",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:49:24.180Z",
-          "updated_at": "2026-09-30T15:49:24.180Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-10T13:16:41.239Z",
+          "updated_by": "Mohamed",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "review_at": "2026-10-10T13:16:41.239Z",
+          "first_review_at": "2026-10-10T13:16:41.239Z",
+          "delivered_on": "2026-10-10"
         }
       ]
     },
