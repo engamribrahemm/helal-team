@@ -14,6 +14,17 @@
       "created_at": "2026-10-10T19:57:56.287Z"
     },
     {
+      "id": "r-mv2sfal5",
+      "who": "Ganna",
+      "date": "2026-10-10",
+      "finished": "تصوير",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Office",
+      "created_at": "2026-10-10T19:28:57.689Z"
+    },
+    {
       "id": "r-mv1edtzq",
       "who": "Alaa",
       "date": "2026-10-09",
@@ -158,7 +169,7 @@
     },
     {
       "id": "r-muwxf15m",
-      "who": "Rahma Elsaid",
+      "who": "Rahma",
       "date": "2026-10-06",
       "finished": "I have finished 21 October 2026 design. I developed three different concepts and reviewed them with Seif to evaluate the best options. And I have submitted the final design.",
       "unfinished": "",
