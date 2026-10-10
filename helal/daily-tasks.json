@@ -450,7 +450,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T15:45:03.080Z",
+      "updated_at": "2026-10-10T15:45:07.220Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -479,8 +479,8 @@
           "review": 1,
           "overdue": 2,
           "done": 1,
-          "hours": 143.1882150925926,
-          "live": 52.43068361111111
+          "hours": 143.18898249999998,
+          "live": 52.43298583333333
         },
         "Seif": {
           "open": 14,
@@ -489,8 +489,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.845264292929294,
-          "live": 73.70053083333333
+          "hours": 16.845368914141417,
+          "live": 73.70168166666667
         },
         "Alaa": {
           "open": 2,
@@ -519,8 +519,8 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 79.9975412037037,
-          "live": 96.32120833333333
+          "hours": 79.99792472222222,
+          "live": 96.32235916666667
         },
         "Tasneem": {
           "open": 3,
@@ -543,12 +543,12 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 15,
+          "open": 14,
           "todo": 10,
           "progress": 0,
-          "review": 5,
+          "review": 4,
           "overdue": 1,
-          "done": 1,
+          "done": 2,
           "hours": 0.043764722222222226,
           "live": 0
         },
@@ -576,8 +576,8 @@
       "time": {
         "avgTodo": 7918,
         "avgProgress": 3337,
-        "avgToDone": 8821,
-        "open": 54
+        "avgToDone": 9007,
+        "open": 53
       },
       "hr": {
         "people": {
@@ -5533,22 +5533,26 @@
           "title": "Delivery of BTS No. 2",
           "notes": "",
           "due": "2026-10-19",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:50:10.843Z",
-          "updated_at": "2026-10-10T13:15:37.838Z",
-          "updated_by": "Mohamed",
+          "updated_at": "2026-10-10T15:45:06.918Z",
+          "updated_by": "Tasneem",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
           "time_log": [],
           "review_at": "2026-10-10T13:15:37.838Z",
           "first_review_at": "2026-10-10T13:15:37.838Z",
-          "delivered_on": "2026-10-10"
+          "delivered_on": "2026-10-10",
+          "done_at": "2026-10-10T15:45:06.916Z",
+          "done_on": "2026-10-10",
+          "done_month": "2026-10",
+          "done_by": "Tasneem"
         },
         {
           "id": "t-20261019-ganna-muzkjfr5",
