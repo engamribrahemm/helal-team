@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T17:05:47.422Z",
+      "updated_at": "2026-10-10T19:57:59.228Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -484,8 +484,8 @@
           "review": 2,
           "overdue": 2,
           "done": 1,
-          "hours": 214.4086475,
-          "live": 51.68333333333333
+          "hours": 215.84198083333334,
+          "live": 54.55
         },
         "Seif": {
           "open": 14,
@@ -494,13 +494,13 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.966428156565655,
-          "live": 75.03333333333333
+          "hours": 17.227034217171717,
+          "live": 77.9
         },
         "Alaa": {
           "open": 2,
-          "todo": 1,
-          "progress": 0,
+          "todo": 0,
+          "progress": 1,
           "review": 1,
           "overdue": 1,
           "done": 7,
@@ -524,8 +524,8 @@
           "review": 0,
           "overdue": 0,
           "done": 6,
-          "hours": 88.81735477777778,
-          "live": 97.66666666666667
+          "hours": 89.3906881111111,
+          "live": 100.53333333333333
         },
         "Tasneem": {
           "open": 4,
@@ -599,8 +599,8 @@
         }
       },
       "time": {
-        "avgTodo": 7093,
-        "avgProgress": 3045,
+        "avgTodo": 6891,
+        "avgProgress": 3064,
         "open": 47
       },
       "hr": {
@@ -5815,18 +5815,20 @@
           "title": "Delivery of Carousel No. 3",
           "notes": "",
           "due": "2026-10-24",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:59:05.200Z",
-          "updated_at": "2026-09-30T16:59:05.200Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-10T19:57:59.140Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-10T19:57:59.140Z",
+          "progress_started_at": "2026-10-10T19:57:59.140Z",
+          "time_log": [],
+          "start_on": "2026-10-10"
         },
         {
           "id": "t-20261024-ganna-muzko0cx",
