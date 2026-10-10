@@ -454,7 +454,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T15:45:57.298Z",
+      "updated_at": "2026-10-10T16:58:12.390Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -479,12 +479,12 @@
         "Judi": {
           "open": 3,
           "todo": 0,
-          "progress": 2,
-          "review": 1,
+          "progress": 1,
+          "review": 2,
           "overdue": 2,
           "done": 1,
-          "hours": 143.19825453703703,
-          "live": 52.46080194444444
+          "hours": 214.35031416666666,
+          "live": 51.56666666666667
         },
         "Seif": {
           "open": 14,
@@ -493,8 +493,8 @@
           "review": 0,
           "overdue": 0,
           "done": 10,
-          "hours": 16.84663325757576,
-          "live": 73.71558944444445
+          "hours": 16.955822095959597,
+          "live": 74.91666666666667
         },
         "Alaa": {
           "open": 2,
@@ -523,8 +523,8 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 80.00256074074075,
-          "live": 96.33626694444445
+          "hours": 80.40158287037038,
+          "live": 97.53333333333333
         },
         "Tasneem": {
           "open": 3,
@@ -578,9 +578,8 @@
         }
       },
       "time": {
-        "avgTodo": 7919,
-        "avgProgress": 3338,
-        "avgToDone": 9007,
+        "avgTodo": 7990,
+        "avgProgress": 2811,
         "open": 49
       },
       "hr": {
@@ -595,11 +594,11 @@
             "reviews": 3
           },
           "Judi": {
-            "delivery": 5,
+            "delivery": 2,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 5,
+            "total": 2,
             "attitude": 0,
             "reviews": 0
           },
@@ -3613,18 +3612,18 @@
           "title": "Helal monthly report",
           "notes": "",
           "due": "2026-09-30",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-27",
           "month": "2026-09",
           "created_by": "Amr",
           "created_at": "2026-09-27T12:53:06.995Z",
-          "updated_at": "2026-10-10T14:29:05.384Z",
+          "updated_at": "2026-10-10T16:58:12.360Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-10T09:33:54.834Z",
-          "progress_started_at": "2026-10-10T14:29:05.384Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -3633,14 +3632,22 @@
               "ended_at": "2026-10-10T10:22:28.693Z",
               "hours": 0.8094052777777778,
               "by": "Judi"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-10T14:29:05.384Z",
+              "ended_at": "2026-10-10T16:58:12.359Z",
+              "hours": 2.4852708333333333,
+              "by": "Judi"
             }
           ],
           "start_on": "2026-10-10",
           "delay_reason": "Other",
           "delay_notified": false,
           "delay_days": 10,
-          "progress_hours": 0.8094052777777778,
-          "review_at": "2026-10-10T10:22:28.693Z",
+          "progress_hours": 3.2946761111111114,
+          "review_at": "2026-10-10T16:58:12.359Z",
           "first_review_at": "2026-10-10T10:22:28.693Z",
           "delivered_on": "2026-10-10"
         },
