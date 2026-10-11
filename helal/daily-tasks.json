@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-11T14:22:27.641Z",
+      "updated_at": "2026-10-11T14:25:52.598Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -470,22 +470,22 @@
         "Mariam": {
           "open": 2,
           "todo": 0,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 1,
           "done": 5,
-          "hours": 48.74493490740741,
-          "live": 6.15
+          "hours": 71.40073569444445,
+          "live": 2.716666666666667
         },
         "Judi": {
-          "open": 3,
+          "open": 2,
           "todo": 0,
           "progress": 1,
-          "review": 2,
-          "overdue": 2,
-          "done": 2,
-          "hours": 225.05031416666668,
-          "live": 72.96666666666667
+          "review": 1,
+          "overdue": 1,
+          "done": 3,
+          "hours": 151.61203157407405,
+          "live": 73.01666666666667
         },
         "Seif": {
           "open": 14,
@@ -494,8 +494,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 18.901276641414142,
-          "live": 96.31666666666666
+          "hours": 18.905822095959596,
+          "live": 96.36666666666666
         },
         "Alaa": {
           "open": 3,
@@ -504,8 +504,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 28.54683746031746,
-          "live": 18.4
+          "hours": 28.553980317460315,
+          "live": 18.45
         },
         "Sara": {
           "open": 0,
@@ -599,9 +599,9 @@
         }
       },
       "time": {
-        "avgTodo": 7945,
-        "avgProgress": 2885,
-        "open": 47
+        "avgTodo": 7739,
+        "avgProgress": 2888,
+        "open": 46
       },
       "hr": {
         "people": {
@@ -4589,15 +4589,15 @@
           "title": "Assign TikTok Tasks",
           "notes": "Assign TikTok tasks for ganna and mohamed",
           "due": "2026-10-07",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-07",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-07T15:28:07.578Z",
-          "updated_at": "2026-10-10T14:38:02.526Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-10-11T14:25:52.575Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-10-08T09:17:15.617Z",
           "progress_started_at": "",
@@ -4634,7 +4634,11 @@
           "progress_hours": 4.685466388888889,
           "review_at": "2026-10-10T14:38:02.526Z",
           "first_review_at": "2026-10-08T13:32:30.817Z",
-          "delivered_on": "2026-10-10"
+          "delivered_on": "2026-10-10",
+          "done_at": "2026-10-11T14:25:52.575Z",
+          "done_on": "2026-10-11",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         }
       ]
     },
