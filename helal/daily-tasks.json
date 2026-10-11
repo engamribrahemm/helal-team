@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-11T10:51:54.168Z",
+      "updated_at": "2026-10-11T11:42:17.100Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +474,8 @@
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 70.04240777777778,
-          "live": 0.000010833333333333334
+          "hours": 70.462265,
+          "live": 0.8397252777777777
         },
         "Judi": {
           "open": 4,
@@ -484,8 +484,8 @@
           "review": 3,
           "overdue": 2,
           "done": 1,
-          "hours": 223.30169555555557,
-          "live": 69.46942944444444
+          "hours": 223.72155263888888,
+          "live": 70.30914361111111
         },
         "Seif": {
           "open": 14,
@@ -494,8 +494,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 18.582916060606063,
-          "live": 92.81470055555556
+          "hours": 18.659253661616162,
+          "live": 93.65441388888888
         },
         "Alaa": {
           "open": 2,
@@ -504,8 +504,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 28.04663619047619,
-          "live": 14.898591388888889
+          "hours": 28.166595079365077,
+          "live": 15.738303333333333
         },
         "Sara": {
           "open": 0,
@@ -518,13 +518,13 @@
           "live": 0
         },
         "Ganna": {
-          "open": 8,
+          "open": 7,
           "todo": 7,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 6,
-          "hours": 86.60502680555555,
+          "done": 7,
+          "hours": 89.29301594444443,
           "live": 0
         },
         "Tasneem": {
@@ -599,10 +599,10 @@
         }
       },
       "time": {
-        "avgTodo": 7899,
-        "avgProgress": 3544,
-        "avgToDone": 9392,
-        "open": 48
+        "avgTodo": 7948,
+        "avgProgress": 2708,
+        "avgToDone": 9569,
+        "open": 47
       },
       "hr": {
         "people": {
@@ -5198,15 +5198,15 @@
           "title": "Delivery of Reel No. 2",
           "notes": "",
           "due": "2026-10-14",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T15:58:54.757Z",
-          "updated_at": "2026-10-10T19:28:37.216Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-10-11T11:42:16.994Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-06T15:25:46.708Z",
           "progress_started_at": "",
@@ -5232,7 +5232,11 @@
           "progress_hours": 100.0449725,
           "review_at": "2026-10-10T19:28:37.214Z",
           "first_review_at": "2026-10-10T19:28:18.916Z",
-          "delivered_on": "2026-10-10"
+          "delivered_on": "2026-10-10",
+          "done_at": "2026-10-11T11:42:16.993Z",
+          "done_on": "2026-10-11",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261014-seif-muscykvc",
