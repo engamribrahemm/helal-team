@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-11T14:42:04.931Z",
+      "updated_at": "2026-10-11T16:31:18.156Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +474,8 @@
           "review": 1,
           "overdue": 1,
           "done": 5,
-          "hours": 71.53406902777778,
-          "live": 2.9833333333333334
+          "hours": 72.44240236111112,
+          "live": 4.8
         },
         "Judi": {
           "open": 2,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 151.70092046296296,
-          "live": 73.28333333333333
+          "hours": 152.31203157407407,
+          "live": 75.11666666666666
         },
         "Seif": {
           "open": 14,
@@ -494,18 +494,18 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 18.93157967171717,
-          "live": 96.65
+          "hours": 19.096731186868684,
+          "live": 98.46666666666667
         },
         "Alaa": {
           "open": 3,
-          "todo": 1,
-          "progress": 1,
+          "todo": 0,
+          "progress": 2,
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 28.594456507936506,
-          "live": 18.733333333333334
+          "hours": 28.85398031746032,
+          "live": 20.55
         },
         "Sara": {
           "open": 0,
@@ -599,8 +599,8 @@
         }
       },
       "time": {
-        "avgTodo": 7188,
-        "avgProgress": 2890,
+        "avgTodo": 7294,
+        "avgProgress": 2904,
         "open": 50
       },
       "hr": {
@@ -5099,18 +5099,20 @@
           "title": "3 Single visuals | 11 Oct",
           "notes": "",
           "due": "2026-10-11",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-11",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-11T14:22:27.620Z",
-          "updated_at": "2026-10-11T14:22:27.620Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-10-11T16:31:18.141Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-11T16:31:18.141Z",
+          "progress_started_at": "2026-10-11T16:31:18.141Z",
+          "time_log": [],
+          "start_on": "2026-10-11"
         }
       ]
     },
