@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-11T16:31:18.156Z",
+      "updated_at": "2026-10-11T17:38:31.359Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -468,14 +468,14 @@
           "live": 0
         },
         "Mariam": {
-          "open": 2,
+          "open": 1,
           "todo": 0,
           "progress": 1,
-          "review": 1,
+          "review": 0,
           "overdue": 1,
-          "done": 5,
-          "hours": 72.44240236111112,
-          "live": 4.8
+          "done": 6,
+          "hours": 49.70150574074074,
+          "live": 5.916666666666667
         },
         "Judi": {
           "open": 2,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 152.31203157407407,
-          "live": 75.11666666666666
+          "hours": 152.6842537962963,
+          "live": 76.23333333333333
         },
         "Seif": {
           "open": 14,
@@ -494,8 +494,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 19.096731186868684,
-          "live": 98.46666666666667
+          "hours": 19.19824633838384,
+          "live": 99.58333333333333
         },
         "Alaa": {
           "open": 3,
@@ -504,8 +504,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 28.85398031746032,
-          "live": 20.55
+          "hours": 25.526399444444444,
+          "live": 22.783333333333335
         },
         "Sara": {
           "open": 0,
@@ -558,12 +558,12 @@
           "live": 0
         },
         "Rahma": {
-          "open": 2,
-          "todo": 1,
+          "open": 1,
+          "todo": 0,
           "progress": 0,
           "review": 1,
-          "overdue": 1,
-          "done": 0,
+          "overdue": 0,
+          "done": 1,
           "hours": 0,
           "live": 0
         },
@@ -599,9 +599,9 @@
         }
       },
       "time": {
-        "avgTodo": 7294,
-        "avgProgress": 2904,
-        "open": 50
+        "avgTodo": 7468,
+        "avgProgress": 2744,
+        "open": 48
       },
       "hr": {
         "people": {
@@ -4783,22 +4783,26 @@
           "title": "slow marketing - fast marketing \"single visual\"",
           "notes": "",
           "due": "2026-10-09",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-05",
           "month": "2026-10",
           "created_by": "Tasneem",
           "created_at": "2026-10-05T12:46:19.476Z",
-          "updated_at": "2026-10-05T20:33:53.116Z",
-          "updated_by": "Rahma",
+          "updated_at": "2026-10-11T17:38:31.338Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
           "time_log": [],
           "review_at": "2026-10-05T20:33:53.116Z",
           "first_review_at": "2026-10-05T20:33:53.116Z",
-          "delivered_on": "2026-10-05"
+          "delivered_on": "2026-10-05",
+          "done_at": "2026-10-11T17:38:31.337Z",
+          "done_on": "2026-10-11",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         },
         {
           "id": "t-20261009-ganna-muwpfafn",
