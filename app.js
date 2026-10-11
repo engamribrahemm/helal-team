@@ -337,17 +337,29 @@ function personOf(name) {
 }
 
 function isSocial() {
-  const person = personOf(state.who);
-  if (person?.home === "social" || qualityTrack(person) === "social") return true;
+  // Full social leads only — Mariam and Judi. Others use manages[] for scoped lead access.
   return ["Mariam", "Judi"].some((name) => samePerson(name, state.who));
 }
 
+function managedNames() {
+  const list = personOf(state.who)?.manages;
+  return Array.isArray(list) ? list.filter(Boolean) : [];
+}
+
+function isLead() {
+  return managedNames().length > 0;
+}
+
+function managesPerson(name) {
+  return managedNames().some((n) => samePerson(n, name));
+}
+
 function canAssignTasks() {
-  return isAdmin() || isSocial();
+  return isAdmin() || isSocial() || isLead();
 }
 
 function canReviewTasks() {
-  return isAdmin() || isSocial();
+  return isAdmin() || isSocial() || isLead();
 }
 
 function canSeeTeamWorkload() {
@@ -358,15 +370,21 @@ function canSeeTask(task) {
   if (!task) return false;
   if (isAdmin()) return true;
   if (samePerson(task.who, state.who)) return true;
+  if (managesPerson(task.who)) return true;
+  if (samePerson(task.created_by, state.who)) return true;
   if (!isSocial()) return false;
   if (task.status === "Review" || task.status === "Revisions") return true;
-  if (samePerson(task.created_by, state.who)) return true;
-  return people().some((p) => p.home === "social" && samePerson(p.name, task.created_by));
+  return people().some((p) => isSocialName(p.name) && samePerson(p.name, task.created_by));
+}
+
+function isSocialName(name) {
+  return ["Mariam", "Judi"].some((n) => samePerson(n, name));
 }
 
 function canMarkDone(task) {
-  if (!(isAdmin() || isSocial())) return false;
-  return !task || canSeeTask(task);
+  if (isAdmin() || isSocial()) return !task || canSeeTask(task);
+  if (!isLead() || !task) return false;
+  return managesPerson(task.who) || samePerson(task.created_by, state.who);
 }
 
 function markTaskDone(taskId, event) {
@@ -383,6 +401,7 @@ function canMoveTask(task) {
   if (!task) return false;
   if (isAdmin()) return true;
   if (samePerson(task.who, state.who)) return true;
+  if (managesPerson(task.who)) return true;
   return isSocial() && canSeeTask(task);
 }
 
@@ -397,11 +416,15 @@ function samePerson(a, b) {
 }
 
 function canFilterBoardPerson() {
-  return canSeeTeamWorkload();
+  return canSeeTeamWorkload() || isLead();
 }
 
 function boardPeople() {
-  return people().filter((p) => p.name !== "Amr");
+  if (isAdmin() || isSocial()) return people().filter((p) => p.name !== "Amr");
+  if (isLead()) {
+    return people().filter((p) => managesPerson(p.name) || samePerson(p.name, state.who));
+  }
+  return people().filter((p) => samePerson(p.name, state.who));
 }
 
 function matchesBoardPerson(name) {
@@ -2495,8 +2518,8 @@ function viewBoard() {
         ]),
         status === "Done"
           ? (canMarkDone()
-            ? $("p", { class: "muted" }, "Mariam, Judi, and admins can drop here or press Mark done. It saves to GitHub.")
-            : $("p", { class: "muted" }, "Ask Mariam, Judi, or an admin to mark Done."))
+            ? $("p", { class: "muted" }, "Mariam, Judi, leads, and admins can drop here or press Mark done. It saves to GitHub.")
+            : $("p", { class: "muted" }, "Ask Mariam, Judi, your lead, or an admin to mark Done."))
           : (canAssignTasks()
             ? $("button", {
               class: "btn",
@@ -3480,9 +3503,11 @@ function createForm(onDone) {
   }
   const d = state.draft;
   if (!canAssignTasks()) d.who = state.who;
-  const assignees = canAssignTasks()
-    ? people().filter((p) => p.name !== "Amr")
-    : people().filter((p) => p.name === state.who);
+  const assignees = (() => {
+    if (isAdmin() || isSocial()) return people().filter((p) => p.name !== "Amr");
+    if (isLead()) return people().filter((p) => managesPerson(p.name) || samePerson(p.name, state.who));
+    return people().filter((p) => samePerson(p.name, state.who));
+  })();
   const who = $("select", { disabled: !canAssignTasks(), required: true }, [
     canAssignTasks() ? $("option", { value: "", selected: !d.who }, "Choose teammate") : null,
     ...assignees.map((p) => $("option", { value: p.name, selected: p.name === d.who }, p.name)),
@@ -4006,10 +4031,10 @@ function viewReview() {
     : (current ? today() : `${month}-01`);
   const who = state.dashPerson;
   const waiting = current
-    ? allTasks().filter((t) => (t.status === "Review" || t.status === "Revisions") && matchesDashPerson(t.who))
+    ? allTasks().filter((t) => (t.status === "Review" || t.status === "Revisions") && matchesDashPerson(t.who) && canSeeTask(t))
     : [];
-  const doneDay = allTasks().filter((t) => t.status === "Done" && t.done_on === day && matchesDashPerson(t.who));
-  const doneMonth = allTasks().filter((t) => t.status === "Done" && doneMonthOf(t) === month && matchesDashPerson(t.who));
+  const doneDay = allTasks().filter((t) => t.status === "Done" && t.done_on === day && matchesDashPerson(t.who) && canSeeTask(t));
+  const doneMonth = allTasks().filter((t) => t.status === "Done" && doneMonthOf(t) === month && matchesDashPerson(t.who) && canSeeTask(t));
   const allReports = [...(state.reportsFile?.reports || [])]
     .filter((r) => matchesDashPerson(r.who))
     .sort((a, b) => Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0));
@@ -4834,10 +4859,10 @@ function viewAttendance() {
 function viewGuide() {
   const steps = [
     ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
-    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Admins see the team. On the Board, press All or a name to see one person or the whole team. After you save, a green Saved message appears and GitHub has the update."],
+    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Leads (for example Aya for Salma) see and review the people they manage. Admins see the team. On the Board, press All or a name to see one person or the whole team. After you save, a green Saved message appears and GitHub has the update."],
     ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. To do time is how long the card waits in To do. In progress time is only while it sits in In progress — it stops when you move it to Review. Upload files to Drive, not GitHub."],
-    ["Create a task", "Only admins and social (Mariam, Judi) can add tasks. Assign the teammate, fill the brief, pick a due date, then create. It saves to the live board: the assigned person, social, and admins all see it. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
-    ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
+    ["Create a task", "Admins, social (Mariam, Judi), and leads can add tasks. Leads can only assign to the people they manage. Fill the brief, pick a due date, then create. It saves to the live board. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
+    ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, the person’s lead, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. The Report page stays still until you submit, so the text cannot disappear while typing. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
@@ -4936,7 +4961,7 @@ function navItems() {
     items.push(["hr", "HR"]);
     items.push(["people", "People"]);
     items.push(["admin-guide", "Admin guide"]);
-  } else if (isSocial()) {
+  } else if (isSocial() || isLead()) {
     items.splice(2, 0, ["review", "Review"]);
   }
   return items;
@@ -4982,7 +5007,7 @@ function render(force) {
         }),
       ]),
       $("div", { class: "top-actions" }, [
-        $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : isSocial() ? "Social" : "Member"}`),
+        $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member"}`),
         $("span", { class: "cairo-chip" }, `${cairoClock()} · Cairo`),
         $("select", {
           class: "date-select",

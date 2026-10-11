@@ -7,14 +7,24 @@ alwaysApply: true
 
 Amr owns Helal. This Cursor project is HQ. He sends project overviews and daily tasks in chat. Record them in `helal/` and reply with a tagged assignment list. The team works on the GitHub board (`index.html`), not ClickUp. They log in on the welcome SOP page. Each person has their own password. Amr, Tasneem, and Moamen are admins. Admins create or deactivate people on the People tab.
 
+## Live database — never local-only
+
+GitHub repo `engamribrahemm/helal-team` is the Helal database. The live board at GitHub Pages reads those files. When Amr asks for any edit (clients, permissions, tasks, people, Drive links, board behavior), it is not done until it is on GitHub `main` for the whole team.
+
+1. Change the matching `helal/*.json` and/or `app.js`.
+2. Commit and push to `origin/main`. Pull first if the board wrote newer task/report/attendance files.
+3. Confirm the live file on GitHub has the change. Tell Amr to hard-refresh.
+4. Do not stop at a local file. The team cannot see a local-only edit.
+
 ## Team
 
-- Mariam, Judi — social (`helal/drive.json` folder `social`). They can add and assign tasks on the board.
+- Mariam, Judi — social (`helal/drive.json` folder `social`). They can add and assign tasks, open Review, and mark tasks Done like admins. They are not full admins (no People / HR / reports dashboard).
+- Aya — Sales lead. She manages Salma (`manages: ["Salma"]` in `helal/team.json`). She can assign tasks to Salma, open Review for Salma’s work, and mark those Done. She is not full social and not admin.
 - Seif, Alaa, Sara — design (`design`). They do not add tasks.
 - Ganna — video (`video`). She does not add tasks.
 - Tasneem — HR (`hr`)
 - Moamen — admin
-- Amr, Tasneem, and Moamen are admins. Only admins and social add tasks. Nobody marks their own work Done.
+- Amr, Tasneem, and Moamen are admins. Admins, social (Mariam, Judi), and leads (scoped `manages`) add tasks. Admins, social, and the matching lead can mark tasks Done.
 
 ## When Amr sends Drive links
 
@@ -37,7 +47,7 @@ Each evening the team submits on the Helal board, not WhatsApp:
 
 1. Open **Helal Team Management** → **Report**.
 2. Fill name + date, what finished, unfinished/blockers, Drive links, need review. Choose Remote or Office.
-3. Amr or Tasneem open **Review** to see report submissions and mark work **Done**. Members cannot mark Done.
+3. Amr or Tasneem open **Review** to see report submissions. Admins and social (Mariam, Judi) can mark work **Done** on the board. Design and video members cannot.
 
 ## Status
 

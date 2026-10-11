@@ -132,7 +132,8 @@
       "email": "",
       "access": "member",
       "active": true,
-      "updated_at": "2026-10-10T15:47:48.599Z"
+      "manages": ["Salma"],
+      "updated_at": "2026-10-11T14:24:00.000Z"
     },
     {
       "id": "salma",
