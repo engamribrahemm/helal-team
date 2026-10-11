@@ -563,6 +563,21 @@
           "saved_at": "",
           "updated_at": "2026-10-06T13:22:40.684Z",
           "updated_by": "Ganna"
+        },
+        "Rahma Elsaid": {
+          "days": {
+            "2026-10-02": "Off",
+            "2026-10-03": "Home",
+            "2026-10-04": "Home",
+            "2026-10-07": "Office",
+            "2026-10-06": "Home",
+            "2026-10-05": "Home",
+            "2026-10-08": "Home"
+          },
+          "saved": true,
+          "saved_at": "2026-10-04T16:00:48.556Z",
+          "updated_at": "2026-10-04T16:00:48.556Z",
+          "updated_by": "Rahma Elsaid"
         }
       }
     },
@@ -643,6 +658,21 @@
           "saved_at": "2026-10-09T15:03:07.572Z",
           "updated_at": "2026-10-09T15:03:07.572Z",
           "updated_by": "Amr"
+        },
+        "Rahma": {
+          "days": {
+            "2026-10-09": "Off",
+            "2026-10-10": "Off",
+            "2026-10-11": "Office",
+            "2026-10-12": "Home",
+            "2026-10-13": "Home",
+            "2026-10-14": "Home",
+            "2026-10-15": "Off"
+          },
+          "saved": true,
+          "saved_at": "2026-10-11T08:03:51.405Z",
+          "updated_at": "2026-10-11T08:03:51.405Z",
+          "updated_by": "Rahma"
         }
       }
     }
@@ -695,10 +725,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fb5ew",
@@ -708,10 +738,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "2026-09-14T17:13:09.437Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fbg3s",
@@ -721,10 +751,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "2026-09-14T17:13:10.064Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mulhzjb9",
