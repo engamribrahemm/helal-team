@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-11T11:42:38.447Z",
+      "updated_at": "2026-10-11T11:42:51.316Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -469,13 +469,13 @@
         },
         "Mariam": {
           "open": 2,
-          "todo": 1,
-          "progress": 1,
+          "todo": 0,
+          "progress": 2,
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 70.46522972222223,
-          "live": 0.845655
+          "hours": 46.97801472222222,
+          "live": 0.8492394444444444
         },
         "Judi": {
           "open": 3,
@@ -484,8 +484,8 @@
           "review": 2,
           "overdue": 2,
           "done": 2,
-          "hours": 223.72451722222223,
-          "live": 70.31507277777777
+          "hours": 223.7263023611111,
+          "live": 70.31864305555555
         },
         "Seif": {
           "open": 14,
@@ -494,8 +494,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 18.659792676767676,
-          "live": 93.66034333333333
+          "hours": 18.6601172979798,
+          "live": 93.66391388888889
         },
         "Alaa": {
           "open": 2,
@@ -504,8 +504,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 28.16744214285714,
-          "live": 15.744232777777778
+          "hours": 28.1679523015873,
+          "live": 15.747803888888889
         },
         "Sara": {
           "open": 0,
@@ -599,7 +599,7 @@
         }
       },
       "time": {
-        "avgTodo": 7949,
+        "avgTodo": 7789,
         "avgProgress": 2709,
         "avgToDone": 9331,
         "open": 46
@@ -4188,18 +4188,20 @@
           "title": "New Intern Orientation – Social Media Moderater",
           "notes": "Have a meeting with the new Social Media Moderator Intern to explain and hand over the technical aspects of the role.",
           "due": "2026-10-04",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-01",
           "month": "2026-10",
           "created_by": "Tasneem",
           "created_at": "2026-10-01T20:56:47.896Z",
-          "updated_at": "2026-10-01T20:56:47.896Z",
-          "updated_by": "Tasneem",
+          "updated_at": "2026-10-11T11:42:51.157Z",
+          "updated_by": "Mariam",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-11T11:42:51.157Z",
+          "progress_started_at": "2026-10-11T11:42:51.157Z",
+          "time_log": [],
+          "start_on": "2026-10-11"
         }
       ]
     },
