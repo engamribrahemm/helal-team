@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-11T11:42:17.100Z",
+      "updated_at": "2026-10-11T11:42:38.447Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,18 +474,18 @@
           "review": 0,
           "overdue": 1,
           "done": 5,
-          "hours": 70.462265,
-          "live": 0.8397252777777777
+          "hours": 70.46522972222223,
+          "live": 0.845655
         },
         "Judi": {
-          "open": 4,
+          "open": 3,
           "todo": 0,
           "progress": 1,
-          "review": 3,
+          "review": 2,
           "overdue": 2,
-          "done": 1,
-          "hours": 223.72155263888888,
-          "live": 70.30914361111111
+          "done": 2,
+          "hours": 223.72451722222223,
+          "live": 70.31507277777777
         },
         "Seif": {
           "open": 14,
@@ -494,8 +494,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 18.659253661616162,
-          "live": 93.65441388888888
+          "hours": 18.659792676767676,
+          "live": 93.66034333333333
         },
         "Alaa": {
           "open": 2,
@@ -504,8 +504,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 28.166595079365077,
-          "live": 15.738303333333333
+          "hours": 28.16744214285714,
+          "live": 15.744232777777778
         },
         "Sara": {
           "open": 0,
@@ -599,10 +599,10 @@
         }
       },
       "time": {
-        "avgTodo": 7948,
-        "avgProgress": 2708,
-        "avgToDone": 9569,
-        "open": 47
+        "avgTodo": 7949,
+        "avgProgress": 2709,
+        "avgToDone": 9331,
+        "open": 46
       },
       "hr": {
         "people": {
@@ -5052,22 +5052,26 @@
           "title": "Replying to Osama’s comments",
           "notes": "",
           "due": "2026-10-11",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1DajVWQGmGc81vtm_so9wAVoMDvzDnMeP",
           "drive_missing": false,
           "assigned_at": "2026-10-10",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-10T18:57:45.301Z",
-          "updated_at": "2026-10-11T09:44:24.688Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-10-11T11:42:38.348Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
           "time_log": [],
           "review_at": "2026-10-11T09:44:24.688Z",
           "first_review_at": "2026-10-11T09:44:24.688Z",
-          "delivered_on": "2026-10-11"
+          "delivered_on": "2026-10-11",
+          "done_at": "2026-10-11T11:42:38.347Z",
+          "done_on": "2026-10-11",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         }
       ]
     },
