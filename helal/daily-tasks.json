@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-11T14:33:41.421Z",
+      "updated_at": "2026-10-11T14:39:37.755Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +474,8 @@
           "review": 1,
           "overdue": 1,
           "done": 5,
-          "hours": 71.45906902777779,
-          "live": 2.8333333333333335
+          "hours": 71.50906902777778,
+          "live": 2.933333333333333
         },
         "Judi": {
           "open": 2,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 151.65647601851853,
-          "live": 73.15
+          "hours": 151.68980935185184,
+          "live": 73.25
         },
         "Seif": {
           "open": 14,
@@ -494,8 +494,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 18.917943308080808,
-          "live": 96.5
+          "hours": 18.927034217171716,
+          "live": 96.6
         },
         "Alaa": {
           "open": 3,
@@ -504,8 +504,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 28.573027936507938,
-          "live": 18.583333333333332
+          "hours": 28.58731365079365,
+          "live": 18.683333333333334
         },
         "Sara": {
           "open": 0,
@@ -578,8 +578,8 @@
           "live": 0
         },
         "Aya": {
-          "open": 2,
-          "todo": 2,
+          "open": 3,
+          "todo": 3,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -599,9 +599,9 @@
         }
       },
       "time": {
-        "avgTodo": 7548,
+        "avgTodo": 7365,
         "avgProgress": 2889,
-        "open": 48
+        "open": 49
       },
       "hr": {
         "people": {
@@ -5783,6 +5783,27 @@
           "created_at": "2026-10-08T13:25:30.754Z",
           "updated_at": "2026-10-10T14:36:55.612Z",
           "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261020-aya-mv3xj286",
+          "who": "Aya",
+          "space": "Social",
+          "project": "Helal",
+          "title": "Proposal for the whole work | Me and Moamen work could be added",
+          "notes": "",
+          "due": "2026-10-20",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-11",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-11T14:39:37.735Z",
+          "updated_at": "2026-10-11T14:39:37.735Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
