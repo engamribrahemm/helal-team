@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-10T19:57:59.228Z",
+      "updated_at": "2026-10-11T09:35:53.375Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,24 +478,24 @@
           "live": 0
         },
         "Judi": {
-          "open": 3,
-          "todo": 0,
+          "open": 4,
+          "todo": 1,
           "progress": 1,
           "review": 2,
           "overdue": 2,
           "done": 1,
-          "hours": 215.84198083333334,
-          "live": 54.55
+          "hours": 222.6586475,
+          "live": 68.18333333333334
         },
         "Seif": {
           "open": 14,
           "todo": 13,
           "progress": 1,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 10,
-          "hours": 17.227034217171717,
-          "live": 77.9
+          "hours": 18.466428156565655,
+          "live": 91.53333333333333
         },
         "Alaa": {
           "open": 2,
@@ -504,8 +504,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 30.237977037037037,
-          "live": 0
+          "hours": 27.86350412698413,
+          "live": 13.616666666666667
         },
         "Sara": {
           "open": 0,
@@ -520,19 +520,19 @@
         "Ganna": {
           "open": 8,
           "todo": 7,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 6,
-          "hours": 89.3906881111111,
-          "live": 100.53333333333333
+          "hours": 86.60502680555555,
+          "live": 0
         },
         "Tasneem": {
           "open": 4,
           "todo": 4,
           "progress": 0,
           "review": 0,
-          "overdue": 0,
+          "overdue": 2,
           "done": 1,
           "hours": 7.200874722222222,
           "live": 0
@@ -599,9 +599,9 @@
         }
       },
       "time": {
-        "avgTodo": 6891,
-        "avgProgress": 3064,
-        "open": 47
+        "avgTodo": 7518,
+        "avgProgress": 2936,
+        "open": 48
       },
       "hr": {
         "people": {
@@ -5037,6 +5037,27 @@
           "created_at": "2026-10-10T17:05:47.401Z",
           "updated_at": "2026-10-10T17:05:47.401Z",
           "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261011-judi-mv2rb5uc",
+          "who": "Judi",
+          "space": "Social",
+          "project": "OSAMA HELAL",
+          "title": "Replying to Osama’s comments",
+          "notes": "",
+          "due": "2026-10-11",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1DajVWQGmGc81vtm_so9wAVoMDvzDnMeP",
+          "drive_missing": false,
+          "assigned_at": "2026-10-10",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-10T18:57:45.301Z",
+          "updated_at": "2026-10-10T18:57:45.301Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
