@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-12T20:17:34.816Z",
+      "updated_at": "2026-10-12T20:17:37.898Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -519,8 +519,8 @@
         },
         "Ganna": {
           "open": 7,
-          "todo": 3,
-          "progress": 4,
+          "todo": 2,
+          "progress": 5,
           "review": 0,
           "overdue": 0,
           "done": 7,
@@ -609,7 +609,7 @@
         }
       },
       "time": {
-        "avgTodo": 9561,
+        "avgTodo": 9661,
         "avgProgress": 2858,
         "open": 46
       },
