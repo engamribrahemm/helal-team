@@ -622,11 +622,11 @@
             "2026-10-15": "Off",
             "2026-10-09": "Home",
             "2026-10-10": "Home",
-            "2026-10-11": "Office"
+            "2026-10-11": "Home"
           },
           "saved": true,
           "saved_at": "2026-10-09T12:21:22.071Z",
-          "updated_at": "2026-10-12T20:49:12.283Z",
+          "updated_at": "2026-10-12T20:49:13.053Z",
           "updated_by": "Amr"
         },
         "Tasneem": {
@@ -831,10 +831,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8 ونص ل 5",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-10-09T15:22:22.518Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-10-12T20:49:13.053Z",
+      "decided_by": "Amr"
     }
   ]
 }
