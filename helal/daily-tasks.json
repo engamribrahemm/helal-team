@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-12T19:49:19.319Z",
+      "updated_at": "2026-10-12T19:49:52.837Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +474,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 58.429283518518524,
-          "live": 32.1
+          "hours": 58.434839074074084,
+          "live": 32.11666666666667
         },
         "Judi": {
           "open": 2,
@@ -580,8 +580,8 @@
         "Aya": {
           "open": 4,
           "todo": 3,
-          "progress": 0,
-          "review": 1,
+          "progress": 1,
+          "review": 0,
           "overdue": 0,
           "done": 0,
           "hours": 0,
@@ -705,11 +705,11 @@
             "reviews": 0
           },
           "Aya": {
-            "delivery": 5,
+            "delivery": 0,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 5,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -5451,18 +5451,18 @@
           "title": "Check LinkedIn campaign Leads",
           "notes": "",
           "due": "2026-10-14",
-          "status": "Review",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-11",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-11T14:41:40.585Z",
-          "updated_at": "2026-10-12T19:49:16.431Z",
+          "updated_at": "2026-10-12T19:49:52.812Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-10-12T19:48:53.338Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-10-12T19:49:52.812Z",
           "time_log": [
             {
               "from": "In progress",
