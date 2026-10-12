@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-12T19:48:53.360Z",
+      "updated_at": "2026-10-12T19:49:03.869Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -494,8 +494,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 21.577034217171718,
-          "live": 125.75
+          "hours": 21.57854936868687,
+          "live": 125.76666666666667
         },
         "Alaa": {
           "open": 2,
@@ -504,8 +504,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 29.262179409722222,
-          "live": 47.833333333333336
+          "hours": 29.264262743055554,
+          "live": 47.85
         },
         "Sara": {
           "open": 0,
@@ -580,8 +580,8 @@
         "Aya": {
           "open": 4,
           "todo": 3,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 0,
           "hours": 0,
@@ -599,7 +599,7 @@
         }
       },
       "time": {
-        "avgTodo": 9185,
+        "avgTodo": 9186,
         "avgProgress": 2941,
         "open": 46
       },
@@ -705,11 +705,11 @@
             "reviews": 0
           },
           "Aya": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -5458,13 +5458,26 @@
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-11T14:41:40.585Z",
-          "updated_at": "2026-10-12T19:48:53.338Z",
+          "updated_at": "2026-10-12T19:49:13.303Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-10-12T19:48:53.338Z",
-          "progress_started_at": "2026-10-12T19:48:53.338Z",
-          "time_log": [],
-          "start_on": "2026-10-12"
+          "progress_started_at": "2026-10-12T19:49:13.303Z",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-12T19:48:53.338Z",
+              "ended_at": "2026-10-12T19:49:03.852Z",
+              "hours": 0.0029205555555555556,
+              "by": "Amr"
+            }
+          ],
+          "start_on": "2026-10-12",
+          "progress_hours": 0.0029205555555555556,
+          "review_at": "2026-10-12T19:49:03.852Z",
+          "first_review_at": "2026-10-12T19:49:03.852Z",
+          "delivered_on": "2026-10-12"
         }
       ]
     },
