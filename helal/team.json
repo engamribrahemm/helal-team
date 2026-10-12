@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-10-10T15:48:13.633Z",
+  "updated_at": "2026-10-12T22:57:00.000Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -38,7 +38,9 @@
       "mention": "@Seif",
       "email": "saifahmed0801@gmail.com",
       "access": "member",
-      "active": true
+      "active": true,
+      "manages": ["Rahma"],
+      "updated_at": "2026-10-12T22:57:00.000Z"
     },
     {
       "id": "alaa",
@@ -68,16 +70,6 @@
       "mention": "@Ganna",
       "email": "gannayaser1020@gmail.com",
       "access": "member",
-      "active": true
-    },
-    {
-      "id": "tasneem",
-      "name": "Tasneem",
-      "role": "HR",
-      "home": "hr",
-      "mention": "@Tasneem",
-      "email": "tasneemyasserelmohamdy@gmail.com",
-      "access": "admin",
       "active": true
     },
     {
@@ -111,17 +103,6 @@
       "access": "member",
       "active": true,
       "updated_at": "2026-10-09T16:05:08.996Z"
-    },
-    {
-      "id": "menna",
-      "name": "Menna",
-      "role": "Social media moderetor",
-      "home": "social",
-      "mention": "@Menna",
-      "email": "",
-      "access": "member",
-      "active": true,
-      "updated_at": "2026-10-03T15:04:34.052Z"
     },
     {
       "id": "aya",

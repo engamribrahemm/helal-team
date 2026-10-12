@@ -3293,7 +3293,7 @@ function viewHrRewards(month) {
   const lead = rows.find((r) => r.total > 0);
   return $("section", { class: "card" }, [
     $("h2", {}, "Rewards — later"),
-    $("p", { class: "muted" }, "Monthly scores will feed bonus and Best Employee later. Deductions stay off until Tasneem confirms the policy."),
+    $("p", { class: "muted" }, "Monthly scores will feed bonus and Best Employee later. Deductions stay off until Amr confirms the policy."),
     lead
       ? $("p", {}, `Current lead for ${monthLabel(m)}: ${lead.name} · ${formatScore(lead.total)}`)
       : $("p", { class: "empty" }, "No scores yet this month."),
@@ -3349,7 +3349,7 @@ function viewMy() {
       : $("p", { class: "empty" }, "Nothing open right now."),
     $("section", { class: "done-section" }, [
       $("h2", {}, "Done"),
-      $("p", { class: "muted" }, "When Amr or Tasneem check a task done, it stays here for the month and in the GitHub database."),
+      $("p", { class: "muted" }, "When Amr, Moamen, or your lead check a task done, it stays here for the month and in the GitHub database."),
       finished.length
         ? $("div", { class: "cards", style: "margin-top:14px" }, finished.map((task) => doneCard(task, { checked: true })))
         : $("p", { class: "empty" }, "No done tasks this month yet."),
@@ -4739,7 +4739,7 @@ function viewAttendChange(friday, date) {
   const reason = $("textarea", { placeholder: "Why this change?" }, draft.reason || "");
   return $("section", { class: "card attend-change" }, [
     $("h2", {}, "Request a change"),
-    $("p", { class: "muted" }, `${cairoWeekday(date)} ${date} is locked as ${from || "—"}. Amr or Tasneem will approve or decline.`),
+    $("p", { class: "muted" }, `${cairoWeekday(date)} ${date} is locked as ${from || "—"}. Amr or Moamen will approve or decline.`),
     $("form", {
       class: "form",
       onsubmit: (e) => {
@@ -4858,11 +4858,11 @@ function viewAttendance() {
 
 function viewGuide() {
   const steps = [
-    ["Log in", "Choose your name and your own password. Amr, Tasneem, or Moamen give you that password. Admins add or deactivate people on the People tab."],
+    ["Log in", "Choose your name and your own password. Amr or Moamen give you that password. Admins add or deactivate people on the People tab."],
     ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Leads (for example Aya for Salma) see and review the people they manage. Admins see the team. On the Board, press All or a name to see one person or the whole team. After you save, a green Saved message appears and GitHub has the update."],
     ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. To do time is how long the card waits in To do. In progress time is only while it sits in In progress — it stops when you move it to Review. Upload files to Drive, not GitHub."],
     ["Create a task", "Admins, social (Mariam, Judi), and leads can add tasks. Leads can only assign to the people they manage. Fill the brief, pick a due date, then create. It saves to the live board. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
-    ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, the person’s lead, Amr, Tasneem, or Moamen press Mark done. It saves to GitHub and stays in Done."],
+    ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, the person’s lead, Amr, or Moamen press Mark done. It saves to GitHub and stays in Done."],
     ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],
     ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. The Report page stays still until you submit, so the text cannot disappear while typing. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
@@ -4890,7 +4890,7 @@ function viewAdminGuide() {
   return $("div", { class: "dash" }, [
     $("section", { class: "card" }, [
       $("h2", {}, "Admin guide"),
-      $("p", { class: "muted" }, "How Amr, Tasneem, and Moamen read Time, HR, and performance. Team SOP stays on the SOP tab. Hard-refresh after updates."),
+      $("p", { class: "muted" }, "How Amr and Moamen read Time, HR, and performance. Team SOP stays on the SOP tab. Hard-refresh after updates."),
     ]),
     $("div", { class: "sop-list" }, steps.map(([title, body]) =>
       $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
