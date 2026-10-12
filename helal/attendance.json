@@ -621,13 +621,13 @@
             "2026-10-14": "Off",
             "2026-10-15": "Off",
             "2026-10-09": "Home",
-            "2026-10-10": "Office",
+            "2026-10-10": "Home",
             "2026-10-11": "Office"
           },
           "saved": true,
           "saved_at": "2026-10-09T12:21:22.071Z",
-          "updated_at": "2026-10-09T12:21:22.071Z",
-          "updated_by": "Alaa"
+          "updated_at": "2026-10-12T20:49:12.283Z",
+          "updated_by": "Amr"
         },
         "Tasneem": {
           "days": {
@@ -740,10 +740,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-10T14:28:06.584Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mu1fb5ew",
@@ -818,10 +818,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8ىونص ل 5",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-10-09T15:22:07.625Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-10-12T20:49:12.282Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mv146bw6",
