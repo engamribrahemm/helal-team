@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-12T19:49:03.869Z",
+      "updated_at": "2026-10-12T19:49:16.774Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 161.40647601851853,
-          "live": 102.4
+          "hours": 161.41203157407406,
+          "live": 102.41666666666667
         },
         "Seif": {
           "open": 14,
@@ -5451,18 +5451,18 @@
           "title": "Check LinkedIn campaign Leads",
           "notes": "",
           "due": "2026-10-14",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-11",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-11T14:41:40.585Z",
-          "updated_at": "2026-10-12T19:49:13.303Z",
+          "updated_at": "2026-10-12T19:49:16.431Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-10-12T19:48:53.338Z",
-          "progress_started_at": "2026-10-12T19:49:13.303Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -5471,11 +5471,19 @@
               "ended_at": "2026-10-12T19:49:03.852Z",
               "hours": 0.0029205555555555556,
               "by": "Amr"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-12T19:49:13.303Z",
+              "ended_at": "2026-10-12T19:49:16.431Z",
+              "hours": 0.0008688888888888889,
+              "by": "Amr"
             }
           ],
           "start_on": "2026-10-12",
-          "progress_hours": 0.0029205555555555556,
-          "review_at": "2026-10-12T19:49:03.852Z",
+          "progress_hours": 0.0037894444444444442,
+          "review_at": "2026-10-12T19:49:16.431Z",
           "first_review_at": "2026-10-12T19:49:03.852Z",
           "delivered_on": "2026-10-12"
         }
