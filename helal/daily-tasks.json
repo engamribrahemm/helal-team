@@ -455,7 +455,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-11T21:21:28.618Z",
+      "updated_at": "2026-10-12T11:49:57.586Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -474,8 +474,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 50.94039462962963,
-          "live": 9.633333333333333
+          "hours": 55.76817240740741,
+          "live": 24.116666666666667
         },
         "Judi": {
           "open": 2,
@@ -484,8 +484,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 153.92314268518518,
-          "live": 79.95
+          "hours": 158.7453649074074,
+          "live": 94.41666666666667
         },
         "Seif": {
           "open": 14,
@@ -494,18 +494,18 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 19.536125126262625,
-          "live": 103.3
+          "hours": 20.85127664141414,
+          "live": 117.76666666666667
         },
         "Alaa": {
-          "open": 3,
+          "open": 2,
           "todo": 0,
           "progress": 1,
-          "review": 2,
-          "overdue": 2,
-          "done": 7,
-          "hours": 29.544456507936506,
-          "live": 25.383333333333333
+          "review": 1,
+          "overdue": 1,
+          "done": 8,
+          "hours": 28.264262743055554,
+          "live": 39.85
         },
         "Sara": {
           "open": 0,
@@ -599,9 +599,9 @@
         }
       },
       "time": {
-        "avgTodo": 7686,
-        "avgProgress": 2855,
-        "open": 47
+        "avgTodo": 8533,
+        "avgProgress": 2883,
+        "open": 46
       },
       "hr": {
         "people": {
@@ -5126,15 +5126,15 @@
           "title": "3 Single visuals | 11 Oct",
           "notes": "",
           "due": "2026-10-11",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-11",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-11T14:22:27.620Z",
-          "updated_at": "2026-10-11T21:21:28.605Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-12T11:49:57.559Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-10-11T16:31:18.141Z",
           "progress_started_at": "",
@@ -5155,7 +5155,11 @@
           "progress_hours": 4.836239722222222,
           "review_at": "2026-10-11T21:21:28.604Z",
           "first_review_at": "2026-10-11T21:21:28.604Z",
-          "delivered_on": "2026-10-12"
+          "delivered_on": "2026-10-12",
+          "done_at": "2026-10-12T11:49:57.559Z",
+          "done_on": "2026-10-12",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         }
       ]
     },
