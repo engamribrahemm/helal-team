@@ -25,17 +25,6 @@
       "created_at": "2026-10-11T21:21:58.435Z"
     },
     {
-      "id": "r-mv49tw33",
-      "who": "Tasneem",
-      "date": "2026-10-11",
-      "finished": "Follow up \nData Sheet",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-10-11T20:23:58.383Z"
-    },
-    {
       "id": "r-mv454dds",
       "who": "Ganna",
       "date": "2026-10-11",
@@ -56,17 +45,6 @@
       "need_review": true,
       "place": "Remote",
       "created_at": "2026-10-11T16:34:38.705Z"
-    },
-    {
-      "id": "r-mv2ugil4",
-      "who": "Tasneem",
-      "date": "2026-10-10",
-      "finished": "Followed up with Mohamed and coordinated his tasks.\nCoordinated with Mariam to schedule an evaluation meeting for tomorrow.\n4 BTS's",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Office",
-      "created_at": "2026-10-10T20:25:53.944Z"
     },
     {
       "id": "r-mv2tgk3j",
@@ -146,17 +124,6 @@
       "created_at": "2026-10-08T20:49:01.892Z"
     },
     {
-      "id": "r-muzzb0f6",
-      "who": "Tasneem",
-      "date": "2026-10-08",
-      "finished": "Meeting offline with 2 sales",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Office",
-      "created_at": "2026-10-08T20:18:16.674Z"
-    },
-    {
       "id": "r-muzvbhdx",
       "who": "Ganna",
       "date": "2026-10-08",
@@ -177,17 +144,6 @@
       "need_review": false,
       "place": "Remote",
       "created_at": "2026-10-08T17:57:16.352Z"
-    },
-    {
-      "id": "r-muykhbuy",
-      "who": "Tasneem",
-      "date": "2026-10-07",
-      "finished": "Arina registration \nRahmas new task\nMeeting with Mariam \nFollow up with 2 sales for tomorrows meeting",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Office",
-      "created_at": "2026-10-07T20:35:31.018Z"
     },
     {
       "id": "r-muyhtxzd",
@@ -245,17 +201,6 @@
       "created_at": "2026-10-06T17:02:06.490Z"
     },
     {
-      "id": "r-muvo9bbu",
-      "who": "Tasneem",
-      "date": "2026-10-05",
-      "finished": "- Followed up with Alaa to swap 4 working days with 4 Fridays and swap a carousel task with Saif.\n- Assigned Saif’s Single Visual task for the 12th to Rahma on Helal’s calendar and coordinated the technical follow-up with Saif.\n- Followed up with Abdullah regarding his delayed task.\n- Followed up with Mariam regarding client-related issues.\n- Coordinated individually with the team regarding Wednesday’s office hours, from 3 PM to 8 PM.\n- Technee",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Office",
-      "created_at": "2026-10-05T19:57:57.018Z"
-    },
-    {
       "id": "r-muvm3skr",
       "who": "Seif",
       "date": "2026-10-05",
@@ -300,17 +245,6 @@
       "created_at": "2026-10-04T20:57:06.408Z"
     },
     {
-      "id": "r-muuax8sn",
-      "who": "Tasneem",
-      "date": "2026-10-04",
-      "finished": "- Attended Techne Summit ( 1 reel)\n- Attended an offline meeting with a candidate applying for a Sales position.\n- Responded to messages received on Helal’s page.",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Office",
-      "created_at": "2026-10-04T20:56:52.679Z"
-    },
-    {
       "id": "r-musxnxzz",
       "who": "Alaa",
       "date": "2026-10-04",
@@ -322,17 +256,6 @@
       "created_at": "2026-10-03T21:57:57.599Z"
     },
     {
-      "id": "r-mustp5lb",
-      "who": "Tasneem",
-      "date": "2026-10-03",
-      "finished": "1- Followed up with Rahma: \n•helped her complete the Creativa registration form and stayed with her until she resolved the issue. \n•Explained everything related to our system.\n•gave her access to the Helal Calendar, and asked Mariam to assign her a task.\n\n\n2- Followed up with Menna: \n•helped her complete the Creativa registration form\n•explained our system to her and coordinated a meeting between her and Mariam.\n\n\n3- Conducted a sales interview and sent the candidate feedback.\n\n\n4- Booked a ticket for the Techne and coordinated with her to go there tomorrow for BTS filming.",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-10-03T20:06:55.631Z"
-    },
-    {
       "id": "r-muq19xbc",
       "who": "Alaa",
       "date": "2026-10-02",
@@ -342,17 +265,6 @@
       "need_review": false,
       "place": "Remote",
       "created_at": "2026-10-01T21:15:43.464Z"
-    },
-    {
-      "id": "r-muq0e5hg",
-      "who": "Tasneem",
-      "date": "2026-10-01",
-      "finished": "Sent 5 message to 5 candidates (sales) \n2 confirmed \nSeptember Salary report \nFollow up with mariem, ganna, saif and alaa (September late tasks)",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-10-01T20:51:01.060Z"
     },
     {
       "id": "r-mupq64i0",
@@ -410,17 +322,6 @@
       "created_at": "2026-09-28T21:14:49.777Z"
     },
     {
-      "id": "r-mulqe9ad",
-      "who": "Tasneem",
-      "date": "2026-09-29",
-      "finished": "Coordinate  for Seif and Rahma, the new Grphic Designers.\nCoordinated  between Mariam and Menna, the new Social Media Moderators.",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-28T21:00:05.125Z"
-    },
-    {
       "id": "r-muloawqe",
       "who": "Seif",
       "date": "2026-09-28",
@@ -452,17 +353,6 @@
       "need_review": false,
       "place": "Remote",
       "created_at": "2026-09-27T21:26:10.036Z"
-    },
-    {
-      "id": "r-muk9jcup",
-      "who": "Tasneem",
-      "date": "2026-09-27",
-      "finished": "Graphic designers meetings",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-27T20:20:23.377Z"
     },
     {
       "id": "r-muk6ney9",
@@ -498,17 +388,6 @@
       "created_at": "2026-09-26T17:15:33.603Z"
     },
     {
-      "id": "r-muhfx4vk",
-      "who": "Tasneem",
-      "date": "2026-09-25",
-      "finished": "ظبطت مع البنتين يجو بكرا",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-25T20:55:45.392Z"
-    },
-    {
       "id": "r-muhfnac0",
       "who": "Alaa",
       "date": "2026-09-25",
@@ -529,17 +408,6 @@
       "need_review": false,
       "place": "Remote",
       "created_at": "2026-09-25T18:42:54.276Z"
-    },
-    {
-      "id": "r-mud5qp24",
-      "who": "Tasneem",
-      "date": "2026-09-22",
-      "finished": "سالري",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-22T20:59:44.092Z"
     },
     {
       "id": "r-mud3nma6",
@@ -575,17 +443,6 @@
       "created_at": "2026-09-21T18:02:43.687Z"
     },
     {
-      "id": "r-muaacc4c",
-      "who": "Tasneem",
-      "date": "2026-09-20",
-      "finished": "Follow up with sara- mohamed- marim- Judi\nVideo editor intern handbook",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-20T20:45:13.692Z"
-    },
-    {
       "id": "r-muaa3kkj",
       "who": "Alaa",
       "date": "2026-09-20",
@@ -608,17 +465,6 @@
       "created_at": "2026-09-20T19:58:59.667Z"
     },
     {
-      "id": "r-mu8va5e6",
-      "who": "Tasneem",
-      "date": "2026-09-19",
-      "finished": "اونبوردينج للفيديو ايتدور \nتابعت مع البنات الجديدة \nبعت مسدجات الجرافيك",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Office",
-      "created_at": "2026-09-19T20:55:51.246Z"
-    },
-    {
       "id": "r-mu8s4324",
       "who": "Ganna",
       "date": "2026-09-19",
@@ -639,17 +485,6 @@
       "need_review": false,
       "place": "Office",
       "created_at": "2026-09-19T18:24:06.774Z"
-    },
-    {
-      "id": "r-mu7ft9x8",
-      "who": "Tasneem",
-      "date": "2026-09-18",
-      "finished": "ظبطت مع التلاتة الحداد يجو بكرا",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-18T20:55:03.548Z"
     },
     {
       "id": "r-mu7fbi5x",
@@ -751,17 +586,6 @@
       "created_at": "2026-09-14T19:26:18.381Z"
     },
     {
-      "id": "r-mu1mu5d0",
-      "who": "Tasneem",
-      "date": "2026-09-14",
-      "finished": "Meetings",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-14T19:25:04.548Z"
-    },
-    {
       "id": "r-mu1jpanl",
       "who": "Ganna",
       "date": "2026-09-14",
@@ -795,17 +619,6 @@
       "created_at": "2026-09-13T20:17:55.652Z"
     },
     {
-      "id": "r-mu08ika5",
-      "who": "Tasneem",
-      "date": "2026-09-13",
-      "finished": "Shortlisting candidates for Video Editor and SShortlisting candidates for Video Editor and Sales positions.\nSent interview schedule messages to Sales candidates.ales positions.\nSent interview schedule messages to Sales candidates.",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-13T19:56:23.213Z"
-    },
-    {
       "id": "r-mu05wek7",
       "who": "Seif",
       "date": "2026-09-13",
@@ -826,17 +639,6 @@
       "need_review": false,
       "place": "Remote",
       "created_at": "2026-09-12T20:38:48.329Z"
-    },
-    {
-      "id": "r-mtytzttq",
-      "who": "Tasneem",
-      "date": "2026-09-12",
-      "finished": "Shortlist task",
-      "unfinished": "لسا",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-12T20:22:08.318Z"
     },
     {
       "id": "r-mtyt59j7",
@@ -883,17 +685,6 @@
       "created_at": "2026-09-11T20:49:31.709Z"
     },
     {
-      "id": "r-mtxd4hv2",
-      "who": "Tasneem",
-      "date": "2026-09-11",
-      "finished": "Follow up with video editor",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-11T19:42:06.446Z"
-    },
-    {
       "id": "r-mtxawhf3",
       "who": "Alaa",
       "date": "2026-09-11",
@@ -927,17 +718,6 @@
       "created_at": "2026-09-10T17:00:21.850Z"
     },
     {
-      "id": "r-mtvm4w1o",
-      "who": "Tasneem",
-      "date": "2026-09-10",
-      "finished": "4 interview meetings\nFeedback and selection for the 4 candidates\nFollow-up on the Video Editor task\nFollow-up with the Creative team regarding our office attendance schedule",
-      "unfinished": "",
-      "drive": "",
-      "need_review": false,
-      "place": "Remote",
-      "created_at": "2026-09-10T14:18:49.020Z"
-    },
-    {
       "id": "r-mtuijkg6",
       "who": "Ganna",
       "date": "2026-09-09",
@@ -947,17 +727,6 @@
       "need_review": false,
       "place": "Office",
       "created_at": "2026-09-09T19:50:29.190Z"
-    },
-    {
-      "id": "r-mtua7fnu",
-      "who": "Tasneem",
-      "date": "2026-09-09",
-      "finished": "Social Media CV screening: shortlisted the top 10 CVs out of around 30 received applications.\nSent messages to the 10 shortlisted Social Media candidates with their interview schedules for tomorrow.",
-      "unfinished": "The remaining positions also need shortlisting. I will work on them tomorrow alongside the 10 scheduled interviews.",
-      "drive": "",
-      "need_review": false,
-      "place": "Office",
-      "created_at": "2026-09-09T15:57:06.186Z"
     },
     {
       "id": "r-mtu7t4f9",
@@ -1124,5 +893,6 @@
       "place": "Office",
       "created_at": "2026-09-05T20:59:30.522Z"
     }
-  ]
+  ],
+  "updated_at": "2026-10-12T23:02:30.689Z"
 }

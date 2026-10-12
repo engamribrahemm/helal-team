@@ -14,12 +14,6 @@
       "hours": "10:00–18:00",
       "mode": "Hybrid"
     },
-    "Tasneem": {
-      "type": "Full-time",
-      "days": "Sun–Thu",
-      "hours": "10:00–18:00",
-      "mode": "Hybrid"
-    },
     "Moamen": {
       "type": "Full-time",
       "days": "Sun–Thu",
@@ -63,12 +57,6 @@
       "mode": "Remote"
     },
     "Mohamed": {
-      "type": "Full-time",
-      "days": "Sun–Thu",
-      "hours": "10:00–18:00",
-      "mode": "Remote"
-    },
-    "Menna": {
       "type": "Full-time",
       "days": "Sun–Thu",
       "hours": "10:00–18:00",
@@ -355,46 +343,6 @@
       "updated_at": "2026-10-04T11:55:23.197Z"
     },
     {
-      "id": "ev-t-20260909-tasneem-mtsknxpl",
-      "task_id": "t-20260909-tasneem-mtsknxpl",
-      "who": "Tasneem",
-      "role": "other",
-      "month": "2026-09",
-      "quarter": "2026-Q3",
-      "delivery": 2,
-      "quality": {
-        "overall": 3
-      },
-      "quality_avg": 3,
-      "revision_rating": 4,
-      "revision_count": 0,
-      "creativity": 4,
-      "notes": "",
-      "by": "Amr",
-      "created_at": "2026-10-04T11:55:44.503Z",
-      "updated_at": "2026-10-04T11:55:44.503Z"
-    },
-    {
-      "id": "ev-t-20261006-tasneem-muv1cv8y",
-      "task_id": "t-20261006-tasneem-muv1cv8y",
-      "who": "Tasneem",
-      "role": "other",
-      "month": "2026-10",
-      "quarter": "2026-Q4",
-      "delivery": 0,
-      "quality": {
-        "overall": 0
-      },
-      "quality_avg": 0,
-      "revision_rating": 0,
-      "revision_count": 0,
-      "creativity": 0,
-      "notes": "",
-      "by": "Tasneem",
-      "created_at": "2026-10-05T20:00:00.742Z",
-      "updated_at": "2026-10-05T20:00:00.742Z"
-    },
-    {
       "id": "ev-t-20260928-mariam-mujti2i3",
       "task_id": "t-20260928-mariam-mujti2i3",
       "who": "Mariam",
@@ -555,15 +503,6 @@
           "attitude": 0,
           "reviews": 0
         },
-        "Tasneem": {
-          "delivery": 0,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
-          "total": 0,
-          "attitude": 0,
-          "reviews": 0
-        },
         "Moamen": {
           "delivery": 0,
           "quality": 0,
@@ -632,15 +571,6 @@
           "total": 4.575,
           "attitude": 0,
           "reviews": 2
-        },
-        "Tasneem": {
-          "delivery": 5,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
-          "total": 5,
-          "attitude": 0,
-          "reviews": 0
         },
         "Moamen": {
           "delivery": 0,
@@ -712,15 +642,6 @@
           "attitude": 0,
           "reviews": 0
         },
-        "Tasneem": {
-          "delivery": 5,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
-          "total": 5,
-          "attitude": 0,
-          "reviews": 1
-        },
         "Moamen": {
           "delivery": 0,
           "quality": 0,
@@ -748,15 +669,6 @@
           "attitude": 0,
           "reviews": 0
         },
-        "Menna": {
-          "delivery": 0,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
-          "total": 0,
-          "attitude": 0,
-          "reviews": 0
-        },
         "Aya": {
           "delivery": 0,
           "quality": 0,
@@ -779,5 +691,6 @@
       "updated_at": "2026-10-10T15:48:16.688Z",
       "frozen": false
     }
-  }
+  },
+  "updated_at": "2026-10-12T23:02:30.689Z"
 }
