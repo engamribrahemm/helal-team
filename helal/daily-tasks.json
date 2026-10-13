@@ -417,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T16:10:23.813Z",
+      "updated_at": "2026-10-13T16:10:29.730Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -471,13 +471,13 @@
         },
         "Ganna": {
           "open": 8,
-          "todo": 2,
-          "progress": 5,
+          "todo": 3,
+          "progress": 4,
           "review": 1,
           "overdue": 0,
           "done": 7,
-          "hours": 58.43686070987654,
-          "live": 79.46666666666667
+          "hours": 63.26021829861111,
+          "live": 59.61666666666667
         },
         "Moamen": {
           "open": 0,
@@ -531,8 +531,8 @@
         }
       },
       "time": {
-        "avgTodo": 10255,
-        "avgProgress": 2770,
+        "avgTodo": 10145,
+        "avgProgress": 2811,
         "open": 50
       },
       "hr": {
@@ -6041,20 +6041,30 @@
           "title": "tiktok video | 25 OCT",
           "notes": "انت مع مديرك الي بتعتبره chatgpt وبتسأله في كل حاجه",
           "due": "2026-10-23",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:27:37.010Z",
-          "updated_at": "2026-10-12T20:17:35.049Z",
+          "updated_at": "2026-10-13T16:10:29.664Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-12T20:17:35.049Z",
-          "progress_started_at": "2026-10-12T20:17:35.049Z",
-          "time_log": [],
-          "start_on": "2026-10-12"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-10-12T20:17:35.049Z",
+              "ended_at": "2026-10-13T16:10:29.664Z",
+              "hours": 19.8818375,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-10-12",
+          "progress_hours": 19.8818375
         }
       ]
     },
