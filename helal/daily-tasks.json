@@ -417,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T16:10:29.730Z",
+      "updated_at": "2026-10-13T16:48:16.183Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -436,8 +436,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 65.21261685185186,
-          "live": 52.45
+          "hours": 65.42372796296297,
+          "live": 53.083333333333336
         },
         "Judi": {
           "open": 2,
@@ -446,8 +446,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 168.1953649074074,
-          "live": 122.76666666666667
+          "hours": 168.40647601851853,
+          "live": 123.4
         },
         "Seif": {
           "open": 14,
@@ -456,8 +456,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 23.42854936868687,
-          "live": 146.11666666666667
+          "hours": 23.48612512626263,
+          "live": 146.75
         },
         "Alaa": {
           "open": 2,
@@ -466,8 +466,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 31.808012743055556,
-          "live": 68.2
+          "hours": 31.887179409722222,
+          "live": 68.83333333333333
         },
         "Ganna": {
           "open": 8,
@@ -476,8 +476,8 @@
           "review": 1,
           "overdue": 0,
           "done": 7,
-          "hours": 63.26021829861111,
-          "live": 59.61666666666667
+          "hours": 56.509082932098764,
+          "live": 62.11666666666667
         },
         "Moamen": {
           "open": 0,
@@ -506,18 +506,18 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 0.7671580555555556,
-          "live": 1.5333333333333334
+          "hours": 1.0754913888888888,
+          "live": 2.15
         },
         "Aya": {
           "open": 4,
           "todo": 3,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 0,
-          "hours": 20.333333333333332,
-          "live": 20.333333333333332
+          "hours": 0,
+          "live": 0
         },
         "Salma": {
           "open": 0,
@@ -531,8 +531,8 @@
         }
       },
       "time": {
-        "avgTodo": 10145,
-        "avgProgress": 2811,
+        "avgTodo": 10180,
+        "avgProgress": 2788,
         "open": 50
       },
       "hr": {
@@ -610,11 +610,11 @@
             "reviews": 0
           },
           "Aya": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -5413,18 +5413,18 @@
           "title": "Check LinkedIn campaign Leads",
           "notes": "",
           "due": "2026-10-14",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-11",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-11T14:41:40.585Z",
-          "updated_at": "2026-10-13T13:01:09.757Z",
+          "updated_at": "2026-10-13T16:48:16.169Z",
           "updated_by": "Aya",
           "revisions": 0,
           "first_progress_at": "2026-10-12T19:48:53.338Z",
-          "progress_started_at": "2026-10-13T13:01:09.757Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -5449,11 +5449,19 @@
               "ended_at": "2026-10-13T13:00:36.367Z",
               "hours": 17.178765277777778,
               "by": "Aya"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-13T13:01:09.757Z",
+              "ended_at": "2026-10-13T16:48:16.169Z",
+              "hours": 3.7851144444444444,
+              "by": "Aya"
             }
           ],
           "start_on": "2026-10-12",
-          "progress_hours": 17.18255472222222,
-          "review_at": "2026-10-13T13:00:36.367Z",
+          "progress_hours": 20.967669166666667,
+          "review_at": "2026-10-13T16:48:16.169Z",
           "first_review_at": "2026-10-12T19:49:03.852Z",
           "delivered_on": "2026-10-13"
         }
