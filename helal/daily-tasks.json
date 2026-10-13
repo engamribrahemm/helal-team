@@ -417,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T16:48:16.183Z",
+      "updated_at": "2026-10-13T16:59:08.647Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -436,8 +436,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 65.42372796296297,
-          "live": 53.083333333333336
+          "hours": 65.48483907407409,
+          "live": 53.266666666666666
         },
         "Judi": {
           "open": 2,
@@ -446,8 +446,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 168.40647601851853,
-          "live": 123.4
+          "hours": 168.4675871296296,
+          "live": 123.58333333333333
         },
         "Seif": {
           "open": 14,
@@ -456,8 +456,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 23.48612512626263,
-          "live": 146.75
+          "hours": 23.502791792929294,
+          "live": 146.93333333333334
         },
         "Alaa": {
           "open": 2,
@@ -466,18 +466,18 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 31.887179409722222,
-          "live": 68.83333333333333
+          "hours": 31.91009607638889,
+          "live": 69.01666666666667
         },
         "Ganna": {
           "open": 8,
           "todo": 3,
-          "progress": 4,
-          "review": 1,
+          "progress": 5,
+          "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 56.509082932098764,
-          "live": 62.11666666666667
+          "hours": 54.98817463888888,
+          "live": 103.41666666666667
         },
         "Moamen": {
           "open": 0,
@@ -500,14 +500,14 @@
           "live": 0
         },
         "Rahma": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
-          "progress": 1,
+          "progress": 0,
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 1.0754913888888888,
-          "live": 2.15
+          "hours": 0.0009827777777777777,
+          "live": 0
         },
         "Aya": {
           "open": 4,
@@ -531,9 +531,9 @@
         }
       },
       "time": {
-        "avgTodo": 10180,
-        "avgProgress": 2788,
-        "open": 50
+        "avgTodo": 10057,
+        "avgProgress": 2851,
+        "open": 49
       },
       "hr": {
         "people": {
@@ -5420,7 +5420,7 @@
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-11T14:41:40.585Z",
-          "updated_at": "2026-10-13T16:48:16.169Z",
+          "updated_at": "2026-10-13T16:59:08.622Z",
           "updated_by": "Aya",
           "revisions": 0,
           "first_progress_at": "2026-10-12T19:48:53.338Z",
@@ -5454,14 +5454,14 @@
               "from": "In progress",
               "to": "Review",
               "started_at": "2026-10-13T13:01:09.757Z",
-              "ended_at": "2026-10-13T16:48:16.169Z",
-              "hours": 3.7851144444444444,
+              "ended_at": "2026-10-13T16:59:08.622Z",
+              "hours": 3.966351388888889,
               "by": "Aya"
             }
           ],
           "start_on": "2026-10-12",
-          "progress_hours": 20.967669166666667,
-          "review_at": "2026-10-13T16:48:16.169Z",
+          "progress_hours": 21.14890611111111,
+          "review_at": "2026-10-13T16:59:08.622Z",
           "first_review_at": "2026-10-12T19:49:03.852Z",
           "delivered_on": "2026-10-13"
         }
