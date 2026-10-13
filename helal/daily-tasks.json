@@ -417,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T14:30:20.723Z",
+      "updated_at": "2026-10-13T14:38:18.170Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -436,8 +436,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 64.6570612962963,
-          "live": 50.78333333333333
+          "hours": 64.70150574074074,
+          "live": 50.916666666666664
         },
         "Judi": {
           "open": 2,
@@ -446,8 +446,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 167.63980935185182,
-          "live": 121.1
+          "hours": 167.6842537962963,
+          "live": 121.23333333333333
         },
         "Seif": {
           "open": 14,
@@ -456,8 +456,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 23.277034217171718,
-          "live": 144.45
+          "hours": 23.28915542929293,
+          "live": 144.58333333333334
         },
         "Alaa": {
           "open": 2,
@@ -466,8 +466,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 31.59967940972222,
-          "live": 66.53333333333333
+          "hours": 31.616346076388886,
+          "live": 66.66666666666667
         },
         "Ganna": {
           "open": 8,
@@ -476,8 +476,8 @@
           "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 53.74650797222222,
-          "live": 91
+          "hours": 53.81317463888888,
+          "live": 91.66666666666666
         },
         "Moamen": {
           "open": 0,
@@ -501,8 +501,8 @@
         },
         "Rahma": {
           "open": 1,
-          "todo": 1,
-          "progress": 0,
+          "todo": 0,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 2,
@@ -516,8 +516,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 18.666666666666668,
-          "live": 18.666666666666668
+          "hours": 18.8,
+          "live": 18.8
         },
         "Salma": {
           "open": 0,
@@ -531,8 +531,8 @@
         }
       },
       "time": {
-        "avgTodo": 9912,
-        "avgProgress": 2772,
+        "avgTodo": 9920,
+        "avgProgress": 2774,
         "open": 50
       },
       "hr": {
@@ -5521,18 +5521,20 @@
           "title": "design one concept option for the 4th dimension",
           "notes": "",
           "due": "2026-10-15",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1OpXO8yyR9nASEhON0FlnvZ7O0n4hgjEO?usp=drive_link",
           "drive_missing": false,
           "assigned_at": "2026-10-13",
           "month": "2026-10",
           "created_by": "Seif",
           "created_at": "2026-10-13T14:30:20.688Z",
-          "updated_at": "2026-10-13T14:30:20.688Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-13T14:38:18.147Z",
+          "updated_by": "Rahma",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-13T14:38:18.147Z",
+          "progress_started_at": "2026-10-13T14:38:18.147Z",
+          "time_log": [],
+          "start_on": "2026-10-13"
         }
       ]
     },
