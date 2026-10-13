@@ -417,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T18:58:31.827Z",
+      "updated_at": "2026-10-13T19:28:12.641Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -436,18 +436,18 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 66.14595018518519,
-          "live": 55.25
+          "hours": 66.31261685185186,
+          "live": 55.75
         },
         "Judi": {
           "open": 2,
           "todo": 0,
-          "progress": 0,
-          "review": 2,
+          "progress": 1,
+          "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 190.90971402777777,
-          "live": 0
+          "hours": 169.2953649074074,
+          "live": 126.06666666666666
         },
         "Seif": {
           "open": 14,
@@ -456,8 +456,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 23.68309482323232,
-          "live": 148.91666666666666
+          "hours": 23.728549368686867,
+          "live": 149.41666666666666
         },
         "Alaa": {
           "open": 2,
@@ -466,8 +466,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 32.15801274305555,
-          "live": 71
+          "hours": 32.22051274305555,
+          "live": 71.5
         },
         "Ganna": {
           "open": 8,
@@ -476,8 +476,8 @@
           "review": 1,
           "overdue": 0,
           "done": 7,
-          "hours": 57.477601450617286,
-          "live": 70.83333333333334
+          "hours": 57.694268117283954,
+          "live": 72.78333333333335
         },
         "Moamen": {
           "open": 0,
@@ -506,8 +506,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 2.1671580555555554,
-          "live": 4.333333333333333
+          "hours": 2.408824722222222,
+          "live": 4.816666666666666
         },
         "Aya": {
           "open": 4,
@@ -520,8 +520,8 @@
           "live": 0
         },
         "Salma": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -531,9 +531,9 @@
         }
       },
       "time": {
-        "avgTodo": 10304,
-        "avgProgress": 2691,
-        "open": 50
+        "avgTodo": 10332,
+        "avgProgress": 2826,
+        "open": 51
       },
       "hr": {
         "people": {
@@ -5698,6 +5698,27 @@
           "progress_started_at": "2026-10-13T16:10:23.744Z",
           "time_log": [],
           "start_on": "2026-10-13"
+        },
+        {
+          "id": "t-20261016-salma-mv72pvtc",
+          "who": "Salma",
+          "space": "Social",
+          "project": "Helal",
+          "title": "Finalize Content for 3 Proposals",
+          "notes": "",
+          "due": "2026-10-16",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-13",
+          "month": "2026-10",
+          "created_by": "Aya",
+          "created_at": "2026-10-13T19:28:12.624Z",
+          "updated_at": "2026-10-13T19:28:12.624Z",
+          "updated_by": "Aya",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
