@@ -417,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T00:07:47.016Z",
+      "updated_at": "2026-10-13T12:03:06.899Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -436,8 +436,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 59.86261685185186,
-          "live": 36.4
+          "hours": 63.840394629629635,
+          "live": 48.333333333333336
         },
         "Judi": {
           "open": 2,
@@ -446,8 +446,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 162.8453649074074,
-          "live": 106.71666666666667
+          "hours": 166.81758712962963,
+          "live": 118.63333333333334
         },
         "Seif": {
           "open": 14,
@@ -456,8 +456,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 21.96945845959596,
-          "live": 130.06666666666666
+          "hours": 23.054306944444445,
+          "live": 142
         },
         "Alaa": {
           "open": 2,
@@ -466,18 +466,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 29.801762743055555,
-          "live": 52.15
-        },
-        "Sara": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 2,
-          "hours": 16.377944583333335,
-          "live": 0
+          "hours": 31.293429409722222,
+          "live": 64.08333333333333
         },
         "Ganna": {
           "open": 8,
@@ -486,8 +476,8 @@
           "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 46.563174638888874,
-          "live": 19.166666666666668
+          "hours": 52.52150797222222,
+          "live": 78.75
         },
         "Moamen": {
           "open": 0,
@@ -526,8 +516,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 4.283333333333333,
-          "live": 4.283333333333333
+          "hours": 16.216666666666665,
+          "live": 16.216666666666665
         },
         "Salma": {
           "open": 0,
@@ -541,9 +531,9 @@
         }
       },
       "time": {
-        "avgTodo": 9299,
-        "avgProgress": 2607,
-        "open": 47
+        "avgTodo": 10041,
+        "avgProgress": 2734,
+        "open": 48
       },
       "hr": {
         "people": {
@@ -580,15 +570,6 @@
             "revisions": 0,
             "creativity": 0,
             "total": 4,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Sara": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -4420,6 +4401,44 @@
           "done_on": "2026-10-06",
           "done_month": "2026-10",
           "done_by": "Mariam"
+        },
+        {
+          "id": "t-20261006-tasneem-muv1cv8y",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "تحقيق في شكوي ٢من العملاء من الشركة",
+          "notes": "شكوي مروان المسيري الممثل للعميل محمد عبدالسلام في انه لم يتم التجاوب معه والرد علية مما اثر علي سير العمل \nونفس الموضوع مع MEDC مع العلم اني بعت لمريم وعمرو يهندلوا العميل لانه اشتكي قبل كده من يومين ولم يتم التجاوب \nبلغيني بالاجراءات اللي هتم",
+          "due": "2026-10-06",
+          "status": "Done",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-05",
+          "month": "2026-10",
+          "created_by": "Moamen",
+          "created_at": "2026-10-05T09:16:51.635Z",
+          "updated_at": "2026-10-05T19:59:33.290Z",
+          "updated_by": "Tasneem",
+          "revisions": 0,
+          "first_progress_at": "2026-10-05T12:47:30.139Z",
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Done",
+              "started_at": "2026-10-05T12:47:30.139Z",
+              "ended_at": "2026-10-05T19:59:33.288Z",
+              "hours": 7.200874722222222,
+              "by": "Tasneem"
+            }
+          ],
+          "start_on": "2026-10-05",
+          "progress_hours": 7.200874722222222,
+          "done_at": "2026-10-05T19:59:33.288Z",
+          "done_on": "2026-10-05",
+          "done_month": "2026-10",
+          "done_by": "Tasneem",
+          "delivered_on": "2026-10-05"
         }
       ]
     },
@@ -5440,6 +5459,27 @@
           "created_at": "2026-10-11T14:33:41.401Z",
           "updated_at": "2026-10-11T14:33:41.401Z",
           "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261015-tasneem-muv150em",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "عقود التوظيف",
+          "notes": "نطبع العقود ونمضي الناس عليها \nالعقود =عقد التوظيف او التدريب+اللايحة\nبداية من اليوم بحد اقصي اسبوع الكل يكون مضي \nلو يوم الخميس بتاع الخميس القادم جه كل شخص موقعش هيتخصم من HR 5oo جنية \nومن الشخص اللي ممضاش ٥٠٠جنية",
+          "due": "2026-10-15",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-05",
+          "month": "2026-10",
+          "created_by": "Moamen",
+          "created_at": "2026-10-05T09:10:45.070Z",
+          "updated_at": "2026-10-05T09:10:45.070Z",
+          "updated_by": "Moamen",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
