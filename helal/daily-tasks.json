@@ -66,7 +66,8 @@
     "t-20261010-mohamed-muoa3vbk",
     "t-20261017-mohamed-muoa6f6b",
     "t-20261026-mohamed-muoa87q8",
-    "t-20261029-ganna-muoammcl"
+    "t-20261029-ganna-muoammcl",
+    "t-20261008-tasneem-muzlmbwa"
   ],
   "statuses": [
     "To do",
@@ -416,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-12T20:48:31.062Z",
+      "updated_at": "2026-10-13T00:07:47.016Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -435,8 +436,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 58.75706129629631,
-          "live": 33.083333333333336
+          "hours": 59.86261685185186,
+          "live": 36.4
         },
         "Judi": {
           "open": 2,
@@ -445,18 +446,18 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 161.73980935185185,
-          "live": 103.4
+          "hours": 162.8453649074074,
+          "live": 106.71666666666667
         },
         "Seif": {
           "open": 14,
           "todo": 13,
           "progress": 1,
           "review": 0,
-          "overdue": 1,
+          "overdue": 2,
           "done": 10,
-          "hours": 21.667943308080808,
-          "live": 126.75
+          "hours": 21.96945845959596,
+          "live": 130.06666666666666
         },
         "Alaa": {
           "open": 2,
@@ -465,8 +466,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 29.387179409722222,
-          "live": 48.833333333333336
+          "hours": 29.801762743055555,
+          "live": 52.15
         },
         "Sara": {
           "open": 0,
@@ -485,8 +486,8 @@
           "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 44.90150797222221,
-          "live": 2.5500000000000003
+          "hours": 46.563174638888874,
+          "live": 19.166666666666668
         },
         "Moamen": {
           "open": 0,
@@ -525,8 +526,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 0.9666666666666667,
-          "live": 0.9666666666666667
+          "hours": 4.283333333333333,
+          "live": 4.283333333333333
         },
         "Salma": {
           "open": 0,
@@ -540,9 +541,9 @@
         }
       },
       "time": {
-        "avgTodo": 9414,
-        "avgProgress": 2500,
-        "open": 48
+        "avgTodo": 9299,
+        "avgProgress": 2607,
+        "open": 47
       },
       "hr": {
         "people": {
@@ -1189,6 +1190,44 @@
           "done_on": "2026-10-07",
           "done_month": "2026-10",
           "done_by": "Amr"
+        },
+        {
+          "id": "t-20260909-tasneem-mtsknxpl",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "shortlist of the candidates for the intern program",
+          "notes": "",
+          "due": "2026-09-09",
+          "status": "Done",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-09-08",
+          "month": "2026-09",
+          "created_by": "Amr",
+          "created_at": "2026-09-08T11:14:19.881Z",
+          "updated_at": "2026-09-09T16:04:58.871Z",
+          "updated_by": "Tasneem",
+          "revisions": 0,
+          "first_progress_at": "2026-09-09T13:56:13.340Z",
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Done",
+              "started_at": "2026-09-09T13:56:13.340Z",
+              "ended_at": "2026-09-09T16:04:58.870Z",
+              "hours": 2.1459805555555556,
+              "by": "Tasneem"
+            }
+          ],
+          "start_on": "2026-09-09",
+          "progress_hours": 2.1459805555555556,
+          "done_at": "2026-09-09T16:04:58.870Z",
+          "done_on": "2026-09-09",
+          "done_month": "2026-09",
+          "done_by": "Tasneem",
+          "delivered_on": "2026-09-09"
         }
       ]
     },
@@ -4746,6 +4785,48 @@
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
+        },
+        {
+          "id": "t-20261010-tasneem-mv2fzp48",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "Task Tracking for all September & October tasks till now",
+          "notes": "",
+          "due": "2026-10-10",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-10",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-10T13:40:54.633Z",
+          "updated_at": "2026-10-10T13:40:54.633Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261010-tasneem-mv2gcz3g",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "Attitude report for each team member | September",
+          "notes": "",
+          "due": "2026-10-10",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-10",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-10T13:51:14.092Z",
+          "updated_at": "2026-10-10T13:51:14.092Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
@@ -4944,6 +5025,27 @@
           "done_on": "2026-10-12",
           "done_month": "2026-10",
           "done_by": "Amr"
+        },
+        {
+          "id": "t-20261011-tasneem-mv2nb6a0",
+          "who": "Tasneem",
+          "space": "HR",
+          "project": "Helal",
+          "title": "Determine a time for meetings with the leads",
+          "notes": "",
+          "due": "2026-10-11",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-10",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-10T17:05:47.401Z",
+          "updated_at": "2026-10-10T17:05:47.401Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
@@ -6166,6 +6268,5 @@
         }
       ]
     }
-  ],
-  "updated_at": "2026-10-12T23:02:30.689Z"
+  ]
 }
