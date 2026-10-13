@@ -417,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T14:38:18.170Z",
+      "updated_at": "2026-10-13T16:10:11.975Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -436,8 +436,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 64.70150574074074,
-          "live": 50.916666666666664
+          "hours": 65.21261685185186,
+          "live": 52.45
         },
         "Judi": {
           "open": 2,
@@ -446,8 +446,8 @@
           "review": 1,
           "overdue": 1,
           "done": 3,
-          "hours": 167.6842537962963,
-          "live": 121.23333333333333
+          "hours": 168.1953649074074,
+          "live": 122.76666666666667
         },
         "Seif": {
           "open": 14,
@@ -456,8 +456,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 23.28915542929293,
-          "live": 144.58333333333334
+          "hours": 23.42854936868687,
+          "live": 146.11666666666667
         },
         "Alaa": {
           "open": 2,
@@ -466,18 +466,18 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 31.616346076388886,
-          "live": 66.66666666666667
+          "hours": 31.808012743055556,
+          "live": 68.2
         },
         "Ganna": {
           "open": 8,
           "todo": 3,
-          "progress": 5,
-          "review": 0,
+          "progress": 4,
+          "review": 1,
           "overdue": 0,
           "done": 7,
-          "hours": 53.81317463888888,
-          "live": 91.66666666666666
+          "hours": 58.43686070987654,
+          "live": 79.46666666666667
         },
         "Moamen": {
           "open": 0,
@@ -506,8 +506,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 0.0009827777777777777,
-          "live": 0
+          "hours": 0.7588247222222222,
+          "live": 1.5166666666666666
         },
         "Aya": {
           "open": 4,
@@ -516,8 +516,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 18.8,
-          "live": 18.8
+          "hours": 20.333333333333332,
+          "live": 20.333333333333332
         },
         "Salma": {
           "open": 0,
@@ -531,8 +531,8 @@
         }
       },
       "time": {
-        "avgTodo": 9920,
-        "avgProgress": 2774,
+        "avgTodo": 10009,
+        "avgProgress": 2769,
         "open": 50
       },
       "hr": {
@@ -5147,20 +5147,33 @@
           "title": "tiktok video | 15 OCT",
           "notes": "let me introduce myself",
           "due": "2026-10-13",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:18:28.491Z",
-          "updated_at": "2026-10-12T20:17:25.384Z",
+          "updated_at": "2026-10-13T16:10:11.910Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-12T20:17:25.384Z",
-          "progress_started_at": "2026-10-12T20:17:25.384Z",
-          "time_log": [],
-          "start_on": "2026-10-12"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-12T20:17:25.384Z",
+              "ended_at": "2026-10-13T16:10:11.909Z",
+              "hours": 19.879590277777776,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-10-12",
+          "progress_hours": 19.879590277777776,
+          "review_at": "2026-10-13T16:10:11.909Z",
+          "first_review_at": "2026-10-13T16:10:11.909Z",
+          "delivered_on": "2026-10-13"
         },
         {
           "id": "t-20261013-aya-mv3x9bnb",
