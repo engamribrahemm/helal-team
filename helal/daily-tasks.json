@@ -417,7 +417,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T19:28:12.641Z",
+      "updated_at": "2026-10-13T19:28:41.284Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -442,12 +442,12 @@
         "Judi": {
           "open": 2,
           "todo": 0,
-          "progress": 1,
-          "review": 1,
+          "progress": 0,
+          "review": 2,
           "overdue": 1,
           "done": 3,
-          "hours": 169.2953649074074,
-          "live": 126.06666666666666
+          "hours": 190.90971402777777,
+          "live": 0
         },
         "Seif": {
           "open": 14,
@@ -476,8 +476,8 @@
           "review": 1,
           "overdue": 0,
           "done": 7,
-          "hours": 57.694268117283954,
-          "live": 72.78333333333335
+          "hours": 57.70167552469135,
+          "live": 72.85000000000001
         },
         "Moamen": {
           "open": 0,
@@ -506,8 +506,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 2.408824722222222,
-          "live": 4.816666666666666
+          "hours": 2.4171580555555554,
+          "live": 4.833333333333333
         },
         "Aya": {
           "open": 4,
@@ -532,7 +532,7 @@
       },
       "time": {
         "avgTodo": 10332,
-        "avgProgress": 2826,
+        "avgProgress": 2698,
         "open": 51
       },
       "hr": {
@@ -5714,7 +5714,7 @@
           "month": "2026-10",
           "created_by": "Aya",
           "created_at": "2026-10-13T19:28:12.624Z",
-          "updated_at": "2026-10-13T19:28:12.624Z",
+          "updated_at": "2026-10-13T19:28:41.272Z",
           "updated_by": "Aya",
           "revisions": 0,
           "first_progress_at": "",
