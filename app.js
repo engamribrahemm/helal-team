@@ -4076,10 +4076,10 @@ function reportCard(r) {
     finishedTasks.length && r.finished && r.finished !== finishedTasksSummary(finishedTasks)
       ? qaBlock("Extra notes", r.finished)
       : null,
-    qaBlock("What is unfinished or blocking you?", r.unfinished),
     (r.blockers || []).length
       ? qaBlock("Blockers", $("div", { class: "chip-row" }, r.blockers.map((b) => $("span", { class: "pill tone-orange" }, b))))
       : null,
+    r.unfinished ? qaBlock("What is unfinished or blocking you?", r.unfinished) : null,
     qaBlock("Drive links", r.drive
       ? $("a", { href: r.drive, target: "_blank", rel: "noreferrer" }, r.drive)
       : "—"),
@@ -4561,7 +4561,6 @@ function viewReport() {
       return (rank[a.status] ?? 9) - (rank[b.status] ?? 9) || String(a.title || "").localeCompare(String(b.title || ""));
     });
   const draftMap = Object.fromEntries((draft.finished_tasks || []).map((row) => [row.id, row]));
-  const unfinished = $("textarea", { placeholder: "What is still open or blocking you?" }, draft.unfinished);
   const notes = $("textarea", { placeholder: "Optional notes (meetings, extras not on the board)" }, draft.finished);
   const drive = $("input", { type: "url", placeholder: "https://", value: draft.drive || "" });
   const need = $("input", { type: "checkbox", checked: !!draft.need_review });
@@ -4630,7 +4629,7 @@ function viewReport() {
   const keep = () => {
     keepReportDraft({
       finished: notes.value,
-      unfinished: unfinished.value,
+      unfinished: "",
       drive: drive.value,
       need_review: need.checked,
       place: remote.checked ? "Remote" : office.checked ? "Office" : "",
@@ -4667,7 +4666,7 @@ function viewReport() {
       submitReport({
         date: today(),
         finished: notes.value.trim(),
-        unfinished: unfinished.value.trim(),
+        unfinished: "",
         drive: drive.value.trim(),
         need_review: need.checked,
         place,
@@ -4691,7 +4690,6 @@ function viewReport() {
         : $("p", { class: "empty" }, "No open tasks on your board. Add a short note below if you still worked today."),
       $("label", {}, ["Extra notes (optional)", notes]),
     ]),
-    $("label", {}, ["What is unfinished or blocking you?", unfinished]),
     $("div", { class: "report-blockers filter-group" }, [
       $("span", { class: "filter-label" }, "Blocker tags (optional)"),
       $("div", { class: "board-filter" }, blockerChips),
