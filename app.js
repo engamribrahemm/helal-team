@@ -6043,48 +6043,284 @@ function viewAttendance() {
   ]);
 }
 
-function viewGuide() {
-  const steps = [
-    ["Log in", "Choose your name and your own password. Amr or Moamen give you that password. Admins add or deactivate people on the People tab."],
-    ["Your board", "Members see their own tasks. Mariam and Judi also see tasks they assigned, and they can mark those Done like admins. Leads (for example Aya for Salma) see and review the people they manage. Admins see the team. On the Board, press All or a name to see one person or the whole team. After you save, a green Saved message appears and GitHub has the update."],
-    ["Do the work", "Drag a card across columns: To do, In progress, Review, Done. Done shows today’s finished tasks. Press See previous tasks to open older days. To do time is how long the card waits in To do. In progress time is only while it sits in In progress — it stops when you move it to Review. Upload files to Drive, not GitHub."],
-    ["Create a task", "Admins, social (Mariam, Judi), and leads can add tasks. Leads can only assign to the people they manage. Fill the brief, pick a due date, then create. It saves to the live board. If you created a task by mistake, open it and press Remove task. That deletes it from the board and GitHub. Admins can remove any task."],
-    ["Review", "Drag to Review when ready. If edits are needed, it stays in Review with an Edits tag. Mariam, Judi, the person’s lead, Amr, or Moamen press Mark done. It saves to GitHub and stays in Done."],
-    ["Workload", "Each month is stored separately. Switching months shows that month only. Live open work sits in the current month. Closed months keep their stored numbers. Admins, Mariam, and Judi see the whole team."],
-    ["Attendance", "Everyone sees the same grid. Set Office, Home, or Off on your row and press Save. After Save, the rest of the team sees your week. To change a day, request it. Admins approve or decline."],
-    ["Evening report", "Open Report, choose Remote or Office, and answer each question. The Report page stays still until you submit, so the text cannot disappear while typing. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
-    ["HR", "Admins open HR. Profile, performance, task tracking, attitude, and warnings are scored each month separately. Use Prev / Next so months never mix. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
-  ];
-  return $("div", { class: "page-stack" }, [
-    pageShell(pageHero("SOP", "How Helal works day to day. Hard-refresh after updates.")),
-    $("div", { class: "sop-list" }, steps.map(([title, body]) =>
-      $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
-    )),
+function sopTocBtn(id, label) {
+  return $("button", {
+    type: "button",
+    class: "sop-toc-btn",
+    onclick: () => {
+      document.getElementById(`sop-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    },
+  }, label);
+}
+
+function sopBlock(id, kicker, title, kids) {
+  return $("article", { class: "sop-block", id: `sop-${id}` }, [
+    $("header", { class: "sop-block-head" }, [
+      kicker ? $("span", { class: "sop-kicker" }, kicker) : null,
+      $("h3", {}, title),
+    ]),
+    ...(Array.isArray(kids) ? kids : [kids]),
   ]);
 }
 
+function sopList(items, ordered) {
+  return $(ordered ? "ol" : "ul", { class: "sop-list-body" }, items.map((t) => $("li", {}, t)));
+}
+
+function sopRules(dos, donts) {
+  return $("div", { class: "sop-rules" }, [
+    $("div", { class: "sop-rule do" }, [
+      $("strong", {}, "Do"),
+      sopList(dos, false),
+    ]),
+    $("div", { class: "sop-rule dont" }, [
+      $("strong", {}, "Don't"),
+      sopList(donts, false),
+    ]),
+  ]);
+}
+
+function viewGuide() {
+  const toc = [
+    ["rules", "Golden rules"],
+    ["day", "Daily rhythm"],
+    ["roles", "Roles"],
+    ["naming", "Task naming"],
+    ["flow", "Status flow"],
+    ["drive", "Drive"],
+    ["mywork", "My work"],
+    ["review", "Review & Done"],
+    ["attend", "Attendance"],
+    ["report", "Evening report"],
+    ["save", "Saving"],
+    ["bot", "Helal bot"],
+    ["check", "Checklist"],
+  ];
+
+  return $("div", { class: "page-stack sop-page" }, [
+    pageShell(
+      pageHero(
+        "SOP · Best practice",
+        "How Helal should be used every day — clear titles, Drive links, clean status, and one evening report.",
+        { label: "Cairo", value: today() }
+      ),
+      $("div", { class: "page-body sop-intro" }, [
+        $("p", {}, "Helal is the live team board. Tasks, attendance, and reports save to GitHub for everyone. Files stay in Google Drive. Use Helal bot (bottom-right) anytime you forget a step."),
+        $("nav", { class: "sop-toc", "aria-label": "SOP sections" }, toc.map(([id, label]) => sopTocBtn(id, label))),
+      ])
+    ),
+
+    sopBlock("rules", "01", "Golden rules", [
+      sopRules(
+        [
+          "Name tasks: content type | publish day (example: single visual | 4th Oct).",
+          "Paste the Drive link on the card before you send to Review.",
+          "Move status as you work: To do → In progress → Review → Done.",
+          "Submit one evening report every Cairo day you worked.",
+          "Hard-refresh after Amr says the board updated.",
+        ],
+        [
+          "Upload files into GitHub or chat instead of Drive.",
+          "Leave work in In progress with no Drive link when it is ready.",
+          "Mark your own work Done unless you are admin, social, or that person's lead.",
+          "Mix months — always check the month control on Board / Time / HR.",
+          "Use WhatsApp for the daily report — use Report in Helal.",
+        ]
+      ),
+    ]),
+
+    sopBlock("day", "02", "Daily rhythm", [
+      $("p", { class: "sop-lead" }, "Same loop every day. Keep it short and consistent."),
+      $("div", { class: "sop-flow" }, [
+        $("div", { class: "sop-flow-step" }, [$("span", {}, "1"), $("strong", {}, "Open"), $("p", {}, "Apps home → My work")]),
+        $("div", { class: "sop-flow-step" }, [$("span", {}, "2"), $("strong", {}, "Work"), $("p", {}, "To do → In progress")]),
+        $("div", { class: "sop-flow-step" }, [$("span", {}, "3"), $("strong", {}, "Upload"), $("p", {}, "Drive + paste link")]),
+        $("div", { class: "sop-flow-step" }, [$("span", {}, "4"), $("strong", {}, "Review"), $("p", {}, "Send To Review")]),
+        $("div", { class: "sop-flow-step" }, [$("span", {}, "5"), $("strong", {}, "Report"), $("p", {}, "Evening Report")]),
+      ]),
+      sopList([
+        "Morning: check My work (and Board filters if you assign work). Start with due / overdue.",
+        "During the day: keep one main card In progress. Update status when you switch.",
+        "Before review: open the client/Helal Drive folder, upload, paste the link on the task.",
+        "Evening: Report → Remote or Office → finish the form → Submit. Amend with Edit if something changes the same Cairo day.",
+      ], true),
+    ]),
+
+    sopBlock("roles", "03", "Who can do what", [
+      $("div", { class: "sop-roles" }, [
+        $("div", { class: "sop-role" }, [
+          $("strong", {}, "Everyone"),
+          $("p", {}, "My work, Board (own tasks), Attendance, Report, Drive, SOP, Helal bot."),
+        ]),
+        $("div", { class: "sop-role" }, [
+          $("strong", {}, "Social · Mariam & Judi"),
+          $("p", {}, "Add and assign tasks, open Review, mark Done like admins. Not full admin (no People / HR / admin reports)."),
+        ]),
+        $("div", { class: "sop-role" }, [
+          $("strong", {}, "Leads"),
+          $("p", {}, "Aya manages Salma. Seif manages Rahma. Leads assign to their people, review their work, and mark those Done."),
+        ]),
+        $("div", { class: "sop-role" }, [
+          $("strong", {}, "Design & video"),
+          $("p", {}, "Alaa, Sara, Rahma (design) and Ganna (video) do not create tasks. Seif can create as Rahma's lead."),
+        ]),
+        $("div", { class: "sop-role" }, [
+          $("strong", {}, "Admins · Amr & Moamen"),
+          $("p", {}, "Full board, Review dashboard, Time, Workload, HR, People, Admin guide. Create or deactivate logins."),
+        ]),
+      ]),
+    ]),
+
+    sopBlock("naming", "04", "Task naming & briefs", [
+      $("p", { class: "sop-lead" }, "Titles must be scannable on the board. Briefs must be enough to start without chasing chat."),
+      $("p", {}, [
+        $("strong", {}, "Format: "),
+        "content type | publish day — keep spaces around the pipe.",
+      ]),
+      sopList([
+        "single visual | 4th Oct",
+        "carousel | 12th Oct",
+        "reel | 18th Oct",
+        "branding | 22nd Oct",
+      ], false),
+      $("p", {}, "In the brief: goal, platform or size, refs, brand notes, and the publish day. Space-specific hints appear on New task — fill them."),
+      sopRules(
+        [
+          "One clear deliverable per task when possible.",
+          "Set a real due date (default today is fine only if it truly is today).",
+          "Assign the owner who will upload to Drive.",
+        ],
+        [
+          "Vague titles like \"post\" or \"design\" with no type or day.",
+          "Stuffing three unrelated deliverables into one card.",
+        ]
+      ),
+    ]),
+
+    sopBlock("flow", "05", "Status flow", [
+      $("div", { class: "sop-status-row" }, ["To do", "In progress", "Review", "Revisions", "Done"].map((s) =>
+        $("span", { class: "sop-status-pill" }, s)
+      )),
+      sopList([
+        "To do — waiting to start. To do time counts here until you leave this column.",
+        "In progress — you are actively working. In progress time counts only here and freezes when you leave.",
+        "Review — ready for Mariam, Judi, the lead, Amr, or Moamen. Needs a Drive link first.",
+        "Revisions / Edits — feedback came back; stay visible in Review with an Edits tag until fixed.",
+        "Done — only reviewers/admins/leads (for their people) mark Done. Done stays on today's Done column.",
+      ], false),
+      $("p", { class: "muted" }, "Timers: To do time = wait in To do. In progress time stops at Review — Review and Done do not add hours."),
+    ]),
+
+    sopBlock("drive", "06", "Drive (always)", [
+      $("p", { class: "sop-lead" }, "Files live in Google Drive. Helal only stores the link on the task and in reports."),
+      sopList([
+        "Open the Drive app → client or Helal folder → upload there.",
+        "Paste the file or folder URL on the task before To Review.",
+        "One Drive subfolder per client or campaign under 05 Projects.",
+        "If the Drive URL is missing on an assignment, still do the work — then flag the missing link to Amr/social.",
+      ], true),
+      sopRules(
+        ["Upload to the matching client/Helal folder.", "Put the link on the card and in the evening report when relevant."],
+        ["Upload into GitHub.", "Send finals only on WhatsApp with no Drive link on the task."]
+      ),
+    ]),
+
+    sopBlock("mywork", "07", "My work path", [
+      $("p", { class: "sop-lead" }, "Members should live in My work. Board is for assigning and scanning."),
+      sopList([
+        "Open My work from Apps.",
+        "Add / confirm the Drive link on the card.",
+        "Press To Review when the file is ready.",
+        "Wait for Amr, Moamen, Mariam, Judi, or your lead to Mark done.",
+        "On phones, Ready for review is listed first — clear that queue before starting new cards.",
+      ], true),
+    ]),
+
+    sopBlock("review", "08", "Review & Done", [
+      sopList([
+        "Only move to Review when the Drive link is on the card and the work matches the brief.",
+        "Who can Mark done: Amr, Moamen, Mariam, Judi, and the matching lead (Aya→Salma, Seif→Rahma).",
+        "If edits are needed, keep it in Review with Edits — do not invent a private status in chat.",
+        "Admins/social/leads: clear Review every evening so Done reflects the real day.",
+      ], false),
+      $("p", { class: "muted" }, "Mistake task? Open it → Remove task (admins can remove any). That deletes it from the live board."),
+    ]),
+
+    sopBlock("attend", "09", "Attendance", [
+      sopList([
+        "Everyone sees the same week grid (Cairo week).",
+        "Set Office, Home, or Off on your row → Save my week.",
+        "After save, the week locks for the team to see.",
+        "Need a change on a locked day? Request it. Admins approve or decline on Attendance / Dashboard.",
+      ], true),
+    ]),
+
+    sopBlock("report", "10", "Evening report", [
+      $("p", { class: "sop-lead" }, "One report per person per Cairo day. Midnight Cairo starts a new day."),
+      sopList([
+        "Open Report → choose Remote or Office.",
+        "Mark what you finished / still open, finish %, blockers if any, Drive links, need review.",
+        "Submit. The form stays still while you type so text does not vanish mid-edit.",
+        "Same day correction? Use Edit on today's report, then save again.",
+        "Do not send the daily report on WhatsApp — Helal is the source of truth.",
+      ], true),
+    ]),
+
+    sopBlock("save", "11", "Saving, refresh, errors", [
+      sopList([
+        "A green Saved message means GitHub has the update for the whole team.",
+        "If two people save at once, Helal retries. Use Retry save on the red banner if needed.",
+        "After Amr pushes a system update, hard-refresh the page (cache bust on the live board).",
+        "Board key expired or save still failing? Message Amr — do not keep hammering Save.",
+      ], false),
+    ]),
+
+    sopBlock("bot", "12", "Helal bot", [
+      $("p", {}, "Helal bot opens when you sign in. Ask things like \"How do I submit my report?\" or \"What should I do now?\" It can open the right app. It does not replace Drive or the evening Report."),
+    ]),
+
+    sopBlock("check", "13", "End-of-day checklist", [
+      $("div", { class: "sop-check" }, [
+        $("label", {}, [$("input", { type: "checkbox" }), " Open work is In progress or Review — nothing forgotten in To do that you actually started."]),
+        $("label", {}, [$("input", { type: "checkbox" }), " Every Review card has a Drive link."]),
+        $("label", {}, [$("input", { type: "checkbox" }), " Attendance week saved (or change requested)."]),
+        $("label", {}, [$("input", { type: "checkbox" }), " Evening Report submitted for today (Cairo)."]),
+        $("label", {}, [$("input", { type: "checkbox" }), " Reviewers: Mark done anything that is truly finished."]),
+      ]),
+      $("p", { class: "muted" }, "Checkboxes are for you on this device only — they are not saved to the board."),
+    ]),
+  ]);
+}
+
+
 function viewAdminGuide() {
   const steps = [
-    ["Task naming", "Name every task like this: content type | publish day. Content types: single visual, carousel, reel, branding (and the same idea for other formats). The day is when it goes live on the calendar, written short: 4th Oct, 12th Oct. Example: single visual | 4th Oct. Another: carousel | 12th Oct. Keep the pipe with spaces around it so the board stays easy to scan."],
-    ["Months never mix", "Board, Workload, Time, Dashboard, and HR all use the same Prev / Next month control. What you see is one month only. Done tasks stay in the month they were finished. Open work always lives in the current month. When you open September, you see September’s Done and scores — not October’s open cards mixed in."],
-    ["Time · start with Everyone", "Open Time. Everyone shows a compact team summary: in-progress hours, live timers, open count, Done count, average wait, average in-progress time. No long task lists on this screen. That keeps the page scannable."],
-    ["Time · open one person", "Click a name in the chips or the summary table. You get that person’s KPIs, then Open / Done / All filters. Default is Open so you are not buried in finished work. Press Show day breakdown only when you need hours by Cairo day. Switch months above to compare the same person month by month — each month’s Done time stays separate."],
-    ["Board times", "On To do cards, the timer is To do (live from create until the card leaves To do). On In progress cards, the timer is In progress only while the card stays there. Moving to Review freezes In progress time — Review and Done do not add to it."],
-    ["HR · Profile", "Pick a person and a month. Profile shows that month’s score bars, open work (current month only), Done for the selected month, attendance, reports, attitude, warnings, and evaluations. Use this when you need the full picture for one teammate."],
-    ["HR · Performance", "Team score table for the selected month. Choose Everyone or one name. Delivery, Quality, Revisions, Creativity, total, and Attitude. Late tasks and missing Drive counts are for that month only. Change the month to see last month’s performance without touching this month."],
-    ["HR · Task tracking", "Review and Done tasks that still need an evaluation for the selected month. Filter by person if needed. After you evaluate, the task leaves this list. Past months only show Done items from that month that were never scored."],
-    ["HR · Attitude, warnings, rewards", "Logged against a month. Score attitude once per person per month. Warnings and rewards lists follow the month you have selected. Do not treat a September warning as part of October."],
-    ["Dashboard", "Reports and attendance requests live here. Pick a day for daily reports, and use the month for the saved-reports list. Person filter next to the calendar narrows to one teammate. Time detail is on the Time tab, not mixed into reports."],
-    ["Quick check each evening", "1) Time → Everyone for who is heavy this month. 2) Time → one person if something looks off. 3) HR → Performance for scores. 4) HR → Task tracking for evaluations waiting. 5) Switch to last month only when you need history — then switch back to the current month."],
+    ["01", "Task naming", "Name every task: content type | publish day. Types: single visual, carousel, reel, branding (same idea for other formats). Day is when it goes live, short: 4th Oct, 12th Oct. Keep spaces around the pipe."],
+    ["02", "Months never mix", "Board, Workload, Time, Dashboard, and HR share Prev / Next month. One month only on screen. Done stays in the month finished. Open work lives in the current month."],
+    ["03", "Time · Everyone", "Open Time → Everyone for in-progress hours, live timers, open/Done counts, average wait and in-progress time. No long task lists — keep it scannable."],
+    ["04", "Time · one person", "Click a name. KPIs, then Open / Done / All (default Open). Show day breakdown only when needed. Switch months to compare — Done time stays per month."],
+    ["05", "Board times", "To do timer runs until the card leaves To do. In progress timer runs only in In progress and freezes at Review. Review and Done do not add hours."],
+    ["06", "HR · Profile", "Person + month: score bars, open work (current month), Done for selected month, attendance, reports, attitude, warnings, evaluations."],
+    ["07", "HR · Performance", "Team score table for the month. Delivery, Quality, Revisions, Creativity, total, Attitude. Late / missing Drive counts are month-scoped."],
+    ["08", "HR · Task tracking", "Review and Done tasks still needing evaluation this month. After you evaluate, they leave the list."],
+    ["09", "HR · Attitude & warnings", "Logged per month. Score attitude once per person per month. Do not mix September warnings into October."],
+    ["10", "Dashboard", "Reports and attendance requests. Day for daily reports, month for saved list. Person filter narrows. Time detail stays on Time."],
+    ["11", "Evening admin check", "1) Time → Everyone 2) Time → one person if off 3) HR → Performance 4) HR → Task tracking 5) Switch months only for history, then return to current."],
   ];
-  return $("div", { class: "page-stack" }, [
-    pageShell(pageHero(
-      "Admin guide",
-      "How Amr and Moamen read Time, HR, and performance. Team SOP stays on the SOP tab."
-    )),
-    $("div", { class: "sop-list" }, steps.map(([title, body]) =>
-      $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
-    )),
+  return $("div", { class: "page-stack sop-page" }, [
+    pageShell(
+      pageHero(
+        "Admin guide",
+        "How Amr and Moamen read Time, HR, and performance. Team best practice stays on SOP.",
+        { label: "Cairo", value: today() }
+      ),
+      $("div", { class: "page-body sop-intro" }, [
+        $("p", {}, "Use this after the team SOP. Months never mix. Clear Review and evaluations the same Cairo evening when you can."),
+      ])
+    ),
+    ...steps.map(([kicker, title, body]) =>
+      sopBlock(`admin-${kicker}`, kicker, title, [$("p", {}, body)])
+    ),
   ]);
 }
 
@@ -6505,7 +6741,14 @@ function helpKnowledge() {
       id: "sop",
       keys: ["sop", "guide", "help", "how does", "manual"],
       title: "Full SOP",
-      body: "Open the SOP app for the full team guide. Admins also have Admin guide for Time/HR reading tips.",
+      body: "Open SOP · Best practice for golden rules, daily rhythm, task naming, Drive, Review, reports, and the end-of-day checklist. Admins also have Admin guide for Time/HR.",
+      go: "guide",
+    },
+    {
+      id: "bestpractice",
+      keys: ["best practice", "best practices", "golden rules", "checklist", "daily rhythm"],
+      title: "Best practice",
+      body: "Follow SOP: name tasks content type | publish day, paste Drive before Review, move status as you work, submit one evening Report per Cairo day. Open SOP for the full guide.",
       go: "guide",
     },
   ];

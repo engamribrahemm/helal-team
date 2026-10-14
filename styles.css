@@ -1918,10 +1918,222 @@ html[data-theme="bright"] .report-task-row.on {
 
 a { color: var(--gold); }
 
+.sop-page {
+  max-width: 920px;
+  gap: 16px;
+}
+.sop-intro {
+  gap: 14px;
+}
+.sop-intro > p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 68ch;
+}
+.sop-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sop-toc-btn {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 7px 11px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.sop-toc-btn:hover {
+  border-color: var(--gold);
+  background: rgba(245, 196, 0, 0.08);
+}
+.sop-block {
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(180deg, var(--card-top), var(--card-bot));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  scroll-margin-top: 18px;
+}
+.sop-block-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.sop-kicker {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.sop-block-head h3 {
+  margin: 0;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+.sop-lead {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.5;
+  max-width: 68ch;
+}
+.sop-block > p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 70ch;
+}
+.sop-list-body {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.sop-list-body li::marker {
+  color: var(--gold);
+}
+.sop-rules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.sop-rule {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.sop-rule strong {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.sop-rule.do strong { color: #7dcc8a; }
+.sop-rule.dont strong { color: #e28b8b; }
+.sop-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.sop-flow-step {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  text-align: center;
+}
+.sop-flow-step > span {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+.sop-flow-step strong {
+  font-size: 13px;
+}
+.sop-flow-step p {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.sop-roles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.sop-role {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+.sop-role strong {
+  font-size: 13px;
+}
+.sop-role p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.sop-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sop-status-pill {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 196, 0, 0.35);
+  background: rgba(245, 196, 0, 0.1);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+}
+.sop-check {
+  display: grid;
+  gap: 10px;
+}
+.sop-check label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+.sop-check input {
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gold);
+}
+
+/* legacy admin guide list */
 .sop-list { max-width: 720px; display: grid; gap: 14px; }
 .sop-list article { padding: 20px 22px; }
 .sop-list h3 { color: var(--gold); margin-bottom: 8px; letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; }
 .sop-list p { color: var(--muted); line-height: 1.6; margin: 0; }
+
+@media (max-width: 900px) {
+  .sop-rules,
+  .sop-flow {
+    grid-template-columns: 1fr;
+  }
+  .sop-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
 .dash { display: grid; gap: 18px; animation: soft-pop 0.45s var(--ease) both; }
 .dash > section:not(.page-shell):not(.card):not(.report-shell) {
