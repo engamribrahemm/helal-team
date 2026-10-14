@@ -547,10 +547,18 @@ function boardPersonSelect() {
   ]);
 }
 
+function filterChipRow(label, kids) {
+  if (!kids?.length) return null;
+  return $("div", { class: "filter-group" }, [
+    $("span", { class: "filter-label" }, label),
+    $("div", { class: "board-filter" }, kids),
+  ]);
+}
+
 function viewBoardFilter() {
   if (!canFilterBoardPerson()) return null;
   const who = state.boardPerson;
-  return $("div", { class: "board-filter" }, [
+  return filterChipRow("People", [
     $("button", {
       type: "button",
       class: `time-chip${!who ? " on" : ""}`,
@@ -568,7 +576,7 @@ function viewBoardClientFilter() {
   const clients = boardClients();
   if (!clients.length && !state.boardClient) return null;
   const current = state.boardClient;
-  return $("div", { class: "board-filter board-client-filter" }, [
+  return filterChipRow("Clients", [
     $("button", {
       type: "button",
       class: `time-chip${!current ? " on" : ""}`,
@@ -617,7 +625,7 @@ function boardCockpit(tasks) {
     $("div", { class: "stat-row dense" }, [
       $("button", {
         type: "button",
-        class: `stat cockpit-stat${state.boardFocus === "due" ? " on" : ""}`,
+        class: `stat cockpit-stat${due ? " tone-orange" : ""}${state.boardFocus === "due" ? " on" : ""}`,
         onclick: () => setBoardFocus("due"),
       }, [$("strong", {}, String(due)), $("span", {}, "Due today")]),
       $("button", {
@@ -2597,14 +2605,17 @@ function kanbanCard(task) {
     },
   }, [
     $("p", { class: "title" }, task.title),
-    $("div", { class: "meta" }, [
-      isOverdue(task) ? $("span", { class: "pill tone-red" }, "Overdue") : null,
-      isDueToday(task) ? $("span", { class: "pill tone-orange" }, "Due today") : null,
-      !taskHasDrive(task) && (task.status === "In progress" || task.status === "Review")
-        ? $("span", { class: "pill tone-orange" }, "Need Drive")
-        : null,
-      task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
-    ]),
+    (() => {
+      const tags = [
+        isOverdue(task) ? $("span", { class: "pill tone-red" }, "Overdue") : null,
+        isDueToday(task) ? $("span", { class: "pill tone-orange" }, "Due today") : null,
+        !taskHasDrive(task) && (task.status === "In progress" || task.status === "Review")
+          ? $("span", { class: "pill tone-orange" }, "Need Drive")
+          : null,
+        task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
+      ].filter(Boolean);
+      return tags.length ? $("div", { class: "meta" }, tags) : null;
+    })(),
     taskFactList(task),
     toReview ? $("div", { class: "kcard-actions" }, [toReview]) : null,
     canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
@@ -2747,13 +2758,15 @@ function viewBoard() {
   );
   return $("div", { class: "board-wrap" }, [
     boardCockpit(tasks),
-    viewBoardFilter(),
-    viewBoardClientFilter(),
+    $("div", { class: "board-toolbar" }, [
+      viewBoardFilter(),
+      viewBoardClientFilter(),
+    ]),
     who || client
       ? $("p", { class: "muted board-filter-note" }, [
         who ? `Person: ${who}. ` : "",
         client ? `Client: ${client}. ` : "",
-        "Clear the chips above for the full board.",
+        "Clear the filters above for the full board.",
       ].filter(Boolean).join(""))
       : null,
     board,
@@ -3546,15 +3559,19 @@ function viewMy() {
   return [
     isAdmin() ? null : myHrCard(),
     boardCockpit(open),
-    viewBoardClientFilter(),
-    $("div", { class: "stat-row" }, [
-      statBox(open.length, "Open now"),
-      statBox(dueN, "Due today", dueN ? "tone-orange" : ""),
-      statBox(overdueN, "Overdue", overdueN ? "tone-red" : ""),
-      statBox(finished.length, "Done this month", "tone-green"),
+    $("div", { class: "board-toolbar" }, [viewBoardClientFilter()]),
+    $("div", { class: "my-work-head" }, [
+      $("div", {}, [
+        $("h2", {}, "Open"),
+        $("p", { class: "muted" }, "Add a Drive link, then press To Review. It saves to GitHub."),
+      ]),
+      $("div", { class: "my-work-meta" }, [
+        $("span", { class: "pill" }, `${open.length} open`),
+        dueN ? $("span", { class: "pill tone-orange" }, `${dueN} due today`) : null,
+        overdueN ? $("span", { class: "pill tone-red" }, `${overdueN} overdue`) : null,
+        $("span", { class: "pill tone-green" }, `${finished.length} done this month`),
+      ]),
     ]),
-    $("h2", {}, "Open"),
-    $("p", { class: "muted" }, "In progress work: add a Drive link, then press To Review. It saves to GitHub for the whole team."),
     open.length
       ? $("div", { class: "cards", style: "margin-top:14px" }, open.map((task) => {
         const toReview = reviewActionButton(task);
@@ -5377,18 +5394,22 @@ function render(force) {
   root.className = state.view === "board" ? "board-mode" : "";
   root.append(
     $("header", { class: "top" }, [
-      $("a", { class: "brand", href: "#", onclick: (e) => { e.preventDefault(); state.view = "board"; render(); } }, [
-        $("img", {
-          class: "brand-mark",
-          src: "./assets/helal-mark.png",
-          alt: "Helal",
-          width: "44",
-          height: "44",
-        }),
+      $("div", { class: "top-left" }, [
+        $("a", { class: "brand", href: "#", onclick: (e) => { e.preventDefault(); state.view = "board"; render(); } }, [
+          $("img", {
+            class: "brand-mark",
+            src: "./assets/helal-mark.png",
+            alt: "Helal",
+            width: "44",
+            height: "44",
+          }),
+        ]),
+        $("div", { class: "top-identity" }, [
+          $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member"}`),
+          $("span", { class: "cairo-chip" }, `${cairoClock()} · Cairo`),
+        ]),
       ]),
       $("div", { class: "top-actions" }, [
-        $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member"}`),
-        $("span", { class: "cairo-chip" }, `${cairoClock()} · Cairo`),
         $("select", {
           class: "date-select",
           onchange: (e) => {
@@ -5399,7 +5420,6 @@ function render(force) {
           $("option", { value: "all", selected: state.dateFilter === "all" }, "All dates"),
           $("option", { value: today(), selected: state.dateFilter === today() }, `Today · ${today()}`),
         ]),
-        state.view === "board" && canFilterBoardPerson() ? boardPersonSelect() : null,
         canAssignTasks()
           ? $("button", {
             class: "btn primary",
