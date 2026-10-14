@@ -383,7 +383,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-14T17:58:32.929Z",
+      "updated_at": "2026-10-14T17:58:38.788Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -437,9 +437,9 @@
         },
         "Ganna": {
           "open": 8,
-          "todo": 1,
+          "todo": 2,
           "progress": 1,
-          "review": 6,
+          "review": 5,
           "overdue": 1,
           "done": 7,
           "hours": 78.71084662037036,
@@ -497,7 +497,7 @@
         }
       },
       "time": {
-        "avgTodo": 12015,
+        "avgTodo": 11921,
         "avgProgress": 3012,
         "open": 47
       },
@@ -5916,14 +5916,14 @@
           "title": "tiktok video | 25 OCT",
           "notes": "انت مع مديرك الي بتعتبره chatgpt وبتسأله في كل حاجه",
           "due": "2026-10-23",
-          "status": "Review",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:27:37.010Z",
-          "updated_at": "2026-10-14T17:58:30.909Z",
+          "updated_at": "2026-10-14T17:58:40.715Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-12T20:17:35.049Z",
@@ -6002,14 +6002,14 @@
           "title": "tiktok video | 26 OCT",
           "notes": "مديرك بيبصلك وانت مش عارف هو فخور بيك ولا بيفكر يطردك",
           "due": "2026-10-24",
-          "status": "Review",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:28:28.882Z",
-          "updated_at": "2026-10-14T17:58:32.756Z",
+          "updated_at": "2026-10-14T17:58:37.987Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "",
