@@ -6629,81 +6629,88 @@ if (typeof window !== "undefined" && !window.__helalAppsEsc) {
   });
 }
 
-function helpKnowledge() {
-  const items = [
+function helpStaticKnowledge() {
+  return [
+    {
+      id: "overview",
+      keys: ["overview", "everything", "system", "what is helal", "how helal works", "explain helal", "about helal"],
+      title: "Helal overview",
+      body: "Helal is the live team OS: Apps home → Board, My work, Attendance, Report, Drive, SOP, plus Review/Workload for social/leads and Time/HR/People for admins. Tasks/attendance/reports save to GitHub. Files stay in Google Drive. Status: To do → In progress → Review → Revisions → Done. Name tasks content type | publish day. Paste Drive before Review. One evening Report per Cairo day. Ask me about any client, teammate, app, or SOP rule.",
+      go: "apps",
+    },
     {
       id: "golden",
-      keys: ["golden rules", "rules", "don't", "dont", "never", "must", "should i"],
+      keys: ["golden rules", "rules", "don't", "dont", "never", "must"],
       title: "Golden rules",
-      body: "Do: name tasks content type | publish day; paste Drive before Review; move To do → In progress → Review → Done; submit one evening Report per Cairo day you worked; hard-refresh after Amr updates the board. Don't: upload to GitHub/chat instead of Drive; leave ready work in In progress with no Drive; mark your own Done (unless admin/social/lead); mix months; send the daily report on WhatsApp.",
+      body: "Do: name tasks content type | publish day; paste Drive before Review; move To do → In progress → Review → Done; submit one evening Report per Cairo day; hard-refresh after Amr updates. Don't: upload to GitHub/chat instead of Drive; leave ready work without Drive; mark your own Done (unless admin/social/lead); mix months; send daily report on WhatsApp.",
       go: "guide",
     },
     {
       id: "rhythm",
       keys: ["daily rhythm", "daily loop", "morning", "evening", "routine", "workflow", "how do i work"],
       title: "Daily rhythm",
-      body: "Same loop every day: 1) Apps → My work 2) To do → In progress 3) Upload to Drive + paste link 4) Send To Review 5) Evening Report. Morning: due/overdue first. Day: one main card In progress. Night: Report → Remote or Office → Submit (Edit same Cairo day if needed).",
+      body: "1) Apps → My work 2) To do → In progress 3) Upload Drive + paste link 4) To Review 5) Evening Report. Morning: due/overdue. Day: one main In progress card. Night: Report → Remote/Office → Submit.",
       go: "guide",
     },
     {
       id: "roles",
-      keys: ["roles", "who can", "permissions", "mariam", "judi", "aya", "seif", "lead", "admin", "social", "alaa", "rahma", "ganna"],
+      keys: ["roles", "who can", "permissions", "access"],
       title: "Roles",
-      body: "Everyone: My work, Board (own), Attendance, Report, Drive, SOP, Helal bot. Social (Mariam, Judi): add/assign tasks, Review, Mark done — not People/HR. Leads: Aya→Salma, Seif→Rahma (assign/review/Done for their people). Design/video (Alaa, Rahma, Ganna) do not create tasks except Seif as Rahma's lead. Admins Amr & Moamen: full board, Time, Workload, HR, People, Admin guide.",
+      body: "Everyone: My work, Board (own), Attendance, Report, Drive, SOP, Helal bot. Social (Mariam, Judi): add/assign, Review, Mark done — not People/HR. Leads: Aya→Salma, Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, People.",
       go: "guide",
     },
     {
       id: "naming",
       keys: ["naming", "title", "name a task", "content type", "publish day", "single visual", "carousel", "reel", "branding", "brief"],
       title: "Task naming",
-      body: "Format: content type | publish day (spaces around the pipe). Examples: single visual | 4th Oct · carousel | 12th Oct · reel | 18th Oct · branding | 22nd Oct. Brief needs goal, platform/size, refs, brand notes, publish day. One clear deliverable per task; real due date; assign the owner who uploads to Drive.",
+      body: "Format: content type | publish day. Examples: single visual | 4th Oct · carousel | 12th Oct · reel | 18th Oct · branding | 22nd Oct. Brief: goal, platform/size, refs, brand notes, publish day. One deliverable per task when possible.",
       go: "guide",
     },
     {
       id: "flow",
       keys: ["status", "status flow", "columns", "to do", "in progress", "revisions", "edits tag", "timer"],
       title: "Status flow",
-      body: "To do → In progress → Review → Revisions/Edits → Done. To do time counts in To do. In progress time counts only in In progress and freezes at Review. Review needs a Drive link. Edits stay in Review with an Edits tag. Only admins/social/matching lead mark Done.",
+      body: "To do → In progress → Review → Revisions/Edits → Done. To do time counts in To do. In progress time only in In progress; freezes at Review. Review needs Drive. Only admins/social/matching lead mark Done.",
       go: "board",
     },
     {
       id: "login",
       keys: ["login", "password", "sign in", "log in", "pin"],
       title: "Sign in",
-      body: "Choose your name and enter your own password. Amr or Moamen give you that password. Admins manage people on the People app.",
+      body: "Choose your name and your own password (from Amr or Moamen). Admins manage people on People.",
     },
     {
       id: "apps",
-      keys: ["apps", "home", "menu", "where", "start", "launcher"],
+      keys: ["apps", "home", "menu", "where", "start", "launcher", "all apps"],
       title: "Apps home",
-      body: "After sign-in you land on Apps. Tap an icon to open it. Use All apps (or Esc) to come back. Helal bot opens automatically and answers from the SOP.",
+      body: "After sign-in you land on Apps. Tap an icon. All apps or Esc returns home. Today strip shows your next moves. Helal bot knows SOP, clients, team, and live board.",
       go: "apps",
     },
     {
       id: "mywork",
       keys: ["my work", "my tasks", "to review", "drive link", "need drive", "how to finish", "path"],
       title: "My work",
-      body: "Members live in My work (Board is for assigning/scanning). Path: 1) Open My work 2) Add/confirm Drive link 3) Press To Review when ready 4) Wait for Amr, Moamen, Mariam, Judi, or your lead to Mark done. On phones, clear Ready for review first.",
+      body: "Members live here. 1) Open My work 2) Add Drive link 3) To Review 4) Wait for Amr/Moamen/Mariam/Judi/your lead to Mark done. Phones: clear Ready for review first.",
       go: "my",
     },
     {
       id: "board",
-      keys: ["board", "kanban", "drag"],
+      keys: ["board", "kanban", "drag", "filters"],
       title: "Board",
-      body: "Drag cards through status columns. Members mainly use My work. Admins/social/leads use Board filters for people and clients. After save, a green Saved message means GitHub has the update.",
+      body: "Kanban for the team. Members mainly use My work. Admins/social/leads filter by person/client/focus (due, overdue, missing Drive). Green Saved = on GitHub for everyone.",
       go: "board",
     },
     {
       id: "create",
       keys: ["create", "new task", "assign", "add task"],
       title: "Create a task",
-      body: "Admins, Mariam, Judi, and leads can press New task. Name it content type | publish day. Fill the brief. Leads only assign to people they manage. Mistake? Open the task → Remove task (admins can remove any).",
+      body: "Admins, Mariam, Judi, and leads can New task. Name content type | publish day, pick client, due, owner. Leads only assign people they manage. Mistake → Remove task.",
     },
     {
       id: "review",
       keys: ["review", "mark done", "done", "edits", "revisions", "waiting"],
       title: "Review & Done",
-      body: "Move to Review only when Drive is on the card and work matches the brief. Who marks Done: Amr, Moamen, Mariam, Judi, and matching lead (Aya→Salma, Seif→Rahma). Keep edits in Review with Edits tag. Clear Review every evening so Done matches the real day.",
+      body: "Review only with Drive on the card. Done by: Amr, Moamen, Mariam, Judi, Aya (Salma), Seif (Rahma). Edits stay in Review. Clear Review each evening.",
       go: "review",
       roles: ["admin", "social", "lead"],
     },
@@ -6711,7 +6718,7 @@ function helpKnowledge() {
       id: "review-member",
       keys: ["review", "mark done", "done", "edits", "waiting review", "who marks"],
       title: "Review & Done",
-      body: "You send work to Review (needs Drive). You do not mark your own Done. Amr, Moamen, Mariam, Judi, or your lead (Aya for Salma, Seif for Rahma) mark Done. If edits come back, fix and keep it in Review with Edits.",
+      body: "You send to Review (needs Drive). You don't mark your own Done — Amr, Moamen, Mariam, Judi, or your lead does.",
       go: "my",
       roles: ["member"],
     },
@@ -6719,35 +6726,49 @@ function helpKnowledge() {
       id: "report",
       keys: ["report", "evening", "daily report", "remote", "office", "amend", "edit report", "whatsapp"],
       title: "Evening report",
-      body: "One report per person per Cairo day (midnight Cairo starts a new day). Open Report → Remote or Office → finished/open work, finish %, blockers, Drive links, need review → Submit. Same-day fix: Edit today's report. Do not send the daily report on WhatsApp — Helal is the source of truth.",
+      body: "One report per person per Cairo day. Report → Remote/Office → finished/open, %, blockers, Drive, need review → Submit. Edit same day if needed. Not on WhatsApp.",
       go: "report",
     },
     {
       id: "attend",
       keys: ["attendance", "office", "home", "off", "save week", "change day", "locked"],
       title: "Attendance",
-      body: "Everyone sees the same Cairo week grid. Set Office, Home, or Off on your row → Save my week. After save it locks. Need a change? Request it — admins approve or decline on Attendance / Dashboard.",
+      body: "Set Office/Home/Off → Save my week (locks). Change locked day via request; admins approve on Attendance/Dashboard.",
       go: "attend",
     },
     {
       id: "drive",
-      keys: ["drive", "upload", "folder", "files", "google drive", "github upload"],
+      keys: ["drive", "upload", "folder", "files", "google drive", "github upload", "05 projects"],
       title: "Drive",
-      body: "Files live in Google Drive only — never GitHub. Open Drive app → client or Helal folder → upload → paste the URL on the task before To Review. One Drive subfolder per client/campaign under 05 Projects. Missing folder link? Still do the work, then flag Amr/social.",
+      body: "Files only in Google Drive. Drive app → client or Helal folder → upload → paste URL on the task before Review. Ask me a client name for their folder link.",
       go: "drive",
+    },
+    {
+      id: "clients-list",
+      keys: ["clients", "client list", "projects", "which clients", "all clients", "list clients"],
+      title: "Clients",
+      body: "Ask me any client name for Drive + open-task counts. Or open Drive for all folders.",
+      go: "drive",
+    },
+    {
+      id: "team-list",
+      keys: ["team", "roster", "who works", "people list", "everyone"],
+      title: "Team",
+      body: "Ask me a person's name for role and permissions. Admins manage logins on People.",
+      go: "apps",
     },
     {
       id: "checklist",
       keys: ["checklist", "end of day", "eod", "before i leave", "done for today"],
       title: "End-of-day checklist",
-      body: "Before you leave: open work is In progress or Review; every Review card has Drive; attendance week saved (or change requested); evening Report submitted for today (Cairo); reviewers Mark done anything truly finished. Full checklist is in SOP.",
+      body: "Open work in In progress/Review; every Review has Drive; attendance saved; evening Report submitted; reviewers Mark done finished work. Full list in SOP.",
       go: "guide",
     },
     {
       id: "time",
       keys: ["time", "hours", "timer", "in progress time", "to do time"],
       title: "Time",
-      body: "To do time = wait in To do. In progress time = only while In progress; freezes at Review. Admins: Time → Everyone for team scan, then tap a person. Months never mix — use Prev/Next.",
+      body: "Admins: Time → Everyone, then a person. To do / In progress timers; freezes at Review. Months never mix.",
       go: "time",
       roles: ["admin"],
     },
@@ -6755,7 +6776,7 @@ function helpKnowledge() {
       id: "workload",
       keys: ["workload", "load", "busy", "open tasks count"],
       title: "Workload",
-      body: "Shows open / review / overdue / done for the selected month. Admins and social see the team. Leads see themselves + people they manage. Months never mix.",
+      body: "Open / review / overdue / done for the month. Admins & social: team. Leads: self + manages.",
       go: "load",
       roles: ["admin", "social", "lead"],
     },
@@ -6763,7 +6784,7 @@ function helpKnowledge() {
       id: "hr",
       keys: ["hr", "score", "performance", "attitude", "warning", "evaluation"],
       title: "HR",
-      body: "Admins only. Months never mix. Task scores: Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%. Attitude is separate. Use Profile / Performance / Task tracking per Admin guide.",
+      body: "Admins. Months never mix. Delivery 35% · Quality 35% · Revisions 15% · Creativity 15%. Attitude separate.",
       go: "hr",
       roles: ["admin"],
     },
@@ -6771,7 +6792,7 @@ function helpKnowledge() {
       id: "people",
       keys: ["people", "add person", "deactivate", "password reset", "new password"],
       title: "People",
-      body: "Admins add logins, issue passwords, edit name/email, or deactivate. Share the new password once — shown only at issue time.",
+      body: "Admins add logins, issue passwords, edit, or deactivate. Password shown once at issue.",
       go: "people",
       roles: ["admin"],
     },
@@ -6779,7 +6800,7 @@ function helpKnowledge() {
       id: "admin-guide",
       keys: ["admin guide", "read time", "months never mix", "dashboard", "chase"],
       title: "Admin guide",
-      body: "For Amr/Moamen: months never mix on Board/Time/HR. Evening check: Time → Everyone, then one person if needed, HR Performance, HR Task tracking. Team best practice stays on SOP.",
+      body: "Evening: Time → Everyone → person if needed → HR Performance → Task tracking. Team SOP is separate.",
       go: "admin-guide",
       roles: ["admin"],
     },
@@ -6787,23 +6808,152 @@ function helpKnowledge() {
       id: "save",
       keys: ["save", "retry", "github", "not saving", "error", "conflict", "hard-refresh", "refresh"],
       title: "Saving & refresh",
-      body: "Green Saved = GitHub has the update for everyone. Merge conflicts: Helal retries — use Retry save on the red banner. After Amr pushes an update, hard-refresh. Board key expired? Message Amr — don't keep hammering Save.",
+      body: "Green Saved = live for the team. Retry save on conflict. Hard-refresh after Amr pushes updates. Key expired → message Amr.",
     },
     {
       id: "theme",
       keys: ["theme", "dark", "bright", "light", "moon", "sun"],
       title: "Theme",
-      body: "Use the sun/moon button in the top bar to switch dark and bright mode. Your choice is remembered on this browser.",
+      body: "Sun/moon in the top bar switches dark/bright. Remembered on this browser.",
     },
     {
       id: "sop",
-      keys: ["sop", "guide", "help", "how does", "manual", "best practice", "best practices", "full guide"],
+      keys: ["sop", "guide", "help", "manual", "best practice", "best practices", "full guide"],
       title: "SOP · Best practice",
-      body: "I am trained on the current SOP: golden rules, daily rhythm, roles, naming, status, Drive, My work, Review, Attendance, evening Report, saving, and the end-of-day checklist. Open SOP to read the full page.",
+      body: "Full written guide: golden rules, rhythm, roles, naming, status, Drive, My work, Review, Attendance, Report, saving, checklist. I also know live clients, team, and board.",
+      go: "guide",
+    },
+    {
+      id: "bot",
+      keys: ["helal bot", "chatbot", "what can you", "what do you know"],
+      title: "Helal bot",
+      body: "I know the SOP, every client Drive folder, the team roster, apps, and your live tasks (overdue, missing Drive, review queue). Ask a client name, a person, or how to do any step.",
       go: "guide",
     },
   ];
+}
+
+function helpClientOpenSummary(name) {
+  const tasks = allTasks().filter((t) => isOpenTask(t) && String(t.project || "").toLowerCase() === String(name || "").toLowerCase());
+  if (!tasks.length) return "No open tasks on the board for this client right now.";
+  const by = { "To do": 0, "In progress": 0, Review: 0, Revisions: 0 };
+  for (const t of tasks) {
+    if (by[t.status] != null) by[t.status] += 1;
+    else by[t.status] = (by[t.status] || 0) + 1;
+  }
+  const parts = Object.entries(by).filter(([, n]) => n).map(([s, n]) => `${n} ${s}`);
+  const visible = tasks.filter((t) => canSeeTask(t));
+  const sample = visible.slice(0, 3).map((t) => `${t.title || t.id} (${t.who}, ${t.status})`).join("; ");
+  return `${tasks.length} open: ${parts.join(", ")}.${sample ? ` Examples you can see: ${sample}.` : ""}`;
+}
+
+function helpLiveKnowledge() {
+  const items = [];
+  const clients = projectList().filter((p) => p.name && String(p.name).toLowerCase() !== "helal");
+  const clientNames = clients.map((p) => p.name).join(", ");
+  items.push({
+    id: "live-clients",
+    keys: ["clients", "client list", "projects", "which clients", "all clients", "list clients"],
+    title: "Clients (live)",
+    body: clients.length
+      ? `Current clients: ${clientNames}. Ask any name for Drive link and open-task counts. Upload into that client's Drive folder — never GitHub.`
+      : "No clients loaded yet. Check Drive / projects data.",
+    go: "drive",
+  });
+
+  for (const p of projectList()) {
+    const name = String(p.name || "").trim();
+    if (!name) continue;
+    const lower = name.toLowerCase();
+    const keys = [lower, `${lower} drive`, `${lower} folder`, `${lower} client`, `${lower} tasks`];
+    if (p.id) keys.push(String(p.id).replace(/-/g, " "));
+    const url = p.url || driveForProject(name) || "";
+    items.push({
+      id: `client-${p.id || lower}`,
+      keys,
+      title: `Client · ${name}`,
+      body: `${name} is a Helal client. ${url ? "Drive folder is linked — upload finals there and paste the link on the task before Review. " : "Drive URL missing — flag Amr/social, still do the work. "}${helpClientOpenSummary(name)}`,
+      go: "drive",
+      href: url || "",
+      weight: 8,
+    });
+  }
+
+  const roster = people();
+  items.push({
+    id: "live-team",
+    keys: ["team", "roster", "who works here", "people list", "teammates"],
+    title: "Team (live)",
+    body: roster.length
+      ? `Active team: ${roster.map((p) => `${p.name} (${p.role || p.home || "member"})`).join("; ")}. Ask a name for details.`
+      : "Team list not loaded.",
+    go: isAdmin() ? "people" : "apps",
+  });
+
+  for (const person of roster) {
+    const name = person.name;
+    const lower = name.toLowerCase();
+    const manages = (person.manages || []).join(", ");
+    const mine = allTasks().filter((t) => isOpenTask(t) && samePerson(t.who, name));
+    let roleLine = `${name} — ${person.role || "Team"}${person.home ? ` · ${person.home}` : ""}.`;
+    if (person.access === "admin") roleLine += " Admin access.";
+    if (manages) roleLine += ` Manages: ${manages}.`;
+    if (["Mariam", "Judi"].includes(name)) roleLine += " Social: can add tasks, Review, Mark done.";
+    roleLine += ` Open tasks: ${mine.length}.`;
+    items.push({
+      id: `person-${person.id || lower}`,
+      keys: [lower, `${lower} role`, `${lower} tasks`, `who is ${lower}`, `about ${lower}`],
+      title: `Teammate · ${name}`,
+      body: roleLine,
+      go: samePerson(name, state.who) ? "my" : (isAdmin() || isSocial() || isLead() ? "board" : "apps"),
+      weight: 7,
+    });
+  }
+
+  const helalFolders = (state.drive?.folders || []).filter((f) => !f.hidden && f.id !== "root" && f.name);
+  for (const f of helalFolders) {
+    if (f.who === "Client" || f.section === "clients") continue;
+    const lower = String(f.name).toLowerCase();
+    items.push({
+      id: `folder-${f.id}`,
+      keys: [lower, `${lower} folder`, "helal folder", "internal folder", f.id],
+      title: `Drive · ${f.name}`,
+      body: `Internal Drive folder "${f.name}"${f.who ? ` (${f.who})` : ""}. ${f.url ? "Open it from Drive app or ask me for the link." : "URL missing — ask Amr."}`,
+      go: "drive",
+      href: f.url || "",
+      weight: 3,
+    });
+  }
+
+  const root = rootDrive();
+  items.push({
+    id: "live-drive-root",
+    keys: ["root drive", "helal content marketing", "main drive", "drive root"],
+    title: "Drive root",
+    body: root
+      ? "HELAL CONTENT MARKETING is the root Drive. Client folders live under clients; internal work under HELAL. Never upload into GitHub."
+      : "Root Drive URL missing — ask Amr.",
+    go: "drive",
+    href: root || "",
+  });
+
+  // Live board snapshot for the signed-in user
+  const mine = typeof myOpenTasks === "function" ? myOpenTasks() : [];
+  items.push({
+    id: "live-my-snapshot",
+    keys: ["my open", "my overdue", "how many tasks", "my workload", "what do i have"],
+    title: "Your open work (live)",
+    body: `You have ${mine.length} open task(s): ${mine.filter(isDueToday).length} due today, ${mine.filter(isOverdue).length} overdue, ${mine.filter(isMissingDrive).length} missing Drive. Open My work to act.`,
+    go: "my",
+    weight: 5,
+  });
+
   return items;
+}
+
+function helpKnowledge() {
+  // Live data first so client/person names win scoring ties via weight + longer keys
+  return [...helpLiveKnowledge(), ...helpStaticKnowledge()];
 }
 
 function helpRoleKey() {
@@ -6823,9 +6973,13 @@ function scoreHelpEntry(entry, q) {
   if (!text) return 0;
   let score = 0;
   for (const key of entry.keys) {
-    if (text.includes(key)) score += key.length > 6 ? 3 : 2;
+    const k = String(key || "").toLowerCase();
+    if (!k) continue;
+    if (text === k) score += 12;
+    else if (text.includes(k)) score += k.length > 8 ? 4 : k.length > 4 ? 3 : 2;
   }
-  if (text.includes(entry.title.toLowerCase())) score += 4;
+  if (text.includes(String(entry.title || "").toLowerCase())) score += 4;
+  if (entry.weight) score += entry.weight;
   return score;
 }
 
@@ -6836,14 +6990,14 @@ function helpContextualTip() {
   const overdue = mine.filter(isOverdue).length;
   if (newForMeTasks().length) {
     tips.push({
-      text: `SOP tip: you have ${newForMeTasks().length} new task(s). Open My work and start with those.`,
+      text: `You have ${newForMeTasks().length} new task(s). Open My work.`,
       go: "my",
       label: "Open My work",
     });
   }
   if (overdue) {
     tips.push({
-      text: `SOP tip: ${overdue} overdue task(s). Finish or update status today — don't leave them stuck in To do.`,
+      text: `${overdue} overdue — finish or update status today.`,
       go: "my",
       label: "Show overdue",
       focus: "overdue",
@@ -6851,7 +7005,7 @@ function helpContextualTip() {
   }
   if (noDrive) {
     tips.push({
-      text: `SOP tip: ${noDrive} task(s) need a Drive link before To Review.`,
+      text: `${noDrive} task(s) need a Drive link before To Review. Ask me a client name for the folder.`,
       go: "my",
       label: "Missing Drive",
       focus: "nodrive",
@@ -6859,7 +7013,7 @@ function helpContextualTip() {
   }
   if (!reportFor(state.who, today())) {
     tips.push({
-      text: "SOP tip: submit today's evening Report in Helal (not WhatsApp).",
+      text: "Submit today's evening Report in Helal (not WhatsApp).",
       go: "report",
       label: "Open Report",
     });
@@ -6870,15 +7024,16 @@ function helpContextualTip() {
     ).length;
     if (waiting) {
       tips.push({
-        text: `SOP tip: ${waiting} card(s) waiting on your review — clear Review so Done matches today.`,
+        text: `${waiting} card(s) waiting on your review.`,
         go: "review",
         label: "Open Review",
       });
     }
   }
   if (!tips.length) {
+    const clients = projectList().filter((p) => p.name).slice(0, 4).map((p) => p.name).join(", ");
     tips.push({
-      text: "You're clear on the urgent stuff. Ask me any SOP topic — naming, Drive, Review, Report — or open the full SOP.",
+      text: `Ask me anything — SOP, a client${clients ? ` (${clients}…)` : ""}, a teammate, or Drive.`,
       go: "guide",
       label: "Open SOP",
     });
@@ -6891,7 +7046,7 @@ function helpAnswer(question) {
   const lower = q.toLowerCase();
   if (!q) {
     return {
-      text: "Ask me from the SOP — for example: golden rules, how to name a task, add Drive, send to Review, or submit the evening report.",
+      text: "Ask me anything on Helal — SOP steps, a client name (for Drive), a teammate, Report, Review, or what you should do now.",
       actions: helpQuickActions(),
     };
   }
@@ -6900,24 +7055,31 @@ function helpAnswer(question) {
     return {
       text: tip.text,
       actions: tip.go
-        ? [{ label: tip.label || "Open", go: tip.go, focus: tip.focus || "" }, { label: "Open SOP", go: "guide" }]
+        ? [{ label: tip.label || "Open", go: tip.go, focus: tip.focus || "" }, { label: "Clients", ask: "List clients" }, { label: "Open SOP", go: "guide" }]
         : helpQuickActions(),
     };
   }
   if (/checklist|end of day|before i leave|eod/.test(lower)) {
     const entry = helpKnowledge().find((e) => e.id === "checklist");
-    return {
-      text: `${entry.title}: ${entry.body}`,
-      actions: [{ label: "Open SOP", go: "guide" }],
-    };
+    return { text: `${entry.title}: ${entry.body}`, actions: [{ label: "Open SOP", go: "guide" }] };
   }
-  if (/golden|best practice|sop rules|don't|dont upload/.test(lower)) {
+  if (/golden|best practice|sop rules/.test(lower)) {
     const entry = helpKnowledge().find((e) => e.id === "golden");
+    return { text: `${entry.title}: ${entry.body}`, actions: [{ label: "Open SOP", go: "guide" }] };
+  }
+  if (/overview|everything|what (do )?you know|what can you/.test(lower)) {
+    const entry = helpKnowledge().find((e) => e.id === "overview");
+    const live = helpKnowledge().find((e) => e.id === "live-clients");
     return {
-      text: `${entry.title}: ${entry.body}`,
-      actions: [{ label: "Open SOP", go: "guide" }],
+      text: `${entry.body} ${live ? live.body : ""}`,
+      actions: [
+        { label: "List clients", ask: "List clients" },
+        { label: "Team", ask: "Who is on the team?" },
+        { label: "Open SOP", go: "guide" },
+      ],
     };
   }
+
   let best = null;
   let bestScore = 0;
   for (const entry of helpKnowledge()) {
@@ -6930,30 +7092,36 @@ function helpAnswer(question) {
   }
   if (!best || bestScore < 2) {
     return {
-      text: "I'm trained on the current SOP but didn't match that. Try: golden rules, naming, Drive, My work, Review, Attendance, Report, or checklist — or open SOP.",
+      text: "I cover SOP, every client Drive folder, the team, and your live board — but I didn't match that. Try a client name, a person, golden rules, Drive, Report, or checklist.",
       actions: [
-        { label: "Open SOP", go: "guide" },
+        { label: "List clients", ask: "List clients" },
         { label: "What should I do now?", ask: "What should I do now?" },
-        { label: "Golden rules", ask: "What are the golden rules?" },
+        { label: "Open SOP", go: "guide" },
       ],
     };
   }
-  const openLabel = best.go === "guide" ? "Open SOP" : `Open ${best.title}`;
+  const actions = [];
+  if (best.href) actions.push({ label: "Open Drive folder", href: best.href });
+  if (best.go) {
+    actions.push({
+      label: best.go === "guide" ? "Open SOP" : best.go === "drive" ? "Open Drive app" : `Open ${best.title.split("·")[0].trim()}`,
+      go: best.go,
+    });
+  }
+  if (!actions.some((a) => a.go === "guide")) actions.push({ label: "Full SOP", go: "guide" });
   return {
     text: `${best.title}: ${best.body}`,
-    actions: best.go
-      ? [{ label: openLabel, go: best.go }, { label: "Full SOP", go: "guide" }]
-      : [{ label: "Open SOP", go: "guide" }, ...helpQuickActions().slice(0, 2)],
+    actions,
   };
 }
 
 function helpQuickActions() {
   const chips = [
     { label: "What should I do now?", ask: "What should I do now?" },
+    { label: "List clients", ask: "List clients" },
     { label: "Golden rules", ask: "What are the golden rules?" },
     { label: "Submit report", ask: "How do I submit my report?" },
     { label: "Add Drive", ask: "How do I add a Drive link?" },
-    { label: "Task naming", ask: "How should I name a task?" },
     { label: "Open SOP", go: "guide" },
   ];
   if (canReviewTasks()) chips.splice(4, 0, { label: "Mark done", ask: "How do I mark a task Done?" });
@@ -6975,12 +7143,13 @@ function pushHelpMessage(role, text, actions) {
 function ensureHelpWelcome() {
   if (state.helpMessages?.length) return;
   const tip = helpContextualTip();
+  const nClients = projectList().filter((p) => p.name).length;
   pushHelpMessage(
     "bot",
-    `Hi ${state.who}. I'm Helal bot — trained on the current SOP · Best practice. ${tip.text}`,
+    `Hi ${state.who}. I'm Helal bot — I know the SOP, ${nClients} clients, the team, Drive, and your live board. ${tip.text}`,
     tip.go
-      ? [{ label: tip.label || "Open", go: tip.go, focus: tip.focus || "" }, { label: "Open SOP", go: "guide" }, ...helpQuickActions().slice(0, 2)]
-      : [{ label: "Open SOP", go: "guide" }, ...helpQuickActions()]
+      ? [{ label: tip.label || "Open", go: tip.go, focus: tip.focus || "" }, { label: "List clients", ask: "List clients" }, { label: "Open SOP", go: "guide" }]
+      : [{ label: "List clients", ask: "List clients" }, { label: "Open SOP", go: "guide" }, ...helpQuickActions().slice(0, 2)]
   );
 }
 
@@ -6988,6 +7157,10 @@ function runHelpAction(action) {
   if (!action) return;
   if (action.ask) {
     askHelalHelp(action.ask);
+    return;
+  }
+  if (action.href) {
+    window.open(action.href, "_blank", "noopener,noreferrer");
     return;
   }
   if (action.go === "apps") {
