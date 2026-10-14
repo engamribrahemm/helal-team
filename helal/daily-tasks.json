@@ -383,7 +383,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-14T17:58:21.992Z",
+      "updated_at": "2026-10-14T17:58:32.929Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -437,13 +437,13 @@
         },
         "Ganna": {
           "open": 8,
-          "todo": 3,
-          "progress": 2,
-          "review": 3,
+          "todo": 1,
+          "progress": 1,
+          "review": 6,
           "overdue": 1,
           "done": 7,
-          "hours": 73.98786853174603,
-          "live": 71.45
+          "hours": 78.71084662037036,
+          "live": 25.8
         },
         "Moamen": {
           "open": 0,
@@ -497,8 +497,8 @@
         }
       },
       "time": {
-        "avgTodo": 11752,
-        "avgProgress": 3004,
+        "avgTodo": 12015,
+        "avgProgress": 3012,
         "open": 47
       },
       "hr": {
@@ -5749,20 +5749,33 @@
           "title": "tiktok video | 22 OCT",
           "notes": "day in my life",
           "due": "2026-10-20",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:25:30.754Z",
-          "updated_at": "2026-10-12T20:17:32.770Z",
+          "updated_at": "2026-10-14T17:58:24.932Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-12T20:17:32.770Z",
-          "progress_started_at": "2026-10-12T20:17:32.770Z",
-          "time_log": [],
-          "start_on": "2026-10-12"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-12T20:17:32.770Z",
+              "ended_at": "2026-10-14T17:58:24.932Z",
+              "hours": 45.681156111111115,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-10-12",
+          "progress_hours": 45.681156111111115,
+          "review_at": "2026-10-14T17:58:24.932Z",
+          "first_review_at": "2026-10-14T17:58:24.932Z",
+          "delivered_on": "2026-10-14"
         },
         {
           "id": "t-20261020-aya-mv3xj286",
@@ -5903,14 +5916,14 @@
           "title": "tiktok video | 25 OCT",
           "notes": "انت مع مديرك الي بتعتبره chatgpt وبتسأله في كل حاجه",
           "due": "2026-10-23",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:27:37.010Z",
-          "updated_at": "2026-10-13T16:10:29.664Z",
+          "updated_at": "2026-10-14T17:58:30.909Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-12T20:17:35.049Z",
@@ -5926,7 +5939,10 @@
             }
           ],
           "start_on": "2026-10-12",
-          "progress_hours": 19.8818375
+          "progress_hours": 19.8818375,
+          "review_at": "2026-10-14T17:58:30.909Z",
+          "first_review_at": "2026-10-14T17:58:30.909Z",
+          "delivered_on": "2026-10-14"
         }
       ]
     },
@@ -5986,18 +6002,22 @@
           "title": "tiktok video | 26 OCT",
           "notes": "مديرك بيبصلك وانت مش عارف هو فخور بيك ولا بيفكر يطردك",
           "due": "2026-10-24",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:28:28.882Z",
-          "updated_at": "2026-10-10T14:37:22.700Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-10-14T17:58:32.756Z",
+          "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "review_at": "2026-10-14T17:58:32.756Z",
+          "first_review_at": "2026-10-14T17:58:32.756Z",
+          "delivered_on": "2026-10-14"
         }
       ]
     },
