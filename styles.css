@@ -174,16 +174,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* Theme toggle */
 .btn.theme-toggle {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
   padding: 0 !important;
   margin: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 0;
-  border-radius: 999px;
+  border-radius: 8px;
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -291,7 +291,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   min-height: 48px;
   padding: 6px 8px 6px 6px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 10px;
   background: linear-gradient(180deg, var(--card-top), var(--card-bot));
 }
 
@@ -361,11 +361,13 @@ h3 { font-size: 12px; font-weight: 600; }
   min-width: 120px;
   padding: 0 10px;
   font-size: 12px;
+  border-radius: 8px;
 }
 .btn.compact {
-  padding: 6px 12px;
+  padding: 6px 11px;
   font-size: 12px;
   height: 34px;
+  border-radius: 8px;
 }
 
 .cairo-chip {
@@ -384,10 +386,10 @@ h3 { font-size: 12px; font-weight: 600; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-height: 36px;
-  padding: 4px 12px 4px 8px;
+  min-height: 34px;
+  padding: 3px 10px 3px 6px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 8px;
   background: transparent;
   color: inherit;
   cursor: pointer;
@@ -398,13 +400,13 @@ h3 { font-size: 12px; font-weight: 600; }
   border-color: var(--line);
 }
 .app-menu-dots {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3px;
   padding: 5px;
-  border-radius: 8px;
+  border-radius: 6px;
   background: rgba(245, 196, 0, 0.12);
   flex-shrink: 0;
 }
@@ -437,7 +439,43 @@ h3 { font-size: 12px; font-weight: 600; }
 }
 
 .app-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   flex-shrink: 0;
+  height: 34px;
+  padding: 0 11px 0 8px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--line) !important;
+  background: var(--bg-2) !important;
+  color: var(--text) !important;
+  font-weight: 650;
+  letter-spacing: 0;
+}
+.app-back:hover {
+  border-color: var(--gold) !important;
+  background: rgba(245, 196, 0, 0.1) !important;
+  color: var(--text) !important;
+  transform: translateY(-1px);
+}
+.app-back-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  display: inline-grid;
+  place-items: center;
+  background: rgba(245, 196, 0, 0.16);
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.app-back-icon svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+.app-back-label {
+  font-size: 12px;
+  line-height: 1;
 }
 .apps-home {
   display: grid;
@@ -566,8 +604,8 @@ h3 { font-size: 12px; font-weight: 600; }
   background: transparent;
   color: var(--text);
   border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 9px 16px;
+  border-radius: 8px;
+  padding: 9px 14px;
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
@@ -1191,9 +1229,9 @@ html[data-theme="bright"] .report-task-row.on {
 }
 .report-foot .btn.primary {
   min-width: 168px;
-  padding: 12px 20px;
+  padding: 12px 18px;
   font-size: 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   box-shadow: 0 8px 22px rgba(245, 196, 0, 0.22);
 }
 .report-done-banner {

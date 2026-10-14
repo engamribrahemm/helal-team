@@ -5793,8 +5793,17 @@ function viewChrome() {
           : $("button", {
             class: "btn ghost compact app-back",
             type: "button",
+            title: "Back to all apps",
+            "aria-label": "Back to all apps",
             onclick: goAppsHome,
-          }, "← Apps"),
+          }, [
+            $("span", {
+              class: "app-back-icon",
+              "aria-hidden": "true",
+              html: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>`,
+            }),
+            $("span", { class: "app-back-label" }, "All apps"),
+          ]),
         $("button", {
           class: "app-menu-btn",
           type: "button",
