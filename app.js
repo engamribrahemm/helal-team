@@ -131,6 +131,8 @@ const state = {
   reportEditing: false,
   saveAttempt: 0,
   lastSaveJob: null,
+  helpOpen: false,
+  helpMessages: [],
   modalGuardUntil: 0,
 };
 
@@ -2381,8 +2383,11 @@ function logout() {
   state.who = "";
   state.reportEditing = false;
   state.lastSaveJob = null;
+  state.helpOpen = false;
+  state.helpMessages = [];
   clearReportDraft();
   localStorage.removeItem(LS_SESSION);
+  document.querySelectorAll("body > .help-root").forEach((el) => el.remove());
   render();
 }
 
@@ -6386,6 +6391,406 @@ if (typeof window !== "undefined" && !window.__helalAppsEsc) {
   });
 }
 
+function helpKnowledge() {
+  const items = [
+    {
+      id: "login",
+      keys: ["login", "password", "sign in", "log in", "pin"],
+      title: "Sign in",
+      body: "Choose your name and enter your own password. Amr or Moamen give you that password. Admins manage people on the People app.",
+    },
+    {
+      id: "apps",
+      keys: ["apps", "home", "menu", "where", "start", "launcher"],
+      title: "Apps home",
+      body: "After sign-in you land on Apps. Tap an icon to open it. Use All apps (or Esc) to come back.",
+      go: "apps",
+    },
+    {
+      id: "mywork",
+      keys: ["my work", "my tasks", "to review", "drive link", "need drive", "how to finish"],
+      title: "My work",
+      body: "Open My work. Path: 1) Add Drive link on the card 2) press To Review 3) wait for Amr/lead to Mark done. On phones, Ready for review is listed first.",
+      go: "my",
+    },
+    {
+      id: "board",
+      keys: ["board", "kanban", "drag", "columns", "to do", "in progress"],
+      title: "Board",
+      body: "Drag cards: To do → In progress → Review → Done. Members mainly use My work. Admins/social/leads use Board filters for people and clients.",
+      go: "board",
+    },
+    {
+      id: "create",
+      keys: ["create", "new task", "assign", "add task", "naming", "title"],
+      title: "Create a task",
+      body: "Admins, Mariam, Judi, and leads can press New task. Name it like: content type | publish day (example: single visual | 4th Oct). Leads can only assign to people they manage.",
+    },
+    {
+      id: "review",
+      keys: ["review", "mark done", "done", "edits", "revisions", "waiting"],
+      title: "Review & Done",
+      body: "When work is ready, move to Review (needs Drive first). Mariam, Judi, the person’s lead, Amr, or Moamen press Mark done. Edits stay in Review with an Edits tag.",
+      go: "review",
+      roles: ["admin", "social", "lead"],
+    },
+    {
+      id: "report",
+      keys: ["report", "evening", "daily report", "remote", "office", "amend", "edit report"],
+      title: "Daily report",
+      body: "Open Report. Pick Remote or Office, select In progress/Review tasks + finish %, optional blockers, Drive link, then Submit. You can Edit today’s report if something changed.",
+      go: "report",
+    },
+    {
+      id: "attend",
+      keys: ["attendance", "office", "home", "off", "save week", "change day"],
+      title: "Attendance",
+      body: "Set Office, Home, or Off on your row, then Save my week. After save the week locks. To change a locked day, request it — admins approve on Attendance or Dashboard.",
+      go: "attend",
+    },
+    {
+      id: "drive",
+      keys: ["drive", "upload", "folder", "files", "google drive"],
+      title: "Drive",
+      body: "Files stay in Google Drive — never upload into GitHub. Open Drive app for client/Helal folders, paste the link on the task before To Review.",
+      go: "drive",
+    },
+    {
+      id: "time",
+      keys: ["time", "hours", "timer", "in progress time", "to do time"],
+      title: "Time",
+      body: "To do time counts while a card waits in To do. In progress time counts only in In progress and stops at Review. Admins open Time → Everyone, then tap a person for detail.",
+      go: "time",
+      roles: ["admin"],
+    },
+    {
+      id: "workload",
+      keys: ["workload", "load", "busy", "open tasks count"],
+      title: "Workload",
+      body: "Shows open / review / overdue / done for the month. Admins and social see the team. Leads see themselves + people they manage.",
+      go: "load",
+      roles: ["admin", "social", "lead"],
+    },
+    {
+      id: "hr",
+      keys: ["hr", "score", "performance", "attitude", "warning", "evaluation"],
+      title: "HR",
+      body: "Admins only. Months never mix — use Prev/Next. Task scores: Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%. Attitude is separate.",
+      go: "hr",
+      roles: ["admin"],
+    },
+    {
+      id: "people",
+      keys: ["people", "add person", "deactivate", "password reset", "new password"],
+      title: "People",
+      body: "Admins add logins, issue passwords, edit name/email, or deactivate. Share the new password once — it is shown only at issue time.",
+      go: "people",
+      roles: ["admin"],
+    },
+    {
+      id: "save",
+      keys: ["save", "retry", "github", "not saving", "error", "conflict"],
+      title: "Saving & errors",
+      body: "Helal saves to GitHub. If many people save at once you may see a merge retry. Tap Retry save on the red banner, or Refresh then try again. Ask Amr if the board key expired.",
+    },
+    {
+      id: "theme",
+      keys: ["theme", "dark", "bright", "light", "moon", "sun"],
+      title: "Theme",
+      body: "Use the sun/moon button in the top bar to switch dark and bright mode. Your choice is remembered on this browser.",
+    },
+    {
+      id: "sop",
+      keys: ["sop", "guide", "help", "how does", "manual"],
+      title: "Full SOP",
+      body: "Open the SOP app for the full team guide. Admins also have Admin guide for Time/HR reading tips.",
+      go: "guide",
+    },
+  ];
+  return items;
+}
+
+function helpRoleKey() {
+  if (isAdmin()) return "admin";
+  if (isSocial()) return "social";
+  if (isLead()) return "lead";
+  return "member";
+}
+
+function helpAllowed(entry) {
+  if (!entry.roles) return true;
+  return entry.roles.includes(helpRoleKey());
+}
+
+function scoreHelpEntry(entry, q) {
+  const text = String(q || "").toLowerCase();
+  if (!text) return 0;
+  let score = 0;
+  for (const key of entry.keys) {
+    if (text.includes(key)) score += key.length > 6 ? 3 : 2;
+  }
+  if (text.includes(entry.title.toLowerCase())) score += 4;
+  return score;
+}
+
+function helpContextualTip() {
+  const tips = [];
+  const mine = myOpenTasks();
+  const noDrive = mine.filter(isMissingDrive).length;
+  const overdue = mine.filter(isOverdue).length;
+  if (newForMeTasks().length) {
+    tips.push({
+      text: `You have ${newForMeTasks().length} new task(s). Open My work to see them.`,
+      go: "my",
+      label: "Open My work",
+    });
+  }
+  if (overdue) {
+    tips.push({
+      text: `You have ${overdue} overdue task(s). Finish or update them today.`,
+      go: "my",
+      label: "Show overdue",
+      focus: "overdue",
+    });
+  }
+  if (noDrive) {
+    tips.push({
+      text: `${noDrive} task(s) still need a Drive link before To Review.`,
+      go: "my",
+      label: "Missing Drive",
+      focus: "nodrive",
+    });
+  }
+  if (!reportFor(state.who, today())) {
+    tips.push({
+      text: "You have not submitted today’s report yet.",
+      go: "report",
+      label: "Open Report",
+    });
+  }
+  if (canReviewTasks()) {
+    const waiting = allTasks().filter((t) =>
+      (t.status === "Review" || t.status === "Revisions") && canSeeTask(t) && canMarkDone(t)
+    ).length;
+    if (waiting) {
+      tips.push({
+        text: `${waiting} card(s) are waiting on your review.`,
+        go: "review",
+        label: "Open Review",
+      });
+    }
+  }
+  if (!tips.length) {
+    tips.push({
+      text: "You’re clear on the urgent stuff. Ask me about Board, Report, Attendance, Drive, or Review.",
+    });
+  }
+  return tips[0];
+}
+
+function helpAnswer(question) {
+  const q = String(question || "").trim();
+  const lower = q.toLowerCase();
+  if (!q) {
+    return {
+      text: "Ask me anything about Helal — for example: how to submit a report, add Drive, or mark Done.",
+      actions: helpQuickActions(),
+    };
+  }
+  if (/what (should|do) i do|what now|help me|stuck|today/.test(lower)) {
+    const tip = helpContextualTip();
+    return {
+      text: tip.text,
+      actions: tip.go
+        ? [{ label: tip.label || "Open", go: tip.go, focus: tip.focus || "" }]
+        : helpQuickActions(),
+    };
+  }
+  let best = null;
+  let bestScore = 0;
+  for (const entry of helpKnowledge()) {
+    if (!helpAllowed(entry)) continue;
+    const score = scoreHelpEntry(entry, lower);
+    if (score > bestScore) {
+      best = entry;
+      bestScore = score;
+    }
+  }
+  if (!best || bestScore < 2) {
+    return {
+      text: "I’m not sure yet. Try asking about: My work, Report, Attendance, Drive, Review, Board, or Saving. Or open SOP for the full guide.",
+      actions: [
+        { label: "Open SOP", go: "guide" },
+        { label: "What should I do now?", ask: "What should I do now?" },
+      ],
+    };
+  }
+  return {
+    text: `${best.title}: ${best.body}`,
+    actions: best.go
+      ? [{ label: `Open ${best.title}`, go: best.go }]
+      : helpQuickActions().slice(0, 2),
+  };
+}
+
+function helpQuickActions() {
+  const chips = [
+    { label: "What should I do now?", ask: "What should I do now?" },
+    { label: "Submit report", ask: "How do I submit my report?" },
+    { label: "Add Drive", ask: "How do I add a Drive link?" },
+    { label: "To Review", ask: "How do I send a task to Review?" },
+  ];
+  if (canReviewTasks()) chips.push({ label: "Mark done", ask: "How do I mark a task Done?" });
+  if (isAdmin()) chips.push({ label: "Time & HR", ask: "How do I read Time and HR?" });
+  return chips;
+}
+
+function pushHelpMessage(role, text, actions) {
+  if (!Array.isArray(state.helpMessages)) state.helpMessages = [];
+  state.helpMessages.push({
+    id: `h-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
+    role,
+    text,
+    actions: actions || [],
+  });
+  if (state.helpMessages.length > 40) state.helpMessages = state.helpMessages.slice(-40);
+}
+
+function ensureHelpWelcome() {
+  if (state.helpMessages?.length) return;
+  const tip = helpContextualTip();
+  pushHelpMessage(
+    "bot",
+    `Hi ${state.who}. I’m Helal Help — I can tell you what to do and how. ${tip.text}`,
+    tip.go
+      ? [{ label: tip.label || "Open", go: tip.go, focus: tip.focus || "" }, ...helpQuickActions().slice(0, 3)]
+      : helpQuickActions()
+  );
+}
+
+function runHelpAction(action) {
+  if (!action) return;
+  if (action.ask) {
+    askHelalHelp(action.ask);
+    return;
+  }
+  if (action.go === "apps") {
+    state.helpOpen = false;
+    goAppsHome();
+    return;
+  }
+  if (action.go) {
+    if (action.focus != null) state.boardFocus = action.focus;
+    state.helpOpen = false;
+    openApp(action.go);
+  }
+}
+
+function askHelalHelp(question) {
+  const q = String(question || "").trim();
+  if (!q) return;
+  ensureHelpWelcome();
+  pushHelpMessage("user", q);
+  const answer = helpAnswer(q);
+  pushHelpMessage("bot", answer.text, answer.actions || []);
+  state.helpOpen = true;
+  render(true);
+  setTimeout(() => {
+    const log = document.getElementById("helal-help-log");
+    if (log) log.scrollTop = log.scrollHeight;
+    const input = document.getElementById("helal-help-input");
+    if (input) input.focus();
+  }, 30);
+}
+
+function toggleHelalHelp(force) {
+  state.helpOpen = typeof force === "boolean" ? force : !state.helpOpen;
+  if (state.helpOpen) ensureHelpWelcome();
+  render(true);
+  if (state.helpOpen) {
+    setTimeout(() => {
+      const log = document.getElementById("helal-help-log");
+      if (log) log.scrollTop = log.scrollHeight;
+      document.getElementById("helal-help-input")?.focus();
+    }, 30);
+  }
+}
+
+function viewHelalHelp() {
+  if (!state.session) return null;
+  ensureHelpWelcome();
+  const open = !!state.helpOpen;
+  const fab = $("button", {
+    class: `help-fab${open ? " on" : ""}`,
+    type: "button",
+    "aria-label": open ? "Close Helal Help" : "Open Helal Help",
+    title: "Helal Help",
+    onclick: () => toggleHelalHelp(),
+  }, open ? "×" : "?");
+  if (!open) return fab;
+
+  const input = $("input", {
+    id: "helal-help-input",
+    type: "text",
+    placeholder: "Ask what to do…",
+    autocomplete: "off",
+  });
+  const form = $("form", {
+    class: "help-form",
+    onsubmit: (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (!q) return;
+      input.value = "";
+      askHelalHelp(q);
+    },
+  }, [
+    input,
+    $("button", { class: "btn primary compact", type: "submit" }, "Ask"),
+  ]);
+
+  const panel = $("section", {
+    class: "help-panel",
+    role: "dialog",
+    "aria-label": "Helal Help",
+  }, [
+    $("header", { class: "help-panel-head" }, [
+      $("div", {}, [
+        $("strong", {}, "Helal Help"),
+        $("p", { class: "muted" }, "What to do · how to do it"),
+      ]),
+      $("button", {
+        class: "btn ghost compact",
+        type: "button",
+        onclick: () => toggleHelalHelp(false),
+      }, "Close"),
+    ]),
+    $("div", { class: "help-quick" }, helpQuickActions().map((chip) =>
+      $("button", {
+        type: "button",
+        class: "help-chip",
+        onclick: () => runHelpAction(chip),
+      }, chip.label)
+    )),
+    $("div", { id: "helal-help-log", class: "help-log" }, (state.helpMessages || []).map((msg) =>
+      $("div", { class: `help-bubble ${msg.role}` }, [
+        $("p", {}, msg.text),
+        (msg.actions || []).length
+          ? $("div", { class: "help-actions" }, msg.actions.map((action) =>
+            $("button", {
+              type: "button",
+              class: "btn compact",
+              onclick: () => runHelpAction(action),
+            }, action.label)
+          ))
+          : null,
+      ])
+    )),
+    form,
+  ]);
+  return $("div", { class: "help-root" }, [panel, fab]);
+}
+
 function viewChrome() {
   const role = isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member";
   const onHome = isAppsHome();
@@ -6517,13 +6922,15 @@ function render(force) {
 
   // Mount overlays on body so position:fixed is always viewport-relative
   // (a transform on #app would otherwise center the create form off-screen).
-  document.querySelectorAll("body > .modal-bg, body > .drawer").forEach((el) => el.remove());
+  document.querySelectorAll("body > .modal-bg, body > .drawer, body > .help-root").forEach((el) => el.remove());
   const modal = viewCreateModal();
   if (modal) document.body.append(...(Array.isArray(modal) ? modal : [modal]));
   const drawer = viewTaskDrawer();
   if (drawer) document.body.append(...(Array.isArray(drawer) ? drawer : [drawer]));
   const prompts = viewPromptModals();
   if (prompts.length) document.body.append(...prompts);
+  const help = viewHelalHelp();
+  if (help) document.body.append(help);
 }
 
 function pullInterval() {
