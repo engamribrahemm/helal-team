@@ -459,7 +459,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-14T18:23:08.065Z",
+      "updated_at": "2026-10-14T18:23:19.727Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -522,13 +522,13 @@
           "live": 0
         },
         "Ganna": {
-          "open": 5,
+          "open": 4,
           "todo": 0,
           "progress": 4,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 10,
-          "hours": 50.35324129629629,
+          "done": 11,
+          "hours": 49.993850128205125,
           "live": 46.53333333333333
         },
         "Tasneem": {
@@ -568,8 +568,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 13.867158055555556,
-          "live": 27.733333333333334
+          "hours": 13.87549138888889,
+          "live": 27.75
         },
         "Menna": {
           "open": 0,
@@ -605,7 +605,7 @@
       "time": {
         "avgTodo": 12139,
         "avgProgress": 2760,
-        "open": 44
+        "open": 43
       },
       "hr": {
         "people": {
@@ -5894,15 +5894,15 @@
           "title": "tiktok video | 22 OCT",
           "notes": "day in my life",
           "due": "2026-10-20",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:25:30.754Z",
-          "updated_at": "2026-10-14T17:58:24.932Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-10-14T18:23:10.435Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-12T20:17:32.770Z",
           "progress_started_at": "",
@@ -5920,7 +5920,11 @@
           "progress_hours": 45.681156111111115,
           "review_at": "2026-10-14T17:58:24.932Z",
           "first_review_at": "2026-10-14T17:58:24.932Z",
-          "delivered_on": "2026-10-14"
+          "delivered_on": "2026-10-14",
+          "done_at": "2026-10-14T18:23:10.434Z",
+          "done_on": "2026-10-14",
+          "done_month": "2026-10",
+          "done_by": "Judi"
         },
         {
           "id": "t-20261020-aya-mv3xj286",
