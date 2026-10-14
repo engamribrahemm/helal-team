@@ -2782,7 +2782,14 @@ function viewBoard() {
       ]);
     })
   );
-  return $("div", { class: "board-wrap" }, [
+  return $("div", { class: "page-stack board-wrap" }, [
+    pageShell(pageHero(
+      "Board",
+      who || client
+        ? [who ? `Person: ${who}.` : null, client ? `Client: ${client}.` : null, "Clear filters for the full board."].filter(Boolean).join(" ")
+        : "Drag cards across columns. Done shows today’s finished work.",
+      { label: "Cairo date", value: day }
+    )),
     boardCockpit(tasks),
     $("div", { class: "board-toolbar" }, [
       viewBoardFilter(),
@@ -3131,21 +3138,29 @@ function viewHr() {
     ...roster.map((p) => $("option", { value: p.name, selected: p.name === state.hrPerson }, p.name)),
   ].filter(Boolean));
   return $("div", { class: "dash" }, [
-    $("div", { class: "hr-tabs" }, tabs.map(([id, label]) =>
-      $("button", {
-        class: state.hrTab === id ? "on" : "",
-        onclick: () => { state.hrTab = id; render(); },
-      }, label)
-    )),
-    $("div", { class: "cal-nav" }, [
-      $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, -1)); render(); } }, "Prev"),
-      $("h2", {}, monthLabel(month)),
-      $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
-      whoSel,
-    ]),
-    $("p", { class: "muted" }, isCurrentMonth(month)
-      ? `${monthLabel(month)} only. Open work lives here. Past months keep their own Done tasks and scores — they never mix.`
-      : `${monthLabel(month)} archived month. Open work sits in the current month. Scores, Done tasks, attitude, and warnings below are for this month only.`),
+    pageShell(
+      pageHero(
+        "HR",
+        isCurrentMonth(month)
+          ? "This month only. Past months keep their own Done tasks and scores."
+          : "Archived month. Open work sits in the current month.",
+        { label: "Month", value: monthLabel(month) }
+      ),
+      $("div", { class: "page-body" }, [
+        $("div", { class: "hr-tabs" }, tabs.map(([id, label]) =>
+          $("button", {
+            class: state.hrTab === id ? "on" : "",
+            onclick: () => { state.hrTab = id; render(); },
+          }, label)
+        )),
+        $("div", { class: "cal-nav" }, [
+          $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, -1)); render(); } }, "Prev"),
+          $("h2", {}, monthLabel(month)),
+          $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
+          whoSel,
+        ]),
+      ])
+    ),
     state.hrTab === "profile" ? viewHrProfile(month)
       : state.hrTab === "tasks" ? viewHrTasks(month)
       : state.hrTab === "attitude" ? viewHrAttitude(month)
@@ -3583,13 +3598,18 @@ function viewMy() {
   const dueN = open.filter(isDueToday).length;
   const overdueN = open.filter(isOverdue).length;
   return [
+    pageShell(pageHero(
+      "My work",
+      "Add a Drive link, then press To Review. It saves to GitHub.",
+      { label: "Open now", value: String(open.length) }
+    )),
     isAdmin() ? null : myHrCard(),
     boardCockpit(open),
     $("div", { class: "board-toolbar" }, [viewBoardClientFilter()]),
     $("div", { class: "my-work-head" }, [
       $("div", {}, [
         $("h2", {}, "Open"),
-        $("p", { class: "muted" }, "Add a Drive link, then press To Review. It saves to GitHub."),
+        $("p", { class: "muted" }, "Your live tasks for this month."),
       ]),
       $("div", { class: "my-work-meta" }, [
         $("span", { class: "pill" }, `${open.length} open`),
@@ -4304,34 +4324,40 @@ function viewTime() {
   const teamLive = (focused ? [focused] : allRows).reduce((n, row) => n + row.liveMins, 0);
   const withTime = allRows.filter((row) => row.progressMins > 0).length;
   return $("div", { class: "dash time-page" }, [
-    $("section", { class: "card" }, [
-      $("div", { class: "cal-nav" }, [
-        $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, -1)); render(); } }, "Prev"),
-        $("h2", {}, `Time · ${monthLabel(month)}`),
-        $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
-      ]),
-      $("p", { class: "muted" }, isCurrentMonth(month)
-        ? `${monthLabel(month)} only. To do = time in To do. In progress = time in In progress only — it stops when the card moves to Review. Past months keep their own numbers — switch months above to compare.`
-        : `${monthLabel(month)} archived month. Open work lives in the current month. Numbers below are Done and stored time for this month only.`),
-      $("div", { class: "stat-row" }, [
-        statBox(formatMinutes(focused ? focused.progressMins : teamMins), focused ? "In progress this month" : "Team in progress", (focused ? focused.progressMins : teamMins) ? "tone-green" : ""),
-        statBox(formatMinutes(teamLive), "Live now"),
-        statBox(String(teamOpen), "Open tasks"),
-        statBox(focused ? String(focused.done) : String(withTime), focused ? "Done this month" : "People with time"),
-      ]),
-      $("div", { class: "time-roster" }, [
-        $("button", {
-          type: "button",
-          class: `time-chip${!who ? " on" : ""}`,
-          onclick: () => { state.timePerson = ""; state.timeDaysOpen = false; render(); },
-        }, `Everyone · ${formatMinutes(teamMins)}`),
-        ...allRows.map((row) => $("button", {
-          type: "button",
-          class: `time-chip${who && samePerson(row.person.name, who) ? " on" : ""}`,
-          onclick: () => { state.timePerson = row.person.name; state.timeFilter = "open"; state.timeDaysOpen = false; render(); },
-        }, `${row.person.name} · ${row.progressMins ? formatMinutes(row.progressMins) : "0m"}`)),
-      ]),
-    ]),
+    pageShell(
+      pageHero(
+        "Time",
+        isCurrentMonth(month)
+          ? "To do waits until the card leaves To do. In progress stops at Review."
+          : "Archived month. Open work lives in the current month.",
+        { label: "Month", value: monthLabel(month) }
+      ),
+      $("div", { class: "page-body" }, [
+        $("div", { class: "cal-nav" }, [
+          $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, -1)); render(); } }, "Prev"),
+          $("h2", {}, monthLabel(month)),
+          $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(month, 1)); render(); } }, "Next"),
+        ]),
+        $("div", { class: "stat-row" }, [
+          statBox(formatMinutes(focused ? focused.progressMins : teamMins), focused ? "In progress this month" : "Team in progress", (focused ? focused.progressMins : teamMins) ? "tone-green" : ""),
+          statBox(formatMinutes(teamLive), "Live now"),
+          statBox(String(teamOpen), "Open tasks"),
+          statBox(focused ? String(focused.done) : String(withTime), focused ? "Done this month" : "People with time"),
+        ]),
+        $("div", { class: "time-roster" }, [
+          $("button", {
+            type: "button",
+            class: `time-chip${!who ? " on" : ""}`,
+            onclick: () => { state.timePerson = ""; state.timeDaysOpen = false; render(); },
+          }, `Everyone · ${formatMinutes(teamMins)}`),
+          ...allRows.map((row) => $("button", {
+            type: "button",
+            class: `time-chip${who && samePerson(row.person.name, who) ? " on" : ""}`,
+            onclick: () => { state.timePerson = row.person.name; state.timeFilter = "open"; state.timeDaysOpen = false; render(); },
+          }, `${row.person.name} · ${row.progressMins ? formatMinutes(row.progressMins) : "0m"}`)),
+        ]),
+      ])
+    ),
     focused ? viewPersonTime(focused, month) : viewTimeSummary(allRows),
   ]);
 }
@@ -4452,6 +4478,13 @@ function viewReview() {
   const adminDash = isAdmin();
   const personLabel = who ? ` · ${who}` : "";
   return $("div", { class: "dash" }, [
+    pageShell(pageHero(
+      adminDash ? "Dashboard" : "Review",
+      adminDash
+        ? "Reports, attendance requests, and work waiting on review."
+        : "Check Review cards, mark Done, and follow up on your team.",
+      { label: "Cairo date", value: day }
+    )),
     viewOwnerDigest(),
     viewLeadInbox(),
     adminDash ? viewCalendar() : null,
@@ -4542,17 +4575,49 @@ function viewReview() {
   ]);
 }
 
-function reportHero(day, subtitle) {
-  return $("header", { class: "report-hero" }, [
-    $("div", { class: "report-hero-copy" }, [
-      $("h2", {}, "Daily report"),
-      $("p", { class: "muted" }, subtitle),
+function pageHero(title, subtitle, pill) {
+  return $("header", { class: "page-hero" }, [
+    $("div", { class: "page-hero-copy" }, [
+      $("h2", {}, title),
+      subtitle ? $("p", { class: "muted" }, subtitle) : null,
     ]),
-    $("div", { class: "report-date-pill" }, [
-      $("span", {}, "Cairo date"),
-      $("strong", {}, day),
-    ]),
+    pill
+      ? $("div", { class: "page-pill" }, [
+        $("span", {}, pill.label || "Cairo"),
+        $("strong", {}, pill.value),
+      ])
+      : null,
   ]);
+}
+
+function pageShell(hero, ...body) {
+  const kids = body.flat().filter(Boolean);
+  return $("section", { class: "page-shell" }, [hero, ...kids]);
+}
+
+function pageSection(title, hint, body) {
+  return $("section", { class: "page-section" }, [
+    $("div", { class: "page-section-head" }, [
+      $("strong", {}, title),
+      hint ? $("p", { class: "muted" }, hint) : null,
+    ]),
+    ...(Array.isArray(body) ? body : [body]),
+  ]);
+}
+
+function bootScreen(message, isError) {
+  return $("div", { class: `boot-screen${isError ? " is-error" : ""}`, role: "status", "aria-live": "polite" }, [
+    $("div", { class: "boot-mark-wrap" }, [
+      $("img", { class: "boot-mark", src: "./assets/helal-mark.png", alt: "", width: "88", height: "88" }),
+      $("span", { class: "boot-ring", "aria-hidden": "true" }),
+    ]),
+    $("strong", { class: "boot-title" }, "Helal"),
+    $("p", { class: "boot-copy" }, message),
+  ]);
+}
+
+function reportHero(day, subtitle) {
+  return pageHero("Daily report", subtitle, { label: "Cairo date", value: day });
 }
 
 function reportStep(num, title, hint, body) {
@@ -4846,13 +4911,21 @@ function viewDrive() {
       f.url ? $("a", { href: f.url, target: "_blank", rel: "noreferrer" }, "Open folder") : $("p", {}, "Link missing."),
     ]);
   const root = rootDrive();
-  return $("div", {}, [
-    $("p", { class: "muted" }, "Upload into the matching folder. Files stay in Drive."),
-    root ? $("p", {}, $("a", { href: root, target: "_blank", rel: "noreferrer" }, "Open HELAL CONTENT MARKETING")) : null,
-    $("h2", { style: "margin:16px 0 10px" }, "CLINTES"),
-    $("div", { class: "people" }, clients.map(card)),
-    $("h2", { style: "margin:22px 0 10px" }, "HELAL"),
-    $("div", { class: "people" }, helal.map(card)),
+  return $("div", { class: "page-stack" }, [
+    pageShell(
+      pageHero("Drive", "Upload into the matching folder. Files stay in Drive — never GitHub."),
+      $("div", { class: "page-body" }, [
+        root
+          ? $("p", {}, $("a", { href: root, target: "_blank", rel: "noreferrer" }, "Open HELAL CONTENT MARKETING"))
+          : $("p", { class: "muted" }, "Root Drive link missing."),
+      ])
+    ),
+    pageSection("Clients", "One folder per client or campaign.", [
+      $("div", { class: "people" }, clients.length ? clients.map(card) : [$("p", { class: "empty" }, "No client folders yet.")]),
+    ]),
+    pageSection("Helal", "Internal folders for the team.", [
+      $("div", { class: "people" }, helal.length ? helal.map(card) : [$("p", { class: "empty" }, "No Helal folders yet.")]),
+    ]),
   ]);
 }
 
@@ -4868,6 +4941,11 @@ function viewPeople() {
   const pin = $("input", { placeholder: "Leave blank to generate" });
   const roster = allPeople();
   return $("div", { class: "dash" }, [
+    pageShell(pageHero(
+      "People",
+      "Create logins, issue passwords, and deactivate accounts. Amr and Moamen are admins.",
+      { label: "Roster", value: String(roster.length) }
+    )),
     $("section", { class: "card", style: "max-width:640px" }, [
       $("h2", {}, "Add a person"),
       $("p", { class: "muted" }, "Creates a login with its own password. Share that password with them. You can edit name or email later."),
@@ -5263,6 +5341,13 @@ function viewWorkload() {
   const maxOpen = Math.max(1, ...rows.map((r) => r.open));
   const finished = rows.flatMap((r) => r.finished);
   return $("div", { class: "dash" }, [
+    pageShell(pageHero(
+      "Workload",
+      isCurrentMonth(ym)
+        ? "This month is live. Closed months keep their stored numbers."
+        : "Stored month. Live open work sits in the current month.",
+      { label: "Month", value: monthLabel(ym) }
+    )),
     $("div", { class: "stat-row" }, [
       statBox(rows.reduce((n, r) => n + r.open, 0), canSeeTeamWorkload() ? "Open across the team" : "Your open tasks"),
       statBox(rows.reduce((n, r) => n + r.review, 0), "Waiting on review", "tone-orange"),
@@ -5275,9 +5360,6 @@ function viewWorkload() {
         $("h2", {}, monthLabel(ym)),
         $("button", { class: "btn ghost", type: "button", onclick: () => { setBoardMonth(shiftYm(ym, 1)); render(); } }, "Next"),
       ]),
-      $("p", { class: "muted" }, isCurrentMonth(ym)
-        ? "This month is live. Closed months keep their stored numbers."
-        : "Stored month. Live open work sits in the current month."),
       $("div", { class: "load-table-wrap" }, [
         $("table", { class: "load-table" }, [
           $("thead", {}, $("tr", {}, ["Name", "Open", "To do", "In progress", "Review", "Overdue", "Done", "Time"].map((h) => $("th", {}, h)))),
@@ -5413,17 +5495,27 @@ function viewAttendance() {
   };
 
   return $("div", { class: "dash" }, [
-    $("div", { class: "cal-nav attend-nav" }, [
-      $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = shiftFriday(friday, -1); render(); } }, "Prev week"),
-      $("div", {}, [
-        $("h2", {}, "Attendance"),
-        $("p", { class: "muted" }, `Friday ${friday} → Thursday ${thursday}`),
-      ]),
-      $("div", { class: "attend-week-actions" }, [
-        $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = fridayStart(today()); render(); } }, "This week"),
-        $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = shiftFriday(friday, 1); render(); } }, "Next week"),
-      ]),
-    ]),
+    pageShell(
+      pageHero(
+        "Attendance",
+        canDraft
+          ? "Set Office, Home, or Off on your row, then press Save."
+          : mineSaved
+            ? "Your week is locked. Tap a day to request a change."
+            : "This week is closed. Open This week or Next week, or request a change.",
+        { label: "Week", value: friday }
+      ),
+      $("div", { class: "page-body" }, [
+        $("div", { class: "cal-nav attend-nav" }, [
+          $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = shiftFriday(friday, -1); render(); } }, "Prev week"),
+          $("p", { class: "muted", style: "margin:0" }, `Friday ${friday} → Thursday ${thursday}`),
+          $("div", { class: "attend-week-actions" }, [
+            $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = fridayStart(today()); render(); } }, "This week"),
+            $("button", { class: "btn ghost", type: "button", onclick: () => { state.attendWeek = shiftFriday(friday, 1); render(); } }, "Next week"),
+          ]),
+        ]),
+      ])
+    ),
     isAdmin() ? viewAttendDashboard() : null,
     $("div", { class: "stat-row" }, [
       statBox(officeToday, "In office today"),
@@ -5495,9 +5587,12 @@ function viewGuide() {
     ["Evening report", "Open Report, choose Remote or Office, and answer each question. The Report page stays still until you submit, so the text cannot disappear while typing. One report per person per Cairo day. After you submit, the tab says you already submitted. At 12:00 midnight Cairo time a new day starts and you can submit again."],
     ["HR", "Admins open HR. Profile, performance, task tracking, attitude, and warnings are scored each month separately. Use Prev / Next so months never mix. Task scores are Delivery 35%, Quality 35%, Revisions 15%, Creativity 15%."],
   ];
-  return $("div", { class: "sop-list" }, steps.map(([title, body]) =>
-    $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
-  ));
+  return $("div", { class: "page-stack" }, [
+    pageShell(pageHero("SOP", "How Helal works day to day. Hard-refresh after updates.")),
+    $("div", { class: "sop-list" }, steps.map(([title, body]) =>
+      $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
+    )),
+  ]);
 }
 
 function viewAdminGuide() {
@@ -5514,11 +5609,11 @@ function viewAdminGuide() {
     ["Dashboard", "Reports and attendance requests live here. Pick a day for daily reports, and use the month for the saved-reports list. Person filter next to the calendar narrows to one teammate. Time detail is on the Time tab, not mixed into reports."],
     ["Quick check each evening", "1) Time → Everyone for who is heavy this month. 2) Time → one person if something looks off. 3) HR → Performance for scores. 4) HR → Task tracking for evaluations waiting. 5) Switch to last month only when you need history — then switch back to the current month."],
   ];
-  return $("div", { class: "dash" }, [
-    $("section", { class: "card" }, [
-      $("h2", {}, "Admin guide"),
-      $("p", { class: "muted" }, "How Amr and Moamen read Time, HR, and performance. Team SOP stays on the SOP tab. Hard-refresh after updates."),
-    ]),
+  return $("div", { class: "page-stack" }, [
+    pageShell(pageHero(
+      "Admin guide",
+      "How Amr and Moamen read Time, HR, and performance. Team SOP stays on the SOP tab."
+    )),
     $("div", { class: "sop-list" }, steps.map(([title, body]) =>
       $("article", { class: "card" }, [$("h3", {}, title), $("p", {}, body)])
     )),
@@ -5606,8 +5701,8 @@ function render(force) {
   const root = document.getElementById("app");
   root.replaceChildren();
   if (!state.team) {
-    root.className = "";
-    root.append($("p", { class: "boot" }, "Could not load Helal."));
+    root.className = "boot-mode";
+    root.append(bootScreen("Could not load Helal.", true));
     return;
   }
   if (!state.session) {
@@ -5669,7 +5764,7 @@ function render(force) {
         $("button", { class: "btn ghost", onclick: logout }, "Log out"),
       ]),
     ]),
-    $("nav", {}, navItems().map(([id, label]) =>
+    $("nav", { class: "tabs" }, navItems().map(([id, label]) =>
       $("button", {
         class: state.view === id ? "active" : "",
         onclick: () => { state.view = id; render(); },
@@ -5741,7 +5836,7 @@ loadAll()
     watchCairoDay();
   })
   .catch((err) => {
-    document.getElementById("app").replaceChildren(
-      $("p", { class: "boot" }, `Could not load the board. ${err.message}`)
-    );
+    const root = document.getElementById("app");
+    root.className = "boot-mode";
+    root.replaceChildren(bootScreen(`Could not load the board. ${err.message}`, true));
   });

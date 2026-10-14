@@ -19,13 +19,20 @@
       href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261014-report-modern" />
+    <link rel="stylesheet" href="./styles.css?v=20261014-system-modern" />
     <link rel="icon" href="./assets/helal-mark.png" />
   </head>
   <body>
-    <div id="app">
-      <p class="boot">Loading Helal…</p>
+    <div id="app" class="boot-mode">
+      <div class="boot-screen" role="status" aria-live="polite">
+        <div class="boot-mark-wrap">
+          <img class="boot-mark" src="./assets/helal-mark.png" alt="" width="88" height="88" />
+          <span class="boot-ring" aria-hidden="true"></span>
+        </div>
+        <strong class="boot-title">Helal</strong>
+        <p class="boot-copy">Loading your board…</p>
+      </div>
     </div>
-    <script src="./app.js?v=20261014-report-modern"></script>
+    <script src="./app.js?v=20261014-system-modern"></script>
   </body>
 </html>
