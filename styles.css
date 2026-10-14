@@ -509,31 +509,34 @@ label {
 .shipped-list p { margin: 0; }
 .report-finished {
   display: grid;
-  gap: 10px;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
 }
 .report-task-list {
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 .report-task-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 110px;
-  gap: 10px;
-  align-items: center;
-  padding: 12px 14px;
+  gap: 12px;
+  padding: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--bg);
-  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 .report-task-row.on {
   border-color: var(--gold);
-  background: var(--bg-2);
+  box-shadow: 0 0 0 1px rgba(245, 196, 0, 0.18);
 }
+.report-task-top { min-width: 0; }
 .report-task-check {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 10px;
+  gap: 12px;
   align-items: start;
   margin: 0;
   letter-spacing: 0;
@@ -544,29 +547,46 @@ label {
 }
 .report-task-check input {
   width: auto;
-  margin: 3px 0 0;
+  margin: 4px 0 0;
   flex-shrink: 0;
 }
 .report-task-copy {
   display: grid;
-  gap: 3px;
+  gap: 8px;
   min-width: 0;
 }
 .report-task-copy strong {
   font-size: 14px;
-  line-height: 1.35;
+  line-height: 1.4;
   word-break: break-word;
 }
-.report-task-pct {
-  display: grid;
-  gap: 4px;
-  margin: 0;
-  letter-spacing: 0.04em;
-  font-size: 11px;
+.report-task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 }
-.report-task-pct select {
-  padding: 8px 10px;
-  min-height: 40px;
+.report-task-bottom {
+  display: grid;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.report-task-bottom.is-hidden { display: none; }
+.report-task-pcts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.report-task-pcts .time-chip.compact {
+  min-width: 58px;
+  padding: 8px 12px;
+  text-align: center;
+}
+.report-task-pcts .time-chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
 }
 .report-progress-list {
   display: grid;
@@ -815,6 +835,11 @@ label {
   cursor: pointer;
   border-radius: 999px;
   transition: transform 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.time-chip.compact {
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
 }
 .time-chip:hover { transform: translateY(-1px); border-color: var(--line-strong); }
 .time-chip.on {
@@ -1469,7 +1494,6 @@ span.attend-chip {
   .top-actions { width: 100%; justify-content: flex-start; }
   .top-actions .btn,
   .top-actions select { height: 38px; }
-  .report-task-row { grid-template-columns: 1fr; }
   .profile-grid { grid-template-columns: 1fr; }
   .stat-row { grid-template-columns: 1fr 1fr; }
   .time-task { grid-template-columns: 1fr 1fr; }

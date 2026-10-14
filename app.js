@@ -4555,9 +4555,9 @@ function viewReport() {
   }
   const draft = reportDraft();
   const reportTasks = allTasks()
-    .filter((t) => samePerson(t.who, state.who) && (t.status !== "Done" || t.done_on === today()))
+    .filter((t) => samePerson(t.who, state.who) && (t.status === "In progress" || t.status === "Review"))
     .sort((a, b) => {
-      const rank = { "In progress": 0, Review: 1, Revisions: 2, "To do": 3, Done: 4 };
+      const rank = { "In progress": 0, Review: 1 };
       return (rank[a.status] ?? 9) - (rank[b.status] ?? 9) || String(a.title || "").localeCompare(String(b.title || ""));
     });
   const draftMap = Object.fromEntries((draft.finished_tasks || []).map((row) => [row.id, row]));
@@ -4585,47 +4585,84 @@ function viewReport() {
     }, tag);
     return chip;
   });
-  const percentOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  const percentOptions = [25, 50, 75, 100];
   const taskRows = reportTasks.map((t) => {
     const saved = draftMap[t.id];
-    const on = !!saved;
-    const box = $("input", { type: "checkbox", checked: on });
-    const pct = $("select", { disabled: !on }, [
-      $("option", { value: "", selected: !saved?.percent }, "% done"),
-      ...percentOptions.map((n) => $("option", { value: String(n), selected: Number(saved?.percent) === n }, `${n}%`)),
-    ]);
-    const row = $("div", { class: `report-task-row${on ? " on" : ""}` }, [
-      $("label", { class: "report-task-check" }, [
-        box,
-        $("span", { class: "report-task-copy" }, [
-          $("strong", {}, t.title),
-          $("span", { class: "muted" }, [t.project, t.status, t.due ? `due ${t.due}` : ""].filter(Boolean).join(" · ")),
+    let selected = !!saved;
+    let percent = Number(saved?.percent) || 0;
+    if (percent && !percentOptions.includes(percent)) {
+      percent = percentOptions.reduce((best, n) => (Math.abs(n - percent) < Math.abs(best - percent) ? n : best), 50);
+    }
+    const box = $("input", { type: "checkbox", checked: selected });
+    const pctWrap = $("div", { class: "report-task-pcts" });
+    const pctChips = percentOptions.map((n) => {
+      const chip = $("button", {
+        type: "button",
+        class: `time-chip compact${selected && percent === n ? " on" : ""}`,
+        disabled: !selected,
+        onclick: (e) => {
+          e.preventDefault();
+          if (!selected) return;
+          percent = n;
+          pctChips.forEach((c) => c.classList.toggle("on", Number(c.dataset.pct) === percent));
+          keep();
+        },
+      }, `${n}%`);
+      chip.dataset.pct = String(n);
+      return chip;
+    });
+    pctWrap.append(...pctChips);
+    const statusTone = t.status === "Review" ? "tone-orange" : "tone-green";
+    const row = $("div", { class: `report-task-row${selected ? " on" : ""}` }, [
+      $("div", { class: "report-task-top" }, [
+        $("label", { class: "report-task-check" }, [
+          box,
+          $("span", { class: "report-task-copy" }, [
+            $("strong", {}, t.title),
+            $("span", { class: "report-task-meta" }, [
+              $("span", { class: `pill ${statusTone}` }, t.status),
+              t.project ? $("span", { class: "muted" }, t.project) : null,
+              t.due ? $("span", { class: "muted" }, `Due ${t.due}`) : null,
+            ]),
+          ]),
         ]),
       ]),
-      $("label", { class: "report-task-pct" }, ["Finished", pct]),
+      $("div", { class: `report-task-bottom${selected ? "" : " is-hidden"}` }, [
+        $("span", { class: "filter-label" }, "How much did you finish?"),
+        pctWrap,
+      ]),
     ]);
     const sync = () => {
-      const active = box.checked;
-      pct.disabled = !active;
-      row.classList.toggle("on", active);
-      if (!active) pct.value = "";
-      else if (!pct.value) pct.value = "50";
+      selected = box.checked;
+      row.classList.toggle("on", selected);
+      row.querySelector(".report-task-bottom")?.classList.toggle("is-hidden", !selected);
+      pctChips.forEach((c) => {
+        c.disabled = !selected;
+        c.classList.toggle("on", selected && Number(c.dataset.pct) === percent);
+      });
+      if (!selected) percent = 0;
+      else if (!percent) {
+        percent = 50;
+        pctChips.forEach((c) => c.classList.toggle("on", Number(c.dataset.pct) === 50));
+      }
       keep();
     };
     box.addEventListener("change", sync);
-    pct.addEventListener("change", () => keep());
-    return { task: t, box, pct, row };
+    return {
+      task: t,
+      row,
+      getSelected: () => (selected && percent > 0
+        ? {
+          id: t.id,
+          title: t.title,
+          project: t.project || "",
+          status: t.status || "",
+          percent,
+        }
+        : null),
+    };
   });
-  const readFinishedTasks = () => taskRows
-    .filter((row) => row.box.checked)
-    .map((row) => ({
-      id: row.task.id,
-      title: row.task.title,
-      project: row.task.project || "",
-      status: row.task.status || "",
-      percent: Number(row.pct.value) || 0,
-    }))
-    .filter((row) => row.percent > 0);
+  const readFinishedTasks = () => taskRows.map((row) => row.getSelected()).filter(Boolean);
   const keep = () => {
     keepReportDraft({
       finished: notes.value,
@@ -4684,10 +4721,10 @@ function viewReport() {
     ]),
     $("div", { class: "report-finished" }, [
       $("span", { class: "filter-label" }, "What did you finish today?"),
-      $("p", { class: "muted", style: "margin:0" }, "Select the tasks you worked on and set how much you finished."),
+      $("p", { class: "muted", style: "margin:0" }, "Only In progress and Review tasks. Select what you worked on, then tap a finish %."),
       reportTasks.length
         ? $("div", { class: "report-task-list" }, taskRows.map((row) => row.row))
-        : $("p", { class: "empty" }, "No open tasks on your board. Add a short note below if you still worked today."),
+        : $("p", { class: "empty" }, "No In progress or Review tasks right now. Add a short note below if you still worked today."),
       $("label", {}, ["Extra notes (optional)", notes]),
     ]),
     $("div", { class: "report-blockers filter-group" }, [
