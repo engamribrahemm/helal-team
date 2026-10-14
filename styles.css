@@ -110,24 +110,30 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 /* Theme toggle */
-.theme-toggle {
+.btn.theme-toggle {
   width: 40px;
   height: 40px;
+  min-width: 40px;
   padding: 0;
-  display: inline-grid;
-  place-items: center;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
   border-radius: 999px;
+  flex-shrink: 0;
 }
-.theme-toggle .theme-icon {
+.btn.theme-toggle .theme-icon {
   width: 18px;
   height: 18px;
   display: block;
+  flex-shrink: 0;
 }
-.theme-toggle:hover {
+.btn.theme-toggle:hover {
   color: var(--gold);
   border-color: var(--gold);
 }
-.theme-toggle-login {
+.btn.theme-toggle.theme-toggle-login {
   position: absolute;
   top: 20px;
   right: 20px;
