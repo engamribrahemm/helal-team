@@ -127,6 +127,9 @@ const state = {
   boardFocus: "",
   doneHistoryOpen: false,
   appsOpen: false,
+  reportEditing: false,
+  saveAttempt: 0,
+  lastSaveJob: null,
   modalGuardUntil: 0,
 };
 
@@ -530,6 +533,12 @@ function isOpenTask(task) {
   return !!task && task.status !== "Done";
 }
 
+function isMissingDrive(task) {
+  return isOpenTask(task)
+    && (task.status === "In progress" || task.status === "Review" || task.status === "Revisions")
+    && !taskHasDrive(task);
+}
+
 function isDueToday(task) {
   return isOpenTask(task) && task.due === today();
 }
@@ -628,6 +637,8 @@ function tasksForView({ ignoreFocus = false } = {}) {
     tasks = tasks.filter(isDueToday);
   } else if (!ignoreFocus && (state.view === "board" || state.view === "my") && state.boardFocus === "overdue") {
     tasks = tasks.filter(isOverdue);
+  } else if (!ignoreFocus && (state.view === "board" || state.view === "my") && state.boardFocus === "nodrive") {
+    tasks = tasks.filter(isMissingDrive);
   }
   if (state.dateFilter && state.dateFilter !== "all") {
     tasks = tasks.filter((t) =>
@@ -639,13 +650,20 @@ function tasksForView({ ignoreFocus = false } = {}) {
   return tasks;
 }
 
+function boardFocusLabel(focus) {
+  if (focus === "due") return "Showing due today only.";
+  if (focus === "overdue") return "Showing overdue only.";
+  if (focus === "nodrive") return "Showing tasks missing a Drive link.";
+  return "Filter on.";
+}
+
 function boardCockpit() {
-  // Counts stay on the full board scope (person/client/date). Due/Overdue focus only filters the cards.
+  // Counts stay on the full board scope (person/client/date). Focus only filters the cards.
   const open = tasksForView({ ignoreFocus: true }).filter(isOpenTask);
   const due = open.filter(isDueToday).length;
   const overdue = open.filter(isOverdue).length;
   const review = open.filter((t) => t.status === "Review" || t.status === "Revisions").length;
-  const noDrive = open.filter((t) => (t.status === "In progress" || t.status === "Review" || t.status === "Revisions") && !taskHasDrive(t)).length;
+  const noDrive = open.filter(isMissingDrive).length;
   return $("div", { class: "board-cockpit" }, [
     $("div", { class: "stat-row dense" }, [
       $("button", {
@@ -662,14 +680,15 @@ function boardCockpit() {
         $("strong", {}, String(review)),
         $("span", {}, "In review"),
       ]),
-      $("div", { class: `stat${noDrive ? " tone-orange" : ""}` }, [
-        $("strong", {}, String(noDrive)),
-        $("span", {}, "Missing Drive"),
-      ]),
+      $("button", {
+        type: "button",
+        class: `stat cockpit-stat${noDrive ? " tone-orange" : ""}${state.boardFocus === "nodrive" ? " on" : ""}`,
+        onclick: () => setBoardFocus("nodrive"),
+      }, [$("strong", {}, String(noDrive)), $("span", {}, "Missing Drive")]),
     ]),
     state.boardFocus
       ? $("p", { class: "muted board-filter-note" }, [
-        state.boardFocus === "due" ? "Showing due today only." : "Showing overdue only.",
+        boardFocusLabel(state.boardFocus),
         " ",
         $("button", {
           type: "button",
@@ -1449,7 +1468,8 @@ function reportFor(name, date) {
 }
 
 function reportTyping() {
-  return state.view === "report" && !!state.session && !reportFor(state.who, today());
+  if (state.view !== "report" || !state.session) return false;
+  return state.reportEditing || !reportFor(state.who, today());
 }
 
 function reportFormOpen() {
@@ -1750,7 +1770,24 @@ function friendlySaveNote(message) {
 function markSaved(message) {
   state.saveState = "saved";
   state.saveError = "";
+  state.saveAttempt = 0;
   state.saveNote = friendlySaveNote(message);
+  state.lastSaveJob = null;
+}
+
+function rememberSaveJob(kind, message) {
+  state.lastSaveJob = { kind, message, at: Date.now() };
+}
+
+function retryLastSave() {
+  const job = state.lastSaveJob;
+  if (!job) return;
+  if (job.kind === "tasks") saveTasks(job.message);
+  else if (job.kind === "reports") saveReports(job.message);
+  else if (job.kind === "hr") saveHr(job.message);
+  else if (job.kind === "attend") saveAttendance(job.message);
+  else if (job.kind === "team") saveTeam(job.message);
+  else if (job.kind === "auth") saveAuth(job.message);
 }
 
 async function githubGet(url, withAuth) {
@@ -1872,7 +1909,14 @@ async function dbPut(path, data, message) {
   }
   let payload = data;
   let lastError = "";
-  for (let attempt = 0; attempt < 5; attempt += 1) {
+  const maxAttempts = 8;
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    state.saveAttempt = attempt + 1;
+    if (attempt > 0) {
+      state.saveState = "saving";
+      state.saveNote = `Busy board — merging and retrying (${attempt + 1}/${maxAttempts})…`;
+      if (canSafeRender()) render(true);
+    }
     const remote = await readRemoteForSave(path);
     if (!remote) {
       lastError = "GitHub did not return the file yet. Retrying…";
@@ -1917,7 +1961,7 @@ async function dbPut(path, data, message) {
     }
     const text = await res.text();
     if (res.status === 409 || res.status === 422) {
-      lastError = "Someone else saved at the same time. Merging…";
+      lastError = "Someone else saved at the same time. Merging and retrying…";
       try { await dbGet(path); } catch (_) { await refreshShaTree(); }
       await waitMs(saveBackoff(attempt));
       continue;
@@ -1934,7 +1978,7 @@ async function dbPut(path, data, message) {
     }
     throw new Error(`GitHub ${res.status}: ${text.slice(0, 140)}`);
   }
-  throw new Error(lastError || "Could not save to GitHub. Click Refresh, then try again.");
+  throw new Error(lastError || "Could not save to GitHub after several tries. Tap Retry save, or Refresh then try again.");
 }
 
 async function loadAll() {
@@ -2035,18 +2079,26 @@ function enqueueSave(job) {
 
 async function saveTasks(message) {
   return enqueueSave(async () => {
+    rememberSaveJob("tasks", message);
     state.saveState = "saving";
     state.saveError = "";
+    state.saveAttempt = 0;
+    state.saveNote = "Saving…";
     stampMonthArchives();
     if (!uiOverlayOpen() && canSafeRender()) render(true);
     try {
       const ok = await Promise.race([
         dbPut("helal/daily-tasks.json", state.tasksFile, message),
         waitMs(45000).then(() => {
-          throw new Error("Save timed out. Click Refresh, then try again.");
+          throw new Error("Save timed out. Tap Retry save, or Refresh then try again.");
         }),
       ]);
-      if (!ok && state.saveState === "saving") state.saveState = writeToken() ? "error" : "local-only";
+      if (!ok && state.saveState === "saving") {
+        state.saveState = writeToken() ? "error" : "local-only";
+        if (state.saveState === "error") {
+          state.saveError = "Could not save to GitHub. Tap Retry save.";
+        }
+      }
       if (canSafeRender()) render(true);
     } catch (err) {
       state.saveState = "error";
@@ -2058,8 +2110,11 @@ async function saveTasks(message) {
 
 async function saveReports(message) {
   return enqueueSave(async () => {
+    rememberSaveJob("reports", message);
     state.saveState = "saving";
     state.saveError = "";
+    state.saveAttempt = 0;
+    state.saveNote = "Saving report…";
     render();
     try {
       await dbPut("helal/reports.json", state.reportsFile, message);
@@ -2074,8 +2129,11 @@ async function saveReports(message) {
 
 async function saveHr(message) {
   return enqueueSave(async () => {
+    rememberSaveJob("hr", message);
     state.saveState = "saving";
     state.saveError = "";
+    state.saveAttempt = 0;
+    state.saveNote = "Saving HR…";
     stampMonthArchives();
     render();
     try {
@@ -2158,8 +2216,10 @@ function makePersonPin(name) {
 
 async function saveTeam(message) {
   return enqueueSave(async () => {
+    rememberSaveJob("team", message);
     state.saveState = "saving";
     state.saveError = "";
+    state.saveNote = "Saving people…";
     render();
     try {
       if (!state.team.updated_at) state.team.updated_at = new Date().toISOString();
@@ -2175,8 +2235,10 @@ async function saveTeam(message) {
 
 async function saveAuth(message) {
   return enqueueSave(async () => {
+    rememberSaveJob("auth", message);
     state.saveState = "saving";
     state.saveError = "";
+    state.saveNote = "Saving login…";
     render();
     try {
       if (!state.auth) state.auth = { users: {} };
@@ -2193,8 +2255,10 @@ async function saveAuth(message) {
 
 async function saveAttendance(message) {
   return enqueueSave(async () => {
+    rememberSaveJob("attend", message);
     state.saveState = "saving";
     state.saveError = "";
+    state.saveNote = "Saving attendance…";
     render();
     try {
       await dbPut("helal/attendance.json", state.attendFile, message);
@@ -2314,6 +2378,8 @@ async function login(who, pin) {
 function logout() {
   state.session = null;
   state.who = "";
+  state.reportEditing = false;
+  state.lastSaveJob = null;
   clearReportDraft();
   localStorage.removeItem(LS_SESSION);
   render();
@@ -2497,28 +2563,44 @@ function assignTask({ who, space, title, due, drive, project, status, notes }) {
 
 function submitReport(fields) {
   const day = fields.date || today();
-  if (reportFor(state.who, day)) {
-    render();
-    return;
-  }
   if (!state.reportsFile) state.reportsFile = emptyReports();
   if (!state.reportsFile.reports) state.reportsFile.reports = [];
   const finishedTasks = normalizeFinishedTasks(fields.finished_tasks);
   const finishedText = String(fields.finished || "").trim() || finishedTasksSummary(finishedTasks);
-  state.reportsFile.reports.unshift({
-    id: `r-${Date.now().toString(36)}`,
-    who: state.who,
-    date: day,
-    finished: finishedText,
-    unfinished: fields.unfinished,
-    drive: fields.drive,
-    need_review: fields.need_review,
-    place: fields.place || "",
-    blockers: Array.isArray(fields.blockers) ? fields.blockers : [],
-    finished_tasks: finishedTasks,
-    done_task_ids: finishedTasks.map((row) => row.id),
-    created_at: new Date().toISOString(),
-  });
+  const existing = reportFor(state.who, day);
+  const now = new Date().toISOString();
+  if (existing) {
+    if (!state.reportEditing && !isAdmin()) {
+      render();
+      return;
+    }
+    existing.finished = finishedText;
+    existing.unfinished = fields.unfinished || "";
+    existing.drive = fields.drive || "";
+    existing.need_review = !!fields.need_review;
+    existing.place = fields.place || "";
+    existing.blockers = Array.isArray(fields.blockers) ? fields.blockers : [];
+    existing.finished_tasks = finishedTasks;
+    existing.done_task_ids = finishedTasks.map((row) => row.id);
+    existing.updated_at = now;
+    existing.amended_at = now;
+  } else {
+    state.reportsFile.reports.unshift({
+      id: `r-${Date.now().toString(36)}`,
+      who: state.who,
+      date: day,
+      finished: finishedText,
+      unfinished: fields.unfinished,
+      drive: fields.drive,
+      need_review: fields.need_review,
+      place: fields.place || "",
+      blockers: Array.isArray(fields.blockers) ? fields.blockers : [],
+      finished_tasks: finishedTasks,
+      done_task_ids: finishedTasks.map((row) => row.id),
+      created_at: now,
+    });
+  }
+  state.reportEditing = false;
   state.reportDay = day;
   state.calMonth = state.reportDay.slice(0, 7);
   clearReportDraft();
@@ -2526,16 +2608,51 @@ function submitReport(fields) {
   state.saveState = "saving";
   state.saveError = "";
   render();
-  saveReports(`report: ${state.who} ${state.reportDay}`);
+  saveReports(`report: ${state.who} ${state.reportDay}${existing ? " amend" : ""}`);
+}
+
+function startReportEdit(report) {
+  if (!report || report.date !== today()) return;
+  if (!samePerson(report.who, state.who) && !isAdmin()) return;
+  state.reportEditing = true;
+  keepReportDraft({
+    finished: report.finished || "",
+    unfinished: "",
+    drive: report.drive || "",
+    need_review: !!report.need_review,
+    place: report.place || "",
+    blockers: Array.isArray(report.blockers) ? report.blockers : [],
+    finished_tasks: normalizeFinishedTasks(report.finished_tasks),
+  });
+  render(true);
+}
+
+function cancelReportEdit() {
+  state.reportEditing = false;
+  clearReportDraft();
+  render(true);
 }
 
 function banner() {
   if (!writeToken() && state.session) return viewConnectBanner();
-  if (state.saveState === "saving") return $("div", { class: "banner" }, "Saving…");
+  if (state.saveState === "saving") {
+    return $("div", { class: "banner" }, state.saveNote || "Saving…");
+  }
   if (state.saveState === "saved") {
     return $("div", { class: "banner ok" }, state.saveNote || "Saved. The team can see it now.");
   }
-  if (state.saveState === "error") return $("div", { class: "banner err" }, state.saveError);
+  if (state.saveState === "error") {
+    return $("div", { class: "banner err banner-actions" }, [
+      $("span", {}, state.saveError || "Save failed."),
+      state.lastSaveJob
+        ? $("button", {
+          class: "btn compact",
+          type: "button",
+          onclick: () => retryLastSave(),
+        }, "Retry save")
+        : null,
+    ]);
+  }
   if (state.saveState === "local-only") return viewConnectBanner();
   return null;
 }
@@ -4427,6 +4544,94 @@ function viewLeadInbox() {
   ]);
 }
 
+function chaseRoster() {
+  if (isAdmin() || isSocial()) return people().filter((p) => p.name !== "Amr");
+  if (isLead()) return people().filter((p) => managesPerson(p.name));
+  return [];
+}
+
+function chaseSnapshot() {
+  const day = today();
+  const yesterday = addCairoDays(day, -1);
+  const roster = chaseRoster();
+  const rosterNames = new Set(roster.map((p) => p.name));
+  const open = allTasks().filter((t) => isOpenTask(t) && canSeeTask(t));
+  const overdue = open.filter(isOverdue);
+  const waiting = open.filter((t) => t.status === "Review" || t.status === "Revisions");
+  const noReportToday = roster.filter((p) => !reportFor(p.name, day));
+  const noReportYesterday = roster.filter((p) => !reportFor(p.name, yesterday));
+  const needReview = (state.reportsFile?.reports || [])
+    .filter((r) => r.date === day && r.need_review && (isAdmin() || isSocial() || rosterNames.has(r.who) || samePerson(r.who, state.who)))
+    .map((r) => r.who);
+  return {
+    day,
+    yesterday,
+    noReportToday: noReportToday.map((p) => p.name),
+    noReportYesterday: noReportYesterday.map((p) => p.name),
+    overdue: overdue.map((t) => `${t.who}: ${t.title}`),
+    waiting: waiting.map((t) => `${t.who}: ${t.title}`),
+    needReview: [...new Set(needReview)],
+  };
+}
+
+function chaseText(snap) {
+  const lines = [
+    `Helal chase · ${snap.day}`,
+    "",
+    `No report today (${snap.noReportToday.length}): ${snap.noReportToday.join(", ") || "—"}`,
+    `No report yesterday (${snap.noReportYesterday.length}): ${snap.noReportYesterday.join(", ") || "—"}`,
+    `Overdue (${snap.overdue.length}): ${snap.overdue.join(" · ") || "—"}`,
+    `Waiting review (${snap.waiting.length}): ${snap.waiting.join(" · ") || "—"}`,
+    `Need review flag (${snap.needReview.length}): ${snap.needReview.join(", ") || "—"}`,
+  ];
+  return lines.join("\n");
+}
+
+function copyChaseList() {
+  const text = chaseText(chaseSnapshot());
+  const done = () => {
+    state.saveState = "saved";
+    state.saveNote = "Chase list copied. Paste it into WhatsApp.";
+    render(true);
+  };
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => {
+      window.prompt("Copy this chase list:", text);
+      done();
+    });
+    return;
+  }
+  window.prompt("Copy this chase list:", text);
+  done();
+}
+
+function viewChaseList() {
+  if (!isAdmin() && !isSocial() && !isLead()) return null;
+  const snap = chaseSnapshot();
+  const line = (label, items, tone) => $("div", { class: "chase-line" }, [
+    $("strong", { class: tone || "" }, `${label} · ${items.length}`),
+    $("p", { class: "muted" }, items.length ? items.join(", ") : "None."),
+  ]);
+  return $("section", { class: "card chase-card" }, [
+    $("div", { class: "chase-head" }, [
+      $("div", {}, [
+        $("h2", {}, "Chase list"),
+        $("p", { class: "muted" }, "Today’s gaps — copy once, paste into WhatsApp."),
+      ]),
+      $("button", {
+        class: "btn primary compact",
+        type: "button",
+        onclick: copyChaseList,
+      }, "Copy chase list"),
+    ]),
+    line("No report today", snap.noReportToday, snap.noReportToday.length ? "tone-orange" : ""),
+    line("No report yesterday", snap.noReportYesterday, snap.noReportYesterday.length ? "tone-orange" : ""),
+    line("Overdue", snap.overdue, snap.overdue.length ? "tone-red" : ""),
+    line("Waiting review", snap.waiting, snap.waiting.length ? "tone-orange" : ""),
+    line("Need review flag", snap.needReview, snap.needReview.length ? "tone-orange" : ""),
+  ]);
+}
+
 function viewOwnerDigest() {
   if (!isAdmin()) return null;
   const week = cairoDaysBack(7);
@@ -4518,6 +4723,7 @@ function viewReview() {
         : "Check Review cards, mark Done, and follow up on your team.",
       { label: "Cairo date", value: day }
     )),
+    viewChaseList(),
     viewOwnerDigest(),
     viewLeadInbox(),
     adminDash ? viewCalendar() : null,
@@ -4669,18 +4875,26 @@ function reportStep(num, title, hint, body) {
 function viewReport() {
   const day = today();
   const mine = reportFor(state.who, day);
-  if (mine) {
+  if (mine && !state.reportEditing) {
     return $("div", { class: "report-page" }, [
       $("section", { class: "report-shell" }, [
-        reportHero(day, "One report per day. A new day opens at 12:00 midnight Cairo time."),
+        reportHero(day, "One report per day. You can amend today’s report if something changed."),
         $("div", { class: "report-step" }, [
           $("p", { class: "report-done-banner" }, "You already submitted today’s report."),
+          $("div", { class: "report-amend-actions" }, [
+            $("button", {
+              class: "btn primary compact",
+              type: "button",
+              onclick: () => startReportEdit(mine),
+            }, "Edit today’s report"),
+          ]),
         ]),
       ]),
       reportCard(mine),
     ]);
   }
   const draft = reportDraft();
+  const amending = !!(mine && state.reportEditing);
   const reportTasks = allTasks()
     .filter((t) => samePerson(t.who, state.who) && (t.status === "In progress" || t.status === "Review"))
     .sort((a, b) => {
@@ -4861,7 +5075,7 @@ function viewReport() {
     onsubmit: (e) => {
       e.preventDefault();
       keep();
-      if (reportFor(state.who, today())) {
+      if (reportFor(state.who, today()) && !state.reportEditing) {
         clearReportDraft();
         render(true);
         return;
@@ -4892,6 +5106,9 @@ function viewReport() {
       });
     },
   }, [
+    amending
+      ? $("p", { class: "banner warn", style: "margin:0" }, "Editing today’s report. Save to update what Amr sees.")
+      : null,
     reportStep(1, "Where did you work?", "Remote or office for today.", [
       $("div", { class: "place-picks" }, [remotePick, officePick]),
     ]),
@@ -4918,7 +5135,12 @@ function viewReport() {
     ]),
     $("div", { class: "report-foot" }, [
       $("div", { class: "report-foot-meta" }, [footCount, footHint]),
-      $("button", { class: "btn primary", type: "submit" }, "Submit report"),
+      $("div", { class: "report-foot-actions" }, [
+        amending
+          ? $("button", { class: "btn ghost", type: "button", onclick: cancelReportEdit }, "Cancel")
+          : null,
+        $("button", { class: "btn primary", type: "submit" }, amending ? "Save changes" : "Submit report"),
+      ]),
     ]),
   ]);
   form.addEventListener("input", keep);
@@ -4927,7 +5149,12 @@ function viewReport() {
   form.addEventListener("compositionend", keep);
   return $("div", { class: "report-page" }, [
     $("section", { class: "report-shell" }, [
-      reportHero(day, "Take your time. This page stays still until you submit — your draft is saved as you type."),
+      reportHero(
+        day,
+        amending
+          ? "Amend today’s report. This page stays still until you save."
+          : "Take your time. This page stays still until you submit — your draft is saved as you type."
+      ),
       form,
     ]),
   ]);
@@ -5787,6 +6014,124 @@ function appTile(id, label, { large = false } = {}) {
   ]);
 }
 
+function goTodayAction(action) {
+  if (action.view) state.view = action.view;
+  if (action.focus != null) state.boardFocus = action.focus;
+  if (action.boardPerson != null) state.boardPerson = action.boardPerson;
+  render();
+}
+
+function todayActionCards() {
+  const mine = allTasks().filter((t) => isOpenTask(t) && samePerson(t.who, state.who));
+  const due = mine.filter(isDueToday).length;
+  const overdue = mine.filter(isOverdue).length;
+  const noDrive = mine.filter(isMissingDrive).length;
+  const myView = "my";
+  const friday = fridayStart(today());
+  const actions = [];
+  if (overdue) {
+    actions.push({
+      title: `${overdue} overdue`,
+      hint: "Open My work filtered to overdue",
+      tone: "tone-red",
+      view: myView,
+      focus: "overdue",
+    });
+  }
+  if (due) {
+    actions.push({
+      title: `${due} due today`,
+      hint: "Finish or move these before evening",
+      tone: "tone-orange",
+      view: myView,
+      focus: "due",
+    });
+  }
+  if (noDrive) {
+    actions.push({
+      title: `${noDrive} missing Drive`,
+      hint: "Add the link before To Review",
+      tone: "tone-orange",
+      view: myView,
+      focus: "nodrive",
+    });
+  }
+  if (!reportFor(state.who, today())) {
+    actions.push({
+      title: "Submit today’s report",
+      hint: "Evening check-in for Amr",
+      tone: "",
+      view: "report",
+      focus: "",
+    });
+  } else {
+    actions.push({
+      title: "Report filed",
+      hint: "Amend it if something changed",
+      tone: "tone-green",
+      view: "report",
+      focus: "",
+    });
+  }
+  if (!attendSaved(state.who, friday) && canDraftAttend(state.who, friday)) {
+    actions.push({
+      title: "Save attendance",
+      hint: "Lock Office / Home / Off for this week",
+      tone: "",
+      view: "attend",
+      focus: "",
+    });
+  }
+  if (canReviewTasks()) {
+    const waiting = allTasks().filter((t) =>
+      (t.status === "Review" || t.status === "Revisions") && canSeeTask(t) && canMarkDone(t)
+    ).length;
+    if (waiting) {
+      actions.push({
+        title: `${waiting} waiting review`,
+        hint: isAdmin() ? "Open Dashboard" : "Open Review",
+        tone: "tone-orange",
+        view: "review",
+        focus: "",
+      });
+    }
+  }
+  if (isAdmin()) {
+    const chase = chaseSnapshot();
+    if (chase.noReportToday.length || chase.overdue.length) {
+      actions.push({
+        title: "Owner chase list",
+        hint: "Copy missing reports & overdue",
+        tone: "",
+        view: "review",
+        focus: "",
+      });
+    }
+  }
+  return actions.slice(0, 5);
+}
+
+function viewTodayStrip() {
+  const actions = todayActionCards();
+  if (!actions.length) return null;
+  return $("section", { class: "today-strip" }, [
+    $("div", { class: "today-strip-head" }, [
+      $("strong", {}, "Today"),
+      $("span", { class: "muted" }, "Your next moves"),
+    ]),
+    $("div", { class: "today-actions" }, actions.map((action) =>
+      $("button", {
+        type: "button",
+        class: `today-action ${action.tone || ""}`,
+        onclick: () => goTodayAction(action),
+      }, [
+        $("strong", {}, action.title),
+        $("span", {}, action.hint),
+      ])
+    )),
+  ]);
+}
+
 function viewAppsHome() {
   const role = isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member";
   const items = navItems();
@@ -5804,6 +6149,7 @@ function viewAppsHome() {
         $("p", { class: "muted" }, `${role} · Choose an app to continue · ${cairoClock()} Cairo`),
       ]),
     ]),
+    viewTodayStrip(),
     $("div", { class: "app-grid home" }, items.map(([id, label]) => appTile(id, label, { large: true }))),
   ]);
 }
