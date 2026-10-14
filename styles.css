@@ -109,7 +109,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Login */
+/* Theme toggle */
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+}
+.theme-toggle .theme-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+.theme-toggle:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
 .theme-toggle-login {
   position: absolute;
   top: 20px;

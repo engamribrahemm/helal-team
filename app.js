@@ -142,6 +142,46 @@ function toggleTheme() {
   render();
 }
 
+function themeIcon(kind) {
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("aria-hidden", "true");
+  svg.classList.add("theme-icon");
+  const add = (tag, attrs) => {
+    const el = document.createElementNS(ns, tag);
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+    svg.append(el);
+  };
+  if (kind === "sun") {
+    add("circle", { cx: "12", cy: "12", r: "4", fill: "none", stroke: "currentColor", "stroke-width": "1.8" });
+    for (const [x1, y1, x2, y2] of [
+      [12, 2.5, 12, 5], [12, 19, 12, 21.5], [2.5, 12, 5, 12], [19, 12, 21.5, 12],
+      [5.2, 5.2, 7, 7], [17, 17, 18.8, 18.8], [5.2, 18.8, 7, 17], [17, 7, 18.8, 5.2],
+    ]) add("line", { x1, y1, x2, y2, stroke: "currentColor", "stroke-width": "1.8", "stroke-linecap": "round" });
+  } else {
+    add("path", {
+      d: "M16.5 3.5a8.5 8.5 0 1 0 4 14.2A7 7 0 1 1 16.5 3.5z",
+      fill: "none",
+      stroke: "currentColor",
+      "stroke-width": "1.8",
+      "stroke-linejoin": "round",
+    });
+  }
+  return svg;
+}
+
+function themeToggleButton(extraClass = "") {
+  const bright = readTheme() === "bright";
+  return $("button", {
+    class: `btn ghost theme-toggle${extraClass ? ` ${extraClass}` : ""}`,
+    type: "button",
+    title: bright ? "Switch to dark mode" : "Switch to bright mode",
+    "aria-label": bright ? "Switch to dark mode" : "Switch to bright mode",
+    onclick: toggleTheme,
+  }, [themeIcon(bright ? "moon" : "sun")]);
+}
+
 applyTheme(readTheme());
 
 const $ = (tag, attrs = {}, kids = []) => {
@@ -4909,11 +4949,7 @@ function viewWelcome() {
     autocomplete: "current-password",
   });
   return $("div", { class: "login-page" }, [
-    $("button", {
-      class: "btn ghost theme-toggle-login",
-      type: "button",
-      onclick: toggleTheme,
-    }, readTheme() === "bright" ? "Dark mode" : "Bright mode"),
+    themeToggleButton("theme-toggle-login"),
     $("div", { class: "login-shell" }, [
       $("aside", { class: "login-brand" }, [
         $("img", {
@@ -5040,12 +5076,7 @@ function render(force) {
             loadAll().then(render);
           },
         }, "Refresh"),
-        $("button", {
-          class: "btn ghost",
-          type: "button",
-          title: readTheme() === "bright" ? "Switch to dark mode" : "Switch to bright mode",
-          onclick: toggleTheme,
-        }, readTheme() === "bright" ? "Dark" : "Bright"),
+        themeToggleButton(),
         $("button", { class: "btn ghost", onclick: logout }, "Log out"),
       ]),
     ]),
