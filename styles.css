@@ -648,6 +648,11 @@ h3 { font-size: 12px; font-weight: 600; }
   border-color: var(--gold);
   box-shadow: 0 0 0 1px rgba(245, 196, 0, 0.22), 0 10px 22px rgba(245, 196, 0, 0.1);
 }
+.app-tile-icon-wrap {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+}
 .app-tile-icon {
   width: 48px;
   height: 48px;
@@ -671,6 +676,23 @@ h3 { font-size: 12px; font-weight: 600; }
   width: 26px;
   height: 26px;
 }
+.app-tile-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-grid;
+  place-items: center;
+  line-height: 1;
+  box-shadow: 0 0 0 2px var(--bg);
+}
 .app-tile-label {
   font-size: 12px;
   font-weight: 650;
@@ -680,6 +702,91 @@ h3 { font-size: 12px; font-weight: 600; }
 .app-tile.large .app-tile-label {
   font-size: 13px;
 }
+.triage-inbox { display: grid; gap: 12px; }
+.triage-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.triage-head h2 { margin: 0 0 4px; }
+.triage-head .muted { margin: 0; }
+.triage-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.triage-list { display: grid; gap: 8px; }
+.triage-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+}
+.triage-main {
+  display: grid;
+  gap: 3px;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  min-width: 0;
+}
+.triage-main strong {
+  font-size: 14px;
+  line-height: 1.3;
+}
+.triage-main .muted {
+  font-size: 12px;
+}
+.my-work-path {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  background: var(--bg-2);
+}
+.my-work-path strong {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.my-work-path .muted { margin: 0; font-size: 13px; }
+.my-work-stack { display: grid; gap: 16px; margin-top: 8px; }
+.my-work-section { display: grid; gap: 10px; }
+.my-work-section-head h3 {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.my-work-section-head .muted { margin: 4px 0 0; font-size: 12px; }
+.my-work-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.my-work-card-top .title { margin: 0; flex: 1; min-width: 0; }
+.my-work-card.is-new {
+  border-color: rgba(243, 156, 18, 0.45);
+  box-shadow: 0 0 0 1px rgba(243, 156, 18, 0.12);
+}
+.my-work-actions {
+  margin-top: 4px;
+}
+.my-new-banner { margin: 0; }
+.desktop-only { display: grid; }
 .app-tile.tone-board .app-tile-icon { background: #f5c400; }
 .app-tile.tone-my .app-tile-icon { background: #6db3f2; }
 .app-tile.tone-review .app-tile-icon { background: #f0a05a; }
@@ -2311,7 +2418,29 @@ span.attend-chip {
   .report-foot-actions { width: 100%; }
   .report-foot-actions .btn { flex: 1; }
   .today-actions { grid-template-columns: 1fr; }
-  .chase-head { flex-direction: column; }
+  .chase-head,
+  .triage-head { flex-direction: column; }
+  .triage-row { grid-template-columns: 1fr; }
+  .triage-row .btn { width: 100%; }
+  .desktop-only { display: none !important; }
+  .my-work-path { order: -1; }
+  .my-work-card .my-work-actions {
+    position: sticky;
+    bottom: 0;
+    padding-top: 8px;
+    background: linear-gradient(180deg, transparent, var(--card-bot) 28%);
+  }
+  .my-work-card .btn.review-btn,
+  .my-work-card .my-work-actions .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  .board-cockpit .stat-row.dense {
+    grid-template-columns: 1fr 1fr;
+  }
   .top { padding: 4px 6px; }
   .app-grid.home { grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 10px; }
   .app-tile.large { min-height: 118px; padding: 16px 8px 14px; }

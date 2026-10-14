@@ -30,6 +30,7 @@ const ATTEND_WEEK = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
 const ATTEND_MODES = ["Office", "Home", "Off"];
 const LS_ATTEND = "helal.attendCache.v5";
 const LS_SHAS = "helal.fileShas";
+const LS_SEEN_TASKS = "helal.seenTasks.v1";
 const BOARD_RESET = "2026-09-05T14:12:00.000Z";
 const BLOCKED_TASK_IDS = ["t-20260906-seif-mtokld6v"];
 const OLD_CACHE_KEYS = [
@@ -3740,6 +3741,50 @@ function myHrCard() {
   ]);
 }
 
+function myWorkCard(task) {
+  const toReview = reviewActionButton(task);
+  const needsDrive = isMissingDrive(task);
+  const isNew = isNewForMe(task);
+  return $("article", {
+    class: `card my-work-card ${taskTone(task)}${isOverdue(task) ? " tone-red" : ""}${isNew ? " is-new" : ""}`,
+    onclick: () => { state.openTaskId = task.id; render(); },
+  }, [
+    $("div", { class: "my-work-card-top" }, [
+      $("p", { class: "title" }, task.title),
+      isNew ? $("span", { class: "pill tone-orange" }, "New") : null,
+    ]),
+    taskFactList(task),
+    $("div", { class: "meta" }, [
+      $("span", { class: `pill ${taskTone(task)}` }, boardColumnOf(task.status)),
+      isOverdue(task) ? $("span", { class: "pill tone-red" }, "Overdue") : null,
+      isDueToday(task) ? $("span", { class: "pill tone-orange" }, "Due today") : null,
+      needsDrive ? $("span", { class: "pill tone-orange" }, "Need Drive") : null,
+      task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
+    ]),
+    $("div", {
+      class: "card-actions my-work-actions",
+      onclick: (e) => e.stopPropagation(),
+      onpointerdown: (e) => e.stopPropagation(),
+    }, [
+      toReview,
+      needsDrive
+        ? $("button", {
+          class: "btn ghost compact",
+          type: "button",
+          onclick: () => { state.openTaskId = task.id; render(); },
+        }, "Add Drive")
+        : null,
+      !toReview && !needsDrive
+        ? $("button", {
+          class: "btn ghost compact",
+          type: "button",
+          onclick: () => { state.openTaskId = task.id; render(); },
+        }, "Open")
+        : null,
+    ].filter(Boolean)),
+  ]);
+}
+
 function viewMy() {
   const openAll = tasksForView({ ignoreFocus: true }).filter((t) => t.status !== "Done");
   const open = tasksForView().filter((t) => t.status !== "Done");
@@ -3747,15 +3792,38 @@ function viewMy() {
   const finished = allTasks().filter((t) => t.who === state.who && t.status === "Done" && doneMonthOf(t) === month);
   const dueN = openAll.filter(isDueToday).length;
   const overdueN = openAll.filter(isOverdue).length;
+  const newN = openAll.filter(isNewForMe).length;
+  const ready = open.filter((t) => t.status === "In progress" && taskHasDrive(t));
+  const needDrive = open.filter(isMissingDrive);
+  const other = open.filter((t) => !ready.includes(t) && !needDrive.includes(t));
+  const section = (title, hint, list) => {
+    if (!list.length) return null;
+    return $("section", { class: "my-work-section" }, [
+      $("div", { class: "my-work-section-head" }, [
+        $("h3", {}, title),
+        hint ? $("p", { class: "muted" }, hint) : null,
+      ]),
+      $("div", { class: "cards" }, list.map(myWorkCard)),
+    ]);
+  };
+  // Mark current open tasks as seen after this visit paints.
+  setTimeout(() => markMyWorkSeen(), 0);
   return [
     pageShell(pageHero(
       "My work",
       "Add a Drive link, then press To Review. It saves to GitHub.",
       { label: "Open now", value: String(openAll.length) }
     )),
+    newN
+      ? $("p", { class: "banner warn my-new-banner" }, `${newN} new for you since last visit.`)
+      : null,
     isAdmin() ? null : myHrCard(),
+    $("div", { class: "my-work-path" }, [
+      $("strong", {}, "Phone path"),
+      $("p", { class: "muted" }, "1) Add Drive · 2) To Review · 3) Wait for Done. Board kanban is optional."),
+    ]),
     boardCockpit(),
-    $("div", { class: "board-toolbar" }, [viewBoardClientFilter()]),
+    $("div", { class: "board-toolbar desktop-only" }, [viewBoardClientFilter()]),
     $("div", { class: "my-work-head" }, [
       $("div", {}, [
         $("h2", {}, "Open"),
@@ -3763,33 +3831,18 @@ function viewMy() {
       ]),
       $("div", { class: "my-work-meta" }, [
         $("span", { class: "pill" }, `${openAll.length} open`),
+        newN ? $("span", { class: "pill tone-orange" }, `${newN} new`) : null,
         dueN ? $("span", { class: "pill tone-orange" }, `${dueN} due today`) : null,
         overdueN ? $("span", { class: "pill tone-red" }, `${overdueN} overdue`) : null,
         $("span", { class: "pill tone-green" }, `${finished.length} done this month`),
       ]),
     ]),
     open.length
-      ? $("div", { class: "cards", style: "margin-top:14px" }, open.map((task) => {
-        const toReview = reviewActionButton(task);
-        return $("article", { class: `card ${taskTone(task)}${isOverdue(task) ? " tone-red" : ""}`, onclick: () => { state.openTaskId = task.id; render(); } }, [
-          $("p", { class: "title" }, task.title),
-          taskFactList(task),
-          $("div", { class: "meta" }, [
-            $("span", { class: `pill ${taskTone(task)}` }, boardColumnOf(task.status)),
-            isOverdue(task) ? $("span", { class: "pill tone-red" }, "Overdue") : null,
-            isDueToday(task) ? $("span", { class: "pill tone-orange" }, "Due today") : null,
-            !taskHasDrive(task) && task.status === "In progress" ? $("span", { class: "pill tone-orange" }, "Need Drive") : null,
-            task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
-          ]),
-          toReview
-            ? $("div", {
-              class: "card-actions",
-              onclick: (e) => e.stopPropagation(),
-              onpointerdown: (e) => e.stopPropagation(),
-            }, [toReview])
-            : null,
-        ]);
-      }))
+      ? $("div", { class: "my-work-stack" }, [
+        section("Ready for review", "Drive is on — send these up.", ready),
+        section("Need Drive first", "Open the card, paste the Drive link, then To Review.", needDrive),
+        section("Other open", "To do, Review, or Revisions still on you.", other),
+      ])
       : $("p", { class: "empty" }, "Nothing open right now. You’re clear — check Attendance or submit Report this evening."),
     $("section", { class: "done-section" }, [
       $("h2", {}, "Done"),
@@ -4605,6 +4658,148 @@ function copyChaseList() {
   done();
 }
 
+function readSeenTaskIds(who) {
+  try {
+    const all = JSON.parse(localStorage.getItem(LS_SEEN_TASKS) || "{}");
+    const row = all[who] || all[String(who || "").toLowerCase()] || {};
+    return new Set(Array.isArray(row.ids) ? row.ids : Object.keys(row.ids || {}));
+  } catch (_) {
+    return new Set();
+  }
+}
+
+function writeSeenTaskIds(who, ids) {
+  try {
+    const all = JSON.parse(localStorage.getItem(LS_SEEN_TASKS) || "{}");
+    all[who] = { at: Date.now(), ids: [...ids] };
+    localStorage.setItem(LS_SEEN_TASKS, JSON.stringify(all));
+  } catch (_) {}
+}
+
+function myOpenTasks() {
+  return allTasks().filter((t) => isOpenTask(t) && samePerson(t.who, state.who));
+}
+
+function isNewForMe(task) {
+  if (!task || !samePerson(task.who, state.who) || !isOpenTask(task)) return false;
+  return !readSeenTaskIds(state.who).has(task.id);
+}
+
+function newForMeTasks() {
+  return myOpenTasks().filter(isNewForMe);
+}
+
+function markMyWorkSeen() {
+  if (!state.who) return;
+  const seen = readSeenTaskIds(state.who);
+  for (const t of myOpenTasks()) seen.add(t.id);
+  writeSeenTaskIds(state.who, seen);
+}
+
+function triageItems() {
+  if (!canReviewTasks()) return [];
+  const items = [];
+  const waiting = allTasks().filter((t) =>
+    (t.status === "Review" || t.status === "Revisions") && canSeeTask(t) && canMarkDone(t)
+  );
+  for (const t of waiting.slice(0, 8)) {
+    items.push({
+      kind: "review",
+      tone: "tone-orange",
+      title: t.title,
+      meta: `${t.who}${t.project ? ` · ${t.project}` : ""} · ${t.status}`,
+      go: () => { state.openTaskId = t.id; render(); },
+      action: canMarkDone(t)
+        ? { label: "Mark done", run: (e) => markTaskDone(t.id, e) }
+        : null,
+    });
+  }
+  if (isAdmin()) {
+    for (const req of pendingAttendRequests().slice(0, 5)) {
+      items.push({
+        kind: "attend",
+        tone: "tone-orange",
+        title: `${req.who} · attendance change`,
+        meta: `${req.date}: ${req.from || "—"} → ${req.to}`,
+        go: () => { state.view = "attend"; render(); },
+        action: {
+          label: "Approve",
+          run: () => decideAttendRequest(req.id, "Approved"),
+        },
+      });
+    }
+  }
+  const flagged = (state.reportsFile?.reports || [])
+    .filter((r) => r.date === today() && r.need_review && (isAdmin() || isSocial() || managesPerson(r.who)))
+    .slice(0, 5);
+  for (const r of flagged) {
+    items.push({
+      kind: "report",
+      tone: "",
+      title: `${r.who} asked for review`,
+      meta: `Report · ${r.date}${r.place ? ` · ${r.place}` : ""}`,
+      go: () => {
+        state.view = "review";
+        state.dashPerson = r.who;
+        state.reportDay = r.date;
+        render();
+      },
+      action: null,
+    });
+  }
+  return items;
+}
+
+function viewTriageInbox() {
+  if (!canReviewTasks()) return null;
+  const items = triageItems();
+  const waitingN = allTasks().filter((t) =>
+    (t.status === "Review" || t.status === "Revisions") && canSeeTask(t) && canMarkDone(t)
+  ).length;
+  const attendN = isAdmin() ? pendingAttendRequests().length : 0;
+  const flagN = (state.reportsFile?.reports || []).filter((r) =>
+    r.date === today() && r.need_review && (isAdmin() || isSocial() || managesPerson(r.who))
+  ).length;
+  return $("section", { class: "card triage-inbox" }, [
+    $("div", { class: "triage-head" }, [
+      $("div", {}, [
+        $("h2", {}, "Triage inbox"),
+        $("p", { class: "muted" }, "What needs you now — Review, attendance, and report flags."),
+      ]),
+      $("div", { class: "triage-pills" }, [
+        waitingN ? $("span", { class: "pill tone-orange" }, `${waitingN} review`) : null,
+        attendN ? $("span", { class: "pill tone-orange" }, `${attendN} attendance`) : null,
+        flagN ? $("span", { class: "pill" }, `${flagN} report flags`) : null,
+        !waitingN && !attendN && !flagN ? $("span", { class: "pill tone-green" }, "Clear") : null,
+      ]),
+    ]),
+    items.length
+      ? $("div", { class: "triage-list" }, items.map((item) =>
+        $("div", { class: `triage-row ${item.tone || ""}` }, [
+          $("button", {
+            type: "button",
+            class: "triage-main",
+            onclick: item.go,
+          }, [
+            $("strong", {}, item.title),
+            $("span", { class: "muted" }, item.meta),
+          ]),
+          item.action
+            ? $("button", {
+              type: "button",
+              class: "btn primary compact",
+              onclick: (e) => {
+                e.stopPropagation();
+                item.action.run(e);
+              },
+            }, item.action.label)
+            : null,
+        ])
+      ))
+      : $("p", { class: "empty" }, "Inbox is clear. Nothing waiting on you right now."),
+  ]);
+}
+
 function viewChaseList() {
   if (!isAdmin() && !isSocial() && !isLead()) return null;
   const snap = chaseSnapshot();
@@ -4723,6 +4918,7 @@ function viewReview() {
         : "Check Review cards, mark Done, and follow up on your team.",
       { label: "Cairo date", value: day }
     )),
+    viewTriageInbox(),
     viewChaseList(),
     viewOwnerDigest(),
     viewLeadInbox(),
@@ -6000,16 +6196,33 @@ function openApp(id) {
   render();
 }
 
+function appBadgeCount(id) {
+  if (id === "my") return newForMeTasks().length;
+  if (id === "review" && canReviewTasks()) {
+    return allTasks().filter((t) =>
+      (t.status === "Review" || t.status === "Revisions") && canSeeTask(t) && canMarkDone(t)
+    ).length;
+  }
+  if (id === "report" && !reportFor(state.who, today())) return 1;
+  return 0;
+}
+
 function appTile(id, label, { large = false } = {}) {
+  const badge = appBadgeCount(id);
   return $("button", {
     type: "button",
     class: `app-tile ${APP_TONES[id] || ""}${large ? " large" : ""}${state.view === id ? " on" : ""}`,
     onclick: () => openApp(id),
   }, [
-    $("span", {
-      class: "app-tile-icon",
-      html: APP_ICONS[id] || APP_ICONS.board,
-    }),
+    $("span", { class: "app-tile-icon-wrap" }, [
+      $("span", {
+        class: "app-tile-icon",
+        html: APP_ICONS[id] || APP_ICONS.board,
+      }),
+      badge
+        ? $("span", { class: "app-tile-badge", "aria-label": `${badge} new` }, badge > 9 ? "9+" : String(badge))
+        : null,
+    ]),
     $("span", { class: "app-tile-label" }, label),
   ]);
 }
@@ -6026,9 +6239,19 @@ function todayActionCards() {
   const due = mine.filter(isDueToday).length;
   const overdue = mine.filter(isOverdue).length;
   const noDrive = mine.filter(isMissingDrive).length;
+  const newN = mine.filter(isNewForMe).length;
   const myView = "my";
   const friday = fridayStart(today());
   const actions = [];
+  if (newN) {
+    actions.push({
+      title: `${newN} new for you`,
+      hint: "Assigned since your last visit",
+      tone: "tone-orange",
+      view: myView,
+      focus: "",
+    });
+  }
   if (overdue) {
     actions.push({
       title: `${overdue} overdue`,
