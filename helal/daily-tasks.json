@@ -459,7 +459,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-14T18:26:08.802Z",
+      "updated_at": "2026-10-14T18:41:30.583Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +478,8 @@
           "review": 0,
           "overdue": 3,
           "done": 6,
-          "hours": 73.96817240740741,
-          "live": 78.71666666666667
+          "hours": 74.05150574074075,
+          "live": 78.96666666666667
         },
         "Judi": {
           "open": 2,
@@ -498,8 +498,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 25.816428156565657,
-          "live": 172.38333333333333
+          "hours": 25.83915542929293,
+          "live": 172.63333333333333
         },
         "Alaa": {
           "open": 2,
@@ -508,18 +508,18 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 35.09134607638889,
-          "live": 94.46666666666667
+          "hours": 35.12259607638889,
+          "live": 94.71666666666667
         },
         "Ganna": {
-          "open": 8,
+          "open": 4,
           "todo": 0,
-          "progress": 4,
-          "review": 4,
-          "overdue": 1,
-          "done": 7,
-          "hours": 54.799823672839494,
-          "live": 46.733333333333334
+          "progress": 3,
+          "review": 1,
+          "overdue": 0,
+          "done": 11,
+          "hours": 52.05167097222223,
+          "live": 21.23333333333333
         },
         "Moamen": {
           "open": 0,
@@ -548,8 +548,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 13.892158055555557,
-          "live": 27.783333333333335
+          "hours": 14.02549138888889,
+          "live": 28.05
         },
         "Aya": {
           "open": 4,
@@ -573,9 +573,9 @@
         }
       },
       "time": {
-        "avgTodo": 12142,
-        "avgProgress": 2804,
-        "open": 47
+        "avgTodo": 12157,
+        "avgProgress": 2793,
+        "open": 43
       },
       "hr": {
         "people": {
@@ -5580,18 +5580,18 @@
           "title": "10 Reels editing from blushed session",
           "notes": "",
           "due": "2026-10-16",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-12",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-12T20:46:43.141Z",
-          "updated_at": "2026-10-14T18:18:30.129Z",
+          "updated_at": "2026-10-14T18:41:30.559Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-13T16:10:23.744Z",
-          "progress_started_at": "2026-10-14T18:18:30.129Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -5600,10 +5600,21 @@
               "ended_at": "2026-10-14T18:18:25.851Z",
               "hours": 26.13391861111111,
               "by": "Ganna"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-14T18:18:30.129Z",
+              "ended_at": "2026-10-14T18:41:30.558Z",
+              "hours": 0.3834525,
+              "by": "Ganna"
             }
           ],
           "start_on": "2026-10-13",
-          "progress_hours": 26.13391861111111
+          "progress_hours": 26.51737111111111,
+          "review_at": "2026-10-14T18:41:30.558Z",
+          "first_review_at": "2026-10-14T18:41:30.558Z",
+          "delivered_on": "2026-10-14"
         },
         {
           "id": "t-20261016-salma-mv72pvtc",
