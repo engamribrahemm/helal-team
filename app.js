@@ -126,6 +126,7 @@ const state = {
   boardClient: "",
   boardFocus: "",
   doneHistoryOpen: false,
+  appsOpen: false,
   modalGuardUntil: 0,
 };
 
@@ -207,6 +208,7 @@ const $ = (tag, attrs = {}, kids = []) => {
   const el = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
     if (k === "class") el.className = v;
+    else if (k === "html") el.innerHTML = v;
     else if (k.startsWith("on") && typeof v === "function") el.addEventListener(k.slice(2), v);
     else if (v === false || v == null) continue;
     else if (v === true) el.setAttribute(k, "");
@@ -5684,6 +5686,158 @@ function navItems() {
   return items;
 }
 
+const APP_ICONS = {
+  board: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>`,
+  my: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>`,
+  review: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>`,
+  time: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg>`,
+  load: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>`,
+  attend: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>`,
+  report: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>`,
+  drive: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M9 4h6l4 7-4 9H9L5 11z"/><path d="M5 11h14"/></svg>`,
+  hr: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c1.5-3 4-4.5 6-4.5S13.5 16 15 19M14 14.5c1.2-.6 2.5-.8 3.5-.8 1.7 0 3.2.8 4.5 2.3"/></svg>`,
+  people: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c1.8-4 5-6 8-6s6.2 2 8 6"/></svg>`,
+  guide: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 5h9a3 3 0 0 1 3 3v12H8a3 3 0 0 0-3 3z"/><path d="M8 5v15"/></svg>`,
+  "admin-guide": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7z"/><path d="M9 12l2 2 4-4"/></svg>`,
+};
+
+const APP_TONES = {
+  board: "tone-board",
+  my: "tone-my",
+  review: "tone-review",
+  time: "tone-time",
+  load: "tone-load",
+  attend: "tone-attend",
+  report: "tone-report",
+  drive: "tone-drive",
+  hr: "tone-hr",
+  people: "tone-people",
+  guide: "tone-guide",
+  "admin-guide": "tone-admin",
+};
+
+function currentAppLabel() {
+  return navItems().find(([id]) => id === state.view)?.[1] || "Apps";
+}
+
+function openApp(id) {
+  state.view = id;
+  state.appsOpen = false;
+  render();
+}
+
+if (typeof window !== "undefined" && !window.__helalAppsEsc) {
+  window.__helalAppsEsc = true;
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && state.appsOpen) {
+      state.appsOpen = false;
+      render();
+    }
+  });
+}
+
+function viewAppSwitcher() {
+  if (!state.appsOpen) return null;
+  const items = navItems();
+  return $("div", {
+    class: "app-overlay",
+    onclick: (e) => {
+      if (e.target === e.currentTarget) {
+        state.appsOpen = false;
+        render();
+      }
+    },
+  }, [
+    $("div", { class: "app-drawer", role: "dialog", "aria-label": "Apps" }, [
+      $("div", { class: "app-drawer-head" }, [
+        $("strong", {}, "Apps"),
+        $("button", {
+          class: "btn ghost compact",
+          type: "button",
+          onclick: () => { state.appsOpen = false; render(); },
+        }, "Close"),
+      ]),
+      $("div", { class: "app-grid" }, items.map(([id, label]) =>
+        $("button", {
+          type: "button",
+          class: `app-tile ${APP_TONES[id] || ""}${state.view === id ? " on" : ""}`,
+          onclick: () => openApp(id),
+        }, [
+          $("span", {
+            class: "app-tile-icon",
+            html: APP_ICONS[id] || APP_ICONS.board,
+          }),
+          $("span", { class: "app-tile-label" }, label),
+        ])
+      )),
+    ]),
+  ]);
+}
+
+function viewChrome() {
+  const role = isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member";
+  return [
+    $("header", { class: "top" }, [
+      $("div", { class: "top-left" }, [
+        $("button", {
+          class: "app-menu-btn",
+          type: "button",
+          "aria-label": "Open apps",
+          "aria-expanded": state.appsOpen ? "true" : "false",
+          onclick: () => { state.appsOpen = !state.appsOpen; render(); },
+        }, [
+          $("span", { class: "app-menu-dots", "aria-hidden": "true" }, [
+            $("i"), $("i"), $("i"),
+            $("i"), $("i"), $("i"),
+            $("i"), $("i"), $("i"),
+          ]),
+          $("span", { class: "app-menu-copy" }, [
+            $("strong", {}, currentAppLabel()),
+            $("span", {}, `${state.who} · ${role}`),
+          ]),
+        ]),
+        $("span", { class: "cairo-chip top-cairo" }, `${cairoClock()} · Cairo`),
+      ]),
+      $("div", { class: "top-actions" }, [
+        $("select", {
+          class: "date-select",
+          onchange: (e) => {
+            state.dateFilter = e.target.value;
+            render();
+          },
+        }, [
+          $("option", { value: "all", selected: state.dateFilter === "all" }, "All dates"),
+          $("option", { value: today(), selected: state.dateFilter === today() }, `Today · ${today()}`),
+        ]),
+        canAssignTasks()
+          ? $("button", {
+            class: "btn primary compact",
+            onclick: () => {
+              state.creating = true;
+              state.createStatus = "To do";
+              state.draft = null;
+              state.dueDraft = today();
+              state.dueMonth = today().slice(0, 7);
+              state.appsOpen = false;
+              render();
+            },
+          }, "New task")
+          : null,
+        $("button", {
+          class: "btn ghost compact",
+          onclick: () => {
+            state.headSha = "";
+            loadAll().then(render);
+          },
+        }, "Refresh"),
+        themeToggleButton(),
+        $("button", { class: "btn ghost compact", onclick: logout }, "Log out"),
+      ]),
+    ]),
+    viewAppSwitcher(),
+  ];
+}
+
 function render(force) {
   if (
     !force
@@ -5712,65 +5866,7 @@ function render(force) {
   }
 
   root.className = state.view === "board" ? "board-mode" : "";
-  root.append(
-    $("header", { class: "top" }, [
-      $("div", { class: "top-left" }, [
-        $("a", { class: "brand", href: "#", onclick: (e) => { e.preventDefault(); state.view = "board"; render(); } }, [
-          $("img", {
-            class: "brand-mark",
-            src: "./assets/helal-mark.png",
-            alt: "Helal",
-            width: "44",
-            height: "44",
-          }),
-        ]),
-        $("div", { class: "top-identity" }, [
-          $("span", { class: "who-chip" }, `${state.who} · ${isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member"}`),
-          $("span", { class: "cairo-chip" }, `${cairoClock()} · Cairo`),
-        ]),
-      ]),
-      $("div", { class: "top-actions" }, [
-        $("select", {
-          class: "date-select",
-          onchange: (e) => {
-            state.dateFilter = e.target.value;
-            render();
-          },
-        }, [
-          $("option", { value: "all", selected: state.dateFilter === "all" }, "All dates"),
-          $("option", { value: today(), selected: state.dateFilter === today() }, `Today · ${today()}`),
-        ]),
-        canAssignTasks()
-          ? $("button", {
-            class: "btn primary",
-            onclick: () => {
-              state.creating = true;
-              state.createStatus = "To do";
-              state.draft = null;
-              state.dueDraft = today();
-              state.dueMonth = today().slice(0, 7);
-              render();
-            },
-          }, "New task")
-          : null,
-        $("button", {
-          class: "btn ghost",
-          onclick: () => {
-            state.headSha = "";
-            loadAll().then(render);
-          },
-        }, "Refresh"),
-        themeToggleButton(),
-        $("button", { class: "btn ghost", onclick: logout }, "Log out"),
-      ]),
-    ]),
-    $("nav", { class: "tabs" }, navItems().map(([id, label]) =>
-      $("button", {
-        class: state.view === id ? "active" : "",
-        onclick: () => { state.view = id; render(); },
-      }, label)
-    ))
-  );
+  root.append(...viewChrome().filter(Boolean));
   const note = banner();
   if (note) root.append(note);
 
