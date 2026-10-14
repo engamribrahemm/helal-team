@@ -6688,6 +6688,33 @@ function runHelpAction(action) {
   }
 }
 
+function helalBotLogo(className, size) {
+  return $("img", {
+    class: className,
+    src: "./assets/helal-mark.png",
+    alt: "",
+    width: String(size),
+    height: String(size),
+    draggable: "false",
+  });
+}
+
+/** Update only the bot UI — never re-render the page behind it. */
+function mountHelalHelp() {
+  document.querySelectorAll("body > .help-root, body > .help-fab").forEach((el) => el.remove());
+  if (!state.session) return;
+  const help = viewHelalHelp();
+  if (help) document.body.append(help);
+}
+
+function focusHelalHelp() {
+  setTimeout(() => {
+    const log = document.getElementById("helal-help-log");
+    if (log) log.scrollTop = log.scrollHeight;
+    document.getElementById("helal-help-input")?.focus();
+  }, 20);
+}
+
 function askHelalHelp(question) {
   const q = String(question || "").trim();
   if (!q) return;
@@ -6696,26 +6723,15 @@ function askHelalHelp(question) {
   const answer = helpAnswer(q);
   pushHelpMessage("bot", answer.text, answer.actions || []);
   state.helpOpen = true;
-  render(true);
-  setTimeout(() => {
-    const log = document.getElementById("helal-help-log");
-    if (log) log.scrollTop = log.scrollHeight;
-    const input = document.getElementById("helal-help-input");
-    if (input) input.focus();
-  }, 30);
+  mountHelalHelp();
+  focusHelalHelp();
 }
 
 function toggleHelalHelp(force) {
   state.helpOpen = typeof force === "boolean" ? force : !state.helpOpen;
   if (state.helpOpen) ensureHelpWelcome();
-  render(true);
-  if (state.helpOpen) {
-    setTimeout(() => {
-      const log = document.getElementById("helal-help-log");
-      if (log) log.scrollTop = log.scrollHeight;
-      document.getElementById("helal-help-input")?.focus();
-    }, 30);
-  }
+  mountHelalHelp();
+  if (state.helpOpen) focusHelalHelp();
 }
 
 function viewHelalHelp() {
@@ -6729,9 +6745,8 @@ function viewHelalHelp() {
     title: "Helal bot",
     onclick: () => toggleHelalHelp(),
   }, [
-    open
-      ? $("span", { class: "help-fab-x", "aria-hidden": "true" }, "×")
-      : $("span", { class: "help-fab-mark", "aria-hidden": "true" }, "HB"),
+    helalBotLogo("help-fab-logo", 30),
+    open ? $("span", { class: "help-fab-x", "aria-hidden": "true" }, "×") : null,
   ]);
 
   const kids = [fab];
@@ -6763,7 +6778,7 @@ function viewHelalHelp() {
     }, [
       $("header", { class: "help-panel-head" }, [
         $("div", { class: "help-brand" }, [
-          $("span", { class: "help-brand-mark", "aria-hidden": "true" }, "HB"),
+          helalBotLogo("help-brand-logo", 36),
           $("div", {}, [
             $("strong", {}, "Helal bot"),
             $("p", { class: "muted" }, "What to do · how to do it"),

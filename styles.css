@@ -2475,6 +2475,7 @@ span.attend-chip {
   pointer-events: auto;
 }
 .help-fab {
+  position: relative;
   width: 56px;
   height: 56px;
   border-radius: 14px;
@@ -2486,26 +2487,36 @@ span.attend-chip {
   place-items: center;
   cursor: pointer;
   box-shadow: 0 12px 28px rgba(245, 196, 0, 0.3);
-  transition: transform 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease);
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
-.help-fab:hover { transform: translateY(-2px); background: var(--gold-2); }
+.help-fab:hover { background: var(--gold-2); }
 .help-fab.on {
   background: var(--bg-2);
-  color: var(--text);
   border-color: var(--line);
   box-shadow: var(--shadow);
 }
-.help-fab-mark,
-.help-brand-mark {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  line-height: 1;
+.help-fab-logo,
+.help-brand-logo {
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
 }
+.help-fab-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+}
+.help-fab.on .help-fab-logo { opacity: 0.2; }
 .help-fab-x {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
   font-size: 26px;
   line-height: 1;
   font-weight: 500;
+  color: var(--text);
 }
 .help-panel {
   width: min(400px, calc(100vw - 28px));
@@ -2518,7 +2529,6 @@ span.attend-chip {
   border-radius: 18px;
   background: linear-gradient(180deg, var(--card-top), var(--card-bot));
   box-shadow: var(--shadow);
-  animation: soft-pop 0.28s var(--ease) both;
   overflow: hidden;
 }
 .help-panel-head {
@@ -2533,15 +2543,14 @@ span.attend-chip {
   gap: 10px;
   min-width: 0;
 }
-.help-brand-mark {
+.help-brand-logo {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  display: inline-grid;
-  place-items: center;
   background: var(--gold);
-  color: var(--ink);
   flex-shrink: 0;
+  padding: 4px;
+  box-sizing: border-box;
 }
 .help-brand strong {
   display: block;
