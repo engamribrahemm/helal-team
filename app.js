@@ -4542,15 +4542,44 @@ function viewReview() {
   ]);
 }
 
+function reportHero(day, subtitle) {
+  return $("header", { class: "report-hero" }, [
+    $("div", { class: "report-hero-copy" }, [
+      $("h2", {}, "Daily report"),
+      $("p", { class: "muted" }, subtitle),
+    ]),
+    $("div", { class: "report-date-pill" }, [
+      $("span", {}, "Cairo date"),
+      $("strong", {}, day),
+    ]),
+  ]);
+}
+
+function reportStep(num, title, hint, body) {
+  return $("section", { class: "report-step" }, [
+    $("div", { class: "report-step-head" }, [
+      $("span", { class: "report-step-num", "aria-hidden": "true" }, String(num)),
+      $("div", { class: "report-step-title" }, [
+        $("strong", {}, title),
+        hint ? $("p", { class: "muted" }, hint) : null,
+      ]),
+    ]),
+    ...(Array.isArray(body) ? body : [body]),
+  ]);
+}
+
 function viewReport() {
   const day = today();
   const mine = reportFor(state.who, day);
   if (mine) {
-    return $("section", { class: "card", style: "max-width:640px" }, [
-      $("h2", {}, "Daily report"),
-      $("p", { class: "muted" }, `Cairo date ${day}. One report per day. The next day opens at 12:00 midnight Cairo time.`),
-      $("p", { class: "banner ok" }, "You already submitted your report today."),
-      $("div", { style: "margin-top:18px" }, reportCard(mine)),
+    return $("div", { class: "report-page" }, [
+      $("section", { class: "report-shell" }, [
+        reportHero(day, "One report per day. A new day opens at 12:00 midnight Cairo time."),
+        $("div", { class: "report-step" }, [
+          $("p", { class: "report-done-banner" }, "You already submitted today’s report."),
+        ]),
+      ]),
+      reportCard(mine),
     ]);
   }
   const draft = reportDraft();
@@ -4561,11 +4590,42 @@ function viewReport() {
       return (rank[a.status] ?? 9) - (rank[b.status] ?? 9) || String(a.title || "").localeCompare(String(b.title || ""));
     });
   const draftMap = Object.fromEntries((draft.finished_tasks || []).map((row) => [row.id, row]));
-  const notes = $("textarea", { placeholder: "Optional notes (meetings, extras not on the board)" }, draft.finished);
-  const drive = $("input", { type: "url", placeholder: "https://", value: draft.drive || "" });
-  const need = $("input", { type: "checkbox", checked: !!draft.need_review });
+  const notes = $("textarea", { placeholder: "Meetings, extras, or anything not on the board" }, draft.finished);
+  const drive = $("input", { type: "url", placeholder: "https://drive.google.com/…", value: draft.drive || "" });
+  const need = $("input", {
+    type: "checkbox",
+    class: "report-task-input",
+    checked: !!draft.need_review,
+    "aria-label": "I need review",
+  });
+  const needMark = $("span", { class: "report-task-mark", "aria-hidden": "true" });
+  const needToggle = $("label", { class: `report-toggle${draft.need_review ? " on" : ""}` }, [
+    need,
+    needMark,
+    $("span", { class: "report-toggle-copy" }, [
+      $("strong", {}, "I need review"),
+      $("span", {}, "Flag this report for Amr or your lead"),
+    ]),
+  ]);
   const remote = $("input", { type: "radio", name: "report-place", value: "Remote", required: true, checked: draft.place === "Remote" });
   const office = $("input", { type: "radio", name: "report-place", value: "Office", required: true, checked: draft.place === "Office" });
+  const remotePick = $("label", { class: `place-pick${draft.place === "Remote" ? " on" : ""}` }, [
+    remote,
+    $("span", { class: "place-pick-dot", "aria-hidden": "true" }),
+    "Remote",
+  ]);
+  const officePick = $("label", { class: `place-pick${draft.place === "Office" ? " on" : ""}` }, [
+    office,
+    $("span", { class: "place-pick-dot", "aria-hidden": "true" }),
+    "Office",
+  ]);
+  const syncPlace = () => {
+    remotePick.classList.toggle("on", remote.checked);
+    officePick.classList.toggle("on", office.checked);
+  };
+  remote.addEventListener("change", syncPlace);
+  office.addEventListener("change", syncPlace);
+  need.addEventListener("change", () => needToggle.classList.toggle("on", need.checked));
   let selectedBlockers = [...draft.blockers];
   const blockerChips = BLOCKER_TAGS.map((tag) => {
     const chip = $("button", {
@@ -4586,6 +4646,14 @@ function viewReport() {
     return chip;
   });
   const percentOptions = [25, 50, 75, 100];
+  const footCount = $("strong", {}, "0 tasks selected");
+  const footHint = $("p", { class: "muted" }, "Pick tasks and a finish % — draft saves as you go.");
+  const syncFoot = (count) => {
+    footCount.textContent = count === 1 ? "1 task selected" : `${count} tasks selected`;
+    footHint.textContent = count
+      ? "Looking good. Submit when you’re done."
+      : "Pick tasks and a finish % — draft saves as you go.";
+  };
   const taskRows = reportTasks.map((t) => {
     const saved = draftMap[t.id];
     let selected = !!saved;
@@ -4636,8 +4704,12 @@ function viewReport() {
         ]),
       ]),
       $("div", { class: `report-task-bottom${selected ? "" : " is-hidden"}` }, [
-        $("span", { class: "filter-label" }, "How much did you finish?"),
-        pctWrap,
+        $("div", { class: "report-task-bottom-inner" }, [
+          $("div", { class: "report-task-pct-block" }, [
+            $("span", { class: "filter-label" }, "How much did you finish?"),
+            pctWrap,
+          ]),
+        ]),
       ]),
     ]);
     const sync = () => {
@@ -4672,6 +4744,8 @@ function viewReport() {
   });
   const readFinishedTasks = () => taskRows.map((row) => row.getSelected()).filter(Boolean);
   const keep = () => {
+    const selected = readFinishedTasks();
+    syncFoot(selected.length);
     keepReportDraft({
       finished: notes.value,
       unfinished: "",
@@ -4679,13 +4753,13 @@ function viewReport() {
       need_review: need.checked,
       place: remote.checked ? "Remote" : office.checked ? "Office" : "",
       blockers: [...selectedBlockers],
-      finished_tasks: readFinishedTasks(),
+      finished_tasks: selected,
     });
   };
+  syncFoot(readFinishedTasks().length);
   const form = $("form", {
-    class: "form",
+    class: "report-form",
     id: "report-form",
-    style: "margin-top:16px",
     onsubmit: (e) => {
       e.preventDefault();
       keep();
@@ -4720,40 +4794,44 @@ function viewReport() {
       });
     },
   }, [
-    $("label", {}, [
-      "Were you remote or in the office today?",
-      $("div", { class: "place-picks" }, [
-        $("label", { class: "place-pick" }, [remote, "Remote"]),
-        $("label", { class: "place-pick" }, [office, "Office"]),
+    reportStep(1, "Where did you work?", "Remote or office for today.", [
+      $("div", { class: "place-picks" }, [remotePick, officePick]),
+    ]),
+    reportStep(2, "What did you finish?", "Only In progress and Review. Select a task, then tap a finish %.", [
+      $("div", { class: "report-finished" }, [
+        reportTasks.length
+          ? $("div", { class: "report-task-list" }, taskRows.map((row) => row.row))
+          : $("p", { class: "report-empty" }, "No In progress or Review tasks right now. Add a short note below if you still worked today."),
+        $("div", { class: "report-notes" }, [
+          $("label", {}, ["Extra notes (optional)", notes]),
+        ]),
       ]),
     ]),
-    $("div", { class: "report-finished" }, [
-      $("span", { class: "filter-label" }, "What did you finish today?"),
-      $("p", { class: "muted", style: "margin:0" }, "Only In progress and Review tasks. Select what you worked on, then tap a finish %."),
-      reportTasks.length
-        ? $("div", { class: "report-task-list" }, taskRows.map((row) => row.row))
-        : $("p", { class: "empty" }, "No In progress or Review tasks right now. Add a short note below if you still worked today."),
-      $("label", {}, ["Extra notes (optional)", notes]),
+    reportStep(3, "Any blockers?", "Optional tags — tap all that apply.", [
+      $("div", { class: "report-blockers" }, [
+        $("div", { class: "board-filter" }, blockerChips),
+      ]),
     ]),
-    $("div", { class: "report-blockers filter-group" }, [
-      $("span", { class: "filter-label" }, "Blocker tags (optional)"),
-      $("div", { class: "board-filter" }, blockerChips),
+    reportStep(4, "Links & review", "Drive folder and whether someone should review.", [
+      $("div", { class: "report-notes" }, [
+        $("label", {}, ["Drive links", drive]),
+        needToggle,
+      ]),
     ]),
-    $("label", {}, ["Drive links", drive]),
-    $("label", { style: "grid-template-columns: auto 1fr; align-items: center; letter-spacing: 0" }, [
-      need,
-      "I need review",
+    $("div", { class: "report-foot" }, [
+      $("div", { class: "report-foot-meta" }, [footCount, footHint]),
+      $("button", { class: "btn primary", type: "submit" }, "Submit report"),
     ]),
-    $("button", { class: "btn primary", type: "submit" }, "Submit report"),
   ]);
   form.addEventListener("input", keep);
   form.addEventListener("change", keep);
   form.addEventListener("keyup", keep);
   form.addEventListener("compositionend", keep);
-  return $("section", { class: "card", style: "max-width:640px" }, [
-    $("h2", {}, "Daily report"),
-    $("p", { class: "muted" }, `Cairo date ${day}. Take your time. This page will not refresh until you submit.`),
-    form,
+  return $("div", { class: "report-page" }, [
+    $("section", { class: "report-shell" }, [
+      reportHero(day, "Take your time. This page stays still until you submit — your draft is saved as you type."),
+      form,
+    ]),
   ]);
 }
 
