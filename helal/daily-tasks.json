@@ -459,7 +459,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-14T18:23:32.700Z",
+      "updated_at": "2026-10-14T18:24:35.734Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +478,8 @@
           "review": 0,
           "overdue": 3,
           "done": 6,
-          "hours": 73.95150574074074,
-          "live": 78.66666666666667
+          "hours": 73.9570612962963,
+          "live": 78.68333333333334
         },
         "Judi": {
           "open": 2,
@@ -498,8 +498,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 25.811882702020203,
-          "live": 172.33333333333334
+          "hours": 25.813397853535353,
+          "live": 172.35
         },
         "Alaa": {
           "open": 2,
@@ -508,38 +508,18 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 35.085096076388886,
-          "live": 94.41666666666667
-        },
-        "Sara": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 2,
-          "hours": 16.377944583333335,
-          "live": 0
+          "hours": 35.087179409722225,
+          "live": 94.43333333333334
         },
         "Ganna": {
-          "open": 4,
+          "open": 8,
           "todo": 0,
           "progress": 4,
-          "review": 0,
-          "overdue": 0,
-          "done": 11,
-          "hours": 49.99513217948717,
-          "live": 46.55
-        },
-        "Tasneem": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 1,
-          "hours": 7.200874722222222,
-          "live": 0
+          "review": 4,
+          "overdue": 1,
+          "done": 7,
+          "hours": 54.78686070987655,
+          "live": 46.61666666666666
         },
         "Moamen": {
           "open": 0,
@@ -568,18 +548,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 13.87549138888889,
-          "live": 27.75
-        },
-        "Menna": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
+          "hours": 13.883824722222222,
+          "live": 27.766666666666666
         },
         "Aya": {
           "open": 4,
@@ -603,9 +573,9 @@
         }
       },
       "time": {
-        "avgTodo": 12139,
-        "avgProgress": 2760,
-        "open": 43
+        "avgTodo": 12140,
+        "avgProgress": 2804,
+        "open": 47
       },
       "hr": {
         "people": {
@@ -645,15 +615,6 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Sara": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
-            "attitude": 0,
-            "reviews": 0
-          },
           "Ganna": {
             "delivery": 5,
             "quality": 0,
@@ -662,15 +623,6 @@
             "total": 5,
             "attitude": 0,
             "reviews": 0
-          },
-          "Tasneem": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
-            "attitude": 0,
-            "reviews": 1
           },
           "Moamen": {
             "delivery": 0,
@@ -696,15 +648,6 @@
             "revisions": 0,
             "creativity": 0,
             "total": 5,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Menna": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -5644,13 +5587,23 @@
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-12T20:46:43.141Z",
-          "updated_at": "2026-10-13T16:10:23.746Z",
+          "updated_at": "2026-10-14T18:18:30.129Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-13T16:10:23.744Z",
-          "progress_started_at": "2026-10-13T16:10:23.744Z",
-          "time_log": [],
-          "start_on": "2026-10-13"
+          "progress_started_at": "2026-10-14T18:18:30.129Z",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-10-13T16:10:23.744Z",
+              "ended_at": "2026-10-14T18:18:25.851Z",
+              "hours": 26.13391861111111,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-10-13",
+          "progress_hours": 26.13391861111111
         },
         {
           "id": "t-20261016-salma-mv72pvtc",
