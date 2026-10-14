@@ -1,6 +1,6 @@
 const STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
 const BOARD_STATUSES = ["To do", "In progress", "Review", "Done"];
-const SPACES = ["Social", "Graphic", "Video editors", "HR", "Daily Reports", "Calendar"];
+const SPACES = ["Social", "Graphic", "Video editors", "Sales & PR", "HR", "Daily Reports", "Calendar"];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session.v3";
 const LS_THEME = "helal.theme";
