@@ -535,8 +535,8 @@ label {
 .report-task-top { min-width: 0; }
 .report-task-check {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 12px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 14px;
   align-items: start;
   margin: 0;
   letter-spacing: 0;
@@ -545,10 +545,54 @@ label {
   font-weight: 500;
   cursor: pointer;
 }
-.report-task-check input {
-  width: auto;
-  margin: 4px 0 0;
+.report-task-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+.report-task-mark {
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--bg-2);
+  display: inline-grid;
+  place-items: center;
   flex-shrink: 0;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.report-task-mark::after {
+  content: "";
+  width: 6px;
+  height: 11px;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  transform: rotate(40deg) translateY(-1px);
+  transition: border-color 0.15s var(--ease);
+}
+.report-task-check:hover .report-task-mark {
+  border-color: var(--gold);
+}
+.report-task-input:focus-visible + .report-task-mark {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(245, 196, 0, 0.18);
+}
+.report-task-input:checked + .report-task-mark {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 4px 12px rgba(245, 196, 0, 0.22);
+}
+.report-task-input:checked + .report-task-mark::after {
+  border-right-color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+.report-task-row.on .report-task-mark {
+  background: var(--gold);
+  border-color: var(--gold);
 }
 .report-task-copy {
   display: grid;

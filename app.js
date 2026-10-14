@@ -4593,7 +4593,13 @@ function viewReport() {
     if (percent && !percentOptions.includes(percent)) {
       percent = percentOptions.reduce((best, n) => (Math.abs(n - percent) < Math.abs(best - percent) ? n : best), 50);
     }
-    const box = $("input", { type: "checkbox", checked: selected });
+    const box = $("input", {
+      type: "checkbox",
+      class: "report-task-input",
+      checked: selected,
+      "aria-label": `Select ${t.title}`,
+    });
+    const mark = $("span", { class: "report-task-mark", "aria-hidden": "true" });
     const pctWrap = $("div", { class: "report-task-pcts" });
     const pctChips = percentOptions.map((n) => {
       const chip = $("button", {
@@ -4602,6 +4608,7 @@ function viewReport() {
         disabled: !selected,
         onclick: (e) => {
           e.preventDefault();
+          e.stopPropagation();
           if (!selected) return;
           percent = n;
           pctChips.forEach((c) => c.classList.toggle("on", Number(c.dataset.pct) === percent));
@@ -4617,6 +4624,7 @@ function viewReport() {
       $("div", { class: "report-task-top" }, [
         $("label", { class: "report-task-check" }, [
           box,
+          mark,
           $("span", { class: "report-task-copy" }, [
             $("strong", {}, t.title),
             $("span", { class: "report-task-meta" }, [
