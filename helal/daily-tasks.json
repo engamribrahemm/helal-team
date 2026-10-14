@@ -69,7 +69,8 @@
     "t-20261029-ganna-muoammcl",
     "t-20261008-tasneem-muzlmbwa",
     "t-20261010-tasneem-mv2fzp48",
-    "t-20261010-tasneem-mv2gcz3g"
+    "t-20261010-tasneem-mv2gcz3g",
+    "t-20261011-tasneem-mv2nb6a0"
   ],
   "statuses": [
     "To do",
@@ -419,7 +420,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-14T02:32:16.567Z",
+      "updated_at": "2026-10-14T02:32:24.788Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +479,8 @@
           "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 60.83500885802469,
-          "live": 101.05
+          "hours": 60.83686070987655,
+          "live": 101.06666666666668
         },
         "Moamen": {
           "open": 0,
@@ -508,8 +509,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 5.942158055555556,
-          "live": 11.883333333333333
+          "hours": 5.9504913888888895,
+          "live": 11.9
         },
         "Aya": {
           "open": 4,
@@ -533,9 +534,9 @@
         }
       },
       "time": {
-        "avgTodo": 10760,
+        "avgTodo": 10928,
         "avgProgress": 2789,
-        "open": 49
+        "open": 48
       },
       "hr": {
         "people": {
@@ -5004,27 +5005,6 @@
           "done_on": "2026-10-12",
           "done_month": "2026-10",
           "done_by": "Amr"
-        },
-        {
-          "id": "t-20261011-tasneem-mv2nb6a0",
-          "who": "Tasneem",
-          "space": "HR",
-          "project": "Helal",
-          "title": "Determine a time for meetings with the leads",
-          "notes": "",
-          "due": "2026-10-11",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-10-10",
-          "month": "2026-10",
-          "created_by": "Amr",
-          "created_at": "2026-10-10T17:05:47.401Z",
-          "updated_at": "2026-10-10T17:05:47.401Z",
-          "updated_by": "Amr",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         }
       ]
     },
