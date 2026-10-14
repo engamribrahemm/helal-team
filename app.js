@@ -4522,9 +4522,24 @@ function viewReport() {
   const need = $("input", { type: "checkbox", checked: !!draft.need_review });
   const remote = $("input", { type: "radio", name: "report-place", value: "Remote", required: true, checked: draft.place === "Remote" });
   const office = $("input", { type: "radio", name: "report-place", value: "Office", required: true, checked: draft.place === "Office" });
-  const blockerBoxes = BLOCKER_TAGS.map((tag) => {
-    const box = $("input", { type: "checkbox", value: tag, checked: draft.blockers.includes(tag) });
-    return { tag, box, label: $("label", { class: "blocker-pick" }, [box, tag]) };
+  let selectedBlockers = [...draft.blockers];
+  const blockerChips = BLOCKER_TAGS.map((tag) => {
+    const chip = $("button", {
+      type: "button",
+      class: `time-chip${selectedBlockers.includes(tag) ? " on" : ""}`,
+      onclick: (e) => {
+        e.preventDefault();
+        if (selectedBlockers.includes(tag)) {
+          selectedBlockers = selectedBlockers.filter((b) => b !== tag);
+          chip.classList.remove("on");
+        } else {
+          selectedBlockers = [...selectedBlockers, tag];
+          chip.classList.add("on");
+        }
+        keep();
+      },
+    }, tag);
+    return chip;
   });
   const taskBoxes = openMine.map((t) => {
     const box = $("input", { type: "checkbox", value: t.id, checked: draft.done_task_ids.includes(t.id) });
@@ -4544,7 +4559,7 @@ function viewReport() {
       drive: drive.value,
       need_review: need.checked,
       place: remote.checked ? "Remote" : office.checked ? "Office" : "",
-      blockers: blockerBoxes.filter((row) => row.box.checked).map((row) => row.tag),
+      blockers: [...selectedBlockers],
       done_task_ids: taskBoxes.filter((row) => row.box.checked).map((row) => row.task.id),
     });
   };
@@ -4568,7 +4583,7 @@ function viewReport() {
         drive: drive.value.trim(),
         need_review: need.checked,
         place,
-        blockers: blockerBoxes.filter((row) => row.box.checked).map((row) => row.tag),
+        blockers: [...selectedBlockers],
         done_task_ids: taskBoxes.filter((row) => row.box.checked).map((row) => row.task.id),
       });
     },
@@ -4588,9 +4603,9 @@ function viewReport() {
       ])
       : null,
     $("label", {}, ["What is unfinished or blocking you?", unfinished]),
-    $("div", { class: "report-blockers" }, [
-      $("p", { class: "muted", style: "margin:0 0 8px" }, "Blocker tags (optional)"),
-      $("div", { class: "chip-row" }, blockerBoxes.map((row) => row.label)),
+    $("div", { class: "report-blockers filter-group" }, [
+      $("span", { class: "filter-label" }, "Blocker tags (optional)"),
+      $("div", { class: "board-filter" }, blockerChips),
     ]),
     $("label", {}, ["Drive links", drive]),
     $("label", { style: "grid-template-columns: auto 1fr; align-items: center; letter-spacing: 0" }, [

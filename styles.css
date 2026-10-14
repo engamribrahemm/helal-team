@@ -507,23 +507,36 @@ label {
 .client-health-row:hover { border-color: var(--gold); }
 .shipped-list { display: grid; gap: 8px; margin-top: 8px; }
 .shipped-list p { margin: 0; }
-.blocker-pick,
 .task-tick {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin: 0;
-  padding: 8px 10px;
+  padding: 10px 12px;
   border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--bg-2);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
   letter-spacing: 0;
   font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
   cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
-.task-tick { width: 100%; border-radius: var(--radius-sm); }
-.report-ticks,
-.report-blockers { display: grid; gap: 8px; margin: 4px 0 10px; }
+.task-tick:hover { border-color: var(--line-strong); }
+.task-tick input { width: auto; margin: 0; flex-shrink: 0; }
+.report-ticks {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 10px;
+}
+.report-blockers {
+  margin: 4px 0 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+}
 .board-filter {
   display: flex;
   flex-wrap: wrap;
