@@ -131,7 +131,7 @@ const state = {
   reportEditing: false,
   saveAttempt: 0,
   lastSaveJob: null,
-  helpOpen: false,
+  helpOpen: true,
   helpMessages: [],
   modalGuardUntil: 0,
 };
@@ -2366,6 +2366,8 @@ async function login(who, pin) {
   state.loginError = "";
   state.view = "apps";
   state.appsOpen = false;
+  state.helpOpen = true;
+  state.helpMessages = [];
   localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
   try {
     localStorage.removeItem("helal.session");
@@ -2383,11 +2385,11 @@ function logout() {
   state.who = "";
   state.reportEditing = false;
   state.lastSaveJob = null;
-  state.helpOpen = false;
+  state.helpOpen = true;
   state.helpMessages = [];
   clearReportDraft();
   localStorage.removeItem(LS_SESSION);
-  document.querySelectorAll("body > .help-root").forEach((el) => el.remove());
+  document.querySelectorAll("body > .help-root, body > .help-fab").forEach((el) => el.remove());
   render();
 }
 
@@ -6661,7 +6663,7 @@ function ensureHelpWelcome() {
   const tip = helpContextualTip();
   pushHelpMessage(
     "bot",
-    `Hi ${state.who}. I’m Helal Help — I can tell you what to do and how. ${tip.text}`,
+    `Hi ${state.who}. I’m Helal bot — I can tell you what to do and how. ${tip.text}`,
     tip.go
       ? [{ label: tip.label || "Open", go: tip.go, focus: tip.focus || "" }, ...helpQuickActions().slice(0, 3)]
       : helpQuickActions()
@@ -6723,72 +6725,85 @@ function viewHelalHelp() {
   const fab = $("button", {
     class: `help-fab${open ? " on" : ""}`,
     type: "button",
-    "aria-label": open ? "Close Helal Help" : "Open Helal Help",
-    title: "Helal Help",
+    "aria-label": open ? "Close Helal bot" : "Open Helal bot",
+    title: "Helal bot",
     onclick: () => toggleHelalHelp(),
-  }, open ? "×" : "?");
-  if (!open) return fab;
-
-  const input = $("input", {
-    id: "helal-help-input",
-    type: "text",
-    placeholder: "Ask what to do…",
-    autocomplete: "off",
-  });
-  const form = $("form", {
-    class: "help-form",
-    onsubmit: (e) => {
-      e.preventDefault();
-      const q = input.value.trim();
-      if (!q) return;
-      input.value = "";
-      askHelalHelp(q);
-    },
   }, [
-    input,
-    $("button", { class: "btn primary compact", type: "submit" }, "Ask"),
+    open
+      ? $("span", { class: "help-fab-x", "aria-hidden": "true" }, "×")
+      : $("span", { class: "help-fab-mark", "aria-hidden": "true" }, "HB"),
   ]);
 
-  const panel = $("section", {
-    class: "help-panel",
-    role: "dialog",
-    "aria-label": "Helal Help",
-  }, [
-    $("header", { class: "help-panel-head" }, [
-      $("div", {}, [
-        $("strong", {}, "Helal Help"),
-        $("p", { class: "muted" }, "What to do · how to do it"),
+  const kids = [fab];
+  if (open) {
+    const input = $("input", {
+      id: "helal-help-input",
+      type: "text",
+      placeholder: "Ask Helal bot what to do…",
+      autocomplete: "off",
+    });
+    const form = $("form", {
+      class: "help-form",
+      onsubmit: (e) => {
+        e.preventDefault();
+        const q = input.value.trim();
+        if (!q) return;
+        input.value = "";
+        askHelalHelp(q);
+      },
+    }, [
+      input,
+      $("button", { class: "btn primary compact help-send", type: "submit" }, "Send"),
+    ]);
+
+    const panel = $("section", {
+      class: "help-panel",
+      role: "dialog",
+      "aria-label": "Helal bot",
+    }, [
+      $("header", { class: "help-panel-head" }, [
+        $("div", { class: "help-brand" }, [
+          $("span", { class: "help-brand-mark", "aria-hidden": "true" }, "HB"),
+          $("div", {}, [
+            $("strong", {}, "Helal bot"),
+            $("p", { class: "muted" }, "What to do · how to do it"),
+          ]),
+        ]),
+        $("button", {
+          class: "btn ghost compact help-close",
+          type: "button",
+          onclick: () => toggleHelalHelp(false),
+        }, "Close"),
       ]),
-      $("button", {
-        class: "btn ghost compact",
-        type: "button",
-        onclick: () => toggleHelalHelp(false),
-      }, "Close"),
-    ]),
-    $("div", { class: "help-quick" }, helpQuickActions().map((chip) =>
-      $("button", {
-        type: "button",
-        class: "help-chip",
-        onclick: () => runHelpAction(chip),
-      }, chip.label)
-    )),
-    $("div", { id: "helal-help-log", class: "help-log" }, (state.helpMessages || []).map((msg) =>
-      $("div", { class: `help-bubble ${msg.role}` }, [
-        $("p", {}, msg.text),
-        (msg.actions || []).length
-          ? $("div", { class: "help-actions" }, msg.actions.map((action) =>
-            $("button", {
-              type: "button",
-              class: "btn compact",
-              onclick: () => runHelpAction(action),
-            }, action.label)
-          ))
-          : null,
-      ])
-    )),
-    form,
-  ]);
-  return $("div", { class: "help-root" }, [panel, fab]);
+      $("div", { class: "help-quick" }, helpQuickActions().map((chip) =>
+        $("button", {
+          type: "button",
+          class: "help-chip",
+          onclick: () => runHelpAction(chip),
+        }, chip.label)
+      )),
+      $("div", { id: "helal-help-log", class: "help-log" }, (state.helpMessages || []).map((msg) =>
+        $("div", { class: `help-bubble ${msg.role}` }, [
+          msg.role === "bot" ? $("span", { class: "help-bubble-label" }, "Helal bot") : null,
+          $("p", {}, msg.text),
+          (msg.actions || []).length
+            ? $("div", { class: "help-actions" }, msg.actions.map((action) =>
+              $("button", {
+                type: "button",
+                class: "btn compact",
+                onclick: () => runHelpAction(action),
+              }, action.label)
+            ))
+            : null,
+        ])
+      )),
+      form,
+    ]);
+    kids.unshift(panel);
+  }
+
+  // Always wrap in .help-root so re-renders never leave orphan FABs.
+  return $("div", { class: "help-root" }, kids);
 }
 
 function viewChrome() {
@@ -6922,7 +6937,7 @@ function render(force) {
 
   // Mount overlays on body so position:fixed is always viewport-relative
   // (a transform on #app would otherwise center the create form off-screen).
-  document.querySelectorAll("body > .modal-bg, body > .drawer, body > .help-root").forEach((el) => el.remove());
+  document.querySelectorAll("body > .modal-bg, body > .drawer, body > .help-root, body > .help-fab").forEach((el) => el.remove());
   const modal = viewCreateModal();
   if (modal) document.body.append(...(Array.isArray(modal) ? modal : [modal]));
   const drawer = viewTaskDrawer();
