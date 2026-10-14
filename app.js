@@ -1469,8 +1469,27 @@ function emptyReportDraft() {
     need_review: false,
     place: "",
     blockers: [],
-    done_task_ids: [],
+    finished_tasks: [],
   };
+}
+
+function normalizeFinishedTasks(list) {
+  if (!Array.isArray(list)) return [];
+  return list
+    .map((row) => ({
+      id: String(row?.id || ""),
+      title: String(row?.title || "").trim(),
+      project: String(row?.project || "").trim(),
+      status: String(row?.status || "").trim(),
+      percent: Math.max(0, Math.min(100, Math.round(Number(row?.percent) || 0))),
+    }))
+    .filter((row) => row.id && row.percent > 0);
+}
+
+function finishedTasksSummary(rows) {
+  return normalizeFinishedTasks(rows)
+    .map((row) => `${row.title || row.id} · ${row.percent}%`)
+    .join("\n");
 }
 
 function reportDraft() {
@@ -1484,6 +1503,10 @@ function reportDraft() {
   const src = (state.reportDraft?.who === state.who && state.reportDraft)
     || (stored?.who === state.who ? stored : null);
   if (!src) return fresh;
+  const fromNew = normalizeFinishedTasks(src.finished_tasks);
+  const fromOld = Array.isArray(src.done_task_ids)
+    ? src.done_task_ids.map((id) => ({ id: String(id), percent: 100, title: "", project: "", status: "" }))
+    : [];
   return {
     ...fresh,
     finished: src.finished || "",
@@ -1492,7 +1515,7 @@ function reportDraft() {
     need_review: !!src.need_review,
     place: src.place === "Office" || src.place === "Remote" ? src.place : "",
     blockers: Array.isArray(src.blockers) ? src.blockers.filter((b) => BLOCKER_TAGS.includes(b)) : [],
-    done_task_ids: Array.isArray(src.done_task_ids) ? src.done_task_ids.map(String) : [],
+    finished_tasks: fromNew.length ? fromNew : fromOld,
   };
 }
 
@@ -2449,17 +2472,20 @@ function submitReport(fields) {
   }
   if (!state.reportsFile) state.reportsFile = emptyReports();
   if (!state.reportsFile.reports) state.reportsFile.reports = [];
+  const finishedTasks = normalizeFinishedTasks(fields.finished_tasks);
+  const finishedText = String(fields.finished || "").trim() || finishedTasksSummary(finishedTasks);
   state.reportsFile.reports.unshift({
     id: `r-${Date.now().toString(36)}`,
     who: state.who,
     date: day,
-    finished: fields.finished,
+    finished: finishedText,
     unfinished: fields.unfinished,
     drive: fields.drive,
     need_review: fields.need_review,
     place: fields.place || "",
     blockers: Array.isArray(fields.blockers) ? fields.blockers : [],
-    done_task_ids: Array.isArray(fields.done_task_ids) ? fields.done_task_ids : [],
+    finished_tasks: finishedTasks,
+    done_task_ids: finishedTasks.map((row) => row.id),
     created_at: new Date().toISOString(),
   });
   state.reportDay = day;
@@ -4030,13 +4056,26 @@ function reportDaySummary(day, who) {
 }
 
 function reportCard(r) {
-  const doneTitles = (r.done_task_ids || [])
-    .map((id) => findTask(id)?.title || id)
-    .filter(Boolean);
+  const finishedTasks = normalizeFinishedTasks(r.finished_tasks);
   return $("article", { class: "card report-card" }, [
     $("p", { class: "title" }, `${r.who} · ${r.date}`),
-    qaBlock("What did you finish today?", r.finished),
-    doneTitles.length ? qaBlock("Tasks touched", doneTitles.join(" · ")) : null,
+    finishedTasks.length
+      ? qaBlock("What did you finish today?", $("div", { class: "report-progress-list" }, finishedTasks.map((row) =>
+        $("div", { class: "report-progress-row" }, [
+          $("div", { class: "report-progress-main" }, [
+            $("strong", {}, row.title || findTask(row.id)?.title || row.id),
+            $("span", { class: "muted" }, [row.project, row.status].filter(Boolean).join(" · ") || "Task"),
+          ]),
+          $("strong", { class: "report-progress-pct" }, `${row.percent}%`),
+          $("div", { class: "report-progress-bar", "aria-hidden": "true" }, [
+            $("span", { style: `width:${row.percent}%` }),
+          ]),
+        ])
+      )))
+      : qaBlock("What did you finish today?", r.finished || "—"),
+    finishedTasks.length && r.finished && r.finished !== finishedTasksSummary(finishedTasks)
+      ? qaBlock("Extra notes", r.finished)
+      : null,
     qaBlock("What is unfinished or blocking you?", r.unfinished),
     (r.blockers || []).length
       ? qaBlock("Blockers", $("div", { class: "chip-row" }, r.blockers.map((b) => $("span", { class: "pill tone-orange" }, b))))
@@ -4515,9 +4554,15 @@ function viewReport() {
     ]);
   }
   const draft = reportDraft();
-  const openMine = allTasks().filter((t) => samePerson(t.who, state.who) && t.status !== "Done");
-  const finished = $("textarea", { required: true, placeholder: "Your answer" }, draft.finished);
-  const unfinished = $("textarea", { placeholder: "Your answer" }, draft.unfinished);
+  const reportTasks = allTasks()
+    .filter((t) => samePerson(t.who, state.who) && (t.status !== "Done" || t.done_on === today()))
+    .sort((a, b) => {
+      const rank = { "In progress": 0, Review: 1, Revisions: 2, "To do": 3, Done: 4 };
+      return (rank[a.status] ?? 9) - (rank[b.status] ?? 9) || String(a.title || "").localeCompare(String(b.title || ""));
+    });
+  const draftMap = Object.fromEntries((draft.finished_tasks || []).map((row) => [row.id, row]));
+  const unfinished = $("textarea", { placeholder: "What is still open or blocking you?" }, draft.unfinished);
+  const notes = $("textarea", { placeholder: "Optional notes (meetings, extras not on the board)" }, draft.finished);
   const drive = $("input", { type: "url", placeholder: "https://", value: draft.drive || "" });
   const need = $("input", { type: "checkbox", checked: !!draft.need_review });
   const remote = $("input", { type: "radio", name: "report-place", value: "Remote", required: true, checked: draft.place === "Remote" });
@@ -4541,26 +4586,56 @@ function viewReport() {
     }, tag);
     return chip;
   });
-  const taskBoxes = openMine.map((t) => {
-    const box = $("input", { type: "checkbox", value: t.id, checked: draft.done_task_ids.includes(t.id) });
-    return {
-      task: t,
-      box,
-      label: $("label", { class: "task-tick" }, [
+  const percentOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  const taskRows = reportTasks.map((t) => {
+    const saved = draftMap[t.id];
+    const on = !!saved;
+    const box = $("input", { type: "checkbox", checked: on });
+    const pct = $("select", { disabled: !on }, [
+      $("option", { value: "", selected: !saved?.percent }, "% done"),
+      ...percentOptions.map((n) => $("option", { value: String(n), selected: Number(saved?.percent) === n }, `${n}%`)),
+    ]);
+    const row = $("div", { class: `report-task-row${on ? " on" : ""}` }, [
+      $("label", { class: "report-task-check" }, [
         box,
-        $("span", {}, `${t.title}${t.project ? ` · ${t.project}` : ""}`),
+        $("span", { class: "report-task-copy" }, [
+          $("strong", {}, t.title),
+          $("span", { class: "muted" }, [t.project, t.status, t.due ? `due ${t.due}` : ""].filter(Boolean).join(" · ")),
+        ]),
       ]),
+      $("label", { class: "report-task-pct" }, ["Finished", pct]),
+    ]);
+    const sync = () => {
+      const active = box.checked;
+      pct.disabled = !active;
+      row.classList.toggle("on", active);
+      if (!active) pct.value = "";
+      else if (!pct.value) pct.value = "50";
+      keep();
     };
+    box.addEventListener("change", sync);
+    pct.addEventListener("change", () => keep());
+    return { task: t, box, pct, row };
   });
+  const readFinishedTasks = () => taskRows
+    .filter((row) => row.box.checked)
+    .map((row) => ({
+      id: row.task.id,
+      title: row.task.title,
+      project: row.task.project || "",
+      status: row.task.status || "",
+      percent: Number(row.pct.value) || 0,
+    }))
+    .filter((row) => row.percent > 0);
   const keep = () => {
     keepReportDraft({
-      finished: finished.value,
+      finished: notes.value,
       unfinished: unfinished.value,
       drive: drive.value,
       need_review: need.checked,
       place: remote.checked ? "Remote" : office.checked ? "Office" : "",
       blockers: [...selectedBlockers],
-      done_task_ids: taskBoxes.filter((row) => row.box.checked).map((row) => row.task.id),
+      finished_tasks: readFinishedTasks(),
     });
   };
   const form = $("form", {
@@ -4575,16 +4650,29 @@ function viewReport() {
         render(true);
         return;
       }
+      const selected = readFinishedTasks();
+      if (!selected.length && !notes.value.trim()) {
+        state.saveState = "error";
+        state.saveError = "Select at least one task and set how much you finished, or add a short note.";
+        render(true);
+        return;
+      }
+      if (selected.some((row) => !row.percent)) {
+        state.saveState = "error";
+        state.saveError = "Set a finish % for every selected task.";
+        render(true);
+        return;
+      }
       const place = remote.checked ? "Remote" : office.checked ? "Office" : "";
       submitReport({
         date: today(),
-        finished: finished.value.trim(),
+        finished: notes.value.trim(),
         unfinished: unfinished.value.trim(),
         drive: drive.value.trim(),
         need_review: need.checked,
         place,
         blockers: [...selectedBlockers],
-        done_task_ids: taskBoxes.filter((row) => row.box.checked).map((row) => row.task.id),
+        finished_tasks: selected,
       });
     },
   }, [
@@ -4595,13 +4683,14 @@ function viewReport() {
         $("label", { class: "place-pick" }, [office, "Office"]),
       ]),
     ]),
-    $("label", {}, ["What did you finish today?", finished]),
-    openMine.length
-      ? $("div", { class: "report-ticks" }, [
-        $("p", { class: "muted", style: "margin:0 0 8px" }, "Tick open tasks you moved or finished today (optional)."),
-        ...taskBoxes.map((row) => row.label),
-      ])
-      : null,
+    $("div", { class: "report-finished" }, [
+      $("span", { class: "filter-label" }, "What did you finish today?"),
+      $("p", { class: "muted", style: "margin:0" }, "Select the tasks you worked on and set how much you finished."),
+      reportTasks.length
+        ? $("div", { class: "report-task-list" }, taskRows.map((row) => row.row))
+        : $("p", { class: "empty" }, "No open tasks on your board. Add a short note below if you still worked today."),
+      $("label", {}, ["Extra notes (optional)", notes]),
+    ]),
     $("label", {}, ["What is unfinished or blocking you?", unfinished]),
     $("div", { class: "report-blockers filter-group" }, [
       $("span", { class: "filter-label" }, "Blocker tags (optional)"),

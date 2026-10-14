@@ -507,28 +507,94 @@ label {
 .client-health-row:hover { border-color: var(--gold); }
 .shipped-list { display: grid; gap: 8px; margin-top: 8px; }
 .shipped-list p { margin: 0; }
-.task-tick {
-  display: flex;
-  align-items: center;
+.report-finished {
+  display: grid;
   gap: 10px;
-  margin: 0;
-  padding: 10px 12px;
+}
+.report-task-list {
+  display: grid;
+  gap: 8px;
+}
+.report-task-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--bg);
-  letter-spacing: 0;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
-.task-tick:hover { border-color: var(--line-strong); }
-.task-tick input { width: auto; margin: 0; flex-shrink: 0; }
-.report-ticks {
+.report-task-row.on {
+  border-color: var(--gold);
+  background: var(--bg-2);
+}
+.report-task-check {
   display: grid;
-  gap: 8px;
-  margin: 4px 0 10px;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  margin: 0;
+  letter-spacing: 0;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.report-task-check input {
+  width: auto;
+  margin: 3px 0 0;
+  flex-shrink: 0;
+}
+.report-task-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.report-task-copy strong {
+  font-size: 14px;
+  line-height: 1.35;
+  word-break: break-word;
+}
+.report-task-pct {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+}
+.report-task-pct select {
+  padding: 8px 10px;
+  min-height: 40px;
+}
+.report-progress-list {
+  display: grid;
+  gap: 12px;
+}
+.report-progress-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  align-items: center;
+}
+.report-progress-main {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.report-progress-pct { color: var(--gold); font-size: 15px; }
+.report-progress-bar {
+  grid-column: 1 / -1;
+  height: 6px;
+  background: var(--bg-3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.report-progress-bar span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
 }
 .report-blockers {
   margin: 4px 0 10px;
@@ -1403,6 +1469,7 @@ span.attend-chip {
   .top-actions { width: 100%; justify-content: flex-start; }
   .top-actions .btn,
   .top-actions select { height: 38px; }
+  .report-task-row { grid-template-columns: 1fr; }
   .profile-grid { grid-template-columns: 1fr; }
   .stat-row { grid-template-columns: 1fr 1fr; }
   .time-task { grid-template-columns: 1fr 1fr; }
