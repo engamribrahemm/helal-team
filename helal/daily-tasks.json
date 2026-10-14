@@ -67,7 +67,8 @@
     "t-20261017-mohamed-muoa6f6b",
     "t-20261026-mohamed-muoa87q8",
     "t-20261029-ganna-muoammcl",
-    "t-20261008-tasneem-muzlmbwa"
+    "t-20261008-tasneem-muzlmbwa",
+    "t-20261010-tasneem-mv2fzp48"
   ],
   "statuses": [
     "To do",
@@ -417,7 +418,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-13T19:28:41.284Z",
+      "updated_at": "2026-10-14T02:32:08.741Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -434,10 +435,10 @@
           "todo": 2,
           "progress": 1,
           "review": 0,
-          "overdue": 1,
+          "overdue": 3,
           "done": 6,
-          "hours": 66.31261685185186,
-          "live": 55.75
+          "hours": 68.66817240740741,
+          "live": 62.81666666666667
         },
         "Judi": {
           "open": 2,
@@ -456,8 +457,8 @@
           "review": 0,
           "overdue": 2,
           "done": 10,
-          "hours": 23.728549368686867,
-          "live": 149.41666666666666
+          "hours": 24.370973611111108,
+          "live": 156.48333333333332
         },
         "Alaa": {
           "open": 2,
@@ -466,18 +467,18 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 32.22051274305555,
-          "live": 71.5
+          "hours": 33.10384607638889,
+          "live": 78.56666666666666
         },
         "Ganna": {
           "open": 8,
           "todo": 3,
           "progress": 4,
           "review": 1,
-          "overdue": 0,
+          "overdue": 1,
           "done": 7,
-          "hours": 57.70167552469135,
-          "live": 72.85000000000001
+          "hours": 60.83500885802469,
+          "live": 101.05
         },
         "Moamen": {
           "open": 0,
@@ -506,15 +507,15 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 2.4171580555555554,
-          "live": 4.833333333333333
+          "hours": 5.942158055555556,
+          "live": 11.883333333333333
         },
         "Aya": {
           "open": 4,
           "todo": 3,
           "progress": 0,
           "review": 1,
-          "overdue": 0,
+          "overdue": 1,
           "done": 0,
           "hours": 0,
           "live": 0
@@ -531,9 +532,9 @@
         }
       },
       "time": {
-        "avgTodo": 10332,
-        "avgProgress": 2698,
-        "open": 51
+        "avgTodo": 10607,
+        "avgProgress": 2789,
+        "open": 50
       },
       "hr": {
         "people": {
@@ -4801,27 +4802,6 @@
           "created_at": "2026-09-30T14:37:08.187Z",
           "updated_at": "2026-09-30T14:37:08.187Z",
           "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
-        {
-          "id": "t-20261010-tasneem-mv2fzp48",
-          "who": "Tasneem",
-          "space": "HR",
-          "project": "Helal",
-          "title": "Task Tracking for all September & October tasks till now",
-          "notes": "",
-          "due": "2026-10-10",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-10-10",
-          "month": "2026-10",
-          "created_by": "Amr",
-          "created_at": "2026-10-10T13:40:54.633Z",
-          "updated_at": "2026-10-10T13:40:54.633Z",
-          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
