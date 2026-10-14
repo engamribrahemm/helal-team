@@ -592,7 +592,7 @@ function viewBoardClientFilter() {
   ]);
 }
 
-function tasksForView() {
+function tasksForView({ ignoreFocus = false } = {}) {
   let tasks = allTasks();
   if (state.view === "my") tasks = tasks.filter((t) => samePerson(t.who, state.who));
   else if (!isAdmin()) tasks = tasks.filter(canSeeTask);
@@ -602,9 +602,9 @@ function tasksForView() {
   if ((state.view === "board" || state.view === "my") && state.boardClient) {
     tasks = tasks.filter((t) => String(t.project || "").trim() === state.boardClient);
   }
-  if ((state.view === "board" || state.view === "my") && state.boardFocus === "due") {
+  if (!ignoreFocus && (state.view === "board" || state.view === "my") && state.boardFocus === "due") {
     tasks = tasks.filter(isDueToday);
-  } else if ((state.view === "board" || state.view === "my") && state.boardFocus === "overdue") {
+  } else if (!ignoreFocus && (state.view === "board" || state.view === "my") && state.boardFocus === "overdue") {
     tasks = tasks.filter(isOverdue);
   }
   if (state.dateFilter && state.dateFilter !== "all") {
@@ -617,8 +617,9 @@ function tasksForView() {
   return tasks;
 }
 
-function boardCockpit(tasks) {
-  const open = tasks.filter(isOpenTask);
+function boardCockpit() {
+  // Counts stay on the full board scope (person/client/date). Due/Overdue focus only filters the cards.
+  const open = tasksForView({ ignoreFocus: true }).filter(isOpenTask);
   const due = open.filter(isDueToday).length;
   const overdue = open.filter(isOverdue).length;
   const review = open.filter((t) => t.status === "Review" || t.status === "Revisions").length;
@@ -2793,7 +2794,7 @@ function viewBoard() {
         : "Drag cards across columns. Done shows today’s finished work.",
       { label: "Cairo date", value: day }
     )),
-    boardCockpit(tasks),
+    boardCockpit(),
     $("div", { class: "board-toolbar" }, [
       viewBoardFilter(),
       viewBoardClientFilter(),
@@ -3595,19 +3596,20 @@ function myHrCard() {
 }
 
 function viewMy() {
+  const openAll = tasksForView({ ignoreFocus: true }).filter((t) => t.status !== "Done");
   const open = tasksForView().filter((t) => t.status !== "Done");
   const month = thisMonth();
   const finished = allTasks().filter((t) => t.who === state.who && t.status === "Done" && doneMonthOf(t) === month);
-  const dueN = open.filter(isDueToday).length;
-  const overdueN = open.filter(isOverdue).length;
+  const dueN = openAll.filter(isDueToday).length;
+  const overdueN = openAll.filter(isOverdue).length;
   return [
     pageShell(pageHero(
       "My work",
       "Add a Drive link, then press To Review. It saves to GitHub.",
-      { label: "Open now", value: String(open.length) }
+      { label: "Open now", value: String(openAll.length) }
     )),
     isAdmin() ? null : myHrCard(),
-    boardCockpit(open),
+    boardCockpit(),
     $("div", { class: "board-toolbar" }, [viewBoardClientFilter()]),
     $("div", { class: "my-work-head" }, [
       $("div", {}, [
@@ -3615,7 +3617,7 @@ function viewMy() {
         $("p", { class: "muted" }, "Your live tasks for this month."),
       ]),
       $("div", { class: "my-work-meta" }, [
-        $("span", { class: "pill" }, `${open.length} open`),
+        $("span", { class: "pill" }, `${openAll.length} open`),
         dueN ? $("span", { class: "pill tone-orange" }, `${dueN} due today`) : null,
         overdueN ? $("span", { class: "pill tone-red" }, `${overdueN} overdue`) : null,
         $("span", { class: "pill tone-green" }, `${finished.length} done this month`),
