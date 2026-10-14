@@ -424,7 +424,23 @@ function canReviewTasks() {
 }
 
 function canSeeTeamWorkload() {
-  return isAdmin() || isSocial();
+  return isAdmin() || isSocial() || isLead();
+}
+
+function workloadRoster() {
+  if (isAdmin() || isSocial()) return people();
+  if (isLead()) return boardPeople();
+  return people().filter((p) => samePerson(p.name, state.who));
+}
+
+function syncSessionRole() {
+  if (!state.session?.who) return;
+  const role = accessFor(state.session.who);
+  if (state.session.role === role) return;
+  state.session = { ...state.session, role };
+  try {
+    localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
+  } catch (_) {}
 }
 
 function canSeeTask(task) {
@@ -443,8 +459,10 @@ function isSocialName(name) {
 }
 
 function canMarkDone(task) {
-  if (isAdmin() || isSocial()) return !task || canSeeTask(task);
-  if (!isLead() || !task) return false;
+  // No task = column capability (drop target / help text). With a task = scoped check.
+  if (!task) return isAdmin() || isSocial() || isLead();
+  if (isAdmin() || isSocial()) return canSeeTask(task);
+  if (!isLead()) return false;
   return managesPerson(task.who) || samePerson(task.created_by, state.who);
 }
 
@@ -532,7 +550,11 @@ function boardClients() {
   const names = new Set();
   for (const t of allTasks()) {
     if (!isOpenTask(t)) continue;
-    if (state.view !== "my" && !isAdmin() && !canSeeTask(t)) continue;
+    if (state.view === "my") {
+      if (!samePerson(t.who, state.who)) continue;
+    } else if (!isAdmin() && !canSeeTask(t)) {
+      continue;
+    }
     const name = String(t.project || "").trim();
     if (name) names.add(name);
   }
@@ -1995,7 +2017,10 @@ async function loadAll() {
   state.workMonth = state.workMonth || thisMonth();
   lastCairoDay = today();
   if (state.session && !people().some((p) => p.name === state.session.who)) logout();
-  else if (state.session) state.who = state.session.who;
+  else if (state.session) {
+    state.who = state.session.who;
+    syncSessionRole();
+  }
   persistClosedMonths();
 }
 
@@ -2232,6 +2257,7 @@ async function pullRemoteBoard() {
       if (remoteAuth) state.auth = mergeAuth(remoteAuth, state.auth);
       if (pullTick % 5 === 0) state.hrFile = remoteHr || emptyHr();
       if (state.session && !people().some((p) => p.name === state.session.who)) logout();
+      else syncSessionRole();
       return;
     }
     state.tasksFile = nextTasks;
@@ -2244,6 +2270,7 @@ async function pullRemoteBoard() {
       logout();
       return;
     }
+    syncSessionRole();
     cacheBoard();
     lastBoardSig = nextSig;
     if (!uiBusy()) render();
@@ -2926,6 +2953,7 @@ function modalOverlay(onClose, children, extraClass) {
   const onKey = (e) => {
     if (e.key === "Escape") {
       e.preventDefault();
+      e.stopPropagation();
       guardedClose();
     }
   };
@@ -5072,6 +5100,10 @@ function renamePersonEverywhere(from, to) {
   if (samePerson(state.dashPerson, from)) state.dashPerson = to;
   if (samePerson(state.timePerson, from)) state.timePerson = to;
   if (samePerson(state.boardPerson, from)) state.boardPerson = to;
+  for (const person of allPeople()) {
+    if (!Array.isArray(person.manages)) continue;
+    person.manages = person.manages.map((name) => (samePerson(name, from) ? to : name));
+  }
 }
 
 function updatePerson(currentName, fields) {
@@ -5341,7 +5373,8 @@ function loadForPerson(name, month) {
 
 function viewWorkload() {
   const ym = state.workMonth || thisMonth();
-  const roster = canSeeTeamWorkload() ? people() : people().filter((p) => p.name === state.who);
+  const roster = workloadRoster();
+  const teamWide = isAdmin() || isSocial();
   const rows = roster.map((p) => ({ ...p, ...loadForPerson(p.name, ym) }));
   const maxOpen = Math.max(1, ...rows.map((r) => r.open));
   const finished = rows.flatMap((r) => r.finished);
@@ -5354,7 +5387,7 @@ function viewWorkload() {
       { label: "Month", value: monthLabel(ym) }
     )),
     $("div", { class: "stat-row" }, [
-      statBox(rows.reduce((n, r) => n + r.open, 0), canSeeTeamWorkload() ? "Open across the team" : "Your open tasks"),
+      statBox(rows.reduce((n, r) => n + r.open, 0), teamWide ? "Open across the team" : isLead() ? "Open on your team" : "Your open tasks"),
       statBox(rows.reduce((n, r) => n + r.review, 0), "Waiting on review", "tone-orange"),
       statBox(rows.reduce((n, r) => n + r.overdue, 0), "Overdue", "tone-red"),
       statBox(rows.reduce((n, r) => n + r.done, 0), "Done this month", "tone-green"),
@@ -5778,9 +5811,9 @@ function viewAppsHome() {
 if (typeof window !== "undefined" && !window.__helalAppsEsc) {
   window.__helalAppsEsc = true;
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && state.session && !isAppsHome() && !uiBusy()) {
-      goAppsHome();
-    }
+    if (e.key !== "Escape" || e.defaultPrevented) return;
+    if (!state.session || isAppsHome() || uiBusy()) return;
+    goAppsHome();
   });
 }
 
