@@ -1,6 +1,23 @@
 const STATUSES = ["To do", "In progress", "Review", "Revisions", "Done"];
 const BOARD_STATUSES = ["To do", "In progress", "Review", "Done"];
 const SPACES = ["Social", "Graphic", "Video editors", "Sales & PR", "HR", "Daily Reports", "Calendar"];
+const SPACE_BRIEFS = {
+  Social: "Goal, platform, caption/refs, size, publish day.",
+  Graphic: "Goal, visual refs, size/format, brand notes, publish day.",
+  "Video editors": "Goal, footage/refs, length, captions, delivery format.",
+  "Sales & PR": "Goal, audience, talking points, assets needed, deadline.",
+  HR: "What to prepare, who it is for, deadline.",
+  "Daily Reports": "What to track or summarize, deadline.",
+  Calendar: "Event/post, date, owner, assets needed.",
+};
+const BLOCKER_TAGS = [
+  "Waiting client",
+  "Waiting brief",
+  "Tools / access",
+  "Workload",
+  "Personal",
+  "Other",
+];
 const CAIRO = "Africa/Cairo";
 const LS_SESSION = "helal.session.v3";
 const LS_THEME = "helal.theme";
@@ -106,6 +123,8 @@ const state = {
   timeFilter: "open",
   timeDaysOpen: false,
   boardPerson: "",
+  boardClient: "",
+  boardFocus: "",
   doneHistoryOpen: false,
   modalGuardUntil: 0,
 };
@@ -477,6 +496,47 @@ function setBoardPerson(name) {
   render();
 }
 
+function setBoardClient(name) {
+  state.boardClient = name || "";
+  render();
+}
+
+function setBoardFocus(focus) {
+  state.boardFocus = state.boardFocus === focus ? "" : (focus || "");
+  render();
+}
+
+function isOpenTask(task) {
+  return !!task && task.status !== "Done";
+}
+
+function isDueToday(task) {
+  return isOpenTask(task) && task.due === today();
+}
+
+function isOverdue(task) {
+  return isOpenTask(task) && !!task.due && task.due < today();
+}
+
+function taskHasDrive(task) {
+  return !!(String(task?.drive || "").trim());
+}
+
+function titleLooksNamed(title) {
+  return /\|\s*.+/u.test(String(title || "").trim());
+}
+
+function boardClients() {
+  const names = new Set();
+  for (const t of allTasks()) {
+    if (!isOpenTask(t)) continue;
+    if (state.view !== "my" && !isAdmin() && !canSeeTask(t)) continue;
+    const name = String(t.project || "").trim();
+    if (name) names.add(name);
+  }
+  return [...names].sort((a, b) => a.localeCompare(b));
+}
+
 function boardPersonSelect() {
   return $("select", {
     class: "date-select",
@@ -504,12 +564,38 @@ function viewBoardFilter() {
   ]);
 }
 
+function viewBoardClientFilter() {
+  const clients = boardClients();
+  if (!clients.length && !state.boardClient) return null;
+  const current = state.boardClient;
+  return $("div", { class: "board-filter board-client-filter" }, [
+    $("button", {
+      type: "button",
+      class: `time-chip${!current ? " on" : ""}`,
+      onclick: () => setBoardClient(""),
+    }, "All clients"),
+    ...clients.map((name) => $("button", {
+      type: "button",
+      class: `time-chip${current === name ? " on" : ""}`,
+      onclick: () => setBoardClient(name),
+    }, name)),
+  ]);
+}
+
 function tasksForView() {
   let tasks = allTasks();
   if (state.view === "my") tasks = tasks.filter((t) => samePerson(t.who, state.who));
   else if (!isAdmin()) tasks = tasks.filter(canSeeTask);
   if (state.view === "board" && state.boardPerson) {
     tasks = tasks.filter((t) => matchesBoardPerson(t.who));
+  }
+  if ((state.view === "board" || state.view === "my") && state.boardClient) {
+    tasks = tasks.filter((t) => String(t.project || "").trim() === state.boardClient);
+  }
+  if ((state.view === "board" || state.view === "my") && state.boardFocus === "due") {
+    tasks = tasks.filter(isDueToday);
+  } else if ((state.view === "board" || state.view === "my") && state.boardFocus === "overdue") {
+    tasks = tasks.filter(isOverdue);
   }
   if (state.dateFilter && state.dateFilter !== "all") {
     tasks = tasks.filter((t) =>
@@ -519,6 +605,47 @@ function tasksForView() {
     );
   }
   return tasks;
+}
+
+function boardCockpit(tasks) {
+  const open = tasks.filter(isOpenTask);
+  const due = open.filter(isDueToday).length;
+  const overdue = open.filter(isOverdue).length;
+  const review = open.filter((t) => t.status === "Review" || t.status === "Revisions").length;
+  const noDrive = open.filter((t) => (t.status === "In progress" || t.status === "Review" || t.status === "Revisions") && !taskHasDrive(t)).length;
+  return $("div", { class: "board-cockpit" }, [
+    $("div", { class: "stat-row dense" }, [
+      $("button", {
+        type: "button",
+        class: `stat cockpit-stat${state.boardFocus === "due" ? " on" : ""}`,
+        onclick: () => setBoardFocus("due"),
+      }, [$("strong", {}, String(due)), $("span", {}, "Due today")]),
+      $("button", {
+        type: "button",
+        class: `stat cockpit-stat${overdue ? " tone-red" : ""}${state.boardFocus === "overdue" ? " on" : ""}`,
+        onclick: () => setBoardFocus("overdue"),
+      }, [$("strong", {}, String(overdue)), $("span", {}, "Overdue")]),
+      $("div", { class: `stat${review ? " tone-orange" : ""}` }, [
+        $("strong", {}, String(review)),
+        $("span", {}, "In review"),
+      ]),
+      $("div", { class: `stat${noDrive ? " tone-orange" : ""}` }, [
+        $("strong", {}, String(noDrive)),
+        $("span", {}, "Missing Drive"),
+      ]),
+    ]),
+    state.boardFocus
+      ? $("p", { class: "muted board-filter-note" }, [
+        state.boardFocus === "due" ? "Showing due today only." : "Showing overdue only.",
+        " ",
+        $("button", {
+          type: "button",
+          class: "btn ghost compact",
+          onclick: () => setBoardFocus(""),
+        }, "Clear filter"),
+      ])
+      : null,
+  ]);
 }
 
 function canEditDetails(task) {
@@ -1325,7 +1452,17 @@ function canSafeRender() {
 }
 
 function emptyReportDraft() {
-  return { who: state.who, day: today(), finished: "", unfinished: "", drive: "", need_review: false, place: "" };
+  return {
+    who: state.who,
+    day: today(),
+    finished: "",
+    unfinished: "",
+    drive: "",
+    need_review: false,
+    place: "",
+    blockers: [],
+    done_task_ids: [],
+  };
 }
 
 function reportDraft() {
@@ -1346,6 +1483,8 @@ function reportDraft() {
     drive: src.drive || "",
     need_review: !!src.need_review,
     place: src.place === "Office" || src.place === "Remote" ? src.place : "",
+    blockers: Array.isArray(src.blockers) ? src.blockers.filter((b) => BLOCKER_TAGS.includes(b)) : [],
+    done_task_ids: Array.isArray(src.done_task_ids) ? src.done_task_ids.map(String) : [],
   };
 }
 
@@ -2097,7 +2236,7 @@ async function login(who, pin) {
   state.session = { who, role };
   state.who = who;
   state.loginError = "";
-  state.view = "board";
+  state.view = isAdmin() || isSocial() || isLead() ? "board" : "my";
   localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
   try {
     localStorage.removeItem("helal.session");
@@ -2223,6 +2362,13 @@ function setStatus(taskId, next) {
     }
     if (!canSetStatus(next, task)) return;
     if (task.status === next) return;
+    if (next === "Review" && !taskHasDrive(task)) {
+      state.saveState = "error";
+      state.saveError = "Add a Drive link on the task before moving it to Review.";
+      state.openTaskId = task.id;
+      render(true);
+      return;
+    }
     // Late Review moves must not open a blocking popup — that froze members.
     // Auto-note the delay and save Review to GitHub in one step.
     if (next === "Review" && task.due && task.due < today() && !task.delay_reason) {
@@ -2304,6 +2450,8 @@ function submitReport(fields) {
     drive: fields.drive,
     need_review: fields.need_review,
     place: fields.place || "",
+    blockers: Array.isArray(fields.blockers) ? fields.blockers : [],
+    done_task_ids: Array.isArray(fields.done_task_ids) ? fields.done_task_ids : [],
     created_at: new Date().toISOString(),
   });
   state.reportDay = day;
@@ -2381,6 +2529,13 @@ function moveTaskToReview(taskId, event) {
     return;
   }
   if (task.status === "Review" || task.status === "Revisions") return;
+  if (!taskHasDrive(task)) {
+    state.saveState = "error";
+    state.saveError = "Add a Drive link on the task before sending it to Review.";
+    state.openTaskId = task.id;
+    render(true);
+    return;
+  }
   // One click to Review. Late tasks keep a default reason so the move never blocks.
   if (task.due && task.due < today() && !task.delay_reason) {
     applyStatus(taskId, "Review", {
@@ -2442,7 +2597,14 @@ function kanbanCard(task) {
     },
   }, [
     $("p", { class: "title" }, task.title),
-    task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
+    $("div", { class: "meta" }, [
+      isOverdue(task) ? $("span", { class: "pill tone-red" }, "Overdue") : null,
+      isDueToday(task) ? $("span", { class: "pill tone-orange" }, "Due today") : null,
+      !taskHasDrive(task) && (task.status === "In progress" || task.status === "Review")
+        ? $("span", { class: "pill tone-orange" }, "Need Drive")
+        : null,
+      task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
+    ]),
     taskFactList(task),
     toReview ? $("div", { class: "kcard-actions" }, [toReview]) : null,
     canMarkDone(task) && (task.status === "Review" || task.status === "Revisions")
@@ -2504,12 +2666,18 @@ function viewBoard() {
   const tasks = tasksForView();
   const day = today();
   const who = state.boardPerson;
+  const client = state.boardClient;
   const board = $("div", { class: "kanban" },
     BOARD_STATUSES.map((status) => {
       const col = tasksInBoardColumn(tasks, status);
       const todayDone = status === "Done" ? col.filter((t) => doneDayOf(t) === day) : col;
       const prevDone = status === "Done" ? col.filter((t) => doneDayOf(t) !== day) : [];
       const shown = status === "Done" ? todayDone : col;
+      const emptyLabel = status === "Done"
+        ? "No tasks done today — finish something and mark it Done."
+        : (canAssignTasks()
+          ? "No tasks here. Create one or clear filters."
+          : "Nothing here right now.");
       return $("section", {
         class: "kanban-col",
         ondragover: (e) => {
@@ -2553,7 +2721,7 @@ function viewBoard() {
           }, state.doneHistoryOpen ? "Hide previous tasks" : `See previous tasks · ${prevDone.length}`)
           : null,
         $("div", { class: "kanban-cards" }, [
-          ...(shown.length ? shown.map(kanbanCard) : [$("p", { class: "empty" }, status === "Done" ? "No tasks done today" : "No tasks")]),
+          ...(shown.length ? shown.map(kanbanCard) : [$("p", { class: "empty" }, emptyLabel)]),
           status === "Done" && state.doneHistoryOpen && prevDone.length ? viewDoneHistory(prevDone) : null,
         ]),
         status === "Done"
@@ -2578,8 +2746,16 @@ function viewBoard() {
     })
   );
   return $("div", { class: "board-wrap" }, [
+    boardCockpit(tasks),
     viewBoardFilter(),
-    who ? $("p", { class: "muted board-filter-note" }, `Showing ${who} only. Press All for the full team.`) : null,
+    viewBoardClientFilter(),
+    who || client
+      ? $("p", { class: "muted board-filter-note" }, [
+        who ? `Person: ${who}. ` : "",
+        client ? `Client: ${client}. ` : "",
+        "Clear the chips above for the full board.",
+      ].filter(Boolean).join(""))
+      : null,
     board,
   ]);
 }
@@ -2754,11 +2930,18 @@ function viewPromptModals() {
         class: "form",
         onsubmit: (e) => {
           e.preventDefault();
-          applyStatus(state.pendingRevision.taskId, "Revisions", { revision_level: level.value, revision_reason: reason.value.trim() });
+          const note = reason.value.trim();
+          if (!note) {
+            state.saveState = "error";
+            state.saveError = "Add a short revision reason before sending back.";
+            render(true);
+            return;
+          }
+          applyStatus(state.pendingRevision.taskId, "Revisions", { revision_level: level.value, revision_reason: note });
         },
       }, [
         $("label", {}, ["Level", level]),
-        $("label", {}, ["Reason", reason]),
+        $("label", {}, ["Reason (required)", reason]),
         $("div", { style: "display:flex;gap:8px" }, [
           $("button", { class: "btn primary", type: "submit" }, "Send to Revisions"),
           $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
@@ -3358,23 +3541,31 @@ function viewMy() {
   const open = tasksForView().filter((t) => t.status !== "Done");
   const month = thisMonth();
   const finished = allTasks().filter((t) => t.who === state.who && t.status === "Done" && doneMonthOf(t) === month);
+  const dueN = open.filter(isDueToday).length;
+  const overdueN = open.filter(isOverdue).length;
   return [
     isAdmin() ? null : myHrCard(),
+    boardCockpit(open),
+    viewBoardClientFilter(),
     $("div", { class: "stat-row" }, [
       statBox(open.length, "Open now"),
-      statBox(open.filter((t) => t.status === "Review" || t.status === "Revisions").length, "In review", "tone-orange"),
+      statBox(dueN, "Due today", dueN ? "tone-orange" : ""),
+      statBox(overdueN, "Overdue", overdueN ? "tone-red" : ""),
       statBox(finished.length, "Done this month", "tone-green"),
     ]),
     $("h2", {}, "Open"),
-    $("p", { class: "muted" }, "In progress work: press To Review when ready. It saves to GitHub for the whole team."),
+    $("p", { class: "muted" }, "In progress work: add a Drive link, then press To Review. It saves to GitHub for the whole team."),
     open.length
       ? $("div", { class: "cards", style: "margin-top:14px" }, open.map((task) => {
         const toReview = reviewActionButton(task);
-        return $("article", { class: `card ${taskTone(task)}`, onclick: () => { state.openTaskId = task.id; render(); } }, [
+        return $("article", { class: `card ${taskTone(task)}${isOverdue(task) ? " tone-red" : ""}`, onclick: () => { state.openTaskId = task.id; render(); } }, [
           $("p", { class: "title" }, task.title),
           taskFactList(task),
           $("div", { class: "meta" }, [
             $("span", { class: `pill ${taskTone(task)}` }, boardColumnOf(task.status)),
+            isOverdue(task) ? $("span", { class: "pill tone-red" }, "Overdue") : null,
+            isDueToday(task) ? $("span", { class: "pill tone-orange" }, "Due today") : null,
+            !taskHasDrive(task) && task.status === "In progress" ? $("span", { class: "pill tone-orange" }, "Need Drive") : null,
             task.status === "Revisions" ? $("span", { class: "pill tone-orange" }, "Edits") : null,
           ]),
           toReview
@@ -3386,7 +3577,7 @@ function viewMy() {
             : null,
         ]);
       }))
-      : $("p", { class: "empty" }, "Nothing open right now."),
+      : $("p", { class: "empty" }, "Nothing open right now. You’re clear — check Attendance or submit Report this evening."),
     $("section", { class: "done-section" }, [
       $("h2", {}, "Done"),
       $("p", { class: "muted" }, "When Amr, Moamen, or your lead check a task done, it stays here for the month and in the GitHub database."),
@@ -3558,8 +3749,15 @@ function createForm(onDone) {
     ...projectList().map((p) => $("option", { value: p.name, selected: p.name === d.project }, p.name)),
   ]);
   const title = $("input", { required: true, placeholder: "single visual | 4th Oct", value: d.title || "" });
-  const notes = $("textarea", { placeholder: "Brief, references, what done looks like" }, d.notes || "");
+  const briefHint = SPACE_BRIEFS[d.space] || "Brief, references, what done looks like.";
+  const notes = $("textarea", { placeholder: briefHint }, d.notes || "");
   const drive = $("input", { type: "url", placeholder: "Drive folder (fills from client)", value: d.drive || "" });
+  const nameHint = $("p", {
+    class: `muted name-hint${d.title && !titleLooksNamed(d.title) ? " warn" : ""}`,
+  }, d.title && !titleLooksNamed(d.title)
+    ? "Tip: use type | publish day — e.g. single visual | 4th Oct"
+    : "Name as type | publish day — e.g. single visual | 4th Oct.");
+  const briefLine = $("p", { class: "muted brief-hint" }, `Brief guide · ${briefHint}`);
   const keep = () => {
     state.draft = {
       who: who.value,
@@ -3571,12 +3769,23 @@ function createForm(onDone) {
     };
   };
   who.addEventListener("change", keep);
-  space.addEventListener("change", keep);
+  space.addEventListener("change", () => {
+    keep();
+    notes.placeholder = SPACE_BRIEFS[space.value] || briefHint;
+    briefLine.textContent = `Brief guide · ${notes.placeholder}`;
+  });
   project.addEventListener("change", () => {
     keep();
     if (!drive.value) drive.value = driveForProject(project.value);
   });
-  title.addEventListener("input", keep);
+  title.addEventListener("input", () => {
+    keep();
+    const bad = title.value.trim() && !titleLooksNamed(title.value);
+    nameHint.className = `muted name-hint${bad ? " warn" : ""}`;
+    nameHint.textContent = bad
+      ? "Tip: use type | publish day — e.g. single visual | 4th Oct"
+      : "Name as type | publish day — e.g. single visual | 4th Oct.";
+  });
   notes.addEventListener("input", keep);
   drive.addEventListener("input", keep);
   const close = () => {
@@ -3622,10 +3831,11 @@ function createForm(onDone) {
       }, "×"),
     ]),
     $("div", { class: "modal-scroll" }, [
-      $("p", { class: "muted" }, "Name tasks as type | publish day — e.g. single visual | 4th Oct. Esc or × closes."),
+      nameHint,
       $("label", {}, ["Assign to", who]),
       $("label", {}, ["Client / folder", project]),
       $("label", {}, ["Space", space]),
+      briefLine,
       $("label", {}, ["Task", title]),
       $("label", {}, ["Notes", notes]),
       $("div", {}, [
@@ -3803,10 +4013,17 @@ function reportDaySummary(day, who) {
 }
 
 function reportCard(r) {
+  const doneTitles = (r.done_task_ids || [])
+    .map((id) => findTask(id)?.title || id)
+    .filter(Boolean);
   return $("article", { class: "card report-card" }, [
     $("p", { class: "title" }, `${r.who} · ${r.date}`),
     qaBlock("What did you finish today?", r.finished),
+    doneTitles.length ? qaBlock("Tasks touched", doneTitles.join(" · ")) : null,
     qaBlock("What is unfinished or blocking you?", r.unfinished),
+    (r.blockers || []).length
+      ? qaBlock("Blockers", $("div", { class: "chip-row" }, r.blockers.map((b) => $("span", { class: "pill tone-orange" }, b))))
+      : null,
     qaBlock("Drive links", r.drive
       ? $("a", { href: r.drive, target: "_blank", rel: "noreferrer" }, r.drive)
       : "—"),
@@ -4063,6 +4280,102 @@ function viewTime() {
   ]);
 }
 
+function cairoDaysBack(n) {
+  const out = [];
+  for (let i = 0; i < n; i += 1) out.push(addCairoDays(today(), -i));
+  return out;
+}
+
+function viewLeadInbox() {
+  if (!(isLead() || isSocial()) || isAdmin()) return null;
+  const mine = allTasks().filter((t) => canSeeTask(t) && (managesPerson(t.who) || samePerson(t.created_by, state.who) || isSocial()));
+  const waiting = mine.filter((t) => t.status === "Review" || t.status === "Revisions");
+  const overdue = mine.filter(isOverdue);
+  const due = mine.filter(isDueToday);
+  const managed = isLead() ? managedNames() : [];
+  const yesterday = addCairoDays(today(), -1);
+  const missingReport = managed.filter((name) => !reportFor(name, yesterday) && !reportFor(name, today()));
+  return $("section", { class: "card lead-inbox" }, [
+    $("h2", {}, "Lead inbox"),
+    $("p", { class: "muted" }, isLead()
+      ? `People you manage: ${managed.join(", ") || "—"}. Review their work here first.`
+      : "Social review queue — what needs you now."),
+    $("div", { class: "stat-row dense" }, [
+      statBox(waiting.length, "Waiting on you", waiting.length ? "tone-orange" : ""),
+      statBox(overdue.length, "Overdue under you", overdue.length ? "tone-red" : ""),
+      statBox(due.length, "Due today"),
+      isLead() ? statBox(missingReport.length, "No report yet", missingReport.length ? "tone-orange" : "") : null,
+    ]),
+    missingReport.length
+      ? $("p", { class: "muted" }, `No report from: ${missingReport.join(", ")}.`)
+      : null,
+  ]);
+}
+
+function viewOwnerDigest() {
+  if (!isAdmin()) return null;
+  const week = cairoDaysBack(7);
+  const open = allTasks().filter(isOpenTask);
+  const overdue = open.filter(isOverdue);
+  const waiting = open.filter((t) => t.status === "Review" || t.status === "Revisions");
+  const shipped = allTasks().filter((t) => t.status === "Done" && week.includes(t.done_on));
+  const roster = people().filter((p) => p.name !== "Amr");
+  const yesterday = addCairoDays(today(), -1);
+  const noReport = roster.filter((p) => !reportFor(p.name, yesterday));
+  const byClient = {};
+  for (const t of open) {
+    const key = String(t.project || "").trim() || "No client";
+    if (!byClient[key]) byClient[key] = { open: 0, overdue: 0 };
+    byClient[key].open += 1;
+    if (isOverdue(t)) byClient[key].overdue += 1;
+  }
+  const clientRows = Object.entries(byClient)
+    .sort((a, b) => b[1].overdue - a[1].overdue || b[1].open - a[1].open)
+    .slice(0, 6);
+  return $("section", { class: "card owner-digest" }, [
+    $("h2", {}, "Weekly owner digest"),
+    $("p", { class: "muted" }, "Last 7 Cairo days. Use this before chasing people on WhatsApp."),
+    $("div", { class: "stat-row dense" }, [
+      statBox(open.length, "Open now"),
+      statBox(overdue.length, "Overdue", overdue.length ? "tone-red" : ""),
+      statBox(waiting.length, "In review", waiting.length ? "tone-orange" : ""),
+      statBox(shipped.length, "Shipped this week", shipped.length ? "tone-green" : ""),
+      statBox(noReport.length, "No report yesterday", noReport.length ? "tone-orange" : ""),
+    ]),
+    noReport.length
+      ? $("p", { class: "muted" }, `Missing yesterday’s report: ${noReport.map((p) => p.name).join(", ")}.`)
+      : $("p", { class: "muted" }, "Everyone filed yesterday’s report (or it is still early)."),
+    $("h3", { style: "margin:18px 0 8px" }, "Client health"),
+    clientRows.length
+      ? $("div", { class: "client-health" }, clientRows.map(([name, row]) =>
+        $("button", {
+          type: "button",
+          class: "client-health-row",
+          onclick: () => {
+            state.view = "board";
+            state.boardClient = name === "No client" ? "" : name;
+            state.boardFocus = row.overdue ? "overdue" : "";
+            render();
+          },
+        }, [
+          $("strong", {}, name),
+          $("span", {}, `${row.open} open`),
+          $("span", { class: row.overdue ? "tone-red" : "muted" }, `${row.overdue} overdue`),
+        ])
+      ))
+      : $("p", { class: "empty" }, "No open client work."),
+    $("h3", { style: "margin:18px 0 8px" }, "Shipped this week"),
+    shipped.length
+      ? $("div", { class: "shipped-list" }, shipped.slice(0, 12).map((t) =>
+        $("p", {}, [
+          $("strong", {}, t.title),
+          $("span", { class: "muted" }, ` · ${t.who}${t.project ? ` · ${t.project}` : ""} · ${t.done_on}`),
+        ])
+      ))
+      : $("p", { class: "empty" }, "Nothing marked Done in the last 7 days."),
+  ]);
+}
+
 function viewReview() {
   const month = state.calMonth || thisMonth();
   const current = isCurrentMonth(month);
@@ -4083,6 +4396,8 @@ function viewReview() {
   const adminDash = isAdmin();
   const personLabel = who ? ` · ${who}` : "";
   return $("div", { class: "dash" }, [
+    viewOwnerDigest(),
+    viewLeadInbox(),
     adminDash ? viewCalendar() : null,
     adminDash ? $("section", {}, [
       $("h2", {}, `Reports · ${day}${personLabel}`),
@@ -4183,12 +4498,28 @@ function viewReport() {
     ]);
   }
   const draft = reportDraft();
+  const openMine = allTasks().filter((t) => samePerson(t.who, state.who) && t.status !== "Done");
   const finished = $("textarea", { required: true, placeholder: "Your answer" }, draft.finished);
   const unfinished = $("textarea", { placeholder: "Your answer" }, draft.unfinished);
   const drive = $("input", { type: "url", placeholder: "https://", value: draft.drive || "" });
   const need = $("input", { type: "checkbox", checked: !!draft.need_review });
   const remote = $("input", { type: "radio", name: "report-place", value: "Remote", required: true, checked: draft.place === "Remote" });
   const office = $("input", { type: "radio", name: "report-place", value: "Office", required: true, checked: draft.place === "Office" });
+  const blockerBoxes = BLOCKER_TAGS.map((tag) => {
+    const box = $("input", { type: "checkbox", value: tag, checked: draft.blockers.includes(tag) });
+    return { tag, box, label: $("label", { class: "blocker-pick" }, [box, tag]) };
+  });
+  const taskBoxes = openMine.map((t) => {
+    const box = $("input", { type: "checkbox", value: t.id, checked: draft.done_task_ids.includes(t.id) });
+    return {
+      task: t,
+      box,
+      label: $("label", { class: "task-tick" }, [
+        box,
+        $("span", {}, `${t.title}${t.project ? ` · ${t.project}` : ""}`),
+      ]),
+    };
+  });
   const keep = () => {
     keepReportDraft({
       finished: finished.value,
@@ -4196,6 +4527,8 @@ function viewReport() {
       drive: drive.value,
       need_review: need.checked,
       place: remote.checked ? "Remote" : office.checked ? "Office" : "",
+      blockers: blockerBoxes.filter((row) => row.box.checked).map((row) => row.tag),
+      done_task_ids: taskBoxes.filter((row) => row.box.checked).map((row) => row.task.id),
     });
   };
   const form = $("form", {
@@ -4218,6 +4551,8 @@ function viewReport() {
         drive: drive.value.trim(),
         need_review: need.checked,
         place,
+        blockers: blockerBoxes.filter((row) => row.box.checked).map((row) => row.tag),
+        done_task_ids: taskBoxes.filter((row) => row.box.checked).map((row) => row.task.id),
       });
     },
   }, [
@@ -4229,7 +4564,17 @@ function viewReport() {
       ]),
     ]),
     $("label", {}, ["What did you finish today?", finished]),
+    openMine.length
+      ? $("div", { class: "report-ticks" }, [
+        $("p", { class: "muted", style: "margin:0 0 8px" }, "Tick open tasks you moved or finished today (optional)."),
+        ...taskBoxes.map((row) => row.label),
+      ])
+      : null,
     $("label", {}, ["What is unfinished or blocking you?", unfinished]),
+    $("div", { class: "report-blockers" }, [
+      $("p", { class: "muted", style: "margin:0 0 8px" }, "Blocker tags (optional)"),
+      $("div", { class: "chip-row" }, blockerBoxes.map((row) => row.label)),
+    ]),
     $("label", {}, ["Drive links", drive]),
     $("label", { style: "grid-template-columns: auto 1fr; align-items: center; letter-spacing: 0" }, [
       need,
@@ -4986,19 +5331,18 @@ function navItems() {
   const items = [
     ["board", "Board"],
     ["my", "My work"],
-    ["load", "Workload"],
     ["attend", "Attendance"],
     ["report", "Report"],
     ["drive", "Drive"],
     ["guide", "SOP"],
   ];
   if (isAdmin()) {
-    items.splice(2, 0, ["review", "Dashboard"], ["time", "Time"]);
+    items.splice(2, 0, ["review", "Dashboard"], ["time", "Time"], ["load", "Workload"]);
     items.push(["hr", "HR"]);
     items.push(["people", "People"]);
     items.push(["admin-guide", "Admin guide"]);
   } else if (isSocial() || isLead()) {
-    items.splice(2, 0, ["review", "Review"]);
+    items.splice(2, 0, ["review", "Review"], ["load", "Workload"]);
   }
   return items;
 }
