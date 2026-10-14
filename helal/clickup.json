@@ -34,29 +34,49 @@
     {
       "name": "Social",
       "who": "Mariam, Judi",
-      "lists": ["List"],
-      "statuses": ["TO DO", "IN PROGRESS", "REVIEW", "REVISIONS", "DONE"]
+      "lists": [
+        "List"
+      ],
+      "statuses": [
+        "TO DO",
+        "IN PROGRESS",
+        "REVIEW",
+        "REVISIONS",
+        "DONE"
+      ]
     },
     {
       "name": "Graphic",
-      "who": "Seif, Alaa, Sara",
-      "lists": ["List"]
+      "who": "Seif, Alaa",
+      "lists": [
+        "List"
+      ]
     },
     {
       "name": "Video editors",
       "who": "Ganna",
-      "lists": ["List"]
+      "lists": [
+        "List"
+      ]
     },
     {
       "name": "Calendar",
       "who": "Content calendar",
-      "lists": ["Helal Calendar"]
+      "lists": [
+        "Helal Calendar"
+      ]
     },
     {
       "name": "Daily Reports",
       "who": "Whole team",
-      "lists": ["List (form submissions)"],
-      "statuses": ["TO DO", "IN PROGRESS", "COMPLETE"],
+      "lists": [
+        "List (form submissions)"
+      ],
+      "statuses": [
+        "TO DO",
+        "IN PROGRESS",
+        "COMPLETE"
+      ],
       "form": {
         "title": "Helal Daily Report",
         "url": "",

@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-10-13T00:11:27.161Z",
+  "updated_at": "2026-10-14T03:22:43.801Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -53,17 +53,6 @@
       "email": "",
       "access": "member",
       "active": true
-    },
-    {
-      "id": "sara",
-      "name": "Sara",
-      "role": "Graphic designer",
-      "home": "design",
-      "mention": "@Sara",
-      "email": "",
-      "access": "member",
-      "active": false,
-      "updated_at": "2026-10-13T00:11:27.161Z"
     },
     {
       "id": "ganna",

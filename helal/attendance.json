@@ -95,21 +95,6 @@
           "updated_at": "2026-09-06T12:42:17.866Z",
           "updated_by": "Seif"
         },
-        "Sara": {
-          "days": {
-            "2026-09-09": "Office",
-            "2026-09-04": "Off",
-            "2026-09-05": "Off",
-            "2026-09-06": "Off",
-            "2026-09-07": "Off",
-            "2026-09-08": "Home",
-            "2026-09-10": "Home"
-          },
-          "saved": true,
-          "saved_at": "2026-09-08T12:34:58.804Z",
-          "updated_at": "2026-09-10T14:37:56.209Z",
-          "updated_by": "Amr"
-        },
         "Tasneem": {
           "days": {
             "2026-09-05": "Office",
@@ -205,21 +190,6 @@
           "updated_at": "2026-09-11T20:50:34.856Z",
           "updated_by": "Ganna"
         },
-        "Sara": {
-          "days": {
-            "2026-09-11": "Off",
-            "2026-09-12": "Off",
-            "2026-09-13": "Home",
-            "2026-09-14": "Office",
-            "2026-09-15": "Office",
-            "2026-09-16": "Home",
-            "2026-09-17": "Home"
-          },
-          "saved": true,
-          "saved_at": "2026-09-12T11:09:09.605Z",
-          "updated_at": "2026-09-12T11:09:09.605Z",
-          "updated_by": "Sara"
-        },
         "Tasneem": {
           "days": {
             "2026-09-11": "Home",
@@ -314,21 +284,6 @@
           "saved_at": "2026-09-19T08:19:32.518Z",
           "updated_at": "2026-09-19T08:19:32.518Z",
           "updated_by": "Ganna"
-        },
-        "Sara": {
-          "days": {
-            "2026-09-18": "Home",
-            "2026-09-19": "Home",
-            "2026-09-20": "Home",
-            "2026-09-21": "Home",
-            "2026-09-22": "Home",
-            "2026-09-23": "Off",
-            "2026-09-24": "Off"
-          },
-          "saved": true,
-          "saved_at": "2026-09-19T11:02:40.319Z",
-          "updated_at": "2026-09-19T11:02:40.319Z",
-          "updated_by": "Sara"
         }
       }
     },
@@ -379,21 +334,6 @@
           "saved_at": "2026-09-25T17:54:07.595Z",
           "updated_at": "2026-09-25T17:54:07.595Z",
           "updated_by": "Seif"
-        },
-        "Sara": {
-          "days": {
-            "2026-09-25": "Off",
-            "2026-09-26": "Office",
-            "2026-09-27": "Home",
-            "2026-09-28": "Home",
-            "2026-09-29": "Home",
-            "2026-09-30": "Home",
-            "2026-10-01": "Home"
-          },
-          "saved": true,
-          "saved_at": "2026-09-26T12:06:20.193Z",
-          "updated_at": "2026-09-26T12:06:20.193Z",
-          "updated_by": "Sara"
         },
         "Ganna": {
           "days": {
@@ -474,21 +414,6 @@
           "saved_at": "2026-10-03T20:59:43.987Z",
           "updated_at": "2026-10-03T20:59:43.987Z",
           "updated_by": "Alaa"
-        },
-        "Sara": {
-          "days": {
-            "2026-10-02": "Off",
-            "2026-10-03": "Home",
-            "2026-10-04": "Home",
-            "2026-10-05": "Home",
-            "2026-10-07": "Office",
-            "2026-10-06": "Home",
-            "2026-10-08": "Home"
-          },
-          "saved": true,
-          "saved_at": "2026-10-05T10:40:33.919Z",
-          "updated_at": "2026-10-05T10:40:33.919Z",
-          "updated_by": "Sara"
         },
         "Rahma": {
           "days": {
@@ -737,32 +662,6 @@
       "status": "Approved",
       "created_at": "2026-09-06T08:45:15.256Z",
       "decided_at": "2026-09-06T08:45:17.382Z",
-      "decided_by": "Amr"
-    },
-    {
-      "id": "ar-mtsqmzqm",
-      "who": "Sara",
-      "friday": "2026-09-04",
-      "date": "2026-09-08",
-      "from": "Off",
-      "to": "Home",
-      "reason": "",
-      "status": "Approved",
-      "created_at": "2026-09-08T14:01:33.550Z",
-      "decided_at": "2026-09-08T14:02:20.439Z",
-      "decided_by": "Amr"
-    },
-    {
-      "id": "ar-mtviokjc",
-      "who": "Sara",
-      "friday": "2026-09-04",
-      "date": "2026-09-10",
-      "from": "Off",
-      "to": "Home",
-      "reason": "work on mas",
-      "status": "Approved",
-      "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
       "decided_by": "Amr"
     },
     {

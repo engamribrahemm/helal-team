@@ -6162,7 +6162,7 @@ function viewGuide() {
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Design & video"),
-          $("p", {}, "Alaa, Sara, Rahma (design) and Ganna (video) do not create tasks. Seif can create as Rahma's lead."),
+          $("p", {}, "Alaa and Rahma (design) and Ganna (video) do not create tasks. Seif can create as Rahma's lead."),
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Admins · Amr & Moamen"),
