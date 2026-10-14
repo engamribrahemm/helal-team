@@ -76,7 +76,7 @@ const WORK_MODES = ["Remote", "Office", "Hybrid"];
 const TEAM_HOMES = ["social", "design", "video", "hr"];
 
 const state = {
-  view: "board",
+  view: "apps",
   who: "",
   dateFilter: "all",
   team: null,
@@ -2269,7 +2269,8 @@ async function login(who, pin) {
   state.session = { who, role };
   state.who = who;
   state.loginError = "";
-  state.view = isAdmin() || isSocial() || isLead() ? "board" : "my";
+  state.view = "apps";
+  state.appsOpen = false;
   localStorage.setItem(LS_SESSION, JSON.stringify(state.session));
   try {
     localStorage.removeItem("helal.session");
@@ -5716,8 +5717,19 @@ const APP_TONES = {
   "admin-guide": "tone-admin",
 };
 
+function isAppsHome() {
+  return state.view === "apps";
+}
+
 function currentAppLabel() {
+  if (isAppsHome()) return "Apps";
   return navItems().find(([id]) => id === state.view)?.[1] || "Apps";
+}
+
+function goAppsHome() {
+  state.view = "apps";
+  state.appsOpen = false;
+  render();
 }
 
 function openApp(id) {
@@ -5726,65 +5738,68 @@ function openApp(id) {
   render();
 }
 
+function appTile(id, label, { large = false } = {}) {
+  return $("button", {
+    type: "button",
+    class: `app-tile ${APP_TONES[id] || ""}${large ? " large" : ""}${state.view === id ? " on" : ""}`,
+    onclick: () => openApp(id),
+  }, [
+    $("span", {
+      class: "app-tile-icon",
+      html: APP_ICONS[id] || APP_ICONS.board,
+    }),
+    $("span", { class: "app-tile-label" }, label),
+  ]);
+}
+
+function viewAppsHome() {
+  const role = isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member";
+  const items = navItems();
+  return $("div", { class: "apps-home" }, [
+    $("header", { class: "apps-home-hero" }, [
+      $("img", {
+        class: "apps-home-mark",
+        src: "./assets/helal-mark.png",
+        alt: "Helal",
+        width: "64",
+        height: "64",
+      }),
+      $("div", { class: "apps-home-copy" }, [
+        $("h2", {}, `Welcome, ${state.who}`),
+        $("p", { class: "muted" }, `${role} · Choose an app to continue · ${cairoClock()} Cairo`),
+      ]),
+    ]),
+    $("div", { class: "app-grid home" }, items.map(([id, label]) => appTile(id, label, { large: true }))),
+  ]);
+}
+
 if (typeof window !== "undefined" && !window.__helalAppsEsc) {
   window.__helalAppsEsc = true;
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && state.appsOpen) {
-      state.appsOpen = false;
-      render();
+    if (e.key === "Escape" && state.session && !isAppsHome() && !uiBusy()) {
+      goAppsHome();
     }
   });
 }
 
-function viewAppSwitcher() {
-  if (!state.appsOpen) return null;
-  const items = navItems();
-  return $("div", {
-    class: "app-overlay",
-    onclick: (e) => {
-      if (e.target === e.currentTarget) {
-        state.appsOpen = false;
-        render();
-      }
-    },
-  }, [
-    $("div", { class: "app-drawer", role: "dialog", "aria-label": "Apps" }, [
-      $("div", { class: "app-drawer-head" }, [
-        $("strong", {}, "Apps"),
-        $("button", {
-          class: "btn ghost compact",
-          type: "button",
-          onclick: () => { state.appsOpen = false; render(); },
-        }, "Close"),
-      ]),
-      $("div", { class: "app-grid" }, items.map(([id, label]) =>
-        $("button", {
-          type: "button",
-          class: `app-tile ${APP_TONES[id] || ""}${state.view === id ? " on" : ""}`,
-          onclick: () => openApp(id),
-        }, [
-          $("span", {
-            class: "app-tile-icon",
-            html: APP_ICONS[id] || APP_ICONS.board,
-          }),
-          $("span", { class: "app-tile-label" }, label),
-        ])
-      )),
-    ]),
-  ]);
-}
-
 function viewChrome() {
   const role = isAdmin() ? "Admin" : isSocial() ? "Social" : isLead() ? "Lead" : "Member";
+  const onHome = isAppsHome();
   return [
     $("header", { class: "top" }, [
       $("div", { class: "top-left" }, [
+        onHome
+          ? null
+          : $("button", {
+            class: "btn ghost compact app-back",
+            type: "button",
+            onclick: goAppsHome,
+          }, "← Apps"),
         $("button", {
           class: "app-menu-btn",
           type: "button",
-          "aria-label": "Open apps",
-          "aria-expanded": state.appsOpen ? "true" : "false",
-          onclick: () => { state.appsOpen = !state.appsOpen; render(); },
+          "aria-label": onHome ? "Apps home" : `Open ${currentAppLabel()} menu`,
+          onclick: goAppsHome,
         }, [
           $("span", { class: "app-menu-dots", "aria-hidden": "true" }, [
             $("i"), $("i"), $("i"),
@@ -5799,17 +5814,19 @@ function viewChrome() {
         $("span", { class: "cairo-chip top-cairo" }, `${cairoClock()} · Cairo`),
       ]),
       $("div", { class: "top-actions" }, [
-        $("select", {
-          class: "date-select",
-          onchange: (e) => {
-            state.dateFilter = e.target.value;
-            render();
-          },
-        }, [
-          $("option", { value: "all", selected: state.dateFilter === "all" }, "All dates"),
-          $("option", { value: today(), selected: state.dateFilter === today() }, `Today · ${today()}`),
-        ]),
-        canAssignTasks()
+        onHome
+          ? null
+          : $("select", {
+            class: "date-select",
+            onchange: (e) => {
+              state.dateFilter = e.target.value;
+              render();
+            },
+          }, [
+            $("option", { value: "all", selected: state.dateFilter === "all" }, "All dates"),
+            $("option", { value: today(), selected: state.dateFilter === today() }, `Today · ${today()}`),
+          ]),
+        !onHome && canAssignTasks()
           ? $("button", {
             class: "btn primary compact",
             onclick: () => {
@@ -5818,7 +5835,6 @@ function viewChrome() {
               state.draft = null;
               state.dueDraft = today();
               state.dueMonth = today().slice(0, 7);
-              state.appsOpen = false;
               render();
             },
           }, "New task")
@@ -5834,7 +5850,6 @@ function viewChrome() {
         $("button", { class: "btn ghost compact", onclick: logout }, "Log out"),
       ]),
     ]),
-    viewAppSwitcher(),
   ];
 }
 
@@ -5865,13 +5880,14 @@ function render(force) {
     return;
   }
 
-  root.className = state.view === "board" ? "board-mode" : "";
+  root.className = state.view === "board" ? "board-mode" : (isAppsHome() ? "apps-mode" : "");
   root.append(...viewChrome().filter(Boolean));
   const note = banner();
   if (note) root.append(note);
 
   const main = $("main");
-  if (state.view === "my") viewMy().filter(Boolean).forEach((el) => main.append(el));
+  if (isAppsHome()) main.append(viewAppsHome());
+  else if (state.view === "my") viewMy().filter(Boolean).forEach((el) => main.append(el));
   else if (state.view === "board") main.append(viewBoard());
   else if (state.view === "load") main.append(viewWorkload());
   else if (state.view === "attend") main.append(viewAttendance());
@@ -5883,7 +5899,7 @@ function render(force) {
   else if (state.view === "hr" && isAdmin()) main.append(viewHr());
   else if (state.view === "admin-guide" && isAdmin()) main.append(viewAdminGuide());
   else if (state.view === "guide") main.append(viewGuide());
-  else main.append(viewBoard());
+  else main.append(viewAppsHome());
   root.append(main);
 
   // Mount overlays on body so position:fixed is always viewport-relative

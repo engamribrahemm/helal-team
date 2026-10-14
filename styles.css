@@ -436,42 +436,58 @@ h3 { font-size: 12px; font-weight: 600; }
   max-width: 160px;
 }
 
-.app-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  background: var(--overlay);
+.app-back {
+  flex-shrink: 0;
+}
+.apps-home {
   display: grid;
-  place-items: start center;
-  padding: 72px 16px 24px;
-  animation: fade-in 0.2s var(--ease) both;
+  gap: 22px;
+  max-width: 880px;
+  margin: 12px auto 0;
+  animation: soft-pop 0.45s var(--ease) both;
 }
-.app-drawer {
-  width: min(720px, 100%);
-  max-height: min(78vh, 640px);
-  overflow: auto;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: linear-gradient(180deg, var(--card-top), var(--card-bot));
-  box-shadow: var(--shadow);
-  padding: 16px;
-  animation: soft-pop 0.28s var(--ease) both;
-}
-.app-drawer-head {
+.apps-home-hero {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    radial-gradient(480px 140px at 0% 0%, rgba(245, 196, 0, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--card-top), var(--card-bot));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
 }
-.app-drawer-head strong {
-  font-size: 15px;
-  letter-spacing: -0.01em;
+.apps-home-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid rgba(245, 196, 0, 0.28);
+  flex-shrink: 0;
+}
+.apps-home-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.apps-home-copy h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+.apps-home-copy .muted {
+  margin: 0;
+  font-size: 13px;
 }
 .app-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
   gap: 10px;
+}
+.app-grid.home {
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 14px;
 }
 .app-tile {
   display: grid;
@@ -480,15 +496,22 @@ h3 { font-size: 12px; font-weight: 600; }
   padding: 14px 8px 12px;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: var(--bg);
+  background: linear-gradient(180deg, var(--card-top), var(--card-bot));
   color: var(--text);
   cursor: pointer;
   transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.app-tile.large {
+  padding: 20px 10px 16px;
+  border-radius: 16px;
+  gap: 12px;
+  min-height: 132px;
 }
 .app-tile:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: var(--line-strong);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
 }
 .app-tile.on {
   border-color: var(--gold);
@@ -503,16 +526,28 @@ h3 { font-size: 12px; font-weight: 600; }
   color: var(--ink);
   background: var(--gold);
 }
+.app-tile.large .app-tile-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+}
 .app-tile-icon svg {
   width: 24px;
   height: 24px;
   display: block;
+}
+.app-tile.large .app-tile-icon svg {
+  width: 26px;
+  height: 26px;
 }
 .app-tile-label {
   font-size: 12px;
   font-weight: 650;
   text-align: center;
   line-height: 1.25;
+}
+.app-tile.large .app-tile-label {
+  font-size: 13px;
 }
 .app-tile.tone-board .app-tile-icon { background: #f5c400; }
 .app-tile.tone-my .app-tile-icon { background: #6db3f2; }
@@ -2140,8 +2175,10 @@ span.attend-chip {
   .report-task-pcts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .report-foot .btn.primary { width: 100%; }
   .top { padding: 4px 6px; }
-  .app-overlay { padding-top: 64px; }
-  .app-grid { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
+  .app-grid.home { grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 10px; }
+  .app-tile.large { min-height: 118px; padding: 16px 8px 14px; }
+  .apps-home-hero { padding: 14px; }
+  .apps-home-copy h2 { font-size: 18px; }
   .app-menu-copy span { max-width: 110px; }
   .login-shell { grid-template-columns: 1fr; min-height: 0; border-radius: 18px; }
   .login-brand {
