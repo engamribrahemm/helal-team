@@ -459,7 +459,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-15T18:42:12.907Z",
+      "updated_at": "2026-10-15T20:39:13.885Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,8 +478,8 @@
           "review": 0,
           "overdue": 3,
           "done": 6,
-          "hours": 82.0570612962963,
-          "live": 102.98333333333333
+          "hours": 82.7070612962963,
+          "live": 104.93333333333334
         },
         "Judi": {
           "open": 2,
@@ -498,8 +498,8 @@
           "review": 0,
           "overdue": 4,
           "done": 10,
-          "hours": 28.022488762626264,
-          "live": 196.65
+          "hours": 28.19976148989899,
+          "live": 198.6
         },
         "Alaa": {
           "open": 2,
@@ -508,8 +508,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 38.12467940972222,
-          "live": 118.73333333333333
+          "hours": 38.368429409722225,
+          "live": 120.68333333333334
         },
         "Ganna": {
           "open": 4,
@@ -518,8 +518,8 @@
           "review": 1,
           "overdue": 0,
           "done": 11,
-          "hours": 58.055837638888896,
-          "live": 93.28333333333333
+          "hours": 58.54333763888888,
+          "live": 99.13333333333334
         },
         "Moamen": {
           "open": 0,
@@ -563,8 +563,8 @@
         },
         "Salma": {
           "open": 1,
-          "todo": 1,
-          "progress": 0,
+          "todo": 0,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 0,
@@ -573,8 +573,8 @@
         }
       },
       "time": {
-        "avgTodo": 13551,
-        "avgProgress": 3043,
+        "avgTodo": 14021,
+        "avgProgress": 3061,
         "open": 43
       },
       "hr": {
@@ -5637,18 +5637,20 @@
           "title": "Finalize Content for 3 Proposals",
           "notes": "",
           "due": "2026-10-16",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-13",
           "month": "2026-10",
           "created_by": "Aya",
           "created_at": "2026-10-13T19:28:12.624Z",
-          "updated_at": "2026-10-13T19:28:41.272Z",
-          "updated_by": "Aya",
+          "updated_at": "2026-10-15T20:39:13.845Z",
+          "updated_by": "Salma",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-15T20:39:13.845Z",
+          "progress_started_at": "2026-10-15T20:39:13.845Z",
+          "time_log": [],
+          "start_on": "2026-10-15"
         }
       ]
     },
