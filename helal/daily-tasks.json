@@ -459,7 +459,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-14T18:41:30.583Z",
+      "updated_at": "2026-10-15T18:42:12.907Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -478,15 +478,15 @@
           "review": 0,
           "overdue": 3,
           "done": 6,
-          "hours": 74.05150574074075,
-          "live": 78.96666666666667
+          "hours": 82.0570612962963,
+          "live": 102.98333333333333
         },
         "Judi": {
           "open": 2,
           "todo": 0,
           "progress": 0,
           "review": 2,
-          "overdue": 1,
+          "overdue": 2,
           "done": 3,
           "hours": 190.90971402777777,
           "live": 0
@@ -496,10 +496,10 @@
           "todo": 13,
           "progress": 1,
           "review": 0,
-          "overdue": 2,
+          "overdue": 4,
           "done": 10,
-          "hours": 25.83915542929293,
-          "live": 172.63333333333333
+          "hours": 28.022488762626264,
+          "live": 196.65
         },
         "Alaa": {
           "open": 2,
@@ -508,8 +508,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 35.12259607638889,
-          "live": 94.71666666666667
+          "hours": 38.12467940972222,
+          "live": 118.73333333333333
         },
         "Ganna": {
           "open": 4,
@@ -518,8 +518,8 @@
           "review": 1,
           "overdue": 0,
           "done": 11,
-          "hours": 52.05167097222223,
-          "live": 21.23333333333333
+          "hours": 58.055837638888896,
+          "live": 93.28333333333333
         },
         "Moamen": {
           "open": 0,
@@ -536,7 +536,7 @@
           "todo": 12,
           "progress": 0,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 2,
           "hours": 0.043764722222222226,
           "live": 0
@@ -544,19 +544,19 @@
         "Rahma": {
           "open": 1,
           "todo": 0,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 2,
-          "hours": 14.02549138888889,
-          "live": 28.05
+          "hours": 0.0009827777777777777,
+          "live": 0
         },
         "Aya": {
           "open": 4,
           "todo": 3,
           "progress": 0,
           "review": 1,
-          "overdue": 1,
+          "overdue": 2,
           "done": 0,
           "hours": 0,
           "live": 0
@@ -573,8 +573,8 @@
         }
       },
       "time": {
-        "avgTodo": 12157,
-        "avgProgress": 2793,
+        "avgTodo": 13551,
+        "avgProgress": 3043,
         "open": 43
       },
       "hr": {
@@ -5429,20 +5429,33 @@
           "title": "design one concept option for the 4th dimension",
           "notes": "",
           "due": "2026-10-15",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1OpXO8yyR9nASEhON0FlnvZ7O0n4hgjEO?usp=drive_link",
           "drive_missing": false,
           "assigned_at": "2026-10-13",
           "month": "2026-10",
           "created_by": "Seif",
           "created_at": "2026-10-13T14:30:20.688Z",
-          "updated_at": "2026-10-13T14:38:18.147Z",
+          "updated_at": "2026-10-15T18:42:12.883Z",
           "updated_by": "Rahma",
           "revisions": 0,
           "first_progress_at": "2026-10-13T14:38:18.147Z",
-          "progress_started_at": "2026-10-13T14:38:18.147Z",
-          "time_log": [],
-          "start_on": "2026-10-13"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-13T14:38:18.147Z",
+              "ended_at": "2026-10-15T18:42:12.883Z",
+              "hours": 52.06520444444445,
+              "by": "Rahma"
+            }
+          ],
+          "start_on": "2026-10-13",
+          "progress_hours": 52.06520444444445,
+          "review_at": "2026-10-15T18:42:12.883Z",
+          "first_review_at": "2026-10-15T18:42:12.883Z",
+          "delivered_on": "2026-10-15"
         }
       ]
     },
