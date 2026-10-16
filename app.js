@@ -1377,18 +1377,21 @@ function mergeById(remote = [], local = []) {
 }
 
 function mergePayroll(remote, local) {
-  const a = remote || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [] };
-  const b = local || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [] };
+  const a = remote || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [], sheet: null };
+  const b = local || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [], sheet: null };
   const scheduled = { ...(a.scheduled_days || {}) };
   for (const [name, months] of Object.entries(b.scheduled_days || {})) {
     scheduled[name] = { ...(scheduled[name] || {}), ...(months || {}) };
   }
+  const aSheet = Date.parse(a.sheet?.imported_at || 0) || 0;
+  const bSheet = Date.parse(b.sheet?.imported_at || 0) || 0;
   return {
     base: { ...(a.base || {}), ...(b.base || {}) },
     interns: [...new Set([...(a.interns || []), ...(b.interns || [])])],
     scheduled_days: scheduled,
     manual: mergeById(a.manual || [], b.manual || []),
     waived: [...new Set([...(a.waived || []), ...(b.waived || [])])],
+    sheet: bSheet >= aSheet ? (b.sheet || a.sheet || null) : (a.sheet || b.sheet || null),
   };
 }
 
@@ -3337,6 +3340,7 @@ function ensurePayroll() {
   if (!hr.payroll.scheduled_days) hr.payroll.scheduled_days = {};
   if (!Array.isArray(hr.payroll.manual)) hr.payroll.manual = [];
   if (!Array.isArray(hr.payroll.waived)) hr.payroll.waived = [];
+  if (!hr.payroll.sheet || typeof hr.payroll.sheet !== "object") hr.payroll.sheet = null;
   return hr.payroll;
 }
 
@@ -3599,16 +3603,22 @@ function waivePayrollViolation(id) {
   saveHr(`payroll: waive ${id}`);
 }
 
+function payrollMembers() {
+  // Include Amr — Sheet 2026 has his base salary for deductions/net pay.
+  return people();
+}
+
 function viewPayroll() {
   if (!isAdmin()) return $("p", { class: "empty" }, "Admins only.");
   const month = clampPayrollMonth(state.payrollMonth || thisMonth());
   state.payrollMonth = month;
   const canPrev = shiftYm(month, -1) >= PAYROLL_START_MONTH;
-  const roster = hrMembers();
+  const roster = payrollMembers();
   if (state.payrollPerson && !roster.some((p) => p.name === state.payrollPerson)) state.payrollPerson = "";
   const who = state.payrollPerson || "";
   const rows = (who ? roster.filter((p) => samePerson(p.name, who)) : roster)
     .map((p) => summarizePayroll(p.name, month));
+  const sheetMeta = ensurePayroll().sheet;
 
   const whoSel = $("select", {
     class: "date-select",
@@ -3629,7 +3639,7 @@ function viewPayroll() {
     pageShell(
       pageHero(
         "Salaries & performance",
-        `Counting from ${monthLabel(PAYROLL_START_MONTH)}. Auto: late tasks + missing reports. Cap: 5 penalty days/month. Interns get training days, not money cuts.`,
+        `Bases from Sheet 2026. Counting from ${monthLabel(PAYROLL_START_MONTH)}. Auto: late tasks + missing reports. Cap: 5 penalty days/month.`,
         { label: "Month", value: monthLabel(month) }
       ),
       $("div", { class: "page-body" }, [
@@ -3648,8 +3658,11 @@ function viewPayroll() {
           $("button", { class: "btn ghost", type: "button", onclick: () => { state.payrollMonth = shiftYm(month, 1); render(); } }, "Next"),
           whoSel,
         ]),
-        $("p", { class: "muted" }, `Deductions start ${monthLabel(PAYROLL_START_MONTH)} — nothing before that counts. Full-time day = base ÷ 30. Part-time day = base ÷ scheduled days. Absence = unpaid day + 2 penalty days (unpaid outside the 5-day cap).`),
-      ])
+        $("p", { class: "muted" }, `Deductions start ${monthLabel(PAYROLL_START_MONTH)}. Day = base ÷ 30 (full-time). Absence = unpaid day + 2 penalty days (unpaid outside the 5-day cap).`),
+        sheetMeta?.file
+          ? $("p", { class: "muted" }, `Imported from ${sheetMeta.file}${sheetMeta.imported_at ? ` · ${cairoDate(sheetMeta.imported_at)}` : ""}. Not on Helal board (skipped): عبدالله، تسنيم، رامز، محمد وائل. Judi / Aya / Salma / Rahma have no row in the sheet yet — set base manually.`)
+          : null,
+      ].filter(Boolean))
     ),
 
     pageSection("Team sheet", "Net pay after capped penalties. Performance score is from HR evaluations this month.", [

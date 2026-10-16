@@ -1,5 +1,5 @@
 {
-  "note": "HR evaluation, salaries, and Helal penalties policy.",
+  "note": "HR evaluation, salaries from Sheet 2026, Helal penalties policy.",
   "reset_at": "2026-09-05T14:12:00.000Z",
   "weights": {
     "delivery": 35,
@@ -659,12 +659,37 @@
       "frozen": false
     }
   },
-  "updated_at": "2026-10-12T23:02:30.689Z",
+  "updated_at": "2026-10-16T17:25:47.761Z",
   "payroll": {
-    "base": {},
+    "base": {
+      "Moamen": 10000,
+      "Amr": 15000,
+      "Mariam": 3000,
+      "Alaa": 6000,
+      "Seif": 4000,
+      "Mohamed": 6000,
+      "Ganna": 4000
+    },
     "interns": [],
     "scheduled_days": {},
     "manual": [],
-    "waived": []
+    "waived": [],
+    "sheet": {
+      "file": "Sheet 2026.xlsx",
+      "imported_at": "2026-10-16T17:25:47.761Z",
+      "notes": {
+        "Seif": "Sheet base was 0; used monthly entitlement 4000",
+        "Ganna": "Sheet base was 0; used monthly entitlement 4000"
+      },
+      "entitlements": {
+        "Moamen": 10000,
+        "Amr": 15000,
+        "Mariam": 4000,
+        "Alaa": 6000,
+        "Seif": 4000,
+        "Mohamed": 6000,
+        "Ganna": 4000
+      }
+    }
   }
 }
