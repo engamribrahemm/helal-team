@@ -79,7 +79,9 @@
     "t-20261022-seif-muo7q78n",
     "t-20261020-seif-muobkko0",
     "t-20261020-seif-muo7pkst",
-    "t-20261018-seif-muobjvnj"
+    "t-20261018-seif-muobjvnj",
+    "t-20261018-seif-muo7osn8",
+    "t-20261016-seif-muo7o48f"
   ],
   "statuses": [
     "To do",
@@ -467,7 +469,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T14:14:59.472Z",
+      "updated_at": "2026-10-16T14:15:04.555Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -500,14 +502,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 6,
-          "todo": 5,
+          "open": 5,
+          "todo": 4,
           "progress": 1,
           "review": 0,
           "overdue": 4,
           "done": 10,
-          "hours": 29.79824633838384,
-          "live": 216.18333333333334
+          "hours": 29.79976148989899,
+          "live": 216.2
         },
         "Alaa": {
           "open": 2,
@@ -581,9 +583,9 @@
         }
       },
       "time": {
-        "avgTodo": 12158,
+        "avgTodo": 11641,
         "avgProgress": 3169,
-        "open": 35
+        "open": 34
       },
       "hr": {
         "people": {
@@ -5555,27 +5557,6 @@
       "source": "Helal board",
       "tasks": [
         {
-          "id": "t-20261016-seif-muo7o48f",
-          "who": "Seif",
-          "space": "Graphic",
-          "project": "OSAMA HELAL",
-          "title": "Delivery of Carousel No. 17 and Single Post No. 18",
-          "notes": "",
-          "due": "2026-10-16",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T14:39:10.960Z",
-          "updated_at": "2026-09-30T14:39:10.960Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
-        {
           "id": "t-20261016-alaa-muocndul",
           "who": "Alaa",
           "space": "Graphic",
@@ -5762,27 +5743,6 @@
       "date": "2026-10-18",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261018-seif-muo7osn8",
-          "who": "Seif",
-          "space": "Graphic",
-          "project": "OSAMA HELAL",
-          "title": "Delivery of Carousel No. 19 and Single Post No. 20",
-          "notes": "",
-          "due": "2026-10-18",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T14:39:42.597Z",
-          "updated_at": "2026-09-30T14:39:42.597Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20261018-ganna-muzkipaq",
           "who": "Mohamed",
