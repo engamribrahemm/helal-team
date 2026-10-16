@@ -95,6 +95,8 @@ const state = {
   hrQuarter: "",
   hrMonth: "",
   hrPerson: "",
+  payrollMonth: "",
+  payrollPerson: "",
   evalTaskId: null,
   editPersonName: null,
   pendingDelay: null,
@@ -1113,7 +1115,7 @@ function canonicalHrWeights() {
 
 function emptyHr() {
   return {
-    note: "HR evaluation system. Rewards and deductions come later.",
+    note: "HR evaluation, salaries, and Helal penalties policy.",
     reset_at: BOARD_RESET,
     weights: canonicalHrWeights(),
     work: {},
@@ -1121,6 +1123,7 @@ function emptyHr() {
     attitude: [],
     warnings: [],
     rewards: [],
+    payroll: { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [] },
     months: {},
   };
 }
@@ -1373,6 +1376,22 @@ function mergeById(remote = [], local = []) {
   return [...byId.values()];
 }
 
+function mergePayroll(remote, local) {
+  const a = remote || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [] };
+  const b = local || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [] };
+  const scheduled = { ...(a.scheduled_days || {}) };
+  for (const [name, months] of Object.entries(b.scheduled_days || {})) {
+    scheduled[name] = { ...(scheduled[name] || {}), ...(months || {}) };
+  }
+  return {
+    base: { ...(a.base || {}), ...(b.base || {}) },
+    interns: [...new Set([...(a.interns || []), ...(b.interns || [])])],
+    scheduled_days: scheduled,
+    manual: mergeById(a.manual || [], b.manual || []),
+    waived: [...new Set([...(a.waived || []), ...(b.waived || [])])],
+  };
+}
+
 function mergeHr(remote, local) {
   const a = remote || emptyHr();
   const b = local || emptyHr();
@@ -1390,6 +1409,7 @@ function mergeHr(remote, local) {
     attitude: mergeById(lists(a, "attitude"), lists(b, "attitude")),
     warnings: mergeById(lists(a, "warnings"), lists(b, "warnings")),
     rewards: mergeById(lists(a, "rewards"), lists(b, "rewards")),
+    payroll: mergePayroll(a.payroll, b.payroll),
     months: mergeMonthArchives(a.months, b.months, state.hrFile?.months),
   };
 }
@@ -2969,6 +2989,12 @@ function ensureHr() {
   if (!state.hrFile.warnings) state.hrFile.warnings = [];
   if (!state.hrFile.work) state.hrFile.work = {};
   if (!state.hrFile.months) state.hrFile.months = {};
+  if (!state.hrFile.payroll) state.hrFile.payroll = { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [] };
+  if (!state.hrFile.payroll.base) state.hrFile.payroll.base = {};
+  if (!Array.isArray(state.hrFile.payroll.interns)) state.hrFile.payroll.interns = [];
+  if (!state.hrFile.payroll.scheduled_days) state.hrFile.payroll.scheduled_days = {};
+  if (!Array.isArray(state.hrFile.payroll.manual)) state.hrFile.payroll.manual = [];
+  if (!Array.isArray(state.hrFile.payroll.waived)) state.hrFile.payroll.waived = [];
   state.hrFile.weights = canonicalHrWeights();
   return state.hrFile;
 }
@@ -3269,6 +3295,499 @@ function profileBar(label, value) {
     $("strong", { class: scoreTone(n) }, formatScore(n)),
   ]);
 }
+
+const PAYROLL_CODES = {
+  late_attendance: { label: "Late attendance", days: 0.5, auto: false, penalty: true },
+  late_task: { label: "Late task delivery", days: 0.5, auto: true, penalty: true },
+  missing_report: { label: "Missing daily report", days: 1, auto: true, penalty: true },
+  missing_schedule: { label: "Missing weekly schedule (Thu 10pm)", days: 0.5, auto: false, penalty: true },
+  absence: { label: "Absence without prior leave", days: 3, unpaid: 1, penalty_days: 2, auto: false, penalty: true },
+  admin_instruction: { label: "Admin instruction breach", days: 1, max_days: 3, auto: false, penalty: true },
+  poor_quality: { label: "Poor work quality", days: 1, auto: false, penalty: true },
+  gross: { label: "Gross misconduct (investigation)", days: 0, auto: false, penalty: false },
+};
+
+function emptyPayroll() {
+  return {
+    base: {},
+    interns: [],
+    scheduled_days: {},
+    manual: [],
+    waived: [],
+  };
+}
+
+function ensurePayroll() {
+  const hr = ensureHr();
+  if (!hr.payroll || typeof hr.payroll !== "object") hr.payroll = emptyPayroll();
+  if (!hr.payroll.base) hr.payroll.base = {};
+  if (!Array.isArray(hr.payroll.interns)) hr.payroll.interns = [];
+  if (!hr.payroll.scheduled_days) hr.payroll.scheduled_days = {};
+  if (!Array.isArray(hr.payroll.manual)) hr.payroll.manual = [];
+  if (!Array.isArray(hr.payroll.waived)) hr.payroll.waived = [];
+  return hr.payroll;
+}
+
+function payrollBase(name) {
+  const n = Number(ensurePayroll().base[name]);
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+function isPayrollIntern(name) {
+  return ensurePayroll().interns.some((n) => samePerson(n, name));
+}
+
+function payrollScheduledDays(name, month) {
+  const map = ensurePayroll().scheduled_days[name];
+  if (map && Number(map[month]) > 0) return Number(map[month]);
+  const work = workFor(name);
+  if (work.type === "Part-time" && Number(work.scheduled_days) > 0) return Number(work.scheduled_days);
+  return 30;
+}
+
+function payrollDayValue(name, month) {
+  const base = payrollBase(name);
+  if (!base) return 0;
+  const work = workFor(name);
+  if (work.type === "Part-time") {
+    const days = payrollScheduledDays(name, month) || 1;
+    return base / days;
+  }
+  return base / 30;
+}
+
+function workdayNameSet(name) {
+  const raw = String(workFor(name).days || "Sun–Thu").replace(/–/g, "-");
+  const names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const bits = raw.split(/[-,/]/).map((s) => s.trim()).filter(Boolean);
+  if (bits.length === 2 && names.includes(bits[0]) && names.includes(bits[1])) {
+    const a = names.indexOf(bits[0]);
+    const b = names.indexOf(bits[1]);
+    const set = new Set();
+    for (let i = a; ; i = (i + 1) % 7) {
+      set.add(names[i]);
+      if (i === b) break;
+    }
+    return set;
+  }
+  const set = new Set(bits.filter((p) => names.includes(p)));
+  return set.size ? set : new Set(["Sun", "Mon", "Tue", "Wed", "Thu"]);
+}
+
+function isWorkdayFor(name, date) {
+  return workdayNameSet(name).has(cairoWeekday(date));
+}
+
+function payrollWaivedSet() {
+  return new Set(ensurePayroll().waived || []);
+}
+
+function autoPayrollViolations(name, month) {
+  const out = [];
+  const waived = payrollWaivedSet();
+  const dates = monthDates(month, { untilToday: true });
+
+  for (const task of allTasks()) {
+    if (!samePerson(task.who, name)) continue;
+    if (!isLateTask(task) || delayExcused(task)) continue;
+    const when = deliveryDate(task) || task.done_on || today();
+    if (!inMonth(when, month)) continue;
+    const id = `auto-late-task-${task.id}`;
+    if (waived.has(id)) continue;
+    out.push({
+      id,
+      who: name,
+      month,
+      code: "late_task",
+      days: 0.5,
+      penalty_days: 0.5,
+      unpaid_days: 0,
+      source: "auto",
+      ref: task.id,
+      note: `Late task: ${task.title || task.id} (due ${task.due}, delivered ${when})`,
+      date: when,
+    });
+  }
+
+  for (const day of dates) {
+    if (!isWorkdayFor(name, day)) continue;
+    if (day === today()) continue;
+    const mode = attendDaysFor(name, fridayStart(day))[day];
+    if (mode === "Off") continue;
+    if (reportFor(name, day)) continue;
+    const id = `auto-report-${name}-${day}`;
+    if (waived.has(id)) continue;
+    out.push({
+      id,
+      who: name,
+      month,
+      code: "missing_report",
+      days: 1,
+      penalty_days: 1,
+      unpaid_days: 0,
+      source: "auto",
+      ref: day,
+      note: `No daily report on ${day}`,
+      date: day,
+    });
+  }
+
+  return out;
+}
+
+function manualPayrollViolations(name, month) {
+  const waived = payrollWaivedSet();
+  return (ensurePayroll().manual || []).filter((row) => {
+    if (!samePerson(row.who, name)) return false;
+    if (row.month && row.month !== month) return false;
+    if (!row.month && row.date && !inMonth(row.date, month)) return false;
+    if (waived.has(row.id)) return false;
+    return true;
+  }).map((row) => {
+    const meta = PAYROLL_CODES[row.code] || { label: row.code, days: Number(row.days) || 0 };
+    let days = Number(row.days);
+    if (!Number.isFinite(days) || days <= 0) days = meta.days || 0;
+    if (row.code === "admin_instruction" && meta.max_days) days = Math.min(days, meta.max_days);
+    const unpaid = row.code === "absence" ? (Number(row.unpaid_days) || meta.unpaid || 1) : 0;
+    const penalty = row.code === "absence"
+      ? (Number(row.penalty_days) || meta.penalty_days || 2)
+      : days;
+    return {
+      ...row,
+      days: row.code === "absence" ? unpaid + penalty : days,
+      penalty_days: penalty,
+      unpaid_days: unpaid,
+      source: "manual",
+      note: row.note || meta.label,
+    };
+  });
+}
+
+function payrollViolationsFor(name, month) {
+  return [...autoPayrollViolations(name, month), ...manualPayrollViolations(name, month)]
+    .sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")));
+}
+
+function payrollCapDays() {
+  return 5;
+}
+
+function summarizePayroll(name, month) {
+  const base = payrollBase(name);
+  const dayValue = payrollDayValue(name, month);
+  const intern = isPayrollIntern(name);
+  const violations = payrollViolationsFor(name, month);
+  let penaltyDays = violations.reduce((s, v) => s + (Number(v.penalty_days) || 0), 0);
+  const unpaidDays = violations.reduce((s, v) => s + (Number(v.unpaid_days) || 0), 0);
+  const rawPenaltyDays = penaltyDays;
+  const capped = Math.min(penaltyDays, payrollCapDays());
+  const dropped = Math.max(0, rawPenaltyDays - capped);
+  penaltyDays = capped;
+  const penaltyAmount = dayValue * penaltyDays;
+  const unpaidAmount = dayValue * unpaidDays;
+  const totalDeduct = penaltyAmount + unpaidAmount;
+  const net = Math.max(0, base - totalDeduct);
+  const score = personScore(name, month);
+  const extensionDays = intern ? (penaltyDays + unpaidDays) : 0;
+  return {
+    name,
+    month,
+    base,
+    dayValue,
+    halfDay: dayValue / 2,
+    intern,
+    violations,
+    rawPenaltyDays,
+    penaltyDays,
+    unpaidDays,
+    dropped,
+    capDays: payrollCapDays(),
+    penaltyAmount,
+    unpaidAmount,
+    totalDeduct,
+    net: intern ? null : net,
+    extensionDays,
+    score,
+    work: workFor(name),
+  };
+}
+
+function formatEGP(n) {
+  const v = Number(n) || 0;
+  return `${v.toLocaleString("en-EG", { maximumFractionDigits: 2 })} EGP`;
+}
+
+function formatDays(n) {
+  const v = Number(n) || 0;
+  return `${v % 1 === 0 ? v : v.toFixed(1)} day${v === 1 ? "" : "s"}`;
+}
+
+function savePayrollSettings({ name, amount, month, scheduledDays, intern }) {
+  const pay = ensurePayroll();
+  const n = Number(amount);
+  if (!name || !(n > 0)) {
+    state.saveState = "error";
+    state.saveError = "Enter a valid base salary (EGP).";
+    render();
+    return;
+  }
+  pay.base[name] = Math.round(n * 100) / 100;
+  if (!pay.scheduled_days[name]) pay.scheduled_days[name] = {};
+  const sched = Number(scheduledDays);
+  if (sched > 0) pay.scheduled_days[name][month] = sched;
+  else if (month) delete pay.scheduled_days[name][month];
+  const set = new Set(pay.interns);
+  if (intern) set.add(name);
+  else {
+    for (const existing of [...set]) if (samePerson(existing, name)) set.delete(existing);
+  }
+  pay.interns = [...set];
+  saveHr(`payroll: settings for ${name}`);
+}
+
+function addManualPayrollViolation({ who, month, code, days, note }) {
+  const pay = ensurePayroll();
+  const meta = PAYROLL_CODES[code];
+  if (!meta) return;
+  let d = Number(days);
+  if (!Number.isFinite(d) || d <= 0) d = meta.days || 0;
+  if (code === "admin_instruction") d = Math.min(Math.max(d, 1), meta.max_days || 3);
+  const row = {
+    id: `pay-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
+    who,
+    month,
+    code,
+    days: d,
+    unpaid_days: code === "absence" ? 1 : 0,
+    penalty_days: code === "absence" ? 2 : d,
+    note: note || meta.label,
+    by: state.who,
+    date: today(),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+  pay.manual.push(row);
+  saveHr(`payroll: ${code} for ${who}`);
+}
+
+function waivePayrollViolation(id) {
+  if (!id) return;
+  const pay = ensurePayroll();
+  if (!pay.waived.includes(id)) pay.waived.push(id);
+  saveHr(`payroll: waive ${id}`);
+}
+
+function viewPayroll() {
+  if (!isAdmin()) return $("p", { class: "empty" }, "Admins only.");
+  const month = state.payrollMonth || state.hrMonth || thisMonth();
+  state.payrollMonth = month;
+  const roster = hrMembers();
+  if (state.payrollPerson && !roster.some((p) => p.name === state.payrollPerson)) state.payrollPerson = "";
+  const who = state.payrollPerson || "";
+  const rows = (who ? roster.filter((p) => samePerson(p.name, who)) : roster)
+    .map((p) => summarizePayroll(p.name, month));
+
+  const whoSel = $("select", {
+    class: "date-select",
+    onchange: (e) => { state.payrollPerson = e.target.value; render(); },
+  }, [
+    $("option", { value: "", selected: !who }, "Everyone"),
+    ...roster.map((p) => $("option", { value: p.name, selected: p.name === who }, p.name)),
+  ]);
+
+  const codeSel = $("select", {}, Object.entries(PAYROLL_CODES).filter(([, m]) => m.days > 0 || m.label.includes("investigation")).map(([code, meta]) =>
+    $("option", { value: code }, meta.label)
+  ));
+  const daysIn = $("input", { type: "number", min: "0.5", step: "0.5", value: "1", placeholder: "Days" });
+  const noteIn = $("input", { placeholder: "Note (optional)" });
+  const whoManual = $("select", {}, roster.map((p) => $("option", { value: p.name, selected: p.name === (who || roster[0]?.name) }, p.name)));
+
+  return $("div", { class: "page-stack payroll-page" }, [
+    pageShell(
+      pageHero(
+        "Salaries & performance",
+        "Base salary ÷ day rules from Helal penalties policy. Auto: late tasks + missing reports. Cap: 5 penalty days/month. Interns get training days, not money cuts.",
+        { label: "Month", value: monthLabel(month) }
+      ),
+      $("div", { class: "page-body" }, [
+        $("div", { class: "cal-nav" }, [
+          $("button", { class: "btn ghost", type: "button", onclick: () => { state.payrollMonth = shiftYm(month, -1); render(); } }, "Prev"),
+          $("h2", {}, monthLabel(month)),
+          $("button", { class: "btn ghost", type: "button", onclick: () => { state.payrollMonth = shiftYm(month, 1); render(); } }, "Next"),
+          whoSel,
+        ]),
+        $("p", { class: "muted" }, "Full-time day = base ÷ 30. Part-time day = base ÷ scheduled days that month. Half day = half of day value. Absence = unpaid day + 2 penalty days (unpaid day outside the 5-day penalty cap)."),
+      ])
+    ),
+
+    pageSection("Team sheet", "Net pay after capped penalties. Performance score is from HR evaluations this month.", [
+      $("div", { class: "table-wrap" }, [
+        $("table", { class: "load-table payroll-table" }, [
+          $("thead", {}, $("tr", {}, [
+            $("th", {}, "Person"),
+            $("th", {}, "Base"),
+            $("th", {}, "Day"),
+            $("th", {}, "Violations"),
+            $("th", {}, "Penalty"),
+            $("th", {}, "Unpaid"),
+            $("th", {}, "Net / extend"),
+            $("th", {}, "Perf."),
+            $("th", {}, ""),
+          ])),
+          $("tbody", {}, rows.length ? rows.map((row) => {
+            const tone = row.totalDeduct > 0 ? "tone-orange" : "";
+            return $("tr", { class: tone }, [
+              $("td", {}, [
+                $("strong", {}, row.name),
+                $("span", { class: "muted" }, ` · ${row.work.type}${row.intern ? " · Intern" : ""}`),
+              ]),
+              $("td", {}, row.base ? formatEGP(row.base) : "— set base"),
+              $("td", {}, row.base ? formatEGP(row.dayValue) : "—"),
+              $("td", {}, String(row.violations.length)),
+              $("td", {}, row.intern
+                ? formatDays(row.penaltyDays)
+                : `${formatDays(row.penaltyDays)}${row.dropped ? ` (capped −${formatDays(row.dropped)})` : ""} · ${formatEGP(row.penaltyAmount)}`),
+              $("td", {}, row.unpaidDays ? `${formatDays(row.unpaidDays)} · ${formatEGP(row.unpaidAmount)}` : "—"),
+              $("td", {}, row.intern
+                ? `+${formatDays(row.extensionDays)} training`
+                : (row.base ? formatEGP(row.net) : "—")),
+              $("td", {}, row.score.total ? formatScore(row.score.total) : "—"),
+              $("td", {}, $("button", {
+                class: "btn compact",
+                type: "button",
+                onclick: () => { state.payrollPerson = row.name; render(); },
+              }, "Open")),
+            ]);
+          }) : [$("tr", {}, $("td", { colspan: "9" }, $("p", { class: "empty" }, "No people.")))]),
+        ]),
+      ]),
+    ]),
+
+    who ? viewPayrollPerson(who, month) : null,
+
+    pageSection("Set base salary", "Stored in HR. Used only for day-value and deductions.", [
+      (() => {
+        const nameSel = $("select", {}, roster.map((p) => $("option", { value: p.name, selected: p.name === (who || roster[0]?.name) }, p.name)));
+        const amount = $("input", {
+          type: "number",
+          min: "0",
+          step: "50",
+          placeholder: "Base salary EGP",
+          value: String(payrollBase(who || roster[0]?.name) || ""),
+        });
+        const sched = $("input", {
+          type: "number",
+          min: "1",
+          step: "1",
+          placeholder: "Part-time days this month",
+          value: String(payrollScheduledDays(who || roster[0]?.name, month) === 30 ? "" : payrollScheduledDays(who || roster[0]?.name, month)),
+        });
+        const internBox = $("label", { class: "payroll-check" }, [
+          $("input", {
+            type: "checkbox",
+            checked: isPayrollIntern(who || roster[0]?.name),
+          }),
+          " Intern (extend training days, no money deduction)",
+        ]);
+        return $("form", {
+          class: "form payroll-form",
+          onsubmit: (e) => {
+            e.preventDefault();
+            savePayrollSettings({
+              name: nameSel.value,
+              amount: amount.value,
+              month,
+              scheduledDays: sched.value,
+              intern: !!internBox.querySelector("input")?.checked,
+            });
+          },
+        }, [
+          $("label", {}, ["Person", nameSel]),
+          $("label", {}, ["Base salary (EGP)", amount]),
+          $("label", {}, ["Part-time scheduled days (this month)", sched]),
+          internBox,
+          $("button", { class: "btn primary", type: "submit" }, "Save salary settings"),
+        ]);
+      })(),
+    ]),
+
+    pageSection("Add manual violation", "Late attendance, absence, schedule, quality, admin breach — per the Helal penalties policy.", [
+      $("form", {
+        class: "form payroll-form",
+        onsubmit: (e) => {
+          e.preventDefault();
+          addManualPayrollViolation({
+            who: whoManual.value,
+            month,
+            code: codeSel.value,
+            days: daysIn.value,
+            note: noteIn.value.trim(),
+          });
+          noteIn.value = "";
+        },
+      }, [
+        $("label", {}, ["Person", whoManual]),
+        $("label", {}, ["Violation", codeSel]),
+        $("label", {}, ["Days (admin breach max 3)", daysIn]),
+        $("label", {}, ["Note", noteIn]),
+        $("button", { class: "btn primary", type: "submit" }, "Add violation"),
+      ]),
+    ]),
+  ].filter(Boolean));
+}
+
+function viewPayrollPerson(name, month) {
+  const row = summarizePayroll(name, month);
+  return pageSection(`${name} · ${monthLabel(month)}`, row.intern
+    ? "Intern: violations extend training instead of cutting pay."
+    : `Day value ${formatEGP(row.dayValue)} · half day ${formatEGP(row.halfDay)} · penalty cap ${row.capDays} days (${formatEGP(row.dayValue * row.capDays)}).`, [
+    $("div", { class: "payroll-stats" }, [
+      statBox(row.base ? formatEGP(row.base) : "—", "Base"),
+      statBox(row.base ? formatEGP(row.dayValue) : "—", "Day value"),
+      statBox(formatDays(row.penaltyDays), "Penalty days"),
+      statBox(row.intern ? `+${formatDays(row.extensionDays)}` : formatEGP(row.net), row.intern ? "Training extend" : "Net pay"),
+      statBox(row.score.total ? formatScore(row.score.total) : "—", "Performance"),
+    ]),
+    row.dropped
+      ? $("p", { class: "banner warn" }, `Penalty days were ${formatDays(row.rawPenaltyDays)}; monthly cap kept ${formatDays(row.penaltyDays)} (dropped ${formatDays(row.dropped)}). Absence unpaid day stays outside the cap.`)
+      : null,
+    $("div", { class: "table-wrap" }, [
+      $("table", { class: "load-table" }, [
+        $("thead", {}, $("tr", {}, [
+          $("th", {}, "Date"),
+          $("th", {}, "Violation"),
+          $("th", {}, "Days"),
+          $("th", {}, "Amount"),
+          $("th", {}, "Source"),
+          $("th", {}, ""),
+        ])),
+        $("tbody", {}, row.violations.length ? row.violations.map((v) => {
+          const meta = PAYROLL_CODES[v.code] || {};
+          const amount = row.intern ? "—" : formatEGP(row.dayValue * ((Number(v.penalty_days) || 0) + (Number(v.unpaid_days) || 0)));
+          return $("tr", {}, [
+            $("td", {}, v.date || "—"),
+            $("td", {}, [
+              $("strong", {}, meta.label || v.code),
+              $("p", { class: "muted" }, v.note || ""),
+            ]),
+            $("td", {}, [
+              formatDays(v.days),
+              v.unpaid_days ? $("span", { class: "muted" }, ` (${formatDays(v.unpaid_days)} unpaid + ${formatDays(v.penalty_days)} penalty)`) : null,
+            ]),
+            $("td", {}, amount),
+            $("td", {}, v.source),
+            $("td", {}, $("button", {
+              class: "btn ghost compact",
+              type: "button",
+              onclick: () => waivePayrollViolation(v.id),
+            }, "Waive")),
+          ]);
+        }) : [$("tr", {}, $("td", { colspan: "6" }, $("p", { class: "empty" }, "No violations this month.")))]),
+      ]),
+    ]),
+  ]);
+}
+
 
 function viewHr() {
   const month = state.hrMonth || today().slice(0, 7);
@@ -6380,6 +6899,7 @@ function navItems() {
   if (isAdmin()) {
     items.splice(2, 0, ["review", "Dashboard"], ["time", "Time"], ["load", "Workload"]);
     items.push(["hr", "HR"]);
+    items.push(["payroll", "Salaries"]);
     items.push(["people", "People"]);
     items.push(["admin-guide", "Admin guide"]);
   } else if (isSocial() || isLead()) {
@@ -6399,6 +6919,7 @@ const APP_ICONS = {
   drive: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M9 4h6l4 7-4 9H9L5 11z"/><path d="M5 11h14"/></svg>`,
   hr: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c1.5-3 4-4.5 6-4.5S13.5 16 15 19M14 14.5c1.2-.6 2.5-.8 3.5-.8 1.7 0 3.2.8 4.5 2.3"/></svg>`,
   people: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c1.8-4 5-6 8-6s6.2 2 8 6"/></svg>`,
+  payroll: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M8 14h3"/></svg>`,
   guide: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 5h9a3 3 0 0 1 3 3v12H8a3 3 0 0 0-3 3z"/><path d="M8 5v15"/></svg>`,
   "admin-guide": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7z"/><path d="M9 12l2 2 4-4"/></svg>`,
 };
@@ -6414,6 +6935,7 @@ const APP_TONES = {
   drive: "tone-drive",
   hr: "tone-hr",
   people: "tone-people",
+  payroll: "tone-payroll",
   guide: "tone-guide",
   "admin-guide": "tone-admin",
 };
@@ -6797,10 +7319,18 @@ function helpStaticKnowledge() {
       roles: ["admin"],
     },
     {
+      id: "payroll",
+      keys: ["salary", "salaries", "payroll", "deduction", "base salary", "penalties", "خصم"],
+      title: "Salaries",
+      body: "Admins open Salaries. Set base salary. Day = base÷30 (full-time) or base÷scheduled days (part-time). Auto: late tasks ½ day each, missing daily report 1 day. Cap 5 penalty days/month. Absence = unpaid day + 2 penalty days (unpaid outside cap). Interns extend training days instead of money cuts.",
+      go: "payroll",
+      roles: ["admin"],
+    },
+    {
       id: "admin-guide",
       keys: ["admin guide", "read time", "months never mix", "dashboard", "chase"],
       title: "Admin guide",
-      body: "Evening: Time → Everyone → person if needed → HR Performance → Task tracking. Team SOP is separate.",
+      body: "Evening: Time → Everyone → person if needed → HR Performance → Task tracking → Salaries. Team SOP is separate.",
       go: "admin-guide",
       roles: ["admin"],
     },
@@ -7432,6 +7962,7 @@ function render(force) {
   else if (state.view === "drive") main.append(viewDrive());
   else if (state.view === "people" && isAdmin()) main.append(viewPeople());
   else if (state.view === "hr" && isAdmin()) main.append(viewHr());
+  else if (state.view === "payroll" && isAdmin()) main.append(viewPayroll());
   else if (state.view === "admin-guide" && isAdmin()) main.append(viewAdminGuide());
   else if (state.view === "guide") main.append(viewGuide());
   else main.append(viewAppsHome());

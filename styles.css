@@ -796,6 +796,7 @@ h3 { font-size: 12px; font-weight: 600; }
 .app-tile.tone-report .app-tile-icon { background: #f5c400; }
 .app-tile.tone-drive .app-tile-icon { background: #58d68d; }
 .app-tile.tone-hr .app-tile-icon { background: #f1948a; }
+.app-tile.tone-payroll .app-tile-icon { background: #82e0aa; }
 .app-tile.tone-people .app-tile-icon { background: #85c1e9; }
 .app-tile.tone-guide .app-tile-icon { background: #d5dbdb; color: #1a1a1a; }
 .app-tile.tone-admin .app-tile-icon { background: #f7dc6f; }
@@ -2527,6 +2528,34 @@ span.attend-chip {
   display: inline-block;
   text-align: center;
   cursor: default;
+}
+.payroll-page { max-width: 1100px; }
+.payroll-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  align-items: end;
+  max-width: 920px;
+}
+.payroll-form .btn { justify-self: start; }
+.payroll-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  grid-column: 1 / -1;
+}
+.payroll-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.payroll-table td .muted { display: block; margin-top: 2px; }
+.banner.warn {
+  border-color: rgba(245, 196, 0, 0.35);
+  background: rgba(245, 196, 0, 0.1);
+  color: var(--text);
 }
 .hr-tabs {
   display: flex;

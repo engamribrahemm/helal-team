@@ -1,5 +1,5 @@
 {
-  "note": "HR evaluation system. Task delivery, quality, revisions, creativity, hours, and attitude. Rewards and deductions come later.",
+  "note": "HR evaluation, salaries, and Helal penalties policy.",
   "reset_at": "2026-09-05T14:12:00.000Z",
   "weights": {
     "delivery": 35,
@@ -659,5 +659,12 @@
       "frozen": false
     }
   },
-  "updated_at": "2026-10-12T23:02:30.689Z"
+  "updated_at": "2026-10-12T23:02:30.689Z",
+  "payroll": {
+    "base": {},
+    "interns": [],
+    "scheduled_days": {},
+    "manual": [],
+    "waived": []
+  }
 }
