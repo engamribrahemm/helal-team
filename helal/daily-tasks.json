@@ -472,7 +472,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T14:27:45.992Z",
+      "updated_at": "2026-10-16T14:29:17.599Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -491,8 +491,8 @@
           "review": 0,
           "overdue": 3,
           "done": 6,
-          "hours": 88.64039462962963,
-          "live": 122.73333333333333
+          "hours": 88.65150574074075,
+          "live": 122.76666666666667
         },
         "Judi": {
           "open": 2,
@@ -505,14 +505,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 14,
-          "todo": 13,
+          "open": 15,
+          "todo": 14,
           "progress": 1,
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 29.817943308080807,
-          "live": 216.4
+          "hours": 29.820973611111114,
+          "live": 216.43333333333334
         },
         "Alaa": {
           "open": 2,
@@ -521,8 +521,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 40.59342940972222,
-          "live": 138.48333333333332
+          "hours": 40.59759607638889,
+          "live": 138.51666666666668
         },
         "Ganna": {
           "open": 4,
@@ -531,8 +531,8 @@
           "review": 1,
           "overdue": 0,
           "done": 11,
-          "hours": 62.99750430555556,
-          "live": 152.58333333333331
+          "hours": 63.00167097222222,
+          "live": 152.63333333333333
         },
         "Moamen": {
           "open": 0,
@@ -581,14 +581,14 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 17.8,
-          "live": 17.8
+          "hours": 17.816666666666666,
+          "live": 17.816666666666666
         }
       },
       "time": {
-        "avgTodo": 5452,
-        "avgProgress": 3171,
-        "open": 43
+        "avgTodo": 5090,
+        "avgProgress": 3172,
+        "open": 44
       },
       "hr": {
         "people": {
@@ -6260,6 +6260,27 @@
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:27:45.855Z",
           "updated_at": "2026-10-16T14:27:45.855Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261023-seif-mvb2d0ya",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "carousel | 31th Oct",
+          "notes": "",
+          "due": "2026-10-23",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-10-16",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-16T14:29:17.460Z",
+          "updated_at": "2026-10-16T14:29:17.460Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
