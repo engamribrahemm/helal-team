@@ -472,7 +472,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T14:15:24.301Z",
+      "updated_at": "2026-10-16T14:15:33.894Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -505,11 +505,11 @@
           "live": 0
         },
         "Seif": {
-          "open": 2,
-          "todo": 1,
+          "open": 1,
+          "todo": 0,
           "progress": 1,
           "review": 0,
-          "overdue": 2,
+          "overdue": 1,
           "done": 10,
           "hours": 29.79976148989899,
           "live": 216.2
@@ -581,14 +581,14 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 17.583333333333332,
-          "live": 17.583333333333332
+          "hours": 17.6,
+          "live": 17.6
         }
       },
       "time": {
-        "avgTodo": 9746,
+        "avgTodo": 8965,
         "avgProgress": 3169,
-        "open": 31
+        "open": 30
       },
       "hr": {
         "people": {
