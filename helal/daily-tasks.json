@@ -472,7 +472,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T16:09:33.372Z",
+      "updated_at": "2026-10-16T16:10:06.747Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -511,18 +511,18 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 29.97248876262626,
-          "live": 218.1
+          "hours": 29.974003914141417,
+          "live": 218.11666666666667
         },
         "Alaa": {
-          "open": 4,
+          "open": 3,
           "todo": 2,
           "progress": 1,
-          "review": 1,
-          "overdue": 1,
-          "done": 8,
-          "hours": 40.805929409722225,
-          "live": 140.18333333333334
+          "review": 0,
+          "overdue": 0,
+          "done": 9,
+          "hours": 40.808012743055556,
+          "live": 140.2
         },
         "Ganna": {
           "open": 4,
@@ -531,8 +531,8 @@
           "review": 1,
           "overdue": 0,
           "done": 11,
-          "hours": 63.41833763888888,
-          "live": 157.63333333333333
+          "hours": 63.42250430555555,
+          "live": 157.68333333333334
         },
         "Moamen": {
           "open": 0,
@@ -581,14 +581,14 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 19.483333333333334,
-          "live": 19.483333333333334
+          "hours": 19.5,
+          "live": 19.5
         }
       },
       "time": {
-        "avgTodo": 4846,
-        "avgProgress": 3079,
-        "open": 46
+        "avgTodo": 4847,
+        "avgProgress": 3080,
+        "open": 45
       },
       "hr": {
         "people": {
@@ -3698,22 +3698,22 @@
           "title": "13 design mas",
           "notes": "",
           "due": "2026-09-30",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:18:59.062Z",
-          "updated_at": "2026-09-30T16:19:25.561Z",
+          "updated_at": "2026-10-16T16:10:06.654Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
           "time_log": [],
-          "done_at": "2026-09-30T16:19:09.063Z",
-          "done_on": "2026-09-30",
-          "done_month": "2026-09",
+          "done_at": "2026-10-16T16:10:06.653Z",
+          "done_on": "2026-10-16",
+          "done_month": "2026-10",
           "done_by": "Mariam",
           "delivered_on": "2026-09-30",
           "review_at": "2026-09-30T16:19:25.561Z",
