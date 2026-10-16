@@ -72,7 +72,8 @@
     "t-20260930-sara-mua1s4lv",
     "t-20260923-sara-mucn4b1h",
     "t-20261009-sara-mv15ncb8",
-    "t-20261028-seif-muobldr6"
+    "t-20261028-seif-muobldr6",
+    "t-20261028-seif-muo7u9kd"
   ],
   "statuses": [
     "To do",
@@ -460,7 +461,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T14:14:14.571Z",
+      "updated_at": "2026-10-16T14:14:22.054Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -493,8 +494,8 @@
           "live": 0
         },
         "Seif": {
-          "open": 13,
-          "todo": 12,
+          "open": 12,
+          "todo": 11,
           "progress": 1,
           "review": 0,
           "overdue": 4,
@@ -574,9 +575,9 @@
         }
       },
       "time": {
-        "avgTodo": 14770,
+        "avgTodo": 14476,
         "avgProgress": 3169,
-        "open": 42
+        "open": 41
       },
       "hr": {
         "people": {
@@ -6403,27 +6404,6 @@
       "date": "2026-10-28",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261028-seif-muo7u9kd",
-          "who": "Seif",
-          "space": "Graphic",
-          "project": "OSAMA HELAL",
-          "title": "Delivery of Carousel No. 29 and Single Post No. 30",
-          "notes": "",
-          "due": "2026-10-28",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T14:43:57.806Z",
-          "updated_at": "2026-09-30T14:43:57.806Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20261028-mohamed-mv2hx6cl",
           "who": "Mohamed",
