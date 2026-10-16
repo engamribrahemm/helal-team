@@ -472,7 +472,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T14:29:17.599Z",
+      "updated_at": "2026-10-16T15:53:12.193Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -486,13 +486,13 @@
         },
         "Mariam": {
           "open": 3,
-          "todo": 2,
+          "todo": 1,
           "progress": 1,
-          "review": 0,
+          "review": 1,
           "overdue": 3,
           "done": 6,
-          "hours": 88.65150574074075,
-          "live": 122.76666666666667
+          "hours": 89.11817240740741,
+          "live": 124.16666666666667
         },
         "Judi": {
           "open": 2,
@@ -511,8 +511,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 29.820973611111114,
-          "live": 216.43333333333334
+          "hours": 29.94824633838384,
+          "live": 217.83333333333334
         },
         "Alaa": {
           "open": 2,
@@ -521,8 +521,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 40.59759607638889,
-          "live": 138.51666666666668
+          "hours": 40.772596076388886,
+          "live": 139.91666666666666
         },
         "Ganna": {
           "open": 4,
@@ -531,8 +531,8 @@
           "review": 1,
           "overdue": 0,
           "done": 11,
-          "hours": 63.00167097222222,
-          "live": 152.63333333333333
+          "hours": 63.351670972222216,
+          "live": 156.83333333333334
         },
         "Moamen": {
           "open": 0,
@@ -581,13 +581,13 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 17.816666666666666,
-          "live": 17.816666666666666
+          "hours": 19.216666666666665,
+          "live": 19.216666666666665
         }
       },
       "time": {
-        "avgTodo": 5090,
-        "avgProgress": 3172,
+        "avgTodo": 4992,
+        "avgProgress": 3186,
         "open": 44
       },
       "hr": {
@@ -5152,18 +5152,25 @@
           "title": "Calendar for Blushed content",
           "notes": "Write captions for the reels \n- send the pictures to designers to do the edit and write caption for",
           "due": "2026-10-13",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-12",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-12T20:48:31.034Z",
-          "updated_at": "2026-10-12T20:48:31.034Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-10-16T15:53:12.088Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 3,
+          "time_log": [],
+          "review_at": "2026-10-16T15:53:12.087Z",
+          "first_review_at": "2026-10-16T15:53:12.087Z",
+          "delivered_on": "2026-10-16"
         },
         {
           "id": "t-20261013-mariam-mv6ombok",
