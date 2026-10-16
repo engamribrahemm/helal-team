@@ -81,7 +81,8 @@
     "t-20261020-seif-muo7pkst",
     "t-20261018-seif-muobjvnj",
     "t-20261018-seif-muo7osn8",
-    "t-20261016-seif-muo7o48f"
+    "t-20261016-seif-muo7o48f",
+    "t-20261010-seif-muo7lhi2"
   ],
   "statuses": [
     "To do",
@@ -469,7 +470,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T14:15:04.555Z",
+      "updated_at": "2026-10-16T14:15:12.290Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -502,8 +503,8 @@
           "live": 0
         },
         "Seif": {
-          "open": 5,
-          "todo": 4,
+          "open": 4,
+          "todo": 3,
           "progress": 1,
           "review": 0,
           "overdue": 4,
@@ -583,9 +584,9 @@
         }
       },
       "time": {
-        "avgTodo": 11641,
+        "avgTodo": 11073,
         "avgProgress": 3169,
-        "open": 34
+        "open": 33
       },
       "hr": {
         "people": {
@@ -4829,33 +4830,6 @@
           "done_on": "2026-10-09",
           "done_month": "2026-10",
           "done_by": "Mariam"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-10",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20261010-seif-muo7lhi2",
-          "who": "Seif",
-          "space": "Graphic",
-          "project": "OSAMA HELAL",
-          "title": "Delivery of Carousel No. 11 and Single Post No. 12",
-          "notes": "",
-          "due": "2026-10-10",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
-          "drive_missing": false,
-          "assigned_at": "2026-09-30",
-          "month": "2026-09",
-          "created_by": "Mariam",
-          "created_at": "2026-09-30T14:37:08.187Z",
-          "updated_at": "2026-09-30T14:37:08.187Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         }
       ]
     },
