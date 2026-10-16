@@ -472,7 +472,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T16:20:21.647Z",
+      "updated_at": "2026-10-16T18:29:11.284Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -491,8 +491,8 @@
           "review": 2,
           "overdue": 3,
           "done": 6,
-          "hours": 71.59392527777779,
-          "live": 0
+          "hours": 48.44039462962963,
+          "live": 2.1333333333333333
         },
         "Judi": {
           "open": 2,
@@ -506,13 +506,13 @@
         },
         "Seif": {
           "open": 15,
-          "todo": 14,
-          "progress": 1,
+          "todo": 12,
+          "progress": 3,
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 29.98915542929293,
-          "live": 218.28333333333333
+          "hours": 30.184609974747477,
+          "live": 220.43333333333334
         },
         "Alaa": {
           "open": 5,
@@ -521,8 +521,8 @@
           "review": 0,
           "overdue": 0,
           "done": 9,
-          "hours": 40.828846076388885,
-          "live": 140.36666666666667
+          "hours": 41.09759607638889,
+          "live": 142.51666666666668
         },
         "Ganna": {
           "open": 4,
@@ -531,8 +531,8 @@
           "review": 1,
           "overdue": 0,
           "done": 11,
-          "hours": 63.46417097222223,
-          "live": 158.18333333333334
+          "hours": 64.00167097222221,
+          "live": 164.63333333333333
         },
         "Moamen": {
           "open": 0,
@@ -555,13 +555,13 @@
           "live": 0
         },
         "Rahma": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
           "progress": 0,
-          "review": 1,
-          "overdue": 1,
-          "done": 2,
-          "hours": 0.0009827777777777777,
+          "review": 0,
+          "overdue": 0,
+          "done": 3,
+          "hours": 26.033093611111113,
           "live": 0
         },
         "Aya": {
@@ -581,14 +581,14 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 19.666666666666668,
-          "live": 19.666666666666668
+          "hours": 21.816666666666666,
+          "live": 21.816666666666666
         }
       },
       "time": {
-        "avgTodo": 4426,
-        "avgProgress": 3081,
-        "open": 47
+        "avgTodo": 4828,
+        "avgProgress": 3029,
+        "open": 46
       },
       "hr": {
         "people": {
@@ -5481,15 +5481,15 @@
           "title": "design one concept option for the 4th dimension",
           "notes": "",
           "due": "2026-10-15",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1OpXO8yyR9nASEhON0FlnvZ7O0n4hgjEO?usp=drive_link",
           "drive_missing": false,
           "assigned_at": "2026-10-13",
           "month": "2026-10",
           "created_by": "Seif",
           "created_at": "2026-10-13T14:30:20.688Z",
-          "updated_at": "2026-10-15T18:42:12.883Z",
-          "updated_by": "Rahma",
+          "updated_at": "2026-10-16T18:28:26.162Z",
+          "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-13T14:38:18.147Z",
           "progress_started_at": "",
@@ -5507,7 +5507,11 @@
           "progress_hours": 52.06520444444445,
           "review_at": "2026-10-15T18:42:12.883Z",
           "first_review_at": "2026-10-15T18:42:12.883Z",
-          "delivered_on": "2026-10-15"
+          "delivered_on": "2026-10-15",
+          "done_at": "2026-10-16T18:28:26.162Z",
+          "done_on": "2026-10-16",
+          "done_month": "2026-10",
+          "done_by": "Seif"
         }
       ]
     },
@@ -5710,18 +5714,20 @@
           "title": "single visual | 18th Oct",
           "notes": "",
           "due": "2026-10-17",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:15:51.638Z",
-          "updated_at": "2026-10-16T14:15:51.638Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-16T18:29:01.526Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-16T18:29:01.526Z",
+          "progress_started_at": "2026-10-16T18:29:01.526Z",
+          "time_log": [],
+          "start_on": "2026-10-16"
         },
         {
           "id": "t-20261017-seif-mvb1x0zs",
@@ -5731,18 +5737,20 @@
           "title": "carousel | 19th Oct",
           "notes": "",
           "due": "2026-10-17",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:16:51.017Z",
-          "updated_at": "2026-10-16T14:16:51.017Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-16T18:29:09.500Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-16T18:29:09.500Z",
+          "progress_started_at": "2026-10-16T18:29:09.500Z",
+          "time_log": [],
+          "start_on": "2026-10-16"
         }
       ]
     },
