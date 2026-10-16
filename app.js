@@ -3296,6 +3296,9 @@ function profileBar(label, value) {
   ]);
 }
 
+/** Salaries & deductions start counting from October 2026 (this month). */
+const PAYROLL_START_MONTH = "2026-10";
+
 const PAYROLL_CODES = {
   late_attendance: { label: "Late attendance", days: 0.5, auto: false, penalty: true },
   late_task: { label: "Late task delivery", days: 0.5, auto: true, penalty: true },
@@ -3306,6 +3309,15 @@ const PAYROLL_CODES = {
   poor_quality: { label: "Poor work quality", days: 1, auto: false, penalty: true },
   gross: { label: "Gross misconduct (investigation)", days: 0, auto: false, penalty: false },
 };
+
+function payrollMonthActive(month) {
+  return String(month || "") >= PAYROLL_START_MONTH;
+}
+
+function clampPayrollMonth(month) {
+  const m = month || thisMonth();
+  return m < PAYROLL_START_MONTH ? PAYROLL_START_MONTH : m;
+}
 
 function emptyPayroll() {
   return {
@@ -3384,14 +3396,16 @@ function payrollWaivedSet() {
 
 function autoPayrollViolations(name, month) {
   const out = [];
+  if (!payrollMonthActive(month)) return out;
   const waived = payrollWaivedSet();
-  const dates = monthDates(month, { untilToday: true });
+  const dates = monthDates(month, { untilToday: true }).filter((d) => d >= `${PAYROLL_START_MONTH}-01`);
 
   for (const task of allTasks()) {
     if (!samePerson(task.who, name)) continue;
     if (!isLateTask(task) || delayExcused(task)) continue;
     const when = deliveryDate(task) || task.done_on || today();
     if (!inMonth(when, month)) continue;
+    if (when < `${PAYROLL_START_MONTH}-01`) continue;
     const id = `auto-late-task-${task.id}`;
     if (waived.has(id)) continue;
     out.push({
@@ -3436,11 +3450,13 @@ function autoPayrollViolations(name, month) {
 }
 
 function manualPayrollViolations(name, month) {
+  if (!payrollMonthActive(month)) return [];
   const waived = payrollWaivedSet();
   return (ensurePayroll().manual || []).filter((row) => {
     if (!samePerson(row.who, name)) return false;
     if (row.month && row.month !== month) return false;
     if (!row.month && row.date && !inMonth(row.date, month)) return false;
+    if (row.date && row.date < `${PAYROLL_START_MONTH}-01`) return false;
     if (waived.has(row.id)) return false;
     return true;
   }).map((row) => {
@@ -3546,6 +3562,12 @@ function savePayrollSettings({ name, amount, month, scheduledDays, intern }) {
 }
 
 function addManualPayrollViolation({ who, month, code, days, note }) {
+  if (!payrollMonthActive(month)) {
+    state.saveState = "error";
+    state.saveError = `Deductions start from ${monthLabel(PAYROLL_START_MONTH)}.`;
+    render();
+    return;
+  }
   const pay = ensurePayroll();
   const meta = PAYROLL_CODES[code];
   if (!meta) return;
@@ -3579,8 +3601,9 @@ function waivePayrollViolation(id) {
 
 function viewPayroll() {
   if (!isAdmin()) return $("p", { class: "empty" }, "Admins only.");
-  const month = state.payrollMonth || state.hrMonth || thisMonth();
+  const month = clampPayrollMonth(state.payrollMonth || thisMonth());
   state.payrollMonth = month;
+  const canPrev = shiftYm(month, -1) >= PAYROLL_START_MONTH;
   const roster = hrMembers();
   if (state.payrollPerson && !roster.some((p) => p.name === state.payrollPerson)) state.payrollPerson = "";
   const who = state.payrollPerson || "";
@@ -3606,17 +3629,26 @@ function viewPayroll() {
     pageShell(
       pageHero(
         "Salaries & performance",
-        "Base salary ÷ day rules from Helal penalties policy. Auto: late tasks + missing reports. Cap: 5 penalty days/month. Interns get training days, not money cuts.",
+        `Counting from ${monthLabel(PAYROLL_START_MONTH)}. Auto: late tasks + missing reports. Cap: 5 penalty days/month. Interns get training days, not money cuts.`,
         { label: "Month", value: monthLabel(month) }
       ),
       $("div", { class: "page-body" }, [
         $("div", { class: "cal-nav" }, [
-          $("button", { class: "btn ghost", type: "button", onclick: () => { state.payrollMonth = shiftYm(month, -1); render(); } }, "Prev"),
+          $("button", {
+            class: "btn ghost",
+            type: "button",
+            disabled: canPrev ? undefined : true,
+            onclick: () => {
+              if (!canPrev) return;
+              state.payrollMonth = clampPayrollMonth(shiftYm(month, -1));
+              render();
+            },
+          }, "Prev"),
           $("h2", {}, monthLabel(month)),
           $("button", { class: "btn ghost", type: "button", onclick: () => { state.payrollMonth = shiftYm(month, 1); render(); } }, "Next"),
           whoSel,
         ]),
-        $("p", { class: "muted" }, "Full-time day = base ÷ 30. Part-time day = base ÷ scheduled days that month. Half day = half of day value. Absence = unpaid day + 2 penalty days (unpaid day outside the 5-day penalty cap)."),
+        $("p", { class: "muted" }, `Deductions start ${monthLabel(PAYROLL_START_MONTH)} — nothing before that counts. Full-time day = base ÷ 30. Part-time day = base ÷ scheduled days. Absence = unpaid day + 2 penalty days (unpaid outside the 5-day cap).`),
       ])
     ),
 
