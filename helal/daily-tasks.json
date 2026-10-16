@@ -472,7 +472,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T14:25:44.393Z",
+      "updated_at": "2026-10-16T14:26:22.644Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -491,8 +491,8 @@
           "review": 0,
           "overdue": 3,
           "done": 6,
-          "hours": 88.62928351851853,
-          "live": 122.7
+          "hours": 88.63483907407408,
+          "live": 122.71666666666667
         },
         "Judi": {
           "open": 2,
@@ -505,14 +505,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 11,
-          "todo": 10,
+          "open": 12,
+          "todo": 11,
           "progress": 1,
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 29.814913005050506,
-          "live": 216.36666666666667
+          "hours": 29.816428156565657,
+          "live": 216.38333333333333
         },
         "Alaa": {
           "open": 2,
@@ -521,8 +521,8 @@
           "review": 1,
           "overdue": 1,
           "done": 8,
-          "hours": 40.589262743055556,
-          "live": 138.45
+          "hours": 40.59134607638889,
+          "live": 138.46666666666667
         },
         "Ganna": {
           "open": 4,
@@ -531,8 +531,8 @@
           "review": 1,
           "overdue": 0,
           "done": 11,
-          "hours": 62.987782083333336,
-          "live": 152.46666666666667
+          "hours": 62.98917097222223,
+          "live": 152.48333333333335
         },
         "Moamen": {
           "open": 0,
@@ -586,9 +586,9 @@
         }
       },
       "time": {
-        "avgTodo": 6105,
+        "avgTodo": 5870,
         "avgProgress": 3171,
-        "open": 40
+        "open": 41
       },
       "hr": {
         "people": {
@@ -6156,6 +6156,27 @@
           "created_at": "2026-10-08T13:26:45.122Z",
           "updated_at": "2026-10-10T14:29:57.414Z",
           "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261022-seif-mvb299ym",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "single visual | 28th Oct",
+          "notes": "",
+          "due": "2026-10-22",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-10-16",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-16T14:26:22.511Z",
+          "updated_at": "2026-10-16T14:26:22.511Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
