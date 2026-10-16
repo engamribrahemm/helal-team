@@ -753,6 +753,21 @@
           "saved_at": "2026-10-16T17:01:27.128Z",
           "updated_at": "2026-10-16T17:01:27.128Z",
           "updated_by": "Alaa"
+        },
+        "Rahma": {
+          "days": {
+            "2026-10-16": "Off",
+            "2026-10-21": "Off",
+            "2026-10-20": "Home",
+            "2026-10-19": "Home",
+            "2026-10-18": "Home",
+            "2026-10-17": "Home",
+            "2026-10-22": "Off"
+          },
+          "saved": true,
+          "saved_at": "2026-10-16T17:54:34.651Z",
+          "updated_at": "2026-10-16T17:54:34.651Z",
+          "updated_by": "Rahma"
         }
       }
     }
@@ -883,10 +898,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-08T14:01:33.550Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-08T14:02:20.439Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mtviokjc",
