@@ -472,7 +472,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-16T18:41:44.356Z",
+      "updated_at": "2026-10-16T20:07:38.006Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -491,8 +491,8 @@
           "review": 2,
           "overdue": 3,
           "done": 6,
-          "hours": 48.51261685185185,
-          "live": 2.35
+          "hours": 48.990394629629634,
+          "live": 3.783333333333333
         },
         "Judi": {
           "open": 2,
@@ -511,18 +511,18 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 30.202791792929293,
-          "live": 220.63333333333333
+          "hours": 30.333094823232326,
+          "live": 222.06666666666666
         },
         "Alaa": {
           "open": 5,
-          "todo": 4,
-          "progress": 1,
+          "todo": 3,
+          "progress": 2,
           "review": 0,
           "overdue": 0,
           "done": 9,
-          "hours": 41.12259607638889,
-          "live": 142.71666666666667
+          "hours": 41.301762743055555,
+          "live": 144.15
         },
         "Ganna": {
           "open": 4,
@@ -531,8 +531,8 @@
           "review": 1,
           "overdue": 0,
           "done": 11,
-          "hours": 64.05444875,
-          "live": 165.26666666666665
+          "hours": 64.41139319444444,
+          "live": 169.54999999999998
         },
         "Moamen": {
           "open": 0,
@@ -581,13 +581,13 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 22.033333333333335,
-          "live": 22.033333333333335
+          "hours": 23.466666666666665,
+          "live": 23.466666666666665
         }
       },
       "time": {
-        "avgTodo": 4563,
-        "avgProgress": 3031,
+        "avgTodo": 4778,
+        "avgProgress": 3046,
         "open": 46
       },
       "hr": {
@@ -5849,18 +5849,20 @@
           "title": "Designing Bridal Bouquets | 18th Oct",
           "notes": "",
           "due": "2026-10-18",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T16:05:44.312Z",
-          "updated_at": "2026-10-16T16:18:32.712Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-16T20:07:37.985Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-16T20:07:37.985Z",
+          "progress_started_at": "2026-10-16T20:07:37.985Z",
+          "time_log": [],
+          "start_on": "2026-10-16"
         }
       ]
     },
