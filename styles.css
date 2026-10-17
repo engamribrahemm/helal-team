@@ -2530,7 +2530,69 @@ span.attend-chip {
   cursor: default;
 }
 .is-hidden { display: none !important; }
-.people-add-card { max-width: 920px; }
+.people-page {
+  max-width: 1100px;
+  gap: 16px;
+}
+.people-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.people-stat-row .stat {
+  min-height: 72px;
+  padding: 12px 14px;
+}
+.people-stat-row .stat strong { font-size: 22px; }
+.people-add-shell {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 4px);
+  background: linear-gradient(180deg, var(--card-top), var(--card-bot));
+  box-shadow: var(--shadow);
+}
+.people-add-head {
+  background:
+    radial-gradient(420px 140px at 0% 0%, rgba(245, 196, 0, 0.1), transparent 55%),
+    linear-gradient(180deg, var(--card-top), transparent);
+}
+.people-kicker {
+  margin: 0 0 4px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 650;
+}
+.people-add-title h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  font-family: var(--serif);
+  font-weight: 500;
+}
+.people-add-title .muted {
+  margin: 0;
+  max-width: 62ch;
+  line-height: 1.45;
+}
+.people-step-head {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.people-step-head strong {
+  font-size: 14px;
+  font-weight: 650;
+}
+.people-step-head .muted {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
 .people-employ-form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -2544,10 +2606,171 @@ span.attend-chip {
   margin-top: 4px;
   font-size: 12px;
 }
+.people-add-foot {
+  background: linear-gradient(180deg, transparent, rgba(245, 196, 0, 0.04));
+}
+.people-add-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 4px;
+}
+.people-add-actions .muted {
+  margin: 0;
+  flex: 1 1 200px;
+  font-size: 12px;
+  line-height: 1.4;
+}
 .people-pt-block,
 .people-intern-toggle {
   grid-column: 1 / -1;
 }
+.people-roster {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.people-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(180deg, var(--card-top), var(--card-bot));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: border-color 0.22s var(--ease), transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+  animation: soft-pop 0.45s var(--ease) both;
+}
+.people-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+.people-card.is-intern {
+  background:
+    linear-gradient(180deg, rgba(245, 196, 0, 0.06), transparent 48%),
+    linear-gradient(180deg, var(--card-top), var(--card-bot));
+}
+.people-card-top {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+.people-avatar {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(245, 196, 0, 0.28), transparent 55%),
+    var(--bg-3);
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.people-avatar-lg {
+  width: 56px;
+  height: 56px;
+  font-size: 16px;
+  border-radius: 16px;
+}
+.people-card-id {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.people-card-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.people-card-id .muted {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.people-card-facts {
+  display: grid;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.people-fact {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.people-fact-k {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 650;
+}
+.people-fact-v {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.people-fact .muted {
+  margin: 0;
+  font-size: 12px;
+}
+.people-card-meta { margin: 0; }
+.people-card-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.people-pin-banner {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid rgba(245, 196, 0, 0.35);
+  border-radius: 12px;
+  background: rgba(245, 196, 0, 0.1);
+}
+.people-pin-banner strong {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--gold);
+}
+.people-pin-banner code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  user-select: all;
+}
+.people-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.people-card-actions .btn { flex: 1 1 auto; }
+.people-danger { color: var(--red) !important; }
+.people-edit-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.people-edit-head h2 { margin: 0 0 4px; }
+.people-edit-head .muted { margin: 0; }
+.people-edit-form { margin-top: 18px; }
 .people-field-label {
   margin: 0 0 2px;
   font-size: 13px;
@@ -2782,6 +3005,9 @@ span.attend-chip {
   .top-actions select { height: 38px; }
   .profile-grid { grid-template-columns: 1fr; }
   .stat-row { grid-template-columns: 1fr 1fr; }
+  .people-stat-row { grid-template-columns: 1fr 1fr; }
+  .people-roster { grid-template-columns: 1fr; }
+  .people-edit-head { grid-template-columns: 1fr; }
   .time-task { grid-template-columns: 1fr 1fr; }
   .time-task .pill { grid-column: 2; justify-self: end; }
   .time-day { grid-template-columns: 100px 72px 1fr; }

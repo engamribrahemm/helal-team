@@ -3329,11 +3329,16 @@ function viewEditPersonModal() {
   syncInternUi(intern.checked);
   const close = () => { state.editPersonName = null; render(); };
   return [modalOverlay(close, [
-    $("p", { class: "muted" }, "Edit person"),
-    $("h2", {}, person.name),
-    $("p", { class: "muted" }, "Login, role, team, salary, and work type — keeps Salaries and HR in sync."),
+    $("div", { class: "people-edit-head" }, [
+      $("div", { class: "people-avatar people-avatar-lg", "aria-hidden": "true" }, personInitials(person.name)),
+      $("div", {}, [
+        $("p", { class: "people-kicker" }, "Edit person"),
+        $("h2", {}, person.name),
+        $("p", { class: "muted" }, "Login, role, team, salary, and schedule — syncs Salaries and HR."),
+      ]),
+    ]),
     $("form", {
-      class: "form people-employ-form",
+      class: "form people-employ-form people-edit-form",
       onsubmit: (e) => {
         e.preventDefault();
         updatePerson(person.name, {
@@ -3354,11 +3359,11 @@ function viewEditPersonModal() {
       $("label", {}, ["Role", role]),
       $("label", {}, ["Team", home]),
       $("label", {}, ["Work type", workType]),
-      ptWrap,
       $("label", {}, ["Work mode", workMode]),
       salaryWrap,
+      ptWrap,
       intern.root,
-      $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
+      $("div", { class: "people-add-actions" }, [
         $("button", { class: "btn primary", type: "submit" }, "Save changes"),
         $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
       ]),
@@ -6138,6 +6143,91 @@ function viewDrive() {
   ]);
 }
 
+function personInitials(name) {
+  const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
+}
+
+function personCard(p) {
+  const isOwner = p.name === "Amr";
+  const work = workFor(p.name);
+  const base = payrollBase(p.name);
+  const inactive = p.active === false;
+  const intern = isPayrollIntern(p.name);
+  const pt = partTimeModel(work.part_time_model);
+  const schedule = pt
+    ? `${pt.label} · ${work.mode}`
+    : `${work.type} · ${work.mode}`;
+  const scheduleDetail = pt
+    ? `${work.days} · ${work.hours}`
+    : `${work.days || "—"} · ${work.hours || "—"}`;
+  const issued = state.issuedPins?.[p.name];
+  return $("article", {
+    class: `people-card${inactive ? " people-card-off" : ""}${intern ? " is-intern" : ""}`,
+  }, [
+    $("div", { class: "people-card-top" }, [
+      $("div", { class: "people-avatar", "aria-hidden": "true" }, personInitials(p.name)),
+      $("div", { class: "people-card-id" }, [
+        $("p", { class: "people-card-name" }, p.name),
+        $("p", { class: "muted" }, p.role || "Team member"),
+      ]),
+      inactive
+        ? $("span", { class: "pill tone-orange" }, "Off")
+        : $("span", { class: "pill tone-green" }, "Active"),
+    ]),
+    $("div", { class: "people-card-facts" }, [
+      $("div", { class: "people-fact" }, [
+        $("span", { class: "people-fact-k" }, "Email"),
+        $("span", { class: "people-fact-v" }, p.email || "Not set"),
+      ]),
+      $("div", { class: "people-fact" }, [
+        $("span", { class: "people-fact-k" }, "Schedule"),
+        $("span", { class: "people-fact-v" }, schedule),
+        $("span", { class: "muted" }, scheduleDetail),
+      ]),
+      $("div", { class: "people-fact" }, [
+        $("span", { class: "people-fact-k" }, "Pay"),
+        $("span", { class: "people-fact-v" }, base
+          ? formatEGP(base)
+          : (intern ? "Intern · no base" : "Not set")),
+      ]),
+    ]),
+    $("div", { class: "meta people-card-meta" }, [
+      $("span", { class: "pill" }, p.access || "member"),
+      $("span", { class: "pill" }, p.home || "—"),
+      work.type === "Part-time" ? $("span", { class: "pill warn" }, pt ? pt.label : "Part-time") : null,
+      intern ? $("span", { class: "pill warn" }, "Intern") : null,
+    ].filter(Boolean)),
+    issued
+      ? $("div", { class: "people-pin-banner" }, [
+        $("strong", {}, "New password — copy now"),
+        $("code", {}, issued),
+      ])
+      : $("p", { class: "muted people-card-hint" }, "Password is hashed. New password shows once."),
+    $("div", { class: "people-card-actions" }, [
+      $("button", {
+        class: "btn ghost",
+        type: "button",
+        onclick: () => { state.editPersonName = p.name; render(); },
+      }, "Edit"),
+      $("button", {
+        class: "btn ghost",
+        type: "button",
+        onclick: () => resetPersonPin(p.name),
+      }, "New password"),
+      isOwner
+        ? null
+        : $("button", {
+          class: `btn ghost${inactive ? "" : " people-danger"}`,
+          type: "button",
+          onclick: () => setPersonActive(p.name, p.active === false),
+        }, inactive ? "Reactivate" : "Deactivate"),
+    ].filter(Boolean)),
+  ]);
+}
+
 function viewPeople() {
   const name = $("input", { required: true, placeholder: "Full name" });
   const email = $("input", { type: "email", placeholder: "name@email.com" });
@@ -6173,106 +6263,124 @@ function viewPeople() {
   const intern = internChoiceToggle(false, { onChange: syncInternUi });
   salary.required = true;
   const pin = $("input", { placeholder: "Leave blank to generate" });
-  const roster = allPeople();
+  const roster = [...allPeople()].sort((a, b) => {
+    const aOff = a.active === false ? 1 : 0;
+    const bOff = b.active === false ? 1 : 0;
+    if (aOff !== bOff) return aOff - bOff;
+    return String(a.name).localeCompare(String(b.name));
+  });
   const activeN = people().length;
-  return $("div", { class: "dash" }, [
-    pageShell(pageHero(
-      "People",
-      "Add login + salary + work type so they appear in Board, My work, Report, Attendance, HR, and Salaries. Deactivate removes them from those apps.",
-      { label: "Active", value: `${activeN} / ${roster.length}` }
-    )),
-    $("section", { class: "card people-add-card" }, [
-      $("h2", {}, "Add a person"),
-      $("p", { class: "muted" }, "Required: name, role, team, work type, and base salary — or mark Intern. Part-time shows both schedule models."),
-      $("form", {
-        class: "form people-employ-form",
-        onsubmit: (e) => {
-          e.preventDefault();
-          addPerson({
-            name: name.value.trim(),
-            email: email.value.trim(),
-            role: role.value.trim(),
-            home: home.value,
-            access: access.value,
-            pin: pin.value.trim(),
-            workType: workType.value,
-            workMode: workMode.value,
-            partTimeModel: ptPicker.getValue(),
-            salary: salary.value,
-            intern: intern.checked,
-          });
-          name.value = "";
-          email.value = "";
-          role.value = "";
-          pin.value = "";
-          salary.value = "";
-          intern.checked = false;
-          syncInternUi(false);
-          workType.value = "Full-time";
-          workMode.value = "Remote";
-          ptPicker.setValue("3x8");
-          ptWrap.classList.add("is-hidden");
-        },
-      }, [
-        $("label", {}, ["Name", name]),
-        $("label", {}, ["Email", email]),
-        $("label", {}, ["Role", role]),
-        $("label", {}, ["Team", home]),
-        $("label", {}, ["Access", access]),
-        $("label", {}, ["Work type", workType]),
-        ptWrap,
-        $("label", {}, ["Work mode", workMode]),
-        salaryWrap,
-        $("label", {}, ["Password", pin]),
+  const offN = roster.length - activeN;
+  const internN = roster.filter((p) => p.active !== false && isPayrollIntern(p.name)).length;
+  const ptN = roster.filter((p) => p.active !== false && workFor(p.name).type === "Part-time").length;
+
+  const resetAddForm = () => {
+    name.value = "";
+    email.value = "";
+    role.value = "";
+    pin.value = "";
+    salary.value = "";
+    intern.checked = false;
+    syncInternUi(false);
+    workType.value = "Full-time";
+    workMode.value = "Remote";
+    access.value = "member";
+    ptPicker.setValue("3x8");
+    ptWrap.classList.add("is-hidden");
+  };
+
+  return $("div", { class: "page-stack people-page" }, [
+    pageShell(
+      pageHero(
+        "People",
+        "Hire into every Helal app at once — Board, My work, Report, Attendance, HR, and Salaries. Deactivate archives pay and hides them from apps.",
+        { label: "Roster", value: `${activeN} active` }
+      ),
+      $("div", { class: "page-body" }, [
+        $("div", { class: "people-stat-row" }, [
+          statBox(String(activeN), "Active"),
+          statBox(String(offN), "Deactivated"),
+          statBox(String(ptN), "Part-time"),
+          statBox(String(internN), "Interns"),
+        ]),
+      ])
+    ),
+
+    $("form", {
+      class: "people-add-shell",
+      onsubmit: (e) => {
+        e.preventDefault();
+        addPerson({
+          name: name.value.trim(),
+          email: email.value.trim(),
+          role: role.value.trim(),
+          home: home.value,
+          access: access.value,
+          pin: pin.value.trim(),
+          workType: workType.value,
+          workMode: workMode.value,
+          partTimeModel: ptPicker.getValue(),
+          salary: salary.value,
+          intern: intern.checked,
+        });
+        resetAddForm();
+      },
+    }, [
+      $("div", { class: "page-step people-add-head" }, [
+        $("div", { class: "people-add-title" }, [
+          $("p", { class: "people-kicker" }, "Hire"),
+          $("h2", {}, "Add a person"),
+          $("p", { class: "muted" }, "Name, role, team, work type, and base salary — or mark Intern. Part-time unlocks both schedule models."),
+        ]),
+      ]),
+      $("div", { class: "page-step" }, [
+        $("div", { class: "people-step-head" }, [
+          $("strong", {}, "1 · Identity"),
+          $("p", { class: "muted" }, "Login name, contact, team, and access level."),
+        ]),
+        $("div", { class: "people-employ-form" }, [
+          $("label", {}, ["Name", name]),
+          $("label", {}, ["Email", email]),
+          $("label", {}, ["Role", role]),
+          $("label", {}, ["Team", home]),
+          $("label", {}, ["Access", access]),
+          $("label", {}, ["Password", pin]),
+        ]),
+      ]),
+      $("div", { class: "page-step" }, [
+        $("div", { class: "people-step-head" }, [
+          $("strong", {}, "2 · Work & pay"),
+          $("p", { class: "muted" }, "Full-time or part-time model, remote/office, and salary used in Salaries."),
+        ]),
+        $("div", { class: "people-employ-form" }, [
+          $("label", {}, ["Work type", workType]),
+          $("label", {}, ["Work mode", workMode]),
+          salaryWrap,
+          ptWrap,
+        ]),
+      ]),
+      $("div", { class: "page-step people-add-foot" }, [
+        $("div", { class: "people-step-head" }, [
+          $("strong", {}, "3 · Intern (optional)"),
+          $("p", { class: "muted" }, "Interns skip money deductions — violations extend training days instead."),
+        ]),
         intern.root,
-        $("button", { class: "btn primary", type: "submit" }, "Create login"),
+        $("div", { class: "people-add-actions" }, [
+          $("button", { class: "btn primary", type: "submit" }, "Create login"),
+          $("p", { class: "muted" }, "They appear in Board, Report, Attendance, HR, and Salaries right away."),
+        ]),
       ]),
     ]),
-    $("div", { class: "people" }, roster.map((p) => {
-      const isOwner = p.name === "Amr";
-      const work = workFor(p.name);
-      const base = payrollBase(p.name);
-      const inactive = p.active === false;
-      const pt = partTimeModel(work.part_time_model);
-      return $("article", { class: `card${inactive ? " people-card-off" : ""}` }, [
-        $("p", { class: "title" }, p.name),
-        $("p", { class: "muted" }, p.role),
-        $("p", { class: "muted" }, p.email || "No email yet"),
-        $("p", { class: "muted" }, pt
-          ? `${work.type} · ${pt.label} · ${work.mode}`
-          : `${work.type} · ${work.mode} · ${work.days} · ${work.hours}`),
-        $("p", { class: "muted" }, base
-          ? `Salary ${formatEGP(base)}${isPayrollIntern(p.name) ? " · Intern" : ""}`
-          : (isPayrollIntern(p.name) ? "Intern · no base salary" : "No salary set — edit to add")),
-        $("div", { class: "meta" }, [
-          $("span", { class: "pill" }, p.access || "member"),
-          $("span", { class: "pill" }, p.home || "—"),
-          inactive ? $("span", { class: "pill tone-orange" }, "Deactivated") : $("span", { class: "pill tone-green" }, "Active"),
-        ]),
-        $("p", { class: "muted" }, state.issuedPins?.[p.name]
-          ? `New password (copy now): ${state.issuedPins[p.name]}`
-          : "Password is hashed. Press New password to issue one. It is shown once."),
-        $("div", { style: "display:flex;gap:8px;flex-wrap:wrap;margin-top:10px" }, [
-          $("button", {
-            class: "btn ghost",
-            type: "button",
-            onclick: () => { state.editPersonName = p.name; render(); },
-          }, "Edit"),
-          $("button", {
-            class: "btn ghost",
-            type: "button",
-            onclick: () => resetPersonPin(p.name),
-          }, "New password"),
-          isOwner
-            ? null
-            : $("button", {
-              class: "btn ghost",
-              type: "button",
-              onclick: () => setPersonActive(p.name, p.active === false),
-            }, inactive ? "Reactivate" : "Deactivate"),
-        ]),
-      ]);
-    })),
+
+    pageSection(
+      "Team roster",
+      "Active people first. Edit to change salary or part-time model. Deactivate removes them from apps.",
+      [
+        $("div", { class: "people people-roster" }, roster.length
+          ? roster.map(personCard)
+          : [$("p", { class: "empty" }, "No people yet — add the first login above.")]),
+      ]
+    ),
   ]);
 }
 
