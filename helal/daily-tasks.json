@@ -474,7 +474,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T12:41:46.690Z",
+      "updated_at": "2026-10-17T13:58:42.583Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -493,8 +493,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 54.51261685185185,
-          "live": 20.35
+          "hours": 54.94039462962963,
+          "live": 21.633333333333333
         },
         "Judi": {
           "open": 1,
@@ -508,13 +508,13 @@
         },
         "Seif": {
           "open": 15,
-          "todo": 14,
-          "progress": 1,
+          "todo": 13,
+          "progress": 2,
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 31.83915542929293,
-          "live": 238.63333333333333
+          "hours": 29.30950358796296,
+          "live": 240.11666666666665
         },
         "Alaa": {
           "open": 5,
@@ -523,8 +523,8 @@
           "review": 0,
           "overdue": 0,
           "done": 9,
-          "hours": 40.39415947530864,
-          "live": 177.28333333333333
+          "hours": 40.679344660493825,
+          "live": 179.85
         },
         "Ganna": {
           "open": 3,
@@ -533,8 +533,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 63.30643237373737,
-          "live": 66.46666666666667
+          "hours": 63.42158388888888,
+          "live": 67.73333333333333
         },
         "Moamen": {
           "open": 0,
@@ -583,8 +583,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 40.03333333333333,
-          "live": 40.03333333333333
+          "hours": 41.31666666666667,
+          "live": 41.31666666666667
         },
         "Gehad Helal": {
           "open": 0,
@@ -598,8 +598,8 @@
         }
       },
       "time": {
-        "avgTodo": 5679,
-        "avgProgress": 3162,
+        "avgTodo": 5926,
+        "avgProgress": 3099,
         "open": 42
       },
       "hr": {
@@ -5644,18 +5644,18 @@
           "title": "single visual | 18th Oct",
           "notes": "",
           "due": "2026-10-17",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:15:51.638Z",
-          "updated_at": "2026-10-16T18:41:13.291Z",
+          "updated_at": "2026-10-17T13:58:42.538Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-16T18:29:01.526Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-10-17T13:58:42.538Z",
           "time_log": [
             {
               "from": "In progress",
