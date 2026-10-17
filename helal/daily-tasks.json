@@ -474,7 +474,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T12:41:22.574Z",
+      "updated_at": "2026-10-17T12:41:26.377Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -527,13 +527,13 @@
           "live": 177.26666666666668
         },
         "Ganna": {
-          "open": 4,
+          "open": 3,
           "todo": 0,
           "progress": 1,
-          "review": 3,
-          "overdue": 1,
-          "done": 11,
-          "hours": 66.98367183333333,
+          "review": 2,
+          "overdue": 0,
+          "done": 12,
+          "hours": 63.30491722222222,
           "live": 66.45
         },
         "Moamen": {
@@ -589,8 +589,8 @@
       },
       "time": {
         "avgTodo": 5679,
-        "avgProgress": 3200,
-        "open": 43
+        "avgProgress": 3162,
+        "open": 42
       },
       "hr": {
         "people": {
@@ -5535,15 +5535,15 @@
           "title": "10 Reels editing from blushed session",
           "notes": "",
           "due": "2026-10-16",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-12",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-12T20:46:43.141Z",
-          "updated_at": "2026-10-14T18:41:30.559Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-10-17T12:41:26.355Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-10-13T16:10:23.744Z",
           "progress_started_at": "",
@@ -5569,7 +5569,11 @@
           "progress_hours": 26.51737111111111,
           "review_at": "2026-10-14T18:41:30.558Z",
           "first_review_at": "2026-10-14T18:41:30.558Z",
-          "delivered_on": "2026-10-14"
+          "delivered_on": "2026-10-14",
+          "done_at": "2026-10-17T12:41:26.355Z",
+          "done_on": "2026-10-17",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         },
         {
           "id": "t-20261016-salma-mv72pvtc",
