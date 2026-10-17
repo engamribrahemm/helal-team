@@ -84,7 +84,8 @@
     "t-20261016-seif-muo7o48f",
     "t-20261010-seif-muo7lhi2",
     "t-20261012-seif-muo7mnz6",
-    "t-20261014-seif-muo7neiz"
+    "t-20261014-seif-muo7neiz",
+    "t-20261004-mariam-muq0ll3q"
   ],
   "statuses": [
     "To do",
@@ -472,7 +473,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T06:16:26.188Z",
+      "updated_at": "2026-10-17T12:39:47.910Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -485,14 +486,14 @@
           "live": 0
         },
         "Mariam": {
-          "open": 3,
+          "open": 2,
           "todo": 0,
           "progress": 1,
-          "review": 2,
-          "overdue": 3,
+          "review": 1,
+          "overdue": 2,
           "done": 6,
-          "hours": 52.37372796296297,
-          "live": 13.933333333333334
+          "hours": 54.50150574074075,
+          "live": 20.316666666666666
         },
         "Judi": {
           "open": 2,
@@ -511,8 +512,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 31.255822095959594,
-          "live": 232.21666666666667
+          "hours": 31.836125126262626,
+          "live": 238.6
         },
         "Alaa": {
           "open": 5,
@@ -521,8 +522,8 @@
           "review": 0,
           "overdue": 0,
           "done": 9,
-          "hours": 38.96638169753086,
-          "live": 164.43333333333334
+          "hours": 40.386752067901234,
+          "live": 177.21666666666667
         },
         "Ganna": {
           "open": 4,
@@ -531,8 +532,8 @@
           "review": 3,
           "overdue": 1,
           "done": 11,
-          "hours": 66.34200516666667,
-          "live": 60.03333333333333
+          "hours": 66.98200516666665,
+          "live": 66.43333333333334
         },
         "Moamen": {
           "open": 0,
@@ -581,14 +582,14 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 33.6,
-          "live": 33.6
+          "hours": 40,
+          "live": 40
         }
       },
       "time": {
-        "avgTodo": 5330,
-        "avgProgress": 3034,
-        "open": 46
+        "avgTodo": 5677,
+        "avgProgress": 3091,
+        "open": 45
       },
       "hr": {
         "people": {
@@ -4138,45 +4139,6 @@
           "done_on": "2026-10-09",
           "done_month": "2026-10",
           "done_by": "Mariam"
-        },
-        {
-          "id": "t-20261004-mariam-muq0ll3q",
-          "who": "Mariam",
-          "space": "Social",
-          "project": "Helal",
-          "title": "New Intern Orientation – Social Media Moderater",
-          "notes": "Have a meeting with the new Social Media Moderator Intern to explain and hand over the technical aspects of the role.",
-          "due": "2026-10-04",
-          "status": "Review",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-10-01",
-          "month": "2026-10",
-          "created_by": "Amr",
-          "created_at": "2026-10-01T20:56:47.896Z",
-          "updated_at": "2026-10-16T15:53:55.487Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "2026-10-11T11:42:51.157Z",
-          "progress_started_at": "",
-          "time_log": [
-            {
-              "from": "In progress",
-              "to": "Review",
-              "started_at": "2026-10-11T11:42:51.157Z",
-              "ended_at": "2026-10-16T15:53:55.487Z",
-              "hours": 124.18453611111111,
-              "by": "Mariam"
-            }
-          ],
-          "start_on": "2026-10-11",
-          "delay_reason": "Other",
-          "delay_notified": false,
-          "delay_days": 12,
-          "progress_hours": 124.18453611111111,
-          "review_at": "2026-10-16T15:53:55.487Z",
-          "first_review_at": "2026-10-16T15:53:55.487Z",
-          "delivered_on": "2026-10-16"
         }
       ]
     },
