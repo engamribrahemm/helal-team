@@ -474,7 +474,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T12:41:26.377Z",
+      "updated_at": "2026-10-17T12:41:46.690Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -523,8 +523,8 @@
           "review": 0,
           "overdue": 0,
           "done": 9,
-          "hours": 40.39230762345679,
-          "live": 177.26666666666668
+          "hours": 40.39415947530864,
+          "live": 177.28333333333333
         },
         "Ganna": {
           "open": 3,
@@ -533,8 +533,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 63.30491722222222,
-          "live": 66.45
+          "hours": 63.30643237373737,
+          "live": 66.46666666666667
         },
         "Moamen": {
           "open": 0,
@@ -583,8 +583,18 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 40.016666666666666,
-          "live": 40.016666666666666
+          "hours": 40.03333333333333,
+          "live": 40.03333333333333
+        },
+        "Gehad Helal": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
         }
       },
       "time": {
@@ -676,6 +686,15 @@
             "reviews": 0
           },
           "Salma": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Gehad Helal": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
