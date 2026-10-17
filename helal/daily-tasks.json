@@ -474,7 +474,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T16:33:34.486Z",
+      "updated_at": "2026-10-17T16:45:04.695Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -493,8 +493,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 55.801505740740744,
-          "live": 24.216666666666665
+          "hours": 55.86261685185186,
+          "live": 24.4
         },
         "Judi": {
           "open": 1,
@@ -513,13 +513,13 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 27.663900747863245,
-          "live": 248.03333333333336
+          "hours": 27.71005459401709,
+          "live": 248.63333333333333
         },
         "Alaa": {
           "open": 5,
-          "todo": 3,
-          "progress": 0,
+          "todo": 2,
+          "progress": 1,
           "review": 2,
           "overdue": 0,
           "done": 9,
@@ -533,8 +533,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 63.656432373737374,
-          "live": 70.31666666666666
+          "hours": 63.67461419191918,
+          "live": 70.51666666666667
         },
         "Moamen": {
           "open": 0,
@@ -583,8 +583,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 43.9,
-          "live": 43.9
+          "hours": 44.083333333333336,
+          "live": 44.083333333333336
         },
         "Gehad Helal": {
           "open": 0,
@@ -598,8 +598,8 @@
         }
       },
       "time": {
-        "avgTodo": 6265,
-        "avgProgress": 2938,
+        "avgTodo": 6442,
+        "avgProgress": 2940,
         "open": 42
       },
       "hr": {
@@ -6131,18 +6131,20 @@
           "title": "Designing Flowers bouquet | 21th Oct",
           "notes": "",
           "due": "2026-10-21",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T16:09:33.170Z",
-          "updated_at": "2026-10-16T16:17:32.705Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-17T16:45:04.671Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-17T16:45:04.671Z",
+          "progress_started_at": "2026-10-17T16:45:04.671Z",
+          "time_log": [],
+          "start_on": "2026-10-17"
         }
       ]
     },
