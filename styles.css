@@ -2529,6 +2529,24 @@ span.attend-chip {
   text-align: center;
   cursor: default;
 }
+.people-add-card { max-width: 920px; }
+.people-employ-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px 14px;
+  align-items: end;
+}
+.people-employ-form .btn { justify-self: start; }
+.people-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 13px;
+}
+.people-card-off { opacity: 0.62; }
 .payroll-page { max-width: 1100px; }
 .payroll-form {
   display: grid;

@@ -1123,7 +1123,7 @@ function emptyHr() {
     attitude: [],
     warnings: [],
     rewards: [],
-    payroll: { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [] },
+    payroll: { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [], archived: {}, sheet: null },
     months: {},
   };
 }
@@ -1377,8 +1377,8 @@ function mergeById(remote = [], local = []) {
 }
 
 function mergePayroll(remote, local) {
-  const a = remote || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [], sheet: null };
-  const b = local || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [], sheet: null };
+  const a = remote || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [], archived: {}, sheet: null };
+  const b = local || { base: {}, interns: [], scheduled_days: {}, manual: [], waived: [], archived: {}, sheet: null };
   const scheduled = { ...(a.scheduled_days || {}) };
   for (const [name, months] of Object.entries(b.scheduled_days || {})) {
     scheduled[name] = { ...(scheduled[name] || {}), ...(months || {}) };
@@ -1391,6 +1391,7 @@ function mergePayroll(remote, local) {
     scheduled_days: scheduled,
     manual: mergeById(a.manual || [], b.manual || []),
     waived: [...new Set([...(a.waived || []), ...(b.waived || [])])],
+    archived: { ...(a.archived || {}), ...(b.archived || {}) },
     sheet: bSheet >= aSheet ? (b.sheet || a.sheet || null) : (a.sheet || b.sheet || null),
   };
 }
@@ -3189,31 +3190,65 @@ function viewPromptModals() {
 function viewEditPersonModal() {
   const person = allPeople().find((p) => samePerson(p.name, state.editPersonName));
   if (!person) return [];
+  const work = workFor(person.name);
   const name = $("input", { required: true, value: person.name || "" });
   const email = $("input", { type: "email", placeholder: "name@email.com", value: person.email || "" });
+  const role = $("input", { value: person.role || "" });
+  const home = $("select", {}, TEAM_HOMES.map((h) => $("option", { value: h, selected: h === person.home }, h)));
+  const workType = $("select", {}, WORK_TYPES.map((t) => $("option", { value: t, selected: t === work.type }, t)));
+  const workMode = $("select", {}, WORK_MODES.map((m) => $("option", { value: m, selected: m === work.mode }, m)));
+  const salary = $("input", {
+    type: "number",
+    min: "0",
+    step: "50",
+    value: String(payrollBase(person.name) || ""),
+    placeholder: "Base salary EGP",
+  });
+  const schedDays = $("input", {
+    type: "number",
+    min: "1",
+    step: "1",
+    value: work.scheduled_days ? String(work.scheduled_days) : "",
+    placeholder: "e.g. 13",
+  });
+  const intern = $("input", { type: "checkbox", checked: isPayrollIntern(person.name) });
   const close = () => { state.editPersonName = null; render(); };
   return [modalOverlay(close, [
     $("p", { class: "muted" }, "Edit person"),
     $("h2", {}, person.name),
-    $("p", { class: "muted" }, "Change the login name or email. Login name must stay unique."),
+    $("p", { class: "muted" }, "Login, role, team, salary, and work type — keeps Salaries and HR in sync."),
     $("form", {
-      class: "form",
+      class: "form people-employ-form",
       onsubmit: (e) => {
         e.preventDefault();
         updatePerson(person.name, {
           name: name.value.trim(),
           email: email.value.trim(),
+          role: role.value.trim(),
+          home: home.value,
+          workType: workType.value,
+          workMode: workMode.value,
+          salary: salary.value,
+          scheduledDays: schedDays.value,
+          intern: intern.checked,
         });
       },
     }, [
       $("label", {}, ["Name", name]),
       $("label", {}, ["Email", email]),
-      $("div", { style: "display:flex;gap:8px" }, [
+      $("label", {}, ["Role", role]),
+      $("label", {}, ["Team", home]),
+      $("label", {}, ["Work type", workType]),
+      $("label", {}, ["Work mode", workMode]),
+      $("label", {}, ["Base salary (EGP)", salary]),
+      $("label", {}, ["Part-time days / month", schedDays]),
+      $("label", { class: "people-check" }, [intern, " Intern (training extensions, no money deductions)"]),
+      $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
         $("button", { class: "btn primary", type: "submit" }, "Save changes"),
         $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
       ]),
     ]),
-  ])];
+  ], "wide")];
 }
 
 function viewEvalModal() {
@@ -3329,6 +3364,8 @@ function emptyPayroll() {
     scheduled_days: {},
     manual: [],
     waived: [],
+    archived: {},
+    sheet: null,
   };
 }
 
@@ -3341,6 +3378,7 @@ function ensurePayroll() {
   if (!Array.isArray(hr.payroll.manual)) hr.payroll.manual = [];
   if (!Array.isArray(hr.payroll.waived)) hr.payroll.waived = [];
   if (!hr.payroll.sheet || typeof hr.payroll.sheet !== "object") hr.payroll.sheet = null;
+  if (!hr.payroll.archived || typeof hr.payroll.archived !== "object") hr.payroll.archived = {};
   return hr.payroll;
 }
 
@@ -5965,19 +6003,32 @@ function viewPeople() {
     $("option", { value: "member", selected: true }, "Member"),
     $("option", { value: "admin" }, "Admin"),
   ]);
+  const workType = $("select", {}, WORK_TYPES.map((t) => $("option", { value: t, selected: t === "Full-time" }, t)));
+  const workMode = $("select", {}, WORK_MODES.map((m) => $("option", { value: m, selected: m === "Remote" }, m)));
+  const salary = $("input", { type: "number", min: "0", step: "50", placeholder: "Base salary EGP" });
+  const schedDays = $("input", { type: "number", min: "1", step: "1", placeholder: "Part-time days / month" });
+  const intern = $("input", {
+    type: "checkbox",
+    onchange: () => {
+      salary.required = !intern.checked;
+      if (intern.checked) salary.removeAttribute("required");
+    },
+  });
+  salary.required = true;
   const pin = $("input", { placeholder: "Leave blank to generate" });
   const roster = allPeople();
+  const activeN = people().length;
   return $("div", { class: "dash" }, [
     pageShell(pageHero(
       "People",
-      "Create logins, issue passwords, and deactivate accounts. Amr and Moamen are admins.",
-      { label: "Roster", value: String(roster.length) }
+      "Add login + salary + work type so they appear in Board, My work, Report, Attendance, HR, and Salaries. Deactivate removes them from those apps.",
+      { label: "Active", value: `${activeN} / ${roster.length}` }
     )),
-    $("section", { class: "card", style: "max-width:640px" }, [
+    $("section", { class: "card people-add-card" }, [
       $("h2", {}, "Add a person"),
-      $("p", { class: "muted" }, "Creates a login with its own password. Share that password with them. You can edit name or email later."),
+      $("p", { class: "muted" }, "Required: name, role, team, work type, and base salary (or mark Intern). Password is shown once after create."),
       $("form", {
-        class: "form",
+        class: "form people-employ-form",
         onsubmit: (e) => {
           e.preventDefault();
           addPerson({
@@ -5987,11 +6038,22 @@ function viewPeople() {
             home: home.value,
             access: access.value,
             pin: pin.value.trim(),
+            workType: workType.value,
+            workMode: workMode.value,
+            salary: salary.value,
+            scheduledDays: schedDays.value,
+            intern: intern.checked,
           });
           name.value = "";
           email.value = "";
           role.value = "";
           pin.value = "";
+          salary.value = "";
+          schedDays.value = "";
+          intern.checked = false;
+          salary.required = true;
+          workType.value = "Full-time";
+          workMode.value = "Remote";
         },
       }, [
         $("label", {}, ["Name", name]),
@@ -5999,20 +6061,32 @@ function viewPeople() {
         $("label", {}, ["Role", role]),
         $("label", {}, ["Team", home]),
         $("label", {}, ["Access", access]),
+        $("label", {}, ["Work type", workType]),
+        $("label", {}, ["Work mode", workMode]),
+        $("label", {}, ["Base salary (EGP)", salary]),
+        $("label", {}, ["Part-time days / month", schedDays]),
         $("label", {}, ["Password", pin]),
+        $("label", { class: "people-check" }, [intern, " Intern (no salary deduction — training days instead)"]),
         $("button", { class: "btn primary", type: "submit" }, "Create login"),
       ]),
     ]),
     $("div", { class: "people" }, roster.map((p) => {
       const isOwner = p.name === "Amr";
-      return $("article", { class: "card" }, [
+      const work = workFor(p.name);
+      const base = payrollBase(p.name);
+      const inactive = p.active === false;
+      return $("article", { class: `card${inactive ? " people-card-off" : ""}` }, [
         $("p", { class: "title" }, p.name),
         $("p", { class: "muted" }, p.role),
         $("p", { class: "muted" }, p.email || "No email yet"),
-        $("p", { class: "muted" }, `${workFor(p.name).type} · ${workFor(p.name).days} · ${workFor(p.name).hours} · ${workFor(p.name).mode}`),
+        $("p", { class: "muted" }, `${work.type} · ${work.mode} · ${work.days} · ${work.hours}`),
+        $("p", { class: "muted" }, base
+          ? `Salary ${formatEGP(base)}${isPayrollIntern(p.name) ? " · Intern" : ""}`
+          : (isPayrollIntern(p.name) ? "Intern · no base salary" : "No salary set — edit to add")),
         $("div", { class: "meta" }, [
           $("span", { class: "pill" }, p.access || "member"),
-          p.active === false ? $("span", { class: "pill tone-orange" }, "Deactivated") : $("span", { class: "pill tone-green" }, "Active"),
+          $("span", { class: "pill" }, p.home || "—"),
+          inactive ? $("span", { class: "pill tone-orange" }, "Deactivated") : $("span", { class: "pill tone-green" }, "Active"),
         ]),
         $("p", { class: "muted" }, state.issuedPins?.[p.name]
           ? `New password (copy now): ${state.issuedPins[p.name]}`
@@ -6022,7 +6096,7 @@ function viewPeople() {
             class: "btn ghost",
             type: "button",
             onclick: () => { state.editPersonName = p.name; render(); },
-          }, "Edit name / email"),
+          }, "Edit"),
           $("button", {
             class: "btn ghost",
             type: "button",
@@ -6034,11 +6108,97 @@ function viewPeople() {
               class: "btn ghost",
               type: "button",
               onclick: () => setPersonActive(p.name, p.active === false),
-            }, p.active === false ? "Reactivate" : "Deactivate"),
+            }, inactive ? "Reactivate" : "Deactivate"),
         ]),
       ]);
     })),
   ]);
+}
+
+function applyPersonEmployment(name, fields = {}) {
+  if (!name) return;
+  const hr = ensureHr();
+  if (!hr.work) hr.work = {};
+  const prev = hr.work[name] || {};
+  const type = WORK_TYPES.includes(fields.workType) ? fields.workType : (prev.type || "Full-time");
+  const mode = WORK_MODES.includes(fields.workMode) ? fields.workMode : (prev.mode || "Remote");
+  const scheduled = Number(fields.scheduledDays);
+  hr.work[name] = {
+    type,
+    days: fields.workDays || prev.days || "Sun–Thu",
+    hours: fields.workHours || prev.hours || "10:00–18:00",
+    mode,
+    office_days: prev.office_days || "",
+    response: prev.response || "Reliable",
+    scheduled_days: type === "Part-time" && scheduled > 0 ? scheduled : (prev.scheduled_days || ""),
+  };
+  const pay = ensurePayroll();
+  const intern = !!fields.intern;
+  const set = new Set(pay.interns || []);
+  if (intern) set.add(name);
+  else {
+    for (const n of [...set]) if (samePerson(n, name)) set.delete(n);
+  }
+  pay.interns = [...set];
+  const salary = Number(fields.salary);
+  if (Number.isFinite(salary) && salary > 0) {
+    pay.base[name] = Math.round(salary * 100) / 100;
+  } else if (intern) {
+    pay.base[name] = 0;
+  }
+  if (type === "Part-time" && scheduled > 0) {
+    if (!pay.scheduled_days[name]) pay.scheduled_days[name] = {};
+    pay.scheduled_days[name][thisMonth()] = scheduled;
+  }
+  if (pay.archived?.[name]) delete pay.archived[name];
+}
+
+function archivePersonFromApps(name) {
+  if (!name || name === "Amr") return;
+  const pay = ensurePayroll();
+  if (!pay.archived) pay.archived = {};
+  pay.archived[name] = {
+    base: payrollBase(name) || 0,
+    intern: isPayrollIntern(name),
+    scheduled_days: pay.scheduled_days?.[name] || {},
+    work: { ...(ensureHr().work?.[name] || {}) },
+    archived_at: new Date().toISOString(),
+  };
+  delete pay.base[name];
+  pay.interns = (pay.interns || []).filter((n) => !samePerson(n, name));
+  if (pay.scheduled_days) delete pay.scheduled_days[name];
+  // Keep HR work history for past months, but strip live assignment lists.
+  for (const person of allPeople()) {
+    if (!Array.isArray(person.manages)) continue;
+    person.manages = person.manages.filter((n) => !samePerson(n, name));
+  }
+  if (samePerson(state.hrPerson, name)) state.hrPerson = "";
+  if (samePerson(state.payrollPerson, name)) state.payrollPerson = "";
+  if (samePerson(state.dashPerson, name)) state.dashPerson = "";
+  if (samePerson(state.timePerson, name)) state.timePerson = "";
+  if (samePerson(state.boardPerson, name)) state.boardPerson = "";
+  if (state.issuedPins?.[name]) delete state.issuedPins[name];
+}
+
+function restorePersonToApps(name) {
+  if (!name) return;
+  const pay = ensurePayroll();
+  const archived = pay.archived?.[name];
+  if (!archived) return;
+  if (archived.base > 0) pay.base[name] = archived.base;
+  if (archived.intern) {
+    const set = new Set(pay.interns || []);
+    set.add(name);
+    pay.interns = [...set];
+  }
+  if (archived.scheduled_days) {
+    if (!pay.scheduled_days) pay.scheduled_days = {};
+    pay.scheduled_days[name] = archived.scheduled_days;
+  }
+  if (archived.work && ensureHr().work) {
+    ensureHr().work[name] = { ...archived.work };
+  }
+  delete pay.archived[name];
 }
 
 function renameKeyedRow(map, from, to) {
@@ -6056,6 +6216,15 @@ function renamePersonEverywhere(from, to) {
   const hr = ensureHr();
   if (!hr.work) hr.work = {};
   renameKeyedRow(hr.work, from, to);
+  const pay = ensurePayroll();
+  if (!pay.archived) pay.archived = {};
+  renameKeyedRow(pay.base, from, to);
+  renameKeyedRow(pay.scheduled_days, from, to);
+  renameKeyedRow(pay.archived, from, to);
+  pay.interns = (pay.interns || []).map((n) => (samePerson(n, from) ? to : n));
+  for (const row of pay.manual || []) {
+    if (samePerson(row.who, from)) row.who = to;
+  }
   for (const key of ["reviews", "attitude", "warnings", "rewards"]) {
     for (const row of hr[key] || []) {
       if (samePerson(row.who, from)) row.who = to;
@@ -6122,8 +6291,17 @@ function updatePerson(currentName, fields) {
   if (renamed) renamePersonEverywhere(currentName, nextName);
   person.name = nextName;
   person.email = nextEmail;
+  if (fields.role != null && String(fields.role).trim()) person.role = String(fields.role).trim();
+  if (fields.home && TEAM_HOMES.includes(fields.home)) person.home = fields.home;
   person.mention = `@${nextName.replace(/\s+/g, "")}`;
   person.updated_at = new Date().toISOString();
+  applyPersonEmployment(nextName, {
+    workType: fields.workType,
+    workMode: fields.workMode,
+    salary: fields.salary,
+    scheduledDays: fields.scheduledDays,
+    intern: fields.intern,
+  });
   if (state.team.owner && samePerson(state.team.owner.name, currentName)) {
     state.team.owner.name = nextName;
     state.team.owner.email = nextEmail;
@@ -6136,6 +6314,7 @@ function updatePerson(currentName, fields) {
   state.saveError = "";
   render();
   saveTeam(`team: edit ${nextName}`);
+  saveHr(`hr: employment for ${nextName}`);
   if (renamed) {
     saveHr(`hr: rename ${currentName} to ${nextName}`);
     saveTasks(`board: rename ${currentName} to ${nextName}`);
@@ -6153,6 +6332,20 @@ function addPerson(fields) {
   if (!name) return;
   if (allPeople().some((p) => samePerson(p.name, name))) {
     state.saveError = `${name} is already on the team.`;
+    state.saveState = "error";
+    render();
+    return;
+  }
+  const intern = !!fields.intern;
+  const salary = Number(fields.salary);
+  if (!intern && !(salary > 0)) {
+    state.saveError = "Enter a base salary, or mark Intern.";
+    state.saveState = "error";
+    render();
+    return;
+  }
+  if (fields.workType === "Part-time" && !(Number(fields.scheduledDays) > 0)) {
+    state.saveError = "Part-time needs scheduled days per month.";
     state.saveState = "error";
     render();
     return;
@@ -6175,12 +6368,7 @@ function addPerson(fields) {
   if (!state.auth.users) state.auth.users = {};
   const password = fields.pin || makePersonPin(name);
   rememberIssuedPin(name, password);
-  ensureHr().work[name] = {
-    type: "Full-time",
-    days: "Sun–Thu",
-    hours: "10:00–18:00",
-    mode: "Remote",
-  };
+  applyPersonEmployment(name, fields);
   render();
   hashPin(name, password).then((pin_hash) => {
     if (!pin_hash) {
@@ -6194,7 +6382,7 @@ function addPerson(fields) {
     state.auth.updated_at = new Date().toISOString();
     saveTeam(`team: add ${name}`);
     saveAuth(`auth: password for ${name}`);
-    saveHr(`hr: hours for ${name}`);
+    saveHr(`hr: employment + salary for ${name}`);
     render();
   });
 }
@@ -6212,8 +6400,11 @@ function setPersonActive(name, active) {
     row.updated_at = stamp;
   }
   state.team.updated_at = stamp;
+  if (active) restorePersonToApps(name);
+  else archivePersonFromApps(name);
   render();
   saveTeam(`team: ${active ? "reactivate" : "deactivate"} ${name}`);
+  saveHr(`hr: ${active ? "restore" : "archive"} payroll for ${name}`);
 }
 
 async function resetPersonPin(name) {
@@ -7359,7 +7550,7 @@ function helpStaticKnowledge() {
       id: "people",
       keys: ["people", "add person", "deactivate", "password reset", "new password"],
       title: "People",
-      body: "Admins add logins, issue passwords, edit, or deactivate. Password shown once at issue.",
+      body: "Admins add login + role + team + Full-time/Part-time + base salary (or Intern). That wires Board, Report, Attendance, HR, and Salaries. Deactivate archives salary and hides them from apps; Reactivate restores.",
       go: "people",
       roles: ["admin"],
     },
