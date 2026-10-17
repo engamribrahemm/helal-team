@@ -472,7 +472,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T06:16:23.539Z",
+      "updated_at": "2026-10-17T06:16:26.188Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -527,12 +527,12 @@
         "Ganna": {
           "open": 4,
           "todo": 0,
-          "progress": 2,
-          "review": 2,
+          "progress": 1,
+          "review": 3,
           "overdue": 1,
           "done": 11,
-          "hours": 65.76848954545454,
-          "live": 120.06666666666666
+          "hours": 66.34200516666667,
+          "live": 60.03333333333333
         },
         "Moamen": {
           "open": 0,
@@ -587,7 +587,7 @@
       },
       "time": {
         "avgTodo": 5330,
-        "avgProgress": 3048,
+        "avgProgress": 3034,
         "open": 46
       },
       "hr": {
@@ -6449,23 +6449,33 @@
           "title": "tiktok video | 26 OCT",
           "notes": "مديرك بيبصلك وانت مش عارف هو فخور بيك ولا بيفكر يطردك",
           "due": "2026-10-24",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:28:28.882Z",
-          "updated_at": "2026-10-14T18:13:39.939Z",
+          "updated_at": "2026-10-17T06:16:25.397Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-14T18:13:39.938Z",
-          "progress_started_at": "2026-10-14T18:13:39.938Z",
-          "time_log": [],
-          "review_at": "2026-10-14T17:58:32.756Z",
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-14T18:13:39.938Z",
+              "ended_at": "2026-10-17T06:16:25.397Z",
+              "hours": 60.04596083333333,
+              "by": "Ganna"
+            }
+          ],
+          "review_at": "2026-10-17T06:16:25.397Z",
           "first_review_at": "2026-10-14T17:58:32.756Z",
-          "delivered_on": "2026-10-14",
-          "start_on": "2026-10-14"
+          "delivered_on": "2026-10-17",
+          "start_on": "2026-10-14",
+          "progress_hours": 60.04596083333333
         }
       ]
     },
