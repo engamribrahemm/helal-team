@@ -474,7 +474,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T13:58:42.583Z",
+      "updated_at": "2026-10-17T13:58:45.042Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -508,13 +508,13 @@
         },
         "Seif": {
           "open": 15,
-          "todo": 13,
-          "progress": 2,
+          "todo": 12,
+          "progress": 3,
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 29.30950358796296,
-          "live": 240.11666666666665
+          "hours": 27.0703110042735,
+          "live": 240.31666666666663
         },
         "Alaa": {
           "open": 5,
@@ -533,8 +533,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 63.42158388888888,
-          "live": 67.73333333333333
+          "hours": 63.42309904040403,
+          "live": 67.75
         },
         "Moamen": {
           "open": 0,
@@ -598,8 +598,8 @@
         }
       },
       "time": {
-        "avgTodo": 5926,
-        "avgProgress": 3099,
+        "avgTodo": 6115,
+        "avgProgress": 3029,
         "open": 42
       },
       "hr": {
@@ -5677,18 +5677,18 @@
           "title": "carousel | 19th Oct",
           "notes": "",
           "due": "2026-10-17",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:16:51.017Z",
-          "updated_at": "2026-10-16T18:41:14.482Z",
+          "updated_at": "2026-10-17T13:58:44.725Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-16T18:29:09.500Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-10-17T13:58:44.725Z",
           "time_log": [
             {
               "from": "In progress",
