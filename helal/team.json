@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-10-14T03:22:43.801Z",
+  "updated_at": "2026-10-17T12:39:25.629Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -120,6 +120,17 @@
       "access": "member",
       "active": true,
       "updated_at": "2026-10-10T15:48:13.633Z"
+    },
+    {
+      "id": "gehad_helal",
+      "name": "Gehad Helal",
+      "role": "Social media",
+      "home": "social",
+      "mention": "@GehadHelal",
+      "email": "helalgehad266@gmail.com",
+      "access": "member",
+      "active": true,
+      "updated_at": "2026-10-17T12:39:25.629Z"
     }
   ]
 }
