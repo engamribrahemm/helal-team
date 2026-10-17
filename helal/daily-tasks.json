@@ -474,7 +474,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T13:58:45.042Z",
+      "updated_at": "2026-10-17T16:33:25.247Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -493,8 +493,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 54.94039462962963,
-          "live": 21.633333333333333
+          "hours": 55.801505740740744,
+          "live": 24.216666666666665
         },
         "Judi": {
           "open": 1,
@@ -513,18 +513,18 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 27.0703110042735,
-          "live": 240.31666666666663
+          "hours": 27.663900747863245,
+          "live": 248.03333333333336
         },
         "Alaa": {
           "open": 5,
           "todo": 3,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 0,
           "done": 9,
-          "hours": 40.679344660493825,
-          "live": 179.85
+          "hours": 25.835096076388886,
+          "live": 20.416666666666668
         },
         "Ganna": {
           "open": 3,
@@ -533,8 +533,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 63.42309904040403,
-          "live": 67.75
+          "hours": 63.656432373737374,
+          "live": 70.31666666666666
         },
         "Moamen": {
           "open": 0,
@@ -583,8 +583,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 41.31666666666667,
-          "live": 41.31666666666667
+          "hours": 43.88333333333333,
+          "live": 43.88333333333333
         },
         "Gehad Helal": {
           "open": 0,
@@ -598,8 +598,8 @@
         }
       },
       "time": {
-        "avgTodo": 6115,
-        "avgProgress": 3029,
+        "avgTodo": 6265,
+        "avgProgress": 2899,
         "open": 42
       },
       "hr": {
@@ -5779,20 +5779,33 @@
           "title": "Designing Bridal Bouquets | 18th Oct",
           "notes": "",
           "due": "2026-10-18",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T16:05:44.312Z",
-          "updated_at": "2026-10-16T20:07:37.985Z",
+          "updated_at": "2026-10-17T16:33:26.595Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-16T20:07:37.985Z",
-          "progress_started_at": "2026-10-16T20:07:37.985Z",
-          "time_log": [],
-          "start_on": "2026-10-16"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-16T20:07:37.985Z",
+              "ended_at": "2026-10-17T16:33:26.595Z",
+              "hours": 20.430169444444445,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-10-16",
+          "progress_hours": 20.430169444444445,
+          "review_at": "2026-10-17T16:33:26.595Z",
+          "first_review_at": "2026-10-17T16:33:26.595Z",
+          "delivered_on": "2026-10-17"
         }
       ]
     },
@@ -6356,20 +6369,33 @@
           "title": "Delivery of Carousel No. 3",
           "notes": "",
           "due": "2026-10-24",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:59:05.200Z",
-          "updated_at": "2026-10-10T19:57:59.140Z",
+          "updated_at": "2026-10-17T16:33:25.230Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-10T19:57:59.140Z",
-          "progress_started_at": "2026-10-10T19:57:59.140Z",
-          "time_log": [],
-          "start_on": "2026-10-10"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-10T19:57:59.140Z",
+              "ended_at": "2026-10-17T16:33:25.229Z",
+              "hours": 164.59058027777778,
+              "by": "Alaa"
+            }
+          ],
+          "start_on": "2026-10-10",
+          "progress_hours": 164.59058027777778,
+          "review_at": "2026-10-17T16:33:25.229Z",
+          "first_review_at": "2026-10-17T16:33:25.229Z",
+          "delivered_on": "2026-10-17"
         },
         {
           "id": "t-20261024-ganna-muzko0cx",
