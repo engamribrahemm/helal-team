@@ -3831,7 +3831,7 @@ function viewPayroll() {
         ]),
         $("p", { class: "muted" }, `Deductions start ${monthLabel(PAYROLL_START_MONTH)}. Day = base ÷ 30 (full-time). Absence = unpaid day + 2 penalty days (unpaid outside the 5-day cap).`),
         sheetMeta?.file
-          ? $("p", { class: "muted" }, `Imported from ${sheetMeta.file}${sheetMeta.imported_at ? ` · ${cairoDate(sheetMeta.imported_at)}` : ""}. Not on Helal board (skipped): عبدالله، تسنيم، رامز، محمد وائل. Judi / Aya / Salma / Rahma have no row in the sheet yet — set base manually.`)
+          ? $("p", { class: "muted" }, `Imported from ${sheetMeta.file}${sheetMeta.imported_at ? ` · ${cairoDate(sheetMeta.imported_at)}` : ""}. Not on Helal board (skipped): عبدالله، تسنيم، رامز، محمد وائل. Judi / Salma / Rahma have no row in the sheet yet — set base manually.`)
           : null,
       ].filter(Boolean))
     ),
@@ -7201,7 +7201,7 @@ function viewGuide() {
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Leads"),
-          $("p", {}, "Aya manages Salma. Seif manages Rahma. Leads assign to their people, review their work, and mark those Done."),
+          $("p", {}, "Seif manages Rahma. Leads assign to their people, review their work, and mark those Done. Salma (Sales) is covered by admins and social."),
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Design & video"),
@@ -7282,7 +7282,7 @@ function viewGuide() {
     sopBlock("review", "08", "Review & Done", [
       sopList([
         "Only move to Review when the Drive link is on the card and the work matches the brief.",
-        "Who can Mark done: Amr, Moamen, Mariam, Judi, and the matching lead (Aya→Salma, Seif→Rahma).",
+        "Who can Mark done: Amr, Moamen, Mariam, Judi, and the matching lead (Seif→Rahma).",
         "If edits are needed, keep it in Review with Edits — do not invent a private status in chat.",
         "Admins/social/leads: clear Review every evening so Done reflects the real day.",
       ], false),
@@ -7702,7 +7702,7 @@ function helpStaticKnowledge() {
       id: "roles",
       keys: ["roles", "who can", "permissions", "access"],
       title: "Roles",
-      body: "Everyone: My work, Board (own), Attendance, Report, Drive, SOP, Helal bot. Social (Mariam, Judi): add/assign, Review, Mark done — not People/HR. Leads: Aya→Salma, Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, People.",
+      body: "Everyone: My work, Board (own), Attendance, Report, Drive, SOP, Helal bot. Social (Mariam, Judi): add/assign, Review, Mark done — not People/HR. Leads: Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, People.",
       go: "guide",
     },
     {
@@ -7756,7 +7756,7 @@ function helpStaticKnowledge() {
       id: "review",
       keys: ["review", "mark done", "done", "edits", "revisions", "waiting"],
       title: "Review & Done",
-      body: "Review only with Drive on the card. Done by: Amr, Moamen, Mariam, Judi, Aya (Salma), Seif (Rahma). Edits stay in Review. Clear Review each evening.",
+      body: "Review only with Drive on the card. Done by: Amr, Moamen, Mariam, Judi, Seif (Rahma). Edits stay in Review. Clear Review each evening.",
       go: "review",
       roles: ["admin", "social", "lead"],
     },

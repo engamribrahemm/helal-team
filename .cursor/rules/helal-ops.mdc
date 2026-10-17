@@ -19,12 +19,13 @@ GitHub repo `engamribrahemm/helal-team` is the Helal database. The live board at
 ## Team
 
 - Mariam, Judi — social (`helal/drive.json` folder `social`). They can add and assign tasks, open Review, and mark tasks Done like admins. They are not full admins (no People / HR / reports dashboard).
-- Aya — Sales lead. She manages Salma (`manages: ["Salma"]` in `helal/team.json`). She can assign tasks to Salma, open Review for Salma’s work, and mark those Done. She is not full social and not admin.
+- Salma — Sales (no lead). Admins and social cover her Review / Done.
 - Seif — design lead for Rahma (`manages: ["Rahma"]`). He can assign tasks to Rahma, open Review for her work, and mark those Done.
 - Alaa, Rahma — design (`design`). They do not add tasks (except Seif as lead above).
 - Ganna — video (`video`). She does not add tasks.
 - Moamen — admin
 - Amr and Moamen are admins. Admins, social (Mariam, Judi), and leads (scoped `manages`) add tasks. Admins, social, and the matching lead can mark tasks Done.
+- Aya — deactivated (removed from active team / login).
 
 ## When Amr sends Drive links
 
