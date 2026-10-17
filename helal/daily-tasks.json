@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T16:45:04.695Z",
+      "updated_at": "2026-10-17T16:58:41.870Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -495,8 +495,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 55.86261685185186,
-          "live": 24.4
+          "hours": 55.94039462962963,
+          "live": 24.633333333333333
         },
         "Judi": {
           "open": 1,
@@ -511,12 +511,12 @@
         "Seif": {
           "open": 15,
           "todo": 12,
-          "progress": 3,
-          "review": 0,
+          "progress": 2,
+          "review": 1,
           "overdue": 1,
           "done": 10,
-          "hours": 27.71005459401709,
-          "live": 248.63333333333333
+          "hours": 29.80811469907407,
+          "live": 246.1
         },
         "Alaa": {
           "open": 5,
@@ -525,7 +525,17 @@
           "review": 2,
           "overdue": 0,
           "done": 9,
-          "hours": 26.60915742063492,
+          "hours": 23.310096076388888,
+          "live": 0.21666666666666667
+        },
+        "Sara": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 2,
+          "hours": 16.377944583333335,
           "live": 0
         },
         "Ganna": {
@@ -535,8 +545,18 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 63.67461419191918,
-          "live": 70.51666666666667
+          "hours": 63.694311161616156,
+          "live": 70.73333333333333
+        },
+        "Tasneem": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 1,
+          "hours": 7.200874722222222,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -558,6 +578,26 @@
           "hours": 0.043764722222222226,
           "live": 0
         },
+        "Rahma Elsaid": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Menna": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
         "Rahma": {
           "open": 0,
           "todo": 0,
@@ -568,25 +608,15 @@
           "hours": 26.033093611111113,
           "live": 0
         },
-        "Aya": {
-          "open": 3,
-          "todo": 3,
-          "progress": 0,
-          "review": 0,
-          "overdue": 2,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
         "Salma": {
-          "open": 1,
-          "todo": 0,
+          "open": 2,
+          "todo": 1,
           "progress": 1,
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 44.083333333333336,
-          "live": 44.083333333333336
+          "hours": 44.31666666666667,
+          "live": 44.31666666666667
         },
         "Gehad Helal": {
           "open": 0,
@@ -600,9 +630,9 @@
         }
       },
       "time": {
-        "avgTodo": 6442,
-        "avgProgress": 2940,
-        "open": 42
+        "avgTodo": 6059,
+        "avgProgress": 2938,
+        "open": 41
       },
       "hr": {
         "people": {
@@ -642,7 +672,25 @@
             "attitude": 0,
             "reviews": 0
           },
+          "Sara": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
           "Ganna": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Tasneem": {
             "delivery": 5,
             "quality": 0,
             "revisions": 0,
@@ -669,21 +717,30 @@
             "attitude": 0,
             "reviews": 0
           },
+          "Rahma Elsaid": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Menna": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
           "Rahma": {
             "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
             "total": 5,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Aya": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -5604,18 +5661,18 @@
           "title": "single visual | 18th Oct",
           "notes": "",
           "due": "2026-10-17",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:15:51.638Z",
-          "updated_at": "2026-10-17T13:58:42.538Z",
+          "updated_at": "2026-10-17T16:58:41.824Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-16T18:29:01.526Z",
-          "progress_started_at": "2026-10-17T13:58:42.538Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -5624,10 +5681,21 @@
               "ended_at": "2026-10-16T18:41:13.291Z",
               "hours": 0.20326805555555555,
               "by": "Seif"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-17T13:58:42.538Z",
+              "ended_at": "2026-10-17T16:58:41.823Z",
+              "hours": 2.999801388888889,
+              "by": "Seif"
             }
           ],
           "start_on": "2026-10-16",
-          "progress_hours": 0.20326805555555555
+          "progress_hours": 3.2030694444444445,
+          "review_at": "2026-10-17T16:58:41.823Z",
+          "first_review_at": "2026-10-17T16:58:41.823Z",
+          "delivered_on": "2026-10-17"
         },
         {
           "id": "t-20261017-seif-mvb1x0zs",
