@@ -91,6 +91,79 @@ function partTimeModelOptions(selected) {
   );
 }
 
+function partTimeModelPicker(selected, { group = "pt-model", onChange } = {}) {
+  const pick = partTimeModel(selected)?.id || "3x8";
+  const radios = [];
+  const root = $("div", {
+    class: "people-pt-picker",
+    role: "radiogroup",
+    "aria-label": "Part-time model",
+  }, Object.values(PART_TIME_MODELS).map((m) => {
+    const input = $("input", {
+      type: "radio",
+      name: group,
+      value: m.id,
+      checked: m.id === pick,
+      onchange: () => {
+        sync();
+        if (onChange) onChange(m.id);
+      },
+    });
+    radios.push(input);
+    return $("label", {
+      class: `people-choice${m.id === pick ? " on" : ""}`,
+    }, [
+      input,
+      $("span", { class: "people-choice-mark", "aria-hidden": "true" }),
+      $("span", { class: "people-choice-copy" }, [
+        $("strong", {}, m.label),
+        $("span", {}, `${m.days_per_week} days / week · ${m.hours_per_day} hours / day`),
+        $("span", {}, `${m.days} · ${m.hours}`),
+      ]),
+    ]);
+  }));
+  function sync() {
+    root.querySelectorAll(".people-choice").forEach((el) => {
+      const on = !!el.querySelector("input:checked");
+      el.classList.toggle("on", on);
+    });
+  }
+  return {
+    root,
+    getValue: () => radios.find((r) => r.checked)?.value || "3x8",
+    setValue: (id) => {
+      const next = partTimeModel(id)?.id || "3x8";
+      for (const r of radios) r.checked = r.value === next;
+      sync();
+    },
+  };
+}
+
+function internChoiceToggle(checked, { onChange } = {}) {
+  const input = $("input", {
+    type: "checkbox",
+    checked: !!checked,
+    onchange: () => {
+      root.classList.toggle("on", input.checked);
+      if (onChange) onChange(input.checked);
+    },
+  });
+  const root = $("label", {
+    class: `people-intern-toggle${checked ? " on" : ""}`,
+  }, [
+    $("span", { class: "people-intern-mark", "aria-hidden": "true" }),
+    input,
+    $("span", { class: "people-choice-copy" }, [
+      $("strong", {}, "Intern"),
+      $("span", {}, "No money deductions from salary. Late work or absences extend training days instead."),
+    ]),
+  ]);
+  return { root, input, get checked() { return !!input.checked; }, set checked(v) {
+    input.checked = !!v;
+    root.classList.toggle("on", !!v);
+  } };
+}
+
 function monthWeekCount(ym) {
   const dates = monthDates(ym, { untilToday: false });
   return Math.max(1, Math.ceil(dates.length / 7));
@@ -3221,10 +3294,14 @@ function viewEditPersonModal() {
   const email = $("input", { type: "email", placeholder: "name@email.com", value: person.email || "" });
   const role = $("input", { value: person.role || "" });
   const home = $("select", {}, TEAM_HOMES.map((h) => $("option", { value: h, selected: h === person.home }, h)));
-  const ptModel = $("select", {}, partTimeModelOptions(work.part_time_model || "3x8"));
-  const ptWrap = $("label", {
-    class: work.type === "Part-time" ? "" : "is-hidden",
-  }, ["Part-time model", ptModel]);
+  const ptPicker = partTimeModelPicker(work.part_time_model || "3x8", { group: `edit-pt-${person.id || person.name}` });
+  const ptWrap = $("div", {
+    class: `people-pt-block${work.type === "Part-time" ? "" : " is-hidden"}`,
+  }, [
+    $("p", { class: "people-field-label" }, "Part-time model"),
+    $("p", { class: "muted people-field-hint" }, "Pick one schedule. Day value in Salaries uses that model."),
+    ptPicker.root,
+  ]);
   const workType = $("select", {
     onchange: () => {
       ptWrap.classList.toggle("is-hidden", workType.value !== "Part-time");
@@ -3238,7 +3315,18 @@ function viewEditPersonModal() {
     value: String(payrollBase(person.name) || ""),
     placeholder: "Base salary EGP",
   });
-  const intern = $("input", { type: "checkbox", checked: isPayrollIntern(person.name) });
+  const salaryWrap = $("label", { class: "people-salary-field" }, ["Base salary (EGP)", salary]);
+  const syncInternUi = (on) => {
+    salary.required = !on;
+    if (on) {
+      salary.removeAttribute("required");
+      salaryWrap.classList.add("is-dimmed");
+    } else {
+      salaryWrap.classList.remove("is-dimmed");
+    }
+  };
+  const intern = internChoiceToggle(isPayrollIntern(person.name), { onChange: syncInternUi });
+  syncInternUi(intern.checked);
   const close = () => { state.editPersonName = null; render(); };
   return [modalOverlay(close, [
     $("p", { class: "muted" }, "Edit person"),
@@ -3255,7 +3343,7 @@ function viewEditPersonModal() {
           home: home.value,
           workType: workType.value,
           workMode: workMode.value,
-          partTimeModel: ptModel.value,
+          partTimeModel: ptPicker.getValue(),
           salary: salary.value,
           intern: intern.checked,
         });
@@ -3268,8 +3356,8 @@ function viewEditPersonModal() {
       $("label", {}, ["Work type", workType]),
       ptWrap,
       $("label", {}, ["Work mode", workMode]),
-      $("label", {}, ["Base salary (EGP)", salary]),
-      $("label", { class: "people-check" }, [intern, " Intern (training extensions, no money deductions)"]),
+      salaryWrap,
+      intern.root,
       $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
         $("button", { class: "btn primary", type: "submit" }, "Save changes"),
         $("button", { class: "btn ghost", type: "button", onclick: close }, "Cancel"),
@@ -6059,8 +6147,12 @@ function viewPeople() {
     $("option", { value: "member", selected: true }, "Member"),
     $("option", { value: "admin" }, "Admin"),
   ]);
-  const ptModel = $("select", {}, partTimeModelOptions("3x8"));
-  const ptWrap = $("label", { class: "is-hidden" }, ["Part-time model", ptModel]);
+  const ptPicker = partTimeModelPicker("3x8", { group: "add-pt" });
+  const ptWrap = $("div", { class: "people-pt-block is-hidden" }, [
+    $("p", { class: "people-field-label" }, "Part-time model"),
+    $("p", { class: "muted people-field-hint" }, "Choose one: 3 days × 8 hours, or 6 days × 4 hours."),
+    ptPicker.root,
+  ]);
   const workType = $("select", {
     onchange: () => {
       ptWrap.classList.toggle("is-hidden", workType.value !== "Part-time");
@@ -6068,13 +6160,17 @@ function viewPeople() {
   }, WORK_TYPES.map((t) => $("option", { value: t, selected: t === "Full-time" }, t)));
   const workMode = $("select", {}, WORK_MODES.map((m) => $("option", { value: m, selected: m === "Remote" }, m)));
   const salary = $("input", { type: "number", min: "0", step: "50", placeholder: "Base salary EGP" });
-  const intern = $("input", {
-    type: "checkbox",
-    onchange: () => {
-      salary.required = !intern.checked;
-      if (intern.checked) salary.removeAttribute("required");
-    },
-  });
+  const salaryWrap = $("label", { class: "people-salary-field" }, ["Base salary (EGP)", salary]);
+  const syncInternUi = (on) => {
+    salary.required = !on;
+    if (on) {
+      salary.removeAttribute("required");
+      salaryWrap.classList.add("is-dimmed");
+    } else {
+      salaryWrap.classList.remove("is-dimmed");
+    }
+  };
+  const intern = internChoiceToggle(false, { onChange: syncInternUi });
   salary.required = true;
   const pin = $("input", { placeholder: "Leave blank to generate" });
   const roster = allPeople();
@@ -6087,7 +6183,7 @@ function viewPeople() {
     )),
     $("section", { class: "card people-add-card" }, [
       $("h2", {}, "Add a person"),
-      $("p", { class: "muted" }, "Required: name, role, team, work type, and base salary (or mark Intern). Part-time = 3 days×8h or 6 days×4h."),
+      $("p", { class: "muted" }, "Required: name, role, team, work type, and base salary — or mark Intern. Part-time shows both schedule models."),
       $("form", {
         class: "form people-employ-form",
         onsubmit: (e) => {
@@ -6101,7 +6197,7 @@ function viewPeople() {
             pin: pin.value.trim(),
             workType: workType.value,
             workMode: workMode.value,
-            partTimeModel: ptModel.value,
+            partTimeModel: ptPicker.getValue(),
             salary: salary.value,
             intern: intern.checked,
           });
@@ -6111,10 +6207,10 @@ function viewPeople() {
           pin.value = "";
           salary.value = "";
           intern.checked = false;
-          salary.required = true;
+          syncInternUi(false);
           workType.value = "Full-time";
           workMode.value = "Remote";
-          ptModel.value = "3x8";
+          ptPicker.setValue("3x8");
           ptWrap.classList.add("is-hidden");
         },
       }, [
@@ -6126,9 +6222,9 @@ function viewPeople() {
         $("label", {}, ["Work type", workType]),
         ptWrap,
         $("label", {}, ["Work mode", workMode]),
-        $("label", {}, ["Base salary (EGP)", salary]),
+        salaryWrap,
         $("label", {}, ["Password", pin]),
-        $("label", { class: "people-check" }, [intern, " Intern (no salary deduction — training days instead)"]),
+        intern.root,
         $("button", { class: "btn primary", type: "submit" }, "Create login"),
       ]),
     ]),

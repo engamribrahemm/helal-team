@@ -2544,6 +2544,126 @@ span.attend-chip {
   margin-top: 4px;
   font-size: 12px;
 }
+.people-pt-block,
+.people-intern-toggle {
+  grid-column: 1 / -1;
+}
+.people-field-label {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.people-field-hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+}
+.people-pt-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+.people-choice,
+.people-intern-toggle {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.people-choice:hover,
+.people-intern-toggle:hover {
+  border-color: var(--line-strong);
+}
+.people-choice.on,
+.people-intern-toggle.on {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, rgba(245, 196, 0, 0.1), transparent);
+  box-shadow: 0 0 0 1px rgba(245, 196, 0, 0.14);
+}
+.people-choice > input,
+.people-intern-toggle > input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.people-choice-mark,
+.people-intern-mark {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border: 2px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--bg-2);
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+}
+.people-choice.on .people-choice-mark {
+  border-color: var(--gold);
+  background:
+    radial-gradient(circle at center, var(--gold) 0 5px, transparent 6px),
+    var(--bg-2);
+}
+.people-intern-toggle {
+  align-items: center;
+}
+.people-intern-mark {
+  border-radius: 6px;
+}
+.people-intern-toggle.on .people-intern-mark {
+  border-color: var(--gold);
+  background: var(--gold);
+}
+.people-intern-toggle.on .people-intern-mark::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--ink);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.people-choice-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.people-choice-copy strong {
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0;
+}
+.people-choice-copy span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.people-salary-field.is-dimmed {
+  opacity: 0.55;
+}
+.people-salary-field.is-dimmed::after {
+  content: "Optional while Intern is on";
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
 .people-check {
   display: flex;
   align-items: center;
