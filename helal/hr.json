@@ -1,5 +1,5 @@
 {
-  "note": "HR evaluation, salaries from Sheet 2026, Helal penalties policy.",
+  "note": "HR evaluation system. Task delivery, quality, revisions, creativity, hours, and attitude. Rewards and deductions come later.",
   "reset_at": "2026-09-05T14:12:00.000Z",
   "weights": {
     "delivery": 35,
@@ -73,6 +73,24 @@
       "days": "Sun–Thu",
       "hours": "10:00–18:00",
       "mode": "Remote"
+    },
+    "Sara": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Remote"
+    },
+    "Gehad Helal": {
+      "type": "Full-time",
+      "days": "Sun–Thu",
+      "hours": "10:00–18:00",
+      "mode": "Hybrid",
+      "office_days": "",
+      "response": "Reliable",
+      "part_time_model": "",
+      "scheduled_days": "",
+      "days_per_week": "",
+      "hours_per_day": ""
     }
   },
   "reviews": [
@@ -440,6 +458,42 @@
   "attitude": [],
   "warnings": [],
   "rewards": [],
+  "payroll": {
+    "base": {
+      "Moamen": 10000,
+      "Amr": 15000,
+      "Mariam": 3000,
+      "Alaa": 6000,
+      "Seif": 4000,
+      "Mohamed": 6000,
+      "Ganna": 4000,
+      "Gehad Helal": 0
+    },
+    "interns": [
+      "Gehad Helal"
+    ],
+    "scheduled_days": {},
+    "manual": [],
+    "waived": [],
+    "archived": {},
+    "sheet": {
+      "file": "Sheet 2026.xlsx",
+      "imported_at": "2026-10-16T17:25:47.761Z",
+      "notes": {
+        "Seif": "Sheet base was 0; used monthly entitlement 4000",
+        "Ganna": "Sheet base was 0; used monthly entitlement 4000"
+      },
+      "entitlements": {
+        "Moamen": 10000,
+        "Amr": 15000,
+        "Mariam": 4000,
+        "Alaa": 6000,
+        "Seif": 4000,
+        "Mohamed": 6000,
+        "Ganna": 4000
+      }
+    }
+  },
   "months": {
     "2026-08": {
       "people": {
@@ -574,11 +628,11 @@
           "reviews": 3
         },
         "Judi": {
-          "delivery": 5,
+          "delivery": 3,
           "quality": 0,
           "revisions": 0,
           "creativity": 0,
-          "total": 5,
+          "total": 3,
           "attitude": 0,
           "reviews": 0
         },
@@ -592,11 +646,11 @@
           "reviews": 0
         },
         "Alaa": {
-          "delivery": 5,
+          "delivery": 4,
           "quality": 0,
           "revisions": 0,
           "creativity": 0,
-          "total": 5,
+          "total": 4,
           "attitude": 0,
           "reviews": 0
         },
@@ -637,11 +691,11 @@
           "reviews": 0
         },
         "Aya": {
-          "delivery": 0,
+          "delivery": 5,
           "quality": 0,
           "revisions": 0,
           "creativity": 0,
-          "total": 0,
+          "total": 5,
           "attitude": 0,
           "reviews": 0
         },
@@ -653,43 +707,19 @@
           "total": 0,
           "attitude": 0,
           "reviews": 0
+        },
+        "Gehad Helal": {
+          "delivery": 0,
+          "quality": 0,
+          "revisions": 0,
+          "creativity": 0,
+          "total": 0,
+          "attitude": 0,
+          "reviews": 0
         }
       },
-      "updated_at": "2026-10-10T15:48:16.688Z",
+      "updated_at": "2026-10-17T12:39:29.884Z",
       "frozen": false
-    }
-  },
-  "updated_at": "2026-10-16T17:25:47.761Z",
-  "payroll": {
-    "base": {
-      "Moamen": 10000,
-      "Amr": 15000,
-      "Mariam": 3000,
-      "Alaa": 6000,
-      "Seif": 4000,
-      "Mohamed": 6000,
-      "Ganna": 4000
-    },
-    "interns": [],
-    "scheduled_days": {},
-    "manual": [],
-    "waived": [],
-    "sheet": {
-      "file": "Sheet 2026.xlsx",
-      "imported_at": "2026-10-16T17:25:47.761Z",
-      "notes": {
-        "Seif": "Sheet base was 0; used monthly entitlement 4000",
-        "Ganna": "Sheet base was 0; used monthly entitlement 4000"
-      },
-      "entitlements": {
-        "Moamen": 10000,
-        "Amr": 15000,
-        "Mariam": 4000,
-        "Alaa": 6000,
-        "Seif": 4000,
-        "Mohamed": 6000,
-        "Ganna": 4000
-      }
     }
   }
 }
