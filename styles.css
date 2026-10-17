@@ -2529,6 +2529,7 @@ span.attend-chip {
   text-align: center;
   cursor: default;
 }
+.is-hidden { display: none !important; }
 .people-add-card { max-width: 920px; }
 .people-employ-form {
   display: grid;
@@ -2537,6 +2538,12 @@ span.attend-chip {
   align-items: end;
 }
 .people-employ-form .btn { justify-self: start; }
+.people-employ-form label .muted,
+.payroll-form label .muted {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+}
 .people-check {
   display: flex;
   align-items: center;

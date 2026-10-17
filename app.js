@@ -75,6 +75,32 @@ const RESPONSE_LEVELS = ["Reliable", "Needs follow-up"];
 const WORK_TYPES = ["Full-time", "Part-time"];
 const WORK_MODES = ["Remote", "Office", "Hybrid"];
 const TEAM_HOMES = ["social", "design", "video", "hr"];
+/** Part-time models: days/week × hours/day (both = 24h/week). */
+const PART_TIME_MODELS = {
+  "3x8": { id: "3x8", label: "3 days · 8 hours", days_per_week: 3, hours_per_day: 8, days: "Sun–Tue", hours: "10:00–18:00" },
+  "6x4": { id: "6x4", label: "6 days · 4 hours", days_per_week: 6, hours_per_day: 4, days: "Sun–Fri", hours: "10:00–14:00" },
+};
+
+function partTimeModel(id) {
+  return PART_TIME_MODELS[id] || null;
+}
+
+function partTimeModelOptions(selected) {
+  return Object.values(PART_TIME_MODELS).map((m) =>
+    $("option", { value: m.id, selected: m.id === selected }, m.label)
+  );
+}
+
+function monthWeekCount(ym) {
+  const dates = monthDates(ym, { untilToday: false });
+  return Math.max(1, Math.ceil(dates.length / 7));
+}
+
+function scheduledDaysFromPartTimeModel(modelId, month) {
+  const m = partTimeModel(modelId);
+  if (!m) return 0;
+  return m.days_per_week * monthWeekCount(month || thisMonth());
+}
 
 const state = {
   view: "apps",
@@ -3195,7 +3221,15 @@ function viewEditPersonModal() {
   const email = $("input", { type: "email", placeholder: "name@email.com", value: person.email || "" });
   const role = $("input", { value: person.role || "" });
   const home = $("select", {}, TEAM_HOMES.map((h) => $("option", { value: h, selected: h === person.home }, h)));
-  const workType = $("select", {}, WORK_TYPES.map((t) => $("option", { value: t, selected: t === work.type }, t)));
+  const ptModel = $("select", {}, partTimeModelOptions(work.part_time_model || "3x8"));
+  const ptWrap = $("label", {
+    class: work.type === "Part-time" ? "" : "is-hidden",
+  }, ["Part-time model", ptModel]);
+  const workType = $("select", {
+    onchange: () => {
+      ptWrap.classList.toggle("is-hidden", workType.value !== "Part-time");
+    },
+  }, WORK_TYPES.map((t) => $("option", { value: t, selected: t === work.type }, t)));
   const workMode = $("select", {}, WORK_MODES.map((m) => $("option", { value: m, selected: m === work.mode }, m)));
   const salary = $("input", {
     type: "number",
@@ -3203,13 +3237,6 @@ function viewEditPersonModal() {
     step: "50",
     value: String(payrollBase(person.name) || ""),
     placeholder: "Base salary EGP",
-  });
-  const schedDays = $("input", {
-    type: "number",
-    min: "1",
-    step: "1",
-    value: work.scheduled_days ? String(work.scheduled_days) : "",
-    placeholder: "e.g. 13",
   });
   const intern = $("input", { type: "checkbox", checked: isPayrollIntern(person.name) });
   const close = () => { state.editPersonName = null; render(); };
@@ -3228,8 +3255,8 @@ function viewEditPersonModal() {
           home: home.value,
           workType: workType.value,
           workMode: workMode.value,
+          partTimeModel: ptModel.value,
           salary: salary.value,
-          scheduledDays: schedDays.value,
           intern: intern.checked,
         });
       },
@@ -3239,9 +3266,9 @@ function viewEditPersonModal() {
       $("label", {}, ["Role", role]),
       $("label", {}, ["Team", home]),
       $("label", {}, ["Work type", workType]),
+      ptWrap,
       $("label", {}, ["Work mode", workMode]),
       $("label", {}, ["Base salary (EGP)", salary]),
-      $("label", {}, ["Part-time days / month", schedDays]),
       $("label", { class: "people-check" }, [intern, " Intern (training extensions, no money deductions)"]),
       $("div", { style: "display:flex;gap:8px;flex-wrap:wrap" }, [
         $("button", { class: "btn primary", type: "submit" }, "Save changes"),
@@ -3392,9 +3419,12 @@ function isPayrollIntern(name) {
 }
 
 function payrollScheduledDays(name, month) {
+  const work = workFor(name);
+  if (work.type === "Part-time" && work.part_time_model && partTimeModel(work.part_time_model)) {
+    return scheduledDaysFromPartTimeModel(work.part_time_model, month);
+  }
   const map = ensurePayroll().scheduled_days[name];
   if (map && Number(map[month]) > 0) return Number(map[month]);
-  const work = workFor(name);
   if (work.type === "Part-time" && Number(work.scheduled_days) > 0) return Number(work.scheduled_days);
   return 30;
 }
@@ -3580,26 +3610,36 @@ function formatDays(n) {
   return `${v % 1 === 0 ? v : v.toFixed(1)} day${v === 1 ? "" : "s"}`;
 }
 
-function savePayrollSettings({ name, amount, month, scheduledDays, intern }) {
-  const pay = ensurePayroll();
+function savePayrollSettings({ name, amount, month, partTimeModel: ptId, intern }) {
   const n = Number(amount);
-  if (!name || !(n > 0)) {
+  if (!name || !(n > 0 || intern)) {
     state.saveState = "error";
-    state.saveError = "Enter a valid base salary (EGP).";
+    state.saveError = "Enter a valid base salary (EGP), or mark Intern.";
     render();
     return;
   }
-  pay.base[name] = Math.round(n * 100) / 100;
-  if (!pay.scheduled_days[name]) pay.scheduled_days[name] = {};
-  const sched = Number(scheduledDays);
-  if (sched > 0) pay.scheduled_days[name][month] = sched;
-  else if (month) delete pay.scheduled_days[name][month];
-  const set = new Set(pay.interns);
-  if (intern) set.add(name);
-  else {
-    for (const existing of [...set]) if (samePerson(existing, name)) set.delete(existing);
+  const work = workFor(name);
+  const type = work.type || "Full-time";
+  if (type === "Part-time" && !partTimeModel(ptId)) {
+    state.saveState = "error";
+    state.saveError = "Pick a part-time model: 3 days×8h or 6 days×4h.";
+    render();
+    return;
   }
-  pay.interns = [...set];
+  applyPersonEmployment(name, {
+    workType: type,
+    workMode: work.mode || "Remote",
+    partTimeModel: ptId,
+    salary: amount,
+    intern,
+  });
+  // Keep this month’s scheduled days in sync with the model (for older overrides).
+  if (type === "Part-time" && month) {
+    const pay = ensurePayroll();
+    const days = scheduledDaysFromPartTimeModel(ptId, month);
+    if (!pay.scheduled_days[name]) pay.scheduled_days[name] = {};
+    pay.scheduled_days[name][month] = days;
+  }
   saveHr(`payroll: settings for ${name}`);
 }
 
@@ -3722,7 +3762,11 @@ function viewPayroll() {
             return $("tr", { class: tone }, [
               $("td", {}, [
                 $("strong", {}, row.name),
-                $("span", { class: "muted" }, ` · ${row.work.type}${row.intern ? " · Intern" : ""}`),
+                $("span", { class: "muted" }, (() => {
+                  const pt = partTimeModel(row.work.part_time_model);
+                  const kind = pt ? `${row.work.type} · ${pt.label}` : row.work.type;
+                  return ` · ${kind}${row.intern ? " · Intern" : ""}`;
+                })()),
               ]),
               $("td", {}, row.base ? formatEGP(row.base) : "— set base"),
               $("td", {}, row.base ? formatEGP(row.dayValue) : "—"),
@@ -3748,27 +3792,39 @@ function viewPayroll() {
 
     who ? viewPayrollPerson(who, month) : null,
 
-    pageSection("Set base salary", "Stored in HR. Used only for day-value and deductions.", [
+    pageSection("Set base salary", "Stored in HR. Part-time day value = base ÷ model days this month (3×8 or 6×4).", [
       (() => {
-        const nameSel = $("select", {}, roster.map((p) => $("option", { value: p.name, selected: p.name === (who || roster[0]?.name) }, p.name)));
+        const pick = who || roster[0]?.name || "";
+        const pickWork = workFor(pick);
+        const nameSel = $("select", {
+          onchange: () => {
+            state.payrollPerson = nameSel.value;
+            render();
+          },
+        }, roster.map((p) => $("option", { value: p.name, selected: p.name === pick }, p.name)));
         const amount = $("input", {
           type: "number",
           min: "0",
           step: "50",
           placeholder: "Base salary EGP",
-          value: String(payrollBase(who || roster[0]?.name) || ""),
+          value: String(payrollBase(pick) || ""),
         });
-        const sched = $("input", {
-          type: "number",
-          min: "1",
-          step: "1",
-          placeholder: "Part-time days this month",
-          value: String(payrollScheduledDays(who || roster[0]?.name, month) === 30 ? "" : payrollScheduledDays(who || roster[0]?.name, month)),
-        });
+        const isPt = pickWork.type === "Part-time";
+        const ptModel = $("select", {}, partTimeModelOptions(pickWork.part_time_model || "3x8"));
+        const ptDays = isPt
+          ? scheduledDaysFromPartTimeModel(pickWork.part_time_model || "3x8", month)
+          : 0;
+        const ptWrap = $("label", {
+          class: isPt ? "" : "is-hidden",
+        }, [
+          "Part-time model",
+          ptModel,
+          isPt ? $("span", { class: "muted" }, ` → ${ptDays} scheduled days in ${monthLabel(month)}`) : null,
+        ].filter(Boolean));
         const internBox = $("label", { class: "payroll-check" }, [
           $("input", {
             type: "checkbox",
-            checked: isPayrollIntern(who || roster[0]?.name),
+            checked: isPayrollIntern(pick),
           }),
           " Intern (extend training days, no money deduction)",
         ]);
@@ -3780,14 +3836,14 @@ function viewPayroll() {
               name: nameSel.value,
               amount: amount.value,
               month,
-              scheduledDays: sched.value,
+              partTimeModel: ptModel.value,
               intern: !!internBox.querySelector("input")?.checked,
             });
           },
         }, [
           $("label", {}, ["Person", nameSel]),
           $("label", {}, ["Base salary (EGP)", amount]),
-          $("label", {}, ["Part-time scheduled days (this month)", sched]),
+          ptWrap,
           internBox,
           $("button", { class: "btn primary", type: "submit" }, "Save salary settings"),
         ]);
@@ -6003,10 +6059,15 @@ function viewPeople() {
     $("option", { value: "member", selected: true }, "Member"),
     $("option", { value: "admin" }, "Admin"),
   ]);
-  const workType = $("select", {}, WORK_TYPES.map((t) => $("option", { value: t, selected: t === "Full-time" }, t)));
+  const ptModel = $("select", {}, partTimeModelOptions("3x8"));
+  const ptWrap = $("label", { class: "is-hidden" }, ["Part-time model", ptModel]);
+  const workType = $("select", {
+    onchange: () => {
+      ptWrap.classList.toggle("is-hidden", workType.value !== "Part-time");
+    },
+  }, WORK_TYPES.map((t) => $("option", { value: t, selected: t === "Full-time" }, t)));
   const workMode = $("select", {}, WORK_MODES.map((m) => $("option", { value: m, selected: m === "Remote" }, m)));
   const salary = $("input", { type: "number", min: "0", step: "50", placeholder: "Base salary EGP" });
-  const schedDays = $("input", { type: "number", min: "1", step: "1", placeholder: "Part-time days / month" });
   const intern = $("input", {
     type: "checkbox",
     onchange: () => {
@@ -6026,7 +6087,7 @@ function viewPeople() {
     )),
     $("section", { class: "card people-add-card" }, [
       $("h2", {}, "Add a person"),
-      $("p", { class: "muted" }, "Required: name, role, team, work type, and base salary (or mark Intern). Password is shown once after create."),
+      $("p", { class: "muted" }, "Required: name, role, team, work type, and base salary (or mark Intern). Part-time = 3 days×8h or 6 days×4h."),
       $("form", {
         class: "form people-employ-form",
         onsubmit: (e) => {
@@ -6040,8 +6101,8 @@ function viewPeople() {
             pin: pin.value.trim(),
             workType: workType.value,
             workMode: workMode.value,
+            partTimeModel: ptModel.value,
             salary: salary.value,
-            scheduledDays: schedDays.value,
             intern: intern.checked,
           });
           name.value = "";
@@ -6049,11 +6110,12 @@ function viewPeople() {
           role.value = "";
           pin.value = "";
           salary.value = "";
-          schedDays.value = "";
           intern.checked = false;
           salary.required = true;
           workType.value = "Full-time";
           workMode.value = "Remote";
+          ptModel.value = "3x8";
+          ptWrap.classList.add("is-hidden");
         },
       }, [
         $("label", {}, ["Name", name]),
@@ -6062,9 +6124,9 @@ function viewPeople() {
         $("label", {}, ["Team", home]),
         $("label", {}, ["Access", access]),
         $("label", {}, ["Work type", workType]),
+        ptWrap,
         $("label", {}, ["Work mode", workMode]),
         $("label", {}, ["Base salary (EGP)", salary]),
-        $("label", {}, ["Part-time days / month", schedDays]),
         $("label", {}, ["Password", pin]),
         $("label", { class: "people-check" }, [intern, " Intern (no salary deduction — training days instead)"]),
         $("button", { class: "btn primary", type: "submit" }, "Create login"),
@@ -6075,11 +6137,14 @@ function viewPeople() {
       const work = workFor(p.name);
       const base = payrollBase(p.name);
       const inactive = p.active === false;
+      const pt = partTimeModel(work.part_time_model);
       return $("article", { class: `card${inactive ? " people-card-off" : ""}` }, [
         $("p", { class: "title" }, p.name),
         $("p", { class: "muted" }, p.role),
         $("p", { class: "muted" }, p.email || "No email yet"),
-        $("p", { class: "muted" }, `${work.type} · ${work.mode} · ${work.days} · ${work.hours}`),
+        $("p", { class: "muted" }, pt
+          ? `${work.type} · ${pt.label} · ${work.mode}`
+          : `${work.type} · ${work.mode} · ${work.days} · ${work.hours}`),
         $("p", { class: "muted" }, base
           ? `Salary ${formatEGP(base)}${isPayrollIntern(p.name) ? " · Intern" : ""}`
           : (isPayrollIntern(p.name) ? "Intern · no base salary" : "No salary set — edit to add")),
@@ -6122,15 +6187,26 @@ function applyPersonEmployment(name, fields = {}) {
   const prev = hr.work[name] || {};
   const type = WORK_TYPES.includes(fields.workType) ? fields.workType : (prev.type || "Full-time");
   const mode = WORK_MODES.includes(fields.workMode) ? fields.workMode : (prev.mode || "Remote");
-  const scheduled = Number(fields.scheduledDays);
+  const modelId = type === "Part-time"
+    ? (partTimeModel(fields.partTimeModel)?.id || prev.part_time_model || "3x8")
+    : "";
+  const model = partTimeModel(modelId);
+  const monthDays = model ? scheduledDaysFromPartTimeModel(modelId, thisMonth()) : 0;
   hr.work[name] = {
     type,
-    days: fields.workDays || prev.days || "Sun–Thu",
-    hours: fields.workHours || prev.hours || "10:00–18:00",
+    days: type === "Part-time" && model
+      ? model.days
+      : (fields.workDays || prev.days || "Sun–Thu"),
+    hours: type === "Part-time" && model
+      ? model.hours
+      : (fields.workHours || prev.hours || "10:00–18:00"),
     mode,
     office_days: prev.office_days || "",
     response: prev.response || "Reliable",
-    scheduled_days: type === "Part-time" && scheduled > 0 ? scheduled : (prev.scheduled_days || ""),
+    part_time_model: modelId || "",
+    scheduled_days: type === "Part-time" ? monthDays : "",
+    days_per_week: model ? model.days_per_week : "",
+    hours_per_day: model ? model.hours_per_day : "",
   };
   const pay = ensurePayroll();
   const intern = !!fields.intern;
@@ -6146,9 +6222,11 @@ function applyPersonEmployment(name, fields = {}) {
   } else if (intern) {
     pay.base[name] = 0;
   }
-  if (type === "Part-time" && scheduled > 0) {
+  if (type === "Part-time" && monthDays > 0) {
     if (!pay.scheduled_days[name]) pay.scheduled_days[name] = {};
-    pay.scheduled_days[name][thisMonth()] = scheduled;
+    pay.scheduled_days[name][thisMonth()] = monthDays;
+  } else if (pay.scheduled_days?.[name]) {
+    delete pay.scheduled_days[name];
   }
   if (pay.archived?.[name]) delete pay.archived[name];
 }
@@ -6287,6 +6365,12 @@ function updatePerson(currentName, fields) {
     render();
     return;
   }
+  if (fields.workType === "Part-time" && !partTimeModel(fields.partTimeModel)) {
+    state.saveState = "error";
+    state.saveError = "Pick a part-time model: 3 days×8h or 6 days×4h.";
+    render();
+    return;
+  }
   const renamed = !samePerson(currentName, nextName);
   if (renamed) renamePersonEverywhere(currentName, nextName);
   person.name = nextName;
@@ -6298,8 +6382,8 @@ function updatePerson(currentName, fields) {
   applyPersonEmployment(nextName, {
     workType: fields.workType,
     workMode: fields.workMode,
+    partTimeModel: fields.partTimeModel,
     salary: fields.salary,
-    scheduledDays: fields.scheduledDays,
     intern: fields.intern,
   });
   if (state.team.owner && samePerson(state.team.owner.name, currentName)) {
@@ -6344,8 +6428,8 @@ function addPerson(fields) {
     render();
     return;
   }
-  if (fields.workType === "Part-time" && !(Number(fields.scheduledDays) > 0)) {
-    state.saveError = "Part-time needs scheduled days per month.";
+  if (fields.workType === "Part-time" && !partTimeModel(fields.partTimeModel)) {
+    state.saveError = "Pick a part-time model: 3 days×8h or 6 days×4h.";
     state.saveState = "error";
     render();
     return;
@@ -7550,7 +7634,7 @@ function helpStaticKnowledge() {
       id: "people",
       keys: ["people", "add person", "deactivate", "password reset", "new password"],
       title: "People",
-      body: "Admins add login + role + team + Full-time/Part-time + base salary (or Intern). That wires Board, Report, Attendance, HR, and Salaries. Deactivate archives salary and hides them from apps; Reactivate restores.",
+      body: "Admins add login + role + team + Full-time/Part-time + base salary (or Intern). Part-time has two models: 3 days×8 hours or 6 days×4 hours. That wires Board, Report, Attendance, HR, and Salaries. Deactivate archives salary and hides them from apps; Reactivate restores.",
       go: "people",
       roles: ["admin"],
     },
@@ -7558,7 +7642,7 @@ function helpStaticKnowledge() {
       id: "payroll",
       keys: ["salary", "salaries", "payroll", "deduction", "base salary", "penalties", "خصم"],
       title: "Salaries",
-      body: "Admins open Salaries. Set base salary. Day = base÷30 (full-time) or base÷scheduled days (part-time). Auto: late tasks ½ day each, missing daily report 1 day. Cap 5 penalty days/month. Absence = unpaid day + 2 penalty days (unpaid outside cap). Interns extend training days instead of money cuts.",
+      body: "Admins open Salaries. Set base salary. Day = base÷30 (full-time) or base÷part-time model days this month (3×8 or 6×4). Auto: late tasks ½ day each, missing daily report 1 day. Cap 5 penalty days/month. Absence = unpaid day + 2 penalty days (unpaid outside cap). Interns extend training days instead of money cuts.",
       go: "payroll",
       roles: ["admin"],
     },
