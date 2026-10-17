@@ -474,7 +474,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T16:33:25.247Z",
+      "updated_at": "2026-10-17T16:33:29.411Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -519,12 +519,12 @@
         "Alaa": {
           "open": 5,
           "todo": 3,
-          "progress": 1,
-          "review": 1,
+          "progress": 0,
+          "review": 2,
           "overdue": 0,
           "done": 9,
-          "hours": 25.835096076388886,
-          "live": 20.416666666666668
+          "hours": 26.60915742063492,
+          "live": 0
         },
         "Ganna": {
           "open": 3,
@@ -599,7 +599,7 @@
       },
       "time": {
         "avgTodo": 6265,
-        "avgProgress": 2899,
+        "avgProgress": 2938,
         "open": 42
       },
       "hr": {
