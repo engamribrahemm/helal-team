@@ -473,7 +473,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T12:39:47.910Z",
+      "updated_at": "2026-10-17T12:41:15.975Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -492,17 +492,17 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 54.50150574074075,
-          "live": 20.316666666666666
+          "hours": 54.50706129629631,
+          "live": 20.333333333333332
         },
         "Judi": {
-          "open": 2,
+          "open": 1,
           "todo": 0,
           "progress": 0,
-          "review": 2,
-          "overdue": 2,
-          "done": 3,
-          "hours": 190.90971402777777,
+          "review": 1,
+          "overdue": 1,
+          "done": 4,
+          "hours": 169.13311370370369,
           "live": 0
         },
         "Seif": {
@@ -512,8 +512,8 @@
           "review": 0,
           "overdue": 1,
           "done": 10,
-          "hours": 31.836125126262626,
-          "live": 238.6
+          "hours": 31.83915542929293,
+          "live": 238.63333333333333
         },
         "Alaa": {
           "open": 5,
@@ -522,8 +522,8 @@
           "review": 0,
           "overdue": 0,
           "done": 9,
-          "hours": 40.386752067901234,
-          "live": 177.21666666666667
+          "hours": 40.39230762345679,
+          "live": 177.26666666666668
         },
         "Ganna": {
           "open": 4,
@@ -532,8 +532,8 @@
           "review": 3,
           "overdue": 1,
           "done": 11,
-          "hours": 66.98200516666665,
-          "live": 66.43333333333334
+          "hours": 66.98367183333333,
+          "live": 66.45
         },
         "Moamen": {
           "open": 0,
@@ -582,14 +582,14 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 40,
-          "live": 40
+          "hours": 40.016666666666666,
+          "live": 40.016666666666666
         }
       },
       "time": {
-        "avgTodo": 5677,
-        "avgProgress": 3091,
-        "open": 45
+        "avgTodo": 5678,
+        "avgProgress": 3200,
+        "open": 44
       },
       "hr": {
         "people": {
@@ -5258,15 +5258,15 @@
           "title": "Instagram content for November | Grids",
           "notes": "- Optimize the instagram content \n8 grid - 24 piece of content \n\n4 grids - projects \n4 grids - educational\n\n- research grid options - define the projects and content for these grids & refrences",
           "due": "2026-10-14",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-07",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-07T15:27:12.143Z",
-          "updated_at": "2026-10-13T18:58:31.791Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-10-17T12:41:15.939Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-10-08T09:23:33.676Z",
           "progress_started_at": "",
@@ -5292,7 +5292,11 @@
           "progress_hours": 125.57991305555555,
           "review_at": "2026-10-13T18:58:31.791Z",
           "first_review_at": "2026-10-10T10:28:57.003Z",
-          "delivered_on": "2026-10-13"
+          "delivered_on": "2026-10-13",
+          "done_at": "2026-10-17T12:41:15.939Z",
+          "done_on": "2026-10-17",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         },
         {
           "id": "t-20261014-ganna-muzkcl9w",
