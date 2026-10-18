@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-18T12:35:33.348Z",
+      "updated_at": "2026-10-18T12:36:04.444Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -515,8 +515,8 @@
           "review": 0,
           "overdue": 2,
           "done": 11,
-          "hours": 30.779521474358976,
-          "live": 285.33333333333337
+          "hours": 30.782085576923073,
+          "live": 285.3666666666667
         },
         "Alaa": {
           "open": 5,
@@ -535,8 +535,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 65.47764449494949,
-          "live": 90.35
+          "hours": 65.47915964646464,
+          "live": 90.36666666666666
         },
         "Moamen": {
           "open": 0,
@@ -568,16 +568,6 @@
           "hours": 26.033093611111113,
           "live": 0
         },
-        "Aya": {
-          "open": 1,
-          "todo": 1,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
         "Salma": {
           "open": 2,
           "todo": 1,
@@ -585,8 +575,18 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 63.916666666666664,
-          "live": 63.916666666666664
+          "hours": 63.93333333333333,
+          "live": 63.93333333333333
+        },
+        "Gehad Helal": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
         }
       },
       "time": {
@@ -668,7 +668,7 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Aya": {
+          "Salma": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
@@ -677,7 +677,7 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Salma": {
+          "Gehad Helal": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
