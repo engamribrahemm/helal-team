@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-17T18:10:55.591Z",
+      "updated_at": "2026-10-18T12:35:33.348Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -495,8 +495,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 56.340394629629635,
-          "live": 25.833333333333332
+          "hours": 62.47928351851852,
+          "live": 44.25
         },
         "Judi": {
           "open": 1,
@@ -509,14 +509,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 15,
+          "open": 14,
           "todo": 12,
           "progress": 2,
-          "review": 1,
-          "overdue": 1,
-          "done": 10,
-          "hours": 30.009503587962964,
-          "live": 248.51666666666668
+          "review": 0,
+          "overdue": 2,
+          "done": 11,
+          "hours": 30.779521474358976,
+          "live": 285.33333333333337
         },
         "Alaa": {
           "open": 5,
@@ -525,8 +525,8 @@
           "review": 2,
           "overdue": 0,
           "done": 9,
-          "hours": 23.460096076388886,
-          "live": 1.4166666666666667
+          "hours": 25.762179409722222,
+          "live": 19.833333333333332
         },
         "Ganna": {
           "open": 3,
@@ -535,8 +535,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 63.80491722222222,
-          "live": 71.95
+          "hours": 65.47764449494949,
+          "live": 90.35
         },
         "Moamen": {
           "open": 0,
@@ -568,6 +568,16 @@
           "hours": 26.033093611111113,
           "live": 0
         },
+        "Aya": {
+          "open": 1,
+          "todo": 1,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
         "Salma": {
           "open": 2,
           "todo": 1,
@@ -575,24 +585,14 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 45.516666666666666,
-          "live": 45.516666666666666
-        },
-        "Gehad Helal": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
+          "hours": 63.916666666666664,
+          "live": 63.916666666666664
         }
       },
       "time": {
-        "avgTodo": 6129,
-        "avgProgress": 2948,
-        "open": 42
+        "avgTodo": 7194,
+        "avgProgress": 3038,
+        "open": 41
       },
       "hr": {
         "people": {
@@ -668,7 +668,7 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Salma": {
+          "Aya": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
@@ -677,7 +677,7 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Gehad Helal": {
+          "Salma": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
@@ -5585,15 +5585,15 @@
           "title": "single visual | 18th Oct",
           "notes": "",
           "due": "2026-10-17",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:15:51.638Z",
-          "updated_at": "2026-10-17T16:58:41.824Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-18T12:35:33.191Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-16T18:29:01.526Z",
           "progress_started_at": "",
@@ -5619,7 +5619,11 @@
           "progress_hours": 3.2030694444444445,
           "review_at": "2026-10-17T16:58:41.823Z",
           "first_review_at": "2026-10-17T16:58:41.823Z",
-          "delivered_on": "2026-10-17"
+          "delivered_on": "2026-10-17",
+          "done_at": "2026-10-18T12:35:33.190Z",
+          "done_on": "2026-10-18",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261017-seif-mvb1x0zs",
