@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-18T16:14:35.291Z",
+      "updated_at": "2026-10-18T16:14:52.205Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -511,12 +511,12 @@
         "Seif": {
           "open": 14,
           "todo": 8,
-          "progress": 4,
-          "review": 2,
+          "progress": 3,
+          "review": 3,
           "overdue": 2,
           "done": 11,
-          "hours": 25.81558527777777,
-          "live": 272.4333333333333
+          "hours": 27.513127083333334,
+          "live": 270.3833333333334
         },
         "Alaa": {
           "open": 3,
@@ -545,8 +545,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 65.80946267676767,
-          "live": 94
+          "hours": 65.81097782828282,
+          "live": 94.01666666666667
         },
         "Tasneem": {
           "open": 0,
@@ -631,7 +631,7 @@
       },
       "time": {
         "avgTodo": 8140,
-        "avgProgress": 3018,
+        "avgProgress": 3081,
         "open": 38
       },
       "hr": {
@@ -6018,20 +6018,33 @@
           "title": "single visual | 22nd Oct",
           "notes": "",
           "due": "2026-10-19",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:19:40.979Z",
-          "updated_at": "2026-10-18T14:08:40.922Z",
+          "updated_at": "2026-10-18T16:14:52.157Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-18T14:08:40.922Z",
-          "progress_started_at": "2026-10-18T14:08:40.922Z",
-          "time_log": [],
-          "start_on": "2026-10-18"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-18T14:08:40.922Z",
+              "ended_at": "2026-10-18T16:14:52.157Z",
+              "hours": 2.1031208333333336,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-10-18",
+          "progress_hours": 2.1031208333333336,
+          "review_at": "2026-10-18T16:14:52.157Z",
+          "first_review_at": "2026-10-18T16:14:52.157Z",
+          "delivered_on": "2026-10-18"
         },
         {
           "id": "t-20261019-seif-mvb21gfy",
