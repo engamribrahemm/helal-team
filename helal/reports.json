@@ -30,6 +30,46 @@
       "created_at": "2026-10-18T18:39:57.736Z"
     },
     {
+      "id": "r-mve56yqb",
+      "who": "Seif",
+      "date": "2026-10-18",
+      "finished": "carousel | 19th Oct · 100%\nsingle visual | 20th Oct · 100%\nsingle visual | 22nd Oct · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Office",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261017-seif-mvb1x0zs",
+          "title": "carousel | 19th Oct",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261018-seif-mvb1y3il",
+          "title": "single visual | 20th Oct",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261019-seif-mvb20o4y",
+          "title": "single visual | 22nd Oct",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261017-seif-mvb1x0zs",
+        "t-20261018-seif-mvb1y3il",
+        "t-20261019-seif-mvb20o4y"
+      ],
+      "created_at": "2026-10-18T18:11:52.019Z"
+    },
+    {
       "id": "r-mvcvr9vx",
       "who": "Alaa",
       "date": "2026-10-17",
@@ -182,6 +222,30 @@
         "t-20261015-rahma-mv6s2tqo"
       ],
       "created_at": "2026-10-16T13:54:19.464Z"
+    },
+    {
+      "id": "r-mv8k38yw",
+      "who": "Seif",
+      "date": "2026-10-14",
+      "finished": "Rebranding for The Fourth Dimension · 50%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261014-seif-muscykvc",
+          "title": "Rebranding for The Fourth Dimension",
+          "project": "The Fourth Dimension",
+          "status": "In progress",
+          "percent": 50
+        }
+      ],
+      "done_task_ids": [
+        "t-20261014-seif-muscykvc"
+      ],
+      "created_at": "2026-10-14T20:22:15.848Z"
     },
     {
       "id": "r-mv8f0s3y",
@@ -505,7 +569,7 @@
     },
     {
       "id": "r-muwxf15m",
-      "who": "Rahma Elsaid",
+      "who": "Rahma",
       "date": "2026-10-06",
       "finished": "I have finished 21 October 2026 design. I developed three different concepts and reviewed them with Seif to evaluate the best options. And I have submitted the final design.",
       "unfinished": "",
