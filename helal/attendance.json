@@ -798,6 +798,21 @@
           "saved_at": "2026-10-17T06:15:54.241Z",
           "updated_at": "2026-10-17T06:15:54.241Z",
           "updated_by": "Ganna"
+        },
+        "Salma": {
+          "days": {
+            "2026-10-16": "Off",
+            "2026-10-17": "Office",
+            "2026-10-18": "Home",
+            "2026-10-19": "Home",
+            "2026-10-21": "Office",
+            "2026-10-20": "Home",
+            "2026-10-22": "Off"
+          },
+          "saved": true,
+          "saved_at": "2026-10-18T22:14:32.853Z",
+          "updated_at": "2026-10-18T22:14:32.853Z",
+          "updated_by": "Salma"
         }
       }
     }
@@ -837,10 +852,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-14T17:13:09.437Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mu1fbg3s",
@@ -850,10 +865,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-14T17:13:10.064Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mulhzjb9",
@@ -941,10 +956,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-10T14:28:06.584Z",
+      "decided_by": "Amr"
     }
   ]
 }
