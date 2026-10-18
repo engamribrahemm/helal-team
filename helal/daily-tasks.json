@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-18T18:37:14.860Z",
+      "updated_at": "2026-10-18T18:37:18.570Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -521,12 +521,12 @@
         "Alaa": {
           "open": 3,
           "todo": 2,
-          "progress": 0,
-          "review": 1,
+          "progress": 1,
+          "review": 0,
           "overdue": 0,
           "done": 11,
-          "hours": 41.25387240740741,
-          "live": 0
+          "hours": 39.71515183333334,
+          "live": 25.866666666666667
         },
         "Ganna": {
           "open": 3,
@@ -591,7 +591,7 @@
       },
       "time": {
         "avgTodo": 8277,
-        "avgProgress": 3137,
+        "avgProgress": 3103,
         "open": 38
       },
       "hr": {
@@ -6179,18 +6179,18 @@
           "title": "Designing Flowers bouquet | 21th Oct",
           "notes": "",
           "due": "2026-10-21",
-          "status": "Review",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T16:09:33.170Z",
-          "updated_at": "2026-10-18T18:37:14.841Z",
+          "updated_at": "2026-10-18T18:37:17.149Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-17T16:45:04.671Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-10-18T18:37:17.149Z",
           "time_log": [
             {
               "from": "In progress",
