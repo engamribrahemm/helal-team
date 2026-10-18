@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-18T12:36:20.154Z",
+      "updated_at": "2026-10-18T12:36:35.180Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -495,8 +495,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 62.47928351851852,
-          "live": 44.25
+          "hours": 62.48483907407408,
+          "live": 44.266666666666666
         },
         "Judi": {
           "open": 1,
@@ -519,13 +519,13 @@
           "live": 285.3666666666667
         },
         "Alaa": {
-          "open": 4,
+          "open": 3,
           "todo": 2,
           "progress": 1,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 10,
-          "hours": 25.17158570987654,
+          "done": 11,
+          "hours": 39.11348516666667,
           "live": 19.85
         },
         "Ganna": {
@@ -575,8 +575,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 63.93333333333333,
-          "live": 63.93333333333333
+          "hours": 63.95,
+          "live": 63.95
         },
         "Gehad Helal": {
           "open": 0,
@@ -591,8 +591,8 @@
       },
       "time": {
         "avgTodo": 7195,
-        "avgProgress": 2997,
-        "open": 40
+        "avgProgress": 3150,
+        "open": 39
       },
       "hr": {
         "people": {
@@ -6388,15 +6388,15 @@
           "title": "Delivery of Carousel No. 3",
           "notes": "",
           "due": "2026-10-24",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-09-30",
           "month": "2026-09",
           "created_by": "Mariam",
           "created_at": "2026-09-30T16:59:05.200Z",
-          "updated_at": "2026-10-17T16:33:25.230Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-18T12:36:34.991Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-10T19:57:59.140Z",
           "progress_started_at": "",
@@ -6414,7 +6414,11 @@
           "progress_hours": 164.59058027777778,
           "review_at": "2026-10-17T16:33:25.229Z",
           "first_review_at": "2026-10-17T16:33:25.229Z",
-          "delivered_on": "2026-10-17"
+          "delivered_on": "2026-10-17",
+          "done_at": "2026-10-18T12:36:34.990Z",
+          "done_on": "2026-10-18",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261024-ganna-muzko0cx",
