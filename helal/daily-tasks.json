@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-18T12:36:04.444Z",
+      "updated_at": "2026-10-18T12:36:20.154Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -519,14 +519,14 @@
           "live": 285.3666666666667
         },
         "Alaa": {
-          "open": 5,
+          "open": 4,
           "todo": 2,
           "progress": 1,
-          "review": 2,
+          "review": 1,
           "overdue": 0,
-          "done": 9,
-          "hours": 25.762179409722222,
-          "live": 19.833333333333332
+          "done": 10,
+          "hours": 25.17158570987654,
+          "live": 19.85
         },
         "Ganna": {
           "open": 3,
@@ -590,9 +590,9 @@
         }
       },
       "time": {
-        "avgTodo": 7194,
-        "avgProgress": 3038,
-        "open": 41
+        "avgTodo": 7195,
+        "avgProgress": 2997,
+        "open": 40
       },
       "hr": {
         "people": {
@@ -5735,15 +5735,15 @@
           "title": "Designing Bridal Bouquets | 18th Oct",
           "notes": "",
           "due": "2026-10-18",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T16:05:44.312Z",
-          "updated_at": "2026-10-17T16:33:26.595Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-18T12:36:19.918Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-16T20:07:37.985Z",
           "progress_started_at": "",
@@ -5761,7 +5761,11 @@
           "progress_hours": 20.430169444444445,
           "review_at": "2026-10-17T16:33:26.595Z",
           "first_review_at": "2026-10-17T16:33:26.595Z",
-          "delivered_on": "2026-10-17"
+          "delivered_on": "2026-10-17",
+          "done_at": "2026-10-18T12:36:19.916Z",
+          "done_on": "2026-10-18",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261018-rahma-mvcnclps",
