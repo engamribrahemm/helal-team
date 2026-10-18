@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-18T14:08:43.839Z",
+      "updated_at": "2026-10-18T14:40:43.695Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -495,8 +495,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 62.99595018518519,
-          "live": 45.8
+          "hours": 63.17372796296297,
+          "live": 46.333333333333336
         },
         "Judi": {
           "open": 1,
@@ -515,8 +515,8 @@
           "review": 1,
           "overdue": 2,
           "done": 11,
-          "hours": 31.573648263888884,
-          "live": 264.0833333333333
+          "hours": 23.846902864583342,
+          "live": 266.7500000000001
         },
         "Alaa": {
           "open": 3,
@@ -525,8 +525,8 @@
           "review": 0,
           "overdue": 0,
           "done": 11,
-          "hours": 39.2668185,
-          "live": 21.383333333333333
+          "hours": 39.320151833333334,
+          "live": 21.916666666666668
         },
         "Ganna": {
           "open": 3,
@@ -535,8 +535,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 65.61855358585858,
-          "live": 91.9
+          "hours": 65.66703843434343,
+          "live": 92.43333333333334
         },
         "Moamen": {
           "open": 0,
@@ -559,13 +559,13 @@
           "live": 0
         },
         "Rahma": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 3,
-          "hours": 26.033093611111113,
+          "done": 4,
+          "hours": 17.35621666666667,
           "live": 0
         },
         "Salma": {
@@ -575,8 +575,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 65.48333333333333,
-          "live": 65.48333333333333
+          "hours": 66.01666666666667,
+          "live": 66.01666666666667
         },
         "Gehad Helal": {
           "open": 0,
@@ -590,9 +590,9 @@
         }
       },
       "time": {
-        "avgTodo": 8020,
-        "avgProgress": 3201,
-        "open": 39
+        "avgTodo": 8050,
+        "avgProgress": 2940,
+        "open": 38
       },
       "hr": {
         "people": {
@@ -5793,15 +5793,15 @@
           "title": "carousel - 19/10",
           "notes": "",
           "due": "2026-10-18",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-17",
           "month": "2026-10",
           "created_by": "Seif",
           "created_at": "2026-10-17T17:04:35.824Z",
-          "updated_at": "2026-10-17T18:10:55.566Z",
-          "updated_by": "Rahma",
+          "updated_at": "2026-10-18T14:40:43.642Z",
+          "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-17T18:10:46.700Z",
           "progress_started_at": "",
@@ -5819,7 +5819,11 @@
           "progress_hours": 0.0024627777777777777,
           "review_at": "2026-10-17T18:10:55.566Z",
           "first_review_at": "2026-10-17T18:10:55.566Z",
-          "delivered_on": "2026-10-17"
+          "delivered_on": "2026-10-17",
+          "done_at": "2026-10-18T14:40:43.642Z",
+          "done_on": "2026-10-18",
+          "done_month": "2026-10",
+          "done_by": "Seif"
         }
       ]
     },
