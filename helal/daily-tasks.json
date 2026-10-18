@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-18T12:36:35.180Z",
+      "updated_at": "2026-10-18T14:08:21.869Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -495,8 +495,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 62.48483907407408,
-          "live": 44.266666666666666
+          "hours": 62.99595018518519,
+          "live": 45.8
         },
         "Judi": {
           "open": 1,
@@ -511,12 +511,12 @@
         "Seif": {
           "open": 14,
           "todo": 12,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 2,
           "done": 11,
-          "hours": 30.782085576923073,
-          "live": 285.3666666666667
+          "hours": 31.573648263888884,
+          "live": 264.0833333333333
         },
         "Alaa": {
           "open": 3,
@@ -525,8 +525,8 @@
           "review": 0,
           "overdue": 0,
           "done": 11,
-          "hours": 39.11348516666667,
-          "live": 19.85
+          "hours": 39.2668185,
+          "live": 21.383333333333333
         },
         "Ganna": {
           "open": 3,
@@ -535,8 +535,8 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 65.47915964646464,
-          "live": 90.36666666666666
+          "hours": 65.61855358585858,
+          "live": 91.9
         },
         "Moamen": {
           "open": 0,
@@ -575,8 +575,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 63.95,
-          "live": 63.95
+          "hours": 65.46666666666667,
+          "live": 65.46666666666667
         },
         "Gehad Helal": {
           "open": 0,
@@ -590,8 +590,8 @@
         }
       },
       "time": {
-        "avgTodo": 7195,
-        "avgProgress": 3150,
+        "avgTodo": 7283,
+        "avgProgress": 3201,
         "open": 39
       },
       "hr": {
@@ -5633,18 +5633,18 @@
           "title": "carousel | 19th Oct",
           "notes": "",
           "due": "2026-10-17",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:16:51.017Z",
-          "updated_at": "2026-10-17T13:58:44.725Z",
+          "updated_at": "2026-10-18T14:08:21.819Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-16T18:29:09.500Z",
-          "progress_started_at": "2026-10-17T13:58:44.725Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -5653,10 +5653,24 @@
               "ended_at": "2026-10-16T18:41:14.482Z",
               "hours": 0.2013838888888889,
               "by": "Seif"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-17T13:58:44.725Z",
+              "ended_at": "2026-10-18T14:08:21.819Z",
+              "hours": 24.16030388888889,
+              "by": "Seif"
             }
           ],
           "start_on": "2026-10-16",
-          "progress_hours": 0.2013838888888889
+          "progress_hours": 24.361687777777778,
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 1,
+          "review_at": "2026-10-18T14:08:21.819Z",
+          "first_review_at": "2026-10-18T14:08:21.819Z",
+          "delivered_on": "2026-10-18"
         }
       ]
     },
