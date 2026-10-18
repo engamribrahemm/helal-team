@@ -3,6 +3,33 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mve673fs",
+      "who": "Alaa",
+      "date": "2026-10-18",
+      "finished": "Designing Flowers bouquet | 21th Oct · 75%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [
+        "Waiting client",
+        "Tools / access"
+      ],
+      "finished_tasks": [
+        {
+          "id": "t-20261021-alaa-mvb5xypd",
+          "title": "Designing Flowers bouquet | 21th Oct",
+          "project": "Blushed",
+          "status": "In progress",
+          "percent": 75
+        }
+      ],
+      "done_task_ids": [
+        "t-20261021-alaa-mvb5xypd"
+      ],
+      "created_at": "2026-10-18T18:39:57.736Z"
+    },
+    {
       "id": "r-mvcvr9vx",
       "who": "Alaa",
       "date": "2026-10-17",
