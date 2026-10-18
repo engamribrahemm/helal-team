@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-18T14:40:43.695Z",
+      "updated_at": "2026-10-18T16:14:35.291Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -495,8 +495,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 63.17372796296297,
-          "live": 46.333333333333336
+          "hours": 63.69595018518519,
+          "live": 47.9
         },
         "Judi": {
           "open": 1,
@@ -511,12 +511,12 @@
         "Seif": {
           "open": 14,
           "todo": 8,
-          "progress": 5,
-          "review": 1,
+          "progress": 4,
+          "review": 2,
           "overdue": 2,
           "done": 11,
-          "hours": 23.846902864583342,
-          "live": 266.7500000000001
+          "hours": 25.81558527777777,
+          "live": 272.4333333333333
         },
         "Alaa": {
           "open": 3,
@@ -525,8 +525,18 @@
           "review": 0,
           "overdue": 0,
           "done": 11,
-          "hours": 39.320151833333334,
-          "live": 21.916666666666668
+          "hours": 39.4768185,
+          "live": 23.483333333333334
+        },
+        "Sara": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 2,
+          "hours": 16.377944583333335,
+          "live": 0
         },
         "Ganna": {
           "open": 3,
@@ -535,8 +545,18 @@
           "review": 2,
           "overdue": 0,
           "done": 12,
-          "hours": 65.66703843434343,
-          "live": 92.43333333333334
+          "hours": 65.80946267676767,
+          "live": 94
+        },
+        "Tasneem": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 1,
+          "hours": 7.200874722222222,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -558,6 +578,26 @@
           "hours": 0.043764722222222226,
           "live": 0
         },
+        "Rahma Elsaid": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Menna": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
         "Rahma": {
           "open": 0,
           "todo": 0,
@@ -575,8 +615,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 66.01666666666667,
-          "live": 66.01666666666667
+          "hours": 67.58333333333333,
+          "live": 67.58333333333333
         },
         "Gehad Helal": {
           "open": 0,
@@ -590,8 +630,8 @@
         }
       },
       "time": {
-        "avgTodo": 8050,
-        "avgProgress": 2940,
+        "avgTodo": 8140,
+        "avgProgress": 3018,
         "open": 38
       },
       "hr": {
@@ -632,7 +672,25 @@
             "attitude": 0,
             "reviews": 0
           },
+          "Sara": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
           "Ganna": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Tasneem": {
             "delivery": 5,
             "quality": 0,
             "revisions": 0,
@@ -656,6 +714,24 @@
             "revisions": 0,
             "creativity": 0,
             "total": 2,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Rahma Elsaid": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Menna": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -5707,20 +5783,33 @@
           "title": "single visual | 20th Oct",
           "notes": "",
           "due": "2026-10-18",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:17:40.942Z",
-          "updated_at": "2026-10-18T14:08:36.809Z",
+          "updated_at": "2026-10-18T16:14:35.229Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-18T14:08:36.809Z",
-          "progress_started_at": "2026-10-18T14:08:36.809Z",
-          "time_log": [],
-          "start_on": "2026-10-18"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-18T14:08:36.809Z",
+              "ended_at": "2026-10-18T16:14:35.229Z",
+              "hours": 2.099561111111111,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-10-18",
+          "progress_hours": 2.099561111111111,
+          "review_at": "2026-10-18T16:14:35.229Z",
+          "first_review_at": "2026-10-18T16:14:35.229Z",
+          "delivered_on": "2026-10-18"
         },
         {
           "id": "t-20261018-seif-mvb1zub8",
