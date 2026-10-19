@@ -505,8 +505,8 @@ function personOf(name) {
 }
 
 function isSocial() {
-  // Full social leads only — Mariam and Judi. Others use manages[] for scoped lead access.
-  return ["Mariam", "Judi"].some((name) => samePerson(name, state.who));
+  // Full social — can add/assign tasks, Review, Mark done. Others use manages[] for scoped lead access.
+  return ["Mariam", "Judi", "Gehad Helal"].some((name) => samePerson(name, state.who));
 }
 
 function managedNames() {
@@ -562,7 +562,7 @@ function canSeeTask(task) {
 }
 
 function isSocialName(name) {
-  return ["Mariam", "Judi"].some((n) => samePerson(n, name));
+  return ["Mariam", "Judi", "Gehad Helal"].some((n) => samePerson(n, name));
 }
 
 function canMarkDone(task) {
@@ -3042,8 +3042,8 @@ function viewBoard() {
         ]),
         status === "Done"
           ? (canMarkDone()
-            ? $("p", { class: "muted" }, "Mariam, Judi, leads, and admins can drop here or press Mark done. It saves to GitHub.")
-            : $("p", { class: "muted" }, "Ask Mariam, Judi, your lead, or an admin to mark Done."))
+            ? $("p", { class: "muted" }, "Mariam, Judi, Gehad, leads, and admins can drop here or press Mark done. It saves to GitHub.")
+            : $("p", { class: "muted" }, "Ask Mariam, Judi, Gehad, your lead, or an admin to mark Done."))
           : (canAssignTasks()
             ? $("button", {
               class: "btn",
@@ -7196,7 +7196,7 @@ function viewGuide() {
           $("p", {}, "My work, Board (own tasks), Attendance, Report, Drive, SOP, Helal bot."),
         ]),
         $("div", { class: "sop-role" }, [
-          $("strong", {}, "Social · Mariam & Judi"),
+          $("strong", {}, "Social · Mariam, Judi & Gehad"),
           $("p", {}, "Add and assign tasks, open Review, mark Done like admins. Not full admin (no People / HR / admin reports)."),
         ]),
         $("div", { class: "sop-role" }, [
@@ -7247,7 +7247,7 @@ function viewGuide() {
       sopList([
         "To do — waiting to start. To do time counts here until you leave this column.",
         "In progress — you are actively working. In progress time counts only here and freezes when you leave.",
-        "Review — ready for Mariam, Judi, the lead, Amr, or Moamen. Needs a Drive link first.",
+        "Review — ready for Mariam, Judi, Gehad, the lead, Amr, or Moamen. Needs a Drive link first.",
         "Revisions / Edits — feedback came back; stay visible in Review with an Edits tag until fixed.",
         "Done — only reviewers/admins/leads (for their people) mark Done. Done stays on today's Done column.",
       ], false),
@@ -7274,7 +7274,7 @@ function viewGuide() {
         "Open My work from Apps.",
         "Add / confirm the Drive link on the card.",
         "Press To Review when the file is ready.",
-        "Wait for Amr, Moamen, Mariam, Judi, or your lead to Mark done.",
+        "Wait for Amr, Moamen, Mariam, Judi, Gehad, or your lead to Mark done.",
         "On phones, Ready for review is listed first — clear that queue before starting new cards.",
       ], true),
     ]),
@@ -7282,7 +7282,7 @@ function viewGuide() {
     sopBlock("review", "08", "Review & Done", [
       sopList([
         "Only move to Review when the Drive link is on the card and the work matches the brief.",
-        "Who can Mark done: Amr, Moamen, Mariam, Judi, and the matching lead (Seif→Rahma).",
+        "Who can Mark done: Amr, Moamen, Mariam, Judi, Gehad, and the matching lead (Seif→Rahma).",
         "If edits are needed, keep it in Review with Edits — do not invent a private status in chat.",
         "Admins/social/leads: clear Review every evening so Done reflects the real day.",
       ], false),
@@ -7702,7 +7702,7 @@ function helpStaticKnowledge() {
       id: "roles",
       keys: ["roles", "who can", "permissions", "access"],
       title: "Roles",
-      body: "Everyone: My work, Board (own), Attendance, Report, Drive, SOP, Helal bot. Social (Mariam, Judi): add/assign, Review, Mark done — not People/HR. Leads: Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, People.",
+      body: "Everyone: My work, Board (own), Attendance, Report, Drive, SOP, Helal bot. Social (Mariam, Judi, Gehad): add/assign, Review, Mark done — not People/HR. Leads: Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, People.",
       go: "guide",
     },
     {
@@ -7736,7 +7736,7 @@ function helpStaticKnowledge() {
       id: "mywork",
       keys: ["my work", "my tasks", "to review", "drive link", "need drive", "how to finish", "path"],
       title: "My work",
-      body: "Members live here. 1) Open My work 2) Add Drive link 3) To Review 4) Wait for Amr/Moamen/Mariam/Judi/your lead to Mark done. Phones: clear Ready for review first.",
+      body: "Members live here. 1) Open My work 2) Add Drive link 3) To Review 4) Wait for Amr/Moamen/Mariam/Judi/Gehad/your lead to Mark done. Phones: clear Ready for review first.",
       go: "my",
     },
     {
@@ -7750,13 +7750,13 @@ function helpStaticKnowledge() {
       id: "create",
       keys: ["create", "new task", "assign", "add task"],
       title: "Create a task",
-      body: "Admins, Mariam, Judi, and leads can New task. Name content type | publish day, pick client, due, owner. Leads only assign people they manage. Mistake → Remove task.",
+      body: "Admins, Mariam, Judi, Gehad, and leads can New task. Name content type | publish day, pick client, due, owner. Leads only assign people they manage. Mistake → Remove task.",
     },
     {
       id: "review",
       keys: ["review", "mark done", "done", "edits", "revisions", "waiting"],
       title: "Review & Done",
-      body: "Review only with Drive on the card. Done by: Amr, Moamen, Mariam, Judi, Seif (Rahma). Edits stay in Review. Clear Review each evening.",
+      body: "Review only with Drive on the card. Done by: Amr, Moamen, Mariam, Judi, Gehad, Seif (Rahma). Edits stay in Review. Clear Review each evening.",
       go: "review",
       roles: ["admin", "social", "lead"],
     },
@@ -7764,7 +7764,7 @@ function helpStaticKnowledge() {
       id: "review-member",
       keys: ["review", "mark done", "done", "edits", "waiting review", "who marks"],
       title: "Review & Done",
-      body: "You send to Review (needs Drive). You don't mark your own Done — Amr, Moamen, Mariam, Judi, or your lead does.",
+      body: "You send to Review (needs Drive). You don't mark your own Done — Amr, Moamen, Mariam, Judi, Gehad, or your lead does.",
       go: "my",
       roles: ["member"],
     },
@@ -7952,7 +7952,7 @@ function helpLiveKnowledge() {
     let roleLine = `${name} — ${person.role || "Team"}${person.home ? ` · ${person.home}` : ""}.`;
     if (person.access === "admin") roleLine += " Admin access.";
     if (manages) roleLine += ` Manages: ${manages}.`;
-    if (["Mariam", "Judi"].includes(name)) roleLine += " Social: can add tasks, Review, Mark done.";
+    if (["Mariam", "Judi", "Gehad Helal"].some((n) => samePerson(n, name))) roleLine += " Social: can add tasks, Review, Mark done.";
     roleLine += ` Open tasks: ${mine.length}.`;
     items.push({
       id: `person-${person.id || lower}`,
