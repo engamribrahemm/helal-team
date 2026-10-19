@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-19T15:53:25.592Z",
+      "updated_at": "2026-10-19T17:02:16.215Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -495,8 +495,8 @@
           "review": 1,
           "overdue": 2,
           "done": 6,
-          "hours": 71.57928351851852,
-          "live": 71.55
+          "hours": 71.9570612962963,
+          "live": 72.68333333333334
         },
         "Judi": {
           "open": 1,
@@ -515,8 +515,8 @@
           "review": 5,
           "overdue": 4,
           "done": 11,
-          "hours": 31.302598397435894,
-          "live": 292.1333333333333
+          "hours": 31.478239423076925,
+          "live": 294.4166666666667
         },
         "Alaa": {
           "open": 3,
@@ -525,37 +525,17 @@
           "review": 0,
           "overdue": 0,
           "done": 11,
-          "hours": 41.80515183333333,
-          "live": 46.766666666666666
-        },
-        "Sara": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 2,
-          "hours": 16.377944583333335,
-          "live": 0
+          "hours": 41.91848516666666,
+          "live": 47.9
         },
         "Ganna": {
           "open": 3,
           "todo": 0,
-          "progress": 1,
-          "review": 2,
+          "progress": 0,
+          "review": 3,
           "overdue": 0,
           "done": 12,
-          "hours": 67.95946267676767,
-          "live": 117.65
-        },
-        "Tasneem": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 1,
-          "hours": 7.200874722222222,
+          "hours": 62.99040894444444,
           "live": 0
         },
         "Moamen": {
@@ -578,26 +558,6 @@
           "hours": 0.043764722222222226,
           "live": 0
         },
-        "Rahma Elsaid": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
-        "Menna": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
         "Rahma": {
           "open": 0,
           "todo": 0,
@@ -615,8 +575,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 91.21666666666667,
-          "live": 91.21666666666667
+          "hours": 92.36666666666666,
+          "live": 92.36666666666666
         },
         "Gehad Helal": {
           "open": 0,
@@ -630,8 +590,8 @@
         }
       },
       "time": {
-        "avgTodo": 9720,
-        "avgProgress": 3304,
+        "avgTodo": 9783,
+        "avgProgress": 3226,
         "open": 38
       },
       "hr": {
@@ -672,25 +632,7 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Sara": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
-            "attitude": 0,
-            "reviews": 0
-          },
           "Ganna": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Tasneem": {
             "delivery": 5,
             "quality": 0,
             "revisions": 0,
@@ -714,24 +656,6 @@
             "revisions": 0,
             "creativity": 0,
             "total": 2,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Rahma Elsaid": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Menna": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -6785,20 +6709,33 @@
           "title": "tiktok video | 29 OCT",
           "notes": "موظف جديد في الشركة",
           "due": "2026-10-27",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:31:06.818Z",
-          "updated_at": "2026-10-14T18:13:44.731Z",
+          "updated_at": "2026-10-19T17:02:16.141Z",
           "updated_by": "Ganna",
           "revisions": 0,
           "first_progress_at": "2026-10-14T18:13:44.731Z",
-          "progress_started_at": "2026-10-14T18:13:44.731Z",
-          "time_log": [],
-          "start_on": "2026-10-14"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-14T18:13:44.731Z",
+              "ended_at": "2026-10-19T17:02:16.139Z",
+              "hours": 118.80872444444445,
+              "by": "Ganna"
+            }
+          ],
+          "start_on": "2026-10-14",
+          "progress_hours": 118.80872444444445,
+          "review_at": "2026-10-19T17:02:16.139Z",
+          "first_review_at": "2026-10-19T17:02:16.139Z",
+          "delivered_on": "2026-10-19"
         }
       ]
     },
