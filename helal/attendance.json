@@ -852,10 +852,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "2026-09-14T17:13:09.437Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fbg3s",
@@ -865,10 +865,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "2026-09-14T17:13:10.064Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mulhzjb9",
@@ -917,10 +917,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8ىونص ل 5",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-09T15:22:07.625Z",
-      "decided_at": "2026-10-12T20:49:12.282Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mv146bw6",
@@ -930,10 +930,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8 ونص ل 5",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-09T15:22:22.518Z",
-      "decided_at": "2026-10-12T20:49:13.053Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mtsqmzqm",
@@ -956,10 +956,23 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
+    },
+    {
+      "id": "ar-mvfary0y",
+      "who": "Seif",
+      "friday": "2026-10-16",
+      "date": "2026-10-19",
+      "from": "Home",
+      "to": "Office",
+      "reason": "",
+      "status": "Pending",
+      "created_at": "2026-10-19T13:35:55.138Z",
+      "decided_at": "",
+      "decided_by": ""
     }
   ]
 }
