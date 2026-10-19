@@ -3,6 +3,30 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mvfhusaw",
+      "who": "Judi",
+      "date": "2026-10-19",
+      "finished": "Helal monthly report · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": true,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20260930-judi-mujtk5rm",
+          "title": "Helal monthly report",
+          "project": "Helal",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20260930-judi-mujtk5rm"
+      ],
+      "created_at": "2026-10-19T16:54:05.000Z"
+    },
+    {
       "id": "r-mvf1won8",
       "who": "Moamen",
       "date": "2026-10-19",
