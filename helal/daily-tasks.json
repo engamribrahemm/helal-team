@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-19T17:02:16.215Z",
+      "updated_at": "2026-10-20T08:23:15.816Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -489,14 +489,14 @@
           "live": 0
         },
         "Mariam": {
-          "open": 2,
+          "open": 1,
           "todo": 0,
           "progress": 1,
-          "review": 1,
-          "overdue": 2,
-          "done": 6,
-          "hours": 71.9570612962963,
-          "live": 72.68333333333334
+          "review": 0,
+          "overdue": 1,
+          "done": 7,
+          "hours": 77.07372796296296,
+          "live": 88.03333333333333
         },
         "Judi": {
           "open": 1,
@@ -513,10 +513,10 @@
           "todo": 7,
           "progress": 2,
           "review": 5,
-          "overdue": 4,
+          "overdue": 6,
           "done": 11,
-          "hours": 31.478239423076925,
-          "live": 294.4166666666667
+          "hours": 33.83977788461538,
+          "live": 325.1166666666667
         },
         "Alaa": {
           "open": 3,
@@ -525,8 +525,8 @@
           "review": 0,
           "overdue": 0,
           "done": 11,
-          "hours": 41.91848516666666,
-          "live": 47.9
+          "hours": 43.45348516666667,
+          "live": 63.25
         },
         "Ganna": {
           "open": 3,
@@ -553,7 +553,7 @@
           "todo": 12,
           "progress": 0,
           "review": 0,
-          "overdue": 4,
+          "overdue": 5,
           "done": 2,
           "hours": 0.043764722222222226,
           "live": 0
@@ -575,8 +575,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 92.36666666666666,
-          "live": 92.36666666666666
+          "hours": 107.71666666666667,
+          "live": 107.71666666666667
         },
         "Gehad Helal": {
           "open": 0,
@@ -590,9 +590,9 @@
         }
       },
       "time": {
-        "avgTodo": 9783,
-        "avgProgress": 3226,
-        "open": 38
+        "avgTodo": 10623,
+        "avgProgress": 3331,
+        "open": 37
       },
       "hr": {
         "people": {
@@ -5112,15 +5112,15 @@
           "title": "Calendar for Blushed content",
           "notes": "Write captions for the reels \n- send the pictures to designers to do the edit and write caption for",
           "due": "2026-10-13",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-12",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-12T20:48:31.034Z",
-          "updated_at": "2026-10-16T15:53:12.088Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-20T08:23:15.788Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": "",
@@ -5130,7 +5130,11 @@
           "time_log": [],
           "review_at": "2026-10-16T15:53:12.087Z",
           "first_review_at": "2026-10-16T15:53:12.087Z",
-          "delivered_on": "2026-10-16"
+          "delivered_on": "2026-10-16",
+          "done_at": "2026-10-20T08:23:15.788Z",
+          "done_on": "2026-10-20",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         },
         {
           "id": "t-20261013-mariam-mv6ombok",
