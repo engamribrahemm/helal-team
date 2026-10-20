@@ -476,7 +476,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-20T08:23:15.816Z",
+      "updated_at": "2026-10-20T08:24:17.870Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -495,8 +495,8 @@
           "review": 0,
           "overdue": 1,
           "done": 7,
-          "hours": 77.07372796296296,
-          "live": 88.03333333333333
+          "hours": 77.07928351851852,
+          "live": 88.05
         },
         "Judi": {
           "open": 1,
@@ -515,8 +515,8 @@
           "review": 5,
           "overdue": 6,
           "done": 11,
-          "hours": 33.83977788461538,
-          "live": 325.1166666666667
+          "hours": 33.842341987179495,
+          "live": 325.15000000000003
         },
         "Alaa": {
           "open": 3,
@@ -525,8 +525,8 @@
           "review": 0,
           "overdue": 0,
           "done": 11,
-          "hours": 43.45348516666667,
-          "live": 63.25
+          "hours": 43.45515183333333,
+          "live": 63.266666666666666
         },
         "Ganna": {
           "open": 3,
@@ -575,12 +575,12 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 107.71666666666667,
-          "live": 107.71666666666667
+          "hours": 107.73333333333333,
+          "live": 107.73333333333333
         },
         "Gehad Helal": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -590,9 +590,9 @@
         }
       },
       "time": {
-        "avgTodo": 10623,
+        "avgTodo": 10624,
         "avgProgress": 3331,
-        "open": 37
+        "open": 38
       },
       "hr": {
         "people": {
@@ -6365,6 +6365,27 @@
           "created_at": "2026-10-16T14:26:51.629Z",
           "updated_at": "2026-10-16T14:26:51.629Z",
           "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261022-gehad-helal-mvgf31rd",
+          "who": "Gehad Helal",
+          "space": "Social",
+          "project": "Helal",
+          "title": "Create the form for Hiring | 30 Oct",
+          "notes": "",
+          "due": "2026-10-22",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-20",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-20T08:24:17.833Z",
+          "updated_at": "2026-10-20T08:24:17.833Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
