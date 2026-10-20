@@ -813,6 +813,21 @@
           "saved_at": "2026-10-18T22:14:32.853Z",
           "updated_at": "2026-10-18T22:14:32.853Z",
           "updated_by": "Salma"
+        },
+        "Gehad Helal": {
+          "days": {
+            "2026-10-16": "Office",
+            "2026-10-17": "Office",
+            "2026-10-18": "Office",
+            "2026-10-19": "Office",
+            "2026-10-20": "Office",
+            "2026-10-21": "Office",
+            "2026-10-22": "Office"
+          },
+          "saved": true,
+          "saved_at": "2026-10-20T12:11:24.587Z",
+          "updated_at": "2026-10-20T12:11:24.587Z",
+          "updated_by": "Gehad Helal"
         }
       }
     }
@@ -917,10 +932,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8ىونص ل 5",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-10-09T15:22:07.625Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-10-12T20:49:12.282Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mv146bw6",
@@ -930,10 +945,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8 ونص ل 5",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-10-09T15:22:22.518Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-10-12T20:49:13.053Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mtsqmzqm",
@@ -943,10 +958,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-08T14:01:33.550Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-08T14:02:20.439Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mtviokjc",
