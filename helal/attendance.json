@@ -745,14 +745,14 @@
             "2026-10-17": "Home",
             "2026-10-18": "Home",
             "2026-10-19": "Office",
-            "2026-10-20": "Office",
+            "2026-10-20": "Home",
             "2026-10-21": "Office",
             "2026-10-22": "Office"
           },
           "saved": true,
           "saved_at": "2026-10-16T17:01:27.128Z",
-          "updated_at": "2026-10-16T17:01:27.128Z",
-          "updated_by": "Alaa"
+          "updated_at": "2026-10-21T22:23:02.008Z",
+          "updated_by": "Amr"
         },
         "Rahma": {
           "days": {
@@ -867,10 +867,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-14T17:13:09.437Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mu1fbg3s",
@@ -880,10 +880,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-14T17:13:10.064Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mulhzjb9",
@@ -971,10 +971,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-09-10T14:28:06.584Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mvfary0y",
@@ -984,10 +984,10 @@
       "from": "Home",
       "to": "Office",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-10-19T13:35:55.138Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-10-20T08:24:48.907Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mvgnmmuy",
@@ -997,10 +997,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "سبب شخصي في البيت",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-10-20T12:23:28.570Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-10-21T22:23:02.008Z",
+      "decided_by": "Amr"
     }
   ]
 }
