@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T13:59:42.514Z",
+      "updated_at": "2026-10-21T13:59:49.438Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -492,12 +492,12 @@
         "Mariam": {
           "open": 1,
           "todo": 0,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 1,
           "done": 7,
-          "hours": 86.9459501851852,
-          "live": 117.65
+          "hours": 71.59392527777779,
+          "live": 0
         },
         "Judi": {
           "open": 1,
@@ -592,7 +592,7 @@
       },
       "time": {
         "avgTodo": 11395,
-        "avgProgress": 3176,
+        "avgProgress": 3097,
         "open": 32
       },
       "hr": {
@@ -5145,20 +5145,36 @@
           "title": "5 Tips content for MAS | 13 Oct",
           "notes": "",
           "due": "2026-10-13",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-10-13",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-13T12:53:31.941Z",
-          "updated_at": "2026-10-16T16:20:21.536Z",
+          "updated_at": "2026-10-21T13:59:49.322Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-16T16:20:21.536Z",
-          "progress_started_at": "2026-10-16T16:20:21.536Z",
-          "time_log": [],
-          "start_on": "2026-10-16"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-16T16:20:21.536Z",
+              "ended_at": "2026-10-21T13:59:49.322Z",
+              "hours": 117.65771833333334,
+              "by": "Mariam"
+            }
+          ],
+          "start_on": "2026-10-16",
+          "delay_reason": "Workload pressure",
+          "delay_notified": false,
+          "delay_days": 8,
+          "progress_hours": 117.65771833333334,
+          "review_at": "2026-10-21T13:59:49.322Z",
+          "first_review_at": "2026-10-21T13:59:49.322Z",
+          "delivered_on": "2026-10-21"
         }
       ]
     },
