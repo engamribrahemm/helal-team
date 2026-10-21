@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T13:59:22.558Z",
+      "updated_at": "2026-10-21T13:59:28.201Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -510,13 +510,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 12,
+          "open": 10,
           "todo": 6,
           "progress": 3,
-          "review": 3,
-          "overdue": 6,
-          "done": 13,
-          "hours": 34.42480730902778,
+          "review": 1,
+          "overdue": 4,
+          "done": 15,
+          "hours": 30.833311049382715,
           "live": 388.2
         },
         "Alaa": {
@@ -592,8 +592,8 @@
       },
       "time": {
         "avgTodo": 11394,
-        "avgProgress": 3326,
-        "open": 36
+        "avgProgress": 3192,
+        "open": 34
       },
       "hr": {
         "people": {
@@ -5716,15 +5716,15 @@
           "title": "single visual | 20th Oct",
           "notes": "",
           "due": "2026-10-18",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:17:40.942Z",
-          "updated_at": "2026-10-18T16:14:35.229Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-21T13:59:24.728Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-18T14:08:36.809Z",
           "progress_started_at": "",
@@ -5742,7 +5742,11 @@
           "progress_hours": 2.099561111111111,
           "review_at": "2026-10-18T16:14:35.229Z",
           "first_review_at": "2026-10-18T16:14:35.229Z",
-          "delivered_on": "2026-10-18"
+          "delivered_on": "2026-10-18",
+          "done_at": "2026-10-21T13:59:24.727Z",
+          "done_on": "2026-10-21",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261018-seif-mvb1zub8",
@@ -5971,15 +5975,15 @@
           "title": "single visual | 22nd Oct",
           "notes": "",
           "due": "2026-10-19",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:19:40.979Z",
-          "updated_at": "2026-10-18T16:14:52.157Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-21T13:59:26.164Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-18T14:08:40.922Z",
           "progress_started_at": "",
@@ -5997,7 +6001,11 @@
           "progress_hours": 2.1031208333333336,
           "review_at": "2026-10-18T16:14:52.157Z",
           "first_review_at": "2026-10-18T16:14:52.157Z",
-          "delivered_on": "2026-10-18"
+          "delivered_on": "2026-10-18",
+          "done_at": "2026-10-21T13:59:26.163Z",
+          "done_on": "2026-10-21",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261019-seif-mvb21gfy",
@@ -6007,15 +6015,15 @@
           "title": "carousel | 23rd Oct",
           "notes": "",
           "due": "2026-10-19",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:20:17.663Z",
-          "updated_at": "2026-10-19T15:53:25.531Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-21T13:59:29.848Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-18T14:08:42.521Z",
           "progress_started_at": "",
@@ -6033,7 +6041,11 @@
           "progress_hours": 25.745280555555556,
           "review_at": "2026-10-19T15:53:25.531Z",
           "first_review_at": "2026-10-19T15:53:25.531Z",
-          "delivered_on": "2026-10-19"
+          "delivered_on": "2026-10-19",
+          "done_at": "2026-10-21T13:59:29.847Z",
+          "done_on": "2026-10-21",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         }
       ]
     },
