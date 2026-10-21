@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T14:01:36.765Z",
+      "updated_at": "2026-10-21T17:55:31.591Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -516,13 +516,13 @@
           "review": 0,
           "overdue": 3,
           "done": 16,
-          "hours": 30.570783128654966,
-          "live": 388.29999999999995
+          "hours": 31.18657260233918,
+          "live": 400
         },
         "Alaa": {
           "open": 3,
-          "todo": 3,
-          "progress": 0,
+          "todo": 2,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 12,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 137.36666666666667,
-          "live": 137.36666666666667
+          "hours": 141.25,
+          "live": 141.25
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,8 +591,8 @@
         }
       },
       "time": {
-        "avgTodo": 11396,
-        "avgProgress": 3097,
+        "avgTodo": 11610,
+        "avgProgress": 3116,
         "open": 33
       },
       "hr": {
@@ -6330,18 +6330,20 @@
           "title": "TIPS MAS | 23th OCT.",
           "notes": "",
           "due": "2026-10-21",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-10-21",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-21T14:01:36.542Z",
-          "updated_at": "2026-10-21T14:01:36.542Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-21T17:55:31.380Z",
+          "updated_by": "Alaa",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-21T17:55:31.380Z",
+          "progress_started_at": "2026-10-21T17:55:31.380Z",
+          "time_log": [],
+          "start_on": "2026-10-21"
         }
       ]
     },
