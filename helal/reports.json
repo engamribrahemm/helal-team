@@ -3,6 +3,32 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mviey7n9",
+      "who": "Alaa",
+      "date": "2026-10-21",
+      "finished": "TIPS MAS | 23th OCT. · 50%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Office",
+      "blockers": [
+        "Tools / access"
+      ],
+      "finished_tasks": [
+        {
+          "id": "t-20261021-alaa-mvi6kopp",
+          "title": "TIPS MAS | 23th OCT.",
+          "project": "MAS",
+          "status": "In progress",
+          "percent": 50
+        }
+      ],
+      "done_task_ids": [
+        "t-20261021-alaa-mvi6kopp"
+      ],
+      "created_at": "2026-10-21T17:56:04.533Z"
+    },
+    {
       "id": "r-mvi83wwv",
       "who": "Seif",
       "date": "2026-10-21",
@@ -639,7 +665,7 @@
     },
     {
       "id": "r-muzu9oe8",
-      "who": "Rahma Elsaid",
+      "who": "Rahma",
       "date": "2026-10-08",
       "finished": "I have started the 28 october 2026 design (الإعلان مش هيخلقلك ميزة… لو مفيش ميزة من الأساس.)",
       "unfinished": "",
@@ -661,7 +687,7 @@
     },
     {
       "id": "r-muyhtxzd",
-      "who": "Rahma Elsaid",
+      "who": "Rahma",
       "date": "2026-10-07",
       "finished": "I have finished 15 october design content (dark social).",
       "unfinished": "",
