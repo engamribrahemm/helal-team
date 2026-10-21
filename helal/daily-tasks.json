@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T17:55:31.591Z",
+      "updated_at": "2026-10-21T17:55:36.535Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -529,6 +529,16 @@
           "hours": 43.85281191666667,
           "live": 0
         },
+        "Sara": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 2,
+          "hours": 16.377944583333335,
+          "live": 0
+        },
         "Ganna": {
           "open": 4,
           "todo": 1,
@@ -537,6 +547,16 @@
           "overdue": 0,
           "done": 12,
           "hours": 62.99040894444444,
+          "live": 0
+        },
+        "Tasneem": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 1,
+          "hours": 7.200874722222222,
           "live": 0
         },
         "Moamen": {
@@ -569,6 +589,16 @@
           "hours": 17.35621666666667,
           "live": 0
         },
+        "Menna": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
         "Salma": {
           "open": 2,
           "todo": 1,
@@ -576,8 +606,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 141.25,
-          "live": 141.25
+          "hours": 141.26666666666668,
+          "live": 141.26666666666668
         },
         "Gehad Helal": {
           "open": 1,
@@ -633,6 +663,15 @@
             "attitude": 0,
             "reviews": 0
           },
+          "Sara": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
           "Ganna": {
             "delivery": 5,
             "quality": 0,
@@ -641,6 +680,15 @@
             "total": 5,
             "attitude": 0,
             "reviews": 0
+          },
+          "Tasneem": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 1
           },
           "Moamen": {
             "delivery": 0,
@@ -666,6 +714,15 @@
             "revisions": 0,
             "creativity": 0,
             "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Menna": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
