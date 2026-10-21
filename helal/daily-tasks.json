@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T13:59:28.201Z",
+      "updated_at": "2026-10-21T13:59:33.891Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -510,23 +510,23 @@
           "live": 0
         },
         "Seif": {
-          "open": 10,
+          "open": 9,
           "todo": 6,
           "progress": 3,
-          "review": 1,
-          "overdue": 4,
-          "done": 15,
-          "hours": 30.833311049382715,
+          "review": 0,
+          "overdue": 3,
+          "done": 16,
+          "hours": 30.565519970760235,
           "live": 388.2
         },
         "Alaa": {
-          "open": 3,
+          "open": 2,
           "todo": 2,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 11,
-          "hours": 41.25387240740741,
+          "done": 12,
+          "hours": 43.85281191666667,
           "live": 0
         },
         "Ganna": {
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 137.31666666666666,
-          "live": 137.31666666666666
+          "hours": 137.33333333333334,
+          "live": 137.33333333333334
         },
         "Gehad Helal": {
           "open": 1,
@@ -592,8 +592,8 @@
       },
       "time": {
         "avgTodo": 11394,
-        "avgProgress": 3192,
-        "open": 34
+        "avgProgress": 3176,
+        "open": 32
       },
       "hr": {
         "people": {
@@ -6216,15 +6216,15 @@
           "title": "Designing Flowers bouquet | 21th Oct",
           "notes": "",
           "due": "2026-10-21",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T16:09:33.170Z",
-          "updated_at": "2026-10-20T12:21:52.116Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-21T13:59:31.960Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-17T16:45:04.671Z",
           "progress_started_at": "",
@@ -6258,7 +6258,11 @@
           "progress_hours": 67.2432675,
           "review_at": "2026-10-20T12:21:52.116Z",
           "first_review_at": "2026-10-18T18:37:14.841Z",
-          "delivered_on": "2026-10-20"
+          "delivered_on": "2026-10-20",
+          "done_at": "2026-10-21T13:59:31.959Z",
+          "done_on": "2026-10-21",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261021-salma-mvclntjy",
