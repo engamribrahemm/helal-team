@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T10:49:16.987Z",
+      "updated_at": "2026-10-21T13:59:14.990Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -496,8 +496,8 @@
           "review": 0,
           "overdue": 1,
           "done": 7,
-          "hours": 85.88483907407408,
-          "live": 114.46666666666667
+          "hours": 86.94039462962964,
+          "live": 117.63333333333334
         },
         "Judi": {
           "open": 1,
@@ -510,14 +510,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 14,
+          "open": 13,
           "todo": 6,
           "progress": 3,
-          "review": 5,
-          "overdue": 8,
-          "done": 11,
-          "hours": 35.24884136904762,
-          "live": 378.68333333333334
+          "review": 4,
+          "overdue": 7,
+          "done": 12,
+          "hours": 35.15636446296296,
+          "live": 388.18333333333334
         },
         "Alaa": {
           "open": 3,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 134.15,
-          "live": 134.15
+          "hours": 137.31666666666666,
+          "live": 137.31666666666666
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,9 +591,9 @@
         }
       },
       "time": {
-        "avgTodo": 11731,
-        "avgProgress": 3390,
-        "open": 38
+        "avgTodo": 11394,
+        "avgProgress": 3368,
+        "open": 37
       },
       "hr": {
         "people": {
@@ -5638,15 +5638,15 @@
           "title": "carousel | 19th Oct",
           "notes": "",
           "due": "2026-10-17",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:16:51.017Z",
-          "updated_at": "2026-10-18T14:08:21.819Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-21T13:59:14.854Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-16T18:29:09.500Z",
           "progress_started_at": "",
@@ -5675,7 +5675,11 @@
           "delay_days": 1,
           "review_at": "2026-10-18T14:08:21.819Z",
           "first_review_at": "2026-10-18T14:08:21.819Z",
-          "delivered_on": "2026-10-18"
+          "delivered_on": "2026-10-18",
+          "done_at": "2026-10-21T13:59:14.853Z",
+          "done_on": "2026-10-21",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         }
       ]
     },
@@ -5748,15 +5752,15 @@
           "title": "carousel | 21st Oct",
           "notes": "",
           "due": "2026-10-18",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:19:02.325Z",
-          "updated_at": "2026-10-19T13:34:43.246Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-21T13:59:16.427Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-18T14:08:38.025Z",
           "progress_started_at": "",
@@ -5777,7 +5781,11 @@
           "progress_hours": 23.434783333333332,
           "review_at": "2026-10-19T13:34:43.245Z",
           "first_review_at": "2026-10-19T13:34:43.245Z",
-          "delivered_on": "2026-10-19"
+          "delivered_on": "2026-10-19",
+          "done_at": "2026-10-21T13:59:16.427Z",
+          "done_on": "2026-10-21",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261018-alaa-mvb5t247",
