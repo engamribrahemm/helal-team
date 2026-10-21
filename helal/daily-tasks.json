@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T13:59:49.438Z",
+      "updated_at": "2026-10-21T14:01:36.765Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -516,12 +516,12 @@
           "review": 0,
           "overdue": 3,
           "done": 16,
-          "hours": 30.565519970760235,
-          "live": 388.2
+          "hours": 30.570783128654966,
+          "live": 388.29999999999995
         },
         "Alaa": {
-          "open": 2,
-          "todo": 2,
+          "open": 3,
+          "todo": 3,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 137.33333333333334,
-          "live": 137.33333333333334
+          "hours": 137.36666666666667,
+          "live": 137.36666666666667
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,9 +591,9 @@
         }
       },
       "time": {
-        "avgTodo": 11395,
+        "avgTodo": 11396,
         "avgProgress": 3097,
-        "open": 32
+        "open": 33
       },
       "hr": {
         "people": {
@@ -6318,6 +6318,27 @@
           "created_at": "2026-10-21T10:49:16.964Z",
           "updated_at": "2026-10-21T10:49:16.964Z",
           "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261021-alaa-mvi6kopp",
+          "who": "Alaa",
+          "space": "Graphic",
+          "project": "MAS",
+          "title": "TIPS MAS | 23th OCT.",
+          "notes": "",
+          "due": "2026-10-21",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
+          "drive_missing": false,
+          "assigned_at": "2026-10-21",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-21T14:01:36.542Z",
+          "updated_at": "2026-10-21T14:01:36.542Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
