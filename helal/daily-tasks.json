@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T10:06:55.589Z",
+      "updated_at": "2026-10-21T10:49:16.987Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -496,8 +496,8 @@
           "review": 0,
           "overdue": 1,
           "done": 7,
-          "hours": 85.65150574074075,
-          "live": 113.76666666666667
+          "hours": 85.88483907407408,
+          "live": 114.46666666666667
         },
         "Judi": {
           "open": 1,
@@ -516,8 +516,8 @@
           "review": 5,
           "overdue": 8,
           "done": 11,
-          "hours": 37.79747019230769,
-          "live": 376.56666666666666
+          "hours": 35.24884136904762,
+          "live": 378.68333333333334
         },
         "Alaa": {
           "open": 3,
@@ -530,8 +530,8 @@
           "live": 0
         },
         "Ganna": {
-          "open": 3,
-          "todo": 0,
+          "open": 4,
+          "todo": 1,
           "progress": 0,
           "review": 3,
           "overdue": 0,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 133.45,
-          "live": 133.45
+          "hours": 134.15,
+          "live": 134.15
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,9 +591,9 @@
         }
       },
       "time": {
-        "avgTodo": 11692,
-        "avgProgress": 3464,
-        "open": 37
+        "avgTodo": 11731,
+        "avgProgress": 3390,
+        "open": 38
       },
       "hr": {
         "people": {
@@ -6256,6 +6256,27 @@
           "created_by": "Amr",
           "created_at": "2026-10-17T16:17:19.966Z",
           "updated_at": "2026-10-17T16:17:19.966Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261021-ganna-mvhzpcpv",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "MEDC",
+          "title": "Re-edit MEDC reel | 21 Oct",
+          "notes": "",
+          "due": "2026-10-21",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-10-21",
+          "month": "2026-10",
+          "created_by": "Amr",
+          "created_at": "2026-10-21T10:49:16.964Z",
+          "updated_at": "2026-10-21T10:49:16.964Z",
           "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "",
