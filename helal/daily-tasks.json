@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-20T12:21:52.131Z",
+      "updated_at": "2026-10-21T10:06:55.589Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -496,8 +496,8 @@
           "review": 0,
           "overdue": 1,
           "done": 7,
-          "hours": 78.40150574074075,
-          "live": 92.01666666666667
+          "hours": 85.65150574074075,
+          "live": 113.76666666666667
         },
         "Judi": {
           "open": 1,
@@ -511,13 +511,13 @@
         },
         "Seif": {
           "open": 14,
-          "todo": 7,
-          "progress": 2,
+          "todo": 6,
+          "progress": 3,
           "review": 5,
-          "overdue": 6,
+          "overdue": 8,
           "done": 11,
-          "hours": 34.451316346153845,
-          "live": 333.06666666666666
+          "hours": 37.79747019230769,
+          "live": 376.56666666666666
         },
         "Alaa": {
           "open": 3,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 111.7,
-          "live": 111.7
+          "hours": 133.45,
+          "live": 133.45
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,8 +591,8 @@
         }
       },
       "time": {
-        "avgTodo": 10294,
-        "avgProgress": 3342,
+        "avgTodo": 11692,
+        "avgProgress": 3464,
         "open": 37
       },
       "hr": {
@@ -6104,18 +6104,20 @@
           "title": "carousel | 25th Oct",
           "notes": "",
           "due": "2026-10-20",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:24:37.157Z",
-          "updated_at": "2026-10-16T14:24:37.157Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-21T10:06:55.539Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-21T10:06:55.538Z",
+          "progress_started_at": "2026-10-21T10:06:55.538Z",
+          "time_log": [],
+          "start_on": "2026-10-21"
         }
       ]
     },
