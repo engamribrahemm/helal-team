@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T13:59:14.990Z",
+      "updated_at": "2026-10-21T13:59:22.558Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -496,8 +496,8 @@
           "review": 0,
           "overdue": 1,
           "done": 7,
-          "hours": 86.94039462962964,
-          "live": 117.63333333333334
+          "hours": 86.9459501851852,
+          "live": 117.65
         },
         "Judi": {
           "open": 1,
@@ -510,14 +510,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 13,
+          "open": 12,
           "todo": 6,
           "progress": 3,
-          "review": 4,
-          "overdue": 7,
-          "done": 12,
-          "hours": 35.15636446296296,
-          "live": 388.18333333333334
+          "review": 3,
+          "overdue": 6,
+          "done": 13,
+          "hours": 34.42480730902778,
+          "live": 388.2
         },
         "Alaa": {
           "open": 3,
@@ -592,8 +592,8 @@
       },
       "time": {
         "avgTodo": 11394,
-        "avgProgress": 3368,
-        "open": 37
+        "avgProgress": 3326,
+        "open": 36
       },
       "hr": {
         "people": {
