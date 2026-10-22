@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-22T13:11:40.194Z",
+      "updated_at": "2026-10-22T14:14:09.549Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -516,8 +516,8 @@
           "review": 0,
           "overdue": 5,
           "done": 16,
-          "hours": 31.11801013227514,
-          "live": 460.93333333333334
+          "hours": 31.36562917989418,
+          "live": 466.1333333333334
         },
         "Alaa": {
           "open": 3,
@@ -526,8 +526,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 41.6177078030303,
-          "live": 19.266666666666666
+          "hours": 41.7116471969697,
+          "live": 20.3
         },
         "Ganna": {
           "open": 4,
@@ -562,12 +562,12 @@
         "Rahma": {
           "open": 3,
           "todo": 2,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 4,
-          "hours": 13.0296625,
-          "live": 0.05
+          "hours": 17.35621666666667,
+          "live": 0
         },
         "Salma": {
           "open": 2,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 160.53333333333333,
-          "live": 160.53333333333333
+          "hours": 161.56666666666666,
+          "live": 161.56666666666666
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,8 +591,8 @@
         }
       },
       "time": {
-        "avgTodo": 12399,
-        "avgProgress": 2942,
+        "avgTodo": 12456,
+        "avgProgress": 3006,
         "open": 35
       },
       "hr": {
@@ -6495,18 +6495,18 @@
           "title": "Header , Post to the form",
           "notes": "دي form للناس الي بتقدم علي شغل للشركه",
           "due": "2026-10-22",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-22",
           "month": "2026-10",
           "created_by": "Gehad Helal",
           "created_at": "2026-10-22T12:32:27.432Z",
-          "updated_at": "2026-10-22T13:11:39.372Z",
-          "updated_by": "Rahma",
+          "updated_at": "2026-10-22T14:14:09.506Z",
+          "updated_by": "Gehad Helal",
           "revisions": 0,
           "first_progress_at": "2026-10-22T13:08:30.653Z",
-          "progress_started_at": "2026-10-22T13:11:39.372Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -6523,11 +6523,19 @@
               "ended_at": "2026-10-22T13:11:37.785Z",
               "hours": 0.04961388888888889,
               "by": "Rahma"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-22T13:11:39.372Z",
+              "ended_at": "2026-10-22T14:14:09.506Z",
+              "hours": 1.041703888888889,
+              "by": "Gehad Helal"
             }
           ],
           "start_on": "2026-10-22",
-          "progress_hours": 0.05147555555555555,
-          "review_at": "2026-10-22T13:11:37.785Z",
+          "progress_hours": 1.0931794444444445,
+          "review_at": "2026-10-22T14:14:09.506Z",
           "first_review_at": "2026-10-22T13:08:37.355Z",
           "delivered_on": "2026-10-22"
         }
