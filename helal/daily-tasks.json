@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-22T11:34:51.008Z",
+      "updated_at": "2026-10-22T11:37:30.981Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -511,13 +511,13 @@
         },
         "Seif": {
           "open": 9,
-          "todo": 6,
-          "progress": 3,
+          "todo": 5,
+          "progress": 4,
           "review": 0,
           "overdue": 5,
           "done": 16,
-          "hours": 33.97341470760234,
-          "live": 452.95
+          "hours": 33.98130944444444,
+          "live": 453.1
         },
         "Alaa": {
           "open": 3,
@@ -526,8 +526,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 41.4707381060606,
-          "live": 17.65
+          "hours": 41.47376840909091,
+          "live": 17.683333333333334
         },
         "Ganna": {
           "open": 4,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 158.91666666666666,
-          "live": 158.91666666666666
+          "hours": 158.95,
+          "live": 158.95
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,7 +591,7 @@
         }
       },
       "time": {
-        "avgTodo": 13081,
+        "avgTodo": 12147,
         "avgProgress": 3102,
         "open": 34
       },
