@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-22T14:14:18.034Z",
+      "updated_at": "2026-10-22T19:05:30.172Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -516,18 +516,18 @@
           "review": 0,
           "overdue": 5,
           "done": 16,
-          "hours": 31.36562917989418,
-          "live": 466.1333333333334
+          "hours": 32.521184735449744,
+          "live": 490.4
         },
         "Alaa": {
           "open": 3,
-          "todo": 2,
-          "progress": 1,
+          "todo": 1,
+          "progress": 2,
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 41.7116471969697,
-          "live": 20.3
+          "hours": 42.15255628787879,
+          "live": 25.15
         },
         "Ganna": {
           "open": 4,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 161.56666666666666,
-          "live": 161.56666666666666
+          "hours": 166.41666666666666,
+          "live": 166.41666666666666
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,8 +591,8 @@
         }
       },
       "time": {
-        "avgTodo": 12457,
-        "avgProgress": 2951,
+        "avgTodo": 13124,
+        "avgProgress": 2989,
         "open": 34
       },
       "hr": {
@@ -6643,18 +6643,18 @@
           "title": "Designing Mugs | 24th & 27th Oct",
           "notes": "",
           "due": "2026-10-23",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T16:12:30.029Z",
-          "updated_at": "2026-10-19T15:17:22.390Z",
+          "updated_at": "2026-10-22T19:05:30.019Z",
           "updated_by": "Alaa",
           "revisions": 0,
           "first_progress_at": "2026-10-19T15:17:12.289Z",
-          "progress_started_at": "",
+          "progress_started_at": "2026-10-22T19:05:30.019Z",
           "time_log": [
             {
               "from": "In progress",
