@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-21T21:26:12.755Z",
+      "updated_at": "2026-10-22T11:34:51.008Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -516,8 +516,8 @@
           "review": 0,
           "overdue": 5,
           "done": 16,
-          "hours": 31.740958567251464,
-          "live": 410.5333333333333
+          "hours": 33.97341470760234,
+          "live": 452.95
         },
         "Alaa": {
           "open": 3,
@@ -526,8 +526,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 40.18437446969697,
-          "live": 3.5
+          "hours": 41.4707381060606,
+          "live": 17.65
         },
         "Ganna": {
           "open": 4,
@@ -560,8 +560,8 @@
           "live": 0
         },
         "Rahma": {
-          "open": 0,
-          "todo": 0,
+          "open": 2,
+          "todo": 2,
           "progress": 0,
           "review": 0,
           "overdue": 0,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 144.76666666666668,
-          "live": 144.76666666666668
+          "hours": 158.91666666666666,
+          "live": 158.91666666666666
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,9 +591,9 @@
         }
       },
       "time": {
-        "avgTodo": 12310,
-        "avgProgress": 3019,
-        "open": 32
+        "avgTodo": 13081,
+        "avgProgress": 3102,
+        "open": 34
       },
       "hr": {
         "people": {
@@ -6755,6 +6755,48 @@
           "created_at": "2026-10-16T16:15:38.838Z",
           "updated_at": "2026-10-16T16:15:38.838Z",
           "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261025-rahma-mvjgqocz",
+          "who": "Rahma",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "single visual / 26 October",
+          "notes": "",
+          "due": "2026-10-25",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-10-22",
+          "month": "2026-10",
+          "created_by": "Seif",
+          "created_at": "2026-10-22T11:33:58.356Z",
+          "updated_at": "2026-10-22T11:33:58.356Z",
+          "updated_by": "Seif",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261025-rahma-mvjgrsyh",
+          "who": "Rahma",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "Carousel / 27 October",
+          "notes": "",
+          "due": "2026-10-25",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-10-22",
+          "month": "2026-10",
+          "created_by": "Seif",
+          "created_at": "2026-10-22T11:34:50.969Z",
+          "updated_at": "2026-10-22T11:34:50.969Z",
+          "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
