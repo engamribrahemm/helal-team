@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-22T13:08:30.727Z",
+      "updated_at": "2026-10-22T13:08:37.430Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -516,8 +516,8 @@
           "review": 0,
           "overdue": 5,
           "done": 16,
-          "hours": 31.104518068783065,
-          "live": 460.65
+          "hours": 31.106105370370365,
+          "live": 460.6833333333333
         },
         "Alaa": {
           "open": 3,
@@ -526,8 +526,8 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 41.6116471969697,
-          "live": 19.2
+          "hours": 41.61316234848485,
+          "live": 19.216666666666665
         },
         "Ganna": {
           "open": 4,
@@ -562,8 +562,8 @@
         "Rahma": {
           "open": 3,
           "todo": 2,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 4,
           "hours": 17.35621666666667,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 160.46666666666667,
-          "live": 160.46666666666667
+          "hours": 160.48333333333332,
+          "live": 160.48333333333332
         },
         "Gehad Helal": {
           "open": 1,
@@ -6495,20 +6495,33 @@
           "title": "Header , Post to the form",
           "notes": "دي form للناس الي بتقدم علي شغل للشركه",
           "due": "2026-10-22",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-22",
           "month": "2026-10",
           "created_by": "Gehad Helal",
           "created_at": "2026-10-22T12:32:27.432Z",
-          "updated_at": "2026-10-22T13:08:30.653Z",
+          "updated_at": "2026-10-22T13:08:37.356Z",
           "updated_by": "Rahma",
           "revisions": 0,
           "first_progress_at": "2026-10-22T13:08:30.653Z",
-          "progress_started_at": "2026-10-22T13:08:30.653Z",
-          "time_log": [],
-          "start_on": "2026-10-22"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-22T13:08:30.653Z",
+              "ended_at": "2026-10-22T13:08:37.355Z",
+              "hours": 0.0018616666666666666,
+              "by": "Rahma"
+            }
+          ],
+          "start_on": "2026-10-22",
+          "progress_hours": 0.0018616666666666666,
+          "review_at": "2026-10-22T13:08:37.355Z",
+          "first_review_at": "2026-10-22T13:08:37.355Z",
+          "delivered_on": "2026-10-22"
         }
       ]
     },
