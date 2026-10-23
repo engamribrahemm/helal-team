@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T23:06:13.395Z",
+      "updated_at": "2026-10-23T23:07:17.804Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -531,8 +531,8 @@
           "review": 0,
           "overdue": 9,
           "done": 16,
-          "hours": 39.19102600529101,
-          "live": 630.4666666666667
+          "hours": 39.19499425925926,
+          "live": 630.55
         },
         "Alaa": {
           "open": 4,
@@ -541,8 +541,8 @@
           "review": 0,
           "overdue": 2,
           "done": 12,
-          "hours": 43.30789881944444,
-          "live": 81.16666666666666
+          "hours": 43.310676597222226,
+          "live": 81.19999999999999
         },
         "Ganna": {
           "open": 21,
@@ -591,8 +591,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 194.43333333333334,
-          "live": 194.43333333333334
+          "hours": 194.45,
+          "live": 194.45
         },
         "Gehad Helal": {
           "open": 1,
@@ -603,50 +603,10 @@
           "done": 0,
           "hours": 0,
           "live": 0
-        },
-        "Sara": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 2,
-          "hours": 16.377944583333335,
-          "live": 0
-        },
-        "Tasneem": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 1,
-          "hours": 7.200874722222222,
-          "live": 0
-        },
-        "Rahma Elsaid": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
-        "Menna": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
         }
       },
       "time": {
-        "avgTodo": 3765,
+        "avgTodo": 3767,
         "avgProgress": 3179,
         "open": 43
       },
@@ -734,42 +694,6 @@
             "reviews": 0
           },
           "Gehad Helal": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Sara": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Tasneem": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Rahma Elsaid": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Menna": {
             "delivery": 0,
             "quality": 0,
             "revisions": 0,
