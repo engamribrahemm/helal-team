@@ -3,6 +3,22 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mvl93j3s",
+      "who": "Alaa",
+      "date": "2026-10-23",
+      "finished": "اكونت ادوبي واقف",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [
+        "Tools / access"
+      ],
+      "finished_tasks": [],
+      "done_task_ids": [],
+      "created_at": "2026-10-23T17:35:33.496Z"
+    },
+    {
       "id": "r-mvjwuqxs",
       "who": "Alaa",
       "date": "2026-10-22",
@@ -715,7 +731,7 @@
     },
     {
       "id": "r-muzu9oe8",
-      "who": "Rahma",
+      "who": "Rahma Elsaid",
       "date": "2026-10-08",
       "finished": "I have started the 28 october 2026 design (الإعلان مش هيخلقلك ميزة… لو مفيش ميزة من الأساس.)",
       "unfinished": "",
@@ -737,7 +753,7 @@
     },
     {
       "id": "r-muyhtxzd",
-      "who": "Rahma",
+      "who": "Rahma Elsaid",
       "date": "2026-10-07",
       "finished": "I have finished 15 october design content (dark social).",
       "unfinished": "",
@@ -781,7 +797,7 @@
     },
     {
       "id": "r-muwxf15m",
-      "who": "Rahma",
+      "who": "Rahma Elsaid",
       "date": "2026-10-06",
       "finished": "I have finished 21 October 2026 design. I developed three different concepts and reviewed them with Seif to evaluate the best options. And I have submitted the final design.",
       "unfinished": "",
