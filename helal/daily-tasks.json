@@ -103,7 +103,8 @@
     "t-20261029-ganna-muzksrrl",
     "t-20261023-ganna-mvlexshd",
     "t-20261006-ganna-mvlf4otj",
-    "t-20261109-ganna-mvlf7tla"
+    "t-20261109-ganna-mvlf7tla",
+    "t-20261110-ganna-mvlf8fva"
   ],
   "statuses": [
     "To do",
@@ -491,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T20:29:36.353Z",
+      "updated_at": "2026-10-23T20:29:41.050Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -544,8 +545,8 @@
           "live": 75.96666666666667
         },
         "Ganna": {
-          "open": 21,
-          "todo": 17,
+          "open": 20,
+          "todo": 16,
           "progress": 0,
           "review": 4,
           "overdue": 1,
@@ -605,9 +606,9 @@
         }
       },
       "time": {
-        "avgTodo": 3609,
+        "avgTodo": 3733,
         "avgProgress": 3156,
-        "open": 43
+        "open": 42
       },
       "hr": {
         "people": {
@@ -7193,27 +7194,6 @@
       "date": "2026-11-10",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261110-ganna-mvlf8fva",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "TIKTOK VIDEO | 12 NOV",
-          "notes": "",
-          "due": "2026-11-10",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-10-23",
-          "month": "2026-10",
-          "created_by": "Judi",
-          "created_at": "2026-10-23T20:27:20.279Z",
-          "updated_at": "2026-10-23T20:27:20.279Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20261110-ganna-mvlf95ra",
           "who": "Ganna",
