@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T18:32:25.350Z",
+      "updated_at": "2026-10-23T18:32:32.412Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -516,8 +516,8 @@
           "review": 0,
           "overdue": 7,
           "done": 16,
-          "hours": 38.104518068783065,
-          "live": 607.65
+          "hours": 38.106105370370365,
+          "live": 607.6833333333333
         },
         "Alaa": {
           "open": 3,
@@ -526,15 +526,15 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 42.54678770833333,
-          "live": 72.03333333333333
+          "hours": 42.54956548611111,
+          "live": 72.06666666666666
         },
         "Ganna": {
-          "open": 5,
-          "todo": 1,
+          "open": 6,
+          "todo": 2,
           "progress": 0,
           "review": 4,
-          "overdue": 2,
+          "overdue": 3,
           "done": 12,
           "hours": 62.99040894444444,
           "live": 0
@@ -550,11 +550,11 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 11,
-          "todo": 11,
+          "open": 10,
+          "todo": 10,
           "progress": 0,
           "review": 0,
-          "overdue": 6,
+          "overdue": 5,
           "done": 2,
           "hours": 0.043764722222222226,
           "live": 0
@@ -5346,7 +5346,7 @@
       "tasks": [
         {
           "id": "t-20261015-ganna-muzkduxm",
-          "who": "Mohamed",
+          "who": "Ganna",
           "space": "Video editors",
           "project": "Helal",
           "title": "tiktok video | 17 OCT",
@@ -5359,7 +5359,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:20:35.290Z",
-          "updated_at": "2026-10-10T14:23:31.631Z",
+          "updated_at": "2026-10-23T18:32:32.373Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
