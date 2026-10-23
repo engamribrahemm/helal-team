@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T18:33:23.227Z",
+      "updated_at": "2026-10-23T18:37:07.834Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -516,8 +516,8 @@
           "review": 0,
           "overdue": 7,
           "done": 16,
-          "hours": 38.10848632275132,
-          "live": 607.7333333333332
+          "hours": 38.12356568783069,
+          "live": 608.05
         },
         "Alaa": {
           "open": 3,
@@ -526,12 +526,12 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 42.54956548611111,
-          "live": 72.06666666666666
+          "hours": 42.56067659722222,
+          "live": 72.19999999999999
         },
         "Ganna": {
-          "open": 14,
-          "todo": 10,
+          "open": 15,
+          "todo": 11,
           "progress": 0,
           "review": 4,
           "overdue": 7,
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 189.88333333333333,
-          "live": 189.88333333333333
+          "hours": 189.95,
+          "live": 189.95
         },
         "Gehad Helal": {
           "open": 1,
@@ -591,9 +591,9 @@
         }
       },
       "time": {
-        "avgTodo": 14465,
-        "avgProgress": 3139,
-        "open": 34
+        "avgTodo": 14468,
+        "avgProgress": 3140,
+        "open": 35
       },
       "hr": {
         "people": {
@@ -6883,6 +6883,27 @@
           "created_by": "Judi",
           "created_at": "2026-10-08T13:29:46.322Z",
           "updated_at": "2026-10-23T18:33:09.924Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261026-ganna-mvlbapn0",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "Reel | 28 OCT",
+          "notes": "أفكارك مش بتخلص زي ما أنت فاكر",
+          "due": "2026-10-26",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-23",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-23T18:37:07.788Z",
+          "updated_at": "2026-10-23T18:37:07.788Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
