@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-22T19:05:30.172Z",
+      "updated_at": "2026-10-23T18:32:25.350Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -514,10 +514,10 @@
           "todo": 4,
           "progress": 5,
           "review": 0,
-          "overdue": 5,
+          "overdue": 7,
           "done": 16,
-          "hours": 32.521184735449744,
-          "live": 490.4
+          "hours": 38.104518068783065,
+          "live": 607.65
         },
         "Alaa": {
           "open": 3,
@@ -526,15 +526,15 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 42.15255628787879,
-          "live": 25.15
+          "hours": 42.54678770833333,
+          "live": 72.03333333333333
         },
         "Ganna": {
-          "open": 4,
-          "todo": 0,
+          "open": 5,
+          "todo": 1,
           "progress": 0,
           "review": 4,
-          "overdue": 1,
+          "overdue": 2,
           "done": 12,
           "hours": 62.99040894444444,
           "live": 0
@@ -550,8 +550,8 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 12,
-          "todo": 12,
+          "open": 11,
+          "todo": 11,
           "progress": 0,
           "review": 0,
           "overdue": 6,
@@ -576,23 +576,23 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 166.41666666666666,
-          "live": 166.41666666666666
+          "hours": 189.86666666666667,
+          "live": 189.86666666666667
         },
         "Gehad Helal": {
           "open": 1,
           "todo": 1,
           "progress": 0,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 0,
           "hours": 0,
           "live": 0
         }
       },
       "time": {
-        "avgTodo": 13124,
-        "avgProgress": 2989,
+        "avgTodo": 14464,
+        "avgProgress": 3139,
         "open": 34
       },
       "hr": {
@@ -5307,7 +5307,7 @@
         },
         {
           "id": "t-20261014-ganna-muzkcl9w",
-          "who": "Mohamed",
+          "who": "Ganna",
           "space": "Video editors",
           "project": "Helal",
           "title": "tiktok video | 16 OCT",
@@ -5320,7 +5320,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:19:36.116Z",
-          "updated_at": "2026-10-10T14:23:01.368Z",
+          "updated_at": "2026-10-23T18:32:25.309Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-10T13:01:51.568Z",
