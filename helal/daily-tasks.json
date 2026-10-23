@@ -488,7 +488,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T20:17:04.997Z",
+      "updated_at": "2026-10-23T20:17:55.946Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -527,8 +527,8 @@
           "review": 0,
           "overdue": 7,
           "done": 16,
-          "hours": 38.52039108465608,
-          "live": 616.3833333333333
+          "hours": 38.52356568783068,
+          "live": 616.4499999999999
         },
         "Alaa": {
           "open": 4,
@@ -537,12 +537,12 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 42.838454375,
-          "live": 75.53333333333333
+          "hours": 42.841232152777785,
+          "live": 75.56666666666666
         },
         "Ganna": {
-          "open": 7,
-          "todo": 3,
+          "open": 8,
+          "todo": 4,
           "progress": 0,
           "review": 4,
           "overdue": 1,
@@ -587,8 +587,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 191.61666666666667,
-          "live": 191.61666666666667
+          "hours": 191.63333333333333,
+          "live": 191.63333333333333
         },
         "Gehad Helal": {
           "open": 1,
@@ -602,9 +602,9 @@
         }
       },
       "time": {
-        "avgTodo": 7199,
-        "avgProgress": 3154,
-        "open": 29
+        "avgTodo": 7200,
+        "avgProgress": 3155,
+        "open": 30
       },
       "hr": {
         "people": {
@@ -6771,6 +6771,33 @@
           "created_by": "Judi",
           "created_at": "2026-10-23T20:17:04.923Z",
           "updated_at": "2026-10-23T20:17:04.923Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-26",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261026-ganna-mvlewcdm",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "TIKTOK VIDEO | 28 OCT",
+          "notes": "\"كلنا في الشركة عيلة واحدة\n\"",
+          "due": "2026-10-26",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-23",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-23T20:17:55.883Z",
+          "updated_at": "2026-10-23T20:17:55.883Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
