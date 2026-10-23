@@ -489,7 +489,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T20:19:44.294Z",
+      "updated_at": "2026-10-23T20:21:04.069Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -528,8 +528,8 @@
           "review": 0,
           "overdue": 7,
           "done": 16,
-          "hours": 38.53070854497355,
-          "live": 616.6000000000001
+          "hours": 38.5362641005291,
+          "live": 616.7166666666667
         },
         "Alaa": {
           "open": 4,
@@ -538,12 +538,12 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 42.84678770833333,
-          "live": 75.63333333333333
+          "hours": 42.84956548611111,
+          "live": 75.66666666666666
         },
         "Ganna": {
-          "open": 10,
-          "todo": 6,
+          "open": 11,
+          "todo": 7,
           "progress": 0,
           "review": 4,
           "overdue": 1,
@@ -588,8 +588,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 191.66666666666666,
-          "live": 191.66666666666666
+          "hours": 191.68333333333334,
+          "live": 191.68333333333334
         },
         "Gehad Helal": {
           "open": 1,
@@ -603,9 +603,9 @@
         }
       },
       "time": {
-        "avgTodo": 6002,
+        "avgTodo": 5687,
         "avgProgress": 3155,
-        "open": 32
+        "open": 33
       },
       "hr": {
         "people": {
@@ -6964,6 +6964,33 @@
           "created_by": "Judi",
           "created_at": "2026-10-23T20:19:44.250Z",
           "updated_at": "2026-10-23T20:19:44.250Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261031-ganna-mvlf0djs",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "TIKTOK VIDEO | 2 NOV",
+          "notes": "",
+          "due": "2026-10-31",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-23",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-23T20:21:04.025Z",
+          "updated_at": "2026-10-23T20:21:04.025Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
