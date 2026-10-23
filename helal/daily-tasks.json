@@ -102,7 +102,8 @@
     "t-20261028-mohamed-mv2hx6cl",
     "t-20261029-ganna-muzksrrl",
     "t-20261023-ganna-mvlexshd",
-    "t-20261006-ganna-mvlf4otj"
+    "t-20261006-ganna-mvlf4otj",
+    "t-20261109-ganna-mvlf7tla"
   ],
   "statuses": [
     "To do",
@@ -490,7 +491,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T20:28:32.891Z",
+      "updated_at": "2026-10-23T20:29:36.353Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -529,8 +530,8 @@
           "review": 0,
           "overdue": 7,
           "done": 16,
-          "hours": 38.566422830687834,
-          "live": 617.35
+          "hours": 38.57039108465609,
+          "live": 617.4333333333334
         },
         "Alaa": {
           "open": 4,
@@ -539,12 +540,12 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 42.871787708333336,
-          "live": 75.93333333333334
+          "hours": 42.874565486111116,
+          "live": 75.96666666666667
         },
         "Ganna": {
-          "open": 22,
-          "todo": 18,
+          "open": 21,
+          "todo": 17,
           "progress": 0,
           "review": 4,
           "overdue": 1,
@@ -589,8 +590,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 191.8,
-          "live": 191.8
+          "hours": 191.83333333333334,
+          "live": 191.83333333333334
         },
         "Gehad Helal": {
           "open": 1,
@@ -604,9 +605,9 @@
         }
       },
       "time": {
-        "avgTodo": 3732,
+        "avgTodo": 3609,
         "avgProgress": 3156,
-        "open": 44
+        "open": 43
       },
       "hr": {
         "people": {
@@ -7181,27 +7182,6 @@
           "created_by": "Judi",
           "created_at": "2026-10-23T20:26:00.560Z",
           "updated_at": "2026-10-23T20:26:00.560Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
-        {
-          "id": "t-20261109-ganna-mvlf7tla",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "TIKTOK VIDEO | 11 NOV",
-          "notes": "",
-          "due": "2026-11-09",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-10-23",
-          "month": "2026-10",
-          "created_by": "Judi",
-          "created_at": "2026-10-23T20:26:51.407Z",
-          "updated_at": "2026-10-23T20:26:51.407Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
