@@ -488,7 +488,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T20:18:38.063Z",
+      "updated_at": "2026-10-23T20:19:03.462Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -527,8 +527,8 @@
           "review": 0,
           "overdue": 7,
           "done": 16,
-          "hours": 38.52674029100528,
-          "live": 616.5166666666665
+          "hours": 38.52832759259259,
+          "live": 616.55
         },
         "Alaa": {
           "open": 4,
@@ -541,8 +541,8 @@
           "live": 75.6
         },
         "Ganna": {
-          "open": 9,
-          "todo": 5,
+          "open": 10,
+          "todo": 6,
           "progress": 0,
           "review": 4,
           "overdue": 1,
@@ -602,9 +602,9 @@
         }
       },
       "time": {
-        "avgTodo": 6751,
+        "avgTodo": 6354,
         "avgProgress": 3155,
-        "open": 31
+        "open": 32
       },
       "hr": {
         "people": {
@@ -6540,6 +6540,27 @@
           ],
           "start_on": "2026-10-19",
           "progress_hours": 0.0028058333333333334
+        },
+        {
+          "id": "t-20261023-ganna-mvlexshd",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "TIKTOK VIDEO | 31 OCT",
+          "notes": "",
+          "due": "2026-10-23",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-23",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-23T20:19:03.410Z",
+          "updated_at": "2026-10-23T20:19:03.410Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
