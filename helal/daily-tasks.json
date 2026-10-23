@@ -477,7 +477,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T18:32:32.412Z",
+      "updated_at": "2026-10-23T18:32:38.981Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -530,11 +530,11 @@
           "live": 72.06666666666666
         },
         "Ganna": {
-          "open": 6,
-          "todo": 2,
+          "open": 7,
+          "todo": 3,
           "progress": 0,
           "review": 4,
-          "overdue": 3,
+          "overdue": 4,
           "done": 12,
           "hours": 62.99040894444444,
           "live": 0
@@ -550,11 +550,11 @@
           "live": 0
         },
         "Mohamed": {
-          "open": 10,
-          "todo": 10,
+          "open": 9,
+          "todo": 9,
           "progress": 0,
           "review": 0,
-          "overdue": 5,
+          "overdue": 4,
           "done": 2,
           "hours": 0.043764722222222226,
           "live": 0
@@ -576,8 +576,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 189.86666666666667,
-          "live": 189.86666666666667
+          "hours": 189.88333333333333,
+          "live": 189.88333333333333
         },
         "Gehad Helal": {
           "open": 1,
@@ -5493,7 +5493,7 @@
         },
         {
           "id": "t-20261016-ganna-muzkhso2",
-          "who": "Mohamed",
+          "who": "Ganna",
           "space": "Video editors",
           "project": "Helal",
           "title": "tiktok video | 19 OCT",
@@ -5506,7 +5506,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:23:38.978Z",
-          "updated_at": "2026-10-10T14:24:22.567Z",
+          "updated_at": "2026-10-23T18:32:38.941Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
