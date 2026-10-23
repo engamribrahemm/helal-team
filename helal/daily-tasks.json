@@ -489,7 +489,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T20:22:31.335Z",
+      "updated_at": "2026-10-23T20:23:21.751Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -528,8 +528,8 @@
           "review": 0,
           "overdue": 7,
           "done": 16,
-          "hours": 38.541819656084655,
-          "live": 616.8333333333334
+          "hours": 38.544994259259255,
+          "live": 616.9
         },
         "Alaa": {
           "open": 4,
@@ -538,12 +538,12 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 42.85373215277778,
-          "live": 75.71666666666667
+          "hours": 42.85512104166667,
+          "live": 75.73333333333333
         },
         "Ganna": {
-          "open": 13,
-          "todo": 9,
+          "open": 14,
+          "todo": 10,
           "progress": 0,
           "review": 4,
           "overdue": 1,
@@ -588,8 +588,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 191.7,
-          "live": 191.7
+          "hours": 191.71666666666667,
+          "live": 191.71666666666667
         },
         "Gehad Helal": {
           "open": 1,
@@ -603,9 +603,9 @@
         }
       },
       "time": {
-        "avgTodo": 5404,
+        "avgTodo": 5148,
         "avgProgress": 3155,
-        "open": 35
+        "open": 36
       },
       "hr": {
         "people": {
@@ -7045,6 +7045,33 @@
           "created_by": "Judi",
           "created_at": "2026-10-23T20:22:31.289Z",
           "updated_at": "2026-10-23T20:22:31.289Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261104-ganna-mvlf3bs9",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "TIKTOK VIDEO | 6 NOV",
+          "notes": "",
+          "due": "2026-11-04",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-23",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-23T20:23:21.706Z",
+          "updated_at": "2026-10-23T20:23:21.706Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
