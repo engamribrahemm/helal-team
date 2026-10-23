@@ -96,7 +96,8 @@
     "t-20261016-ganna-muzkhso2",
     "t-20261018-ganna-muzkipaq",
     "t-20261021-ganna-muzkkzu9",
-    "t-20261022-ganna-muzklsaq"
+    "t-20261022-ganna-muzklsaq",
+    "t-20261025-ganna-muzkovix"
   ],
   "statuses": [
     "To do",
@@ -484,7 +485,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T18:54:05.818Z",
+      "updated_at": "2026-10-23T18:54:16.040Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -537,8 +538,8 @@
           "live": 72.76666666666667
         },
         "Ganna": {
-          "open": 8,
-          "todo": 4,
+          "open": 7,
+          "todo": 3,
           "progress": 0,
           "review": 4,
           "overdue": 1,
@@ -598,9 +599,9 @@
         }
       },
       "time": {
-        "avgTodo": 12778,
+        "avgTodo": 12124,
         "avgProgress": 3142,
-        "open": 28
+        "open": 27
       },
       "hr": {
         "people": {
@@ -6625,27 +6626,6 @@
       "date": "2026-10-25",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261025-ganna-muzkovix",
-          "who": "Ganna",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "tiktok video | 27 OCT",
-          "notes": "المدير قالنا هاتوا كلاينتس باي شكل",
-          "due": "2026-10-25",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
-          "drive_missing": false,
-          "assigned_at": "2026-10-08",
-          "month": "2026-10",
-          "created_by": "Judi",
-          "created_at": "2026-10-08T13:29:09.273Z",
-          "updated_at": "2026-10-23T18:33:04.036Z",
-          "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20261025-mohamed-mv2kzr9s",
           "who": "Mohamed",
