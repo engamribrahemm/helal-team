@@ -490,7 +490,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T20:26:07.092Z",
+      "updated_at": "2026-10-23T20:26:51.457Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -529,8 +529,8 @@
           "review": 0,
           "overdue": 7,
           "done": 16,
-          "hours": 38.55610537037037,
-          "live": 617.1333333333332
+          "hours": 38.55848632275133,
+          "live": 617.1833333333335
         },
         "Alaa": {
           "open": 4,
@@ -539,12 +539,12 @@
           "review": 0,
           "overdue": 1,
           "done": 12,
-          "hours": 42.863454375,
-          "live": 75.83333333333333
+          "hours": 42.866232152777776,
+          "live": 75.86666666666667
         },
         "Ganna": {
-          "open": 18,
-          "todo": 14,
+          "open": 19,
+          "todo": 15,
           "progress": 0,
           "review": 4,
           "overdue": 1,
@@ -589,8 +589,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 191.76666666666668,
-          "live": 191.76666666666668
+          "hours": 191.78333333333333,
+          "live": 191.78333333333333
         },
         "Gehad Helal": {
           "open": 1,
@@ -604,9 +604,9 @@
         }
       },
       "time": {
-        "avgTodo": 4327,
+        "avgTodo": 4161,
         "avgProgress": 3156,
-        "open": 40
+        "open": 41
       },
       "hr": {
         "people": {
@@ -7181,6 +7181,27 @@
           "created_by": "Judi",
           "created_at": "2026-10-23T20:26:00.560Z",
           "updated_at": "2026-10-23T20:26:00.560Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261109-ganna-mvlf7tla",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "TIKTOK VIDEO | 11 NOV",
+          "notes": "",
+          "due": "2026-11-09",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-23",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-23T20:26:51.407Z",
+          "updated_at": "2026-10-23T20:26:51.407Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
