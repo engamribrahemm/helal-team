@@ -1958,6 +1958,14 @@ async function dbGetRaw(path) {
   return res.json();
 }
 
+async function dbGetFresh(path) {
+  try {
+    return await dbGet(path);
+  } catch (_) {
+    return dbGetRaw(path);
+  }
+}
+
 async function refreshShaTree() {
   const { owner, repo, branch } = repoInfo();
   const res = await githubGetPreferAuth(
@@ -2163,14 +2171,14 @@ async function loadAll() {
     if (sharedKey) state.connectError = "";
     state.githubCfg = githubCfg;
     const [team, auth, drive, projects, tasksFile, reportsFile, hrFile, attendFile] = await Promise.all([
-      dbGetRaw("helal/team.json"),
-      dbGetRaw("helal/auth.json"),
-      dbGetRaw("helal/drive.json"),
-      dbGetRaw("helal/projects.json"),
-      dbGetRaw("helal/daily-tasks.json"),
-      dbGetRaw("helal/reports.json"),
-      dbGetRaw("helal/hr.json").catch(() => emptyHr()),
-      dbGet("helal/attendance.json").catch(() => dbGetRaw("helal/attendance.json").catch(() => emptyAttendance())),
+      dbGetFresh("helal/team.json"),
+      dbGetFresh("helal/auth.json"),
+      dbGetFresh("helal/drive.json"),
+      dbGetFresh("helal/projects.json"),
+      dbGetFresh("helal/daily-tasks.json"),
+      dbGetFresh("helal/reports.json"),
+      dbGetFresh("helal/hr.json").catch(() => emptyHr()),
+      dbGetFresh("helal/attendance.json").catch(() => emptyAttendance()),
     ]);
     Object.assign(state, { drive, projects, githubCfg });
     state.team = mergeTeam(team, state.team);
@@ -2428,13 +2436,11 @@ async function pullRemoteBoard() {
   pullTick += 1;
   try {
     const live = [
-      dbGetRaw("helal/daily-tasks.json").catch(() => dbGet("helal/daily-tasks.json")),
-      (state.view === "attend" ? dbGet("helal/attendance.json") : dbGetRaw("helal/attendance.json"))
-        .catch(() => dbGet("helal/attendance.json"))
-        .catch(() => state.attendFile || emptyAttendance()),
+      dbGetFresh("helal/daily-tasks.json"),
+      dbGetFresh("helal/attendance.json").catch(() => state.attendFile || emptyAttendance()),
     ];
     if (state.view === "report" || state.view === "review" || pullTick % 2 === 0) {
-      live.push(dbGetRaw("helal/reports.json").catch(() => state.reportsFile));
+      live.push(dbGetFresh("helal/reports.json").catch(() => state.reportsFile));
     } else {
       live.push(Promise.resolve(state.reportsFile));
     }
@@ -2445,9 +2451,9 @@ async function pullRemoteBoard() {
     if (pullTick % 4 === 0) await refreshShaTree();
     if (pullTick % 5 === 0) {
       [remoteHr, remoteTeam, remoteAuth] = await Promise.all([
-        dbGetRaw("helal/hr.json").catch(() => state.hrFile || emptyHr()),
-        dbGetRaw("helal/team.json").catch(() => state.team),
-        dbGetRaw("helal/auth.json").catch(() => state.auth),
+        dbGetFresh("helal/hr.json").catch(() => state.hrFile || emptyHr()),
+        dbGetFresh("helal/team.json").catch(() => state.team),
+        dbGetFresh("helal/auth.json").catch(() => state.auth),
       ]);
     }
     if (state.saveState === "saving" || uiBusy()) return;
