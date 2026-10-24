@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T15:19:50.874Z",
+      "updated_at": "2026-10-24T15:20:15.720Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -525,14 +525,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 10,
-          "todo": 5,
-          "progress": 5,
-          "review": 0,
-          "overdue": 9,
-          "done": 16,
-          "hours": 43.054518068783075,
-          "live": 711.6000000000001
+          "open": 9,
+          "todo": 4,
+          "progress": 3,
+          "review": 2,
+          "overdue": 8,
+          "done": 17,
+          "hours": 38.72115872222223,
+          "live": 464.6666666666667
         },
         "Alaa": {
           "open": 4,
@@ -626,9 +626,9 @@
         }
       },
       "time": {
-        "avgTodo": 4707,
-        "avgProgress": 3313,
-        "open": 41
+        "avgTodo": 4862,
+        "avgProgress": 3232,
+        "open": 40
       },
       "hr": {
         "people": {
@@ -651,11 +651,11 @@
             "reviews": 0
           },
           "Seif": {
-            "delivery": 4,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 4,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
@@ -6082,15 +6082,15 @@
           "title": "single visual | 24th Oct",
           "notes": "",
           "due": "2026-10-20",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:24:01.469Z",
-          "updated_at": "2026-10-24T10:48:02.684Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-24T15:20:15.603Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-19T13:35:20.822Z",
           "progress_started_at": "",
@@ -6111,7 +6111,11 @@
           "progress_hours": 117.21162833333334,
           "review_at": "2026-10-24T10:48:02.684Z",
           "first_review_at": "2026-10-24T10:48:02.684Z",
-          "delivered_on": "2026-10-24"
+          "delivered_on": "2026-10-24",
+          "done_at": "2026-10-24T15:20:15.602Z",
+          "done_on": "2026-10-24",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261020-seif-mvb270o4",
