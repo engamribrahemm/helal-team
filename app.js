@@ -2459,10 +2459,7 @@ async function pullRemoteBoard() {
     if (state.saveState === "saving" || uiBusy()) return;
     const before = boardDataSignature();
     const replay = mineNewerFile(remoteTasks, state.tasksFile);
-    const nextTasks = mergeTaskFiles(
-      remoteTasks || { days: [] },
-      replay || state.tasksFile || { days: [] }
-    );
+    const nextTasks = mergeTaskFiles(remoteTasks || { days: [] }, replay || { days: [] });
     const nextReports = mergeReports(remoteReports || emptyReports(), state.reportsFile || emptyReports());
     const nextAttend = mergeAttendance(remoteAttend || emptyAttendance(), state.attendFile || emptyAttendance());
     const nextSig = [
