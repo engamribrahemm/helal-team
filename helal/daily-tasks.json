@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T15:20:23.068Z",
+      "updated_at": "2026-10-24T15:20:26.719Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -537,12 +537,12 @@
         "Alaa": {
           "open": 4,
           "todo": 2,
-          "progress": 1,
-          "review": 1,
+          "progress": 0,
+          "review": 2,
           "overdue": 2,
           "done": 12,
-          "hours": 43.88740477272727,
-          "live": 44.233333333333334
+          "hours": 43.85281191666667,
+          "live": 0
         },
         "Sara": {
           "open": 0,
@@ -627,7 +627,7 @@
       },
       "time": {
         "avgTodo": 4862,
-        "avgProgress": 3256,
+        "avgProgress": 3267,
         "open": 39
       },
       "hr": {
@@ -6654,18 +6654,18 @@
           "title": "Designing Mugs | 24th & 27th Oct",
           "notes": "",
           "due": "2026-10-23",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T16:12:30.029Z",
-          "updated_at": "2026-10-22T19:05:30.019Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-24T15:20:26.194Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-19T15:17:12.289Z",
-          "progress_started_at": "2026-10-22T19:05:30.019Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -6674,10 +6674,24 @@
               "ended_at": "2026-10-19T15:17:22.390Z",
               "hours": 0.0028058333333333334,
               "by": "Alaa"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-22T19:05:30.019Z",
+              "ended_at": "2026-10-24T15:20:26.194Z",
+              "hours": 44.2489375,
+              "by": "Mariam"
             }
           ],
           "start_on": "2026-10-19",
-          "progress_hours": 0.0028058333333333334
+          "progress_hours": 44.25174333333333,
+          "delay_reason": "Workload pressure",
+          "delay_notified": false,
+          "delay_days": 1,
+          "review_at": "2026-10-24T15:20:26.194Z",
+          "first_review_at": "2026-10-24T15:20:26.194Z",
+          "delivered_on": "2026-10-24"
         }
       ]
     },
