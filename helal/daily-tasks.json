@@ -495,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T18:02:08.066Z",
+      "updated_at": "2026-10-24T18:02:11.906Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -549,13 +549,13 @@
         },
         "Ganna": {
           "open": 19,
-          "todo": 16,
-          "progress": 1,
+          "todo": 15,
+          "progress": 2,
           "review": 2,
           "overdue": 0,
           "done": 16,
-          "hours": 59.272666592592586,
-          "live": 0.2833333333333333
+          "hours": 59.27377770370369,
+          "live": 0.3
         },
         "Moamen": {
           "open": 0,
@@ -609,7 +609,7 @@
         }
       },
       "time": {
-        "avgTodo": 3762,
+        "avgTodo": 3831,
         "avgProgress": 3262,
         "open": 44
       },
@@ -7033,18 +7033,20 @@
           "title": "Reel | 29 OCT",
           "notes": "",
           "due": "2026-10-27",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-23",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-23T19:35:31.040Z",
-          "updated_at": "2026-10-23T19:35:31.040Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-10-24T18:02:10.504Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-24T18:02:10.504Z",
+          "progress_started_at": "2026-10-24T18:02:10.504Z",
+          "time_log": [],
+          "start_on": "2026-10-24"
         },
         {
           "id": "t-20261027-rahma-mvmi88xj",
