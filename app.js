@@ -407,6 +407,15 @@ function writeToken() {
 
 function forgetBoardKey() {
   try { localStorage.removeItem("helal.ghToken"); } catch (_) {}
+  if (state.githubCfg) {
+    delete state.githubCfg.write_token;
+    delete state.githubCfg.write_prefix;
+    delete state.githubCfg.write_key;
+  }
+}
+
+function boardKeyRejectedMessage(text) {
+  return /board key|rejected that key/i.test(String(text || ""));
 }
 
 function isBoardKey(token) {
@@ -2099,7 +2108,8 @@ async function dbPut(path, data, message) {
     }
     if (res.status === 401) {
       forgetBoardKey();
-      state.connectError = "The old board key was rejected. Create a new GitHub key and paste it below.";
+      state.saveState = "local-only";
+      state.connectError = "The old board key was rejected. Create a new GitHub key and paste it below. Set Expiration to No expiration.";
       throw new Error("GitHub could not save. Paste a new board key to reconnect.");
     }
     throw new Error(`GitHub ${res.status}: ${text.slice(0, 140)}`);
@@ -2134,11 +2144,18 @@ async function loadAll() {
   const cache = readCacheFiles();
   try {
     const localCfg = state.githubCfg;
-    const remoteCfg = await dbGetRaw("helal/github.json").catch(() => localCfg);
-    const githubCfg = persistBoardCfg(
-      { ...localCfg, ...remoteCfg },
-      assembleBoardKey(remoteCfg) || assembleBoardKey(localCfg)
-    );
+    const remoteCfg = await dbGetRaw("helal/github.json").catch(() => null);
+    const base = { ...(localCfg || {}), ...(remoteCfg || {}) };
+    let sharedKey = assembleBoardKey(localCfg);
+    if (remoteCfg) {
+      sharedKey = assembleBoardKey(remoteCfg);
+      if (!sharedKey) {
+        delete base.write_token;
+        delete base.write_prefix;
+        delete base.write_key;
+      }
+    }
+    const githubCfg = persistBoardCfg(base, sharedKey);
     state.githubCfg = githubCfg;
     const [team, auth, drive, projects, tasksFile, reportsFile, hrFile, attendFile] = await Promise.all([
       dbGetRaw("helal/team.json"),
@@ -2765,7 +2782,8 @@ function cancelReportEdit() {
 }
 
 function banner() {
-  if (!writeToken() && state.session) return viewConnectBanner();
+  const needsKey = !writeToken() || state.saveState === "local-only" || boardKeyRejectedMessage(state.saveError) || boardKeyRejectedMessage(state.connectError);
+  if (needsKey && state.session) return viewConnectBanner();
   if (state.saveState === "saving") {
     return $("div", { class: "banner" }, state.saveNote || "Saving…");
   }
@@ -2804,7 +2822,7 @@ function viewConnectBanner() {
           target: "_blank",
           rel: "noreferrer",
         }, "this link"),
-        " while logged in as engamribrahemm. Check public_repo. Generate, copy the ghp_ value, paste it here. Do not paste your Helal login password.",
+        " while logged in as engamribrahemm. Check public_repo. Set Expiration to No expiration — a 30-day key is what just expired. Generate, copy the ghp_ value, paste it here. Do not paste your Helal login password.",
       ])
       : $("p", { class: "muted" }, "Ask Amr to reconnect the board. Do not paste your Helal login password here."),
     $("form", {
