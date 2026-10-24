@@ -105,7 +105,9 @@
     "t-20261006-ganna-mvlf4otj",
     "t-20261109-ganna-mvlf7tla",
     "t-20261110-ganna-mvlf8fva",
-    "t-20261022-rahma-mvjitvzb"
+    "t-20261022-rahma-mvjitvzb",
+    "t-20261103-seif-mvmfa76a",
+    "t-20261105-rahma-mvmfbdnu"
   ],
   "statuses": [
     "To do",
@@ -493,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T15:24:07.830Z",
+      "updated_at": "2026-10-24T16:51:49.044Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -527,27 +529,27 @@
         },
         "Seif": {
           "open": 10,
-          "todo": 4,
-          "progress": 3,
-          "review": 3,
-          "overdue": 9,
-          "done": 16,
-          "hours": 34.600607690058474,
-          "live": 464.8666666666667
+          "todo": 8,
+          "progress": 2,
+          "review": 0,
+          "overdue": 5,
+          "done": 20,
+          "hours": 40.972068813131315,
+          "live": 416.01666666666665
         },
         "Alaa": {
-          "open": 4,
+          "open": 2,
           "todo": 2,
-          "progress": 1,
-          "review": 1,
-          "overdue": 2,
-          "done": 12,
-          "hours": 43.89346537878788,
-          "live": 44.3
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 14,
+          "hours": 45.763871574074074,
+          "live": 0
         },
         "Ganna": {
-          "open": 20,
-          "todo": 17,
+          "open": 22,
+          "todo": 19,
           "progress": 0,
           "review": 3,
           "overdue": 1,
@@ -576,14 +578,14 @@
           "live": 0
         },
         "Rahma": {
-          "open": 3,
-          "todo": 3,
-          "progress": 0,
+          "open": 8,
+          "todo": 7,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 17.35621666666667,
-          "live": 0
+          "hours": 13.379662500000002,
+          "live": 1.45
         },
         "Salma": {
           "open": 2,
@@ -592,8 +594,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 210.73333333333332,
-          "live": 210.73333333333332
+          "hours": 212.2,
+          "live": 212.2
         },
         "Gehad Helal": {
           "open": 1,
@@ -602,14 +604,14 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 0.7166666666666667,
-          "live": 0.7166666666666667
+          "hours": 2.1666666666666665,
+          "live": 2.1666666666666665
         }
       },
       "time": {
-        "avgTodo": 4655,
-        "avgProgress": 3161,
-        "open": 42
+        "avgTodo": 3504,
+        "avgProgress": 3214,
+        "open": 47
       },
       "hr": {
         "people": {
@@ -7099,6 +7101,54 @@
       ]
     },
     {
+      "date": "2026-10-30",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261030-rahma-mvmf6o4b",
+          "who": "Rahma",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "2 single visual | 1 NOV",
+          "notes": "",
+          "due": "2026-10-30",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:13:43.836Z",
+          "updated_at": "2026-10-24T13:29:21.078Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261030-ganna-mvmf76ar",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "REEL | 1 NOV",
+          "notes": "",
+          "due": "2026-10-30",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:14:07.395Z",
+          "updated_at": "2026-10-24T13:14:07.395Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
       "date": "2026-10-31",
       "source": "Helal board",
       "tasks": [
@@ -7145,6 +7195,33 @@
           "created_by": "Judi",
           "created_at": "2026-10-23T20:21:42.904Z",
           "updated_at": "2026-10-23T20:21:42.904Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261102-seif-mvmf98t7",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "2 SINGLE VISUALS - PROJECT | 5 NOV",
+          "notes": "",
+          "due": "2026-11-02",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:15:43.963Z",
+          "updated_at": "2026-10-24T13:28:21.998Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
@@ -7257,6 +7334,27 @@
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
+        },
+        {
+          "id": "t-20261106-rahma-mvmfco7d",
+          "who": "Rahma",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "Carousel - 2 SINGLE VISUALS | 7 NOV",
+          "notes": "",
+          "due": "2026-11-06",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:18:23.882Z",
+          "updated_at": "2026-10-24T13:29:31.414Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
@@ -7365,6 +7463,27 @@
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
+        },
+        {
+          "id": "t-20261110-seif-mvmfehs9",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "project - 2 single visual | 12 nov",
+          "notes": "",
+          "due": "2026-11-10",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:19:48.874Z",
+          "updated_at": "2026-10-24T13:28:34.542Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
@@ -7388,6 +7507,162 @@
           "created_by": "Judi",
           "created_at": "2026-10-23T20:28:32.838Z",
           "updated_at": "2026-10-23T20:28:32.838Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261112-rahma-mvmfg9gw",
+          "who": "Rahma",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "content - 2 single visual | 14 nov",
+          "notes": "",
+          "due": "2026-11-12",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:21:11.409Z",
+          "updated_at": "2026-10-24T13:21:11.409Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261117-seif-mvmfhb9d",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "project - 2 single visuals | 19 nov",
+          "notes": "",
+          "due": "2026-11-17",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:22:00.385Z",
+          "updated_at": "2026-10-24T13:22:00.385Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-19",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261119-ganna-mvmfhzbt",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Helal",
+          "title": "reel | 21 nov",
+          "notes": "",
+          "due": "2026-11-19",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1I7q6FiMcVZWIDJVRjH87GBkR4lXz2yqq",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:22:31.578Z",
+          "updated_at": "2026-10-24T13:22:31.578Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261119-rahma-mvmfj90w",
+          "who": "Rahma",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "2 single visuals | 21 nov",
+          "notes": "",
+          "due": "2026-11-19",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:23:30.801Z",
+          "updated_at": "2026-10-24T13:23:30.801Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261124-seif-mvmfjyt4",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "project - 2 single visuals | 26 nov",
+          "notes": "",
+          "due": "2026-11-24",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:24:04.216Z",
+          "updated_at": "2026-10-24T13:24:04.216Z",
+          "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-26",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261126-rahma-mvmflsr3",
+          "who": "Rahma",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "3 single visual | 28 nov",
+          "notes": "",
+          "due": "2026-11-26",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1I7q6FiMcVZWIDJVRjH87GBkR4lXz2yqq",
+          "drive_missing": false,
+          "assigned_at": "2026-10-24",
+          "month": "2026-10",
+          "created_by": "Judi",
+          "created_at": "2026-10-24T13:25:29.680Z",
+          "updated_at": "2026-10-24T13:25:29.680Z",
           "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "",
