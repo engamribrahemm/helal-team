@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T15:20:36.743Z",
+      "updated_at": "2026-10-24T15:20:50.253Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -525,13 +525,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 7,
+          "open": 6,
           "todo": 4,
           "progress": 2,
-          "review": 1,
-          "overdue": 6,
-          "done": 19,
-          "hours": 40.31610645502646,
+          "review": 0,
+          "overdue": 5,
+          "done": 20,
+          "hours": 40.834190025252525,
           "live": 412.98333333333335
         },
         "Alaa": {
@@ -626,9 +626,9 @@
         }
       },
       "time": {
-        "avgTodo": 4862,
-        "avgProgress": 3262,
-        "open": 38
+        "avgTodo": 4863,
+        "avgProgress": 3260,
+        "open": 37
       },
       "hr": {
         "people": {
@@ -6450,14 +6450,14 @@
           "title": "carousel | 29th Oct",
           "notes": "",
           "due": "2026-10-22",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:26:51.629Z",
-          "updated_at": "2026-10-24T15:20:22.428Z",
+          "updated_at": "2026-10-24T15:20:50.150Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-22T11:37:32.226Z",
@@ -6479,7 +6479,11 @@
           "progress_hours": 51.713945,
           "review_at": "2026-10-24T15:20:22.428Z",
           "first_review_at": "2026-10-24T15:20:22.428Z",
-          "delivered_on": "2026-10-24"
+          "delivered_on": "2026-10-24",
+          "done_at": "2026-10-24T15:20:50.148Z",
+          "done_on": "2026-10-24",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261022-gehad-helal-mvgf31rd",
