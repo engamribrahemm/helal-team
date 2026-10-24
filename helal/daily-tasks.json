@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T15:21:10.557Z",
+      "updated_at": "2026-10-24T15:23:59.110Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -531,8 +531,8 @@
           "review": 0,
           "overdue": 5,
           "done": 20,
-          "hours": 40.8349476010101,
-          "live": 413
+          "hours": 40.838735479797975,
+          "live": 413.0833333333333
         },
         "Alaa": {
           "open": 2,
@@ -544,16 +544,6 @@
           "hours": 45.763871574074074,
           "live": 0
         },
-        "Sara": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 2,
-          "hours": 16.377944583333335,
-          "live": 0
-        },
         "Ganna": {
           "open": 20,
           "todo": 17,
@@ -562,16 +552,6 @@
           "overdue": 1,
           "done": 13,
           "hours": 57.27492345959595,
-          "live": 0
-        },
-        "Tasneem": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 1,
-          "hours": 7.200874722222222,
           "live": 0
         },
         "Moamen": {
@@ -596,8 +576,8 @@
         },
         "Rahma": {
           "open": 2,
-          "todo": 2,
-          "progress": 0,
+          "todo": 1,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 5,
@@ -611,8 +591,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 210.68333333333334,
-          "live": 210.68333333333334
+          "hours": 210.73333333333332,
+          "live": 210.73333333333332
         },
         "Gehad Helal": {
           "open": 1,
@@ -626,7 +606,7 @@
         }
       },
       "time": {
-        "avgTodo": 4863,
+        "avgTodo": 4929,
         "avgProgress": 3262,
         "open": 35
       },
@@ -668,15 +648,6 @@
             "attitude": 0,
             "reviews": 0
           },
-          "Sara": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
-            "attitude": 0,
-            "reviews": 0
-          },
           "Ganna": {
             "delivery": 5,
             "quality": 0,
@@ -685,15 +656,6 @@
             "total": 5,
             "attitude": 0,
             "reviews": 0
-          },
-          "Tasneem": {
-            "delivery": 5,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 5,
-            "attitude": 0,
-            "reviews": 1
           },
           "Moamen": {
             "delivery": 0,
@@ -6847,18 +6809,20 @@
           "title": "single visual / 26 October",
           "notes": "",
           "due": "2026-10-25",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-22",
           "month": "2026-10",
           "created_by": "Seif",
           "created_at": "2026-10-22T11:33:58.356Z",
-          "updated_at": "2026-10-22T11:33:58.356Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-24T15:23:59.075Z",
+          "updated_by": "Rahma",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-24T15:23:59.075Z",
+          "progress_started_at": "2026-10-24T15:23:59.075Z",
+          "time_log": [],
+          "start_on": "2026-10-24"
         },
         {
           "id": "t-20261025-rahma-mvjgrsyh",
