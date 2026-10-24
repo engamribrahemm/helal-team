@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-23T23:07:17.804Z",
+      "updated_at": "2026-10-24T15:11:33.963Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -531,8 +531,8 @@
           "review": 0,
           "overdue": 9,
           "done": 16,
-          "hours": 39.19499425925926,
-          "live": 630.55
+          "hours": 43.022772037037036,
+          "live": 710.9333333333334
         },
         "Alaa": {
           "open": 4,
@@ -541,17 +541,17 @@
           "review": 0,
           "overdue": 2,
           "done": 12,
-          "hours": 43.310676597222226,
-          "live": 81.19999999999999
+          "hours": 45.991232152777776,
+          "live": 113.36666666666667
         },
         "Ganna": {
-          "open": 21,
+          "open": 20,
           "todo": 17,
           "progress": 0,
-          "review": 4,
-          "overdue": 2,
-          "done": 12,
-          "hours": 62.99040894444444,
+          "review": 3,
+          "overdue": 1,
+          "done": 13,
+          "hours": 57.27492345959595,
           "live": 0
         },
         "Moamen": {
@@ -591,8 +591,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 194.45,
-          "live": 194.45
+          "hours": 210.53333333333333,
+          "live": 210.53333333333333
         },
         "Gehad Helal": {
           "open": 1,
@@ -606,9 +606,9 @@
         }
       },
       "time": {
-        "avgTodo": 3767,
-        "avgProgress": 3179,
-        "open": 43
+        "avgTodo": 4699,
+        "avgProgress": 3260,
+        "open": 42
       },
       "hr": {
         "people": {
@@ -6211,15 +6211,15 @@
           "title": "Re-edit MEDC reel | 21 Oct",
           "notes": "",
           "due": "2026-10-21",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-21",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-21T10:49:16.964Z",
-          "updated_at": "2026-10-21T18:34:19.826Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-10-24T14:43:12.801Z",
+          "updated_by": "Amr",
           "revisions": 0,
           "first_progress_at": "2026-10-21T18:27:07.577Z",
           "progress_started_at": "",
@@ -6237,7 +6237,11 @@
           "progress_hours": 0.12006861111111111,
           "review_at": "2026-10-21T18:34:19.824Z",
           "first_review_at": "2026-10-21T18:34:19.824Z",
-          "delivered_on": "2026-10-21"
+          "delivered_on": "2026-10-21",
+          "done_at": "2026-10-24T14:43:12.800Z",
+          "done_on": "2026-10-24",
+          "done_month": "2026-10",
+          "done_by": "Amr"
         },
         {
           "id": "t-20261021-alaa-mvi6kopp",
