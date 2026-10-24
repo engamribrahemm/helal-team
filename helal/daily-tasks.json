@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T15:20:19.422Z",
+      "updated_at": "2026-10-24T15:20:23.068Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -527,12 +527,12 @@
         "Seif": {
           "open": 8,
           "todo": 4,
-          "progress": 3,
-          "review": 1,
+          "progress": 2,
+          "review": 2,
           "overdue": 7,
           "done": 18,
-          "hours": 40.37466335978836,
-          "live": 464.6666666666667
+          "hours": 39.80922986111111,
+          "live": 412.98333333333335
         },
         "Alaa": {
           "open": 4,
@@ -627,7 +627,7 @@
       },
       "time": {
         "avgTodo": 4862,
-        "avgProgress": 3253,
+        "avgProgress": 3256,
         "open": 39
       },
       "hr": {
@@ -6446,20 +6446,36 @@
           "title": "carousel | 29th Oct",
           "notes": "",
           "due": "2026-10-22",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:26:51.629Z",
-          "updated_at": "2026-10-22T11:37:32.226Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-24T15:20:22.428Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-22T11:37:32.226Z",
-          "progress_started_at": "2026-10-22T11:37:32.226Z",
-          "time_log": [],
-          "start_on": "2026-10-22"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-22T11:37:32.226Z",
+              "ended_at": "2026-10-24T15:20:22.428Z",
+              "hours": 51.713945,
+              "by": "Mariam"
+            }
+          ],
+          "start_on": "2026-10-22",
+          "delay_reason": "Workload pressure",
+          "delay_notified": false,
+          "delay_days": 2,
+          "progress_hours": 51.713945,
+          "review_at": "2026-10-24T15:20:22.428Z",
+          "first_review_at": "2026-10-24T15:20:22.428Z",
+          "delivered_on": "2026-10-24"
         },
         {
           "id": "t-20261022-gehad-helal-mvgf31rd",
