@@ -396,12 +396,18 @@ function persistBoardCfg(cfg, token) {
 }
 
 function writeToken() {
+  const assembled = assembleBoardKey(state.githubCfg);
+  if (/^(ghp_|github_pat_)/.test(assembled)) {
+    try {
+      const stored = localStorage.getItem("helal.ghToken") || "";
+      if (stored && stored !== assembled) localStorage.removeItem("helal.ghToken");
+    } catch (_) {}
+    return assembled;
+  }
   try {
     const stored = localStorage.getItem("helal.ghToken") || "";
     if (/^(ghp_|github_pat_)/.test(stored)) return stored;
   } catch (_) {}
-  const assembled = assembleBoardKey(state.githubCfg);
-  if (/^(ghp_|github_pat_)/.test(assembled)) return assembled;
   return "";
 }
 
@@ -412,10 +418,6 @@ function forgetBoardKey() {
     delete state.githubCfg.write_prefix;
     delete state.githubCfg.write_key;
   }
-}
-
-function boardKeyRejectedMessage(text) {
-  return /board key|rejected that key/i.test(String(text || ""));
 }
 
 function isBoardKey(token) {
@@ -2144,18 +2146,21 @@ async function loadAll() {
   const cache = readCacheFiles();
   try {
     const localCfg = state.githubCfg;
-    const remoteCfg = await dbGetRaw("helal/github.json").catch(() => null);
+    let remoteCfg = null;
+    try {
+      remoteCfg = await dbGet("helal/github.json");
+    } catch (_) {
+      remoteCfg = await dbGetRaw("helal/github.json").catch(() => null);
+    }
     const base = { ...(localCfg || {}), ...(remoteCfg || {}) };
-    let sharedKey = assembleBoardKey(localCfg);
-    if (remoteCfg) {
-      sharedKey = assembleBoardKey(remoteCfg);
-      if (!sharedKey) {
-        delete base.write_token;
-        delete base.write_prefix;
-        delete base.write_key;
-      }
+    const sharedKey = assembleBoardKey(remoteCfg) || assembleBoardKey(localCfg);
+    if (!sharedKey) {
+      delete base.write_token;
+      delete base.write_prefix;
+      delete base.write_key;
     }
     const githubCfg = persistBoardCfg(base, sharedKey);
+    if (sharedKey) state.connectError = "";
     state.githubCfg = githubCfg;
     const [team, auth, drive, projects, tasksFile, reportsFile, hrFile, attendFile] = await Promise.all([
       dbGetRaw("helal/team.json"),
@@ -2782,8 +2787,7 @@ function cancelReportEdit() {
 }
 
 function banner() {
-  const needsKey = !writeToken() || state.saveState === "local-only" || boardKeyRejectedMessage(state.saveError) || boardKeyRejectedMessage(state.connectError);
-  if (needsKey && state.session) return viewConnectBanner();
+  if (!writeToken() && state.session) return viewConnectBanner();
   if (state.saveState === "saving") {
     return $("div", { class: "banner" }, state.saveNote || "Saving…");
   }
