@@ -495,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T16:53:10.074Z",
+      "updated_at": "2026-10-24T16:53:12.624Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -548,13 +548,13 @@
           "live": 0
         },
         "Ganna": {
-          "open": 20,
+          "open": 19,
           "todo": 19,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 15,
-          "hours": 59.23061085470085,
+          "done": 16,
+          "hours": 63.48619039682539,
           "live": 0
         },
         "Moamen": {
@@ -610,8 +610,8 @@
       },
       "time": {
         "avgTodo": 3505,
-        "avgProgress": 3246,
-        "open": 45
+        "avgProgress": 3309,
+        "open": 44
       },
       "hr": {
         "people": {
@@ -6961,15 +6961,15 @@
           "title": "tiktok video | 29 OCT",
           "notes": "موظف جديد في الشركة",
           "due": "2026-10-27",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PdIQuxrZI7RrfEVTOa80a3VHEZHseCMN",
           "drive_missing": false,
           "assigned_at": "2026-10-08",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-08T13:31:06.818Z",
-          "updated_at": "2026-10-19T17:02:16.141Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-10-24T16:53:11.001Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-14T18:13:44.731Z",
           "progress_started_at": "",
@@ -6987,7 +6987,11 @@
           "progress_hours": 118.80872444444445,
           "review_at": "2026-10-19T17:02:16.139Z",
           "first_review_at": "2026-10-19T17:02:16.139Z",
-          "delivered_on": "2026-10-19"
+          "delivered_on": "2026-10-19",
+          "done_at": "2026-10-24T16:53:11.000Z",
+          "done_on": "2026-10-24",
+          "done_month": "2026-10",
+          "done_by": "Judi"
         },
         {
           "id": "t-20261027-ganna-mvlddsrj",
