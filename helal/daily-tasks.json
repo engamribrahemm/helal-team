@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T15:18:08.897Z",
+      "updated_at": "2026-10-24T15:19:50.874Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -505,13 +505,13 @@
           "live": 0
         },
         "Mariam": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
           "progress": 0,
-          "review": 1,
-          "overdue": 1,
-          "done": 7,
-          "hours": 71.59392527777779,
+          "review": 0,
+          "overdue": 0,
+          "done": 8,
+          "hours": 86.94852296296297,
           "live": 0
         },
         "Judi": {
@@ -526,23 +526,33 @@
         },
         "Seif": {
           "open": 10,
-          "todo": 4,
-          "progress": 3,
-          "review": 3,
+          "todo": 5,
+          "progress": 5,
+          "review": 0,
           "overdue": 9,
           "done": 16,
-          "hours": 34.584818216374266,
-          "live": 464.56666666666666
+          "hours": 43.054518068783075,
+          "live": 711.6000000000001
         },
         "Alaa": {
           "open": 4,
           "todo": 2,
-          "progress": 2,
-          "review": 0,
+          "progress": 1,
+          "review": 1,
           "overdue": 2,
           "done": 12,
-          "hours": 46.00789881944445,
-          "live": 113.56666666666666
+          "hours": 43.88740477272727,
+          "live": 44.233333333333334
+        },
+        "Sara": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 2,
+          "hours": 16.377944583333335,
+          "live": 0
         },
         "Ganna": {
           "open": 20,
@@ -552,6 +562,16 @@
           "overdue": 1,
           "done": 13,
           "hours": 57.27492345959595,
+          "live": 0
+        },
+        "Tasneem": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 1,
+          "hours": 7.200874722222222,
           "live": 0
         },
         "Moamen": {
@@ -591,8 +611,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 210.63333333333333,
-          "live": 210.63333333333333
+          "hours": 210.66666666666666,
+          "live": 210.66666666666666
         },
         "Gehad Helal": {
           "open": 1,
@@ -606,9 +626,9 @@
         }
       },
       "time": {
-        "avgTodo": 4860,
-        "avgProgress": 3108,
-        "open": 42
+        "avgTodo": 4707,
+        "avgProgress": 3313,
+        "open": 41
       },
       "hr": {
         "people": {
@@ -631,11 +651,11 @@
             "reviews": 0
           },
           "Seif": {
-            "delivery": 3,
+            "delivery": 4,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 3,
+            "total": 4,
             "attitude": 0,
             "reviews": 0
           },
@@ -648,6 +668,15 @@
             "attitude": 0,
             "reviews": 0
           },
+          "Sara": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
           "Ganna": {
             "delivery": 5,
             "quality": 0,
@@ -656,6 +685,15 @@
             "total": 5,
             "attitude": 0,
             "reviews": 0
+          },
+          "Tasneem": {
+            "delivery": 5,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 5,
+            "attitude": 0,
+            "reviews": 1
           },
           "Moamen": {
             "delivery": 0,
@@ -5164,14 +5202,14 @@
           "title": "5 Tips content for MAS | 13 Oct",
           "notes": "",
           "due": "2026-10-13",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-10-13",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-13T12:53:31.941Z",
-          "updated_at": "2026-10-21T13:59:49.322Z",
+          "updated_at": "2026-10-24T12:18:23.043Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-16T16:20:21.536Z",
@@ -5193,7 +5231,11 @@
           "progress_hours": 117.65771833333334,
           "review_at": "2026-10-21T13:59:49.322Z",
           "first_review_at": "2026-10-21T13:59:49.322Z",
-          "delivered_on": "2026-10-21"
+          "delivered_on": "2026-10-21",
+          "done_at": "2026-10-24T12:18:23.041Z",
+          "done_on": "2026-10-24",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         }
       ]
     },
@@ -6283,20 +6325,36 @@
           "title": "TIPS MAS | 23th OCT.",
           "notes": "",
           "due": "2026-10-21",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1fCc8vNdUOM6hf7Gw7Tvt45BXeuqmzrUX",
           "drive_missing": false,
           "assigned_at": "2026-10-21",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-21T14:01:36.542Z",
-          "updated_at": "2026-10-21T17:55:31.380Z",
-          "updated_by": "Alaa",
+          "updated_at": "2026-10-24T12:18:43.128Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-21T17:55:31.380Z",
-          "progress_started_at": "2026-10-21T17:55:31.380Z",
-          "time_log": [],
-          "start_on": "2026-10-21"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-21T17:55:31.380Z",
+              "ended_at": "2026-10-24T12:18:43.127Z",
+              "hours": 66.38659638888889,
+              "by": "Mariam"
+            }
+          ],
+          "start_on": "2026-10-21",
+          "delay_reason": "Workload pressure",
+          "delay_notified": false,
+          "delay_days": 3,
+          "progress_hours": 66.38659638888889,
+          "review_at": "2026-10-24T12:18:43.127Z",
+          "first_review_at": "2026-10-24T12:18:43.127Z",
+          "delivered_on": "2026-10-24"
         }
       ]
     },
