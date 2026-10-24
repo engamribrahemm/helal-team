@@ -492,7 +492,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-24T15:20:26.719Z",
+      "updated_at": "2026-10-24T15:20:36.743Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -525,13 +525,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 8,
+          "open": 7,
           "todo": 4,
           "progress": 2,
-          "review": 2,
-          "overdue": 7,
-          "done": 18,
-          "hours": 39.80922986111111,
+          "review": 1,
+          "overdue": 6,
+          "done": 19,
+          "hours": 40.31610645502646,
           "live": 412.98333333333335
         },
         "Alaa": {
@@ -611,8 +611,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 210.66666666666666,
-          "live": 210.66666666666666
+          "hours": 210.68333333333334,
+          "live": 210.68333333333334
         },
         "Gehad Helal": {
           "open": 1,
@@ -627,8 +627,8 @@
       },
       "time": {
         "avgTodo": 4862,
-        "avgProgress": 3267,
-        "open": 39
+        "avgProgress": 3262,
+        "open": 38
       },
       "hr": {
         "people": {
@@ -6407,15 +6407,15 @@
           "title": "single visual | 28th Oct",
           "notes": "",
           "due": "2026-10-22",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:26:22.511Z",
-          "updated_at": "2026-10-24T14:04:44.037Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-24T15:20:36.654Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-22T11:37:30.938Z",
           "progress_started_at": "",
@@ -6436,7 +6436,11 @@
           "progress_hours": 50.45363833333333,
           "review_at": "2026-10-24T14:04:44.036Z",
           "first_review_at": "2026-10-24T14:04:44.036Z",
-          "delivered_on": "2026-10-24"
+          "delivered_on": "2026-10-24",
+          "done_at": "2026-10-24T15:20:36.653Z",
+          "done_on": "2026-10-24",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261022-seif-mvb29wff",
