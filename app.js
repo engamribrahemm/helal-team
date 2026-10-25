@@ -1512,7 +1512,7 @@ function mergeHr(remote, local) {
   const resetAt = effectiveReset(a, b);
   const resetIso = new Date(resetAt).toISOString();
   const lists = (file, key) => (file?.[key] || []).filter((row) => keptAfterReset(row, resetAt));
-  const work = { ...a.work, ...b.work };
+  const work = { ...(b.work || {}), ...(a.work || {}) };
   delete work["Graphic (name unconfirmed)"];
   return {
     note: b.note || a.note,
@@ -3882,7 +3882,7 @@ function viewPayroll() {
                 $("strong", {}, row.name),
                 $("span", { class: "muted" }, (() => {
                   const pt = partTimeModel(row.work.part_time_model);
-                  const kind = pt ? `${row.work.type} · ${pt.label}` : row.work.type;
+                  const kind = pt ? `Part-time · ${pt.label}` : "Part-time";
                   return ` · ${kind}${row.intern ? " · Intern" : ""}`;
                 })()),
               ]),
@@ -4166,7 +4166,7 @@ function viewHrProfile(month) {
         $("div", {}, [
           $("h2", {}, person.name),
           $("p", { class: "muted" }, `${person.role || ""}${person.home ? ` · ${person.home}` : ""}${person.email ? ` · ${person.email}` : ""}`),
-          $("p", { class: "muted" }, `${work.type} · ${work.days} · ${work.hours} · ${work.mode}${work.office_days ? ` · Office ${work.office_days}` : ""}`),
+          $("p", { class: "muted" }, `Part-time · ${work.days} · ${work.hours} · ${work.mode}${work.office_days ? ` · Office ${work.office_days}` : ""}`),
         ]),
         $("span", { class: `pill ${loadTone(load)}` }, load.open >= 3 ? "Overloaded" : load.open === 0 ? "Clear" : "Active"),
       ]),
@@ -6183,8 +6183,8 @@ function personCard(p) {
   const intern = isPayrollIntern(p.name);
   const pt = partTimeModel(work.part_time_model);
   const schedule = pt
-    ? `${pt.label} · ${work.mode}`
-    : `${work.type} · ${work.mode}`;
+    ? `Part-time · ${pt.label} · ${work.mode}`
+    : `Part-time · ${work.mode}`;
   const scheduleDetail = pt
     ? `${work.days} · ${work.hours}`
     : `${work.days || "—"} · ${work.hours || "—"}`;
