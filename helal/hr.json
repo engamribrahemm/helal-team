@@ -522,18 +522,42 @@
       "Mohamed"
     ],
     "scheduled_days": {
-      "Amr": { "2026-10": 15 },
-      "Moamen": { "2026-10": 15 },
-      "Mariam": { "2026-10": 15 },
-      "Judi": { "2026-10": 15 },
-      "Seif": { "2026-10": 15 },
-      "Alaa": { "2026-10": 15 },
-      "Ganna": { "2026-10": 15 },
-      "Mohamed": { "2026-10": 15 },
-      "Rahma": { "2026-10": 15 },
-      "Salma": { "2026-10": 15 },
-      "Sara": { "2026-10": 15 },
-      "Gehad Helal": { "2026-10": 15 }
+      "Amr": {
+        "2026-10": 15
+      },
+      "Moamen": {
+        "2026-10": 15
+      },
+      "Mariam": {
+        "2026-10": 15
+      },
+      "Judi": {
+        "2026-10": 15
+      },
+      "Seif": {
+        "2026-10": 15
+      },
+      "Alaa": {
+        "2026-10": 15
+      },
+      "Ganna": {
+        "2026-10": 15
+      },
+      "Mohamed": {
+        "2026-10": 15
+      },
+      "Rahma": {
+        "2026-10": 15
+      },
+      "Salma": {
+        "2026-10": 15
+      },
+      "Sara": {
+        "2026-10": 15
+      },
+      "Gehad Helal": {
+        "2026-10": 15
+      }
     },
     "manual": [],
     "waived": [],
@@ -712,11 +736,11 @@
           "reviews": 0
         },
         "Seif": {
-          "delivery": 4,
+          "delivery": 3,
           "quality": 0,
           "revisions": 0,
           "creativity": 0,
-          "total": 4,
+          "total": 3,
           "attitude": 0,
           "reviews": 0
         },
@@ -765,15 +789,6 @@
           "attitude": 0,
           "reviews": 0
         },
-        "Aya": {
-          "delivery": 5,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
-          "total": 5,
-          "attitude": 0,
-          "reviews": 0
-        },
         "Salma": {
           "delivery": 0,
           "quality": 0,
@@ -793,7 +808,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-10-17T12:39:29.884Z",
+      "updated_at": "2026-10-25T11:14:11.750Z",
       "frozen": false
     }
   }
