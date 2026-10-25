@@ -3729,6 +3729,12 @@ function formatDays(n) {
 }
 
 function savePayrollSettings({ name, amount, month, partTimeModel: ptId, intern }) {
+  if (!isAdmin()) {
+    state.saveState = "error";
+    state.saveError = "Only admins can edit salaries.";
+    render();
+    return;
+  }
   const n = Number(amount);
   if (!name || !(n > 0 || intern)) {
     state.saveState = "error";
@@ -3762,6 +3768,12 @@ function savePayrollSettings({ name, amount, month, partTimeModel: ptId, intern 
 }
 
 function addManualPayrollViolation({ who, month, code, days, note }) {
+  if (!isAdmin()) {
+    state.saveState = "error";
+    state.saveError = "Only admins can edit salaries.";
+    render();
+    return;
+  }
   if (!payrollMonthActive(month)) {
     state.saveState = "error";
     state.saveError = `Deductions start from ${monthLabel(PAYROLL_START_MONTH)}.`;
@@ -3793,6 +3805,7 @@ function addManualPayrollViolation({ who, month, code, days, note }) {
 }
 
 function waivePayrollViolation(id) {
+  if (!isAdmin()) return;
   if (!id) return;
   const pay = ensurePayroll();
   if (!pay.waived.includes(id)) pay.waived.push(id);
@@ -3804,10 +3817,45 @@ function payrollMembers() {
   return people();
 }
 
+function viewMyPayroll(month) {
+  const canPrev = shiftYm(month, -1) >= PAYROLL_START_MONTH;
+  const name = state.who;
+  return $("div", { class: "page-stack payroll-page" }, [
+    pageShell(
+      pageHero(
+        "Your salary",
+        "View only. You see your own profile. Admins see the full team.",
+        { label: "Month", value: monthLabel(month) }
+      ),
+      $("div", { class: "page-body" }, [
+        $("div", { class: "cal-nav" }, [
+          $("button", {
+            class: "btn ghost",
+            type: "button",
+            disabled: canPrev ? undefined : true,
+            onclick: () => {
+              if (!canPrev) return;
+              state.payrollMonth = clampPayrollMonth(shiftYm(month, -1));
+              render();
+            },
+          }, "Prev"),
+          $("h2", {}, monthLabel(month)),
+          $("button", { class: "btn ghost", type: "button", onclick: () => { state.payrollMonth = shiftYm(month, 1); render(); } }, "Next"),
+        ]),
+        $("p", { class: "muted" }, "Part-time day = base ÷ scheduled days this month. Interns extend training instead of a pay cut."),
+      ])
+    ),
+    viewPayrollPerson(name, month, { readOnly: true }),
+  ]);
+}
+
 function viewPayroll() {
-  if (!isAdmin()) return $("p", { class: "empty" }, "Admins only.");
   const month = clampPayrollMonth(state.payrollMonth || thisMonth());
   state.payrollMonth = month;
+  if (!isAdmin()) {
+    state.payrollPerson = state.who;
+    return viewMyPayroll(month);
+  }
   const canPrev = shiftYm(month, -1) >= PAYROLL_START_MONTH;
   const roster = payrollMembers();
   if (state.payrollPerson && !roster.some((p) => p.name === state.payrollPerson)) state.payrollPerson = "";
@@ -3993,8 +4041,14 @@ function viewPayroll() {
   ].filter(Boolean));
 }
 
-function viewPayrollPerson(name, month) {
+function viewPayrollPerson(name, month, { readOnly = false } = {}) {
+  if (!isAdmin() && !samePerson(name, state.who)) {
+    return $("p", { class: "empty" }, "You can only view your own salary.");
+  }
+  const locked = readOnly || !isAdmin();
   const row = summarizePayroll(name, month);
+  const headers = ["Date", "Violation", "Days", "Amount", "Source"];
+  if (!locked) headers.push("");
   return pageSection(`${name} · ${monthLabel(month)}`, row.intern
     ? "Intern: violations extend training instead of cutting pay."
     : `Day value ${formatEGP(row.dayValue)} · half day ${formatEGP(row.halfDay)} · penalty cap ${row.capDays} days (${formatEGP(row.dayValue * row.capDays)}).`, [
@@ -4010,14 +4064,7 @@ function viewPayrollPerson(name, month) {
       : null,
     $("div", { class: "table-wrap" }, [
       $("table", { class: "load-table" }, [
-        $("thead", {}, $("tr", {}, [
-          $("th", {}, "Date"),
-          $("th", {}, "Violation"),
-          $("th", {}, "Days"),
-          $("th", {}, "Amount"),
-          $("th", {}, "Source"),
-          $("th", {}, ""),
-        ])),
+        $("thead", {}, $("tr", {}, headers.map((h) => $("th", {}, h)))),
         $("tbody", {}, row.violations.length ? row.violations.map((v) => {
           const meta = PAYROLL_CODES[v.code] || {};
           const amount = row.intern ? "—" : formatEGP(row.dayValue * ((Number(v.penalty_days) || 0) + (Number(v.unpaid_days) || 0)));
@@ -4033,13 +4080,13 @@ function viewPayrollPerson(name, month) {
             ]),
             $("td", {}, amount),
             $("td", {}, v.source),
-            $("td", {}, $("button", {
+            locked ? null : $("td", {}, $("button", {
               class: "btn ghost compact",
               type: "button",
               onclick: () => waivePayrollViolation(v.id),
             }, "Waive")),
-          ]);
-        }) : [$("tr", {}, $("td", { colspan: "6" }, $("p", { class: "empty" }, "No violations this month.")))]),
+          ].filter(Boolean));
+        }) : [$("tr", {}, $("td", { colspan: String(headers.length) }, $("p", { class: "empty" }, "No violations this month.")))]),
       ]),
     ]),
   ]);
@@ -7218,7 +7265,7 @@ function viewGuide() {
       $("div", { class: "sop-roles" }, [
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Everyone"),
-          $("p", {}, "My work, Board (own tasks), Attendance, Report, Drive, SOP, Helal bot."),
+          $("p", {}, "My work, Board (own tasks), Attendance, Report, Salaries (your profile only, view), Drive, SOP, Helal bot."),
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Social · Mariam, Judi & Gehad"),
@@ -7234,7 +7281,7 @@ function viewGuide() {
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Admins · Amr & Moamen"),
-          $("p", {}, "Full board, Review dashboard, Time, Workload, HR, People, Admin guide. Create or deactivate logins."),
+          $("p", {}, "Full board, Review dashboard, Time, Workload, HR, Salaries for the whole team, People, Admin guide. Create or deactivate logins."),
         ]),
       ]),
     ]),
@@ -7442,13 +7489,13 @@ function navItems() {
     ["my", "My work"],
     ["attend", "Attendance"],
     ["report", "Report"],
+    ["payroll", "Salaries"],
     ["drive", "Drive"],
     ["guide", "SOP"],
   ];
   if (isAdmin()) {
     items.splice(2, 0, ["review", "Dashboard"], ["time", "Time"], ["load", "Workload"]);
     items.push(["hr", "HR"]);
-    items.push(["payroll", "Salaries"]);
     items.push(["people", "People"]);
     items.push(["admin-guide", "Admin guide"]);
   } else if (isSocial() || isLead()) {
@@ -7706,7 +7753,7 @@ function helpStaticKnowledge() {
       id: "overview",
       keys: ["overview", "everything", "system", "what is helal", "how helal works", "explain helal", "about helal"],
       title: "Helal overview",
-      body: "Helal is the live team OS: Apps home → Board, My work, Attendance, Report, Drive, SOP, plus Review/Workload for social/leads and Time/HR/People for admins. Tasks/attendance/reports save to GitHub. Files stay in Google Drive. Status: To do → In progress → Review → Revisions → Done. Name tasks content type | publish day. Paste Drive before Review. One evening Report per Cairo day. Ask me about any client, teammate, app, or SOP rule.",
+      body: "Helal is the live team OS: Apps home → Board, My work, Attendance, Report, Salaries (own profile, view only), Drive, SOP, plus Review/Workload for social/leads and Time/HR/People/full Salaries for admins. Tasks/attendance/reports save to GitHub. Files stay in Google Drive. Status: To do → In progress → Review → Revisions → Done. Name tasks content type | publish day. Paste Drive before Review. One evening Report per Cairo day. Ask me about any client, teammate, app, or SOP rule.",
       go: "apps",
     },
     {
@@ -7727,7 +7774,7 @@ function helpStaticKnowledge() {
       id: "roles",
       keys: ["roles", "who can", "permissions", "access"],
       title: "Roles",
-      body: "Everyone: My work, Board (own), Attendance, Report, Drive, SOP, Helal bot. Social (Mariam, Judi, Gehad): add/assign, Review, Mark done — not People/HR. Leads: Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, People.",
+      body: "Everyone: My work, Board (own), Attendance, Report, Salaries (own profile, view only), Drive, SOP, Helal bot. Social (Mariam, Judi, Gehad): add/assign, Review, Mark done — not People/HR. Leads: Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, full Salaries, People.",
       go: "guide",
     },
     {
@@ -7871,9 +7918,8 @@ function helpStaticKnowledge() {
       id: "payroll",
       keys: ["salary", "salaries", "payroll", "deduction", "base salary", "penalties", "خصم"],
       title: "Salaries",
-      body: "Admins open Salaries. Set base salary. Day = base÷30 (full-time) or base÷part-time model days this month (3×8 or 6×4). Auto: late tasks ½ day each, missing daily report 1 day. Cap 5 penalty days/month. Absence = unpaid day + 2 penalty days (unpaid outside cap). Interns extend training days instead of money cuts.",
+      body: "Everyone opens Salaries and sees only their own profile, view only. Admins see every profile and can set base, part-time model, intern, and violations. Part-time day = base ÷ scheduled days this month (3×8 or 6×4). Auto: late tasks ½ day each, missing daily report 1 day. Cap 5 penalty days/month. Interns extend training instead of money cuts.",
       go: "payroll",
-      roles: ["admin"],
     },
     {
       id: "admin-guide",
@@ -8511,7 +8557,7 @@ function render(force) {
   else if (state.view === "drive") main.append(viewDrive());
   else if (state.view === "people" && isAdmin()) main.append(viewPeople());
   else if (state.view === "hr" && isAdmin()) main.append(viewHr());
-  else if (state.view === "payroll" && isAdmin()) main.append(viewPayroll());
+  else if (state.view === "payroll") main.append(viewPayroll());
   else if (state.view === "admin-guide" && isAdmin()) main.append(viewAdminGuide());
   else if (state.view === "guide") main.append(viewGuide());
   else main.append(viewAppsHome());
