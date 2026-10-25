@@ -495,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-25T05:51:43.922Z",
+      "updated_at": "2026-10-25T09:37:03.495Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -534,8 +534,8 @@
           "review": 0,
           "overdue": 5,
           "done": 20,
-          "hours": 42.153886994949495,
-          "live": 442.01666666666665
+          "hours": 42.495553661616164,
+          "live": 449.5333333333333
         },
         "Alaa": {
           "open": 2,
@@ -548,14 +548,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 19,
-          "todo": 13,
+          "open": 20,
+          "todo": 14,
           "progress": 4,
           "review": 2,
           "overdue": 0,
           "done": 16,
-          "hours": 52.02074067901235,
-          "live": 47.56666666666666
+          "hours": 52.854074012345684,
+          "live": 62.56666666666666
         },
         "Moamen": {
           "open": 0,
@@ -584,8 +584,8 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 16.629662500000002,
-          "live": 14.45
+          "hours": 14.807063333333335,
+          "live": 21.966666666666665
         },
         "Salma": {
           "open": 2,
@@ -594,8 +594,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 225.2,
-          "live": 225.2
+          "hours": 228.95,
+          "live": 228.95
         },
         "Gehad Helal": {
           "open": 1,
@@ -604,14 +604,14 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 15.166666666666666,
-          "live": 15.166666666666666
+          "hours": 18.933333333333334,
+          "live": 18.933333333333334
         }
       },
       "time": {
-        "avgTodo": 4716,
-        "avgProgress": 3210,
-        "open": 44
+        "avgTodo": 4942,
+        "avgProgress": 3196,
+        "open": 45
       },
       "hr": {
         "people": {
@@ -6924,6 +6924,27 @@
           "review_at": "2026-10-24T17:44:45.257Z",
           "first_review_at": "2026-10-24T17:44:45.257Z",
           "delivered_on": "2026-10-24"
+        },
+        {
+          "id": "t-20261025-ganna-mvnmvvgj",
+          "who": "Ganna",
+          "space": "Video editors",
+          "project": "Blushed",
+          "title": "REEL BLUSHED | 25th",
+          "notes": "",
+          "due": "2026-10-25",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
+          "drive_missing": false,
+          "assigned_at": "2026-10-25",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-25T09:37:03.236Z",
+          "updated_at": "2026-10-25T09:37:03.236Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
