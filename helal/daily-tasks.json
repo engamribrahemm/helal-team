@@ -495,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-25T09:37:03.495Z",
+      "updated_at": "2026-10-25T09:53:36.462Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -534,8 +534,8 @@
           "review": 0,
           "overdue": 5,
           "done": 20,
-          "hours": 42.495553661616164,
-          "live": 449.5333333333333
+          "hours": 42.52055366161616,
+          "live": 450.0833333333333
         },
         "Alaa": {
           "open": 2,
@@ -549,13 +549,13 @@
         },
         "Ganna": {
           "open": 20,
-          "todo": 14,
-          "progress": 4,
+          "todo": 13,
+          "progress": 5,
           "review": 2,
           "overdue": 0,
           "done": 16,
-          "hours": 52.854074012345684,
-          "live": 62.56666666666666
+          "hours": 52.91703697530864,
+          "live": 63.7
         },
         "Moamen": {
           "open": 0,
@@ -584,8 +584,8 @@
           "review": 0,
           "overdue": 0,
           "done": 4,
-          "hours": 14.807063333333335,
-          "live": 21.966666666666665
+          "hours": 14.913730000000001,
+          "live": 22.5
         },
         "Salma": {
           "open": 2,
@@ -594,8 +594,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 228.95,
-          "live": 228.95
+          "hours": 229.23333333333332,
+          "live": 229.23333333333332
         },
         "Gehad Helal": {
           "open": 1,
@@ -604,13 +604,13 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 18.933333333333334,
-          "live": 18.933333333333334
+          "hours": 19.2,
+          "live": 19.2
         }
       },
       "time": {
-        "avgTodo": 4942,
-        "avgProgress": 3196,
+        "avgTodo": 4958,
+        "avgProgress": 3199,
         "open": 45
       },
       "hr": {
@@ -6933,18 +6933,20 @@
           "title": "REEL BLUSHED | 25th",
           "notes": "",
           "due": "2026-10-25",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-25",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-25T09:37:03.236Z",
-          "updated_at": "2026-10-25T09:37:03.236Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-25T09:53:36.422Z",
+          "updated_by": "Ganna",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-25T09:53:36.421Z",
+          "progress_started_at": "2026-10-25T09:53:36.421Z",
+          "time_log": [],
+          "start_on": "2026-10-25"
         }
       ]
     },
