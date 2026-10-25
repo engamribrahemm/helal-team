@@ -3854,7 +3854,7 @@ function viewPayroll() {
           $("button", { class: "btn ghost", type: "button", onclick: () => { state.payrollMonth = shiftYm(month, 1); render(); } }, "Next"),
           whoSel,
         ]),
-        $("p", { class: "muted" }, `Deductions start ${monthLabel(PAYROLL_START_MONTH)}. Day = base ÷ 30 (full-time). Absence = unpaid day + 2 penalty days (unpaid outside the 5-day cap).`),
+        $("p", { class: "muted" }, `Deductions start ${monthLabel(PAYROLL_START_MONTH)}. Part-time day = base ÷ scheduled days this month (3×8 or 6×4). Absence = unpaid day + 2 penalty days (unpaid outside the 5-day cap).`),
         sheetMeta?.file
           ? $("p", { class: "muted" }, `Imported from ${sheetMeta.file}${sheetMeta.imported_at ? ` · ${cairoDate(sheetMeta.imported_at)}` : ""}. Not on Helal board (skipped): عبدالله، تسنيم، رامز، محمد وائل. Judi / Salma / Rahma have no row in the sheet yet — set base manually.`)
           : null,
