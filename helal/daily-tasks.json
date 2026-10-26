@@ -495,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-26T19:49:44.209Z",
+      "updated_at": "2026-10-26T20:51:53.585Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -534,8 +534,8 @@
           "review": 0,
           "overdue": 6,
           "done": 20,
-          "hours": 45.60540214646465,
-          "live": 517.9499999999999
+          "hours": 45.69934154040404,
+          "live": 520.0166666666667
         },
         "Alaa": {
           "open": 2,
@@ -554,8 +554,8 @@
           "review": 4,
           "overdue": 3,
           "done": 16,
-          "hours": 61.0680391503268,
-          "live": 149.35
+          "hours": 61.25039209150327,
+          "live": 152.45000000000002
         },
         "Moamen": {
           "open": 0,
@@ -580,8 +580,8 @@
         "Rahma": {
           "open": 6,
           "todo": 5,
-          "progress": 1,
-          "review": 0,
+          "progress": 0,
+          "review": 1,
           "overdue": 0,
           "done": 6,
           "hours": 19.092757166666665,
@@ -594,8 +594,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 263.1666666666667,
-          "live": 263.1666666666667
+          "hours": 264.2,
+          "live": 264.2
         },
         "Gehad Helal": {
           "open": 1,
@@ -604,13 +604,13 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 53.13333333333333,
-          "live": 53.13333333333333
+          "hours": 54.166666666666664,
+          "live": 54.166666666666664
         }
       },
       "time": {
-        "avgTodo": 7117,
-        "avgProgress": 3467,
+        "avgTodo": 7179,
+        "avgProgress": 3474,
         "open": 43
       },
       "hr": {
@@ -7141,20 +7141,33 @@
           "title": "Header and post to the form",
           "notes": "",
           "due": "2026-10-27",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-24",
           "month": "2026-10",
           "created_by": "Gehad Helal",
           "created_at": "2026-10-24T14:38:56.311Z",
-          "updated_at": "2026-10-26T19:49:44.179Z",
+          "updated_at": "2026-10-26T20:51:53.554Z",
           "updated_by": "Rahma",
           "revisions": 0,
           "first_progress_at": "2026-10-26T19:49:44.178Z",
-          "progress_started_at": "2026-10-26T19:49:44.178Z",
-          "time_log": [],
-          "start_on": "2026-10-26"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-26T19:49:44.178Z",
+              "ended_at": "2026-10-26T20:51:53.553Z",
+              "hours": 1.0359375,
+              "by": "Rahma"
+            }
+          ],
+          "start_on": "2026-10-26",
+          "progress_hours": 1.0359375,
+          "review_at": "2026-10-26T20:51:53.553Z",
+          "first_review_at": "2026-10-26T20:51:53.553Z",
+          "delivered_on": "2026-10-26"
         }
       ]
     },
