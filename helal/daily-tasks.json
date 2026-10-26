@@ -495,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-26T17:28:28.022Z",
+      "updated_at": "2026-10-26T17:28:36.319Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -578,13 +578,13 @@
           "live": 0
         },
         "Rahma": {
-          "open": 7,
+          "open": 6,
           "todo": 6,
           "progress": 0,
-          "review": 1,
-          "overdue": 1,
-          "done": 5,
-          "hours": 20.24917701388889,
+          "review": 0,
+          "overdue": 0,
+          "done": 6,
+          "hours": 19.092757166666665,
           "live": 0
         },
         "Salma": {
@@ -594,8 +594,8 @@
           "review": 0,
           "overdue": 2,
           "done": 0,
-          "hours": 260.8,
-          "live": 260.8
+          "hours": 260.81666666666666,
+          "live": 260.81666666666666
         },
         "Gehad Helal": {
           "open": 1,
@@ -610,8 +610,8 @@
       },
       "time": {
         "avgTodo": 6853,
-        "avgProgress": 3483,
-        "open": 44
+        "avgProgress": 3444,
+        "open": 43
       },
       "hr": {
         "people": {
@@ -6822,15 +6822,15 @@
           "title": "Carousel / 27 October",
           "notes": "",
           "due": "2026-10-25",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-22",
           "month": "2026-10",
           "created_by": "Seif",
           "created_at": "2026-10-22T11:34:50.969Z",
-          "updated_at": "2026-10-25T20:19:45.368Z",
-          "updated_by": "Rahma",
+          "updated_at": "2026-10-26T17:28:36.271Z",
+          "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-25T05:51:43.888Z",
           "progress_started_at": "",
@@ -6848,7 +6848,11 @@
           "progress_hours": 14.467077777777778,
           "review_at": "2026-10-25T20:19:45.368Z",
           "first_review_at": "2026-10-25T20:19:45.368Z",
-          "delivered_on": "2026-10-25"
+          "delivered_on": "2026-10-25",
+          "done_at": "2026-10-26T17:28:36.270Z",
+          "done_on": "2026-10-26",
+          "done_month": "2026-10",
+          "done_by": "Seif"
         },
         {
           "id": "t-20261025-ganna-mvldcb4g",
