@@ -591,6 +591,24 @@
           "hours_per_day": 8
         },
         "archived_at": "2026-10-27T06:09:21.862Z"
+      },
+      "Salma": {
+        "base": 0,
+        "intern": false,
+        "scheduled_days": {
+          "2026-10": 15
+        },
+        "work": {
+          "type": "Part-time",
+          "days": "Sun–Tue",
+          "hours": "10:00–18:00",
+          "mode": "Remote",
+          "part_time_model": "3x8",
+          "scheduled_days": 15,
+          "days_per_week": 3,
+          "hours_per_day": 8
+        },
+        "archived_at": "2026-10-27T06:10:03.119Z"
       }
     },
     "sheet": {
@@ -798,15 +816,6 @@
           "attitude": 0,
           "reviews": 0
         },
-        "Salma": {
-          "delivery": 0,
-          "quality": 0,
-          "revisions": 0,
-          "creativity": 0,
-          "total": 0,
-          "attitude": 0,
-          "reviews": 0
-        },
         "Gehad Helal": {
           "delivery": 0,
           "quality": 0,
@@ -817,7 +826,7 @@
           "reviews": 0
         }
       },
-      "updated_at": "2026-10-27T06:09:25.042Z",
+      "updated_at": "2026-10-27T06:10:04.695Z",
       "frozen": false
     }
   }
