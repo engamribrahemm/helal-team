@@ -3,6 +3,30 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mvr0ilsc",
+      "who": "Rahma",
+      "date": "2026-10-27",
+      "finished": "2 single visual | 1 NOV · 25%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261030-rahma-mvmf6o4b",
+          "title": "2 single visual | 1 NOV",
+          "project": "Helal",
+          "status": "In progress",
+          "percent": 25
+        }
+      ],
+      "done_task_ids": [
+        "t-20261030-rahma-mvmf6o4b"
+      ],
+      "created_at": "2026-10-27T18:21:57.324Z"
+    },
+    {
       "id": "r-mvqrapz6",
       "who": "Ganna",
       "date": "2026-10-27",
@@ -1053,7 +1077,7 @@
     },
     {
       "id": "r-muwxf15m",
-      "who": "Rahma Elsaid",
+      "who": "Rahma",
       "date": "2026-10-06",
       "finished": "I have finished 21 October 2026 design. I developed three different concepts and reviewed them with Seif to evaluate the best options. And I have submitted the final design.",
       "unfinished": "",
