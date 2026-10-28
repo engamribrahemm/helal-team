@@ -498,7 +498,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-28T20:03:23.929Z",
+      "updated_at": "2026-10-28T20:03:59.371Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -531,14 +531,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 17,
-          "todo": 15,
+          "open": 18,
+          "todo": 16,
           "progress": 2,
           "review": 0,
           "overdue": 2,
           "done": 22,
-          "hours": 45.03385802083334,
-          "live": 513.9
+          "hours": 45.034552465277784,
+          "live": 513.9166666666666
         },
         "Alaa": {
           "open": 2,
@@ -592,9 +592,9 @@
         }
       },
       "time": {
-        "avgTodo": 6391,
+        "avgTodo": 6392,
         "avgProgress": 3482,
-        "open": 49
+        "open": 50
       },
       "hr": {
         "people": {
@@ -7895,6 +7895,27 @@
           "created_at": "2026-10-24T13:19:48.874Z",
           "updated_at": "2026-10-24T13:28:34.542Z",
           "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261110-seif-mvsjlo4d",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "single visual | 12th Nov",
+          "notes": "",
+          "due": "2026-11-10",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-10-28",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-28T20:03:59.198Z",
+          "updated_at": "2026-10-28T20:03:59.198Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
