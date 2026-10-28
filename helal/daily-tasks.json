@@ -498,7 +498,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-28T20:11:20.332Z",
+      "updated_at": "2026-10-28T20:11:54.314Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -531,14 +531,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 32,
-          "todo": 30,
+          "open": 33,
+          "todo": 31,
           "progress": 2,
           "review": 0,
           "overdue": 2,
           "done": 22,
-          "hours": 45.04496913194445,
-          "live": 514.1666666666666
+          "hours": 45.0456635763889,
+          "live": 514.1833333333333
         },
         "Alaa": {
           "open": 2,
@@ -592,9 +592,9 @@
         }
       },
       "time": {
-        "avgTodo": 4736,
+        "avgTodo": 4644,
         "avgProgress": 3482,
-        "open": 64
+        "open": 65
       },
       "hr": {
         "people": {
@@ -8419,6 +8419,33 @@
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:11:20.155Z",
           "updated_at": "2026-10-28T20:11:20.155Z",
+          "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-25",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261125-seif-mvsjvuky",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "single visual | 27th Nov",
+          "notes": "",
+          "due": "2026-11-25",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-10-28",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-28T20:11:54.130Z",
+          "updated_at": "2026-10-28T20:11:54.130Z",
           "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
