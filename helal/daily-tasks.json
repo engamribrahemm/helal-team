@@ -495,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-28T13:58:33.367Z",
+      "updated_at": "2026-10-28T16:08:09.390Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -529,13 +529,13 @@
         },
         "Seif": {
           "open": 10,
-          "todo": 8,
-          "progress": 1,
+          "todo": 7,
+          "progress": 2,
           "review": 1,
           "overdue": 6,
           "done": 20,
-          "hours": 47.108833994709,
-          "live": 503.9166666666667
+          "hours": 47.212008597883596,
+          "live": 506.0833333333333
         },
         "Alaa": {
           "open": 2,
@@ -554,8 +554,8 @@
           "review": 5,
           "overdue": 5,
           "done": 16,
-          "hours": 67.04208326388888,
-          "live": 183.86666666666667
+          "hours": 67.31083326388888,
+          "live": 188.16666666666666
         },
         "Moamen": {
           "open": 0,
@@ -574,8 +574,8 @@
           "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 16.588055714285712,
-          "live": 19.616666666666667
+          "hours": 16.895198571428573,
+          "live": 21.766666666666666
         },
         "Gehad Helal": {
           "open": 0,
@@ -589,8 +589,8 @@
         }
       },
       "time": {
-        "avgTodo": 9535,
-        "avgProgress": 3535,
+        "avgTodo": 9407,
+        "avgProgress": 3544,
         "open": 42
       },
       "hr": {
@@ -6537,18 +6537,20 @@
           "title": "single visual | 30th Oct",
           "notes": "",
           "due": "2026-10-23",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:27:45.855Z",
-          "updated_at": "2026-10-16T14:27:45.855Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-10-28T16:08:09.364Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-10-28T16:08:09.364Z",
+          "progress_started_at": "2026-10-28T16:08:09.364Z",
+          "time_log": [],
+          "start_on": "2026-10-28"
         },
         {
           "id": "t-20261023-seif-mvb2d0ya",
