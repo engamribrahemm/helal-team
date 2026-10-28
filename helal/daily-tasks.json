@@ -109,7 +109,8 @@
     "t-20261103-seif-mvmfa76a",
     "t-20261105-rahma-mvmfbdnu",
     "t-20261021-seif-mvb27kkt",
-    "t-20261021-seif-mvb28gg2"
+    "t-20261021-seif-mvb28gg2",
+    "t-20261203-seif-mvsje4na"
   ],
   "statuses": [
     "To do",
@@ -497,7 +498,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-28T19:58:07.496Z",
+      "updated_at": "2026-10-28T19:58:33.804Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -530,8 +531,8 @@
           "live": 0
         },
         "Seif": {
-          "open": 11,
-          "todo": 9,
+          "open": 10,
+          "todo": 8,
           "progress": 2,
           "review": 0,
           "overdue": 2,
@@ -556,8 +557,8 @@
           "review": 5,
           "overdue": 5,
           "done": 16,
-          "hours": 67.78999993055555,
-          "live": 195.83333333333334
+          "hours": 67.79208326388888,
+          "live": 195.86666666666667
         },
         "Moamen": {
           "open": 0,
@@ -576,8 +577,8 @@
           "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 17.44281761904762,
-          "live": 25.6
+          "hours": 17.44519857142857,
+          "live": 25.616666666666667
         },
         "Gehad Helal": {
           "open": 0,
@@ -591,9 +592,9 @@
         }
       },
       "time": {
-        "avgTodo": 7876,
+        "avgTodo": 7623,
         "avgProgress": 3481,
-        "open": 43
+        "open": 42
       },
       "hr": {
         "people": {
@@ -7930,33 +7931,6 @@
           "created_at": "2026-10-24T13:25:29.680Z",
           "updated_at": "2026-10-24T13:25:29.680Z",
           "updated_by": "Judi",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        }
-      ]
-    },
-    {
-      "date": "2026-12-03",
-      "source": "Helal board",
-      "tasks": [
-        {
-          "id": "t-20261203-seif-mvsje4na",
-          "who": "Seif",
-          "space": "Social",
-          "project": "OSAMA HELAL",
-          "title": "carousel (4 slides) | 5th Nov",
-          "notes": "",
-          "due": "2026-12-03",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
-          "drive_missing": false,
-          "assigned_at": "2026-10-28",
-          "month": "2026-10",
-          "created_by": "Mariam",
-          "created_at": "2026-10-28T19:58:07.367Z",
-          "updated_at": "2026-10-28T19:58:07.367Z",
-          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
