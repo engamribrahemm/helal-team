@@ -497,7 +497,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-28T19:48:53.186Z",
+      "updated_at": "2026-10-28T19:49:03.674Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -530,14 +530,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 8,
+          "open": 7,
           "todo": 4,
           "progress": 2,
-          "review": 2,
-          "overdue": 4,
-          "done": 20,
-          "hours": 45.39934154040404,
-          "live": 513.4166666666666
+          "review": 1,
+          "overdue": 3,
+          "done": 21,
+          "hours": 43.50330879227053,
+          "live": 513.4333333333333
         },
         "Alaa": {
           "open": 2,
@@ -612,8 +612,8 @@
       },
       "time": {
         "avgTodo": 8742,
-        "avgProgress": 3511,
-        "open": 40
+        "avgProgress": 3461,
+        "open": 39
       },
       "hr": {
         "people": {
@@ -6535,15 +6535,15 @@
           "title": "single visual | 30th Oct",
           "notes": "",
           "due": "2026-10-23",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:27:45.855Z",
-          "updated_at": "2026-10-28T17:54:35.482Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-10-28T19:49:03.564Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-28T16:08:09.364Z",
           "progress_started_at": "",
@@ -6564,7 +6564,11 @@
           "progress_hours": 1.7739216666666666,
           "review_at": "2026-10-28T17:54:35.482Z",
           "first_review_at": "2026-10-28T17:54:35.482Z",
-          "delivered_on": "2026-10-28"
+          "delivered_on": "2026-10-28",
+          "done_at": "2026-10-28T19:49:03.563Z",
+          "done_on": "2026-10-28",
+          "done_month": "2026-10",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261023-seif-mvb2d0ya",
