@@ -3,6 +3,38 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mvsf03on",
+      "who": "Seif",
+      "date": "2026-10-28",
+      "finished": "Carousel | 28 OCT · 100%\nsingle visual | 30th Oct · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261025-seif-mvldfldr",
+          "title": "Carousel | 28 OCT",
+          "project": "Helal",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261023-seif-mvb2b29q",
+          "title": "single visual | 30th Oct",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261025-seif-mvldfldr",
+        "t-20261023-seif-mvb2b29q"
+      ],
+      "created_at": "2026-10-28T17:55:14.471Z"
+    },
+    {
       "id": "r-mvr22tba",
       "who": "Alaa",
       "date": "2026-10-27",
@@ -1025,7 +1057,7 @@
     },
     {
       "id": "r-muzu9oe8",
-      "who": "Rahma",
+      "who": "Rahma Elsaid",
       "date": "2026-10-08",
       "finished": "I have started the 28 october 2026 design (الإعلان مش هيخلقلك ميزة… لو مفيش ميزة من الأساس.)",
       "unfinished": "",
@@ -1047,7 +1079,7 @@
     },
     {
       "id": "r-muyhtxzd",
-      "who": "Rahma",
+      "who": "Rahma Elsaid",
       "date": "2026-10-07",
       "finished": "I have finished 15 october design content (dark social).",
       "unfinished": "",
@@ -1091,7 +1123,7 @@
     },
     {
       "id": "r-muwxf15m",
-      "who": "Rahma",
+      "who": "Rahma Elsaid",
       "date": "2026-10-06",
       "finished": "I have finished 21 October 2026 design. I developed three different concepts and reviewed them with Seif to evaluate the best options. And I have submitted the final design.",
       "unfinished": "",
