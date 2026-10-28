@@ -498,7 +498,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-28T20:11:54.314Z",
+      "updated_at": "2026-10-28T20:12:18.090Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -531,14 +531,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 33,
-          "todo": 31,
+          "open": 34,
+          "todo": 32,
           "progress": 2,
           "review": 0,
           "overdue": 2,
           "done": 22,
-          "hours": 45.0456635763889,
-          "live": 514.1833333333333
+          "hours": 45.04635802083333,
+          "live": 514.1999999999999
         },
         "Alaa": {
           "open": 2,
@@ -557,8 +557,8 @@
           "review": 5,
           "overdue": 5,
           "done": 16,
-          "hours": 67.81916659722222,
-          "live": 196.3
+          "hours": 67.82124993055555,
+          "live": 196.33333333333334
         },
         "Moamen": {
           "open": 0,
@@ -577,8 +577,8 @@
           "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 17.47615095238095,
-          "live": 25.833333333333332
+          "hours": 17.478531904761905,
+          "live": 25.85
         },
         "Gehad Helal": {
           "open": 0,
@@ -592,9 +592,9 @@
         }
       },
       "time": {
-        "avgTodo": 4644,
+        "avgTodo": 4555,
         "avgProgress": 3482,
-        "open": 65
+        "open": 66
       },
       "hr": {
         "people": {
@@ -8474,6 +8474,27 @@
           "created_at": "2026-10-24T13:25:29.680Z",
           "updated_at": "2026-10-24T13:25:29.680Z",
           "updated_by": "Judi",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261126-seif-mvsjwcxe",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "OSAMA HELAL",
+          "title": "carousel (5 slides) | 28th Nov",
+          "notes": "",
+          "due": "2026-11-26",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-10-28",
+          "month": "2026-10",
+          "created_by": "Mariam",
+          "created_at": "2026-10-28T20:12:17.907Z",
+          "updated_at": "2026-10-28T20:12:17.907Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
