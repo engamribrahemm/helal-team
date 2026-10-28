@@ -107,7 +107,8 @@
     "t-20261110-ganna-mvlf8fva",
     "t-20261022-rahma-mvjitvzb",
     "t-20261103-seif-mvmfa76a",
-    "t-20261105-rahma-mvmfbdnu"
+    "t-20261105-rahma-mvmfbdnu",
+    "t-20261021-seif-mvb27kkt"
   ],
   "statuses": [
     "To do",
@@ -495,7 +496,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-28T17:54:35.506Z",
+      "updated_at": "2026-10-28T19:48:47.890Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -528,14 +529,14 @@
           "live": 0
         },
         "Seif": {
-          "open": 10,
-          "todo": 6,
+          "open": 9,
+          "todo": 7,
           "progress": 2,
-          "review": 2,
-          "overdue": 6,
+          "review": 0,
+          "overdue": 5,
           "done": 20,
-          "hours": 45.2258566919192,
-          "live": 509.6
+          "hours": 49.967523358585865,
+          "live": 613.9166666666666
         },
         "Alaa": {
           "open": 2,
@@ -550,12 +551,12 @@
         "Ganna": {
           "open": 20,
           "todo": 13,
-          "progress": 2,
-          "review": 5,
+          "progress": 3,
+          "review": 4,
           "overdue": 5,
           "done": 16,
-          "hours": 67.53374993055554,
-          "live": 191.73333333333332
+          "hours": 69.53568620915033,
+          "live": 293.3
         },
         "Moamen": {
           "open": 0,
@@ -567,30 +568,50 @@
           "hours": 0,
           "live": 0
         },
+        "Mohamed": {
+          "open": 2,
+          "todo": 2,
+          "progress": 0,
+          "review": 0,
+          "overdue": 2,
+          "done": 2,
+          "hours": 0.043764722222222226,
+          "live": 0
+        },
         "Rahma": {
           "open": 5,
-          "todo": 4,
-          "progress": 1,
-          "review": 0,
-          "overdue": 0,
-          "done": 7,
-          "hours": 17.149960476190476,
-          "live": 23.55
-        },
-        "Gehad Helal": {
-          "open": 0,
-          "todo": 0,
+          "todo": 5,
           "progress": 0,
           "review": 0,
           "overdue": 0,
-          "done": 1,
-          "hours": 43.89843527777778,
+          "done": 7,
+          "hours": 16.08328722222222,
+          "live": 0
+        },
+        "Salma": {
+          "open": 2,
+          "todo": 1,
+          "progress": 1,
+          "review": 0,
+          "overdue": 2,
+          "done": 0,
+          "hours": 311.15,
+          "live": 311.15
+        },
+        "Gehad Helal": {
+          "open": 1,
+          "todo": 0,
+          "progress": 0,
+          "review": 1,
+          "overdue": 1,
+          "done": 0,
+          "hours": 0,
           "live": 0
         }
       },
       "time": {
-        "avgTodo": 9239,
-        "avgProgress": 3501,
+        "avgTodo": 9516,
+        "avgProgress": 3682,
         "open": 42
       },
       "hr": {
@@ -649,12 +670,30 @@
             "attitude": 0,
             "reviews": 0
           },
+          "Mohamed": {
+            "delivery": 2,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 2,
+            "attitude": 0,
+            "reviews": 0
+          },
           "Rahma": {
             "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
             "total": 5,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Salma": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           },
@@ -6093,27 +6132,6 @@
       "date": "2026-10-21",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261021-seif-mvb27kkt",
-          "who": "Seif",
-          "space": "Graphic",
-          "project": "OSAMA HELAL",
-          "title": "single visual | 26th Oct",
-          "notes": "",
-          "due": "2026-10-21",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
-          "drive_missing": false,
-          "assigned_at": "2026-10-16",
-          "month": "2026-10",
-          "created_by": "Mariam",
-          "created_at": "2026-10-16T14:25:02.958Z",
-          "updated_at": "2026-10-16T14:25:02.958Z",
-          "updated_by": "Mariam",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
-        },
         {
           "id": "t-20261021-seif-mvb28gg2",
           "who": "Seif",
