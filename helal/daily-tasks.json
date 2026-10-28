@@ -495,7 +495,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-27T19:24:42.614Z",
+      "updated_at": "2026-10-28T13:58:33.367Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -534,8 +534,8 @@
           "review": 1,
           "overdue": 6,
           "done": 20,
-          "hours": 46.224707010582016,
-          "live": 485.35
+          "hours": 47.108833994709,
+          "live": 503.9166666666667
         },
         "Alaa": {
           "open": 2,
@@ -552,10 +552,10 @@
           "todo": 13,
           "progress": 2,
           "review": 5,
-          "overdue": 4,
+          "overdue": 5,
           "done": 16,
-          "hours": 64.72124993055554,
-          "live": 146.73333333333332
+          "hours": 67.04208326388888,
+          "live": 183.86666666666667
         },
         "Moamen": {
           "open": 0,
@@ -574,24 +574,24 @@
           "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 13.935674761904762,
-          "live": 1.05
+          "hours": 16.588055714285712,
+          "live": 19.616666666666667
         },
         "Gehad Helal": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
           "progress": 0,
-          "review": 1,
-          "overdue": 1,
-          "done": 0,
-          "hours": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 1,
+          "hours": 43.89843527777778,
           "live": 0
         }
       },
       "time": {
-        "avgTodo": 8421,
-        "avgProgress": 3463,
-        "open": 43
+        "avgTodo": 9535,
+        "avgProgress": 3535,
+        "open": 42
       },
       "hr": {
         "people": {
@@ -6424,14 +6424,14 @@
           "title": "Create the form for Hiring | 30 Oct",
           "notes": "",
           "due": "2026-10-22",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-20",
           "month": "2026-10",
           "created_by": "Amr",
           "created_at": "2026-10-20T08:24:17.833Z",
-          "updated_at": "2026-10-26T10:55:35.334Z",
+          "updated_at": "2026-10-28T13:58:33.266Z",
           "updated_by": "Gehad Helal",
           "revisions": 0,
           "first_progress_at": "2026-10-24T14:40:39.449Z",
@@ -6469,7 +6469,11 @@
           "progress_hours": 43.89843527777778,
           "review_at": "2026-10-26T10:55:35.334Z",
           "first_review_at": "2026-10-24T14:40:52.375Z",
-          "delivered_on": "2026-10-26"
+          "delivered_on": "2026-10-26",
+          "done_at": "2026-10-28T13:58:33.265Z",
+          "done_on": "2026-10-28",
+          "done_month": "2026-10",
+          "done_by": "Gehad Helal"
         }
       ]
     },
