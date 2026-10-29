@@ -337,6 +337,15 @@ function today() {
   }).format(new Date());
 }
 
+function cairoHour() {
+  const hour = new Intl.DateTimeFormat("en-GB", {
+    timeZone: CAIRO,
+    hour: "2-digit",
+    hourCycle: "h23",
+  }).format(new Date());
+  return Number(hour);
+}
+
 function cairoClock() {
   return new Intl.DateTimeFormat("en-GB", {
     timeZone: CAIRO,
@@ -1553,7 +1562,7 @@ function deliveryDate(task) {
 }
 
 function isLateTask(task) {
-  const delivered = deliveryDate(task) || (task.status === "Review" || task.status === "Done" ? today() : "");
+  const delivered = deliveryDate(task) || (["Review", "Revisions", "Done"].includes(task.status) ? today() : "");
   return !!(task.due && delivered && delivered > task.due);
 }
 
@@ -3486,7 +3495,7 @@ const PAYROLL_CODES = {
   late_attendance: { label: "Late attendance", days: 0.5, auto: false, penalty: true },
   late_task: { label: "Late task delivery", days: 0.5, auto: true, penalty: true },
   missing_report: { label: "Missing daily report", days: 1, auto: true, penalty: true },
-  missing_schedule: { label: "Missing weekly schedule (Thu 10pm)", days: 0.5, auto: false, penalty: true },
+  missing_schedule: { label: "Missing weekly schedule (Thu 10pm)", days: 0.5, auto: true, penalty: true },
   absence: { label: "Absence without prior leave", days: 3, unpaid: 1, penalty_days: 2, auto: false, penalty: true },
   admin_instruction: { label: "Admin instruction breach", days: 1, max_days: 3, auto: false, penalty: true },
   poor_quality: { label: "Poor work quality", days: 1, auto: false, penalty: true },
@@ -3580,6 +3589,36 @@ function isWorkdayFor(name, date) {
   return workdayNameSet(name).has(cairoWeekday(date));
 }
 
+function attendRowFor(name, friday) {
+  const people = ensureAttendance().weeks[friday]?.people || {};
+  if (people[name]) return people[name];
+  const key = Object.keys(people).find((n) => samePerson(n, name));
+  return key ? people[key] : null;
+}
+
+function attendModeOn(name, date) {
+  const row = attendRowFor(name, fridayStart(date));
+  if (!row?.saved) return "";
+  return row.days?.[date] || "";
+}
+
+/** Report is due every Cairo day the person worked: locked Office/Home, or their scheduled days unless locked Off. */
+function payrollReportDue(name, day) {
+  if (!day || day < `${PAYROLL_START_MONTH}-01` || day > today()) return false;
+  if (day === today() && cairoHour() < 18) return false;
+  const mode = attendModeOn(name, day);
+  if (mode === "Off") return false;
+  if (mode === "Office" || mode === "Home") return true;
+  return isWorkdayFor(name, day);
+}
+
+function payrollScheduleDue(thursday) {
+  if (cairoWeekday(thursday) !== "Thu") return false;
+  if (thursday < `${PAYROLL_START_MONTH}-01` || thursday > today()) return false;
+  if (thursday === today() && cairoHour() < 22) return false;
+  return true;
+}
+
 function payrollWaivedSet() {
   return new Set(ensurePayroll().waived || []);
 }
@@ -3614,13 +3653,10 @@ function autoPayrollViolations(name, month) {
   }
 
   for (const day of dates) {
-    if (!isWorkdayFor(name, day)) continue;
-    if (day === today()) continue;
-    const mode = attendDaysFor(name, fridayStart(day))[day];
-    if (mode === "Off") continue;
-    if (reportFor(name, day)) continue;
+    if (!payrollReportDue(name, day) || reportFor(name, day)) continue;
     const id = `auto-report-${name}-${day}`;
     if (waived.has(id)) continue;
+    const mode = attendModeOn(name, day);
     out.push({
       id,
       who: name,
@@ -3631,7 +3667,28 @@ function autoPayrollViolations(name, month) {
       unpaid_days: 0,
       source: "auto",
       ref: day,
-      note: `No daily report on ${day}`,
+      note: mode ? `No daily report on ${day} (${mode})` : `No daily report on ${day}`,
+      date: day,
+    });
+  }
+
+  for (const day of dates) {
+    if (!payrollScheduleDue(day)) continue;
+    const friday = addCairoDays(day, 1);
+    if (attendRowFor(name, friday)?.saved) continue;
+    const id = `auto-schedule-${name}-${friday}`;
+    if (waived.has(id)) continue;
+    out.push({
+      id,
+      who: name,
+      month,
+      code: "missing_schedule",
+      days: 0.5,
+      penalty_days: 0.5,
+      unpaid_days: 0,
+      source: "auto",
+      ref: friday,
+      note: `Weekly schedule not locked by Thu 10pm for the week of ${friday}`,
       date: day,
     });
   }
@@ -3883,7 +3940,7 @@ function viewPayroll() {
     pageShell(
       pageHero(
         "Salaries & performance",
-        `Bases from Sheet 2026. Counting from ${monthLabel(PAYROLL_START_MONTH)}. Auto: late tasks + missing reports. Cap: 5 penalty days/month.`,
+        `Bases from Sheet 2026. Counting from ${monthLabel(PAYROLL_START_MONTH)}. Auto each worked day: missing report. Also late tasks and an unlocked schedule after Thu 10pm. Cap: 5 penalty days/month.`,
         { label: "Month", value: monthLabel(month) }
       ),
       $("div", { class: "page-body" }, [
@@ -7918,7 +7975,7 @@ function helpStaticKnowledge() {
       id: "payroll",
       keys: ["salary", "salaries", "payroll", "deduction", "base salary", "penalties", "خصم"],
       title: "Salaries",
-      body: "Everyone opens Salaries and sees only their own profile, view only. Admins see every profile and can set base, part-time model, intern, and violations. Part-time day = base ÷ scheduled days this month (3×8 or 6×4). Auto: late tasks ½ day each, missing daily report 1 day. Cap 5 penalty days/month. Interns extend training instead of money cuts.",
+      body: "Everyone opens Salaries and sees only their own profile, view only. Admins see every profile and can set base, part-time model, intern, and violations. A missing report is added every Cairo day the person worked (scheduled day, or Office/Home), after 18:00 for today. Weekly schedule not locked by Thu 10pm is ½ day. Late delivery is ½ day, including Revisions. Cap 5 penalty days/month. Interns extend training instead of money cuts.",
       go: "payroll",
     },
     {
