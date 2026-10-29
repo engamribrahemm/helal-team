@@ -943,6 +943,21 @@
           "saved_at": "2026-10-27T00:02:47.956Z",
           "updated_at": "2026-10-27T00:02:47.956Z",
           "updated_by": "Amr"
+        },
+        "Gehad Helal": {
+          "days": {
+            "2026-10-30": "Off",
+            "2026-10-31": "Office",
+            "2026-11-01": "Office",
+            "2026-11-02": "Office",
+            "2026-11-03": "Office",
+            "2026-11-04": "Office",
+            "2026-11-05": "Office"
+          },
+          "saved": true,
+          "saved_at": "2026-10-29T14:14:02.829Z",
+          "updated_at": "2026-10-29T14:14:02.829Z",
+          "updated_by": "Gehad Helal"
         }
       }
     }
@@ -982,10 +997,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "2026-09-14T17:13:09.437Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fbg3s",
@@ -995,10 +1010,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "2026-09-14T17:13:10.064Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mulhzjb9",
@@ -1086,10 +1101,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mvfary0y",
@@ -1099,10 +1114,10 @@
       "from": "Home",
       "to": "Office",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-19T13:35:55.138Z",
-      "decided_at": "2026-10-20T08:24:48.907Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mvgnmmuy",
@@ -1112,10 +1127,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "سبب شخصي في البيت",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-20T12:23:28.570Z",
-      "decided_at": "2026-10-21T22:23:02.008Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mvldaifs",
