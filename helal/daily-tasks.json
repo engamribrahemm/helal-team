@@ -498,7 +498,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-28T20:12:18.090Z",
+      "updated_at": "2026-10-30T05:21:18.633Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -515,7 +515,7 @@
           "todo": 1,
           "progress": 0,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 8,
           "hours": 86.94852296296297,
           "live": 0
@@ -537,15 +537,15 @@
           "review": 0,
           "overdue": 2,
           "done": 22,
-          "hours": 45.04635802083333,
-          "live": 514.1999999999999
+          "hours": 47.808858020833334,
+          "live": 580.5
         },
         "Alaa": {
           "open": 2,
           "todo": 2,
           "progress": 0,
           "review": 0,
-          "overdue": 1,
+          "overdue": 2,
           "done": 14,
           "hours": 45.763871574074074,
           "live": 0
@@ -555,10 +555,10 @@
           "todo": 13,
           "progress": 2,
           "review": 5,
-          "overdue": 5,
+          "overdue": 7,
           "done": 16,
-          "hours": 67.82124993055555,
-          "live": 196.33333333333334
+          "hours": 71.96499993055555,
+          "live": 262.6333333333333
         },
         "Moamen": {
           "open": 0,
@@ -572,13 +572,13 @@
         },
         "Rahma": {
           "open": 5,
-          "todo": 4,
-          "progress": 1,
+          "todo": 5,
+          "progress": 0,
           "review": 0,
           "overdue": 0,
           "done": 7,
-          "hours": 17.478531904761905,
-          "live": 25.85
+          "hours": 16.08328722222222,
+          "live": 0
         },
         "Gehad Helal": {
           "open": 0,
@@ -592,8 +592,8 @@
         }
       },
       "time": {
-        "avgTodo": 4555,
-        "avgProgress": 3482,
+        "avgTodo": 6266,
+        "avgProgress": 3657,
         "open": 66
       },
       "hr": {
@@ -7293,20 +7293,30 @@
           "title": "2 single visual | 1 NOV",
           "notes": "",
           "due": "2026-10-30",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-24",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-24T13:13:43.836Z",
-          "updated_at": "2026-10-27T18:21:11.564Z",
+          "updated_at": "2026-10-30T05:21:18.546Z",
           "updated_by": "Rahma",
           "revisions": 0,
           "first_progress_at": "2026-10-27T18:21:11.564Z",
-          "progress_started_at": "2026-10-27T18:21:11.564Z",
-          "time_log": [],
-          "start_on": "2026-10-27"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-10-27T18:21:11.564Z",
+              "ended_at": "2026-10-30T05:21:18.544Z",
+              "hours": 59.00193888888889,
+              "by": "Rahma"
+            }
+          ],
+          "start_on": "2026-10-27",
+          "progress_hours": 59.00193888888889
         },
         {
           "id": "t-20261030-ganna-mvmf76ar",
