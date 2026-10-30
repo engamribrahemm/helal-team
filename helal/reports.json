@@ -3,6 +3,30 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mvve0fzn",
+      "who": "Seif",
+      "date": "2026-10-30",
+      "finished": "Rebranding for The Fourth Dimension · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261014-seif-muscykvc",
+          "title": "Rebranding for The Fourth Dimension",
+          "project": "The Fourth Dimension",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261014-seif-muscykvc"
+      ],
+      "created_at": "2026-10-30T19:50:49.331Z"
+    },
+    {
       "id": "r-mvtx6g8v",
       "who": "Ganna",
       "date": "2026-10-29",
@@ -1199,7 +1223,7 @@
     },
     {
       "id": "r-muwxf15m",
-      "who": "Rahma",
+      "who": "Rahma Elsaid",
       "date": "2026-10-06",
       "finished": "I have finished 21 October 2026 design. I developed three different concepts and reviewed them with Seif to evaluate the best options. And I have submitted the final design.",
       "unfinished": "",
