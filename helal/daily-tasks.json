@@ -498,7 +498,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-31T13:47:34.346Z",
+      "updated_at": "2026-10-31T13:47:37.627Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -572,13 +572,13 @@
         },
         "Rahma": {
           "open": 5,
-          "todo": 4,
-          "progress": 1,
+          "todo": 5,
+          "progress": 0,
           "review": 0,
           "overdue": 1,
           "done": 7,
-          "hours": 22.214246190476192,
-          "live": 59
+          "hours": 16.08328722222222,
+          "live": 0
         },
         "Gehad Helal": {
           "open": 0,
@@ -592,8 +592,8 @@
         }
       },
       "time": {
-        "avgTodo": 8215,
-        "avgProgress": 3344,
+        "avgTodo": 8151,
+        "avgProgress": 3341,
         "open": 66
       },
       "hr": {
@@ -7309,18 +7309,18 @@
           "title": "2 single visual | 1 NOV",
           "notes": "",
           "due": "2026-10-30",
-          "status": "In progress",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-24",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-24T13:13:43.836Z",
-          "updated_at": "2026-10-31T13:47:34.296Z",
+          "updated_at": "2026-10-31T13:47:36.829Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-27T18:21:11.564Z",
-          "progress_started_at": "2026-10-31T13:47:34.296Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -7329,10 +7329,18 @@
               "ended_at": "2026-10-30T05:21:18.544Z",
               "hours": 59.00193888888889,
               "by": "Rahma"
+            },
+            {
+              "from": "In progress",
+              "to": "To do",
+              "started_at": "2026-10-31T13:47:34.296Z",
+              "ended_at": "2026-10-31T13:47:36.829Z",
+              "hours": 0.0007036111111111111,
+              "by": "Seif"
             }
           ],
           "start_on": "2026-10-27",
-          "progress_hours": 59.00193888888889
+          "progress_hours": 59.0026425
         },
         {
           "id": "t-20261030-ganna-mvmf76ar",
