@@ -139,6 +139,18 @@
       "scheduled_days": 15,
       "days_per_week": 3,
       "hours_per_day": 8
+    },
+    "Nouran": {
+      "type": "Part-time",
+      "days": "Sun–Tue",
+      "hours": "10:00–18:00",
+      "mode": "Remote",
+      "office_days": "",
+      "response": "Reliable",
+      "part_time_model": "3x8",
+      "scheduled_days": 15,
+      "days_per_week": 3,
+      "hours_per_day": 8
     }
   },
   "reviews": [
@@ -556,6 +568,9 @@
         "2026-10": 15
       },
       "Gehad Helal": {
+        "2026-10": 15
+      },
+      "Nouran": {
         "2026-10": 15
       }
     },
