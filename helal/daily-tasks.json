@@ -691,6 +691,203 @@
           }
         }
       },
+      "frozen": true,
+      "frozen_at": "2026-10-31T22:04:31.848Z"
+    },
+    "2026-11": {
+      "updated_at": "2026-10-31T22:04:31.888Z",
+      "people": {
+        "Amr": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Mariam": {
+          "open": 1,
+          "todo": 1,
+          "progress": 0,
+          "review": 0,
+          "overdue": 1,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Judi": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Seif": {
+          "open": 34,
+          "todo": 31,
+          "progress": 2,
+          "review": 1,
+          "overdue": 4,
+          "done": 0,
+          "hours": 43.09166666666667,
+          "live": 86.18333333333334
+        },
+        "Alaa": {
+          "open": 2,
+          "todo": 2,
+          "progress": 0,
+          "review": 0,
+          "overdue": 2,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Ganna": {
+          "open": 18,
+          "todo": 13,
+          "progress": 2,
+          "review": 3,
+          "overdue": 7,
+          "done": 0,
+          "hours": 172.03333333333333,
+          "live": 344.06666666666666
+        },
+        "Moamen": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Rahma": {
+          "open": 5,
+          "todo": 5,
+          "progress": 0,
+          "review": 0,
+          "overdue": 1,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Gehad Helal": {
+          "open": 1,
+          "todo": 1,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Nouran": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        }
+      },
+      "time": {
+        "avgTodo": 8593,
+        "avgProgress": 9788,
+        "open": 65
+      },
+      "hr": {
+        "people": {
+          "Mariam": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Judi": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Seif": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Alaa": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Ganna": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Moamen": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Rahma": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Gehad Helal": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Nouran": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          }
+        }
+      },
       "frozen": false
     }
   },
