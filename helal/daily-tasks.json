@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-10-31T22:04:31.888Z",
+      "updated_at": "2026-10-31T23:43:49.743Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -730,12 +730,12 @@
         "Seif": {
           "open": 34,
           "todo": 31,
-          "progress": 2,
-          "review": 1,
+          "progress": 1,
+          "review": 2,
           "overdue": 4,
           "done": 0,
-          "hours": 43.09166666666667,
-          "live": 86.18333333333334
+          "hours": 9.933333333333334,
+          "live": 9.933333333333334
         },
         "Alaa": {
           "open": 2,
@@ -754,8 +754,8 @@
           "review": 3,
           "overdue": 7,
           "done": 0,
-          "hours": 172.03333333333333,
-          "live": 344.06666666666666
+          "hours": 173.68333333333334,
+          "live": 347.3666666666667
         },
         "Moamen": {
           "open": 0,
@@ -799,8 +799,8 @@
         }
       },
       "time": {
-        "avgTodo": 8593,
-        "avgProgress": 9788,
+        "avgTodo": 8690,
+        "avgProgress": 11166,
         "open": 65
       },
       "hr": {
@@ -824,11 +824,11 @@
             "reviews": 0
           },
           "Seif": {
-            "delivery": 0,
+            "delivery": 1,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 1,
             "attitude": 0,
             "reviews": 0
           },
@@ -6773,20 +6773,36 @@
           "title": "carousel | 31th Oct",
           "notes": "",
           "due": "2026-10-23",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:29:17.460Z",
-          "updated_at": "2026-10-28T16:08:42.084Z",
+          "updated_at": "2026-10-31T23:43:49.697Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-10-28T16:08:42.083Z",
-          "progress_started_at": "2026-10-28T16:08:42.083Z",
-          "time_log": [],
-          "start_on": "2026-10-28"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-10-28T16:08:42.083Z",
+              "ended_at": "2026-10-31T23:43:49.696Z",
+              "hours": 79.58544805555556,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-10-28",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 9,
+          "progress_hours": 79.58544805555556,
+          "review_at": "2026-10-31T23:43:49.696Z",
+          "first_review_at": "2026-10-31T23:43:49.696Z",
+          "delivered_on": "2026-11-01"
         },
         {
           "id": "t-20261023-alaa-mvb61r64",
