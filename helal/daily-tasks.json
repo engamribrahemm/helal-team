@@ -498,7 +498,7 @@
       "frozen_at": "2026-09-30T21:17:52.008Z"
     },
     "2026-10": {
-      "updated_at": "2026-10-31T15:55:26.433Z",
+      "updated_at": "2026-10-31T18:01:51.161Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -537,8 +537,8 @@
           "review": 1,
           "overdue": 3,
           "done": 22,
-          "hours": 26.69983024305556,
-          "live": 73.88333333333333
+          "hours": 26.87621913194445,
+          "live": 78.11666666666667
         },
         "Alaa": {
           "open": 2,
@@ -551,14 +551,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 20,
+          "open": 19,
           "todo": 13,
           "progress": 2,
-          "review": 5,
-          "overdue": 8,
-          "done": 16,
-          "hours": 76.28583326388889,
-          "live": 331.76666666666665
+          "review": 4,
+          "overdue": 7,
+          "done": 17,
+          "hours": 72.10610846405228,
+          "live": 335.96666666666664
         },
         "Moamen": {
           "open": 0,
@@ -589,12 +589,22 @@
           "done": 1,
           "hours": 43.89843527777778,
           "live": 0
+        },
+        "Nouran": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
         }
       },
       "time": {
-        "avgTodo": 8380,
-        "avgProgress": 3302,
-        "open": 67
+        "avgTodo": 8354,
+        "avgProgress": 3264,
+        "open": 66
       },
       "hr": {
         "people": {
@@ -667,6 +677,15 @@
             "revisions": 0,
             "creativity": 0,
             "total": 1,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Nouran": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
             "attitude": 0,
             "reviews": 0
           }
@@ -6845,15 +6864,15 @@
           "title": "Reel | 25 OCT",
           "notes": "",
           "due": "2026-10-25",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-23",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-23T19:34:21.521Z",
-          "updated_at": "2026-10-24T18:02:08.009Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-10-31T18:01:51.065Z",
+          "updated_by": "Judi",
           "revisions": 0,
           "first_progress_at": "2026-10-24T17:00:18.167Z",
           "progress_started_at": "",
@@ -6871,7 +6890,11 @@
           "progress_hours": 1.0305116666666667,
           "review_at": "2026-10-24T18:02:08.009Z",
           "first_review_at": "2026-10-24T18:02:08.009Z",
-          "delivered_on": "2026-10-24"
+          "delivered_on": "2026-10-24",
+          "done_at": "2026-10-31T18:01:51.060Z",
+          "done_on": "2026-10-31",
+          "done_month": "2026-10",
+          "done_by": "Judi"
         },
         {
           "id": "t-20261025-seif-mvldfldr",
