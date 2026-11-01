@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-10-31T23:44:15.623Z",
+      "updated_at": "2026-11-01T12:02:57.691Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -728,13 +728,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 34,
+          "open": 33,
           "todo": 32,
           "progress": 0,
-          "review": 2,
-          "overdue": 4,
-          "done": 0,
-          "hours": 0,
+          "review": 1,
+          "overdue": 3,
+          "done": 1,
+          "hours": 79.58544805555556,
           "live": 0
         },
         "Alaa": {
@@ -754,8 +754,8 @@
           "review": 3,
           "overdue": 7,
           "done": 0,
-          "hours": 173.68333333333334,
-          "live": 347.3666666666667
+          "hours": 186,
+          "live": 372
         },
         "Moamen": {
           "open": 0,
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 8581,
-        "avgProgress": 14689,
-        "open": 65
+        "avgTodo": 9294,
+        "avgProgress": 12765,
+        "open": 64
       },
       "hr": {
         "people": {
@@ -6773,15 +6773,15 @@
           "title": "carousel | 31th Oct",
           "notes": "",
           "due": "2026-10-23",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-16",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-16T14:29:17.460Z",
-          "updated_at": "2026-10-31T23:43:49.697Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-11-01T12:02:57.490Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-28T16:08:42.083Z",
           "progress_started_at": "",
@@ -6802,7 +6802,11 @@
           "progress_hours": 79.58544805555556,
           "review_at": "2026-10-31T23:43:49.696Z",
           "first_review_at": "2026-10-31T23:43:49.696Z",
-          "delivered_on": "2026-11-01"
+          "delivered_on": "2026-11-01",
+          "done_at": "2026-11-01T12:02:57.489Z",
+          "done_on": "2026-11-01",
+          "done_month": "2026-11",
+          "done_by": "Mariam"
         },
         {
           "id": "t-20261023-alaa-mvb61r64",
