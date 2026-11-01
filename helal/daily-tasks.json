@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-01T12:02:57.691Z",
+      "updated_at": "2026-11-01T12:03:09.576Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -748,13 +748,13 @@
           "live": 0
         },
         "Ganna": {
-          "open": 18,
+          "open": 17,
           "todo": 13,
           "progress": 2,
-          "review": 3,
-          "overdue": 7,
-          "done": 0,
-          "hours": 186,
+          "review": 2,
+          "overdue": 6,
+          "done": 1,
+          "hours": 126.56056324074075,
           "live": 372
         },
         "Moamen": {
@@ -800,8 +800,8 @@
       },
       "time": {
         "avgTodo": 9294,
-        "avgProgress": 12765,
-        "open": 64
+        "avgProgress": 10304,
+        "open": 63
       },
       "hr": {
         "people": {
@@ -7220,15 +7220,15 @@
           "title": "REEL BLUSHED | 25th",
           "notes": "",
           "due": "2026-10-25",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1xMzBidsqdzF0iKyBfK5-VmnrGfL3ft88",
           "drive_missing": false,
           "assigned_at": "2026-10-25",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-25T09:37:03.236Z",
-          "updated_at": "2026-10-25T17:34:30.504Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-11-01T12:03:09.342Z",
+          "updated_by": "Mariam",
           "revisions": 0,
           "first_progress_at": "2026-10-25T09:53:36.421Z",
           "progress_started_at": "",
@@ -7246,7 +7246,11 @@
           "progress_hours": 7.681689722222222,
           "review_at": "2026-10-25T17:34:30.504Z",
           "first_review_at": "2026-10-25T17:34:30.504Z",
-          "delivered_on": "2026-10-25"
+          "delivered_on": "2026-10-25",
+          "done_at": "2026-11-01T12:03:09.341Z",
+          "done_on": "2026-11-01",
+          "done_month": "2026-11",
+          "done_by": "Mariam"
         }
       ]
     },
