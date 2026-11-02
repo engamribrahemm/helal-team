@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-02T14:38:00.542Z",
+      "updated_at": "2026-11-02T15:26:17.124Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -728,12 +728,12 @@
           "live": 0
         },
         "Seif": {
-          "open": 28,
-          "todo": 28,
+          "open": 27,
+          "todo": 27,
           "progress": 0,
           "review": 0,
           "overdue": 0,
-          "done": 6,
+          "done": 7,
           "hours": 215.7737883333333,
           "live": 0
         },
@@ -784,8 +784,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 2.5833333333333335,
-          "live": 2.5833333333333335
+          "hours": 3.3833333333333333,
+          "live": 3.3833333333333333
         },
         "Nouran": {
           "open": 0,
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 10841,
-        "avgProgress": 8425,
-        "open": 45
+        "avgTodo": 10984,
+        "avgProgress": 8433,
+        "open": 44
       },
       "hr": {
         "people": {
@@ -824,11 +824,11 @@
             "reviews": 0
           },
           "Seif": {
-            "delivery": 1,
+            "delivery": 2,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 1,
+            "total": 2,
             "attitude": 0,
             "reviews": 0
           },
@@ -7960,18 +7960,24 @@
           "title": "carousel (4 slides) | 5th Nov",
           "notes": "",
           "due": "2026-11-03",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T19:58:52.892Z",
-          "updated_at": "2026-10-28T19:58:52.892Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-11-02T15:26:16.907Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-11-02T15:26:16.906Z",
+          "done_on": "2026-11-02",
+          "done_month": "2026-11",
+          "done_by": "Nouran",
+          "delivered_on": "2026-11-02"
         },
         {
           "id": "t-20261103-gehad-helal-mvwl1lc3",
