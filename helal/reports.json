@@ -3,6 +3,22 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mvzhlkac",
+      "who": "Nouran",
+      "date": "2026-11-02",
+      "finished": "Daily Office Report – November 2, 2026\n\nCompleted Tasks:\n\n- Reviewed and familiarized myself with the briefs, workflows, and strategies for Helal and its four clients for this month.\n- Created a content schedule for all prepared Osama Helal content, covering up to November 10.\n- Created and edited AI-assisted visuals for Ahmed El Dalil and published them.\n- Prepared captions for both MEDC courses that were published.\n\nPending:\n\n- Waiting for MEDC account access.\n- Waiting for Osama's verification code to access LinkedIn.",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Office",
+      "blockers": [
+        "Waiting client"
+      ],
+      "finished_tasks": [],
+      "done_task_ids": [],
+      "created_at": "2026-11-02T16:42:18.228Z"
+    },
+    {
       "id": "r-mvzajui6",
       "who": "Gehad Helal",
       "date": "2026-11-02",
