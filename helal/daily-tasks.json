@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-02T14:27:38.470Z",
+      "updated_at": "2026-11-02T14:37:07.688Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -728,12 +728,12 @@
           "live": 0
         },
         "Seif": {
-          "open": 30,
-          "todo": 30,
+          "open": 29,
+          "todo": 29,
           "progress": 0,
           "review": 0,
-          "overdue": 1,
-          "done": 4,
+          "overdue": 0,
+          "done": 5,
           "hours": 215.7737883333333,
           "live": 0
         },
@@ -784,8 +784,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 2.4,
-          "live": 2.4
+          "hours": 2.566666666666667,
+          "live": 2.566666666666667
         },
         "Nouran": {
           "open": 0,
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 10799,
-        "avgProgress": 8424,
-        "open": 49
+        "avgTodo": 10894,
+        "avgProgress": 8425,
+        "open": 48
       },
       "hr": {
         "people": {
@@ -7846,18 +7846,24 @@
           "title": "carousel (4 slides) | 3rd Nov",
           "notes": "",
           "due": "2026-11-01",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T19:56:47.293Z",
-          "updated_at": "2026-10-28T19:56:47.293Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-11-02T14:37:07.473Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-11-02T14:37:07.471Z",
+          "done_on": "2026-11-02",
+          "done_month": "2026-11",
+          "done_by": "Nouran",
+          "delivered_on": "2026-11-02"
         }
       ]
     },
