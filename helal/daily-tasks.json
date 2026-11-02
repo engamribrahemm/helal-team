@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-02T13:15:12.816Z",
+      "updated_at": "2026-11-02T13:17:27.246Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -748,14 +748,14 @@
           "live": 0
         },
         "Ganna": {
-          "open": 17,
+          "open": 16,
           "todo": 13,
           "progress": 2,
-          "review": 2,
-          "overdue": 7,
-          "done": 1,
-          "hours": 143.36056324074073,
-          "live": 422.4
+          "review": 1,
+          "overdue": 6,
+          "done": 2,
+          "hours": 119.86575840277777,
+          "live": 422.5
         },
         "Moamen": {
           "open": 0,
@@ -774,8 +774,8 @@
           "review": 0,
           "overdue": 1,
           "done": 0,
-          "hours": 0.5333333333333333,
-          "live": 0.5333333333333333
+          "hours": 0.5666666666666667,
+          "live": 0.5666666666666667
         },
         "Gehad Helal": {
           "open": 1,
@@ -784,8 +784,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 1.2,
-          "live": 1.2
+          "hours": 1.2333333333333334,
+          "live": 1.2333333333333334
         },
         "Nouran": {
           "open": 0,
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 10859,
-        "avgProgress": 11203,
-        "open": 62
+        "avgTodo": 10862,
+        "avgProgress": 10288,
+        "open": 61
       },
       "hr": {
         "people": {
@@ -7270,15 +7270,15 @@
           "title": "TIKTOK VIDEO | 28 OCT",
           "notes": "\"كلنا في الشركة عيلة واحدة\n\"",
           "due": "2026-10-26",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-23",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-23T20:17:55.883Z",
-          "updated_at": "2026-10-26T19:01:04.552Z",
-          "updated_by": "Ganna",
+          "updated_at": "2026-11-02T13:17:26.668Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-10-24T17:44:11.713Z",
           "progress_started_at": "",
@@ -7296,7 +7296,11 @@
           "progress_hours": 49.28134388888889,
           "review_at": "2026-10-26T19:01:04.551Z",
           "first_review_at": "2026-10-26T19:01:04.551Z",
-          "delivered_on": "2026-10-26"
+          "delivered_on": "2026-10-26",
+          "done_at": "2026-11-02T13:17:26.666Z",
+          "done_on": "2026-11-02",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         }
       ]
     },
