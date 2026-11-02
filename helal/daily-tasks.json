@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-02T14:18:25.001Z",
+      "updated_at": "2026-11-02T14:18:36.990Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -748,13 +748,13 @@
           "live": 0
         },
         "Ganna": {
-          "open": 14,
+          "open": 13,
           "todo": 13,
           "progress": 0,
-          "review": 1,
-          "overdue": 4,
-          "done": 4,
-          "hours": 84.07539805555555,
+          "review": 0,
+          "overdue": 3,
+          "done": 5,
+          "hours": 109.71318011111111,
           "live": 0
         },
         "Moamen": {
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 10920,
-        "avgProgress": 9354,
-        "open": 59
+        "avgTodo": 10921,
+        "avgProgress": 9693,
+        "open": 58
       },
       "hr": {
         "people": {
@@ -7542,14 +7542,14 @@
           "title": "TIKTOK VIDEO | 31 OCT",
           "notes": "تعديلات المدير",
           "due": "2026-10-29",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-23",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-23T20:19:44.250Z",
-          "updated_at": "2026-11-02T14:18:09.020Z",
+          "updated_at": "2026-11-02T14:18:36.816Z",
           "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-10-24T18:02:17.509Z",
@@ -7571,7 +7571,11 @@
           "progress_hours": 212.26430833333333,
           "review_at": "2026-11-02T14:18:09.019Z",
           "first_review_at": "2026-11-02T14:18:09.019Z",
-          "delivered_on": "2026-11-02"
+          "delivered_on": "2026-11-02",
+          "done_at": "2026-11-02T14:18:36.815Z",
+          "done_on": "2026-11-02",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         },
         {
           "id": "t-20261029-mariam-mvpubyve",
