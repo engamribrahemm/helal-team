@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-02T14:19:29.262Z",
+      "updated_at": "2026-11-02T14:21:51.355Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -728,13 +728,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 32,
-          "todo": 32,
+          "open": 31,
+          "todo": 31,
           "progress": 0,
           "review": 0,
-          "overdue": 3,
-          "done": 2,
-          "hours": 318.6891020833333,
+          "overdue": 2,
+          "done": 3,
+          "hours": 215.7737883333333,
           "live": 0
         },
         "Alaa": {
@@ -784,8 +784,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 2.2666666666666666,
-          "live": 2.2666666666666666
+          "hours": 2.316666666666667,
+          "live": 2.316666666666667
         },
         "Nouran": {
           "open": 0,
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 10673,
-        "avgProgress": 9693,
-        "open": 56
+        "avgTodo": 10829,
+        "avgProgress": 8866,
+        "open": 55
       },
       "hr": {
         "people": {
@@ -7680,15 +7680,15 @@
           "title": "single visual | 1st Nov",
           "notes": "",
           "due": "2026-10-30",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T19:55:48.846Z",
-          "updated_at": "2026-10-31T23:44:15.576Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-11-02T14:21:51.117Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-10-30T13:14:51.514Z",
           "progress_started_at": "",
@@ -7722,7 +7722,11 @@
           "progress_hours": 9.943160833333334,
           "review_at": "2026-10-30T13:14:53.364Z",
           "first_review_at": "2026-10-30T13:14:53.364Z",
-          "delivered_on": "2026-10-30"
+          "delivered_on": "2026-10-30",
+          "done_at": "2026-11-02T14:21:51.116Z",
+          "done_on": "2026-11-02",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         }
       ]
     },
