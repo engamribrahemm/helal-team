@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-11-03T20:31:52.349Z",
+  "updated_at": "2026-11-03T20:31:55.413Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -28,7 +28,8 @@
       "mention": "@Judi",
       "email": "",
       "access": "member",
-      "active": true
+      "active": false,
+      "updated_at": "2026-11-03T20:31:55.413Z"
     },
     {
       "id": "seif",
