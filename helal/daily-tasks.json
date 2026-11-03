@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T14:16:28.149Z",
+      "updated_at": "2026-11-03T14:16:35.063Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -728,12 +728,12 @@
           "live": 0
         },
         "Seif": {
-          "open": 25,
-          "todo": 25,
+          "open": 24,
+          "todo": 24,
           "progress": 0,
           "review": 0,
           "overdue": 1,
-          "done": 10,
+          "done": 11,
           "hours": 215.7737883333333,
           "live": 0
         },
@@ -774,8 +774,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 26.623678796296293,
-          "live": 19.266666666666666
+          "hours": 26.629234351851853,
+          "live": 19.283333333333335
         },
         "Gehad Helal": {
           "open": 3,
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 11512,
+        "avgTodo": 11602,
         "avgProgress": 8084,
-        "open": 40
+        "open": 39
       },
       "hr": {
         "people": {
@@ -8174,18 +8174,24 @@
           "title": "single visual | 7th Nov",
           "notes": "",
           "due": "2026-11-05",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T19:59:55.956Z",
-          "updated_at": "2026-10-28T19:59:55.956Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-11-03T14:16:30.496Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-11-03T14:16:30.494Z",
+          "done_on": "2026-11-03",
+          "done_month": "2026-11",
+          "done_by": "Nouran",
+          "delivered_on": "2026-11-03"
         }
       ]
     },
