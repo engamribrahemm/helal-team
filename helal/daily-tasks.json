@@ -110,7 +110,8 @@
     "t-20261105-rahma-mvmfbdnu",
     "t-20261021-seif-mvb27kkt",
     "t-20261021-seif-mvb28gg2",
-    "t-20261203-seif-mvsje4na"
+    "t-20261203-seif-mvsje4na",
+    "t-20261016-salma-mv72pvtc"
   ],
   "statuses": [
     "To do",
@@ -695,7 +696,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T18:15:40.794Z",
+      "updated_at": "2026-11-03T20:29:50.708Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -774,8 +775,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 26.662567685185184,
-          "live": 19.383333333333333
+          "hours": 27.40701212962963,
+          "live": 21.616666666666667
         },
         "Gehad Helal": {
           "open": 3,
@@ -784,8 +785,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 30.2,
-          "live": 30.2
+          "hours": 32.45,
+          "live": 32.45
         },
         "Nouran": {
           "open": 0,
@@ -799,9 +800,9 @@
         }
       },
       "time": {
-        "avgTodo": 11444,
-        "avgProgress": 8122,
-        "open": 36
+        "avgTodo": 11570,
+        "avgProgress": 6553,
+        "open": 35
       },
       "hr": {
         "people": {
@@ -5707,42 +5708,6 @@
           "done_on": "2026-10-17",
           "done_month": "2026-10",
           "done_by": "Amr"
-        },
-        {
-          "id": "t-20261016-salma-mv72pvtc",
-          "who": "Salma",
-          "space": "Social",
-          "project": "Helal",
-          "title": "Finalize Content for 3 Proposals",
-          "notes": "",
-          "due": "2026-10-16",
-          "status": "In progress",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-10-13",
-          "month": "2026-10",
-          "created_by": "Aya",
-          "created_at": "2026-10-13T19:28:12.624Z",
-          "updated_at": "2026-10-15T20:39:33.383Z",
-          "updated_by": "Salma",
-          "revisions": 0,
-          "first_progress_at": "2026-10-15T20:39:13.845Z",
-          "progress_started_at": "2026-10-15T20:39:33.383Z",
-          "time_log": [
-            {
-              "from": "In progress",
-              "to": "Review",
-              "started_at": "2026-10-15T20:39:13.845Z",
-              "ended_at": "2026-10-15T20:39:24.561Z",
-              "hours": 0.0029766666666666665,
-              "by": "Salma"
-            }
-          ],
-          "start_on": "2026-10-15",
-          "progress_hours": 0.0029766666666666665,
-          "review_at": "2026-10-15T20:39:24.561Z",
-          "first_review_at": "2026-10-15T20:39:24.561Z",
-          "delivered_on": "2026-10-15"
         }
       ]
     },
