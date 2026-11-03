@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T14:21:28.372Z",
+      "updated_at": "2026-11-03T14:22:04.036Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -729,9 +729,9 @@
         },
         "Seif": {
           "open": 22,
-          "todo": 21,
+          "todo": 22,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 1,
           "done": 13,
           "hours": 215.7737883333333,
@@ -774,8 +774,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 26.651456574074075,
-          "live": 19.35
+          "hours": 26.65701212962963,
+          "live": 19.366666666666667
         },
         "Gehad Helal": {
           "open": 3,
@@ -784,8 +784,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 26.3,
-          "live": 26.3
+          "hours": 26.316666666666666,
+          "live": 26.316666666666666
         },
         "Nouran": {
           "open": 0,
@@ -799,8 +799,8 @@
         }
       },
       "time": {
-        "avgTodo": 11677,
-        "avgProgress": 8085,
+        "avgTodo": 11573,
+        "avgProgress": 8086,
         "open": 35
       },
       "hr": {
@@ -8454,14 +8454,14 @@
           "title": "carousel (4 slides) | 11th Nov",
           "notes": "",
           "due": "2026-11-09",
-          "status": "Review",
+          "status": "To do",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:03:23.762Z",
-          "updated_at": "2026-11-03T14:21:28.192Z",
+          "updated_at": "2026-11-03T14:22:03.809Z",
           "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
