@@ -1,6 +1,6 @@
 {
   "agency": "Helal",
-  "updated_at": "2026-11-03T20:31:37.953Z",
+  "updated_at": "2026-11-03T20:31:52.349Z",
   "owner": {
     "id": "amr",
     "name": "Amr",
@@ -63,7 +63,8 @@
       "mention": "@Ganna",
       "email": "gannayaser1020@gmail.com",
       "access": "member",
-      "active": true
+      "active": false,
+      "updated_at": "2026-11-03T20:31:52.349Z"
     },
     {
       "id": "moamen",
