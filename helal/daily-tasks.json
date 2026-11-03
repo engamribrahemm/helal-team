@@ -111,7 +111,8 @@
     "t-20261021-seif-mvb27kkt",
     "t-20261021-seif-mvb28gg2",
     "t-20261203-seif-mvsje4na",
-    "t-20261016-salma-mv72pvtc"
+    "t-20261016-salma-mv72pvtc",
+    "t-20261021-salma-mvclntjy"
   ],
   "statuses": [
     "To do",
@@ -696,7 +697,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T20:29:50.708Z",
+      "updated_at": "2026-11-03T20:30:15.658Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -800,9 +801,9 @@
         }
       },
       "time": {
-        "avgTodo": 11570,
+        "avgTodo": 11159,
         "avgProgress": 6553,
-        "open": 35
+        "open": 34
       },
       "hr": {
         "people": {
@@ -6352,27 +6353,6 @@
           "done_on": "2026-10-21",
           "done_month": "2026-10",
           "done_by": "Mariam"
-        },
-        {
-          "id": "t-20261021-salma-mvclntjy",
-          "who": "Salma",
-          "space": "Sales & PR",
-          "project": "Saturate",
-          "title": "Collecting data for each industry",
-          "notes": "",
-          "due": "2026-10-21",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/1I7q6FiMcVZWIDJVRjH87GBkR4lXz2yqq",
-          "drive_missing": false,
-          "assigned_at": "2026-10-17",
-          "month": "2026-10",
-          "created_by": "Amr",
-          "created_at": "2026-10-17T16:17:19.966Z",
-          "updated_at": "2026-10-17T16:17:19.966Z",
-          "updated_by": "Amr",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         },
         {
           "id": "t-20261021-ganna-mvhzpcpv",
