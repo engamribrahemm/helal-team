@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T14:04:03.730Z",
+      "updated_at": "2026-11-03T14:16:07.668Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -748,12 +748,12 @@
           "live": 0
         },
         "Ganna": {
-          "open": 7,
-          "todo": 7,
+          "open": 6,
+          "todo": 6,
           "progress": 0,
           "review": 0,
           "overdue": 0,
-          "done": 11,
+          "done": 12,
           "hours": 109.71318011111111,
           "live": 0
         },
@@ -774,8 +774,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 26.55701212962963,
-          "live": 19.066666666666666
+          "hours": 26.623678796296293,
+          "live": 19.266666666666666
         },
         "Gehad Helal": {
           "open": 3,
@@ -784,8 +784,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 26.016666666666666,
-          "live": 26.016666666666666
+          "hours": 26.216666666666665,
+          "live": 26.216666666666665
         },
         "Nouran": {
           "open": 0,
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 12004,
-        "avgProgress": 8081,
-        "open": 44
+        "avgTodo": 11630,
+        "avgProgress": 8084,
+        "open": 43
       },
       "hr": {
         "people": {
@@ -842,11 +842,11 @@
             "reviews": 0
           },
           "Ganna": {
-            "delivery": 2,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 2,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
@@ -8147,18 +8147,24 @@
           "title": "TIKTOK VIDEO | 7 NOV",
           "notes": "",
           "due": "2026-11-05",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-23",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-23T20:23:55.898Z",
-          "updated_at": "2026-10-23T20:23:55.898Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-11-03T14:16:07.439Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-11-03T14:16:07.437Z",
+          "done_on": "2026-11-03",
+          "done_month": "2026-11",
+          "done_by": "Nouran",
+          "delivered_on": "2026-11-03"
         },
         {
           "id": "t-20261105-seif-mvsjggfn",
