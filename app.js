@@ -5037,7 +5037,7 @@ function viewTaskDrawer() {
       $("p", { class: "muted" }, "Task"),
       $("h2", {}, task.title),
       $("p", { class: "muted" }, editable
-        ? `Created by ${task.created_by || "Helal"}. You can edit the brief.`
+        ? `Created by ${task.created_by || "Helal"}. You can edit this brief. Saving sets Created by to you.`
         : `Only ${task.created_by || "the creator"} can edit the brief. You can still move status.`),
       (() => {
         const times = taskStageTimes(task);
@@ -5073,6 +5073,7 @@ function viewTaskDrawer() {
           task.notes = notes.value.trim();
           task.drive = drive.value.trim() || driveForProject(project.value);
           task.drive_missing = !task.drive;
+          task.created_by = state.who;
           task.updated_at = new Date().toISOString();
           task.updated_by = state.who;
           state.openTaskId = null;
@@ -7332,7 +7333,7 @@ function viewGuide() {
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Social · Mariam, Judi, Gehad & Nouran"),
-          $("p", {}, "Add and assign tasks, open Review, mark Done like admins. Not full admin (no People / HR / admin reports). Nouran can edit and remove any task."),
+          $("p", {}, "Add and assign tasks, open Review, mark Done like admins. Not full admin (no People / HR / admin reports). Nouran can edit and remove any task, including ones assigned by someone else. Saving an edit sets Created by to the person who saved."),
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Leads"),
