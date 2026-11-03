@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T14:16:35.063Z",
+      "updated_at": "2026-11-03T14:16:46.901Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -728,12 +728,12 @@
           "live": 0
         },
         "Seif": {
-          "open": 24,
-          "todo": 24,
+          "open": 22,
+          "todo": 22,
           "progress": 0,
           "review": 0,
           "overdue": 1,
-          "done": 11,
+          "done": 13,
           "hours": 215.7737883333333,
           "live": 0
         },
@@ -799,9 +799,9 @@
         }
       },
       "time": {
-        "avgTodo": 11602,
+        "avgTodo": 11797,
         "avgProgress": 8084,
-        "open": 39
+        "open": 37
       },
       "hr": {
         "people": {
@@ -8334,18 +8334,24 @@
           "title": "single visual | 9th Nov",
           "notes": "",
           "due": "2026-11-07",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:01:19.631Z",
-          "updated_at": "2026-10-28T20:01:19.631Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-11-03T14:16:40.659Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-11-03T14:16:40.655Z",
+          "done_on": "2026-11-03",
+          "done_month": "2026-11",
+          "done_by": "Nouran",
+          "delivered_on": "2026-11-03"
         }
       ]
     },
@@ -8388,18 +8394,24 @@
           "title": "carousel (4 slides) | 10th Nov",
           "notes": "",
           "due": "2026-11-08",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:01:52.724Z",
-          "updated_at": "2026-10-28T20:01:52.724Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-11-03T14:16:46.236Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-11-03T14:16:46.233Z",
+          "done_on": "2026-11-03",
+          "done_month": "2026-11",
+          "done_by": "Nouran",
+          "delivered_on": "2026-11-03"
         }
       ]
     },
