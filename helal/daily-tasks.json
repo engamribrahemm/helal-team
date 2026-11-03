@@ -112,7 +112,8 @@
     "t-20261021-seif-mvb28gg2",
     "t-20261203-seif-mvsje4na",
     "t-20261016-salma-mv72pvtc",
-    "t-20261021-salma-mvclntjy"
+    "t-20261021-salma-mvclntjy",
+    "t-20261019-mohamed-mv2kxmm5"
   ],
   "statuses": [
     "To do",
@@ -697,7 +698,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T20:30:15.658Z",
+      "updated_at": "2026-11-03T20:30:19.556Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -801,9 +802,9 @@
         }
       },
       "time": {
-        "avgTodo": 11159,
+        "avgTodo": 10395,
         "avgProgress": 6553,
-        "open": 34
+        "open": 33
       },
       "hr": {
         "people": {
@@ -6058,27 +6059,6 @@
           "done_on": "2026-10-14",
           "done_month": "2026-10",
           "done_by": "Judi"
-        },
-        {
-          "id": "t-20261019-mohamed-mv2kxmm5",
-          "who": "Mohamed",
-          "space": "Video editors",
-          "project": "Helal",
-          "title": "23 October reel",
-          "notes": "",
-          "due": "2026-10-19",
-          "status": "To do",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-10-10",
-          "month": "2026-10",
-          "created_by": "Amr",
-          "created_at": "2026-10-10T15:59:16.157Z",
-          "updated_at": "2026-10-10T15:59:16.157Z",
-          "updated_by": "Amr",
-          "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
         },
         {
           "id": "t-20261019-seif-mvb20o4y",
