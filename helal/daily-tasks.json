@@ -695,7 +695,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T14:19:41.923Z",
+      "updated_at": "2026-11-03T14:21:28.372Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -729,9 +729,9 @@
         },
         "Seif": {
           "open": 22,
-          "todo": 22,
+          "todo": 21,
           "progress": 0,
-          "review": 0,
+          "review": 1,
           "overdue": 1,
           "done": 13,
           "hours": 215.7737883333333,
@@ -774,8 +774,8 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 26.64590101851852,
-          "live": 19.333333333333332
+          "hours": 26.651456574074075,
+          "live": 19.35
         },
         "Gehad Helal": {
           "open": 3,
@@ -784,8 +784,8 @@
           "review": 0,
           "overdue": 0,
           "done": 0,
-          "hours": 26.266666666666666,
-          "live": 26.266666666666666
+          "hours": 26.3,
+          "live": 26.3
         },
         "Nouran": {
           "open": 0,
@@ -799,7 +799,7 @@
         }
       },
       "time": {
-        "avgTodo": 11570,
+        "avgTodo": 11677,
         "avgProgress": 8085,
         "open": 35
       },
@@ -8454,18 +8454,22 @@
           "title": "carousel (4 slides) | 11th Nov",
           "notes": "",
           "due": "2026-11-09",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:03:23.762Z",
-          "updated_at": "2026-10-28T20:03:23.762Z",
-          "updated_by": "Mariam",
+          "updated_at": "2026-11-03T14:21:28.192Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "review_at": "2026-11-03T14:21:28.191Z",
+          "first_review_at": "2026-11-03T14:21:28.191Z",
+          "delivered_on": "2026-11-03"
         }
       ]
     },
