@@ -825,15 +825,20 @@ function boardCockpit() {
   ]);
 }
 
+function canEditAnyTask() {
+  return samePerson("Nouran", state.who);
+}
+
 function canEditDetails(task) {
   if (!task) return false;
+  if (canEditAnyTask()) return true;
   if (!task.created_by) return isAdmin();
   return task.created_by === state.who;
 }
 
 function canRemoveTask(task) {
   if (!task) return false;
-  if (isAdmin()) return true;
+  if (isAdmin() || canEditAnyTask()) return true;
   return canAssignTasks() && samePerson(task.created_by, state.who);
 }
 
@@ -7327,7 +7332,7 @@ function viewGuide() {
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Social · Mariam, Judi, Gehad & Nouran"),
-          $("p", {}, "Add and assign tasks, open Review, mark Done like admins. Not full admin (no People / HR / admin reports)."),
+          $("p", {}, "Add and assign tasks, open Review, mark Done like admins. Not full admin (no People / HR / admin reports). Nouran can edit and remove any task."),
         ]),
         $("div", { class: "sop-role" }, [
           $("strong", {}, "Leads"),
@@ -7416,7 +7421,7 @@ function viewGuide() {
         "If edits are needed, keep it in Review with Edits — do not invent a private status in chat.",
         "Admins/social/leads: clear Review every evening so Done reflects the real day.",
       ], false),
-      $("p", { class: "muted" }, "Mistake task? Open it → Remove task (admins can remove any). That deletes it from the live board."),
+      $("p", { class: "muted" }, "Mistake task? Open it → Remove task (admins and Nouran can remove any). That deletes it from the live board."),
     ]),
 
     sopBlock("attend", "09", "Attendance", [
@@ -7832,7 +7837,7 @@ function helpStaticKnowledge() {
       id: "roles",
       keys: ["roles", "who can", "permissions", "access"],
       title: "Roles",
-      body: "Everyone: My work, Board (own), Attendance, Report, Salaries (own profile, view only), Drive, SOP, Helal bot. Social (Mariam, Judi, Gehad, Nouran): add/assign, Review, Mark done — not People/HR. Leads: Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, full Salaries, People.",
+      body: "Everyone: My work, Board (own), Attendance, Report, Salaries (own profile, view only), Drive, SOP, Helal bot. Social (Mariam, Judi, Gehad, Nouran): add/assign, Review, Mark done — not People/HR. Nouran can edit and remove any task. Leads: Seif→Rahma. Design/video (Alaa, Rahma, Ganna) don't create tasks except Seif as Rahma's lead. Admins Amr & Moamen: everything including Time, HR, full Salaries, People.",
       go: "guide",
     },
     {
