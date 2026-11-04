@@ -3,6 +3,22 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mw2lhm6j",
+      "who": "Nouran",
+      "date": "2026-11-04",
+      "finished": "Daily Office Report – Wednesday, November 4, 2026\n\nCompleted Tasks\n\n- Prepared Osama Helal’s November content calendar, covering November 11 through the end of the month.\n- Published Ahmed El Dalil’s content across Meta platforms.\n- Published Osama Helal’s carousel on TikTok.\n- Created tasks for Seif on Helal for both Helal and Osama Helal.\n- Created tasks for Gehad to:\n  - Respond to messages and comments related to the internship.\n  - Distribute Helal’s content calendar across two months instead of one.\n\nPending Tasks & Follow-ups\n\n- Helal TikTok: Awaiting the correct account password.\n- Osama Helal LinkedIn: Awaiting account access.\n- Ahmed El Dalil TikTok: Awaiting account access.",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [
+        "Tools / access"
+      ],
+      "finished_tasks": [],
+      "done_task_ids": [],
+      "created_at": "2026-11-04T20:54:31.051Z"
+    },
+    {
       "id": "r-mw2aqvqo",
       "who": "Rahma",
       "date": "2026-11-04",
