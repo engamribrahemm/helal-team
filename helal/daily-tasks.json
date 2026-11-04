@@ -699,29 +699,9 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-03T20:30:23.925Z",
+      "updated_at": "2026-11-04T14:33:46.631Z",
       "people": {
         "Amr": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
-        "Mariam": {
-          "open": 1,
-          "todo": 1,
-          "progress": 0,
-          "review": 0,
-          "overdue": 1,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
-        "Judi": {
           "open": 0,
           "todo": 0,
           "progress": 0,
@@ -741,26 +721,6 @@
           "hours": 215.7737883333333,
           "live": 0
         },
-        "Alaa": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 2,
-          "hours": 0,
-          "live": 0
-        },
-        "Ganna": {
-          "open": 2,
-          "todo": 2,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 16,
-          "hours": 109.71318011111111,
-          "live": 0
-        },
         "Moamen": {
           "open": 0,
           "todo": 0,
@@ -778,18 +738,18 @@
           "review": 0,
           "overdue": 0,
           "done": 2,
-          "hours": 27.40701212962963,
-          "live": 21.616666666666667
+          "hours": 33.42923435185185,
+          "live": 39.68333333333333
         },
         "Gehad Helal": {
-          "open": 3,
-          "todo": 2,
+          "open": 2,
+          "todo": 1,
           "progress": 1,
           "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 32.45,
-          "live": 32.45
+          "overdue": 2,
+          "done": 1,
+          "hours": 50.5,
+          "live": 50.5
         },
         "Nouran": {
           "open": 0,
@@ -803,49 +763,13 @@
         }
       },
       "time": {
-        "avgTodo": 9581,
-        "avgProgress": 6553,
-        "open": 32
+        "avgTodo": 10907,
+        "avgProgress": 6733,
+        "open": 31
       },
       "hr": {
         "people": {
-          "Mariam": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Judi": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
           "Seif": {
-            "delivery": 3,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 3,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Alaa": {
-            "delivery": 1,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 1,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Ganna": {
             "delivery": 3,
             "quality": 0,
             "revisions": 0,
@@ -873,11 +797,11 @@
             "reviews": 0
           },
           "Gehad Helal": {
-            "delivery": 0,
+            "delivery": 5,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 0,
+            "total": 5,
             "attitude": 0,
             "reviews": 0
           },
@@ -8032,18 +7956,24 @@
           "title": "Carousel 2 LinkedIn",
           "notes": "",
           "due": "2026-11-04",
-          "status": "To do",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1fC-U7-7aQu01TUUgNUAu6XXh-ccGtXUD?usp=drive_link",
           "drive_missing": false,
           "assigned_at": "2026-11-03",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-03T14:04:03.395Z",
-          "updated_at": "2026-11-03T14:04:03.395Z",
+          "updated_at": "2026-11-04T14:33:46.591Z",
           "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "time_log": [],
+          "done_at": "2026-11-04T14:33:46.591Z",
+          "done_on": "2026-11-04",
+          "done_month": "2026-11",
+          "done_by": "Nouran",
+          "delivered_on": "2026-11-04"
         }
       ]
     },
