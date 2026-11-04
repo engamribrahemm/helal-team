@@ -699,7 +699,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-04T20:30:07.234Z",
+      "updated_at": "2026-11-04T20:31:08.860Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -742,14 +742,14 @@
           "live": 0
         },
         "Gehad Helal": {
-          "open": 2,
-          "todo": 1,
+          "open": 3,
+          "todo": 2,
           "progress": 1,
           "review": 0,
           "overdue": 1,
           "done": 2,
-          "hours": 56.45,
-          "live": 56.45
+          "hours": 56.46666666666667,
+          "live": 56.46666666666667
         },
         "Nouran": {
           "open": 0,
@@ -763,9 +763,9 @@
         }
       },
       "time": {
-        "avgTodo": 11575,
+        "avgTodo": 11177,
         "avgProgress": 7162,
-        "open": 31
+        "open": 32
       },
       "hr": {
         "people": {
@@ -8242,6 +8242,27 @@
           "done_month": "2026-11",
           "done_by": "Nouran",
           "delivered_on": "2026-11-03"
+        },
+        {
+          "id": "t-20261107-gehad-helal-mw2knk2r",
+          "who": "Gehad Helal",
+          "space": "Social",
+          "project": "Helal",
+          "title": "رد على Comments &DM  لل internship",
+          "notes": "",
+          "due": "2026-11-07",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-11-04",
+          "month": "2026-11",
+          "created_by": "Nouran",
+          "created_at": "2026-11-04T20:31:08.645Z",
+          "updated_at": "2026-11-04T20:31:08.645Z",
+          "updated_by": "Nouran",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
