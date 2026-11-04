@@ -115,7 +115,8 @@
     "t-20261021-salma-mvclntjy",
     "t-20261019-mohamed-mv2kxmm5",
     "t-20261025-mohamed-mv2kzr9s",
-    "t-20261102-seif-mvmf98t7"
+    "t-20261102-seif-mvmf98t7",
+    "t-20261112-rahma-mvmfg9gw"
   ],
   "statuses": [
     "To do",
@@ -700,7 +701,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-04T20:39:58.894Z",
+      "updated_at": "2026-11-04T20:40:17.081Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -733,10 +734,10 @@
           "live": 0
         },
         "Rahma": {
-          "open": 3,
+          "open": 2,
           "todo": 2,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
           "done": 2,
           "hours": 30.30218486111111,
@@ -766,7 +767,7 @@
       "time": {
         "avgTodo": 9994,
         "avgProgress": 7162,
-        "open": 34
+        "open": 33
       },
       "hr": {
         "people": {
@@ -789,11 +790,11 @@
             "reviews": 0
           },
           "Rahma": {
-            "delivery": 3,
+            "delivery": 2,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 3,
+            "total": 2,
             "attitude": 0,
             "reviews": 0
           },
@@ -8547,50 +8548,6 @@
       "date": "2026-11-12",
       "source": "Helal board",
       "tasks": [
-        {
-          "id": "t-20261112-rahma-mvmfg9gw",
-          "who": "Rahma",
-          "space": "Graphic",
-          "project": "Helal",
-          "title": "content - 2 single visual | 14 nov",
-          "notes": "",
-          "due": "2026-11-12",
-          "status": "Review",
-          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
-          "drive_missing": false,
-          "assigned_at": "2026-10-24",
-          "month": "2026-10",
-          "created_by": "Judi",
-          "created_at": "2026-10-24T13:21:11.409Z",
-          "updated_at": "2026-11-04T15:53:21.148Z",
-          "updated_by": "Rahma",
-          "revisions": 0,
-          "first_progress_at": "2026-11-02T18:59:33.178Z",
-          "progress_started_at": "",
-          "time_log": [
-            {
-              "from": "In progress",
-              "to": "Review",
-              "started_at": "2026-11-02T18:59:33.178Z",
-              "ended_at": "2026-11-03T14:22:55.720Z",
-              "hours": 19.389595,
-              "by": "Nouran"
-            },
-            {
-              "from": "In progress",
-              "to": "Review",
-              "started_at": "2026-11-03T18:15:40.718Z",
-              "ended_at": "2026-11-04T15:53:21.148Z",
-              "hours": 21.627897222222224,
-              "by": "Rahma"
-            }
-          ],
-          "start_on": "2026-11-02",
-          "progress_hours": 41.017492222222224,
-          "review_at": "2026-11-04T15:53:21.148Z",
-          "first_review_at": "2026-11-03T14:22:55.720Z",
-          "delivered_on": "2026-11-04"
-        },
         {
           "id": "t-20261112-seif-mvsjn49p",
           "who": "Seif",
