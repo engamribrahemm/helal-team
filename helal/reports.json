@@ -3,6 +3,22 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mw3x62wm",
+      "who": "Nouran",
+      "date": "2026-11-05",
+      "finished": "Daily Office Report – Thursday, November 5, 2026\n\nCompleted Tasks\n\n- Worked from the Creativea office.\n- Scheduled three MEDC course posts across Meta and LinkedIn for tomorrow and the following day.\n- Coordinated with the MEDC client through the group to arrange scheduling for the remaining nine courses.\n- Contacted the Osama Helal client regarding LinkedIn access. Access is still pending.\n\nPending Tasks & Follow-ups\n\n- Helal TikTok: Waiting for the correct account password.\n- Osama Helal LinkedIn: Waiting for account access. The client has already been contacted, and follow-up is ongoing.",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Office",
+      "blockers": [
+        "Tools / access"
+      ],
+      "finished_tasks": [],
+      "done_task_ids": [],
+      "created_at": "2026-11-05T19:09:14.422Z"
+    },
+    {
       "id": "r-mw3ls0he",
       "who": "Gehad Helal",
       "date": "2026-11-05",
