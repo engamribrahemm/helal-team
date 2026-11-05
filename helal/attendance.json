@@ -937,11 +937,11 @@
             "2026-11-02": "Home",
             "2026-11-03": "Home",
             "2026-11-04": "Office",
-            "2026-11-05": "Home"
+            "2026-11-05": "Office"
           },
           "saved": true,
           "saved_at": "2026-10-27T00:02:47.956Z",
-          "updated_at": "2026-10-27T00:02:47.956Z",
+          "updated_at": "2026-11-05T10:53:18.895Z",
           "updated_by": "Amr"
         },
         "Gehad Helal": {
@@ -1237,10 +1237,10 @@
       "from": "Home",
       "to": "Office",
       "reason": "",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-11-05T10:53:15.374Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-11-05T10:53:18.895Z",
+      "decided_by": "Amr"
     }
   ]
 }
