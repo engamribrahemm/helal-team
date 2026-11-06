@@ -3,6 +3,38 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mw525iok",
+      "who": "Rahma",
+      "date": "2026-11-06",
+      "finished": "2 single visuals | 21 nov · 100%\n3 single visual | 28 nov · 100%",
+      "unfinished": "",
+      "drive": "https://drive.google.com/drive/folders/1q_d6s6bL4Fyx2qF1ktvccgjt8ezZoFty?usp=drive_link",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261119-rahma-mvmfj90w",
+          "title": "2 single visuals | 21 nov",
+          "project": "Helal",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261126-rahma-mvmflsr3",
+          "title": "3 single visual | 28 nov",
+          "project": "Helal",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261119-rahma-mvmfj90w",
+        "t-20261126-rahma-mvmflsr3"
+      ],
+      "created_at": "2026-11-06T14:16:32.468Z"
+    },
+    {
       "id": "r-mw41gl62",
       "who": "Seif",
       "date": "2026-11-05",
