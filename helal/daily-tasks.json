@@ -701,7 +701,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-05T21:06:32.514Z",
+      "updated_at": "2026-11-06T13:19:08.151Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -718,10 +718,10 @@
           "todo": 24,
           "progress": 1,
           "review": 0,
-          "overdue": 0,
+          "overdue": 2,
           "done": 13,
-          "hours": 215.7737883333333,
-          "live": 0
+          "hours": 165.88034125,
+          "live": 16.2
         },
         "Moamen": {
           "open": 0,
@@ -735,8 +735,8 @@
         },
         "Rahma": {
           "open": 2,
-          "todo": 2,
-          "progress": 0,
+          "todo": 1,
+          "progress": 1,
           "review": 0,
           "overdue": 0,
           "done": 2,
@@ -765,8 +765,8 @@
         }
       },
       "time": {
-        "avgTodo": 11355,
-        "avgProgress": 7539,
+        "avgTodo": 12082,
+        "avgProgress": 6942,
         "open": 33
       },
       "hr": {
@@ -8805,18 +8805,20 @@
           "title": "2 single visuals | 21 nov",
           "notes": "",
           "due": "2026-11-19",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-24",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-24T13:23:30.801Z",
-          "updated_at": "2026-10-24T13:23:30.801Z",
-          "updated_by": "Judi",
+          "updated_at": "2026-11-06T13:19:08.124Z",
+          "updated_by": "Rahma",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-06T13:19:08.124Z",
+          "progress_started_at": "2026-11-06T13:19:08.124Z",
+          "time_log": [],
+          "start_on": "2026-11-06"
         },
         {
           "id": "t-20261119-seif-mvsjs4ir",
