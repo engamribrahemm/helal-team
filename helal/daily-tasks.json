@@ -701,7 +701,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-06T19:03:07.435Z",
+      "updated_at": "2026-11-06T19:03:18.286Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -734,13 +734,13 @@
           "live": 0
         },
         "Rahma": {
-          "open": 1,
+          "open": 0,
           "todo": 0,
           "progress": 0,
-          "review": 1,
+          "review": 0,
           "overdue": 0,
-          "done": 3,
-          "hours": 20.50308212962963,
+          "done": 4,
+          "hours": 15.464220694444444,
           "live": 0
         },
         "Gehad Helal": {
@@ -765,9 +765,9 @@
         }
       },
       "time": {
-        "avgTodo": 12185,
-        "avgProgress": 6397,
-        "open": 32
+        "avgTodo": 12186,
+        "avgProgress": 5906,
+        "open": 31
       },
       "hr": {
         "people": {
