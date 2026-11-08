@@ -1053,6 +1053,21 @@
           "saved_at": "2026-11-08T12:08:45.586Z",
           "updated_at": "2026-11-08T12:08:45.586Z",
           "updated_by": "Amr"
+        },
+        "Nouran": {
+          "days": {
+            "2026-11-06": "Home",
+            "2026-11-07": "Home",
+            "2026-11-08": "Home",
+            "2026-11-09": "Home",
+            "2026-11-10": "Home",
+            "2026-11-11": "Home",
+            "2026-11-12": "Office"
+          },
+          "saved": true,
+          "saved_at": "2026-11-08T20:54:19.991Z",
+          "updated_at": "2026-11-08T20:54:19.991Z",
+          "updated_by": "Nouran"
         }
       }
     }
@@ -1092,10 +1107,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:20.840Z",
-      "decided_at": "2026-09-14T17:13:09.437Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mu1fbg3s",
@@ -1105,10 +1120,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-14T15:54:34.696Z",
-      "decided_at": "2026-09-14T17:13:10.064Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mulhzjb9",
@@ -1157,10 +1172,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8ىونص ل 5",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-09T15:22:07.625Z",
-      "decided_at": "2026-10-12T20:49:12.282Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mv146bw6",
@@ -1170,10 +1185,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8 ونص ل 5",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-09T15:22:22.518Z",
-      "decided_at": "2026-10-12T20:49:13.053Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mtsqmzqm",
@@ -1196,10 +1211,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "work on mas",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-09-10T12:42:08.760Z",
-      "decided_at": "2026-09-10T14:28:06.584Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mvfary0y",
@@ -1209,10 +1224,10 @@
       "from": "Home",
       "to": "Office",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-19T13:35:55.138Z",
-      "decided_at": "2026-10-20T08:24:48.907Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mvgnmmuy",
@@ -1222,10 +1237,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "سبب شخصي في البيت",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-20T12:23:28.570Z",
-      "decided_at": "2026-10-21T22:23:02.008Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mvldaifs",
@@ -1235,10 +1250,10 @@
       "from": "Off",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-23T19:32:57.688Z",
-      "decided_at": "2026-10-24T14:36:30.543Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mvzeq3k3",
@@ -1248,10 +1263,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-11-02T15:21:50.979Z",
-      "decided_at": "2026-11-03T15:14:46.120Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mvzerrje",
@@ -1261,10 +1276,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-11-02T15:23:08.714Z",
-      "decided_at": "2026-11-03T15:14:46.741Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mw3fg2vl",
