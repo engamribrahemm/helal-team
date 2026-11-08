@@ -701,7 +701,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-06T19:03:18.286Z",
+      "updated_at": "2026-11-08T16:16:51.709Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,12 +716,12 @@
         "Seif": {
           "open": 25,
           "todo": 24,
-          "progress": 1,
-          "review": 0,
-          "overdue": 2,
+          "progress": 0,
+          "review": 1,
+          "overdue": 3,
           "done": 13,
-          "hours": 167.3136745833333,
-          "live": 21.933333333333334
+          "hours": 215.7737883333333,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -748,7 +748,7 @@
           "todo": 2,
           "progress": 0,
           "review": 1,
-          "overdue": 1,
+          "overdue": 3,
           "done": 2,
           "hours": 0,
           "live": 0
@@ -765,8 +765,8 @@
         }
       },
       "time": {
-        "avgTodo": 12186,
-        "avgProgress": 5906,
+        "avgTodo": 14805,
+        "avgProgress": 6289,
         "open": 31
       },
       "hr": {
@@ -8039,20 +8039,36 @@
           "title": "Single visual |11",
           "notes": "Single visual  رقم 11",
           "due": "2026-11-05",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-03",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-03T14:28:48.595Z",
-          "updated_at": "2026-11-05T21:06:32.468Z",
+          "updated_at": "2026-11-08T16:16:51.681Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-05T21:06:32.468Z",
-          "progress_started_at": "2026-11-05T21:06:32.468Z",
-          "time_log": [],
-          "start_on": "2026-11-05"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-05T21:06:32.468Z",
+              "ended_at": "2026-11-08T16:16:51.681Z",
+              "hours": 67.17200361111111,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-05",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 3,
+          "progress_hours": 67.17200361111111,
+          "review_at": "2026-11-08T16:16:51.681Z",
+          "first_review_at": "2026-11-08T16:16:51.681Z",
+          "delivered_on": "2026-11-08"
         },
         {
           "id": "t-20261105-seif-mw2kyx3w",
