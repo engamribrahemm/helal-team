@@ -3,6 +3,38 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mw8674hk",
+      "who": "Gehad Helal",
+      "date": "2026-11-08",
+      "finished": "تنسيق Content Calendar Helal (ال Content لشهرين) · 25%\nرد على Comments &DM  لل internship · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261106-gehad-helal-mw2km8kj",
+          "title": "تنسيق Content Calendar Helal (ال Content لشهرين)",
+          "project": "Helal",
+          "status": "In progress",
+          "percent": 25
+        },
+        {
+          "id": "t-20261107-gehad-helal-mw2knk2r",
+          "title": "رد على Comments &DM  لل internship",
+          "project": "Helal",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261106-gehad-helal-mw2km8kj",
+        "t-20261107-gehad-helal-mw2knk2r"
+      ],
+      "created_at": "2026-11-08T18:33:04.376Z"
+    },
+    {
       "id": "r-mw6vw9qv",
       "who": "Nouran",
       "date": "2026-11-07",
