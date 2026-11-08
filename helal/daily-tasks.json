@@ -701,7 +701,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-08T16:40:09.444Z",
+      "updated_at": "2026-11-08T18:31:29.859Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -745,9 +745,9 @@
         },
         "Gehad Helal": {
           "open": 3,
-          "todo": 2,
+          "todo": 1,
           "progress": 0,
-          "review": 1,
+          "review": 2,
           "overdue": 3,
           "done": 2,
           "hours": 0,
@@ -765,7 +765,7 @@
         }
       },
       "time": {
-        "avgTodo": 15902,
+        "avgTodo": 16424,
         "avgProgress": 6289,
         "open": 31
       },
@@ -799,11 +799,11 @@
             "reviews": 0
           },
           "Gehad Helal": {
-            "delivery": 3,
+            "delivery": 2,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 3,
+            "total": 2,
             "attitude": 0,
             "reviews": 0
           },
@@ -8287,18 +8287,25 @@
           "title": "رد على Comments &DM  لل internship",
           "notes": "",
           "due": "2026-11-07",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-11-04",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-04T20:31:08.645Z",
-          "updated_at": "2026-11-04T20:31:08.645Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-08T18:31:29.781Z",
+          "updated_by": "Gehad Helal",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 1,
+          "time_log": [],
+          "review_at": "2026-11-08T18:31:29.780Z",
+          "first_review_at": "2026-11-08T18:31:29.780Z",
+          "delivered_on": "2026-11-08"
         },
         {
           "id": "t-20261107-seif-mw2kuvoa",
