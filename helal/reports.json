@@ -3,6 +3,20 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mw9lnm3s",
+      "who": "Seif",
+      "date": "2026-11-09",
+      "finished": "Carousel d osama 14 nov",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [],
+      "done_task_ids": [],
+      "created_at": "2026-11-09T18:33:34.120Z"
+    },
+    {
       "id": "r-mw8b5i79",
       "who": "Nouran",
       "date": "2026-11-08",
@@ -17,6 +31,46 @@
       "finished_tasks": [],
       "done_task_ids": [],
       "created_at": "2026-11-08T20:51:46.917Z"
+    },
+    {
+      "id": "r-mw89qvn4",
+      "who": "Seif",
+      "date": "2026-11-08",
+      "finished": "Carousel  5 Slides 13 Nov · 100%\nSingle visual  12Nov · 100%\nSingle visual |11 · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261108-seif-mw2kxb72",
+          "title": "Carousel  5 Slides 13 Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261107-seif-mw2kuvoa",
+          "title": "Single visual  12Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261105-seif-mw0s9qod",
+          "title": "Single visual |11",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261108-seif-mw2kxb72",
+        "t-20261107-seif-mw2kuvoa",
+        "t-20261105-seif-mw0s9qod"
+      ],
+      "created_at": "2026-11-08T20:12:24.880Z"
     },
     {
       "id": "r-mw8674hk",
