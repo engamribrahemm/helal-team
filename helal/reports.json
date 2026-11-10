@@ -3,6 +3,46 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mwb4py99",
+      "who": "Gehad Helal",
+      "date": "2026-11-10",
+      "finished": "تنسيق Content Calendar Helal (ال Content لشهرين) · 100%\nCollect client's data to reach out | 3 Industries · 75%\nرد على Comments &DM  لل internship · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Office",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261106-gehad-helal-mw2km8kj",
+          "title": "تنسيق Content Calendar Helal (ال Content لشهرين)",
+          "project": "Helal",
+          "status": "In progress",
+          "percent": 100
+        },
+        {
+          "id": "t-20261103-gehad-helal-mvwl1lc3",
+          "title": "Collect client's data to reach out | 3 Industries",
+          "project": "Helal",
+          "status": "Review",
+          "percent": 75
+        },
+        {
+          "id": "t-20261107-gehad-helal-mw2knk2r",
+          "title": "رد على Comments &DM  لل internship",
+          "project": "Helal",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261106-gehad-helal-mw2km8kj",
+        "t-20261103-gehad-helal-mvwl1lc3",
+        "t-20261107-gehad-helal-mw2knk2r"
+      ],
+      "created_at": "2026-11-10T20:15:02.061Z"
+    },
+    {
       "id": "r-mw9rpvdr",
       "who": "Nouran",
       "date": "2026-11-09",
