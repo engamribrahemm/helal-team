@@ -3,6 +3,20 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mwb5dqle",
+      "who": "Nouran",
+      "date": "2026-11-10",
+      "finished": "Daily Work Report – Tuesday, November 10, 2026\n\nCompleted Tasks\n\n- Published Osama Helal content on TikTok.\n- Published Blushed content across Meta platforms.\n- Published Ahmed El Dalil content across Meta platforms.\n- Contacted Ahmed El Dalil's client regarding TikTok access for both Blushed and Ahmed El Dalil. However, there was a login issue, and access could not be obtained.\n- All previously assigned tasks to Seif have been marked as Done.\n- Two tasks assigned to Gehad have been marked as Done.\n- Responded to all Helal messages, including comments and DMs.\n\nPending Tasks & Follow-ups\n\n- Helal TikTok: Waiting for the correct account password.\n- Osama Helal LinkedIn: Waiting for account access. The client has been contacted, but no response has been received yet.\n- Ahmed El Dalil TikTok: Waiting for account access.",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [],
+      "done_task_ids": [],
+      "created_at": "2026-11-10T20:33:31.874Z"
+    },
+    {
       "id": "r-mwb4py99",
       "who": "Gehad Helal",
       "date": "2026-11-10",
