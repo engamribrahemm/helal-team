@@ -701,7 +701,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-12T15:05:00.211Z",
+      "updated_at": "2026-11-12T15:07:50.381Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -714,8 +714,8 @@
           "live": 0
         },
         "Seif": {
-          "open": 24,
-          "todo": 24,
+          "open": 25,
+          "todo": 25,
           "progress": 0,
           "review": 0,
           "overdue": 4,
@@ -765,9 +765,9 @@
         }
       },
       "time": {
-        "avgTodo": 20488,
+        "avgTodo": 19732,
         "avgProgress": 5285,
-        "open": 28
+        "open": 29
       },
       "hr": {
         "people": {
@@ -8867,6 +8867,27 @@
           "created_at": "2026-10-28T20:06:49.666Z",
           "updated_at": "2026-10-28T20:06:49.666Z",
           "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261115-seif-mwdomlik",
+          "who": "Seif",
+          "space": "Social",
+          "project": "OSAMA HELAL",
+          "title": "Carousel 4Slides 18 Nov",
+          "notes": "",
+          "due": "2026-11-15",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-11-12",
+          "month": "2026-11",
+          "created_by": "Nouran",
+          "created_at": "2026-11-12T15:07:50.254Z",
+          "updated_at": "2026-11-12T15:07:50.254Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
