@@ -701,7 +701,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-12T06:09:57.890Z",
+      "updated_at": "2026-11-12T06:10:18.849Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -744,12 +744,12 @@
           "live": 0
         },
         "Gehad Helal": {
-          "open": 3,
+          "open": 2,
           "todo": 0,
           "progress": 0,
-          "review": 3,
-          "overdue": 3,
-          "done": 2,
+          "review": 2,
+          "overdue": 2,
+          "done": 3,
           "hours": 0,
           "live": 0
         },
@@ -765,9 +765,9 @@
         }
       },
       "time": {
-        "avgTodo": 21682,
+        "avgTodo": 21683,
         "avgProgress": 6289,
-        "open": 31
+        "open": 30
       },
       "hr": {
         "people": {
@@ -8305,14 +8305,14 @@
           "title": "رد على Comments &DM  لل internship",
           "notes": "",
           "due": "2026-11-07",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-11-04",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-04T20:31:08.645Z",
-          "updated_at": "2026-11-08T18:31:29.781Z",
+          "updated_at": "2026-11-12T06:10:18.746Z",
           "updated_by": "Gehad Helal",
           "revisions": 0,
           "first_progress_at": "",
@@ -8323,7 +8323,11 @@
           "time_log": [],
           "review_at": "2026-11-08T18:31:29.780Z",
           "first_review_at": "2026-11-08T18:31:29.780Z",
-          "delivered_on": "2026-11-08"
+          "delivered_on": "2026-11-08",
+          "done_at": "2026-11-12T06:10:18.744Z",
+          "done_on": "2026-11-12",
+          "done_month": "2026-11",
+          "done_by": "Gehad Helal"
         },
         {
           "id": "t-20261107-seif-mw2kuvoa",
