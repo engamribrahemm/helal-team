@@ -1192,10 +1192,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8ىونص ل 5",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-09T15:22:07.625Z",
-      "decided_at": "2026-10-12T20:49:12.282Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mv146bw6",
@@ -1205,10 +1205,10 @@
       "from": "Office",
       "to": "Home",
       "reason": "عندي كليه من 8 ونص ل 5",
-      "status": "Approved",
+      "status": "Pending",
       "created_at": "2026-10-09T15:22:22.518Z",
-      "decided_at": "2026-10-12T20:49:13.053Z",
-      "decided_by": "Amr"
+      "decided_at": "",
+      "decided_by": ""
     },
     {
       "id": "ar-mtsqmzqm",
@@ -1337,6 +1337,19 @@
       "reason": "",
       "status": "Pending",
       "created_at": "2026-11-11T10:52:17.377Z",
+      "decided_at": "",
+      "decided_by": ""
+    },
+    {
+      "id": "ar-mwe3h0ta",
+      "who": "Nouran",
+      "friday": "2026-11-13",
+      "date": "2026-11-13",
+      "from": "Office",
+      "to": "Off",
+      "reason": ".",
+      "status": "Pending",
+      "created_at": "2026-11-12T22:03:24.382Z",
       "decided_at": "",
       "decided_by": ""
     }
