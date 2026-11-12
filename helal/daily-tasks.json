@@ -701,7 +701,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-12T14:47:52.739Z",
+      "updated_at": "2026-11-12T15:02:07.709Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -714,8 +714,8 @@
           "live": 0
         },
         "Seif": {
-          "open": 21,
-          "todo": 21,
+          "open": 23,
+          "todo": 23,
           "progress": 0,
           "review": 0,
           "overdue": 4,
@@ -765,9 +765,9 @@
         }
       },
       "time": {
-        "avgTodo": 22179,
+        "avgTodo": 21305,
         "avgProgress": 5285,
-        "open": 25
+        "open": 27
       },
       "hr": {
         "people": {
@@ -8750,6 +8750,48 @@
           "created_at": "2026-10-28T20:05:39.001Z",
           "updated_at": "2026-10-28T20:05:39.001Z",
           "updated_by": "Mariam",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261113-seif-mwdo8fcd",
+          "who": "Seif",
+          "space": "Social",
+          "project": "OSAMA HELAL",
+          "title": "Carousel  3 Slides 15Nov",
+          "notes": "",
+          "due": "2026-11-13",
+          "status": "To do",
+          "drive": "https://docs.google.com/spreadsheets/d/1sQB6_ugtFMdSIILoq_vIsetjmVkXBHRu573yYeMhgNc/edit?usp=drivesdk",
+          "drive_missing": false,
+          "assigned_at": "2026-11-12",
+          "month": "2026-11",
+          "created_by": "Nouran",
+          "created_at": "2026-11-12T14:56:49.070Z",
+          "updated_at": "2026-11-12T14:56:49.070Z",
+          "updated_by": "Nouran",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261113-seif-mwdof92e",
+          "who": "Seif",
+          "space": "Social",
+          "project": "OSAMA HELAL",
+          "title": "Single visual  16 Nov",
+          "notes": "",
+          "due": "2026-11-13",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-11-12",
+          "month": "2026-11",
+          "created_by": "Nouran",
+          "created_at": "2026-11-12T15:02:07.528Z",
+          "updated_at": "2026-11-12T15:02:07.528Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
           "progress_started_at": ""
