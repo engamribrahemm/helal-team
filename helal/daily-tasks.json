@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-12T15:45:50.922Z",
+      "updated_at": "2026-11-12T15:47:13.694Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,8 +715,8 @@
           "live": 0
         },
         "Seif": {
-          "open": 28,
-          "todo": 7,
+          "open": 29,
+          "todo": 8,
           "progress": 0,
           "review": 21,
           "overdue": 4,
@@ -766,9 +766,9 @@
         }
       },
       "time": {
-        "avgTodo": 8922,
+        "avgTodo": 8031,
         "avgProgress": 5285,
-        "open": 32
+        "open": 33
       },
       "hr": {
         "people": {
@@ -8850,6 +8850,27 @@
           "review_at": "2026-11-12T15:40:34.319Z",
           "first_review_at": "2026-11-12T15:40:21.978Z",
           "delivered_on": "2026-11-12"
+        },
+        {
+          "id": "t-20261112-seif-mwdq18v3",
+          "who": "Seif",
+          "space": "Social",
+          "project": "MEDC",
+          "title": "Footer 4 photos Microsoft excel",
+          "notes": "",
+          "due": "2026-11-12",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
+          "drive_missing": false,
+          "assigned_at": "2026-11-12",
+          "month": "2026-11",
+          "created_by": "Nouran",
+          "created_at": "2026-11-12T15:47:13.324Z",
+          "updated_at": "2026-11-12T15:47:13.329Z",
+          "updated_by": "Nouran",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
