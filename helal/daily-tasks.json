@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-12T15:40:57.729Z",
+      "updated_at": "2026-11-12T15:41:30.032Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,9 +716,9 @@
         },
         "Seif": {
           "open": 27,
-          "todo": 12,
+          "todo": 6,
           "progress": 0,
-          "review": 15,
+          "review": 21,
           "overdue": 4,
           "done": 18,
           "hours": 119.19814152777776,
@@ -766,7 +766,7 @@
         }
       },
       "time": {
-        "avgTodo": 14293,
+        "avgTodo": 8917,
         "avgProgress": 5285,
         "open": 31
       },
@@ -9558,20 +9558,33 @@
           "title": "project - 2 single visuals | 26 nov",
           "notes": "",
           "due": "2026-11-24",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-24",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-24T13:24:04.216Z",
-          "updated_at": "2026-11-12T15:39:34.387Z",
+          "updated_at": "2026-11-12T15:41:25.181Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:34.387Z",
-          "progress_started_at": "2026-11-12T15:39:34.387Z",
-          "time_log": [],
-          "start_on": "2026-11-12"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-12T15:39:34.387Z",
+              "ended_at": "2026-11-12T15:41:25.181Z",
+              "hours": 0.03077611111111111,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-12",
+          "progress_hours": 0.03077611111111111,
+          "review_at": "2026-11-12T15:41:25.181Z",
+          "first_review_at": "2026-11-12T15:41:25.181Z",
+          "delivered_on": "2026-11-12"
         },
         {
           "id": "t-20261124-seif-mvsjv4d6",
