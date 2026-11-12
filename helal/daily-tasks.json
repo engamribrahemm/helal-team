@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-12T15:40:12.655Z",
+      "updated_at": "2026-11-12T15:40:57.729Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -717,12 +717,12 @@
         "Seif": {
           "open": 27,
           "todo": 12,
-          "progress": 12,
-          "review": 3,
+          "progress": 0,
+          "review": 15,
           "overdue": 4,
           "done": 18,
-          "hours": 65.02474386363635,
-          "live": 0.08333333333333333
+          "hours": 119.19814152777776,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -766,18 +766,18 @@
         }
       },
       "time": {
-        "avgTodo": 14292,
-        "avgProgress": 4027,
+        "avgTodo": 14293,
+        "avgProgress": 5285,
         "open": 31
       },
       "hr": {
         "people": {
           "Seif": {
-            "delivery": 2,
+            "delivery": 3,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 2,
+            "total": 3,
             "attitude": 0,
             "reviews": 0
           },
@@ -8541,7 +8541,7 @@
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:03:23.762Z",
-          "updated_at": "2026-11-12T15:40:06.042Z",
+          "updated_at": "2026-11-12T15:40:10.599Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:38:42.442Z",
@@ -8564,14 +8564,14 @@
               "by": "Seif"
             }
           ],
-          "review_at": "2026-11-12T15:40:06.042Z",
+          "review_at": "2026-11-12T15:40:10.599Z",
           "first_review_at": "2026-11-03T14:21:28.191Z",
           "delivered_on": "2026-11-12",
           "start_on": "2026-11-12",
           "delay_reason": "Other",
           "delay_notified": false,
           "delay_days": 3,
-          "progress_hours": 0.02322222222222222
+          "progress_hours": 0.024488055555555555
         }
       ]
     },
@@ -8615,7 +8615,7 @@
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-24T13:19:48.874Z",
-          "updated_at": "2026-11-12T15:40:07.580Z",
+          "updated_at": "2026-11-12T15:40:11.878Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:38:44.087Z",
@@ -8642,9 +8642,9 @@
           "delay_reason": "Other",
           "delay_notified": false,
           "delay_days": 2,
-          "progress_hours": 0.0231925,
-          "review_at": "2026-11-12T15:40:07.580Z",
-          "first_review_at": "2026-11-12T15:40:07.580Z",
+          "progress_hours": 0.024386388888888888,
+          "review_at": "2026-11-12T15:40:11.878Z",
+          "first_review_at": "2026-11-12T15:40:11.878Z",
           "delivered_on": "2026-11-12"
         },
         {
@@ -8655,18 +8655,18 @@
           "title": "single visual | 12th Nov",
           "notes": "",
           "due": "2026-11-10",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:03:59.198Z",
-          "updated_at": "2026-11-12T15:38:45.873Z",
+          "updated_at": "2026-11-12T15:40:09.032Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:38:45.873Z",
-          "progress_started_at": "2026-11-12T15:38:45.873Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -8675,9 +8675,24 @@
               "ended_at": "2026-11-12T15:40:09.032Z",
               "hours": 0.023099722222222223,
               "by": "Seif"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-12T15:38:45.873Z",
+              "ended_at": "2026-11-12T15:40:32.155Z",
+              "hours": 0.029522777777777776,
+              "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 2,
+          "progress_hours": 0.023099722222222223,
+          "review_at": "2026-11-12T15:40:09.032Z",
+          "first_review_at": "2026-11-12T15:40:09.032Z",
+          "delivered_on": "2026-11-12"
         },
         {
           "id": "t-20261110-seif-mwdnwspc",
@@ -8754,7 +8769,7 @@
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:04:39.454Z",
-          "updated_at": "2026-11-12T15:40:13.345Z",
+          "updated_at": "2026-11-12T15:40:21.237Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:38:47.584Z",
@@ -8778,12 +8793,12 @@
             }
           ],
           "start_on": "2026-11-12",
-          "delay_reason": "Other",
+          "delay_reason": "Workload pressure",
           "delay_notified": false,
           "delay_days": 1,
-          "progress_hours": 0.0238225,
-          "review_at": "2026-11-12T15:40:13.345Z",
-          "first_review_at": "2026-11-12T15:40:13.345Z",
+          "progress_hours": 0.026014722222222224,
+          "review_at": "2026-11-12T15:40:21.237Z",
+          "first_review_at": "2026-11-12T15:40:21.237Z",
           "delivered_on": "2026-11-12"
         }
       ]
@@ -8800,18 +8815,18 @@
           "title": "carousel (4 slides) | 14th Nov",
           "notes": "",
           "due": "2026-11-12",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:05:06.782Z",
-          "updated_at": "2026-11-12T15:38:58.375Z",
+          "updated_at": "2026-11-12T15:40:34.319Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:38:58.374Z",
-          "progress_started_at": "2026-11-12T15:38:58.374Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -8820,9 +8835,21 @@
               "ended_at": "2026-11-12T15:40:21.978Z",
               "hours": 0.023223333333333332,
               "by": "Seif"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-12T15:40:33.491Z",
+              "ended_at": "2026-11-12T15:40:34.319Z",
+              "hours": 0.00023,
+              "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.023453333333333333,
+          "review_at": "2026-11-12T15:40:34.319Z",
+          "first_review_at": "2026-11-12T15:40:21.978Z",
+          "delivered_on": "2026-11-12"
         }
       ]
     },
@@ -8838,18 +8865,18 @@
           "title": "single visual | 15th Nov",
           "notes": "",
           "due": "2026-11-13",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:05:39.001Z",
-          "updated_at": "2026-11-12T15:38:59.863Z",
+          "updated_at": "2026-11-12T15:40:24.211Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:38:59.863Z",
-          "progress_started_at": "2026-11-12T15:38:59.863Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -8860,7 +8887,11 @@
               "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.023429722222222223,
+          "review_at": "2026-11-12T15:40:24.210Z",
+          "first_review_at": "2026-11-12T15:40:24.210Z",
+          "delivered_on": "2026-11-12"
         },
         {
           "id": "t-20261113-seif-mwdo8fcd",
@@ -8918,18 +8949,18 @@
           "title": "carousel (4 slides) | 16th Nov",
           "notes": "",
           "due": "2026-11-14",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:06:25.545Z",
-          "updated_at": "2026-11-12T15:39:06.869Z",
+          "updated_at": "2026-11-12T15:40:24.911Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:06.868Z",
-          "progress_started_at": "2026-11-12T15:39:06.868Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -8940,7 +8971,11 @@
               "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.02167861111111111,
+          "review_at": "2026-11-12T15:40:24.911Z",
+          "first_review_at": "2026-11-12T15:40:24.911Z",
+          "delivered_on": "2026-11-12"
         },
         {
           "id": "t-20261114-seif-mwdoiy6s",
@@ -8998,18 +9033,18 @@
           "title": "single visual | 17th Nov",
           "notes": "",
           "due": "2026-11-15",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:06:49.666Z",
-          "updated_at": "2026-11-12T15:39:10.639Z",
+          "updated_at": "2026-11-12T15:40:25.485Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:10.639Z",
-          "progress_started_at": "2026-11-12T15:39:10.639Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -9020,7 +9055,11 @@
               "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.020790555555555555,
+          "review_at": "2026-11-12T15:40:25.485Z",
+          "first_review_at": "2026-11-12T15:40:25.485Z",
+          "delivered_on": "2026-11-12"
         },
         {
           "id": "t-20261115-seif-mwdp3k2a",
@@ -9057,18 +9096,18 @@
           "title": "single visual | 18th Nov",
           "notes": "",
           "due": "2026-11-16",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:07:30.908Z",
-          "updated_at": "2026-11-12T15:39:14.380Z",
+          "updated_at": "2026-11-12T15:40:26.050Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:14.379Z",
-          "progress_started_at": "2026-11-12T15:39:14.379Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -9079,7 +9118,11 @@
               "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.01990861111111111,
+          "review_at": "2026-11-12T15:40:26.050Z",
+          "first_review_at": "2026-11-12T15:40:26.050Z",
+          "delivered_on": "2026-11-12"
         },
         {
           "id": "t-20261116-seif-mwdp7edo",
@@ -9116,18 +9159,18 @@
           "title": "project - 2 single visuals | 19 nov",
           "notes": "",
           "due": "2026-11-17",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-10-24",
           "month": "2026-10",
           "created_by": "Judi",
           "created_at": "2026-10-24T13:22:00.385Z",
-          "updated_at": "2026-11-12T15:39:17.765Z",
+          "updated_at": "2026-11-12T15:40:27.635Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:17.764Z",
-          "progress_started_at": "2026-11-12T15:39:17.764Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -9138,7 +9181,11 @@
               "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.019408611111111113,
+          "review_at": "2026-11-12T15:40:27.635Z",
+          "first_review_at": "2026-11-12T15:40:27.635Z",
+          "delivered_on": "2026-11-12"
         },
         {
           "id": "t-20261117-seif-mvsjqw9b",
@@ -9148,18 +9195,18 @@
           "title": "carousel (4 slides) | 19th Nov",
           "notes": "",
           "due": "2026-11-17",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:08:03.024Z",
-          "updated_at": "2026-11-12T15:39:20.501Z",
+          "updated_at": "2026-11-12T15:40:28.235Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:20.500Z",
-          "progress_started_at": "2026-11-12T15:39:20.500Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -9170,7 +9217,11 @@
               "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.018815277777777778,
+          "review_at": "2026-11-12T15:40:28.235Z",
+          "first_review_at": "2026-11-12T15:40:28.235Z",
+          "delivered_on": "2026-11-12"
         }
       ]
     },
@@ -9186,18 +9237,18 @@
           "title": "single visual | 20th Nov",
           "notes": "",
           "due": "2026-11-18",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:08:34.673Z",
-          "updated_at": "2026-11-12T15:39:22.128Z",
+          "updated_at": "2026-11-12T15:40:28.766Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:22.127Z",
-          "progress_started_at": "2026-11-12T15:39:22.127Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -9208,7 +9259,11 @@
               "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.018510833333333334,
+          "review_at": "2026-11-12T15:40:28.766Z",
+          "first_review_at": "2026-11-12T15:40:28.766Z",
+          "delivered_on": "2026-11-12"
         }
       ]
     },
@@ -9285,18 +9340,18 @@
           "title": "carousel (4 slides) | 21st Nov",
           "notes": "",
           "due": "2026-11-19",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:09:00.387Z",
-          "updated_at": "2026-11-12T15:39:23.657Z",
+          "updated_at": "2026-11-12T15:40:29.364Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:23.657Z",
-          "progress_started_at": "2026-11-12T15:39:23.657Z",
+          "progress_started_at": "",
           "time_log": [
             {
               "from": "In progress",
@@ -9307,7 +9362,11 @@
               "by": "Seif"
             }
           ],
-          "start_on": "2026-11-12"
+          "start_on": "2026-11-12",
+          "progress_hours": 0.018251944444444446,
+          "review_at": "2026-11-12T15:40:29.364Z",
+          "first_review_at": "2026-11-12T15:40:29.364Z",
+          "delivered_on": "2026-11-12"
         }
       ]
     },
@@ -9323,20 +9382,41 @@
           "title": "single visual | 22nd Nov",
           "notes": "",
           "due": "2026-11-20",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:09:27.562Z",
-          "updated_at": "2026-11-12T15:39:25.293Z",
+          "updated_at": "2026-11-12T15:40:36.980Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:25.293Z",
-          "progress_started_at": "2026-11-12T15:39:25.293Z",
-          "time_log": [],
-          "start_on": "2026-11-12"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-12T15:39:25.293Z",
+              "ended_at": "2026-11-12T15:40:29.892Z",
+              "hours": 0.017944166666666667,
+              "by": "Seif"
+            },
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-12T15:39:25.293Z",
+              "ended_at": "2026-11-12T15:40:36.980Z",
+              "hours": 0.019913055555555555,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-12",
+          "progress_hours": 0.019913055555555555,
+          "review_at": "2026-11-12T15:40:36.980Z",
+          "first_review_at": "2026-11-12T15:40:36.980Z",
+          "delivered_on": "2026-11-12"
         }
       ]
     },
@@ -9352,20 +9432,33 @@
           "title": "carousel (5 slides) | 23rd Nov",
           "notes": "",
           "due": "2026-11-21",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:10:01.982Z",
-          "updated_at": "2026-11-12T15:39:27.205Z",
+          "updated_at": "2026-11-12T15:40:38.286Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:27.205Z",
-          "progress_started_at": "2026-11-12T15:39:27.205Z",
-          "time_log": [],
-          "start_on": "2026-11-12"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-12T15:39:27.205Z",
+              "ended_at": "2026-11-12T15:40:38.286Z",
+              "hours": 0.019744722222222223,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-12",
+          "progress_hours": 0.019744722222222223,
+          "review_at": "2026-11-12T15:40:38.286Z",
+          "first_review_at": "2026-11-12T15:40:38.286Z",
+          "delivered_on": "2026-11-12"
         }
       ]
     },
