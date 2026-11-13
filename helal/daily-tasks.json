@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-13T22:28:46.594Z",
+      "updated_at": "2026-11-13T22:29:19.077Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,8 +716,8 @@
         },
         "Seif": {
           "open": 31,
-          "todo": 9,
-          "progress": 1,
+          "todo": 7,
+          "progress": 3,
           "review": 21,
           "overdue": 10,
           "done": 18,
@@ -766,7 +766,7 @@
         }
       },
       "time": {
-        "avgTodo": 8324,
+        "avgTodo": 9612,
         "avgProgress": 5285,
         "open": 35
       },
@@ -8924,18 +8924,20 @@
           "title": "Carousel  3 Slides 15Nov",
           "notes": "",
           "due": "2026-11-13",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://docs.google.com/spreadsheets/d/1sQB6_ugtFMdSIILoq_vIsetjmVkXBHRu573yYeMhgNc/edit?usp=drivesdk",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T14:56:49.070Z",
-          "updated_at": "2026-11-12T14:56:49.070Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-13T22:29:12.786Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-13T22:29:12.785Z",
+          "progress_started_at": "2026-11-13T22:29:12.785Z",
+          "time_log": [],
+          "start_on": "2026-11-14"
         },
         {
           "id": "t-20261113-seif-mwdof92e",
@@ -8945,18 +8947,20 @@
           "title": "Single visual  16 Nov",
           "notes": "",
           "due": "2026-11-13",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T15:02:07.528Z",
-          "updated_at": "2026-11-12T15:02:07.528Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-13T22:29:16.211Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-13T22:29:16.211Z",
+          "progress_started_at": "2026-11-13T22:29:16.211Z",
+          "time_log": [],
+          "start_on": "2026-11-14"
         },
         {
           "id": "t-20261113-seif-mwdpzh55",
