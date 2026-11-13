@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-12T15:47:13.694Z",
+      "updated_at": "2026-11-13T12:45:51.998Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,11 +715,11 @@
           "live": 0
         },
         "Seif": {
-          "open": 29,
-          "todo": 8,
+          "open": 30,
+          "todo": 9,
           "progress": 0,
           "review": 21,
-          "overdue": 4,
+          "overdue": 6,
           "done": 18,
           "hours": 119.19814152777776,
           "live": 0
@@ -766,9 +766,9 @@
         }
       },
       "time": {
-        "avgTodo": 8031,
+        "avgTodo": 8559,
         "avgProgress": 5285,
-        "open": 33
+        "open": 34
       },
       "hr": {
         "people": {
@@ -9056,6 +9056,27 @@
           "created_by": "Nouran",
           "created_at": "2026-11-12T15:10:50.258Z",
           "updated_at": "2026-11-12T15:10:50.258Z",
+          "updated_by": "Nouran",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
+        },
+        {
+          "id": "t-20261114-seif-mweyzv7y",
+          "who": "Seif",
+          "space": "Social",
+          "project": "Helal",
+          "title": "Single visuals( الفرق بين) 16Nov",
+          "notes": "",
+          "due": "2026-11-14",
+          "status": "To do",
+          "drive": "https://docs.google.com/spreadsheets/d/1X1ANM_9YxwTOM2SCfRt-f6QUmSQIVum3oncvLJ6rxjI/edit?usp=drivesdk",
+          "drive_missing": false,
+          "assigned_at": "2026-11-13",
+          "month": "2026-11",
+          "created_by": "Nouran",
+          "created_at": "2026-11-13T12:45:51.696Z",
+          "updated_at": "2026-11-13T12:45:51.696Z",
           "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "",
