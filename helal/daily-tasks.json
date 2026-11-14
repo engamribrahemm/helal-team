@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-14T00:05:25.862Z",
+      "updated_at": "2026-11-14T00:26:38.097Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -717,12 +717,12 @@
         "Seif": {
           "open": 31,
           "todo": 7,
-          "progress": 1,
-          "review": 23,
+          "progress": 0,
+          "review": 24,
           "overdue": 10,
           "done": 18,
-          "hours": 102.39840702380953,
-          "live": 1.6
+          "hours": 119.19814152777776,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 9708,
-        "avgProgress": 4979,
+        "avgTodo": 9729,
+        "avgProgress": 5285,
         "open": 35
       },
       "hr": {
@@ -8859,20 +8859,36 @@
           "title": "Footer 4 photos Microsoft excel",
           "notes": "",
           "due": "2026-11-12",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T15:47:13.324Z",
-          "updated_at": "2026-11-13T22:28:46.531Z",
+          "updated_at": "2026-11-14T00:26:38.063Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-13T22:28:46.531Z",
-          "progress_started_at": "2026-11-13T22:28:46.531Z",
-          "time_log": [],
-          "start_on": "2026-11-14"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-13T22:28:46.531Z",
+              "ended_at": "2026-11-14T00:26:38.062Z",
+              "hours": 1.9643141666666666,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-14",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 2,
+          "progress_hours": 1.9643141666666666,
+          "review_at": "2026-11-14T00:26:38.062Z",
+          "first_review_at": "2026-11-14T00:26:38.062Z",
+          "delivered_on": "2026-11-14"
         }
       ]
     },
