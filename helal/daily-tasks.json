@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-13T23:12:54.373Z",
+      "updated_at": "2026-11-14T00:05:25.862Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -717,12 +717,12 @@
         "Seif": {
           "open": 31,
           "todo": 7,
-          "progress": 2,
-          "review": 22,
+          "progress": 1,
+          "review": 23,
           "overdue": 10,
           "done": 18,
-          "hours": 89.57985614583333,
-          "live": 1.45
+          "hours": 102.39840702380953,
+          "live": 1.6
         },
         "Moamen": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 9655,
-        "avgProgress": 4702,
+        "avgTodo": 9708,
+        "avgProgress": 4979,
         "open": 35
       },
       "hr": {
@@ -8963,20 +8963,36 @@
           "title": "Single visual  16 Nov",
           "notes": "",
           "due": "2026-11-13",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T15:02:07.528Z",
-          "updated_at": "2026-11-13T22:29:16.211Z",
+          "updated_at": "2026-11-14T00:05:25.837Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-13T22:29:16.211Z",
-          "progress_started_at": "2026-11-13T22:29:16.211Z",
-          "time_log": [],
-          "start_on": "2026-11-14"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-13T22:29:16.211Z",
+              "ended_at": "2026-11-14T00:05:25.836Z",
+              "hours": 1.602673611111111,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-14",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 1.602673611111111,
+          "review_at": "2026-11-14T00:05:25.836Z",
+          "first_review_at": "2026-11-14T00:05:25.836Z",
+          "delivered_on": "2026-11-14"
         },
         {
           "id": "t-20261113-seif-mwdpzh55",
