@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-15T00:17:52.713Z",
+      "updated_at": "2026-11-15T00:18:05.254Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -717,8 +717,8 @@
         "Seif": {
           "open": 27,
           "todo": 6,
-          "progress": 1,
-          "review": 20,
+          "progress": 0,
+          "review": 21,
           "overdue": 10,
           "done": 22,
           "hours": 71.5285905,
@@ -766,7 +766,7 @@
         }
       },
       "time": {
-        "avgTodo": 12163,
+        "avgTodo": 12164,
         "avgProgress": 4228,
         "open": 31
       },
@@ -9139,20 +9139,36 @@
           "title": "Single visuals( الفرق بين) 16Nov",
           "notes": "",
           "due": "2026-11-14",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://docs.google.com/spreadsheets/d/1X1ANM_9YxwTOM2SCfRt-f6QUmSQIVum3oncvLJ6rxjI/edit?usp=drivesdk",
           "drive_missing": false,
           "assigned_at": "2026-11-13",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-13T12:45:51.696Z",
-          "updated_at": "2026-11-15T00:17:52.612Z",
+          "updated_at": "2026-11-15T00:18:05.211Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-15T00:17:52.612Z",
-          "progress_started_at": "2026-11-15T00:17:52.612Z",
-          "time_log": [],
-          "start_on": "2026-11-15"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-15T00:17:52.612Z",
+              "ended_at": "2026-11-15T00:18:05.211Z",
+              "hours": 0.003499722222222222,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-15",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 0.003499722222222222,
+          "review_at": "2026-11-15T00:18:05.211Z",
+          "first_review_at": "2026-11-15T00:18:05.211Z",
+          "delivered_on": "2026-11-15"
         }
       ]
     },
