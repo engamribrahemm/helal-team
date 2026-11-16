@@ -1076,7 +1076,7 @@
       "people": {
         "Nouran": {
           "days": {
-            "2026-11-13": "Office",
+            "2026-11-13": "Off",
             "2026-11-15": "Office",
             "2026-11-19": "Office",
             "2026-11-14": "Home",
@@ -1086,8 +1086,8 @@
           },
           "saved": true,
           "saved_at": "2026-11-08T21:00:03.044Z",
-          "updated_at": "2026-11-08T21:00:03.044Z",
-          "updated_by": "Nouran"
+          "updated_at": "2026-11-16T15:55:49.244Z",
+          "updated_by": "Amr"
         },
         "Gehad Helal": {
           "days": {
@@ -1363,10 +1363,10 @@
       "from": "Office",
       "to": "Off",
       "reason": ".",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-11-12T22:03:24.382Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-11-16T15:55:49.244Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mwe3hlds",
