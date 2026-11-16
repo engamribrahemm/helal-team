@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-16T17:00:59.284Z",
+      "updated_at": "2026-11-16T17:16:31.865Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -717,12 +717,12 @@
         "Seif": {
           "open": 26,
           "todo": 2,
-          "progress": 2,
-          "review": 22,
+          "progress": 1,
+          "review": 23,
           "overdue": 11,
           "done": 23,
-          "hours": 55.99104250000001,
-          "live": 10.633333333333333
+          "hours": 60.23612937500001,
+          "live": 5.583333333333333
         },
         "Moamen": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 21604,
-        "avgProgress": 3709,
+        "avgTodo": 21619,
+        "avgProgress": 3864,
         "open": 30
       },
       "hr": {
@@ -9158,20 +9158,36 @@
           "title": "Carousel 4Slides 18 Nov",
           "notes": "",
           "due": "2026-11-14",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T15:10:50.258Z",
-          "updated_at": "2026-11-16T11:41:02.282Z",
+          "updated_at": "2026-11-16T17:16:31.828Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-16T11:41:02.282Z",
-          "progress_started_at": "2026-11-16T11:41:02.282Z",
-          "time_log": [],
-          "start_on": "2026-11-16"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-16T11:41:02.282Z",
+              "ended_at": "2026-11-16T17:16:31.828Z",
+              "hours": 5.5915405555555555,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-16",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 2,
+          "progress_hours": 5.5915405555555555,
+          "review_at": "2026-11-16T17:16:31.828Z",
+          "first_review_at": "2026-11-16T17:16:31.828Z",
+          "delivered_on": "2026-11-16"
         },
         {
           "id": "t-20261114-seif-mweyzv7y",
