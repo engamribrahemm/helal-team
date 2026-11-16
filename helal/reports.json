@@ -3,6 +3,54 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mwjkgetr",
+      "who": "Seif",
+      "date": "2026-11-16",
+      "finished": "carousel (4 slides) | 16th Nov · 100%\ncarousel (4 slides) | 19th Nov · 100%\nSingle visual 17 Nov · 100%\nايديت ١١ صورة ورد · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261114-seif-mvsjot1l",
+          "title": "carousel (4 slides) | 16th Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261117-seif-mvsjqw9b",
+          "title": "carousel (4 slides) | 19th Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261114-seif-mwdoiy6s",
+          "title": "Single visual 17 Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261113-seif-mwdpzh55",
+          "title": "ايديت ١١ صورة ورد",
+          "project": "Blushed",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261114-seif-mvsjot1l",
+        "t-20261117-seif-mvsjqw9b",
+        "t-20261114-seif-mwdoiy6s",
+        "t-20261113-seif-mwdpzh55"
+      ],
+      "created_at": "2026-11-16T17:57:40.239Z"
+    },
+    {
       "id": "r-mwi2ri3v",
       "who": "Nouran",
       "date": "2026-11-15",
