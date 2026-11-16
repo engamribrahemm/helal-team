@@ -1078,7 +1078,7 @@
           "days": {
             "2026-11-13": "Off",
             "2026-11-15": "Office",
-            "2026-11-19": "Office",
+            "2026-11-19": "Home",
             "2026-11-14": "Office",
             "2026-11-16": "Home",
             "2026-11-17": "Home",
@@ -1086,7 +1086,7 @@
           },
           "saved": true,
           "saved_at": "2026-11-08T21:00:03.044Z",
-          "updated_at": "2026-11-16T15:55:51.444Z",
+          "updated_at": "2026-11-16T15:55:53.349Z",
           "updated_by": "Amr"
         },
         "Gehad Helal": {
@@ -1389,10 +1389,10 @@
       "from": "Office",
       "to": "Home",
       "reason": ".",
-      "status": "Pending",
+      "status": "Approved",
       "created_at": "2026-11-12T22:05:31.651Z",
-      "decided_at": "",
-      "decided_by": ""
+      "decided_at": "2026-11-16T15:55:53.349Z",
+      "decided_by": "Amr"
     },
     {
       "id": "ar-mwe3kf2d",
