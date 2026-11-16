@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-16T17:16:31.865Z",
+      "updated_at": "2026-11-16T17:56:55.096Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -717,12 +717,12 @@
         "Seif": {
           "open": 26,
           "todo": 2,
-          "progress": 1,
-          "review": 23,
+          "progress": 0,
+          "review": 24,
           "overdue": 11,
           "done": 23,
-          "hours": 60.23612937500001,
-          "live": 5.583333333333333
+          "hours": 65.20456537878789,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 21619,
-        "avgProgress": 3864,
+        "avgTodo": 21660,
+        "avgProgress": 4032,
         "open": 30
       },
       "hr": {
@@ -9278,20 +9278,36 @@
           "title": "Carousel 5 Slides 19Nov",
           "notes": "",
           "due": "2026-11-15",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T15:21:01.524Z",
-          "updated_at": "2026-11-16T11:41:07.109Z",
+          "updated_at": "2026-11-16T17:56:55.074Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-16T11:41:07.108Z",
-          "progress_started_at": "2026-11-16T11:41:07.108Z",
-          "time_log": [],
-          "start_on": "2026-11-16"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-16T11:41:07.108Z",
+              "ended_at": "2026-11-16T17:56:55.074Z",
+              "hours": 6.2633238888888885,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-16",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 6.2633238888888885,
+          "review_at": "2026-11-16T17:56:55.074Z",
+          "first_review_at": "2026-11-16T17:56:55.074Z",
+          "delivered_on": "2026-11-16"
         },
         {
           "id": "t-20261115-gehad-helal-mwgtk9eb",
