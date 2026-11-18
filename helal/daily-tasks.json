@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-18T19:59:38.552Z",
+      "updated_at": "2026-11-18T19:59:49.158Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,13 +715,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 24,
+          "open": 23,
           "todo": 2,
           "progress": 0,
-          "review": 22,
-          "overdue": 13,
-          "done": 25,
-          "hours": 55.23098596153846,
+          "review": 21,
+          "overdue": 12,
+          "done": 26,
+          "hours": 51.28758908730158,
           "live": 0
         },
         "Moamen": {
@@ -767,8 +767,8 @@
       },
       "time": {
         "avgTodo": 24662,
-        "avgProgress": 3684,
-        "open": 28
+        "avgProgress": 3530,
+        "open": 27
       },
       "hr": {
         "people": {
@@ -8928,15 +8928,15 @@
           "title": "single visual | 15th Nov",
           "notes": "",
           "due": "2026-11-13",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:05:39.001Z",
-          "updated_at": "2026-11-12T15:40:24.211Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-11-18T19:59:48.819Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:38:59.863Z",
           "progress_started_at": "",
@@ -8954,7 +8954,11 @@
           "progress_hours": 0.023429722222222223,
           "review_at": "2026-11-12T15:40:24.210Z",
           "first_review_at": "2026-11-12T15:40:24.210Z",
-          "delivered_on": "2026-11-12"
+          "delivered_on": "2026-11-12",
+          "done_at": "2026-11-18T19:59:48.817Z",
+          "done_on": "2026-11-18",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         },
         {
           "id": "t-20261113-seif-mwdo8fcd",
