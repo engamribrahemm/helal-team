@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-18T19:59:31.104Z",
+      "updated_at": "2026-11-18T19:59:38.552Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,13 +715,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 25,
+          "open": 24,
           "todo": 2,
           "progress": 0,
-          "review": 23,
-          "overdue": 14,
-          "done": 24,
-          "hours": 59.7728837962963,
+          "review": 22,
+          "overdue": 13,
+          "done": 25,
+          "hours": 55.23098596153846,
           "live": 0
         },
         "Moamen": {
@@ -767,8 +767,8 @@
       },
       "time": {
         "avgTodo": 24662,
-        "avgProgress": 3849,
-        "open": 29
+        "avgProgress": 3684,
+        "open": 28
       },
       "hr": {
         "people": {
@@ -8964,15 +8964,15 @@
           "title": "Carousel  3 Slides 15Nov",
           "notes": "",
           "due": "2026-11-13",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://docs.google.com/spreadsheets/d/1sQB6_ugtFMdSIILoq_vIsetjmVkXBHRu573yYeMhgNc/edit?usp=drivesdk",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T14:56:49.070Z",
-          "updated_at": "2026-11-13T23:12:54.349Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-11-18T19:59:36.071Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-11-13T22:29:12.785Z",
           "progress_started_at": "",
@@ -8993,7 +8993,11 @@
           "progress_hours": 0.7282119444444445,
           "review_at": "2026-11-13T23:12:54.348Z",
           "first_review_at": "2026-11-13T23:12:54.348Z",
-          "delivered_on": "2026-11-14"
+          "delivered_on": "2026-11-14",
+          "done_at": "2026-11-18T19:59:36.069Z",
+          "done_on": "2026-11-18",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         },
         {
           "id": "t-20261113-seif-mwdof92e",
