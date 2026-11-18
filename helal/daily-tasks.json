@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-18T20:00:57.690Z",
+      "updated_at": "2026-11-18T20:01:42.744Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,13 +715,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 17,
+          "open": 16,
           "todo": 2,
           "progress": 0,
-          "review": 15,
-          "overdue": 6,
-          "done": 32,
-          "hours": 36.68753922222222,
+          "review": 14,
+          "overdue": 5,
+          "done": 33,
+          "hours": 35.23876706349206,
           "live": 0
         },
         "Moamen": {
@@ -767,8 +767,8 @@
       },
       "time": {
         "avgTodo": 24664,
-        "avgProgress": 2856,
-        "open": 21
+        "avgProgress": 2776,
+        "open": 20
       },
       "hr": {
         "people": {
@@ -9314,15 +9314,15 @@
           "title": "Carousel 5 Slides 19Nov",
           "notes": "",
           "due": "2026-11-15",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T15:21:01.524Z",
-          "updated_at": "2026-11-16T17:56:55.074Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-11-18T20:01:42.496Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-11-16T11:41:07.108Z",
           "progress_started_at": "",
@@ -9343,7 +9343,11 @@
           "progress_hours": 6.2633238888888885,
           "review_at": "2026-11-16T17:56:55.074Z",
           "first_review_at": "2026-11-16T17:56:55.074Z",
-          "delivered_on": "2026-11-16"
+          "delivered_on": "2026-11-16",
+          "done_at": "2026-11-18T20:01:42.494Z",
+          "done_on": "2026-11-18",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         },
         {
           "id": "t-20261115-gehad-helal-mwgtk9eb",
