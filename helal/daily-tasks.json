@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-19T15:51:00.560Z",
+      "updated_at": "2026-11-19T16:58:26.769Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -745,11 +745,11 @@
           "live": 0
         },
         "Gehad Helal": {
-          "open": 0,
-          "todo": 0,
+          "open": 1,
+          "todo": 1,
           "progress": 0,
           "review": 0,
-          "overdue": 0,
+          "overdue": 1,
           "done": 6,
           "hours": 78.69632805555557,
           "live": 0
@@ -766,9 +766,9 @@
         }
       },
       "time": {
-        "avgTodo": 11753,
+        "avgTodo": 11821,
         "avgProgress": 2661,
-        "open": 22
+        "open": 23
       },
       "hr": {
         "people": {
@@ -9576,6 +9576,27 @@
           "review_at": "2026-11-12T15:40:28.766Z",
           "first_review_at": "2026-11-12T15:40:28.766Z",
           "delivered_on": "2026-11-12"
+        },
+        {
+          "id": "t-20261118-gehad-helal-mwnsnsxa",
+          "who": "Gehad Helal",
+          "space": "Social",
+          "project": "Helal",
+          "title": "Reah out to Jewelry-  potential clients and offer our service for them",
+          "notes": "",
+          "due": "2026-11-18",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-11-19",
+          "month": "2026-11",
+          "created_by": "Amr",
+          "created_at": "2026-11-19T16:58:26.735Z",
+          "updated_at": "2026-11-19T16:58:26.735Z",
+          "updated_by": "Amr",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
