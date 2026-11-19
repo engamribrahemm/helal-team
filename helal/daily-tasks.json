@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-19T15:49:38.689Z",
+      "updated_at": "2026-11-19T15:51:00.560Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,13 +715,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 20,
+          "open": 19,
           "todo": 8,
           "progress": 0,
-          "review": 12,
-          "overdue": 4,
-          "done": 35,
-          "hours": 32.176210096618355,
+          "review": 11,
+          "overdue": 3,
+          "done": 36,
+          "hours": 30.835680497685185,
           "live": 0
         },
         "Moamen": {
@@ -766,9 +766,9 @@
         }
       },
       "time": {
-        "avgTodo": 14363,
+        "avgTodo": 11753,
         "avgProgress": 2661,
-        "open": 23
+        "open": 22
       },
       "hr": {
         "people": {
@@ -9233,15 +9233,15 @@
           "title": "Single visuals( الفرق بين) 16Nov",
           "notes": "",
           "due": "2026-11-14",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://docs.google.com/spreadsheets/d/1X1ANM_9YxwTOM2SCfRt-f6QUmSQIVum3oncvLJ6rxjI/edit?usp=drivesdk",
           "drive_missing": false,
           "assigned_at": "2026-11-13",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-13T12:45:51.696Z",
-          "updated_at": "2026-11-15T00:18:05.211Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-11-19T15:51:00.391Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-11-15T00:17:52.612Z",
           "progress_started_at": "",
@@ -9262,7 +9262,11 @@
           "progress_hours": 0.003499722222222222,
           "review_at": "2026-11-15T00:18:05.211Z",
           "first_review_at": "2026-11-15T00:18:05.211Z",
-          "delivered_on": "2026-11-15"
+          "delivered_on": "2026-11-15",
+          "done_at": "2026-11-19T15:51:00.389Z",
+          "done_on": "2026-11-19",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         }
       ]
     },
