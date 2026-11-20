@@ -3,6 +3,70 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mwp9th84",
+      "who": "Seif",
+      "date": "2026-11-20",
+      "finished": "carousel (4 slides) | 21st Nov · 100%\ncarousel (4 slides) | 25th Nov · 100%\ncarousel (5 slides) | 23rd Nov · 100%\nCarousel 3 Slides  24 Nov · 100%\nCarousel 4Slides 20 Nov · 100%\nsingle visual | 26th Nov · 100%",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [
+        {
+          "id": "t-20261119-seif-mvsjs4ir",
+          "title": "carousel (4 slides) | 21st Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261123-seif-mvsjulel",
+          "title": "carousel (4 slides) | 25th Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261121-seif-mvsjtg1p",
+          "title": "carousel (5 slides) | 23rd Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261123-seif-mwnq5ldd",
+          "title": "Carousel 3 Slides  24 Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261116-seif-mwdp7edo",
+          "title": "Carousel 4Slides 20 Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        },
+        {
+          "id": "t-20261124-seif-mvsjv4d6",
+          "title": "single visual | 26th Nov",
+          "project": "OSAMA HELAL",
+          "status": "Review",
+          "percent": 100
+        }
+      ],
+      "done_task_ids": [
+        "t-20261119-seif-mvsjs4ir",
+        "t-20261123-seif-mvsjulel",
+        "t-20261121-seif-mvsjtg1p",
+        "t-20261123-seif-mwnq5ldd",
+        "t-20261116-seif-mwdp7edo",
+        "t-20261124-seif-mvsjv4d6"
+      ],
+      "created_at": "2026-11-20T17:46:31.156Z"
+    },
+    {
       "id": "r-mwo0soqy",
       "who": "Nouran",
       "date": "2026-11-19",
