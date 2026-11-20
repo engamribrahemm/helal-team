@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-20T17:02:17.160Z",
+      "updated_at": "2026-11-20T17:05:29.810Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,13 +716,13 @@
         },
         "Seif": {
           "open": 19,
-          "todo": 4,
-          "progress": 4,
+          "todo": 3,
+          "progress": 5,
           "review": 11,
           "overdue": 5,
           "done": 36,
-          "hours": 30.835680497685185,
-          "live": 0
+          "hours": 26.437726140873007,
+          "live": 0.2
         },
         "Moamen": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 16399,
-        "avgProgress": 2661,
+        "avgTodo": 18528,
+        "avgProgress": 2381,
         "open": 23
       },
       "hr": {
@@ -9977,18 +9977,20 @@
           "title": "Carousel 3 Slides  24 Nov",
           "notes": "",
           "due": "2026-11-23",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-19",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-19T15:48:17.907Z",
-          "updated_at": "2026-11-19T15:48:17.907Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-20T17:05:29.780Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-20T17:05:29.780Z",
+          "progress_started_at": "2026-11-20T17:05:29.780Z",
+          "time_log": [],
+          "start_on": "2026-11-20"
         }
       ]
     },
@@ -10076,18 +10078,20 @@
           "title": "Single visual 25 Nov",
           "notes": "",
           "due": "2026-11-24",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-19",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-19T15:48:56.173Z",
-          "updated_at": "2026-11-19T15:48:56.173Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-20T17:05:31.386Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-20T17:05:31.386Z",
+          "progress_started_at": "2026-11-20T17:05:31.386Z",
+          "time_log": [],
+          "start_on": "2026-11-20"
         },
         {
           "id": "t-20261124-seif-mwnq74si",
@@ -10097,18 +10101,20 @@
           "title": "Single visual 26 Nov",
           "notes": "",
           "due": "2026-11-24",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-19",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-19T15:49:29.732Z",
-          "updated_at": "2026-11-19T15:49:29.732Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-20T17:05:32.660Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-20T17:05:32.660Z",
+          "progress_started_at": "2026-11-20T17:05:32.660Z",
+          "time_log": [],
+          "start_on": "2026-11-20"
         }
       ]
     },
