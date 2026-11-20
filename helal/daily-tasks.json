@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-20T17:01:45.915Z",
+      "updated_at": "2026-11-20T17:01:52.483Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,8 +716,8 @@
         },
         "Seif": {
           "open": 19,
-          "todo": 7,
-          "progress": 1,
+          "todo": 5,
+          "progress": 3,
           "review": 11,
           "overdue": 5,
           "done": 36,
@@ -766,7 +766,7 @@
         }
       },
       "time": {
-        "avgTodo": 12339,
+        "avgTodo": 14744,
         "avgProgress": 2661,
         "open": 23
       },
@@ -9782,18 +9782,20 @@
           "title": "Single visual 21 Nov",
           "notes": "",
           "due": "2026-11-20",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-19",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-19T15:45:16.790Z",
-          "updated_at": "2026-11-19T15:45:16.790Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-20T17:01:48.976Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-20T17:01:48.976Z",
+          "progress_started_at": "2026-11-20T17:01:48.976Z",
+          "time_log": [],
+          "start_on": "2026-11-20"
         },
         {
           "id": "t-20261120-seif-mwnq3mix",
@@ -9803,18 +9805,20 @@
           "title": "Carousel 5 Slides  22 Nov",
           "notes": "",
           "due": "2026-11-20",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-19",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-19T15:46:46.091Z",
-          "updated_at": "2026-11-19T15:46:46.092Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-20T17:01:50.549Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-20T17:01:50.549Z",
+          "progress_started_at": "2026-11-20T17:01:50.549Z",
+          "time_log": [],
+          "start_on": "2026-11-20"
         }
       ]
     },
