@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-20T17:05:29.810Z",
+      "updated_at": "2026-11-20T17:05:37.104Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,8 +716,8 @@
         },
         "Seif": {
           "open": 19,
-          "todo": 3,
-          "progress": 5,
+          "todo": 1,
+          "progress": 7,
           "review": 11,
           "overdue": 5,
           "done": 36,
@@ -766,7 +766,7 @@
         }
       },
       "time": {
-        "avgTodo": 18528,
+        "avgTodo": 25334,
         "avgProgress": 2381,
         "open": 23
       },
