@@ -702,29 +702,9 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-22T18:43:48.979Z",
+      "updated_at": "2026-11-22T19:27:50.723Z",
       "people": {
         "Amr": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
-        "Mariam": {
-          "open": 1,
-          "todo": 1,
-          "progress": 0,
-          "review": 0,
-          "overdue": 1,
-          "done": 0,
-          "hours": 0,
-          "live": 0
-        },
-        "Judi": {
           "open": 0,
           "todo": 0,
           "progress": 0,
@@ -742,26 +722,6 @@
           "overdue": 8,
           "done": 37,
           "hours": 29.628271766666668,
-          "live": 0
-        },
-        "Alaa": {
-          "open": 0,
-          "todo": 0,
-          "progress": 0,
-          "review": 0,
-          "overdue": 0,
-          "done": 2,
-          "hours": 0,
-          "live": 0
-        },
-        "Ganna": {
-          "open": 2,
-          "todo": 2,
-          "progress": 0,
-          "review": 0,
-          "overdue": 2,
-          "done": 16,
-          "hours": 109.71318011111111,
           "live": 0
         },
         "Moamen": {
@@ -786,8 +746,8 @@
         },
         "Gehad Helal": {
           "open": 1,
-          "todo": 1,
-          "progress": 0,
+          "todo": 0,
+          "progress": 1,
           "review": 0,
           "overdue": 1,
           "done": 6,
@@ -806,49 +766,13 @@
         }
       },
       "time": {
-        "avgTodo": 28312,
+        "avgTodo": 34327,
         "avgProgress": 2586,
         "open": 22
       },
       "hr": {
         "people": {
-          "Mariam": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Judi": {
-            "delivery": 0,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 0,
-            "attitude": 0,
-            "reviews": 0
-          },
           "Seif": {
-            "delivery": 3,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 3,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Alaa": {
-            "delivery": 1,
-            "quality": 0,
-            "revisions": 0,
-            "creativity": 0,
-            "total": 1,
-            "attitude": 0,
-            "reviews": 0
-          },
-          "Ganna": {
             "delivery": 3,
             "quality": 0,
             "revisions": 0,
@@ -9683,18 +9607,20 @@
           "title": "Reah out to Jewelry-  potential clients and offer our service for them",
           "notes": "",
           "due": "2026-11-18",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-11-19",
           "month": "2026-11",
           "created_by": "Amr",
           "created_at": "2026-11-19T16:58:26.735Z",
-          "updated_at": "2026-11-19T16:58:26.735Z",
-          "updated_by": "Amr",
+          "updated_at": "2026-11-22T19:27:50.620Z",
+          "updated_by": "Gehad Helal",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-22T19:27:50.619Z",
+          "progress_started_at": "2026-11-22T19:27:50.619Z",
+          "time_log": [],
+          "start_on": "2026-11-22"
         }
       ]
     },
