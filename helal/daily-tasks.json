@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-22T19:27:50.723Z",
+      "updated_at": "2026-11-22T19:30:52.172Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,8 +715,8 @@
           "live": 0
         },
         "Seif": {
-          "open": 18,
-          "todo": 1,
+          "open": 19,
+          "todo": 2,
           "progress": 0,
           "review": 17,
           "overdue": 8,
@@ -751,8 +751,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 78.69632805555557,
-          "live": 0
+          "hours": 52.48088537037038,
+          "live": 0.05
         },
         "Nouran": {
           "open": 0,
@@ -766,9 +766,9 @@
         }
       },
       "time": {
-        "avgTodo": 34327,
-        "avgProgress": 2586,
-        "open": 22
+        "avgTodo": 34330,
+        "avgProgress": 2514,
+        "open": 23
       },
       "hr": {
         "people": {
@@ -10215,6 +10215,27 @@
           "review_at": "2026-11-20T17:40:57.103Z",
           "first_review_at": "2026-11-20T17:40:57.103Z",
           "delivered_on": "2026-11-20"
+        },
+        {
+          "id": "t-20261124-seif-mws8fdfy",
+          "who": "Seif",
+          "space": "Graphic",
+          "project": "Helal",
+          "title": "cover to reel of بزنس بالبلدي",
+          "notes": "",
+          "due": "2026-11-24",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
+          "drive_missing": false,
+          "assigned_at": "2026-11-22",
+          "month": "2026-11",
+          "created_by": "Gehad Helal",
+          "created_at": "2026-11-22T19:30:51.982Z",
+          "updated_at": "2026-11-22T19:30:51.982Z",
+          "updated_by": "Gehad Helal",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
