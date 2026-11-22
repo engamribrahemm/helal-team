@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-20T17:45:06.194Z",
+      "updated_at": "2026-11-22T18:43:48.979Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -714,14 +714,54 @@
           "hours": 0,
           "live": 0
         },
-        "Seif": {
-          "open": 19,
+        "Mariam": {
+          "open": 1,
           "todo": 1,
           "progress": 0,
-          "review": 18,
-          "overdue": 5,
-          "done": 36,
-          "hours": 30.835680497685185,
+          "review": 0,
+          "overdue": 1,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Judi": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 0,
+          "hours": 0,
+          "live": 0
+        },
+        "Seif": {
+          "open": 18,
+          "todo": 1,
+          "progress": 0,
+          "review": 17,
+          "overdue": 8,
+          "done": 37,
+          "hours": 29.628271766666668,
+          "live": 0
+        },
+        "Alaa": {
+          "open": 0,
+          "todo": 0,
+          "progress": 0,
+          "review": 0,
+          "overdue": 0,
+          "done": 2,
+          "hours": 0,
+          "live": 0
+        },
+        "Ganna": {
+          "open": 2,
+          "todo": 2,
+          "progress": 0,
+          "review": 0,
+          "overdue": 2,
+          "done": 16,
+          "hours": 109.71318011111111,
           "live": 0
         },
         "Moamen": {
@@ -766,13 +806,49 @@
         }
       },
       "time": {
-        "avgTodo": 25373,
-        "avgProgress": 2661,
-        "open": 23
+        "avgTodo": 28312,
+        "avgProgress": 2586,
+        "open": 22
       },
       "hr": {
         "people": {
+          "Mariam": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Judi": {
+            "delivery": 0,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 0,
+            "attitude": 0,
+            "reviews": 0
+          },
           "Seif": {
+            "delivery": 3,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 3,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Alaa": {
+            "delivery": 1,
+            "quality": 0,
+            "revisions": 0,
+            "creativity": 0,
+            "total": 1,
+            "attitude": 0,
+            "reviews": 0
+          },
+          "Ganna": {
             "delivery": 3,
             "quality": 0,
             "revisions": 0,
@@ -9440,15 +9516,15 @@
           "title": "Carousel 4Slides 20 Nov",
           "notes": "",
           "due": "2026-11-16",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-12",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-12T15:24:00.783Z",
-          "updated_at": "2026-11-20T17:40:47.558Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-11-22T18:43:48.799Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-11-20T17:01:45.894Z",
           "progress_started_at": "",
@@ -9469,7 +9545,11 @@
           "progress_hours": 0.6504622222222223,
           "review_at": "2026-11-20T17:40:47.558Z",
           "first_review_at": "2026-11-20T17:40:47.558Z",
-          "delivered_on": "2026-11-20"
+          "delivered_on": "2026-11-20",
+          "done_at": "2026-11-22T18:43:48.797Z",
+          "done_on": "2026-11-22",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         }
       ]
     },
