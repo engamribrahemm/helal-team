@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-23T15:42:50.541Z",
+      "updated_at": "2026-11-23T15:43:00.319Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,13 +715,13 @@
           "live": 0
         },
         "Seif": {
-          "open": 16,
+          "open": 15,
           "todo": 4,
           "progress": 0,
-          "review": 12,
-          "overdue": 5,
-          "done": 42,
-          "hours": 24.735476972222227,
+          "review": 11,
+          "overdue": 4,
+          "done": 43,
+          "hours": 23.938568763440866,
           "live": 0
         },
         "Moamen": {
@@ -751,8 +751,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 59.20866314814816,
-          "live": 20.233333333333334
+          "hours": 59.214218703703715,
+          "live": 20.25
         },
         "Nouran": {
           "open": 0,
@@ -767,8 +767,8 @@
       },
       "time": {
         "avgTodo": 20660,
-        "avgProgress": 2239,
-        "open": 20
+        "avgProgress": 2186,
+        "open": 19
       },
       "hr": {
         "people": {
@@ -9944,15 +9944,15 @@
           "title": "single visual | 24th Nov",
           "notes": "",
           "due": "2026-11-22",
-          "status": "Review",
+          "status": "Done",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-10-28",
           "month": "2026-10",
           "created_by": "Mariam",
           "created_at": "2026-10-28T20:10:28.798Z",
-          "updated_at": "2026-11-12T15:41:23.541Z",
-          "updated_by": "Seif",
+          "updated_at": "2026-11-23T15:43:00.193Z",
+          "updated_by": "Nouran",
           "revisions": 0,
           "first_progress_at": "2026-11-12T15:39:30.780Z",
           "progress_started_at": "",
@@ -9970,7 +9970,11 @@
           "progress_hours": 0.0313225,
           "review_at": "2026-11-12T15:41:23.541Z",
           "first_review_at": "2026-11-12T15:41:23.541Z",
-          "delivered_on": "2026-11-12"
+          "delivered_on": "2026-11-12",
+          "done_at": "2026-11-23T15:43:00.191Z",
+          "done_on": "2026-11-23",
+          "done_month": "2026-11",
+          "done_by": "Nouran"
         },
         {
           "id": "t-20261122-seif-mwnq4mmj",
