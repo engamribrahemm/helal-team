@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-23T15:43:00.319Z",
+      "updated_at": "2026-11-23T15:47:23.812Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -715,8 +715,8 @@
           "live": 0
         },
         "Seif": {
-          "open": 15,
-          "todo": 4,
+          "open": 16,
+          "todo": 5,
           "progress": 0,
           "review": 11,
           "overdue": 4,
@@ -751,8 +751,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 59.214218703703715,
-          "live": 20.25
+          "hours": 59.23644092592593,
+          "live": 20.316666666666666
         },
         "Nouran": {
           "open": 0,
@@ -766,9 +766,9 @@
         }
       },
       "time": {
-        "avgTodo": 20660,
+        "avgTodo": 20665,
         "avgProgress": 2186,
-        "open": 19
+        "open": 20
       },
       "hr": {
         "people": {
@@ -10405,6 +10405,33 @@
           "review_at": "2026-11-12T15:39:57.135Z",
           "first_review_at": "2026-11-12T15:39:57.135Z",
           "delivered_on": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-27",
+      "source": "Helal board",
+      "tasks": [
+        {
+          "id": "t-20261127-seif-mwtfvtyy",
+          "who": "Seif",
+          "space": "Social",
+          "project": "OSAMA HELAL",
+          "title": "Carousel 5 Slides 29Nov",
+          "notes": "",
+          "due": "2026-11-27",
+          "status": "To do",
+          "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
+          "drive_missing": false,
+          "assigned_at": "2026-11-23",
+          "month": "2026-11",
+          "created_by": "Nouran",
+          "created_at": "2026-11-23T15:47:23.391Z",
+          "updated_at": "2026-11-23T15:47:23.391Z",
+          "updated_by": "Nouran",
+          "revisions": 0,
+          "first_progress_at": "",
+          "progress_started_at": ""
         }
       ]
     },
