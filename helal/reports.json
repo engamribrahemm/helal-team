@@ -3,6 +3,20 @@
   "reset_at": "2026-09-05T14:12:00.000Z",
   "reports": [
     {
+      "id": "r-mwv1oa9y",
+      "who": "Nouran",
+      "date": "2026-11-24",
+      "finished": "Daily Work Report – Tue Nov 24\n\n- Published Osama Helal's TikTok video\n- Published the Talent Acquisition post (Alexandria Container Company, MEDC)\n- Followed up with Seif on the MEDC footer and work\n- Followed up with Gehad and Seif on Helal's page content and bio links\n- Following up with Seif on Osama's designs, will schedule them as soon as they're ready\n- Waiting for Moamen to send the Drive link for Business Baladi\n- Pending: Helal TikTok password\n- Pending: Ahmed El Dalil TikTok access",
+      "unfinished": "",
+      "drive": "",
+      "need_review": false,
+      "place": "Remote",
+      "blockers": [],
+      "finished_tasks": [],
+      "done_task_ids": [],
+      "created_at": "2026-11-24T18:45:08.988Z"
+    },
+    {
       "id": "r-mwtp0069",
       "who": "Nouran",
       "date": "2026-11-23",
