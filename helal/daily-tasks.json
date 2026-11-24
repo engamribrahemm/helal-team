@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-23T15:48:06.401Z",
+      "updated_at": "2026-11-24T22:20:10.171Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,10 +716,10 @@
         },
         "Seif": {
           "open": 17,
-          "todo": 6,
+          "todo": 5,
           "progress": 0,
-          "review": 11,
-          "overdue": 4,
+          "review": 12,
+          "overdue": 12,
           "done": 43,
           "hours": 23.938568763440866,
           "live": 0
@@ -751,8 +751,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 59.24199648148149,
-          "live": 20.333333333333332
+          "hours": 69.41977425925927,
+          "live": 50.86666666666667
         },
         "Nouran": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 20665,
-        "avgProgress": 2186,
+        "avgTodo": 19910,
+        "avgProgress": 2230,
         "open": 21
       },
       "hr": {
@@ -10098,18 +10098,25 @@
           "title": "Talent Acquisition and ٤-Competency Based interviews",
           "notes": "",
           "due": "2026-11-23",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1SCQhGFHYIs55JC9WQWU8u3P7KhIeu3Ov",
           "drive_missing": false,
           "assigned_at": "2026-11-23",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-23T15:11:52.959Z",
-          "updated_at": "2026-11-23T15:11:52.959Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-24T22:20:10.123Z",
+          "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 2,
+          "time_log": [],
+          "review_at": "2026-11-24T22:20:10.123Z",
+          "first_review_at": "2026-11-24T22:20:10.123Z",
+          "delivered_on": "2026-11-25"
         }
       ]
     },
