@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-24T22:20:10.171Z",
+      "updated_at": "2026-11-26T12:04:29.734Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,10 +716,10 @@
         },
         "Seif": {
           "open": 17,
-          "todo": 5,
-          "progress": 0,
+          "todo": 3,
+          "progress": 2,
           "review": 12,
-          "overdue": 12,
+          "overdue": 13,
           "done": 43,
           "hours": 23.938568763440866,
           "live": 0
@@ -751,8 +751,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 69.41977425925927,
-          "live": 50.86666666666667
+          "hours": 81.99755203703704,
+          "live": 88.6
         },
         "Nouran": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 19910,
-        "avgProgress": 2230,
+        "avgTodo": 25567,
+        "avgProgress": 2284,
         "open": 21
       },
       "hr": {
@@ -9741,18 +9741,20 @@
           "title": "Project بزنس بالبلدي  Nov23",
           "notes": "",
           "due": "2026-11-19",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://docs.google.com/spreadsheets/d/1X1ANM_9YxwTOM2SCfRt-f6QUmSQIVum3oncvLJ6rxjI/edit?usp=drivesdk",
           "drive_missing": false,
           "assigned_at": "2026-11-13",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-13T12:48:13.383Z",
-          "updated_at": "2026-11-13T12:48:13.383Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-26T12:03:44.256Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-26T12:03:44.256Z",
+          "progress_started_at": "2026-11-26T12:03:44.256Z",
+          "time_log": [],
+          "start_on": "2026-11-26"
         }
       ]
     },
@@ -10276,18 +10278,20 @@
           "title": "cover to reel of بزنس بالبلدي",
           "notes": "",
           "due": "2026-11-24",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-11-22",
           "month": "2026-11",
           "created_by": "Gehad Helal",
           "created_at": "2026-11-22T19:30:51.982Z",
-          "updated_at": "2026-11-22T19:30:51.982Z",
-          "updated_by": "Gehad Helal",
+          "updated_at": "2026-11-26T12:03:45.326Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-26T12:03:45.325Z",
+          "progress_started_at": "2026-11-26T12:03:45.325Z",
+          "time_log": [],
+          "start_on": "2026-11-26"
         }
       ]
     },
