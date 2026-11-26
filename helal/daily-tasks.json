@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-26T12:08:21.126Z",
+      "updated_at": "2026-11-26T12:09:06.731Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -717,12 +717,12 @@
         "Seif": {
           "open": 17,
           "todo": 3,
-          "progress": 1,
-          "review": 13,
+          "progress": 0,
+          "review": 14,
           "overdue": 13,
           "done": 43,
-          "hours": 23.192571822916673,
-          "live": 0.06666666666666667
+          "hours": 23.938568763440866,
+          "live": 0
         },
         "Moamen": {
           "open": 0,
@@ -751,8 +751,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 82.01977425925928,
-          "live": 88.66666666666667
+          "hours": 82.02532981481482,
+          "live": 88.68333333333334
         },
         "Nouran": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 25571,
-        "avgProgress": 2231,
+        "avgTodo": 25572,
+        "avgProgress": 2284,
         "open": 21
       },
       "hr": {
