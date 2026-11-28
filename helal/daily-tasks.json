@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-28T18:42:03.180Z",
+      "updated_at": "2026-11-28T19:28:08.910Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -717,12 +717,12 @@
         "Seif": {
           "open": 17,
           "todo": 0,
-          "progress": 2,
-          "review": 15,
+          "progress": 1,
+          "review": 16,
           "overdue": 16,
           "done": 43,
-          "hours": 23.938568763440866,
-          "live": 0
+          "hours": 23.21444682291667,
+          "live": 0.7666666666666667
         },
         "Moamen": {
           "open": 0,
@@ -751,8 +751,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 100.20866314814816,
-          "live": 143.23333333333332
+          "hours": 100.46421870370371,
+          "live": 144
         },
         "Nouran": {
           "open": 0,
@@ -766,8 +766,8 @@
         }
       },
       "time": {
-        "avgTodo": 49911,
-        "avgProgress": 2362,
+        "avgTodo": 49957,
+        "avgProgress": 2309,
         "open": 21
       },
       "hr": {
@@ -10491,20 +10491,36 @@
           "title": "Single visual 30 Nov",
           "notes": "",
           "due": "2026-11-27",
-          "status": "In progress",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-23",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-23T15:48:06.147Z",
-          "updated_at": "2026-11-28T18:41:59.376Z",
+          "updated_at": "2026-11-28T19:28:08.882Z",
           "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "2026-11-28T18:41:59.376Z",
-          "progress_started_at": "2026-11-28T18:41:59.376Z",
-          "time_log": [],
-          "start_on": "2026-11-28"
+          "progress_started_at": "",
+          "time_log": [
+            {
+              "from": "In progress",
+              "to": "Review",
+              "started_at": "2026-11-28T18:41:59.376Z",
+              "ended_at": "2026-11-28T19:28:08.882Z",
+              "hours": 0.7693072222222223,
+              "by": "Seif"
+            }
+          ],
+          "start_on": "2026-11-28",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 1,
+          "progress_hours": 0.7693072222222223,
+          "review_at": "2026-11-28T19:28:08.882Z",
+          "first_review_at": "2026-11-28T19:28:08.882Z",
+          "delivered_on": "2026-11-28"
         }
       ]
     },
