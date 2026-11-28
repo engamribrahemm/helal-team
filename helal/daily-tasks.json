@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-26T12:09:06.731Z",
+      "updated_at": "2026-11-28T11:49:35.477Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,10 +716,10 @@
         },
         "Seif": {
           "open": 17,
-          "todo": 3,
+          "todo": 2,
           "progress": 0,
-          "review": 14,
-          "overdue": 13,
+          "review": 15,
+          "overdue": 16,
           "done": 43,
           "hours": 23.938568763440866,
           "live": 0
@@ -751,8 +751,8 @@
           "review": 0,
           "overdue": 1,
           "done": 6,
-          "hours": 82.02532981481482,
-          "live": 88.68333333333334
+          "hours": 97.91421870370372,
+          "live": 136.35
         },
         "Nouran": {
           "open": 0,
@@ -766,18 +766,18 @@
         }
       },
       "time": {
-        "avgTodo": 25572,
-        "avgProgress": 2284,
+        "avgTodo": 32727,
+        "avgProgress": 2352,
         "open": 21
       },
       "hr": {
         "people": {
           "Seif": {
-            "delivery": 3,
+            "delivery": 2,
             "quality": 0,
             "revisions": 0,
             "creativity": 0,
-            "total": 3,
+            "total": 2,
             "attitude": 0,
             "reviews": 0
           },
@@ -10463,18 +10463,25 @@
           "title": "Carousel 5 Slides 29Nov",
           "notes": "",
           "due": "2026-11-27",
-          "status": "To do",
+          "status": "Review",
           "drive": "https://drive.google.com/drive/folders/1PsdXPs-86bsiY6Qr7CSjy9n-tac1SJfj",
           "drive_missing": false,
           "assigned_at": "2026-11-23",
           "month": "2026-11",
           "created_by": "Nouran",
           "created_at": "2026-11-23T15:47:23.391Z",
-          "updated_at": "2026-11-23T15:47:23.391Z",
-          "updated_by": "Nouran",
+          "updated_at": "2026-11-28T11:49:35.446Z",
+          "updated_by": "Seif",
           "revisions": 0,
           "first_progress_at": "",
-          "progress_started_at": ""
+          "progress_started_at": "",
+          "delay_reason": "Other",
+          "delay_notified": false,
+          "delay_days": 1,
+          "time_log": [],
+          "review_at": "2026-11-28T11:49:35.446Z",
+          "first_review_at": "2026-11-28T11:49:35.446Z",
+          "delivered_on": "2026-11-28"
         },
         {
           "id": "t-20261127-seif-mwtfwqyo",
