@@ -702,7 +702,7 @@
       "frozen_at": "2026-10-31T22:04:31.848Z"
     },
     "2026-11": {
-      "updated_at": "2026-11-28T18:41:59.398Z",
+      "updated_at": "2026-11-28T18:42:03.180Z",
       "people": {
         "Amr": {
           "open": 0,
@@ -716,8 +716,8 @@
         },
         "Seif": {
           "open": 17,
-          "todo": 1,
-          "progress": 1,
+          "todo": 0,
+          "progress": 2,
           "review": 15,
           "overdue": 16,
           "done": 43,
@@ -766,7 +766,7 @@
         }
       },
       "time": {
-        "avgTodo": 39580,
+        "avgTodo": 49911,
         "avgProgress": 2362,
         "open": 21
       },
@@ -10520,18 +10520,20 @@
           "title": "2single visual & carousel   30 november",
           "notes": "",
           "due": "2026-11-28",
-          "status": "To do",
+          "status": "In progress",
           "drive": "https://drive.google.com/drive/folders/15HKsA2xyjhiJGh19ty4yWrlhdqSgHVoU?usp=sharing",
           "drive_missing": false,
           "assigned_at": "2026-11-22",
           "month": "2026-11",
           "created_by": "Gehad Helal",
           "created_at": "2026-11-22T19:33:23.574Z",
-          "updated_at": "2026-11-22T19:33:23.574Z",
-          "updated_by": "Gehad Helal",
+          "updated_at": "2026-11-28T18:42:03.159Z",
+          "updated_by": "Seif",
           "revisions": 0,
-          "first_progress_at": "",
-          "progress_started_at": ""
+          "first_progress_at": "2026-11-28T18:42:03.159Z",
+          "progress_started_at": "2026-11-28T18:42:03.159Z",
+          "time_log": [],
+          "start_on": "2026-11-28"
         }
       ]
     }
